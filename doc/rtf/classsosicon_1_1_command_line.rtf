@@ -220,7 +220,7 @@ Author:\par}\pard\plain \s61\li360\widctlpar\ql\adjustright \fs20\cgrid Espen An
 Copyright:\par}\pard\plain \s61\li360\widctlpar\ql\adjustright \fs20\cgrid GNU General Public License\par
 }Takes the arguments from the command-line and parses them into the class member variables. On Linux systems, this class also reads piped content (file list to be processed) from stdin, using it as input parameters. \par
 }{
-Definition at line 37 of file command_line.h.}\par
+Definition at line 38 of file command_line.h.}\par
 }
 {\pard\widctlpar\brdrb\brdrs\brdrw5\brsp20 \adjustright \par}
 \pard\plain \s3\sb240\sa60\keepn\widctlpar\adjustright \b\f1\cgrid 
@@ -338,7 +338,7 @@ Append flag. }}\par
 {\s17\sa60\sb30\widctlpar\qj \fs22\cgrid 
 If the destination file (-o ...) is specified together with the -a argument, this flag will be true to signal that data from several source files should be merged into one destination file. \par
 }{
-Definition at line 100 of file command_line.h.}\par
+Definition at line 101 of file command_line.h.}\par
 }
 {\xe \v mCommand\:sosicon::CommandLine}
 {\xe \v sosicon::CommandLine\:mCommand}
@@ -357,7 +357,7 @@ Conversion command. }}\par
 {\s17\sa60\sb30\widctlpar\qj \fs22\cgrid 
 Specifies what type of conversion to perform. If this string is -2tsv, the SOSI file will be exported as tab separated values. The factory class uses this parameter to determine which {\b IConverter} implementation to employ upon initialization. \par
 }{
-Definition at line 46 of file command_line.h.}\par
+Definition at line 47 of file command_line.h.}\par
 }
 {\xe \v mDestinationDirectory\:sosicon::CommandLine}
 {\xe \v sosicon::CommandLine\:mDestinationDirectory}
@@ -376,7 +376,7 @@ Destination directory. }}\par
 {\s17\sa60\sb30\widctlpar\qj \fs22\cgrid 
 Path to the target directory where the output files will be written. Specified by the -d argument. \par
 }{
-Definition at line 86 of file command_line.h.}\par
+Definition at line 87 of file command_line.h.}\par
 }
 {\xe \v mFieldSelection\:sosicon::CommandLine}
 {\xe \v sosicon::CommandLine\:mFieldSelection}
@@ -395,7 +395,7 @@ List of selected fields. }}\par
 {\s17\sa60\sb30\widctlpar\qj \fs22\cgrid 
 String vector containing the identifiers for the SOSI fields to be included in the export. Specified as a comma-separated list of strings following the -f argument. \par
 }{
-Definition at line 79 of file command_line.h.}\par
+Definition at line 80 of file command_line.h.}\par
 }
 {\xe \v mGeomTypes\:sosicon::CommandLine}
 {\xe \v sosicon::CommandLine\:mGeomTypes}
@@ -414,7 +414,7 @@ List of geometry types to output. }}\par
 {\s17\sa60\sb30\widctlpar\qj \fs22\cgrid 
 String vector containing the geometry types for the elements to be included in the export. Relevant for shapefile exports, since shapefiles can only contain one geometry type at a time. Specified as a comma-separated list of strings following the -g argument. The converter will output one shapefile for each selected geometry. \par
 }{
-Definition at line 72 of file command_line.h.}\par
+Definition at line 73 of file command_line.h.}\par
 }
 {\xe \v mIncludeHeader\:sosicon::CommandLine}
 {\xe \v sosicon::CommandLine\:mIncludeHeader}
@@ -433,7 +433,7 @@ Include column headers. }}\par
 {\s17\sa60\sb30\widctlpar\qj \fs22\cgrid 
 For some output formats, such as tsv, this flag governs whether a line with the column header names should be included in the target file. \par
 }{
-Definition at line 107 of file command_line.h.}\par
+Definition at line 108 of file command_line.h.}\par
 }
 {\xe \v mObjTypes\:sosicon::CommandLine}
 {\xe \v sosicon::CommandLine\:mObjTypes}
@@ -452,7 +452,7 @@ List of object types to output. }}\par
 {\s17\sa60\sb30\widctlpar\qj \fs22\cgrid 
 String vector containing the SOSI OBJTYPE identifiers for the elements to be included in the export. Specified as a comma-separated list of strings following the -t argument. \par
 }{
-Definition at line 63 of file command_line.h.}\par
+Definition at line 64 of file command_line.h.}\par
 }
 {\xe \v mOutputFile\:sosicon::CommandLine}
 {\xe \v sosicon::CommandLine\:mOutputFile}
@@ -471,7 +471,7 @@ Destination file. }}\par
 {\s17\sa60\sb30\widctlpar\qj \fs22\cgrid 
 Specified by the -o argument. The target file name. \par
 }{
-Definition at line 92 of file command_line.h.}\par
+Definition at line 93 of file command_line.h.}\par
 }
 {\xe \v mSourceFiles\:sosicon::CommandLine}
 {\xe \v sosicon::CommandLine\:mSourceFiles}
@@ -490,7 +490,7 @@ List of input files. }}\par
 {\s17\sa60\sb30\widctlpar\qj \fs22\cgrid 
 String vector containing the list of SOSI input files to be converted. This list is populated either by the file names specified directly on the command-line, or by the content of stdin as piped in from other commands (such as ls *.sos | ...) on Linux based systems. \par
 }{
-Definition at line 55 of file command_line.h.}\par
+Definition at line 56 of file command_line.h.}\par
 }
 {\xe \v mVerbose\:sosicon::CommandLine}
 {\xe \v sosicon::CommandLine\:mVerbose}
@@ -509,7 +509,7 @@ Verbose output. }}\par
 {\s17\sa60\sb30\widctlpar\qj \fs22\cgrid 
 Verbose level. If this value is 0, no informative output will be emitted during file parsing. If the value is 1 (-v), limited output will be written to stdout - mostly file header information from each SOSI file to be converted. If the value i 2 (-V), a more comprehensive summary of every SOSI element in all source files will be output. \par
 }{
-Definition at line 116 of file command_line.h.}\par
+Definition at line 117 of file command_line.h.}\par
 }
 {\pard\widctlpar\brdrb\brdrs\brdrw5\brsp20 \adjustright \par}
 The documentation for this class was generated from the following files:{\par

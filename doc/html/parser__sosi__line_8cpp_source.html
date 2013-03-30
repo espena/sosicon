@@ -631,7 +631,7 @@
 <div class="line"><a name="l00579"></a><span class="lineno">  579</span>&#160;            <span class="keywordflow">else</span> <span class="keywordflow">if</span> ( (*p) &gt; *_mid )</div>
 <div class="line"><a name="l00580"></a><span class="lineno">  580</span>&#160;                _lower = _mid + 1;</div>
 <div class="line"><a name="l00581"></a><span class="lineno">  581</span>&#160;            <span class="keywordflow">else</span> {</div>
-<div class="line"><a name="l00582"></a><span class="lineno">  582</span>&#160;                _trans += (_mid - _keys);</div>
+<div class="line"><a name="l00582"></a><span class="lineno">  582</span>&#160;                _trans += (<span class="keywordtype">unsigned</span> int)(_mid - _keys);</div>
 <div class="line"><a name="l00583"></a><span class="lineno">  583</span>&#160;                <span class="keywordflow">goto</span> _match;</div>
 <div class="line"><a name="l00584"></a><span class="lineno">  584</span>&#160;            }</div>
 <div class="line"><a name="l00585"></a><span class="lineno">  585</span>&#160;        }</div>
@@ -654,7 +654,7 @@
 <div class="line"><a name="l00602"></a><span class="lineno">  602</span>&#160;            <span class="keywordflow">else</span> <span class="keywordflow">if</span> ( (*p) &gt; _mid[1] )</div>
 <div class="line"><a name="l00603"></a><span class="lineno">  603</span>&#160;                _lower = _mid + 2;</div>
 <div class="line"><a name="l00604"></a><span class="lineno">  604</span>&#160;            <span class="keywordflow">else</span> {</div>
-<div class="line"><a name="l00605"></a><span class="lineno">  605</span>&#160;                _trans += ((_mid - _keys)&gt;&gt;1);</div>
+<div class="line"><a name="l00605"></a><span class="lineno">  605</span>&#160;                _trans += (<span class="keywordtype">unsigned</span> int)((_mid - _keys)&gt;&gt;1);</div>
 <div class="line"><a name="l00606"></a><span class="lineno">  606</span>&#160;                <span class="keywordflow">goto</span> _match;</div>
 <div class="line"><a name="l00607"></a><span class="lineno">  607</span>&#160;            }</div>
 <div class="line"><a name="l00608"></a><span class="lineno">  608</span>&#160;        }</div>
@@ -1094,7 +1094,7 @@
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Wed Oct 17 2012 19:48:10 for sosicon by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Sat Mar 30 2013 13:18:18 for sosicon by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.2
 </small></address>

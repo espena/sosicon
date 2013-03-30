@@ -135,7 +135,7 @@ Private Attributes</h2></td></tr>
 <p>Specifically, the function <a class="el" href="classsosicon_1_1_parser.html#ac9565b049142d6d1230cb711ba784ce0" title="Main parser routine.">parseSosiLine()</a> is implemented in Ragel. The implementation script is located in <a class="el" href="parser__sosi__line_8rl.html">parser/parser_sosi_line.rl</a>. The file <a class="el" href="parser__sosi__line_8cpp.html">parser_sosi_line.cpp</a> is generated on the basis of <a class="el" href="parser__sosi__line_8rl.html">parser/parser_sosi_line.rl</a> during pre-build processing.</p>
 <dl class="section note"><dt>Note</dt><dd>Since <a class="el" href="parser__sosi__line_8cpp.html">parser_sosi_line.cpp</a> is automatically re-generated before each compile, no redacting mat take place here. Any changes will be lost upon compile. Instead, its source script <a class="el" href="parser__sosi__line_8rl.html">parser/parser_sosi_line.rl</a> have to be edited. </dd></dl>
 
-<p>Definition at line <a class="el" href="parser_8h_source.html#l00052">52</a> of file <a class="el" href="parser_8h_source.html">parser.h</a>.</p>
+<p>Definition at line <a class="el" href="parser_8h_source.html#l00053">53</a> of file <a class="el" href="parser_8h_source.html">parser.h</a>.</p>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a class="anchor" id="aa4674670e66fba0804c6dd4236c28252"></a>
 <div class="memitem">
@@ -445,7 +445,7 @@ Private Attributes</h2></td></tr>
 <p>A pointer to the new object is assigned to this member in order to keep track of to the SOSI element currently in process.</p>
 <dl class="section see"><dt>See Also</dt><dd><a class="el" href="classsosicon_1_1_parser.html#ac9565b049142d6d1230cb711ba784ce0" title="Main parser routine.">Parser::parseSosiLine()</a> </dd></dl>
 
-<p>Definition at line <a class="el" href="parser_8h_source.html#l00129">129</a> of file <a class="el" href="parser_8h_source.html">parser.h</a>.</p>
+<p>Definition at line <a class="el" href="parser_8h_source.html#l00130">130</a> of file <a class="el" href="parser_8h_source.html">parser.h</a>.</p>
 
 </div>
 </div>
@@ -471,7 +471,7 @@ Private Attributes</h2></td></tr>
 <p>The head element is not stored in the <a class="el" href="classsosicon_1_1_parser.html#ac2d80de58e090fc36ed79ba27445156f" title="SOSI elements container.">Parser::mSosiElements</a> list because it contains data which is globally relevant to all elements in the SOSI file. Instead, it is available directly through this member. <a class="el" href="classsosicon_1_1_parser.html#a1994861c3887a7479e22dbc9d1fc8ff4" title="Retrieve SOSI head.">Parser::getHeadElement()</a> provides external access to this member.</p>
 <dl class="section see"><dt>See Also</dt><dd><a class="el" href="classsosicon_1_1_parser.html#a1994861c3887a7479e22dbc9d1fc8ff4" title="Retrieve SOSI head.">Parser::getHeadElement()</a> </dd></dl>
 
-<p>Definition at line <a class="el" href="parser_8h_source.html#l00114">114</a> of file <a class="el" href="parser_8h_source.html">parser.h</a>.</p>
+<p>Definition at line <a class="el" href="parser_8h_source.html#l00115">115</a> of file <a class="el" href="parser_8h_source.html">parser.h</a>.</p>
 
 </div>
 </div>
@@ -497,7 +497,7 @@ Private Attributes</h2></td></tr>
 <p>SOSI object types scheduled for output. The vector is populated by the comma-separated values given by the command-line parameter -t. If the list is empty, all available objects will be exported without filtering.</p>
 <dl class="section see"><dt>See Also</dt><dd><a class="el" href="classsosicon_1_1_parser.html#afc47b6b613163c065d9f7ed5ad5e6a9e" title="Apply output selection filter.">Parser::setObjTypeSelection()</a> </dd></dl>
 
-<p>Definition at line <a class="el" href="parser_8h_source.html#l00103">103</a> of file <a class="el" href="parser_8h_source.html">parser.h</a>.</p>
+<p>Definition at line <a class="el" href="parser_8h_source.html#l00104">104</a> of file <a class="el" href="parser_8h_source.html">parser.h</a>.</p>
 
 </div>
 </div>
@@ -522,7 +522,7 @@ Private Attributes</h2></td></tr>
 <p>SOSI elements container. </p>
 <p>Stores pointers to all recognized and parsed SOSI file elements, except for the head element which is stored in <a class="el" href="classsosicon_1_1_parser.html#a06987c5d1e0c9ae7c4b2522646de9a64" title="Pointer to the head element.">Parser::mHeadElement</a>. SOSI elements selected for output are pointed to by the items in <a class="el" href="classsosicon_1_1_parser.html#ab8ba218192a83f8085fbbd15b4127e0d" title="SOSI elements selected for output.">Parser::mSosiElementsSelection</a>. </p>
 
-<p>Definition at line <a class="el" href="parser_8h_source.html#l00060">60</a> of file <a class="el" href="parser_8h_source.html">parser.h</a>.</p>
+<p>Definition at line <a class="el" href="parser_8h_source.html#l00061">61</a> of file <a class="el" href="parser_8h_source.html">parser.h</a>.</p>
 
 </div>
 </div>
@@ -549,7 +549,7 @@ Private Attributes</h2></td></tr>
 <p>When exporting to certain file formats, such as tab separated values (tsv), this field overview determines what columns should be present in the output file - unless a custom field list is specified via the command-line interface (sosicon command-line parameter -f).</p>
 <dl class="section see"><dt>See Also</dt><dd><a class="el" href="classsosicon_1_1_converter_sosi2tsv.html#af782acccf9eddaf1c09951c3880c2c1d" title="Start conversion.">sosicon::ConverterSosi2tsv::run()</a> </dd></dl>
 
-<p>Definition at line <a class="el" href="parser_8h_source.html#l00093">93</a> of file <a class="el" href="parser_8h_source.html">parser.h</a>.</p>
+<p>Definition at line <a class="el" href="parser_8h_source.html#l00094">94</a> of file <a class="el" href="parser_8h_source.html">parser.h</a>.</p>
 
 </div>
 </div>
@@ -575,7 +575,7 @@ Private Attributes</h2></td></tr>
 <p>Used internally by <a class="el" href="classsosicon_1_1_parser.html#ae85d85b224dbf0bcb560e8b500ee858a" title="Retrieve next SOSI element for output.">Parser::getNextSosiElement()</a>. Keeps track of current position while iterating the list of SOSI elements for output.</p>
 <dl class="section see"><dt>See Also</dt><dd><a class="el" href="classsosicon_1_1_parser.html#ae85d85b224dbf0bcb560e8b500ee858a" title="Retrieve next SOSI element for output.">Parser::getNextSosiElement()</a> </dd></dl>
 
-<p>Definition at line <a class="el" href="parser_8h_source.html#l00080">80</a> of file <a class="el" href="parser_8h_source.html">parser.h</a>.</p>
+<p>Definition at line <a class="el" href="parser_8h_source.html#l00081">81</a> of file <a class="el" href="parser_8h_source.html">parser.h</a>.</p>
 
 </div>
 </div>
@@ -601,7 +601,7 @@ Private Attributes</h2></td></tr>
 <p>Sosicon may schedule only certain SOSI object types for output, ignoring other object types in current file. This member variable keeps track of the elements matching the current object type filter. The filtering is determined by the contents of Parser::mObjTypes.</p>
 <dl class="section see"><dt>See Also</dt><dd>mObjTypes </dd></dl>
 
-<p>Definition at line <a class="el" href="parser_8h_source.html#l00071">71</a> of file <a class="el" href="parser_8h_source.html">parser.h</a>.</p>
+<p>Definition at line <a class="el" href="parser_8h_source.html#l00072">72</a> of file <a class="el" href="parser_8h_source.html">parser.h</a>.</p>
 
 </div>
 </div>
@@ -614,7 +614,7 @@ Private Attributes</h2></td></tr>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Wed Oct 17 2012 19:48:10 for sosicon by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Sat Mar 30 2013 13:18:18 for sosicon by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.2
 </small></address>
