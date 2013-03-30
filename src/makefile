@@ -13,7 +13,8 @@ OUTDIR = ../bin/linux
 RAGEL = parser/ragel_bin/linux/ragel
 endif
 
-SOURCEFILES =	main.cpp                        \
+SOURCEFILES =                                   \
+                main.cpp                        \
 				command_line.cpp                \
 				factory.cpp                     \
 				string_utils.cpp                \
