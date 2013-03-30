@@ -42,6 +42,9 @@ Sosicon is not ready for release, although TSV conversion works well with some S
 address points. The parser needs to be extended to include more features in accordance with the
 SOSI specification.
 
+## Source documentation
+Documentation exists in html, rtf and pdf formats. See the doc directory within the repository, or visit [sosicon.espenandersen.no](http://sosicon.espenandersen.no/) for the online version.
+
 ### Ragel parser
 The parser in sosicon is based on the [Ragel state machine compiler](http://www.complang.org/ragel/).
 The ragel script is located in the src/parser directory. Ragel binaries for OS X, Linux and Win32
