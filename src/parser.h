@@ -18,6 +18,7 @@
 #ifndef __PARSER_H__
 #define __PARSER_H__
 
+#include <algorithm>
 #include <vector>
 #include <string>
 #include <sstream>

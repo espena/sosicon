@@ -18,6 +18,8 @@
 #ifndef __I_BINARY_STREAMABLE_H__
 #define __I_BINARY_STREAMABLE_H__
 
+#include <iostream>
+
 namespace sosicon {
 
     /*!

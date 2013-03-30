@@ -44,7 +44,7 @@ namespace sosicon {
         public:
         
             //! Shapefile point raw data
-            typedef union Data {
+            union Data {
                 struct {
                     Int32TField type;
                     DoubleField x;

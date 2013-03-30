@@ -18,6 +18,7 @@
 #ifndef __COMMAND_LINE_H__
 #define __COMMAND_LINE_H__
 
+#include <stdio.h>
 #include <iostream>
 #include <vector>
 #include <string>

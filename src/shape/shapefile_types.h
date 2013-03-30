@@ -18,6 +18,7 @@
 #ifndef __SHAPEFILE_TYPES_H__
 #define __SHAPEFILE_TYPES_H__
 
+#include <stdint.h>
 #include <algorithm>
 #include <limits>
 #include "../interface/i_rectangle.h"

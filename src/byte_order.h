@@ -18,6 +18,7 @@
 #ifndef __BYTE_ORDER_H__
 #define __BYTE_ORDER_H__
 
+#include <inttypes.h>
 #include <algorithm>
 #include <iostream>
 
