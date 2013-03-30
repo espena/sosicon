@@ -57,6 +57,10 @@ Ragel was designed and written by Adrian Thurston and released under the
 [GNU General Public License](http://www.gnu.org/licenses/gpl.txt) in 2002. Sosicon relies heavily
 on the excellent work of Thurston and [his team of contributors](http://www.complang.org/ragel/CREDITS).
 
-## License
+## License and disclaimer
 Sosicon is written by Espen Andersen and released under the
 [GNU General Public License](http://www.gnu.org/licenses/gpl.txt).
+
+This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License for more details.
+
+Although the author has attempted to find and correct any bugs in the free software programs, the author is not responsible for any damage or losses of any kind caused by the use or misuse of the programs. The author is under no obligation to provide support, service, corrections, or upgrades to the free software programs.
