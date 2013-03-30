@@ -14,7 +14,7 @@ RAGEL = parser/ragel_bin/linux/ragel
 endif
 
 SOURCEFILES =                                   \
-                main.cpp                        \
+				main.cpp                        \
 				command_line.cpp                \
 				factory.cpp                     \
 				string_utils.cpp                \
