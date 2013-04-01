@@ -3,6 +3,11 @@ Converts SOSI files to a number of other formats, including TSV (tab delimited t
 files. Support for shape and other formats is yet to be implemented. TSV is well supported for some
 features, but the parser is still under development.
 
+SOSI is a data format used for exchanging geographical information in Norway. The name is an acronym
+for _"Samordnet Opplegg for Stedfestet Informasjon"_, which translates into something like
+_"Coordinated Approach for Geospatial Information"_. [Wikipedia](https://en.wikipedia.org/wiki/SOSI)
+has more.
+
 Contributors are most welcome!
 
 ## Features
