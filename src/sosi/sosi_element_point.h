@@ -21,6 +21,7 @@
 #include "sosi_element.h"
 #include "address_unit.h"
 #include "cadastral_unit.h"
+#include <vector>
 
 namespace sosicon {
 
@@ -100,6 +101,9 @@ namespace sosicon {
 
             // Described in ISosiElement::getData( CadastralUnit*& )
             virtual std::string getData( CadastralUnit* &cunit );
+
+            // Described in ISosiElement::getData( CoordList* )
+            virtual std::string getData( CoordList* &clist ) { clist = 0; return ""; };
 
             // Described in ISosiElement::getData( const char* )
             virtual std::string getData( const char* key ) { return mElement.getData( key ); }

@@ -208,12 +208,23 @@ parseSosiLine( std::string sosiLine )
             }
         }
 
+        action see_coord_precision {
+            if( mCurrentElement ) {
+                mCurrentElement->append( "koord_presisjon", fc );
+            }
+        }
+
         action see_coord_sys {
             if( mCurrentElement ) {
                 mCurrentElement->append( "koordsys", fc );
             }
         }
 
+        action see_curve {
+            mCurrentElement = new sosicon::sosi::SosiElementCurve();
+            mSosiElements.push_back( mCurrentElement );
+        }
+        
         action see_head {
             mCurrentElement = new ::sosicon::sosi::SosiElementHead();
             mHeadElement = mCurrentElement;
@@ -252,6 +263,12 @@ parseSosiLine( std::string sosiLine )
         action see_municipality_number {
             if( mCurrentElement ) {
                 mCurrentElement->append( "komm", fc );
+            }
+        }
+        
+        action see_n_oe {
+            if( mCurrentElement ) {
+                mCurrentElement->append( "n_oe", fc );
             }
         }
         
@@ -397,9 +414,11 @@ parseSosiLine( std::string sosiLine )
 
         kommentar     = ( '!' . any* );
 
-        koordinater   = ( ( float )$see_coord_n . space+ . ( float )$see_coord_o . crlf@resolve_coordinates );
+        koordinater   = ( ( float )$see_coord_n . space+ . ( float )$see_coord_o . crlf@resolve_coordinates . ( space+ . '...KP' . space+ . ( digits )$see_coord_precision )? );
 
         koordsys      = ( ( '...KOORDSYS' ) . space . ( digits )$see_coord_sys . crlf@resolve_koordsys );
+
+        kurve         = ( ( '.KURVE' )@see_curve . space . ( [^:]+ )$see_id . ':' );
 
         matrikkel     = ( ( '..MATRIKKELNUMMER' ) . space . ( digits )$see_cadastral_unit_municipality .
                                                     space . ( digits )$see_cadastral_unit_cadastre .
@@ -410,6 +429,8 @@ parseSosiLine( std::string sosiLine )
         max_no        = ( ( '...MAX-N' . extend ) . space+ . ( float )$see_max_n . space+ . ( float )$see_max_o . crlf );
 
         min_no        = ( ( '...MIN-N' . extend ) . space+ . ( float )$see_min_n . space+ . ( float )$see_min_o . crlf );
+
+        n_oe          = ( ( '..NØ' )$see_n_oe . crlf );
 
         objtype       = ( ( '..OBJTYPE' ) . spaceq . ( ( ncrlfq )$see_objtype ) . crlfq@filter_by_objtype );
 
@@ -452,9 +473,11 @@ parseSosiLine( std::string sosiLine )
                   kommentar      |
                   koordinater    |
                   koordsys       |
+                  kurve          |
                   matrikkel      |
                   max_no         |
                   min_no         |
+                  n_oe           |
                   objtype        |
                   origo_no       |
                   post           |

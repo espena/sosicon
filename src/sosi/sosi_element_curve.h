@@ -15,10 +15,12 @@
  *  You should have received a copy of the GNU General Public License
  *  along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-#ifndef __SOSI_ELEMENT_TEXT_H__
-#define __SOSI_ELEMENT_TEXT_H__
+#ifndef __SOSI_ELEMENT_CURVE_H__
+#define __SOSI_ELEMENT_CURVE_H__
 
 #include "sosi_element.h"
+#include "coord_list.h"
+#include <vector>
 
 namespace sosicon {
 
@@ -28,24 +30,44 @@ namespace sosicon {
             \addtogroup sosi_elements SOSI Elements
             @{
         */
-        //! Sosi text element (TEKST)
+        //! Sosi curve element (KURVE)
         /*!
-            Represents the placement of a text string in the SOSI file specification.
+            Represents the SOSI curve object, describing a geographical curve/path within current
+            grid reference system.
          */
-    	class SosiElementText : public ISosiElement {
+    	class SosiElementCurve : public ISosiElement {
 
             //! Base element
             /*!
                 Basic SOSI element functionality is delegated to this object.
              */
             SosiElement mElement;
+            
+            //! Curve shapes
+            /*!
+                One or more point lists describing current curve.
+             */
+            std::vector<CoordList*> mCoordinates;
+            
+            //! Iterator to next coordinate string in list
+            std::vector<CoordList*>::iterator mCoordinatesIterator;
+            
+            //! Current list of coordinates
+            CoordList* mCurrentCoords;
+            
+            //! Structure with north/east coordinates
+            struct CoordPair {
+                std::string north;
+                std::string east;
+            } mCoordPair;
 
     	public:
+
             //! Constructor
-            SosiElementText() { }
+            SosiElementCurve();
 
             //! Destructor
-            virtual ~SosiElementText() { }
+            virtual ~SosiElementCurve();
 
             //! Get next AddressUnit
             /*!
@@ -55,35 +77,35 @@ namespace sosicon {
                 \param aunit Reference to pointer to AddressUnit will be set to 0.
                 \return Empty string.
              */
-            virtual std::string getData( AddressUnit* &aunit ) { aunit = 0; return ""; }
+            virtual std::string getData( AddressUnit* &aunit ) { aunit = 0; return ""; };
 
             //! Get next CadastralUnit
             /*!
                 Not implemented in this class.
                 \sa ISosiElement::getData( CadastralUnit*& )
-            
+        
                 \param cunit Reference to pointer to CadastralUnit will be set to 0.
                 \return Empty string.
              */
-            virtual std::string getData( CadastralUnit* &cunit ) { cunit = 0; return ""; }
+            virtual std::string getData( CadastralUnit* &cunit ) { cunit = 0; return ""; };
+
+            // Described in ISosiElement::getData( const char* )
+            virtual std::string getData( const char* key );
 
             // Described in ISosiElement::getData( CoordList* )
-            virtual std::string getData( CoordList* &clist ) { clist = 0; return ""; };
+            virtual std::string getData( CoordList* &clist );
 
-            //  Described in ISosiElement::getData( const char* )
-            virtual std::string getData( const char* key ) { return mElement.getData( key ); }
-
-            //  Described in ISosiElement::getFields()
+            // Described in ISosiElement::getFields()
             virtual std::vector<std::string>& getFields() { return mElement.getFields(); }
 
-            //  Described in ISosiElement::getType()
-            virtual std::string getType() { return "TEKST"; }
+            // Described in ISosiElement::getType()
+            virtual std::string getType() { return "KURVE"; }
 
-            //  Described in ISosiElement::set()
+            // Described in ISosiElement::set()
             virtual void set( const std::string& key, const std::string& val ) { mElement.set( key, val ); }
 
-            //  Described in ISosiElement::append()
-            virtual void append( const std::string& key, char val ) { mElement.append( key, val ); }
+            // Described in ISosiElement::append()
+            virtual void append( const std::string& key, char val );
     	};
        /*! @} end group sosi_elements */
 

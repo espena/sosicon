@@ -26,6 +26,7 @@
 #include "coord_sys.h"
 #include "address_unit.h"
 #include "cadastral_unit.h"
+#include "coord_list.h"
 
 namespace sosicon {
 
@@ -86,6 +87,15 @@ namespace sosicon {
                 \return Empty string.
              */
             virtual std::string getData( CadastralUnit* &cunit ) { cunit = 0; return ""; };
+
+            //! Get next CoordList
+            /*!
+                Not implemented in this class.
+        
+                \param clist Reference to pointer to CoordList will be set to 0.
+                \return Empty string.
+             */
+            virtual std::string getData( CoordList* &clist ) { clist = 0; return ""; };
 
             // Described in ISosiElement::getData( const char* )
             virtual std::string getData( const char* key );

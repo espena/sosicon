@@ -71,6 +71,9 @@ namespace sosicon {
             // Described in ISosiElement::getData( const char* )
             virtual std::string getData( const char* key ) { return mElement.getData( key ); }
 
+            // Described in ISosiElement::getData( CoordList* )
+            virtual std::string getData( CoordList* &clist ) { clist = 0; return ""; };
+
             // Described in ISosiElement::getFields()
             virtual std::vector<std::string>& getFields() { return mElement.getFields(); }
 
