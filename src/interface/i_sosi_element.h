@@ -22,6 +22,7 @@
 #include <vector>
 #include "../sosi/address_unit.h"
 #include "../sosi/cadastral_unit.h"
+#include "../sosi/coord_list.h"
 
 namespace sosicon {
 
@@ -72,7 +73,7 @@ namespace sosicon {
             will be returned. Subsequent calls will retrieve the next item in list, until reaching
             the end. The pointer will then be set back to 0.
             
-            \sa sosicon::CadastralUnit
+            \sa sosicon::sosi::CadastralUnit
             
             \param cunit Reference to a pointer to receive the address to the CadastralUnit object.
             \return A string representation of the CadastralUnit being returned, or an empty string
@@ -90,13 +91,31 @@ namespace sosicon {
             will be returned. Subsequent calls will retrieve the next item in list, until reaching
             the end. The pointer will then be set back to 0.
             
-            \sa sosicon::CadastralUnit
+            \sa sosicon::sosi::CadastralUnit
             
             \param aunit Reference to a pointer to receive the address to the AddressUnit object.
             \return A string representation of the AddressUnit being returned, or an empty string
                     if the list was empty or the iterator moved past the last element in the list.
         */
         virtual std::string getData( ::sosicon::sosi::AddressUnit* &aunit ) = 0;
+
+        //! Retrieve next coordinate list
+        /*!
+            If there are a vector of CoordList objects associated with current ISosiElement,
+            this function will return the next such object in the list. A pointer to the object
+            will be stored in the provided cunit pointer reference.
+            
+            If the initial value of the aunit pointer is 0, the first CoordList in the list
+            will be returned. Subsequent calls will retrieve the next item in list, until reaching
+            the end. The pointer will then be set back to 0.
+            
+            \sa sosicon::sosi::CoordList
+            
+            \param clist Reference to a pointer to receive the address to the CoordList object.
+            \return A string representation of the CoordList being returned, or an empty string
+                    if the list was empty or the iterator moved past the last element in the list.
+        */
+        virtual std::string getData( ::sosicon::sosi::CoordList* &clist ) = 0;
 
         //! Retrieve list of available SOSI fields
         /*!
