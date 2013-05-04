@@ -27,6 +27,7 @@
 #include "interface/i_sosi_element.h"
 #include "sosi/coord_sys.h"
 #include "sosi/sosi_element_head.h"
+#include "sosi/sosi_element_curve.h"
 #include "sosi/sosi_element_point.h"
 #include "sosi/sosi_element_text.h"
 
