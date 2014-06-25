@@ -18,14 +18,15 @@ SOURCEFILES =                                   \
 				command_line.cpp                \
 				factory.cpp                     \
 				string_utils.cpp                \
-                byte_order.cpp                  \
+        byte_order.cpp                  \
 				sosi/sosi_element.cpp           \
-                sosi/sosi_element_curve.cpp     \
-                sosi/sosi_element_point.cpp     \
+        sosi/sosi_element_area.cpp     	\
+        sosi/sosi_element_curve.cpp     \
+        sosi/sosi_element_point.cpp     \
 				sosi/cadastral_unit.cpp         \
 				sosi/address_unit.cpp           \
 				sosi/coord_sys.cpp              \
-                sosi/coord_list.cpp             \
+        sosi/coord_list.cpp             \
 				converter_sosi2shp.cpp          \
 				converter_sosi2tsv.cpp          \
 				shape/shapefile.cpp             \

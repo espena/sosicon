@@ -142,6 +142,11 @@ parseSosiLine( std::string sosiLine )
             }
         }
 
+        action see_area {
+            mCurrentElement = new sosicon::sosi::SosiElementArea();
+            mSosiElements.push_back( mCurrentElement );
+        }
+        
         action see_building_number {
             if( mCurrentElement ) {
                 mCurrentElement->append( "byggnr", fc );
@@ -394,9 +399,9 @@ parseSosiLine( std::string sosiLine )
                         ( ( '...ETASJEPLAN' ) . space . ( letter )$see_address_unit_floor_level );
 
         aid           = ( ( '..AID' ) . space+ . ( ( digits )$see_aid_street ) . 
-                                       space+ . ( ( digits )$see_aid_number ) .
-                                       space+ . ( ( letter )$see_aid_letter ) .
-                                       space+ . ( ( digits )$see_aid_subnumber ) );
+                                        space+ . ( ( digits )$see_aid_number ) .
+                                        space+ . ( ( letter )$see_aid_letter ) .
+                                        space+ . ( ( digits )$see_aid_subnumber ) );
 
         byggnr        = ( ( '..BYGGNR' ) . space . ( ( digits )$see_building_number ) );
 
@@ -405,6 +410,8 @@ parseSosiLine( std::string sosiLine )
         byggtyp       = ( ( '..BYGGTYP_NBR' ) . space . ( ( digits )$see_building_type ) );
 
         enhet         = ( ( '...ENHET' ) . space+ . ( ( ncrlf )$see_unit ) . crlf );
+
+        flate         = ( ( '.FLATE' )@see_area . space . ( [^:]+ )$see_id . ':' );
 
         gatenavn      = ( ( '..GATENAVN' ) . spaceq . ( ( ncrlfq )$see_street_name ) . crlfq );
 
@@ -467,6 +474,7 @@ parseSosiLine( std::string sosiLine )
                   byggstat       |
                   byggtyp        |
                   enhet          |
+                  flate          |
                   gatenavn       |
                   hode           |
                   komm           |

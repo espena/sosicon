@@ -71,7 +71,7 @@ prepareHeader( int recordSize ) {
         e->getMBR( bbox );
         mbr.merge( bbox );
     }
-    mHeader.setFileLength( fileLength );
+    mHeader.setFileLength( 1932 );
     mHeader.setBoundingBox( mbr );
 }
 

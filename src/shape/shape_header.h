@@ -106,7 +106,7 @@ namespace sosicon {
             /*!
                 \sa ShapeHeader::mShapeType
              */
-            virtual geom::ShapeType setShapeType( geom::ShapeType shapeType ) { mShapeType.t = shapeType; }
+            virtual void setShapeType( geom::ShapeType shapeType ) { mShapeType.t = shapeType; }
         
             virtual void setFileLength( int fileLength ) { mFileLength.i = fileLength; }
 
