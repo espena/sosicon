@@ -30,6 +30,14 @@ sosicon::Parser::
 }
 
 void sosicon::Parser::
+appendElementFieldChar( const std::string& field, char val ) {
+  if( mCurrentElement ) {
+      mCurrentElementField = field;
+      mCurrentElement->append( mCurrentElementField, val );
+  }
+}
+
+void sosicon::Parser::
 reset() {
 
     while( !mSosiElements.empty() ) {

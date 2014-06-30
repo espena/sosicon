@@ -124,12 +124,34 @@ namespace sosicon {
             encountering a new SOSI object, a corresponding ISosiElement implementation is created
             and placed in Parser::mSosiElements and possibly Parser::mSosiElementsSelection.
             
-            A pointer to the new object is assigned to this member in order to keep track of to
+            A pointer to the new object is assigned to this member in order to keep track of
             the SOSI element currently in process.
             
             \sa Parser::parseSosiLine()
         */
         ISosiElement* mCurrentElement;
+
+        //! Name of last encountered field within current SOSI element
+        /*!
+            Used internally by Parser::parseSosiLine() during file consumption.
+
+            The Ragel implemented parser consumes the SOSI file one line at the time. When
+            encountering a new SOSI object, a corresponding ISosiElement implementation is created
+            and placed in Parser::mSosiElements and possibly Parser::mSosiElementsSelection.
+            
+            For each field encountered, the name of the field is stored in this member variable in 
+            order to keep track of the SOSI field currently in process.
+            
+            \sa Parser::parseSosiLine()
+        */
+        std::string mCurrentElementField;
+
+        //! Append character to field
+        /*!
+          Writes encountered character to the corresponding SOSI field. Updates the
+          mCurrentELementField member.
+         */
+        void appendElementFieldChar( const std::string& field, char val );
 
     public:
 

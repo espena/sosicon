@@ -26,12 +26,12 @@ SosiElementCurve() {
 
 sosicon::sosi::SosiElementCurve::
 ~SosiElementCurve() {
-	while( mCoordinates.size() > 0 ) {
-		CoordList* l = mCoordinates.back();
-		delete l;
-		mCoordinates.pop_back();
-	}
-    mCurrentCoords = 0;
+  while( mCoordinates.size() > 0 ) {
+    CoordList* l = mCoordinates.back();
+    delete l;
+    mCoordinates.pop_back();
+  }
+  mCurrentCoords = 0;
 }
 
 void sosicon::sosi::SosiElementCurve::
@@ -51,12 +51,12 @@ append( const std::string& key, char val ) {
     if( key == "koord_n" ) {
         mCoordPair.north += val;
     }
-	else if( key == "koord_o" ) {
+  else if( key == "koord_o" ) {
         mCoordPair.east += val;
-	}
-	else {
+  }
+  else {
         mElement.append( key, val );
-	}
+  }
 }
 
 std::string sosicon::sosi::SosiElementCurve::
@@ -76,19 +76,19 @@ getData( const char* key ) {
 
 std::string sosicon::sosi::SosiElementCurve::
 getData( sosicon::sosi::CoordList* &clist ) {
-	std::string res = "";
-	if( 0 == clist ) {
+  std::string res = "";
+  if( 0 == clist ) {
         mCoordinatesIterator = mCoordinates.begin();
-	}
-	if( mCoordinatesIterator != mCoordinates.end() ) {
-		clist = *mCoordinatesIterator;
-		res = clist->toString();
-		mCoordinatesIterator++;
-	}
-	else {
-		clist = 0;
-	}
-	return res;
+  }
+  if( mCoordinatesIterator != mCoordinates.end() ) {
+    clist = *mCoordinatesIterator;
+    res = clist->toString();
+    mCoordinatesIterator++;
+  }
+  else {
+    clist = 0;
+  }
+  return res;
 }
 
 

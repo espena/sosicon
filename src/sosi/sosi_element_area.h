@@ -99,7 +99,7 @@ namespace sosicon {
             virtual std::vector<std::string>& getFields() { return mElement.getFields(); }
 
             // Described in ISosiElement::getType()
-            virtual std::string getType() { return "KURVE"; }
+            virtual std::string getType() { return "FLATE"; }
 
             // Described in ISosiElement::set()
             virtual void set( const std::string& key, const std::string& val ) { mElement.set( key, val ); }

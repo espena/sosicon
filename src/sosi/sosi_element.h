@@ -60,6 +60,12 @@ namespace sosicon {
              */
             std::vector<std::string> mFields;
 
+            //! Shared list of references
+            /*!
+                String vector containing referenced SOSI element IDs for current element.
+             */
+            std::vector<std::string> mReferences;
+
         public:
 
             //! Constructor

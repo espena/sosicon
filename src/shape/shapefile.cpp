@@ -41,10 +41,21 @@ insert( ISosiElement* sosiElement ) {
 
     IShapeElement* shapeElement = 0;
 
+    try {
+      mSosiReferenceList.append( sosiElement->getData( "id" ), sosiElement );
+    }
+    catch( ... ) { }
+
     switch( shapeType ) {
 
         case geom::point:
             shapeElement = new ShapeElementPoint();
+            shapeElement->populate( sosiElement );
+            mShapeElements.push_back( shapeElement );
+            break;
+
+        case geom::polygon:
+            shapeElement = new ShapeElementPolygon();
             shapeElement->populate( sosiElement );
             mShapeElements.push_back( shapeElement );
             break;

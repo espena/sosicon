@@ -55,6 +55,8 @@ run() {
                 } // if
             } // while
 
+            /*
+
             std::ofstream shp, shx, dbf, prj, foo;
 
             shp.open( "test.shp", std::ios::out | std::ios::trunc | std::ios::binary );
@@ -72,6 +74,8 @@ run() {
             prj.open( "test.prj", std::ios::out | std::ios::trunc | std::ios::binary );
             prj << *( static_cast<IShapefilePrjPart*>( &mShapefile ) );
             prj.close();
+
+            */
 
         } // for
     }

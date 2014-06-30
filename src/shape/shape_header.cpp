@@ -13,7 +13,10 @@ shapeTypeFromSosiType( std::string sosiType ) {
 
     geom::ShapeType t;
 
-    if( "PUNKT" == sosiType ) {
+    if( "FLATE" == sosiType ) {
+        t = geom::polygon;
+    }
+    else if( "PUNKT" == sosiType ) {
         t = geom::point;
     }
     else {

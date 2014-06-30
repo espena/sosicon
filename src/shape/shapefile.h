@@ -25,6 +25,8 @@
 #include "shape_index.h"
 #include "shape_database.h"
 #include "shape_element_point.h"
+#include "shape_element_polygon.h"
+#include "../sosi/reference_list.h"
 #include "../interface/i_sosi_element.h"
 #include "../interface/i_shape_element.h"
 #include "../interface/i_shapefile.h"
@@ -55,7 +57,13 @@ namespace sosicon {
                 Elements to be included in current file is added to this list.
              */
             std::vector<IShapeElement*> mShapeElements;
-            
+
+            //! SOSI refs dictionary
+            /*!
+              Lookup table for SOSI file. ISosiElement* keyed by SOSI ID.
+             */
+            sosi::ReferenceList mSosiReferenceList;
+
             void prepareHeader();
 
             void prepareHeader( int recordSize );

@@ -49,14 +49,14 @@ append( const std::string& key, char val ) {
     }
 
     if( key == "koord_n" ) {
-        mCoordPair.north += val;
+      mCoordPair.north += val;
     }
-	else if( key == "koord_o" ) {
-        mCoordPair.east += val;
-	}
-	else {
-        mElement.append( key, val );
-	}
+    else if( key == "koord_o" ) {
+      mCoordPair.east += val;
+    }
+    else {
+          mElement.append( key, val );
+    }
 }
 
 std::string sosicon::sosi::SosiElementArea::
@@ -90,6 +90,3 @@ getData( sosicon::sosi::CoordList* &clist ) {
 	}
 	return res;
 }
-
-
-

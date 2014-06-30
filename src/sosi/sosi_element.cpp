@@ -17,6 +17,8 @@
  */
 #include "sosi_element.h"
 
+//std::vector<std::string> sosicon::sosi::SosiElement::mReferences;
+
 sosicon::sosi::SosiElement::
 SosiElement() { }
 
@@ -25,12 +27,28 @@ sosicon::sosi::SosiElement::
 
 void sosicon::sosi::SosiElement::
 set( const std::string& key, const std::string& val ) {
-    mData[ key ] = val;
+  mData[ key ] = val;
 }
 
 void sosicon::sosi::SosiElement::
 append( const std::string& key, char val ) {
-	mData[ key ] += val;
+
+  if( key == "ref" ) {
+    if( ':' == val ) {
+      if( mReferences.size() > 0 ) {
+        std::cout << "References for ID " << mData[ "id" ] << "\n";
+        std::cout << mReferences.back();
+        std::cout << "\n\n";
+      }
+      mReferences.push_back( "" );
+    }
+    else if( ' ' != val ) {
+      mReferences.back() += val;
+    }
+  }
+  else {
+    mData[ key ] += val;
+  }
 }
 
 std::string sosicon::sosi::SosiElement::
@@ -40,14 +58,14 @@ getData( const char* key ) {
 
 std::vector<std::string>& sosicon::sosi::SosiElement::
 getFields() {
-	mFields.clear();
-	for( std::map<std::string, std::string>::iterator i = mData.begin(); i != mData.end(); i++ ) {
-		mFields.push_back( i->first );
-	}
-	return mFields;
+  mFields.clear();
+  for( std::map<std::string, std::string>::iterator i = mData.begin(); i != mData.end(); i++ ) {
+    mFields.push_back( i->first );
+  }
+  return mFields;
 }
 
 std::string sosicon::sosi::SosiElement::
 getType() {
-	return "SOSI ELEMENT";
+  return "SOSI ELEMENT";
 }

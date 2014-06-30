@@ -89,57 +89,39 @@ parseSosiLine( std::string sosiLine )
         }
         
         action see_address_unit {
-            if( mCurrentElement ) {
-                mCurrentElement->append( "adressebruksenhet", ' ' );
-            }
+            appendElementFieldChar( "adressebruksenhet", ' ' );
         }
         
         action see_address_unit_door_number {
-            if( mCurrentElement ) {
-                mCurrentElement->append( "adressebruksenhet_lopenummer", fc );
-            }
+            appendElementFieldChar( "adressebruksenhet_lopenummer", fc );
         }
 
         action see_address_unit_floor_level {
-            if( mCurrentElement ) {
-                mCurrentElement->append( "adressebruksenhet_etasjeplan", fc );
-            }
+            appendElementFieldChar( "adressebruksenhet_etasjeplan", fc );
         }
 
         action see_address_unit_floor_number {
-            if( mCurrentElement ) {
-                mCurrentElement->append( "adressebruksenhet_etasjenummer", fc );
-            }
+            appendElementFieldChar( "adressebruksenhet_etasjenummer", fc );
         }
 
         action see_aid {
-            if( mCurrentElement ) {
-                mCurrentElement->append( "aid", fc );
-            }
+            appendElementFieldChar( "aid", fc );
         }
 
         action see_aid_letter {
-            if( mCurrentElement ) {
-                mCurrentElement->append( "aid_bokstav", fc );
-            }
+            appendElementFieldChar( "aid_bokstav", fc );
         }
         
         action see_aid_number {
-            if( mCurrentElement ) {
-                mCurrentElement->append( "aid_husnr", fc );
-            }
+            appendElementFieldChar( "aid_husnr", fc );
         }
         
         action see_aid_street {
-            if( mCurrentElement ) {
-                mCurrentElement->append( "aid_gate", fc );
-            }
+            appendElementFieldChar( "aid_gate", fc );
         }
         
         action see_aid_subnumber {
-            if( mCurrentElement ) {
-                mCurrentElement->append( "aid_unr", fc );
-            }
+            appendElementFieldChar( "aid_unr", fc );
         }
 
         action see_area {
@@ -148,145 +130,105 @@ parseSosiLine( std::string sosiLine )
         }
         
         action see_building_number {
-            if( mCurrentElement ) {
-                mCurrentElement->append( "byggnr", fc );
-            }
+            appendElementFieldChar( "byggnr", fc );
         }
 
         action see_building_status {
-            if( mCurrentElement ) {
-                mCurrentElement->append( "byggstat", fc );
-            }
+            appendElementFieldChar( "byggstat", fc );
         }
 
         action see_building_type {
-            if( mCurrentElement ) {
-                mCurrentElement->append( "byggtyp_nbr", fc );
-            }
+            appendElementFieldChar( "byggtyp_nbr", fc );
         }
 
         action see_cadastral_unit_cadastre {
-            if( mCurrentElement ) {
-                mCurrentElement->append( "matrikkelnummer_gardsnr", fc );
-            }
+            appendElementFieldChar( "matrikkelnummer_gardsnr", fc );
         }
 
         action see_cadastral_unit_leasehold {
-            if( mCurrentElement ) {
-                mCurrentElement->append( "matrikkelnummer_festenr", fc );
-            }
+            appendElementFieldChar( "matrikkelnummer_festenr", fc );
         }
 
         action see_cadastral_unit_municipality {
-            if( mCurrentElement ) {
-                mCurrentElement->append( "matrikkelnummer_kommunenr", fc );
-            }
+            appendElementFieldChar( "matrikkelnummer_kommunenr", fc );
         }
 
         action see_cadastral_unit_property {
-            if( mCurrentElement ) {
-                mCurrentElement->append( "matrikkelnummer_bruksnr", fc );
-            }
+            appendElementFieldChar( "matrikkelnummer_bruksnr", fc );
         }
 
         action see_cadastral_unit_section {
-            if( mCurrentElement ) {
-                mCurrentElement->append( "matrikkelnummer_seksjonsnr", fc );
-            }
+            appendElementFieldChar( "matrikkelnummer_seksjonsnr", fc );
         }
 
         action see_charset {
-            if( mCurrentElement ) {
-                mCurrentElement->append( "tegnsett", fc );
-            }
+            appendElementFieldChar( "tegnsett", fc );
         }
 
         action see_coord_n {
-            if( mCurrentElement ) {
-                mCurrentElement->append( "koord_n", fc );
-            }
+            appendElementFieldChar( "koord_n", fc );
         }
 
         action see_coord_o {
-            if( mCurrentElement ) {
-                mCurrentElement->append( "koord_o", fc );
-            }
+            appendElementFieldChar( "koord_o", fc );
         }
 
         action see_coord_precision {
-            if( mCurrentElement ) {
-                mCurrentElement->append( "koord_presisjon", fc );
-            }
+            appendElementFieldChar( "koord_presisjon", fc );
         }
 
         action see_coord_sys {
-            if( mCurrentElement ) {
-                mCurrentElement->append( "koordsys", fc );
-            }
+            appendElementFieldChar( "koordsys", fc );
         }
 
         action see_curve {
             mCurrentElement = new sosicon::sosi::SosiElementCurve();
             mSosiElements.push_back( mCurrentElement );
         }
-        
+
+        action see_filler {
+            
+        }
+
         action see_head {
             mCurrentElement = new ::sosicon::sosi::SosiElementHead();
             mHeadElement = mCurrentElement;
         }
 
         action see_id {
-            if( mCurrentElement ) {
-                mCurrentElement->append( "id", fc );
-            }
+            appendElementFieldChar( "id", fc );
         }
 
         action see_max_n {
-            if( mCurrentElement ) {
-                mCurrentElement->append( "max_n", fc );
-            }
+            appendElementFieldChar( "max_n", fc );
         }
 
         action see_max_o {
-            if( mCurrentElement ) {
-                mCurrentElement->append( "max_o", fc );
-            }
+            appendElementFieldChar( "max_o", fc );
         }
 
         action see_min_n {
-            if( mCurrentElement ) {
-                mCurrentElement->append( "min_n", fc );
-            }
+            appendElementFieldChar( "min_n", fc );
         }
 
         action see_min_o {
-            if( mCurrentElement ) {
-                mCurrentElement->append( "min_o", fc );
-            }
+            appendElementFieldChar( "min_o", fc );
         }
 
         action see_municipality_number {
-            if( mCurrentElement ) {
-                mCurrentElement->append( "komm", fc );
-            }
+            appendElementFieldChar( "komm", fc );
         }
         
         action see_n_oe {
-            if( mCurrentElement ) {
-                mCurrentElement->append( "n_oe", fc );
-            }
+            appendElementFieldChar( "n_oe", fc );
         }
         
         action see_objtype {
-            if( mCurrentElement ) {
-                mCurrentElement->append( "objtype", fc );
-            }
+            appendElementFieldChar( "objtype", fc );
         }
 
         action see_origo_n {
-            if( mCurrentElement ) {
-                mCurrentElement->append( "origo_n", fc );
-            }
+            appendElementFieldChar( "origo_n", fc );
         }
 
         action see_origo_o {
@@ -301,63 +243,53 @@ parseSosiLine( std::string sosiLine )
         }
         
         action see_post_name {
-            if( mCurrentElement ) {
-                mCurrentElement->append( "post_sted", fc );
-            }
+            appendElementFieldChar( "post_sted", fc );
         }
         
         action see_post_number {
-            if( mCurrentElement ) {
-                mCurrentElement->append( "post_nr", fc );
-            }
+            appendElementFieldChar( "post_nr", fc );
         }
         
         action see_product_spec {
-            if( mCurrentElement ) {
-                mCurrentElement->append( "produktspek", fc );
-            }
+            appendElementFieldChar( "produktspek", fc );
         }
 
         action see_ptema {
-            if( mCurrentElement ) {
-                mCurrentElement->append( "ptema", fc );
+            appendElementFieldChar( "ptema", fc );
+        }
+
+        action see_ref {
+            appendElementFieldChar( "ref", fc );
+        }
+
+        action see_ref_list {
+            if( "ref" == mCurrentElementField ) {
+                appendElementFieldChar( "ref", fc );
             }
         }
 
         action see_sosi_version {
-            if( mCurrentElement ) {
-                mCurrentElement->append( "sosi_versjon", fc );
-            }
+            appendElementFieldChar( "sosi_versjon", fc );
         }
 
         action see_ssr_id {
-            if( mCurrentElement ) {
-                mCurrentElement->append( "ssr_id", fc );
-            }
+            appendElementFieldChar( "ssr_id", fc );
         }
         
         action see_ssr_snavn {
-            if( mCurrentElement ) {
-                mCurrentElement->append( "ssr_snavn", fc );
-            }
+            appendElementFieldChar( "ssr_snavn", fc );
         }
         
         action see_ssr_snforek {
-            if( mCurrentElement ) {
-                mCurrentElement->append( "ssr_snforek", fc );
-            }
+            appendElementFieldChar( "ssr_snforek", fc );
         }
         
         action see_ssr_snregdato {
-            if( mCurrentElement ) {
-                mCurrentElement->append( "ssr_snregdato", fc );
-            }
+            appendElementFieldChar( "ssr_snregdato", fc );
         }
         
         action see_street_name {
-            if( mCurrentElement ) {
-                mCurrentElement->append( "gatenavn", fc );
-            }
+            appendElementFieldChar( "gatenavn", fc );
         }
         
         action see_text {
@@ -366,9 +298,7 @@ parseSosiLine( std::string sosiLine )
         }
 
         action see_unit {
-            if( mCurrentElement ) {
-                mCurrentElement->append( "enhet", fc );
-            }
+            appendElementFieldChar( "enhet", fc );
         }
 
         action see_unknown {
@@ -411,7 +341,9 @@ parseSosiLine( std::string sosiLine )
 
         enhet         = ( ( '...ENHET' ) . space+ . ( ( ncrlf )$see_unit ) . crlf );
 
-        flate         = ( ( '.FLATE' )@see_area . space . ( [^:]+ )$see_id . ':' );
+        filler        = ( ( ^[!]+ ) . ( crlf )$see_filler );
+
+        flate         = ( ( '.FLATE' )@see_area . space+ . ( [^:]+ )$see_id . ':' );
 
         gatenavn      = ( ( '..GATENAVN' ) . spaceq . ( ( ncrlfq )$see_street_name ) . crlfq );
 
@@ -452,6 +384,10 @@ parseSosiLine( std::string sosiLine )
 
         punkt         = ( ( '.PUNKT' )@see_point . space . ( [^:]+ )$see_id . ':' );
 
+        ref           = ( ( '..REF' ) . space* . ( ':' . [^:]+ )$see_ref )+;
+
+        ref_list      = ( ( ':' . [^:]+ )$see_ref_list )+;
+
         sosi_versjon  = ( ( '..SOSI-VERSJON' ) . spaceq . ( ncrlfq )$see_sosi_version );
 
         ssr_id        = ( ( '...SSR-ID' ) . space . ( digits )$see_ssr_id );
@@ -474,6 +410,7 @@ parseSosiLine( std::string sosiLine )
                   byggstat       |
                   byggtyp        |
                   enhet          |
+                  filler         |
                   flate          |
                   gatenavn       |
                   hode           |
@@ -492,6 +429,8 @@ parseSosiLine( std::string sosiLine )
                   produktspek    |
                   ptema          |
                   punkt          |
+                  ref            |
+                  ref_list       |
                   sosi_versjon   |
                   ssr_id         |
                   ssr_snavn      |
