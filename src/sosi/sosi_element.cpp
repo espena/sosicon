@@ -35,11 +35,6 @@ append( const std::string& key, char val ) {
 
   if( key == "ref" ) {
     if( ':' == val ) {
-      if( mReferences.size() > 0 ) {
-        std::cout << "References for ID " << mData[ "id" ] << "\n";
-        std::cout << mReferences.back();
-        std::cout << "\n\n";
-      }
       mReferences.push_back( "" );
     }
     else if( ' ' != val ) {
@@ -54,6 +49,17 @@ append( const std::string& key, char val ) {
 std::string sosicon::sosi::SosiElement::
 getData( const char* key ) {
     return mData.find( key ) != mData.end() ? mData[ key ] : "";
+}
+
+std::string sosicon::sosi::SosiElement::
+getData( std::vector<std::string>* &rlist ) {
+    std::string stringRepr;
+    rlist = &mReferences;
+    for( std::vector<std::string>::iterator i = mReferences.begin(); i != mReferences.end(); i++ ) {
+        if( stringRepr.length() > 0 ) stringRepr.append( ", " );
+        stringRepr.append( *i );
+    }
+    return stringRepr;
 }
 
 std::vector<std::string>& sosicon::sosi::SosiElement::

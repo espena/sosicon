@@ -103,7 +103,7 @@ namespace sosicon {
         /*!
             If there are a vector of CoordList objects associated with current ISosiElement,
             this function will return the next such object in the list. A pointer to the object
-            will be stored in the provided cunit pointer reference.
+            will be stored in the provided clist pointer reference.
             
             If the initial value of the aunit pointer is 0, the first CoordList in the list
             will be returned. Subsequent calls will retrieve the next item in list, until reaching
@@ -116,6 +116,20 @@ namespace sosicon {
                     if the list was empty or the iterator moved past the last element in the list.
         */
         virtual std::string getData( ::sosicon::sosi::CoordList* &clist ) = 0;
+
+        //! Retrieve list of references to other SOSI elements
+        /*!
+            Retrieve list of references to other SOSI elements, as notated by the SOSI .REF-field.
+            This is a list of unique element IDs within current file that are relevant to current
+            element.
+            
+            \sa sosicon::sosi::ReferenceList
+            
+            \param rlist Reference to a pointer to receive the address to a vector of ID strings.
+            \return A string representation of the references, or an empty string if the list
+                    was empty.
+        */
+        virtual std::string getData( std::vector<std::string>* &rlist ) = 0;
 
         //! Retrieve list of available SOSI fields
         /*!

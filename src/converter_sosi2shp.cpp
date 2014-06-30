@@ -46,11 +46,18 @@ run() {
         }
         ifs.close();
 
+        mSosiReferenceLookup.build( p );
+
         for( std::vector<std::string>::iterator i = mCmd.mGeomTypes.begin(); i != mCmd.mGeomTypes.end(); i++ ) {
 
             ISosiElement* e = 0;
             while( p.getNextSosiElement( e ) ) {
+                std::cout << "SOSI element ID " << e->getData( "id" ) << "\n";
+
                 if( e->getType() == *i ) {
+
+
+
                     mShapefile.insert( e );
                 } // if
             } // while

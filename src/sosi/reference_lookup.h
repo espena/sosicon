@@ -15,10 +15,11 @@
  *  You should have received a copy of the GNU General Public License
  *  along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-#ifndef __REFERENCE_LIST_H__
-#define __REFERENCE_LIST_H__
+#ifndef __REFERENCE_LOOKUP_H__
+#define __REFERENCE_LOOKUP_H__
 
 #include "../interface/i_sosi_element.h"
+#include "../parser.h"
 #include <string>
 #include <map>
 
@@ -26,7 +27,7 @@ namespace sosicon {
 
     namespace sosi {
 
-        class ReferenceList {
+        class ReferenceLookup {
 
             //! List of North-East coordinate pairs
             std::map<std::string, ISosiElement*> mElements;
@@ -34,10 +35,13 @@ namespace sosicon {
         public:
 
             //! Virtual destructor
-            virtual ~ReferenceList() { };
+            virtual ~ReferenceLookup() { };
 
             //! Append coordinate string
             void append( std::string key, ISosiElement* val ) { mElements.insert( std::pair<std::string, ISosiElement*>( key, val ) ); }
+
+            //! Populate map with parsed SOSI elements
+            void build( Parser& parser );
 
             //! Render as string representation
             std::string toString();

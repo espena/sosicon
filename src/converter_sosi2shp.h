@@ -29,6 +29,7 @@
 #include "command_line.h"
 #include "string_utils.h"
 #include "parser.h"
+#include "sosi/reference_lookup.h"
 #include "shape/shapefile.h"
 
 namespace sosicon {
@@ -56,12 +57,19 @@ namespace sosicon {
         //! Shapefile wrapper
         shape::Shapefile mShapefile;
         
-        virtual ~ConverterSosi2shp();
+        //! SOSI refs dictionary
+        /*!
+            Lookup table for SOSI file. ISosiElement* keyed by SOSI ID.
+         */
+        sosi::ReferenceLookup mSosiReferenceLookup;
 
     public:
 
         //! Constructor
         ConverterSosi2shp();
+
+        //! Destructor
+        virtual ~ConverterSosi2shp();
 
         //! Initialize converter
         /*!

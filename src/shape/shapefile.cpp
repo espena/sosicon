@@ -41,11 +41,6 @@ insert( ISosiElement* sosiElement ) {
 
     IShapeElement* shapeElement = 0;
 
-    try {
-      mSosiReferenceList.append( sosiElement->getData( "id" ), sosiElement );
-    }
-    catch( ... ) { }
-
     switch( shapeType ) {
 
         case geom::point:

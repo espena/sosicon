@@ -15,10 +15,22 @@
  *  You should have received a copy of the GNU General Public License
  *  along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-#include "reference_list.h"
+#include "reference_lookup.h"
 #include <iostream>
 
-std::string sosicon::sosi::ReferenceList::
+void sosicon::sosi::ReferenceLookup::
+build( Parser& p ) {
+    mElements.clear();
+    ISosiElement* e = 0;
+    while( p.getNextSosiElement( e ) ) {
+        try {
+          append( e->getData( "id" ), e );
+        }
+        catch( ... ) { }
+    } // while
+}
+
+std::string sosicon::sosi::ReferenceLookup::
 toString() {
     return "";
 }
