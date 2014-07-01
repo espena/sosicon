@@ -268,6 +268,18 @@ parseSosiLine( std::string sosiLine )
             }
         }
 
+        action see_ref_parenthesis_start {
+            if( mCurrentElement ) {
+                mCurrentElement->set( "ref_invert", "1" );
+            }
+        }
+
+        action see_ref_parenthesis_end {
+            if( mCurrentElement ) {
+                mCurrentElement->set( "ref_invert", "0" );
+            }
+        }
+
         action see_sosi_version {
             appendElementFieldChar( "sosi_versjon", fc );
         }
@@ -384,9 +396,9 @@ parseSosiLine( std::string sosiLine )
 
         punkt         = ( ( '.PUNKT' )@see_point . space . ( [^:]+ )$see_id . ':' );
 
-        ref           = ( ( '..REF' ) . space* . ( ':' . [^:]+ )$see_ref )+;
+        ref_list      = ( ( space* . ( [\(]? )$see_ref_parenthesis_start . ( ':' . [^:\)\r\n]+ )$see_ref . ( [\)]? )$see_ref_parenthesis_end )+ . crlf );
 
-        ref_list      = ( ( ':' . [^:]+ )$see_ref_list )+;
+        ref           = ( ( '..REF' ) . ref_list );
 
         sosi_versjon  = ( ( '..SOSI-VERSJON' ) . spaceq . ( ncrlfq )$see_sosi_version );
 

@@ -34,9 +34,8 @@ init( sosicon::CommandLine cmd ) {
 
 void sosicon::ConverterSosi2shp::
 run() {
-    Parser p;
     for( std::vector<std::string>::iterator f = mCmd.mSourceFiles.begin(); f != mCmd.mSourceFiles.end(); f++ ) {
-
+        Parser p;
         char ln[ 1024 ];
         std::ifstream ifs( ( *f ).c_str() );
         while( !ifs.eof() ) {
@@ -46,18 +45,15 @@ run() {
         }
         ifs.close();
 
-        mSosiReferenceLookup.build( p );
+        sosi::ReferenceLookup lookup;
+        lookup.build( p );
 
         for( std::vector<std::string>::iterator i = mCmd.mGeomTypes.begin(); i != mCmd.mGeomTypes.end(); i++ ) {
 
             ISosiElement* e = 0;
             while( p.getNextSosiElement( e ) ) {
-                std::cout << "SOSI element ID " << e->getData( "id" ) << "\n";
-
+                e->set( &lookup );
                 if( e->getType() == *i ) {
-
-
-
                     mShapefile.insert( e );
                 } // if
             } // while

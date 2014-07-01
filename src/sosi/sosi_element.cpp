@@ -20,7 +20,10 @@
 //std::vector<std::string> sosicon::sosi::SosiElement::mReferences;
 
 sosicon::sosi::SosiElement::
-SosiElement() { }
+SosiElement() {
+    mSosiReferenceLookup = 0;
+    mData[ "ref_invert" ] = "0";
+}
 
 sosicon::sosi::SosiElement::
 ~SosiElement() { }
@@ -31,14 +34,20 @@ set( const std::string& key, const std::string& val ) {
 }
 
 void sosicon::sosi::SosiElement::
+set( ILookupTable* lookup ) {
+    mSosiReferenceLookup = lookup;
+}
+
+void sosicon::sosi::SosiElement::
 append( const std::string& key, char val ) {
 
-  if( key == "ref" ) {
+  if( "ref" == key ) {
+    ReferenceList& references = ( "1" == mData[ "ref_invert" ] ? mReferencesInv : mReferences );
     if( ':' == val ) {
-      mReferences.push_back( "" );
+        references.push_back( "" );
     }
     else if( ' ' != val ) {
-      mReferences.back() += val;
+      references.back() += val;
     }
   }
   else {
@@ -52,14 +61,23 @@ getData( const char* key ) {
 }
 
 std::string sosicon::sosi::SosiElement::
-getData( std::vector<std::string>* &rlist ) {
+getData( ReferenceList* &rlist, bool inv ) {
     std::string stringRepr;
-    rlist = &mReferences;
-    for( std::vector<std::string>::iterator i = mReferences.begin(); i != mReferences.end(); i++ ) {
+    rlist = inv ? &mReferencesInv : &mReferences;
+    for( ReferenceList::iterator i = rlist->begin(); i != rlist->end(); i++ ) {
         if( stringRepr.length() > 0 ) stringRepr.append( ", " );
         stringRepr.append( *i );
     }
     return stringRepr;
+}
+
+std::string sosicon::sosi::SosiElement::
+getData( ILookupTable* &lookup ) {
+    if( mSosiReferenceLookup ) {
+        lookup = mSosiReferenceLookup;
+        return mSosiReferenceLookup->toString();
+    }
+    return "0";
 }
 
 std::vector<std::string>& sosicon::sosi::SosiElement::

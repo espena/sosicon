@@ -17,6 +17,7 @@
  */
 #include "reference_lookup.h"
 #include <iostream>
+#include <sstream>
 
 void sosicon::sosi::ReferenceLookup::
 build( Parser& p ) {
@@ -30,7 +31,19 @@ build( Parser& p ) {
     } // while
 }
 
+sosicon::ISosiElement* sosicon::sosi::ReferenceLookup::
+get( std::string key ) {
+    ISosiElement* ref = 0;
+    try {
+        ref = mElements[ key ];
+    }
+    catch( ... ) { }
+    return ref;
+}
+
 std::string sosicon::sosi::ReferenceLookup::
 toString() {
-    return "";
+    std::stringstream ss;
+    ss << size();
+    return ss.str();
 }

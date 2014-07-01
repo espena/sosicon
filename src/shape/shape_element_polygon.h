@@ -23,6 +23,7 @@
 #include <sstream>
 #include <iostream>
 #include "../interface/i_shape_element.h"
+#include "../interface/i_lookup_table.h"
 #include "shape_header.h"
 #include "shape_element_header.h"
 #include "bounding_box.h"

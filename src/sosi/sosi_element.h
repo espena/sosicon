@@ -19,9 +19,11 @@
 #define __SOSI_ELEMENT_H__
 
 #include <string>
+#include <sstream>
 #include <iostream>
 #include <vector>
 #include <map>
+#include "../interface/i_lookup_table.h"
 #include "../interface/i_sosi_element.h"
 #include "coord_sys.h"
 #include "address_unit.h"
@@ -60,11 +62,24 @@ namespace sosicon {
              */
             std::vector<std::string> mFields;
 
-            //! Shared list of references
+            //! List of references
             /*!
                 String vector containing referenced SOSI element IDs for current element.
              */
-            std::vector<std::string> mReferences;
+            ReferenceList mReferences;
+
+            //! List of parentizized references
+            /*!
+                String vector containing SOSI element IDs referenced within parenthesis for current
+                element. This represents shapes that should be subtracted (inverted).
+             */
+            ReferenceList mReferencesInv;
+
+            //! Shared lookup table.
+            /*!
+                Lookup table for finding SOSI elements by ID.
+             */
+            ILookupTable* mSosiReferenceLookup;
 
         public:
 
@@ -104,10 +119,13 @@ namespace sosicon {
             virtual std::string getData( CoordList* &clist ) { clist = 0; return ""; };
 
             // Described in ISosiElement::getData( ReferenceList* )
-            virtual std::string getData( std::vector<std::string>* &rlist );
+            virtual std::string getData( ReferenceList* &rlist, bool inv = false );
 
             // Described in ISosiElement::getData( const char* )
             virtual std::string getData( const char* key );
+
+            // Described in ISosiElement::getData( ILookupTable* )
+            virtual std::string getData( ILookupTable* &lookup );
 
             // Described in ISosiElement::getFields()
             virtual std::vector<std::string>& getFields();
@@ -115,8 +133,11 @@ namespace sosicon {
             // Described in ISosiElement::getType()
             virtual std::string getType();
 
-            // Described in ISosiElement::set()
+            // Described in ISosiElement::set( const std::string&, const std::string& )
             virtual void set( const std::string& key, const std::string& val );
+
+            // Described in ISosiElement::set( ILookupTable* )
+            virtual void set( ILookupTable* lookup );
 
             // Described in ISosiElement::append()
             virtual void append( const std::string& key, char val );

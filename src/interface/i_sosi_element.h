@@ -31,6 +31,13 @@ namespace sosicon {
         This is a listing of generic interfaces used within sosicon.
         @{
     */
+
+    //! List of references to other SOSI elements
+    typedef std::vector<std::string> ReferenceList;
+
+    //! Forward declaration
+    class ILookupTable;
+
     //! Interface: SOSI element
     /*!
         \author Espen Andersen
@@ -126,10 +133,22 @@ namespace sosicon {
             \sa sosicon::sosi::ReferenceList
             
             \param rlist Reference to a pointer to receive the address to a vector of ID strings.
+            \param inv Set to true to retrieve the inverted (parenthesized) list of references.
             \return A string representation of the references, or an empty string if the list
                     was empty.
         */
-        virtual std::string getData( std::vector<std::string>* &rlist ) = 0;
+        virtual std::string getData( ReferenceList* &rlist, bool inv = false ) = 0;
+
+        //! Retrieve pointer to element lookup table
+        /*!
+            Retrieve pointer to common SOSI element lookup table.
+            
+            \sa sosicon::sosi::ReferenceList
+            
+            \param lookup Reference to a pointer to receive the address to the lookup table.
+            \return A string representing the number of items in the lookup table.
+        */
+        virtual std::string getData( ILookupTable* &lookup ) = 0;
 
         //! Retrieve list of available SOSI fields
         /*!
@@ -157,6 +176,15 @@ namespace sosicon {
             \param val New string value.
          */
         virtual void set( const std::string& key, const std::string& val ) = 0;
+
+        //! Set lookup table
+        /*!
+            Sets the reference lookup table for current SOSI file. This table is used whenever
+            current element references any of the other SOSI elements in the file.
+
+            \param val Reference to pointer to referenceLookup instance.
+         */
+        virtual void set( ILookupTable* lookup ) = 0;
 
         //! Append character to value
         /*!

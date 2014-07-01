@@ -36,7 +36,26 @@ bool sosicon::shape::ShapeElementPolygon::
 populate( ISosiElement* sosiElement ) {
 
     mSosiElement = sosiElement;
+
+    ILookupTable* lookup = 0;
+    mSosiElement->getData( lookup );
+
+    ReferenceList* references = 0;
+    mSosiElement->getData( references );
+
+    ReferenceList* referencesInv = 0;
+    mSosiElement->getData( referencesInv, true );
+
+    for( ReferenceList::iterator i = references->begin(); i != references->end(); i++ ) {
+        bool inv = ( *i ).at( 0 ) == '-';
+        ISosiElement* ref = lookup->get( inv ? ( *i ).substr( 1 ) : *i );
+        if( ref ) {
+            std::cout << ref->getData( "objtype" ) << "\n";
+        }
+    }
+
     std::stringstream ssX, ssY;
+    
     try {
       /*
         ssX << sosiElement->getData( "koord_o" );

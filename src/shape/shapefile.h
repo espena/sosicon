@@ -26,6 +26,7 @@
 #include "shape_database.h"
 #include "shape_element_point.h"
 #include "shape_element_polygon.h"
+#include "../sosi/reference_lookup.h"
 #include "../interface/i_sosi_element.h"
 #include "../interface/i_shape_element.h"
 #include "../interface/i_shapefile.h"

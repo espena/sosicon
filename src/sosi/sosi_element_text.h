@@ -18,6 +18,8 @@
 #ifndef __SOSI_ELEMENT_TEXT_H__
 #define __SOSI_ELEMENT_TEXT_H__
 
+#include "../interface/i_lookup_table.h"
+#include "../interface/i_sosi_element.h"
 #include "sosi_element.h"
 
 namespace sosicon {
@@ -71,7 +73,10 @@ namespace sosicon {
             virtual std::string getData( CoordList* &clist ) { clist = 0; return ""; };
 
             // Described in ISosiElement::getData( ReferenceList* )
-            virtual std::string getData( std::vector<std::string>* &rlist ) { rlist = 0; return ""; };
+            virtual std::string getData( ReferenceList* &rlist, bool inv = false ) { rlist = 0; return ""; };
+
+            // Described in ISosiElement::getData( ILookupTable* )
+            virtual std::string getData( ILookupTable* &lookup ) { return mElement.getData( lookup ); };
 
             //  Described in ISosiElement::getData( const char* )
             virtual std::string getData( const char* key ) { return mElement.getData( key ); }
@@ -82,8 +87,11 @@ namespace sosicon {
             //  Described in ISosiElement::getType()
             virtual std::string getType() { return "TEKST"; }
 
-            //  Described in ISosiElement::set()
+            // Described in ISosiElement::set( const std::string&, const std::string& )
             virtual void set( const std::string& key, const std::string& val ) { mElement.set( key, val ); }
+
+            // Described in ISosiElement::set( ILookupTable* )
+            virtual void set( ILookupTable* lookup ) { mElement.set( lookup ); };
 
             //  Described in ISosiElement::append()
             virtual void append( const std::string& key, char val ) { mElement.append( key, val ); }

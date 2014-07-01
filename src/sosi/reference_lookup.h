@@ -18,6 +18,7 @@
 #ifndef __REFERENCE_LOOKUP_H__
 #define __REFERENCE_LOOKUP_H__
 
+#include "../interface/i_lookup_table.h"
 #include "../interface/i_sosi_element.h"
 #include "../parser.h"
 #include <string>
@@ -27,7 +28,7 @@ namespace sosicon {
 
     namespace sosi {
 
-        class ReferenceLookup {
+        class ReferenceLookup : public ILookupTable {
 
             //! List of North-East coordinate pairs
             std::map<std::string, ISosiElement*> mElements;
@@ -41,10 +42,16 @@ namespace sosicon {
             void append( std::string key, ISosiElement* val ) { mElements.insert( std::pair<std::string, ISosiElement*>( key, val ) ); }
 
             //! Populate map with parsed SOSI elements
-            void build( Parser& parser );
+            void build( Parser& parser  );
+
+            //! Retrieve SOSI element by ID
+            virtual ISosiElement* get( std::string key );
+
+            //! Returns number of elements in map
+            std::map<std::string, ISosiElement*>::size_type size() { return mElements.size(); };
 
             //! Render as string representation
-            std::string toString();
+            virtual std::string toString();
             
         };
 
