@@ -20,6 +20,7 @@
 
 #include "interface/i_converter.h"
 #include "converter_sosi2shp.h"
+#include "converter_sosi2tsv.h"
 
 namespace sosicon {
     

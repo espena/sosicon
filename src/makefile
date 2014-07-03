@@ -20,6 +20,7 @@ SOURCEFILES =									\
 				string_utils.cpp				\
 				sosi/sosi_element.cpp			\
 				converter_sosi2shp.cpp			\
+				converter_sosi2tsv.cpp			\
 				parser.cpp						\
 				parser_sosi_line.cpp
 
