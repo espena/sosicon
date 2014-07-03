@@ -18,27 +18,8 @@ SOURCEFILES =									\
 				command_line.cpp				\
 				factory.cpp						\
 				string_utils.cpp				\
-				byte_order.cpp					\
 				sosi/sosi_element.cpp			\
-				sosi/sosi_element_area.cpp		\
-				sosi/sosi_element_curve.cpp		\
-				sosi/sosi_element_point.cpp		\
-				sosi/cadastral_unit.cpp			\
-				sosi/address_unit.cpp			\
-				sosi/coord_sys.cpp				\
-				sosi/coord_list.cpp				\
-				sosi/reference_lookup.cpp		\
-				sosi/sosi_types.cpp				\
 				converter_sosi2shp.cpp			\
-				converter_sosi2tsv.cpp			\
-				shape/shapefile.cpp				\
-				shape/shape_header.cpp			\
-				shape/shape_element_header.cpp	\
-				shape/shape_element_point.cpp	\
-				shape/shape_element_polygon.cpp \
-				shape/shape_index.cpp			\
-				shape/shape_database.cpp		\
-				shape/bounding_box.cpp			\
 				parser.cpp						\
 				parser_sosi_line.cpp
 

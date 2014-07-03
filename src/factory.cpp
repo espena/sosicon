@@ -23,10 +23,6 @@ get( sosicon::IConverter* &converter, sosicon::CommandLine cmd ) {
 		converter = new ConverterSosi2shp();
 		converter->init( cmd );
 	}
-	else if( cmd.mCommand == "-2tsv" ) {
-		converter = new ConverterSosi2tsv();
-		converter->init( cmd );
-	}
 }
 
 void sosicon::Factory::

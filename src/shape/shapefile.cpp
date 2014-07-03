@@ -32,38 +32,6 @@ sosicon::shape::Shapefile::
 void sosicon::shape::Shapefile::
 insert( ISosiElement* sosiElement ) {
 
-    std::vector<std::string> fields = sosiElement->getFields();
-    for( std::vector<std::string>::iterator i = fields.begin(); i != fields.end(); i++ ) {
-        std::string key = *i;
-        std::cout << key << " " << sosiElement->getData( key.c_str() ) << "\n";
-    }
-
-    const sosi::ElementType sosiType = sosiElement->getType();
-    const geom::ShapeType shapeType = ShapeHeader::shapeTypeFromSosiType( sosiType );
-
-    if( mHeader.getShapeType() == geom::none ) {
-        mHeader.setShapeType( shapeType );
-    }
-
-    IShapeElement* shapeElement = 0;
-
-    switch( shapeType ) {
-
-        case geom::point:
-            shapeElement = new ShapeElementPoint();
-            shapeElement->populate( sosiElement );
-            mShapeElements.push_back( shapeElement );
-            break;
-
-        case geom::polygon:
-            shapeElement = new ShapeElementPolygon();
-            shapeElement->populate( sosiElement );
-            mShapeElements.push_back( shapeElement );
-            break;
-
-        default:
-            ;
-    }
 }
 
 void sosicon::shape::Shapefile::

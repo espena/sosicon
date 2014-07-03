@@ -23,14 +23,9 @@
 #include <vector>
 #include "interface/i_converter.h"
 #include "interface/i_sosi_element.h"
-#include "interface/i_shapefile_shp_part.h"
-#include "interface/i_shapefile_shx_part.h"
-#include "interface/i_shapefile_dbf_part.h"
 #include "command_line.h"
 #include "string_utils.h"
 #include "parser.h"
-#include "sosi/reference_lookup.h"
-#include "shape/shapefile.h"
 
 namespace sosicon {
 
@@ -53,15 +48,6 @@ namespace sosicon {
 
         //! Command line wrapper
         CommandLine mCmd;
-
-        //! Shapefile wrapper
-        shape::Shapefile mShapefile;
-        
-        //! SOSI refs dictionary
-        /*!
-            Lookup table for SOSI file. ISosiElement* keyed by SOSI ID.
-         */
-        sosi::ReferenceLookup mSosiReferenceLookup;
 
     public:
 

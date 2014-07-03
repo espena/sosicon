@@ -76,12 +76,14 @@ run() {
         while( p.getNextSosiElement( e ) ) {
             for( std::vector<std::string>::iterator f = fields.begin(); f != fields.end(); f++ ) {
 
+                /*
                 std::string val = h && ( *f ).substr( 0, 5 ) == "hode:"
                                 ? h->getData( ( *f ).substr( 5, 9999 ).c_str() )
                                 : e->getData( ( *f ).c_str() );
 
                 of << ( f == fields.begin() ? "" : "\t" ) << val;
 
+                */
             }
             of << "\n";
         } // while

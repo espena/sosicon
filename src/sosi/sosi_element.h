@@ -18,18 +18,10 @@
 #ifndef __SOSI_ELEMENT_H__
 #define __SOSI_ELEMENT_H__
 
-#include <string>
-#include <sstream>
 #include <iostream>
 #include <vector>
-#include <map>
-#include "../interface/i_lookup_table.h"
+#include <string>
 #include "../interface/i_sosi_element.h"
-#include "coord_sys.h"
-#include "address_unit.h"
-#include "cadastral_unit.h"
-#include "coord_list.h"
-#include "../string_utils.h"
 
 namespace sosicon {
 
@@ -49,100 +41,22 @@ namespace sosicon {
          */
         class SosiElement : public ISosiElement {
 
-            //! Mapped field values
-            /*!
-                String vector containing textual data for current SOSI element. Key/value pairs are
-                inserted by the parser.
-             */
-            std::map<std::string, std::string> mData;
-
-            //! List of field names
-            /*!
-                String vector containing the keys (names) of all SOSI fields associated with current
-                element. This is a list of data fields that may be included in the exported format.
-             */
-            std::vector<std::string> mFields;
-
-            //! List of references
-            /*!
-                String vector containing referenced SOSI element IDs for geometries to be added 
-                to current element.
-             */
-            ReferenceList mReferencesAdd;
-
-            //! List of parentizized references
-            /*!
-                String vector containing SOSI element IDs referenced within parenthesis. This
-                represents shapes that should be subtracted (inverted) from current element.
-             */
-            ReferenceList mReferencesSub;
-
-            //! Shared lookup table.
-            /*!
-                Lookup table for finding SOSI elements by ID.
-             */
-            ILookupTable* mSosiReferenceLookup;
+            std::string mName;
+            std::string mSerial;
+            std::string mAttributes;
+            std::vector<ISosiElement*> mChildren;
+            int mLevel;
 
         public:
 
-            //! Constructor
-            SosiElement();
+            SosiElement( std::string name, std::string serial, std::string attributes, int level );
 
-            //! Destructor
-            virtual ~SosiElement();
+            virtual void addChild( ISosiElement* child ) { mChildren.push_back( child ); };
+            virtual int getLevel() { return mLevel; };
+            virtual std::string getName() { return mName; };
+            virtual void deleteChildren();
+            virtual void dump( int indent = 0 );
 
-            //! Get next AddressUnit
-            /*!
-                Not implemented in this class.
-                \sa ISosiElement::getData( AddressUnit*& )
-            
-                \param aunit Reference to pointer to AddressUnit will be set to 0.
-                \return Empty string.
-             */
-            virtual std::string getData( AddressUnit* &aunit ) { aunit = 0; return ""; };
-
-            //! Get next CadastralUnit
-            /*!
-                Not implemented in this class.
-                \sa ISosiElement::getData( CadastralUnit*& )
-        
-                \param cunit Reference to pointer to CadastralUnit will be set to 0.
-                \return Empty string.
-             */
-            virtual std::string getData( CadastralUnit* &cunit ) { cunit = 0; return ""; };
-
-            //! Get next CoordList
-            /*!
-                Not implemented in this class.
-        
-                \param clist Reference to pointer to CoordList will be set to 0.
-                \return Empty string.
-             */
-            virtual std::string getData( CoordList* &clist ) { clist = 0; return ""; };
-
-            // Described in ISosiElement::getData( ReferenceList* )
-            virtual std::string getData( ReferenceList* &rlist, bool inv = false );
-
-            // Described in ISosiElement::getData( const char* )
-            virtual std::string getData( const char* key );
-
-            // Described in ISosiElement::getData( ILookupTable* )
-            virtual std::string getData( ILookupTable* &lookup );
-
-            // Described in ISosiElement::getFields()
-            virtual std::vector<std::string>& getFields();
-
-            // Described in ISosiElement::getType()
-            virtual ElementType getType();
-
-            // Described in ISosiElement::set( std::string, const std::string& )
-            virtual void set( std::string key, const std::string& val );
-
-            // Described in ISosiElement::set( ILookupTable* )
-            virtual void set( ILookupTable* lookup );
-
-            // Described in ISosiElement::append()
-            virtual void append( std::string key, char val );
 
         };
        /*! @} end group sosi_elements */

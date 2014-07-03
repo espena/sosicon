@@ -44,102 +44,73 @@ parseSosiLine( std::string sosiLine )
     const char* pe = p + sosiLine.size();
     const char* eof = pe;
 
+    std::string tmpstr;
+    int tmpint;
+
     %%{
 
-        action flag_ref_subtraction {
-
-            switch( fc ) {
-
-                case '(':
-                    if( mCurrentElement ) mCurrentElement->set( "ref_subtract", "1" );
-                    break;
-
-                case ')':
-                    if( mCurrentElement ) mCurrentElement->set( "ref_subtract", "0" );
-                    break;
-            }
+        action strbuild {
+            if( '\r' != fc )
+                tmpstr += fc;
         }
 
-        action see_sosi_element {
-            mPendingSosiElementName += fc;
+        action strinit {
+            tmpstr.clear();
         }
 
-        action see_sosi_level {
-            mPendingSosiElementLevel++;
-        }        
-
-        action digest_sosi_element {
-
-            sosi::ElementType type = sosi::strToType( mPendingSosiElementName );
-
-            if( 1 == mPendingSosiElementLevel ) { // root level?
-                createLevel1SosiElement();
-            }
-
-            switch( type ) {
-
-                case sosi::sosi_element_kurve:
-                case sosi::sosi_element_flate:
-                    fgoto id;
-                    break;
-
-                case sosi::sosi_element_ref:
-                    fgoto reflist;
-                    break;
-
-                case sosi::sosi_element_origo_no:
-                    fgoto coordpair;
-                    break;
-
-                case sosi::sosi_element_enhet:
-                case sosi::sosi_element_koordsys:
-                case sosi::sosi_element_objtype:
-                case sosi::sosi_element_oppdateringsdato:
-                case sosi::sosi_element_tegnsett:
-                    fgoto attribute;
-                    break;
-
-                default:
-                    ;
-            }
+        action intincr {
+            tmpint++;
         }
 
-        action digest_pending_value {
-            if( mCurrentElement ) {
-                mCurrentElement->set( mPendingSosiElementName, mPendingSosiValue );
-            }
-            mPendingSosiValue = "";
+        action intinit {
+            tmpint = 0;
         }
 
-        coord = ( [\-\+]?[0-9]+[\.]?[0-9]* );
+        action set_name {
+            mPendingElementName = tmpstr;
+        }
 
-        sosi_element_attribute = ( space* ( [^ \r\n]+ ${ appendFieldChar( mPendingSosiElementName, fc ); } ) );
+        action set_attributes {
+            mPendingElementAttributes = tmpstr;
+            tmpstr.clear();
+        }
 
-        sosi_element_coordpair = ( space* ( coord . [ ]+ . coord ) ${ mPendingSosiValue += fc; }  %digest_pending_value . [ \r\n] );
+        action append_attributes {
+            mPendingElementAttributes += ( " " + sosicon::stringUtils::trim( tmpstr ) );
+            tmpstr.clear();
+        }
 
-        sosi_element_id = ( [ ]* [0-9]+ ${ appendFieldChar( "id", fc ); } );
+        action set_level {
+            mPendingElementLevel = tmpint;
+            tmpstr.clear();
+        }
 
-        sosi_element = ( ( [\.]+  >{ clearPending(); } $see_sosi_level ) . [^ \.\r\n]+ $see_sosi_element %digest_sosi_element . [ \r\n] );
+        action set_serial {
+            mPendingElementSerial = tmpstr.substr( 0, tmpstr.length() - 1 );
+            tmpstr.clear();
+        }
 
-        sosi_non_comment = ( [^!]+ );
+        action init_element {
+            digestCurrent();
+        }
 
-        sosi_reflist = ( ( ( ( [\(]? $flag_ref_subtraction ) . space* ) . ':' . ( [+\-]?[0-9]+ ) ${ mPendingSosiValue += fc; } %digest_pending_value ) . ( ( [\)]? $flag_ref_subtraction ) . space* ) . [ \r\n]* )+;
+        delimiter = ( [\!\t\r\n ] );
 
+        ndelimiter = ( [^\!\t\r\n ] );
 
+        element_level = ( [\.]+ >intinit $intincr %set_level );
 
-        attribute := sosi_element_attribute;
+        element_name = ( [A-ZÆØÅa-zæøå\-_0-9]+ >strinit @strbuild %set_name );
 
-        coordpair := sosi_element_coordpair;
+        element_serial = ( [\t ]+ ( ( [0-9]+[ \t]*[\:] ) >strinit @strbuild %set_serial ) delimiter );
 
-        id := sosi_element_id;
+        element_attributes =  ( [\t ]+ ( ( [^\!]* ) >strinit @strbuild %set_attributes ) ( [\r\n]+ ) );
 
-        dataln := sosi_element | sosi_reflist | sosi_element_coordpair;
+        prev_element_data = ( [^\.\!]* >strinit @strbuild %append_attributes );
 
-        main := sosi_non_comment ${ fhold; fgoto dataln; };
+        next_element = ( element_level element_name ( element_serial | element_attributes )? delimiter* ) >init_element;
 
-        reflist := sosi_reflist;
-
-
+        main := prev_element_data . next_element*;
 
         write init;
         write exec;

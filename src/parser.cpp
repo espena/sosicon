@@ -19,187 +19,34 @@
 
 sosicon::Parser::
 Parser() {
-    mSosiElementsIterator = mSosiElements.end();
-    mHeadElement = 0;
-    mCurrentElement = 0;
-    mPendingSosiElementLevel = 0;
+    mPendingElementLevel = 0;
+    mElementStack.push_back( new sosi::SosiElement( "ROOT", "", "", 0 ) );
 }
 
 sosicon::Parser::
 ~Parser() {
-    reset();
+    mElementStack.front()->deleteChildren();
 }
 
 void sosicon::Parser::
-appendFieldChar( std::string field, char val ) {
-  if( mCurrentElement ) {
-      mCurrentElement->append( field, val );
-  }
-}
-
-void sosicon::Parser::
-createLevel1SosiElement() {
-
-    if( "HODE" == mPendingSosiElementName ) {
-        mCurrentElement = new sosicon::sosi::SosiElementHead();
-    }
-    else if( "PUNKT" == mPendingSosiElementName ) {
-        mCurrentElement = new sosicon::sosi::SosiElementPoint();
-    }
-    else if( "FLATE" == mPendingSosiElementName ) {
-        mCurrentElement = new sosicon::sosi::SosiElementArea();
-    }
-    else if( "KURVE" == mPendingSosiElementName ) {
-        mCurrentElement = new sosicon::sosi::SosiElementCurve();
-    }
-    else if( "TEKST" == mPendingSosiElementName ) {
-        mCurrentElement = new sosicon::sosi::SosiElementText();
-    }
-    else {
-        mCurrentElement = 0;
-    }
-
-    if( mCurrentElement ) {
-        mSosiElements.push_back( mCurrentElement );
-    }
-}
-
-void sosicon::Parser::
-clearPending() {
-    mPendingSosiElementName.clear();
-    mPendingSosiElementLevel = 0;
-    mPendingSosiValue = "";
-}
-
-void sosicon::Parser::
-reset() {
-
-    while( !mSosiElements.empty() ) {
-        ISosiElement* e = mSosiElements.back();
-        delete e;
-        mSosiElements.pop_back();
-    }
-    mSosiElementsIterator = mSosiElements.end();
-    mHeadElement = 0;
-    mCurrentElement = 0;
-    clearPending();
-}
-
-void sosicon::Parser::
-dump( bool all ) {
-    
-    ISosiElement* e = 0;
-
-    if( all ) {
-        for( std::vector<ISosiElement*>::iterator i = mSosiElements.begin(); i != mSosiElements.end(); i++ ) {
-
-            e = *i;
-
-            if( e->getType() == sosi::sosi_element_hode ) continue;
-
-            std::cout << e->getType() << "\n";
-
-            std::cout << "ID............: " << e->getData( "id"                         ) << "\n";
-            std::cout << "KOMM..........: " << e->getData( "komm"                       ) << "\n";
-            std::cout << "GATENAVN......: " << e->getData( "gatenavn"                   ) << "\n";
-            std::cout << "AID-GATE......: " << e->getData( "aid_gate"                   ) << "\n";
-            std::cout << "AID-HUSNR.....: " << e->getData( "aid_husnr"                  ) << "\n";
-            std::cout << "AID-BOKSTAV...: " << e->getData( "aid_bokstav"                ) << "\n";
-            std::cout << "AID-UNR.......: " << e->getData( "aid_unr"                    ) << "\n";
-            std::cout << "POST-NR.......: " << e->getData( "post_nr"                    ) << "\n";
-            std::cout << "POST-STED.....: " << e->getData( "post_sted"                  ) << "\n";
-            std::cout << "OBJTYPE.......: " << e->getData( "objtype"                    ) << "\n";
-            std::cout << "NORD..........: " << e->getData( "koord_n"                    ) << "\n";
-            std::cout << "OST...........: " << e->getData( "koord_o"                    ) << "\n";
-            std::cout << "\n";
-
-            ::sosicon::sosi::AddressUnit* aunit = 0;
-            while( !e->getData( aunit ).empty() ) {
-                std::cout << "ADRESSEBRUK...: " << aunit->toString() << "\n";
-                std::cout << "LOPENR........: " << aunit->mDoorNumber << "\n";
-                std::cout << "ETASJENR......: " << aunit->mFloorNumber << "\n";
-                std::cout << "ETASJEPLAN....: " << aunit->mFloorLevel << "\n";
-                std::cout << "\n";
-            }
-
-            ::sosicon::sosi::CadastralUnit* cunit = 0;
-            while( !e->getData( cunit ).empty() ) {
-                std::cout << "KOMMNR........: " << cunit->mMunicipality << "\n";
-                std::cout << "GNR...........: " << cunit->mCadastre     << "\n";
-                std::cout << "BNR...........: " << cunit->mProperty     << "\n";
-                std::cout << "SNR...........: " << cunit->mSection      << "\n";
-                std::cout << "FNR...........: " << cunit->mLeasehold    << "\n";
-                std::cout << "\n";
-            }        
-        }   
-    }
-
-    e = mHeadElement;
-    
-    std::cout << "ORIGO-N.......: " << e->getData( "origo_n"                    ) << "\n";
-    std::cout << "ORIGO-O.......: " << e->getData( "origo_o"                    ) << "\n";
-    std::cout << "ENHET.........: " << e->getData( "enhet"                      ) << "\n";
-    std::cout << "MAX-N.........: " << e->getData( "max_n"                      ) << "\n";
-    std::cout << "MIN-N.........: " << e->getData( "min_n"                      ) << "\n";
-    std::cout << "SOSI-VERSJON..: " << e->getData( "sosi_versjon"               ) << "\n";
-    std::cout << "PRODUKTSPEK...: " << e->getData( "produktspek"                ) << "\n";
-    std::cout << "TEGNSETT......: " << e->getData( "tegnsett"                   ) << "\n";
-    std::cout << "\n";
-}
-
-std::vector<std::string>& sosicon::Parser::
-getSosiElementsFields() {
-    if( mSosiElementsFields.size() == 0 ) {
-        ISosiElement* e = 0;
-        while( getNextSosiElement( e ) ) {
-            std::vector<std::string>& elementFields = e->getFields();
-            for( std::vector<std::string>::iterator f = elementFields.begin(); f != elementFields.end(); f++ ) {
-                if( std::find( mSosiElementsFields.begin(), mSosiElementsFields.end(), *f ) == mSosiElementsFields.end() ) {
-                    mSosiElementsFields.push_back( *f );
-                }
-            }
+digestCurrent() {
+    ISosiElement* previousElement = mElementStack.back();
+    int previousLevel = previousElement->getLevel();
+    if( mPendingElementLevel > 0 ) {
+        while( mElementStack.back()->getLevel() >= mPendingElementLevel ) {
+            mElementStack.pop_back();
         }
+        previousElement = mElementStack.back();
+        mElementStack.push_back( new sosi::SosiElement( mPendingElementName, mPendingElementSerial, mPendingElementAttributes, mPendingElementLevel ) );
+        previousElement->addChild( mElementStack.back() );
     }
-    return mSosiElementsFields;
+    mPendingElementName.clear();
+    mPendingElementSerial.clear();
+    mPendingElementAttributes.clear();
+    mPendingElementLevel = 0;
 }
 
 void sosicon::Parser::
-setObjTypeSelection( std::vector<std::string>& objTypes ) {
-    mObjTypeFilter = objTypes;
-}
-
-std::vector<std::string>::size_type sosicon::Parser::
-getCountSosiElements() {
-    return mSosiElements.size();
-}
-
-std::vector<std::string>::size_type sosicon::Parser::
-getCountSosiElementsSelection() {
-    return mSosiElementsSelection.size();
-}
-
-bool sosicon::Parser::
-getNextSosiElement( ISosiElement*& sosiElement ) {
-    
-    std::vector<ISosiElement*>& selection = mSosiElementsSelection.size() > 0
-                                          ? mSosiElementsSelection
-                                          : mSosiElements;
-    if( 0 == sosiElement ) {
-        mSosiElementsIterator = selection.begin();
-    }
-    
-    if( selection.end() == mSosiElementsIterator ) {
-        sosiElement = 0;
-    }
-    else {
-        sosiElement = *mSosiElementsIterator++;
-        
-    }
-    
-    return 0 != sosiElement;
-}
-
-sosicon::ISosiElement* sosicon::Parser::
-getHeadElement() {
-    return mHeadElement;
+dump() {
+    mElementStack.front()->dump();
 }

@@ -43,43 +43,10 @@ run() {
             ifs.getline( ln, sizeof ln );
             p.parseSosiLine( ln );
         }
+        p.complete();
         ifs.close();
+        p.dump();
 
-        sosi::ReferenceLookup lookup;
-        lookup.build( p );
-
-        for( std::vector<std::string>::iterator i = mCmd.mGeomTypes.begin(); i != mCmd.mGeomTypes.end(); i++ ) {
-
-            ISosiElement* e = 0;
-            while( p.getNextSosiElement( e ) ) {
-                e->set( &lookup );
-                if( e->getType() == sosi::strToType( *i ) ) {
-                    mShapefile.insert( e );
-                } // if
-            } // while
-            /*
-
-            std::ofstream shp, shx, dbf, prj, foo;
-
-            shp.open( "test.shp", std::ios::out | std::ios::trunc | std::ios::binary );
-            shp << *( static_cast<IShapefileShpPart*>( &mShapefile ) );
-            shp.close();
-
-            shx.open( "test.shx", std::ios::out | std::ios::trunc | std::ios::binary );
-            shx << *( static_cast<IShapefileShxPart*>( &mShapefile ) );
-            shx.close();
-
-            dbf.open( "test.dbf", std::ios::out | std::ios::trunc | std::ios::binary );
-            dbf << *( static_cast<IShapefileDbfPart*>( &mShapefile ) );
-            dbf.close();
-
-            prj.open( "test.prj", std::ios::out | std::ios::trunc | std::ios::binary );
-            prj << *( static_cast<IShapefilePrjPart*>( &mShapefile ) );
-            prj.close();
-
-            */
-
-        } // for
     }
 }
 
