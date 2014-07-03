@@ -20,6 +20,8 @@
 
 #include <string>
 #include <vector>
+#include <map>
+#include "../sosi/sosi_types.h"
 #include "../sosi/address_unit.h"
 #include "../sosi/cadastral_unit.h"
 #include "../sosi/coord_list.h"
@@ -164,7 +166,7 @@ namespace sosicon {
         /*!
             Get the object type for current element.
          */
-        virtual std::string getType() = 0;
+        virtual sosicon::sosi::ElementType getType() = 0;
 
         //! Set value
         /*!
@@ -175,7 +177,7 @@ namespace sosicon {
             \param key Name of the SOSI field to update/insert.
             \param val New string value.
          */
-        virtual void set( const std::string& key, const std::string& val ) = 0;
+        virtual void set( std::string key, const std::string& val ) = 0;
 
         //! Set lookup table
         /*!
@@ -198,7 +200,7 @@ namespace sosicon {
             \param key Name of the SOSI field to update.
             \param var The character to be appended at the end of current SOSI field value.
          */
-        virtual void append( const std::string& key, char val ) = 0;
+        virtual void append( std::string key, char val ) = 0;
     };
    /*! @} end group interfaces */
 

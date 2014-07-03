@@ -20,6 +20,7 @@
 
 #include <exception>
 #include <iostream>
+#include <locale>
 #include "command_line.h"
 #include "factory.h"
 #include "interface/i_converter.h"

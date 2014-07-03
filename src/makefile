@@ -28,6 +28,7 @@ SOURCEFILES =									\
 				sosi/coord_sys.cpp				\
 				sosi/coord_list.cpp				\
 				sosi/reference_lookup.cpp		\
+				sosi/sosi_types.cpp				\
 				converter_sosi2shp.cpp			\
 				converter_sosi2tsv.cpp			\
 				shape/shapefile.cpp				\

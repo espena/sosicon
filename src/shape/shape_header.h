@@ -24,6 +24,7 @@
 #include "../interface/i_shape_header.h"
 #include "../byte_order.h"
 #include "shapefile_types.h"
+#include "../sosi/sosi_types.h"
 #include "bounding_box.h"
 
 namespace sosicon {
@@ -100,7 +101,7 @@ namespace sosicon {
              */
             virtual geom::ShapeType getShapeType() { return mShapeType.t; }
         
-            static geom::ShapeType shapeTypeFromSosiType( std::string sosiType );
+            static geom::ShapeType shapeTypeFromSosiType( sosi::ElementType sosiType );
         
             //! Set mShapeType
             /*!

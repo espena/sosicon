@@ -107,16 +107,16 @@ namespace sosicon {
             virtual std::vector<std::string>& getFields() { return mElement.getFields(); }
 
             // Described in ISosiElement::getType()
-            virtual std::string getType() { return "KURVE"; }
+            virtual ElementType getType() { return sosi_element_kurve; }
 
-            // Described in ISosiElement::set( const std::string&, const std::string& )
-            virtual void set( const std::string& key, const std::string& val ) { mElement.set( key, val ); }
+            // Described in ISosiElement::set( std::string, const std::string& )
+            virtual void set( std::string key, const std::string& val ) { mElement.set( key, val ); }
 
             // Described in ISosiElement::set( ILookupTable* )
             virtual void set( ILookupTable* lookup ) { mElement.set( lookup ); };
 
             // Described in ISosiElement::append()
-            virtual void append( const std::string& key, char val );
+            virtual void append( std::string key, char val );
     	};
        /*! @} end group sosi_elements */
 

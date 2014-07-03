@@ -22,6 +22,7 @@ Parser() {
     mSosiElementsIterator = mSosiElements.end();
     mHeadElement = 0;
     mCurrentElement = 0;
+    mPendingSosiElementLevel = 0;
 }
 
 sosicon::Parser::
@@ -30,11 +31,44 @@ sosicon::Parser::
 }
 
 void sosicon::Parser::
-appendElementFieldChar( const std::string& field, char val ) {
+appendFieldChar( std::string field, char val ) {
   if( mCurrentElement ) {
-      mCurrentElementField = field;
-      mCurrentElement->append( mCurrentElementField, val );
+      mCurrentElement->append( field, val );
   }
+}
+
+void sosicon::Parser::
+createLevel1SosiElement() {
+
+    if( "HODE" == mPendingSosiElementName ) {
+        mCurrentElement = new sosicon::sosi::SosiElementHead();
+    }
+    else if( "PUNKT" == mPendingSosiElementName ) {
+        mCurrentElement = new sosicon::sosi::SosiElementPoint();
+    }
+    else if( "FLATE" == mPendingSosiElementName ) {
+        mCurrentElement = new sosicon::sosi::SosiElementArea();
+    }
+    else if( "KURVE" == mPendingSosiElementName ) {
+        mCurrentElement = new sosicon::sosi::SosiElementCurve();
+    }
+    else if( "TEKST" == mPendingSosiElementName ) {
+        mCurrentElement = new sosicon::sosi::SosiElementText();
+    }
+    else {
+        mCurrentElement = 0;
+    }
+
+    if( mCurrentElement ) {
+        mSosiElements.push_back( mCurrentElement );
+    }
+}
+
+void sosicon::Parser::
+clearPending() {
+    mPendingSosiElementName.clear();
+    mPendingSosiElementLevel = 0;
+    mPendingSosiValue = "";
 }
 
 void sosicon::Parser::
@@ -48,7 +82,7 @@ reset() {
     mSosiElementsIterator = mSosiElements.end();
     mHeadElement = 0;
     mCurrentElement = 0;
-
+    clearPending();
 }
 
 void sosicon::Parser::
@@ -61,7 +95,7 @@ dump( bool all ) {
 
             e = *i;
 
-            if( e->getType() == "hode" ) continue;
+            if( e->getType() == sosi::sosi_element_hode ) continue;
 
             std::cout << e->getType() << "\n";
 

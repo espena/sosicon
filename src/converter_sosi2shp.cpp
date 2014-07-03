@@ -53,11 +53,10 @@ run() {
             ISosiElement* e = 0;
             while( p.getNextSosiElement( e ) ) {
                 e->set( &lookup );
-                if( e->getType() == *i ) {
+                if( e->getType() == sosi::strToType( *i ) ) {
                     mShapefile.insert( e );
                 } // if
             } // while
-
             /*
 
             std::ofstream shp, shx, dbf, prj, foo;

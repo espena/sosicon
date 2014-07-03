@@ -21,7 +21,8 @@ int main ( int argc, char* argv[] ) {
 	
 	int res;
 	try {
-		sosicon::CommandLine cmd;
+		std::cout.imbue( std::locale( "no_NO" ) );
+        sosicon::CommandLine cmd;
 		cmd.parse( argc, argv );
 		sosicon::IConverter* converter = 0;
 		sosicon::Factory::get( converter, cmd );

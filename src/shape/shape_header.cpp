@@ -9,18 +9,23 @@ ShapeHeader() {
 }
 
 sosicon::shape::geom::ShapeType sosicon::shape::ShapeHeader::
-shapeTypeFromSosiType( std::string sosiType ) {
+shapeTypeFromSosiType( sosi::ElementType sosiType ) {
 
     geom::ShapeType t;
 
-    if( "FLATE" == sosiType ) {
-        t = geom::polygon;
-    }
-    else if( "PUNKT" == sosiType ) {
-        t = geom::point;
-    }
-    else {
-        t = geom::none;
+    switch( sosiType ) {
+
+        case sosi::sosi_element_flate:
+            t = geom::polygon;
+            break;
+
+        case sosi::sosi_element_punkt:
+            t = geom::point;
+            break;
+
+        default:
+            t = geom::none;
+            break;
     }
 
     return t;

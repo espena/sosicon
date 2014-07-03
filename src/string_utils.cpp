@@ -88,12 +88,13 @@ replaceAll( const std::string &from, const std::string &to, const std::string &s
 string sosicon::stringUtils::
 toLower( const std::string &str )
 {
+    static std::locale loc = std::locale( "no_NO" );
     string::size_type n = str.length();
     const char* from = str.c_str();
     char* to = new char[ n + 1 ];
     for( string::size_type i = 0; i < n; i++ )
     {
-        to[ i ] = tolower( from[ i ] );
+        to[ i ] = tolower( from[ i ], loc );
     }
     to[ n ] = '\0';
     string res = to;

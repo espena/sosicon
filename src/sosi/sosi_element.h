@@ -29,6 +29,7 @@
 #include "address_unit.h"
 #include "cadastral_unit.h"
 #include "coord_list.h"
+#include "../string_utils.h"
 
 namespace sosicon {
 
@@ -64,16 +65,17 @@ namespace sosicon {
 
             //! List of references
             /*!
-                String vector containing referenced SOSI element IDs for current element.
+                String vector containing referenced SOSI element IDs for geometries to be added 
+                to current element.
              */
-            ReferenceList mReferences;
+            ReferenceList mReferencesAdd;
 
             //! List of parentizized references
             /*!
-                String vector containing SOSI element IDs referenced within parenthesis for current
-                element. This represents shapes that should be subtracted (inverted).
+                String vector containing SOSI element IDs referenced within parenthesis. This
+                represents shapes that should be subtracted (inverted) from current element.
              */
-            ReferenceList mReferencesInv;
+            ReferenceList mReferencesSub;
 
             //! Shared lookup table.
             /*!
@@ -131,16 +133,16 @@ namespace sosicon {
             virtual std::vector<std::string>& getFields();
 
             // Described in ISosiElement::getType()
-            virtual std::string getType();
+            virtual ElementType getType();
 
-            // Described in ISosiElement::set( const std::string&, const std::string& )
-            virtual void set( const std::string& key, const std::string& val );
+            // Described in ISosiElement::set( std::string, const std::string& )
+            virtual void set( std::string key, const std::string& val );
 
             // Described in ISosiElement::set( ILookupTable* )
             virtual void set( ILookupTable* lookup );
 
             // Described in ISosiElement::append()
-            virtual void append( const std::string& key, char val );
+            virtual void append( std::string key, char val );
 
         };
        /*! @} end group sosi_elements */

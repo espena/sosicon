@@ -35,28 +35,8 @@ sosicon::sosi::SosiElementCurve::
 }
 
 void sosicon::sosi::SosiElementCurve::
-append( const std::string& key, char val ) {
-
-    if( ( key == "n_oe" || key == "koord_n" ) && mCoordPair.east != "" ) {
-        mCurrentCoords->append( mCoordPair.north );
-        mCurrentCoords->append( mCoordPair.east );
-        mCoordPair.north = "";
-        mCoordPair.east = "";
-        if( key == "n_oe" ) {
-            mCurrentCoords = new CoordList();
-            mCoordinates.push_back( mCurrentCoords );
-        }
-    }
-
-    if( key == "koord_n" ) {
-        mCoordPair.north += val;
-    }
-  else if( key == "koord_o" ) {
-        mCoordPair.east += val;
-  }
-  else {
-        mElement.append( key, val );
-  }
+append( std::string key, char val ) {
+    mElement.append( key, val );
 }
 
 std::string sosicon::sosi::SosiElementCurve::

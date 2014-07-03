@@ -26,6 +26,7 @@
 #include "command_line.h"
 #include "interface/i_sosi_element.h"
 #include "sosi/coord_sys.h"
+#include "sosi/sosi_types.h"
 #include "sosi/sosi_element_area.h"
 #include "sosi/sosi_element_head.h"
 #include "sosi/sosi_element_curve.h"
@@ -131,7 +132,7 @@ namespace sosicon {
         */
         ISosiElement* mCurrentElement;
 
-        //! Name of last encountered field within current SOSI element
+        //! Name of last encountered SOSI element
         /*!
             Used internally by Parser::parseSosiLine() during file consumption.
 
@@ -144,14 +145,36 @@ namespace sosicon {
             
             \sa Parser::parseSosiLine()
         */
-        std::string mCurrentElementField;
+        std::string mPendingSosiElementName;
+
+        //! SOSI value temporary var
+        std::string mPendingSosiValue;
+
+        //! Level of current element
+        int mPendingSosiElementLevel;
+
+        //! Wether or not references are within parenthesis
+        int mSubtractionFlag;
 
         //! Append character to field
         /*!
           Writes encountered character to the corresponding SOSI field. Updates the
           mCurrentELementField member.
          */
-        void appendElementFieldChar( const std::string& field, char val );
+        void appendFieldChar( std::string field, char val );
+
+        //! Discard pending elements
+        /*!
+            Resets pending element name and level information. Makes parser ready to continue to
+            next SOSI element.
+         */
+        void clearPending();
+
+        //! Add ISosiElement to list
+        /*!
+          Creates new SOSI element from parsed information and inserts it into the element list.
+         */
+        void createLevel1SosiElement();
 
     public:
 

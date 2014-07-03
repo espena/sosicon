@@ -50,7 +50,7 @@ populate( ISosiElement* sosiElement ) {
         bool inv = ( *i ).at( 0 ) == '-';
         ISosiElement* ref = lookup->get( inv ? ( *i ).substr( 1 ) : *i );
         if( ref ) {
-            std::cout << ref->getData( "objtype" ) << "\n";
+            std::cout << " " << ref->getData( "id" ) << " " << ref->getType() << " " << ref->getData( "koord" ) << "\n";
         }
     }
 

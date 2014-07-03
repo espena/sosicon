@@ -19,6 +19,7 @@
 #define __STRING_UTILS_H
 
 #include "memory.h"
+#include <locale>
 #include <string>
 #include <ctype.h>
 

@@ -17,20 +17,26 @@
  */
 #include "sosi_element.h"
 
-//std::vector<std::string> sosicon::sosi::SosiElement::mReferences;
+//std::vector<std::string> sosicon::sosi::SosiElement::mReferencesAdd;
 
 sosicon::sosi::SosiElement::
 SosiElement() {
     mSosiReferenceLookup = 0;
-    mData[ "ref_invert" ] = "0";
+    mData[ "ref_subtract" ] = "0";
 }
 
 sosicon::sosi::SosiElement::
 ~SosiElement() { }
 
 void sosicon::sosi::SosiElement::
-set( const std::string& key, const std::string& val ) {
-  mData[ key ] = val;
+set( std::string key, const std::string& val ) {
+    key = stringUtils::toLower( key );
+    if( "ref" == key ) {
+        ( "1" == mData[ "ref_subtract" ] ? mReferencesSub : mReferencesAdd ).push_back( val );
+    }
+    else if( !key.empty() ) {
+        mData[ key ] = val;
+    }
 }
 
 void sosicon::sosi::SosiElement::
@@ -39,20 +45,8 @@ set( ILookupTable* lookup ) {
 }
 
 void sosicon::sosi::SosiElement::
-append( const std::string& key, char val ) {
-
-  if( "ref" == key ) {
-    ReferenceList& references = ( "1" == mData[ "ref_invert" ] ? mReferencesInv : mReferences );
-    if( ':' == val ) {
-        references.push_back( "" );
-    }
-    else if( ' ' != val ) {
-      references.back() += val;
-    }
-  }
-  else {
-    mData[ key ] += val;
-  }
+append( std::string key, char val ) {
+    mData[ stringUtils::toLower( key ) ] += val;
 }
 
 std::string sosicon::sosi::SosiElement::
@@ -61,9 +55,9 @@ getData( const char* key ) {
 }
 
 std::string sosicon::sosi::SosiElement::
-getData( ReferenceList* &rlist, bool inv ) {
+getData( ReferenceList* &rlist, bool sub ) {
     std::string stringRepr;
-    rlist = inv ? &mReferencesInv : &mReferences;
+    rlist = sub ? &mReferencesSub : &mReferencesAdd;
     for( ReferenceList::iterator i = rlist->begin(); i != rlist->end(); i++ ) {
         if( stringRepr.length() > 0 ) stringRepr.append( ", " );
         stringRepr.append( *i );
@@ -89,7 +83,7 @@ getFields() {
   return mFields;
 }
 
-std::string sosicon::sosi::SosiElement::
+sosicon::sosi::ElementType sosicon::sosi::SosiElement::
 getType() {
-  return "SOSI ELEMENT";
+  return sosi_element_annet;
 }
