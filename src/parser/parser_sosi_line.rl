@@ -90,8 +90,8 @@ parseSosiLine( std::string sosiLine )
             tmpstr.clear();
         }
 
-        action init_element {
-            digestCurrent();
+        action digest_element {
+            digestPendingElement();
         }
 
         delimiter = ( [\!\t\r\n ] );
@@ -108,7 +108,7 @@ parseSosiLine( std::string sosiLine )
 
         prev_element_data = ( [^\.\!]* >strinit @strbuild %append_attributes );
 
-        next_element = ( element_level element_name ( element_serial | element_attributes )? delimiter* ) >init_element;
+        next_element = ( element_level element_name ( element_serial | element_attributes )? delimiter* ) >digest_element;
 
         main := prev_element_data . next_element*;
 

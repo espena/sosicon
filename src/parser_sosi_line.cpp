@@ -288,7 +288,7 @@ _match:
 	case 9:
 /* #line 93 "parser/parser_sosi_line.rl" */
 	{
-            digestCurrent();
+            digestPendingElement();
         }
 	break;
 /* #line 295 "parser_sosi_line.cpp" */

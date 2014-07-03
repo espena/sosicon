@@ -26,10 +26,11 @@ Parser() {
 sosicon::Parser::
 ~Parser() {
     mElementStack.front()->deleteChildren();
+    delete mElementStack.front();
 }
 
 void sosicon::Parser::
-digestCurrent() {
+digestPendingElement() {
     ISosiElement* previousElement = mElementStack.back();
     int previousLevel = previousElement->getLevel();
     if( mPendingElementLevel > 0 ) {

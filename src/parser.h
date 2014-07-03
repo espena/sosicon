@@ -88,7 +88,7 @@ namespace sosicon {
             a SOSI element had been fully parsed, this function is called to move the data into
             the element tree structure before carrying on.
          */
-        void digestCurrent();
+        void digestPendingElement();
 
     public:
 
@@ -105,7 +105,7 @@ namespace sosicon {
         ~Parser();
 
         //! Flush parsed data
-        void complete() { digestCurrent(); };
+        void complete() { digestPendingElement(); };
 
         //! Debug output
         void dump();
