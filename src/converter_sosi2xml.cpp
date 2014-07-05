@@ -15,30 +15,33 @@
  *  You should have received a copy of the GNU General Public License
  *  along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-#include "converter_sosi2shp.h"
+#include "converter_sosi2xml.h"
 
-sosicon::ConverterSosi2shp::
-ConverterSosi2shp() {
-
-}
-
-sosicon::ConverterSosi2shp::
-~ConverterSosi2shp() {
+sosicon::ConverterSosi2xml::
+ConverterSosi2xml() {
 
 }
 
-void sosicon::ConverterSosi2shp::
+sosicon::ConverterSosi2xml::
+~ConverterSosi2xml() {
+
+}
+
+void sosicon::ConverterSosi2xml::
 init( sosicon::CommandLine cmd ) {
     mCmd = cmd;
 }
 
-void sosicon::ConverterSosi2shp::
-makeShp( ISosiElement* sosiTree ) {
-    shape::Shapefile shp;
-    shp.build( sosiTree );
+void sosicon::ConverterSosi2xml::
+makeXML( ISosiElement* parent ) {
+    ISosiElement* child = 0;
+    while( parent->getChild( child ) ) {
+        makeXML( child );
+    }
+    
 }
 
-void sosicon::ConverterSosi2shp::
+void sosicon::ConverterSosi2xml::
 run() {
     for( std::vector<std::string>::iterator f = mCmd.mSourceFiles.begin(); f != mCmd.mSourceFiles.end(); f++ ) {
         Parser p;
@@ -52,7 +55,7 @@ run() {
         p.complete();
         ifs.close();
         ISosiElement* root = p.getRootElement();
-        makeShp( root );
+        makeXML( root );
     }
 }
 

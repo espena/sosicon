@@ -110,6 +110,9 @@ namespace sosicon {
         //! Debug output
         void dump();
 
+        //! Retrieve pointer to root element
+        ISosiElement* getRootElement();
+
         //! Main parser routine
         /*!
             Processes one line from the SOSI file. This function is called repeatedly, consuming

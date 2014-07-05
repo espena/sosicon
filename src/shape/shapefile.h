@@ -21,14 +21,6 @@
 #include <string>
 #include <vector>
 #include <iostream>
-#include "shape_header.h"
-#include "shape_index.h"
-#include "shape_database.h"
-#include "shape_element_point.h"
-#include "shape_element_polygon.h"
-#include "../sosi/reference_lookup.h"
-#include "../interface/i_sosi_element.h"
-#include "../interface/i_shape_element.h"
 #include "../interface/i_shapefile.h"
 
 namespace sosicon {
@@ -44,24 +36,6 @@ namespace sosicon {
         */
         class Shapefile : public IShapefile {
 
-        private:
-
-            //! Shape file header
-            /*!
-                Implementation of the file header with global characteristics for current shapefile.
-             */
-            ShapeHeader mHeader;
-
-            //! Shape elements list
-            /*!
-                Elements to be included in current file is added to this list.
-             */
-            std::vector<IShapeElement*> mShapeElements;
-
-            void prepareHeader();
-
-            void prepareHeader( int recordSize );
-
         public:
 
             //! Constructor
@@ -69,7 +43,10 @@ namespace sosicon {
 
             //! Destructor
             virtual ~Shapefile();
-        
+
+            // Described in IShapefile
+            virtual void build( ISosiElement* sosiTree );
+
             //! Insert SOSI element
             /*!
                 Converts and inserts a SOSI element into current shapefile, if the SOSI element is
@@ -77,17 +54,17 @@ namespace sosicon {
              */
             void insert( ISosiElement* sosiElement );
 
-            // Described in IShapefileShpPart
-            virtual void writeShp( std::ostream &os );
-            
-            // Described in IShapefileShxPart
-            virtual void writeShx( std::ostream &os );
-            
             // Described in IShapefileDbfPart
             virtual void writeDbf( std::ostream &os );
-            
+
             // Described in IShapefilePrjPart
             virtual void writePrj( std::ostream &os );
+
+            // Described in IShapefileShpPart
+            virtual void writeShp( std::ostream &os );
+
+            // Described in IShapefileShxPart
+            virtual void writeShx( std::ostream &os );
         };
 
     }; // namespace shape

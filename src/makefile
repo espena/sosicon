@@ -19,7 +19,9 @@ SOURCEFILES =									\
 				factory.cpp						\
 				string_utils.cpp				\
 				sosi/sosi_element.cpp			\
+				shape/shapefile.cpp				\
 				converter_sosi2shp.cpp			\
+				converter_sosi2xml.cpp			\
 				converter_sosi2tsv.cpp			\
 				parser.cpp						\
 				parser_sosi_line.cpp

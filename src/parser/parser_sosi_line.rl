@@ -32,6 +32,9 @@ namespace sosicon {
 void sosicon::Parser::
 parseSosiLine( std::string sosiLine )
 {
+
+    sosiLine += "\r\n";
+
  /* Variables used by Ragel */
     int cs = 0;
     int stack[ 1024 ];
@@ -50,8 +53,9 @@ parseSosiLine( std::string sosiLine )
     %%{
 
         action strbuild {
-            if( '\r' != fc )
+            if( '\r' != fc ) {
                 tmpstr += fc;
+            }
         }
 
         action strinit {
@@ -100,13 +104,13 @@ parseSosiLine( std::string sosiLine )
 
         element_level = ( [\.]+ >intinit $intincr %set_level );
 
-        element_name = ( [A-ZÆØÅa-zæøå\-_0-9]+ >strinit @strbuild %set_name );
+        element_name = ( [A-ZÃ†Ã˜Ã…a-zÃ¦Ã¸Ã¥\-_0-9]+ >strinit @strbuild %set_name );
 
-        element_serial = ( [\t ]+ ( ( [0-9]+[ \t]*[\:] ) >strinit @strbuild %set_serial ) delimiter );
+        element_serial = ( [\t ]+ ( ( [0-9]+[ \t]*[\:] ) >strinit @strbuild %set_serial ) [\r\n]+ );
 
-        element_attributes =  ( [\t ]+ ( ( [^\!]* ) >strinit @strbuild %set_attributes ) ( [\r\n]+ ) );
+        element_attributes =  ( [\t ]+ ( ( [^!\r\n]* ) >strinit @strbuild %set_attributes ) . [\r\n]+ );
 
-        prev_element_data = ( [^\.\!]* >strinit @strbuild %append_attributes );
+        prev_element_data = ( [^\.!]* >strinit @strbuild %append_attributes );
 
         next_element = ( element_level element_name ( element_serial | element_attributes )? delimiter* ) >digest_element;
 

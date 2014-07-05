@@ -42,3 +42,12 @@ dump( int indent ) {
         ( *i )->dump( indent + 2 );
     }
 }
+
+bool sosicon::sosi::SosiElement::
+getChild( ISosiElement*& e ) {
+    if( e == 0 ) {
+        mChildrenIterator = mChildren.begin();
+    }
+    e = *( mChildrenIterator++ );
+    return mChildrenIterator != mChildren.end();
+}

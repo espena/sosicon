@@ -28,6 +28,10 @@ namespace sosicon {
         \addtogroup interfaces Interfaces
         @{
     */
+
+    //! Forward declarations
+    class ISosiElement;
+
     //! Interface: Shapefile
     /*!
         \author Espen Andersen
@@ -41,6 +45,9 @@ namespace sosicon {
         public:
             
             virtual ~IShapefile() {}
+
+            //! Build shapefile from SOSI data
+            virtual void build( ISosiElement* sosiTree ) = 0;
 
     };
    /*! @} end group interfaces */

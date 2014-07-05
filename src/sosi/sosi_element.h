@@ -1,6 +1,6 @@
 /*
  *  This file is part of the command-line tool sosicon.
- *  Copyright (C) 2012  Espen Andersen
+ *  Copyright (C) 2014  Espen Andersen
  *
  *  This is free software: you can redistribute it and/or modify
  *  it under the terms of the GNU General Public License as published by
@@ -35,28 +35,55 @@ namespace sosicon {
         */
         //! Basic SOSI element
         /*!
-            Implements basic characteristics of a SOSI element. Mostly a key/value container with
-            ISosiElement stubs. Other SOSI elements delegates basic functionality to this class,
-            whilst taking care of more specialized tasks themselves.
+            Implements basic characteristics of a SOSI element.
          */
         class SosiElement : public ISosiElement {
 
-            std::string mName;
-            std::string mSerial;
+            //! Current element's data content
             std::string mAttributes;
+
+            //! List of children elements
             std::vector<ISosiElement*> mChildren;
+
+            //! Iterator for mChildren
+            std::vector<ISosiElement*>::iterator mChildrenIterator;
+
+            //! Current element's nesting level
             int mLevel;
+
+            //! Current element's name
+            std::string mName;
+
+            //! Current element's serial number if provided
+            std::string mSerial;
 
         public:
 
+            //! Construct new SOSI element
             SosiElement( std::string name, std::string serial, std::string attributes, int level );
 
+            //! Insert children element
             virtual void addChild( ISosiElement* child ) { mChildren.push_back( child ); };
-            virtual int getLevel() { return mLevel; };
-            virtual std::string getName() { return mName; };
+
+            //! Recursively deletes all children
             virtual void deleteChildren();
+
+            //! Debug function
             virtual void dump( int indent = 0 );
 
+            //! Get next child in list
+            /*!
+                Always pass a null pointer to start iterating through the children list.
+                The referenced pointer will point to the next child in list when the function returns.
+                If the end of the list is reached, the function returns false.
+             */
+            virtual bool getChild( ISosiElement*& e );
+
+            //! Get nesting level of current element
+            virtual int getLevel() { return mLevel; };
+
+            //! Get name of current element
+            virtual std::string getName() { return mName; };
 
         };
        /*! @} end group sosi_elements */

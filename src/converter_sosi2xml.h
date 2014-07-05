@@ -15,8 +15,8 @@
  *  You should have received a copy of the GNU General Public License
  *  along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-#ifndef __CONVERTER_SOSI2SHP_H__
-#define __CONVERTER_SOSI2SHP_H__
+#ifndef __CONVERTER_SOSI2XML_H__
+#define __CONVERTER_SOSI2XML_H__
 
 #include <iostream>
 #include <fstream>
@@ -24,8 +24,8 @@
 #include "interface/i_converter.h"
 #include "interface/i_sosi_element.h"
 #include "command_line.h"
+#include "string_utils.h"
 #include "parser.h"
-#include "shape/shapefile.h"
 
 namespace sosicon {
 
@@ -36,28 +36,28 @@ namespace sosicon {
         sosicon::Factory is responsible for creating correct IConverter instance. The following
         arguments are currently interpreted:
         - -2tsv: sosicon::ConverterSosi2tsv TSV file conversion
-        - -2shp: sosicon::ConverterSosi2shp Shape file conversion
+        - -2xml: sosicon::ConverterSosi2xml Shape file conversion
         @{
     */
     //! SOSI to ESRI Shape converter
     /*!
-        If command-line parameter -2shp is specified, this converter will handle the output
+        If command-line parameter -2xml is specified, this converter will handle the output
         generation. Produces an ESRI Shape-file from SOSI source.
      */
-    class ConverterSosi2shp : public IConverter {
+    class ConverterSosi2xml : public IConverter {
 
         //! Command line wrapper
         CommandLine mCmd;
 
-        void makeShp( ISosiElement* sosiTree );
+        void makeXML( ISosiElement* parent );
 
     public:
 
         //! Constructor
-        ConverterSosi2shp();
+        ConverterSosi2xml();
 
         //! Destructor
-        virtual ~ConverterSosi2shp();
+        virtual ~ConverterSosi2xml();
 
         //! Initialize converter
         /*!
@@ -73,7 +73,7 @@ namespace sosicon {
          */
         virtual void run();
 
-    }; // class ConverterSosi2shp
+    }; // class ConverterSosi2xml
    /*! @} end group converters */
     
 }; // namespace sosicon

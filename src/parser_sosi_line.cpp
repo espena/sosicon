@@ -27,92 +27,87 @@ namespace sosicon {
 /* #line 28 "parser_sosi_line.cpp" */
 static const char _parseSosiLine_actions[] = {
 	0, 1, 0, 1, 2, 1, 4, 1, 
-	6, 1, 8, 2, 0, 5, 2, 1, 
-	0, 2, 1, 6, 2, 2, 0, 2, 
-	4, 0, 2, 8, 0, 3, 1, 0, 
-	5, 3, 4, 0, 5, 3, 7, 1, 
-	0, 3, 8, 0, 5, 3, 9, 3, 
-	2, 4, 0, 9, 3, 2, 4, 4, 
-	9, 3, 2, 4, 6, 9, 3, 2, 
-	5, 1, 0, 9, 3, 2, 5, 1, 
-	6, 9, 3, 2, 5, 4, 0, 9, 
-	3, 2
+	5, 1, 6, 2, 1, 0, 2, 1, 
+	5, 2, 1, 6, 2, 2, 0, 2, 
+	4, 0, 2, 4, 5, 2, 8, 5, 
+	3, 7, 1, 0, 3, 9, 3, 2, 
+	4, 4, 9, 3, 2, 4, 6, 9, 
+	3, 2, 5, 1, 0, 9, 3, 2, 
+	5, 1, 6, 9, 3, 2, 5, 4, 
+	0, 9, 3, 2
 };
 
 static const char _parseSosiLine_key_offsets[] = {
-	0, 0, 15, 18, 36, 44, 50, 55, 
-	57, 59, 79, 87, 93, 99
+	0, 0, 16, 19, 38, 46, 52, 55, 
+	57, 59, 80, 88, 94
 };
 
 static const char _parseSosiLine_trans_keys[] = {
-	-40, -8, 45, 46, 95, -59, -58, -27, 
-	-26, 48, 57, 65, 90, 97, 122, 10, 
-	13, 33, -40, -8, 10, 13, 33, 45, 
-	46, 95, -59, -58, -27, -26, 48, 57, 
-	65, 90, 97, 122, 9, 10, 13, 32, 
-	33, 58, 48, 57, 9, 10, 13, 32, 
-	33, 58, 9, 10, 13, 32, 33, 33, 
-	46, 33, 46, -40, -8, 9, 10, 13, 
-	32, 33, 45, 46, 95, -59, -58, -27, 
-	-26, 48, 57, 65, 90, 97, 122, 9, 
-	10, 13, 32, 33, 46, 48, 57, 9, 
-	10, 13, 32, 33, 46, 13, 46, 9, 
-	10, 32, 33, -40, -8, 9, 10, 13, 
-	32, 33, 45, 46, 95, -59, -58, -27, 
-	-26, 48, 57, 65, 90, 97, 122, 0
+	-104, -72, -61, 45, 46, 95, -123, -122, 
+	-91, -90, 48, 57, 65, 90, 97, 122, 
+	10, 13, 33, -104, -72, -61, 10, 13, 
+	33, 45, 46, 95, -123, -122, -91, -90, 
+	48, 57, 65, 90, 97, 122, 9, 10, 
+	13, 32, 33, 58, 48, 57, 9, 10, 
+	13, 32, 33, 58, 10, 13, 33, 33, 
+	46, 33, 46, -104, -72, -61, 9, 10, 
+	13, 32, 33, 45, 46, 95, -123, -122, 
+	-91, -90, 48, 57, 65, 90, 97, 122, 
+	9, 10, 13, 32, 33, 46, 48, 57, 
+	13, 46, 9, 10, 32, 33, -104, -72, 
+	-61, 9, 10, 13, 32, 33, 45, 46, 
+	95, -123, -122, -91, -90, 48, 57, 65, 
+	90, 97, 122, 0
 };
 
 static const char _parseSosiLine_single_lengths[] = {
-	0, 5, 3, 8, 6, 6, 5, 2, 
-	2, 10, 6, 6, 2, 10
+	0, 6, 3, 9, 6, 6, 3, 2, 
+	2, 11, 6, 2, 11
 };
 
 static const char _parseSosiLine_range_lengths[] = {
 	0, 5, 0, 5, 1, 0, 0, 0, 
-	0, 5, 1, 0, 2, 5
+	0, 5, 1, 2, 5
 };
 
 static const char _parseSosiLine_index_offsets[] = {
-	0, 0, 11, 15, 29, 37, 44, 50, 
-	53, 56, 72, 80, 87, 92
+	0, 0, 12, 16, 31, 39, 46, 50, 
+	53, 56, 73, 81, 86
 };
 
 static const char _parseSosiLine_indicies[] = {
-	0, 0, 0, 2, 0, 0, 0, 0, 
-	0, 0, 1, 4, 4, 1, 3, 5, 
-	5, 4, 4, 1, 5, 6, 5, 5, 
-	5, 5, 5, 5, 3, 7, 4, 4, 
-	7, 1, 9, 8, 3, 7, 4, 4, 
-	7, 1, 9, 3, 10, 11, 11, 10, 
-	12, 3, 1, 14, 13, 1, 16, 15, 
-	17, 17, 18, 19, 19, 18, 19, 17, 
-	20, 17, 17, 17, 17, 17, 17, 1, 
-	22, 23, 23, 22, 24, 25, 26, 21, 
-	27, 4, 4, 27, 24, 28, 3, 24, 
-	29, 24, 24, 1, 30, 30, 31, 32, 
-	32, 31, 19, 30, 33, 30, 30, 30, 
-	30, 30, 30, 3, 0
+	0, 0, 0, 0, 2, 0, 0, 0, 
+	0, 0, 0, 1, 4, 4, 1, 3, 
+	5, 5, 5, 4, 4, 1, 5, 6, 
+	5, 5, 5, 5, 5, 5, 3, 7, 
+	4, 4, 7, 1, 9, 8, 3, 7, 
+	4, 4, 7, 1, 9, 3, 10, 10, 
+	1, 3, 1, 12, 11, 1, 14, 13, 
+	15, 15, 15, 16, 17, 17, 16, 17, 
+	15, 18, 15, 15, 15, 15, 15, 15, 
+	1, 20, 21, 21, 20, 22, 23, 24, 
+	19, 22, 25, 22, 22, 1, 26, 26, 
+	26, 27, 28, 28, 27, 17, 26, 29, 
+	26, 26, 26, 26, 26, 26, 3, 0
 };
 
 static const char _parseSosiLine_trans_targs[] = {
-	9, 0, 1, 2, 11, 13, 3, 5, 
-	4, 6, 11, 11, 12, 8, 1, 8, 
-	1, 9, 10, 12, 1, 2, 10, 11, 
-	12, 3, 4, 11, 3, 1, 13, 10, 
-	11, 3
+	9, 0, 1, 2, 11, 12, 3, 5, 
+	4, 6, 11, 8, 1, 8, 1, 9, 
+	10, 11, 1, 2, 10, 11, 11, 3, 
+	4, 1, 12, 10, 11, 3
 };
 
 static const char _parseSosiLine_trans_actions[] = {
-	37, 0, 3, 1, 11, 37, 20, 1, 
-	1, 1, 26, 41, 9, 14, 70, 1, 
-	59, 1, 5, 5, 54, 14, 14, 29, 
-	0, 64, 14, 1, 49, 45, 1, 23, 
-	33, 76
+	32, 0, 3, 1, 7, 32, 20, 1, 
+	1, 1, 29, 11, 56, 1, 45, 1, 
+	5, 5, 40, 11, 11, 14, 0, 50, 
+	11, 36, 1, 23, 26, 62
 };
 
 static const char _parseSosiLine_eof_actions[] = {
 	0, 0, 0, 0, 0, 0, 0, 17, 
-	7, 5, 0, 0, 0, 5
+	9, 5, 0, 0, 5
 };
 
 static const int parseSosiLine_start = 7;
@@ -131,6 +126,9 @@ static const int parseSosiLine_en_main = 7;
 void sosicon::Parser::
 parseSosiLine( std::string sosiLine )
 {
+
+    sosiLine += "\r\n";
+
  /* Variables used by Ragel */
     int cs = 0;
     int stack[ 1024 ];
@@ -147,12 +145,12 @@ parseSosiLine( std::string sosiLine )
     int tmpint;
 
     
-/* #line 151 "parser_sosi_line.cpp" */
+/* #line 149 "parser_sosi_line.cpp" */
 	{
 	cs = parseSosiLine_start;
 	}
 
-/* #line 156 "parser_sosi_line.cpp" */
+/* #line 154 "parser_sosi_line.cpp" */
 	{
 	int _klen;
 	unsigned int _trans;
@@ -227,71 +225,72 @@ _match:
 		switch ( *_acts++ )
 		{
 	case 0:
-/* #line 52 "parser/parser_sosi_line.rl" */
+/* #line 55 "parser/parser_sosi_line.rl" */
 	{
-            if( '\r' != (*p) )
+            if( '\r' != (*p) ) {
                 tmpstr += (*p);
+            }
         }
 	break;
 	case 1:
-/* #line 57 "parser/parser_sosi_line.rl" */
+/* #line 61 "parser/parser_sosi_line.rl" */
 	{
             tmpstr.clear();
         }
 	break;
 	case 2:
-/* #line 61 "parser/parser_sosi_line.rl" */
+/* #line 65 "parser/parser_sosi_line.rl" */
 	{
             tmpint++;
         }
 	break;
 	case 3:
-/* #line 65 "parser/parser_sosi_line.rl" */
+/* #line 69 "parser/parser_sosi_line.rl" */
 	{
             tmpint = 0;
         }
 	break;
 	case 4:
-/* #line 69 "parser/parser_sosi_line.rl" */
+/* #line 73 "parser/parser_sosi_line.rl" */
 	{
             mPendingElementName = tmpstr;
         }
 	break;
 	case 5:
-/* #line 73 "parser/parser_sosi_line.rl" */
+/* #line 77 "parser/parser_sosi_line.rl" */
 	{
             mPendingElementAttributes = tmpstr;
             tmpstr.clear();
         }
 	break;
 	case 6:
-/* #line 78 "parser/parser_sosi_line.rl" */
+/* #line 82 "parser/parser_sosi_line.rl" */
 	{
             mPendingElementAttributes += ( " " + sosicon::stringUtils::trim( tmpstr ) );
             tmpstr.clear();
         }
 	break;
 	case 7:
-/* #line 83 "parser/parser_sosi_line.rl" */
+/* #line 87 "parser/parser_sosi_line.rl" */
 	{
             mPendingElementLevel = tmpint;
             tmpstr.clear();
         }
 	break;
 	case 8:
-/* #line 88 "parser/parser_sosi_line.rl" */
+/* #line 92 "parser/parser_sosi_line.rl" */
 	{
             mPendingElementSerial = tmpstr.substr( 0, tmpstr.length() - 1 );
             tmpstr.clear();
         }
 	break;
 	case 9:
-/* #line 93 "parser/parser_sosi_line.rl" */
+/* #line 97 "parser/parser_sosi_line.rl" */
 	{
             digestPendingElement();
         }
 	break;
-/* #line 295 "parser_sosi_line.cpp" */
+/* #line 294 "parser_sosi_line.cpp" */
 		}
 	}
 
@@ -308,25 +307,25 @@ _again:
 	while ( __nacts-- > 0 ) {
 		switch ( *__acts++ ) {
 	case 1:
-/* #line 57 "parser/parser_sosi_line.rl" */
+/* #line 61 "parser/parser_sosi_line.rl" */
 	{
             tmpstr.clear();
         }
 	break;
 	case 4:
-/* #line 69 "parser/parser_sosi_line.rl" */
+/* #line 73 "parser/parser_sosi_line.rl" */
 	{
             mPendingElementName = tmpstr;
         }
 	break;
 	case 6:
-/* #line 78 "parser/parser_sosi_line.rl" */
+/* #line 82 "parser/parser_sosi_line.rl" */
 	{
             mPendingElementAttributes += ( " " + sosicon::stringUtils::trim( tmpstr ) );
             tmpstr.clear();
         }
 	break;
-/* #line 330 "parser_sosi_line.cpp" */
+/* #line 329 "parser_sosi_line.cpp" */
 		}
 	}
 	}
@@ -334,7 +333,7 @@ _again:
 	_out: {}
 	}
 
-/* #line 118 "parser/parser_sosi_line.rl" */
+/* #line 122 "parser/parser_sosi_line.rl" */
 
 
 };

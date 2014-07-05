@@ -56,6 +56,8 @@ namespace sosicon {
 
         virtual std::string getName() = 0;
 
+        virtual bool getChild( ISosiElement*& e ) = 0;
+
         virtual int getLevel() = 0;
 
         virtual void deleteChildren() = 0;

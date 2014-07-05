@@ -22,11 +22,12 @@ Shapefile() { }
 
 sosicon::shape::Shapefile::
 ~Shapefile() {
-    while( mShapeElements.size() > 0 ) {
-        IShapeElement* e = mShapeElements.back();
-        mShapeElements.pop_back();
-        delete e;
-    }
+
+}
+
+void sosicon::shape::Shapefile::
+build( ISosiElement* sosiTree ) {
+    
 }
 
 void sosicon::shape::Shapefile::
@@ -35,58 +36,21 @@ insert( ISosiElement* sosiElement ) {
 }
 
 void sosicon::shape::Shapefile::
-prepareHeader() {
-    prepareHeader( -1 );
-}
-
-void sosicon::shape::Shapefile::
-prepareHeader( int recordSize ) {
-    std::vector<IShapeElement*>::iterator i;
-    int fileLength = mHeader.getByteSize();
-    shape::BoundingBox mbr;    
-    for( i = mShapeElements.begin(); i != mShapeElements.end(); i++ ) {
-        IShapeElement* e = *i;
-        fileLength += ( recordSize > -1 ? recordSize : e->getByteSize() );
-        shape::BoundingBox bbox;
-        e->getMBR( bbox );
-        mbr.merge( bbox );
-    }
-    mHeader.setFileLength( 1932 );
-    mHeader.setBoundingBox( mbr );
-}
-
-void sosicon::shape::Shapefile::
 writeShp( std::ostream &os ) {
-    prepareHeader();
-    os << mHeader;
-    std::vector<IShapeElement*>::iterator i;
-    for( i = mShapeElements.begin(); i != mShapeElements.end(); i++ ) {
-        IShapeElement* e = *i;
-        os << *e;
-    }
+
 }
 
 void sosicon::shape::Shapefile::
 writeShx( std::ostream &os ) {
-    ShapeIndex index( &mHeader );
-    std::vector<IShapeElement*>::iterator i;
-    for( i = mShapeElements.begin(); i != mShapeElements.end(); i++ ) {
-        index.append( *i );
-    }
-    os << index;
+
 }
 
 void sosicon::shape::Shapefile::
 writeDbf( std::ostream &os ) {
-    ShapeDatabase database( &mHeader );
-    std::vector<IShapeElement*>::iterator i;
-    for( i = mShapeElements.begin(); i != mShapeElements.end(); i++ ) {
-        database.append( *i );
-    }
-    os << database;
+
 }
 
 void sosicon::shape::Shapefile::
 writePrj( std::ostream &os ) {
-    os << "This is the projection data...\n";
+
 }
