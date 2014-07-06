@@ -26,8 +26,16 @@ sosicon::shape::Shapefile::
 }
 
 void sosicon::shape::Shapefile::
-build( ISosiElement* sosiTree ) {
-    
+build( ISosiElement* sosiTree, sosi::ElementType selection ) {
+    ShapeType shapeTypeEquivalent = getShapeEquivalent( selection );
+    if( shape_type_none != shapeTypeEquivalent ) {
+        ISosiElement* sosi = 0;
+        while( sosiTree->getChild( sosi ) ) {
+            if( selection == sosi->getType() ) {
+                
+            }
+        }
+    }
 }
 
 void sosicon::shape::Shapefile::
@@ -53,4 +61,19 @@ writeDbf( std::ostream &os ) {
 void sosicon::shape::Shapefile::
 writePrj( std::ostream &os ) {
 
+}
+
+sosicon::shape::ShapeType sosicon::shape::
+getShapeEquivalent( sosi::ElementType sosiType ) {
+    switch( sosiType ) {
+        case sosi::sosi_element_area:
+            return shape_type_polygon;
+        case sosi::sosi_element_curve:
+            return shape_type_polyLine;
+        case sosi::sosi_element_point:
+        case sosi::sosi_element_text:
+            return shape_type_point;
+        default:
+            return shape_type_none;
+    }
 }

@@ -22,15 +22,14 @@
 #include "i_shapefile_shx_part.h"
 #include "i_shapefile_dbf_part.h"
 #include "i_shapefile_prj_part.h"
+#include "i_sosi_element.h"
+#include "../sosi/sosi_types.h"
 
 namespace sosicon {
     /*!
         \addtogroup interfaces Interfaces
         @{
     */
-
-    //! Forward declarations
-    class ISosiElement;
 
     //! Interface: Shapefile
     /*!
@@ -47,7 +46,14 @@ namespace sosicon {
             virtual ~IShapefile() {}
 
             //! Build shapefile from SOSI data
-            virtual void build( ISosiElement* sosiTree ) = 0;
+            /*!
+                \param sosiTree Root SOSI element. The first-level children of this element
+                       will be examined and exported if they are compatible.
+                \param selection SOSI element type scheduled for shapefile conversion.
+                       Since a shapefile may contain only one geometry type at a time,
+                       one must select what element type to extract from the SOSI file.
+             */
+            virtual void build( ISosiElement* sosiTree, sosi::ElementType selection ) = 0;
 
     };
    /*! @} end group interfaces */

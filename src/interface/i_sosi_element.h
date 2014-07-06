@@ -21,6 +21,7 @@
 #include <string>
 #include <vector>
 #include <map>
+#include "../sosi/sosi_types.h"
 
 namespace sosicon {
 
@@ -59,6 +60,8 @@ namespace sosicon {
         virtual bool getChild( ISosiElement*& e ) = 0;
 
         virtual int getLevel() = 0;
+
+        virtual sosi::ElementType getType() = 0;
 
         virtual void deleteChildren() = 0;
 

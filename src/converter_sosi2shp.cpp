@@ -35,7 +35,9 @@ init( sosicon::CommandLine cmd ) {
 void sosicon::ConverterSosi2shp::
 makeShp( ISosiElement* sosiTree ) {
     shape::Shapefile shp;
-    shp.build( sosiTree );
+    for( std::vector<std::string>::iterator g = mCmd.mGeomTypes.begin(); g != mCmd.mGeomTypes.end(); g++ ) {
+        shp.build( sosiTree, sosi::sosiNameToType( *g ) );
+    }
 }
 
 void sosicon::ConverterSosi2shp::

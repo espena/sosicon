@@ -21,6 +21,8 @@
 #include <string>
 #include <vector>
 #include <iostream>
+#include "shapefile_types.h"
+#include "../sosi/sosi_types.h"
 #include "../interface/i_shapefile.h"
 
 namespace sosicon {
@@ -28,6 +30,13 @@ namespace sosicon {
     //! ESRI Shape
     namespace shape {
         
+
+        //! Resolve geometry type
+        /*!
+            Translate SOSI geomtry type to corresponding shape geometry, if applicable
+         */
+        ShapeType getShapeEquivalent( sosi::ElementType sosiType );
+
         //! Shapefile implementation
         /*!
             Wraps all ESRI Shape output files (shp, shx, dbf, prj...) in one class.
@@ -45,7 +54,7 @@ namespace sosicon {
             virtual ~Shapefile();
 
             // Described in IShapefile
-            virtual void build( ISosiElement* sosiTree );
+            virtual void build( ISosiElement* sosiTree, sosi::ElementType selection );
 
             //! Insert SOSI element
             /*!

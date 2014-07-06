@@ -21,6 +21,7 @@
 #include <iostream>
 #include <vector>
 #include <string>
+#include "sosi_types.h"
 #include "../interface/i_sosi_element.h"
 
 namespace sosicon {
@@ -33,6 +34,15 @@ namespace sosicon {
             Implemented representation of SOSI file elements.
             @{
         */
+
+        //! Convert SOSI element names to ElementType enum value
+        /*!
+            The enum member names are translations of the Norwegian element names.
+            \param std::string sosiElementName The standard SOSI element name in Norwegian.
+            \return ElementType enumeration value representing current element type.
+         */
+        ElementType sosiNameToType( std::string sosiElementName );
+
         //! Basic SOSI element
         /*!
             Implements basic characteristics of a SOSI element.
@@ -40,7 +50,7 @@ namespace sosicon {
         class SosiElement : public ISosiElement {
 
             //! Current element's data content
-            std::string mAttributes;
+            std::string mData;
 
             //! List of children elements
             std::vector<ISosiElement*> mChildren;
@@ -54,13 +64,16 @@ namespace sosicon {
             //! Current element's name
             std::string mName;
 
+            //! Current element's type
+            ElementType mType;
+
             //! Current element's serial number if provided
             std::string mSerial;
 
         public:
 
             //! Construct new SOSI element
-            SosiElement( std::string name, std::string serial, std::string attributes, int level );
+            SosiElement( std::string name, std::string serial, std::string data, int level );
 
             //! Insert children element
             virtual void addChild( ISosiElement* child ) { mChildren.push_back( child ); };
@@ -70,6 +83,9 @@ namespace sosicon {
 
             //! Debug function
             virtual void dump( int indent = 0 );
+
+            //! Get unparsed element data
+            virtual std::string getData() { return mData; };
 
             //! Get next child in list
             /*!
@@ -84,6 +100,9 @@ namespace sosicon {
 
             //! Get name of current element
             virtual std::string getName() { return mName; };
+
+            //! Get ElementType of current element
+            virtual ElementType getType() { return mType; };
 
         };
        /*! @} end group sosi_elements */

@@ -54,5 +54,5 @@ dump() {
 
 sosicon::ISosiElement* sosicon::Parser::
 getRootElement() {
-    return mElementStack.back();
+    return mElementStack.front();
 }
