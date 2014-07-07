@@ -22,6 +22,7 @@
 #include <vector>
 #include <iostream>
 #include "shapefile_types.h"
+#include "../coordinate_collection.h"
 #include "../sosi/sosi_types.h"
 #include "../interface/i_shapefile.h"
 

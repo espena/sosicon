@@ -1,6 +1,6 @@
 /*
  *  This file is part of the command-line tool sosicon.
- *  Copyright (C) 2012  Espen Andersen
+ *  Copyright (C) 2014  Espen Andersen
  *
  *  This is free software: you can redistribute it and/or modify
  *  it under the terms of the GNU General Public License as published by
@@ -15,41 +15,29 @@
  *  You should have received a copy of the GNU General Public License
  *  along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-#include "parser.h"
+#ifndef __I_COORDINATE_H__
+#define __I_COORDINATE_H__
 
-void sosicon::Parser::
-getPathInfo( std::string path, std::string &dir, std::string &tit, std::string &ext ) {
-	std::string::size_type len = path.length();
-	std::string tmp;
-	while( len > 0 ) {
-		const char c = path.at( --len );
-		switch( c ) {
-			case '.':
-				tmp = ( c + tmp );
-				if( ext.empty() ) {
-					ext = tmp;
-					tmp = "";
-				}
-				break;
-			case '\\':
-			case '/':
-				if( tit.empty() ) {
-					tit = tmp;
-					tmp = c;
-				}
-				else {
-					tmp = ( c + tmp );
-				}
-				break;
-			default:
-				tmp = ( c + tmp );
-				break;
-		}
-	}
-	if( tit.empty() ) {
-		tit = tmp;
-	}
-	else {
-		dir = tmp;
-	}
-}
+namespace sosicon {
+
+    /*!
+        \addtogroup interfaces Interfaces
+        This is a listing of generic interfaces used within sosicon.
+        @{
+    */
+    //! Interface: Coordinate
+    /*!
+        \author Espen Andersen
+        \copyright GNU General Public License
+    */
+    class ICoordinate {
+    public:
+
+        //! Destructor
+        virtual ~ICoordinate() { };
+        
+    }; // class ICoordinate
+   /*! @} end group interfaces */
+}; // namespace sosicon
+
+#endif

@@ -59,6 +59,10 @@ namespace sosicon {
 
         virtual bool getChild( ISosiElement*& e ) = 0;
 
+        virtual bool getChild( ISosiElement*& e, sosi::ElementType type ) = 0;
+
+        virtual std::string getData() = 0;
+
         virtual int getLevel() = 0;
 
         virtual sosi::ElementType getType() = 0;

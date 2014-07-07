@@ -27,12 +27,13 @@ sosicon::shape::Shapefile::
 
 void sosicon::shape::Shapefile::
 build( ISosiElement* sosiTree, sosi::ElementType selection ) {
+    CoordinateCollection cc;
     ShapeType shapeTypeEquivalent = getShapeEquivalent( selection );
     if( shape_type_none != shapeTypeEquivalent ) {
         ISosiElement* sosi = 0;
         while( sosiTree->getChild( sosi ) ) {
             if( selection == sosi->getType() ) {
-                
+                cc.discoverCoords( sosi );
             }
         }
     }

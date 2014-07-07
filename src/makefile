@@ -6,11 +6,11 @@ PROJ = sosicon
 
 ifeq ($(UNAME), Darwin)
 OUTDIR = ../bin/osx
-RAGEL = parser/ragel_bin/osx/ragel
+RAGEL = ragel/bin/osx/ragel
 endif
 ifeq ($(UNAME), Linux)
 OUTDIR = ../bin/linux
-RAGEL = parser/ragel_bin/linux/ragel
+RAGEL = ragel/bin/linux/ragel
 endif
 
 SOURCEFILES =									\
@@ -18,13 +18,16 @@ SOURCEFILES =									\
 				command_line.cpp				\
 				factory.cpp						\
 				string_utils.cpp				\
+				sosi/sosi_ref.cpp				\
+				sosi/sosi_ref_ragel.cpp			\
 				sosi/sosi_element.cpp			\
 				shape/shapefile.cpp				\
 				converter_sosi2shp.cpp			\
 				converter_sosi2xml.cpp			\
 				converter_sosi2tsv.cpp			\
+				coordinate_collection.cpp		\
 				parser.cpp						\
-				parser_sosi_line.cpp
+				parser_ragel.cpp
 
 HEADERFILES = *.h
 
@@ -34,7 +37,8 @@ sosicon: $(SOURCEFILES) $(HEADERFILES)
 
 
 	@echo "** Pre build steps..."
-	$(RAGEL) -C -L -o parser_sosi_line.cpp parser/parser_sosi_line.rl
+	$(RAGEL) -C -L -o parser_ragel.cpp ragel/parser.rl
+	$(RAGEL) -C -L -o sosi/sosi_ref_ragel.cpp ragel/sosi_ref.rl
 
 	@echo "** Compiling..."
 	$(CC) -o $(OUTDIR)/$(PROJ) $(SOURCEFILES) $(COMPILER_OPTS);

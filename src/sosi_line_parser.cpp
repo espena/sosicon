@@ -1,5 +1,5 @@
 
-/* #line 1 "parser/parser_sosi_line.rl" */
+/* #line 1 "parser/sosi_line_parser.rl" */
 /*
  *  This file is part of the command-line tool sosicon.
  *  Copyright (C) 2012  Espen Andersen
@@ -24,7 +24,7 @@ namespace sosicon {
 
     //! \cond 
     
-/* #line 28 "parser_sosi_line.cpp" */
+/* #line 28 "sosi_line_parser.cpp" */
 static const char _parseSosiLine_actions[] = {
 	0, 1, 0, 1, 2, 1, 4, 1, 
 	5, 1, 6, 2, 1, 0, 2, 1, 
@@ -117,7 +117,7 @@ static const int parseSosiLine_error = 0;
 static const int parseSosiLine_en_main = 7;
 
 
-/* #line 27 "parser/parser_sosi_line.rl" */
+/* #line 27 "parser/sosi_line_parser.rl" */
 
     //! \endcond
 
@@ -145,12 +145,12 @@ parseSosiLine( std::string sosiLine )
     int tmpint;
 
     
-/* #line 149 "parser_sosi_line.cpp" */
+/* #line 149 "sosi_line_parser.cpp" */
 	{
 	cs = parseSosiLine_start;
 	}
 
-/* #line 154 "parser_sosi_line.cpp" */
+/* #line 154 "sosi_line_parser.cpp" */
 	{
 	int _klen;
 	unsigned int _trans;
@@ -225,7 +225,7 @@ _match:
 		switch ( *_acts++ )
 		{
 	case 0:
-/* #line 55 "parser/parser_sosi_line.rl" */
+/* #line 55 "parser/sosi_line_parser.rl" */
 	{
             if( '\r' != (*p) ) {
                 tmpstr += (*p);
@@ -233,64 +233,64 @@ _match:
         }
 	break;
 	case 1:
-/* #line 61 "parser/parser_sosi_line.rl" */
+/* #line 61 "parser/sosi_line_parser.rl" */
 	{
             tmpstr.clear();
         }
 	break;
 	case 2:
-/* #line 65 "parser/parser_sosi_line.rl" */
+/* #line 65 "parser/sosi_line_parser.rl" */
 	{
             tmpint++;
         }
 	break;
 	case 3:
-/* #line 69 "parser/parser_sosi_line.rl" */
+/* #line 69 "parser/sosi_line_parser.rl" */
 	{
             tmpint = 0;
         }
 	break;
 	case 4:
-/* #line 73 "parser/parser_sosi_line.rl" */
+/* #line 73 "parser/sosi_line_parser.rl" */
 	{
             mPendingElementName = tmpstr;
         }
 	break;
 	case 5:
-/* #line 77 "parser/parser_sosi_line.rl" */
+/* #line 77 "parser/sosi_line_parser.rl" */
 	{
             mPendingElementAttributes = tmpstr;
             tmpstr.clear();
         }
 	break;
 	case 6:
-/* #line 82 "parser/parser_sosi_line.rl" */
+/* #line 82 "parser/sosi_line_parser.rl" */
 	{
             mPendingElementAttributes += ( " " + sosicon::stringUtils::trim( tmpstr ) );
             tmpstr.clear();
         }
 	break;
 	case 7:
-/* #line 87 "parser/parser_sosi_line.rl" */
+/* #line 87 "parser/sosi_line_parser.rl" */
 	{
             mPendingElementLevel = tmpint;
             tmpstr.clear();
         }
 	break;
 	case 8:
-/* #line 92 "parser/parser_sosi_line.rl" */
+/* #line 92 "parser/sosi_line_parser.rl" */
 	{
             mPendingElementSerial = tmpstr.substr( 0, tmpstr.length() - 1 );
             tmpstr.clear();
         }
 	break;
 	case 9:
-/* #line 97 "parser/parser_sosi_line.rl" */
+/* #line 97 "parser/sosi_line_parser.rl" */
 	{
             digestPendingElement();
         }
 	break;
-/* #line 294 "parser_sosi_line.cpp" */
+/* #line 294 "sosi_line_parser.cpp" */
 		}
 	}
 
@@ -307,25 +307,25 @@ _again:
 	while ( __nacts-- > 0 ) {
 		switch ( *__acts++ ) {
 	case 1:
-/* #line 61 "parser/parser_sosi_line.rl" */
+/* #line 61 "parser/sosi_line_parser.rl" */
 	{
             tmpstr.clear();
         }
 	break;
 	case 4:
-/* #line 73 "parser/parser_sosi_line.rl" */
+/* #line 73 "parser/sosi_line_parser.rl" */
 	{
             mPendingElementName = tmpstr;
         }
 	break;
 	case 6:
-/* #line 82 "parser/parser_sosi_line.rl" */
+/* #line 82 "parser/sosi_line_parser.rl" */
 	{
             mPendingElementAttributes += ( " " + sosicon::stringUtils::trim( tmpstr ) );
             tmpstr.clear();
         }
 	break;
-/* #line 329 "parser_sosi_line.cpp" */
+/* #line 329 "sosi_line_parser.cpp" */
 		}
 	}
 	}
@@ -333,7 +333,7 @@ _again:
 	_out: {}
 	}
 
-/* #line 122 "parser/parser_sosi_line.rl" */
+/* #line 122 "parser/sosi_line_parser.rl" */
 
 
 };

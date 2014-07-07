@@ -89,3 +89,13 @@ getChild( ISosiElement*& e ) {
     }
     return moreToGo;
 }
+
+bool sosicon::sosi::SosiElement::
+getChild( ISosiElement*& e, ElementType type ) {
+    while( getChild( e ) ) {
+        if( e->getType() == type ) {
+            break;
+        }
+    }
+    return mChildrenIterator != mChildren.end();
+}

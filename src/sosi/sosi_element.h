@@ -84,9 +84,6 @@ namespace sosicon {
             //! Debug function
             virtual void dump( int indent = 0 );
 
-            //! Get unparsed element data
-            virtual std::string getData() { return mData; };
-
             //! Get next child in list
             /*!
                 Always pass a null pointer to start iterating through the children list.
@@ -94,6 +91,12 @@ namespace sosicon {
                 If the end of the list is reached, the function returns false.
              */
             virtual bool getChild( ISosiElement*& e );
+
+            //! Get next child of specified type in list
+            virtual bool getChild( ISosiElement*& e, sosi::ElementType type );
+
+            //! Get unparsed element data
+            virtual std::string getData() { return mData; };
 
             //! Get nesting level of current element
             virtual int getLevel() { return mLevel; };

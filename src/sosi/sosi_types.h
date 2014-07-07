@@ -18,6 +18,8 @@
 #ifndef __SOSI_TYPES_H__
 #define __SOSI_TYPES_H__
 
+#include <string>
+
 namespace sosicon {
 
     //! SOSI
@@ -45,6 +47,13 @@ namespace sosicon {
             sosi_element_text,             //!< Text
             sosi_element_unit,             //!< Unit (mm)
             sosi_element_updatedate        //!< Update date
+        };
+
+        //! SOSI reference number
+        struct Reference {
+            std::string serial;  //!< The element ID.
+            bool reverse;        //!< Minus sign = reverse coordinate sequence.
+            bool subtract;       //!< Parenthesis = subtract shape.
         };
 
        /*! @} end group sosi_elements */
