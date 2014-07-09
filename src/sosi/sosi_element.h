@@ -43,6 +43,9 @@ namespace sosicon {
          */
         ElementType sosiNameToType( std::string sosiElementName );
 
+        //! Element index type
+        typedef std::map<std::string,ISosiElement*> SosiElementMap;
+
         //! Basic SOSI element
         /*!
             Implements basic characteristics of a SOSI element.
@@ -70,10 +73,13 @@ namespace sosicon {
             //! Current element's serial number if provided
             std::string mSerial;
 
+            //! Reference to parser's lookup table
+            SosiElementMap& mIndex;
+
         public:
 
             //! Construct new SOSI element
-            SosiElement( std::string name, std::string serial, std::string data, int level );
+            SosiElement( std::string name, std::string serial, std::string data, int level, SosiElementMap& index );
 
             //! Insert children element
             virtual void addChild( ISosiElement* child ) { mChildren.push_back( child ); };
@@ -83,6 +89,9 @@ namespace sosicon {
 
             //! Debug function
             virtual void dump( int indent = 0 );
+
+            //! Find element by reference
+            virtual ISosiElement* find( std::string ref );
 
             //! Get next child in list
             /*!

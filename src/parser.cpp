@@ -20,7 +20,7 @@
 sosicon::Parser::
 Parser() {
     mPendingElementLevel = 0;
-    mElementStack.push_back( new sosi::SosiElement( "ROOT", "", "", 0 ) );
+    mElementStack.push_back( new sosi::SosiElement( "ROOT", "", "", 0, mElementIndex ) );
 }
 
 sosicon::Parser::
@@ -34,11 +34,21 @@ digestPendingElement() {
     ISosiElement* previousElement = mElementStack.back();
     int previousLevel = previousElement->getLevel();
     if( mPendingElementLevel > 0 ) {
+
         while( mElementStack.back()->getLevel() >= mPendingElementLevel ) {
             mElementStack.pop_back();
         }
+
         previousElement = mElementStack.back();
-        mElementStack.push_back( new sosi::SosiElement( mPendingElementName, mPendingElementSerial, mPendingElementAttributes, mPendingElementLevel ) );
+
+        mElementStack.push_back(
+            new sosi::SosiElement(
+                mPendingElementName,
+                mPendingElementSerial,
+                mPendingElementAttributes,
+                mPendingElementLevel,
+                mElementIndex ) );
+
         previousElement->addChild( mElementStack.back() );
     }
     mPendingElementName.clear();

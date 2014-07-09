@@ -30,7 +30,7 @@ namespace sosicon {
 }
 
 void sosicon::Parser::
-parseSosiLine( std::string sosiLine )
+ragelParseSosiLine( std::string sosiLine )
 {
 
     sosiLine += "\r\n";
@@ -54,7 +54,28 @@ parseSosiLine( std::string sosiLine )
 
         action strbuild {
             if( '\r' != fc ) {
-                tmpstr += fc;
+                switch( static_cast<unsigned char>( fc ) ) {
+                    case 0xC6:
+                        tmpstr += "AE";
+                        break;
+                    case 0xD8:
+                        tmpstr += "OE";
+                        break;
+                    case 0xC5:
+                        tmpstr += "AA";
+                        break;
+                    case 0xE6:
+                        tmpstr += "ae";
+                        break;
+                    case 0xF8:
+                        tmpstr += "oe";
+                        break;
+                    case 0xE5:
+                        tmpstr += "aa";
+                        break;
+                    default:
+                        tmpstr += fc;
+                }
             }
         }
 
@@ -104,7 +125,7 @@ parseSosiLine( std::string sosiLine )
 
         element_level = ( [\.]+ >intinit $intincr %set_level );
 
-        element_name = ( [A-ZÆØÅa-zæøå\-_0-9]+ >strinit @strbuild %set_name );
+        element_name = ( ( [^ \.\r\n] )+ >strinit @strbuild %set_name );
 
         element_serial = ( [\t ]+ ( ( [0-9]+[ \t]*[\:] ) >strinit @strbuild %set_serial ) [\r\n]+ );
 

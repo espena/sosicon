@@ -25,19 +25,19 @@ sosiNameToType( std::string sosiElementName ) {
     ElementType type;
 
     if( sosiTypeNameMap.empty() ) {
-        sosiTypeNameMap[ "ENHET"           ] = sosi_element_unit;             // Unit (mm)
-        sosiTypeNameMap[ "FLATE"           ] = sosi_element_area;             // Area
-        sosiTypeNameMap[ "HODE"            ] = sosi_element_head;             // File header
-        sosiTypeNameMap[ "KOORDSYS"        ] = sosi_element_coordsys;         // Coordinate system
-        sosiTypeNameMap[ "KURVE"           ] = sosi_element_curve;            // Curve
-        sosiTypeNameMap[ "NØ"              ] = sosi_element_ne;               // North-east coordinate
-        sosiTypeNameMap[ "OBJTYPE"         ] = sosi_element_objtype;          // Object type
-        sosiTypeNameMap[ "PPDATERINGSDATO" ] = sosi_element_updatedate;       // Update date
-        sosiTypeNameMap[ "ORIGO-NØ"        ] = sosi_element_origo_ne;         // Origo north-east
-        sosiTypeNameMap[ "PUNKT"           ] = sosi_element_point;            // Point
-        sosiTypeNameMap[ "REF"             ] = sosi_element_ref;              // Element reference
-        sosiTypeNameMap[ "TEGNSETT"        ] = sosi_element_charset;          // Character set
-        sosiTypeNameMap[ "TEKST"           ] = sosi_element_text;             // Text
+        sosiTypeNameMap[ "ENHET"            ] = sosi_element_unit;             // Unit (mm)
+        sosiTypeNameMap[ "FLATE"            ] = sosi_element_area;             // Area
+        sosiTypeNameMap[ "HODE"             ] = sosi_element_head;             // File header
+        sosiTypeNameMap[ "KOORDSYS"         ] = sosi_element_coordsys;         // Coordinate system
+        sosiTypeNameMap[ "KURVE"            ] = sosi_element_curve;            // Curve
+        sosiTypeNameMap[ "NOE"              ] = sosi_element_ne;               // North-east coordinate
+        sosiTypeNameMap[ "OBJTYPE"          ] = sosi_element_objtype;          // Object type
+        sosiTypeNameMap[ "OPPDATERINGSDATO" ] = sosi_element_updatedate;       // Update date
+        sosiTypeNameMap[ "ORIGO-NOE"        ] = sosi_element_origo_ne;         // Origo north-east
+        sosiTypeNameMap[ "PUNKT"            ] = sosi_element_point;            // Point
+        sosiTypeNameMap[ "REF"              ] = sosi_element_ref;              // Element reference
+        sosiTypeNameMap[ "TEGNSETT"         ] = sosi_element_charset;          // Character set
+        sosiTypeNameMap[ "TEKST"            ] = sosi_element_text;             // Text
     }
 
     try{
@@ -51,12 +51,15 @@ sosiNameToType( std::string sosiElementName ) {
 }
 
 sosicon::sosi::SosiElement::
-SosiElement( std::string name, std::string serial, std::string data, int level ) {
+SosiElement( std::string name, std::string serial, std::string data, int level, SosiElementMap& index ) : mIndex( index ) {
     mName = name;
     mSerial = serial;
     mData = data;
     mLevel = level;
     mType = sosiNameToType( mName );
+    if( !mSerial.empty() ) {
+        mIndex[ mSerial ] = this;
+    }
 }
 
 void sosicon::sosi::SosiElement::
@@ -75,6 +78,18 @@ dump( int indent ) {
     for( std::vector<ISosiElement*>::iterator i = mChildren.begin(); i != mChildren.end(); i++ ) {
         ( *i )->dump( indent + 2 );
     }
+}
+
+sosicon::ISosiElement* sosicon::sosi::SosiElement::
+find( std::string ref ) {
+    ISosiElement* e;
+    try {
+        e = mIndex[ ref ];
+    }
+    catch ( ... ) {
+        e = 0;
+    }
+    return e;
 }
 
 bool sosicon::sosi::SosiElement::

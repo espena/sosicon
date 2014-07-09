@@ -17,7 +17,7 @@
  *  You should have received a copy of the GNU General Public License
  *  along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-#include "sosi_ref.h"
+#include "sosi_ref_list.h"
 #pragma warning ( disable: 4244 )
 
 namespace sosicon {
@@ -25,35 +25,59 @@ namespace sosicon {
     //! \cond 
     
 /* #line 28 "sosi/sosi_ref_ragel.cpp" */
+static const char _parseSosiRef_actions[] = {
+	0, 1, 1, 1, 2, 1, 3, 2, 
+	0, 1, 2, 4, 5, 3, 4, 0, 
+	1
+};
+
 static const char _parseSosiRef_key_offsets[] = {
-	0
+	0, 0, 5, 9, 12, 14, 22, 28
 };
 
 static const char _parseSosiRef_trans_keys[] = {
-	0
+	32, 40, 58, 9, 13, 32, 58, 9, 
+	13, 45, 48, 57, 48, 57, 32, 40, 
+	41, 58, 9, 13, 48, 57, 32, 40, 
+	41, 58, 9, 13, 32, 40, 58, 9, 
+	13, 0
 };
 
 static const char _parseSosiRef_single_lengths[] = {
-	0
+	0, 3, 2, 1, 0, 4, 4, 3
 };
 
 static const char _parseSosiRef_range_lengths[] = {
-	0
+	0, 1, 1, 1, 1, 2, 1, 1
 };
 
 static const char _parseSosiRef_index_offsets[] = {
+	0, 0, 5, 9, 12, 14, 21, 27
+};
+
+static const char _parseSosiRef_indicies[] = {
+	0, 2, 3, 0, 1, 4, 3, 4, 
+	1, 5, 6, 1, 7, 1, 8, 2, 
+	9, 3, 8, 10, 1, 8, 2, 9, 
+	3, 8, 1, 11, 2, 3, 11, 1, 
 	0
 };
 
 static const char _parseSosiRef_trans_targs[] = {
-	0, 0
+	1, 0, 2, 3, 2, 4, 5, 5, 
+	6, 7, 5, 7
 };
 
-static const int parseSosiRef_start = 0;
-static const int parseSosiRef_first_final = 0;
-static const int parseSosiRef_error = -1;
+static const char _parseSosiRef_trans_actions[] = {
+	0, 0, 3, 0, 0, 10, 13, 7, 
+	0, 5, 1, 0
+};
 
-static const int parseSosiRef_en_main = 0;
+static const int parseSosiRef_start = 1;
+static const int parseSosiRef_first_final = 5;
+static const int parseSosiRef_error = 0;
+
+static const int parseSosiRef_en_main = 1;
 
 
 /* #line 27 "ragel/sosi_ref.rl" */
@@ -62,8 +86,8 @@ static const int parseSosiRef_en_main = 0;
 
 }
 
-void sosicon::sosi::SosiRef::
-parseSosiRef( std::string data )
+void sosicon::sosi::SosiRefList::
+ragelParseSosiRef( std::string data )
 {
 
  /* Variables used by Ragel */
@@ -77,21 +101,29 @@ parseSosiRef( std::string data )
     const char* p = s;
     const char* pe = p + data.size();
     const char* eof = pe;
+    std::string tmpstr;
+    Reference* ref = 0;
+    bool reverse = false;
+    bool subtract = false;
 
     
-/* #line 83 "sosi/sosi_ref_ragel.cpp" */
+/* #line 111 "sosi/sosi_ref_ragel.cpp" */
 	{
 	cs = parseSosiRef_start;
 	}
 
-/* #line 88 "sosi/sosi_ref_ragel.cpp" */
+/* #line 116 "sosi/sosi_ref_ragel.cpp" */
 	{
 	int _klen;
 	unsigned int _trans;
+	const char *_acts;
+	unsigned int _nacts;
 	const char *_keys;
 
 	if ( p == pe )
 		goto _test_eof;
+	if ( cs == 0 )
+		goto _out;
 _resume:
 	_keys = _parseSosiRef_trans_keys + _parseSosiRef_key_offsets[cs];
 	_trans = _parseSosiRef_index_offsets[cs];
@@ -142,14 +174,63 @@ _resume:
 	}
 
 _match:
+	_trans = _parseSosiRef_indicies[_trans];
 	cs = _parseSosiRef_trans_targs[_trans];
 
+	if ( _parseSosiRef_trans_actions[_trans] == 0 )
+		goto _again;
+
+	_acts = _parseSosiRef_actions + _parseSosiRef_trans_actions[_trans];
+	_nacts = (unsigned int) *_acts++;
+	while ( _nacts-- > 0 )
+	{
+		switch ( *_acts++ )
+		{
+	case 0:
+/* #line 54 "ragel/sosi_ref.rl" */
+	{
+            ref = new Reference();
+            ref->reverse = reverse;
+            ref->subtract = subtract;
+            mRefList.push_back( ref );
+        }
+	break;
+	case 1:
+/* #line 61 "ragel/sosi_ref.rl" */
+	{
+            ref->serial += (*p);
+        }
+	break;
+	case 2:
+/* #line 65 "ragel/sosi_ref.rl" */
+	{ subtract = ( (*p) == '(' ); }
+	break;
+	case 3:
+/* #line 66 "ragel/sosi_ref.rl" */
+	{ subtract = ( (*p) == ')' ); }
+	break;
+	case 4:
+/* #line 67 "ragel/sosi_ref.rl" */
+	{ reverse = false; }
+	break;
+	case 5:
+/* #line 67 "ragel/sosi_ref.rl" */
+	{ reverse = true; }
+	break;
+/* #line 221 "sosi/sosi_ref_ragel.cpp" */
+		}
+	}
+
+_again:
+	if ( cs == 0 )
+		goto _out;
 	if ( ++p != pe )
 		goto _resume;
 	_test_eof: {}
+	_out: {}
 	}
 
-/* #line 55 "ragel/sosi_ref.rl" */
+/* #line 75 "ragel/sosi_ref.rl" */
 
 
 };

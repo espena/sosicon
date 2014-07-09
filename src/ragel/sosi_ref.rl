@@ -15,7 +15,7 @@
  *  You should have received a copy of the GNU General Public License
  *  along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-#include "sosi_ref.h"
+#include "sosi_ref_list.h"
 #pragma warning ( disable: 4244 )
 
 namespace sosicon {
@@ -29,8 +29,8 @@ namespace sosicon {
 
 }
 
-void sosicon::sosi::SosiRef::
-parseSosiRef( std::string data )
+void sosicon::sosi::SosiRefList::
+ragelParseSosiRef( std::string data )
 {
 
  /* Variables used by Ragel */
@@ -44,10 +44,30 @@ parseSosiRef( std::string data )
     const char* p = s;
     const char* pe = p + data.size();
     const char* eof = pe;
+    std::string tmpstr;
+    Reference* ref = 0;
+    bool reverse = false;
+    bool subtract = false;
 
     %%{
 
-        main := /.*/;
+        action init {
+            ref = new Reference();
+            ref->reverse = reverse;
+            ref->subtract = subtract;
+            mRefList.push_back( ref );
+        }
+
+        action build_serial {
+            ref->serial += fc;
+        }
+
+        open_parenthesis = ( [\(]? ${ subtract = ( fc == '(' ); } );
+        close_parenthesis = ( [\)]? ${ subtract = ( fc == ')' ); } );
+        sign = ( [\-]? >{ reverse = false; } ${ reverse = true; } );
+        serial = ( [0-9]+ >init @build_serial );
+
+        main := space* ( open_parenthesis . space* ':' . sign . serial . space* . close_parenthesis . space* )+;
 
         write init;
         write exec;

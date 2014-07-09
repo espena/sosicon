@@ -18,13 +18,20 @@
 #ifndef __COORDINATE_COLLECTION_H__
 #define __COORDINATE_COLLECTION_H__
 
+#include <algorithm>
 #include <vector>
 #include <iostream>
-#include "sosi/sosi_ref.h"
+#include "sosi/sosi_types.h"
+#include "sosi/sosi_ref_list.h"
 #include "interface/i_coordinate.h"
 #include "interface/i_sosi_element.h"
 
 namespace sosicon {
+
+        typedef std::vector<ICoordinate*> CoordinateList;
+
+        //! Deletes all items in CoordinateList
+        void deleteCoords( CoordinateList& coords );
 
     //! Coordinate container
     /*!
@@ -35,11 +42,36 @@ namespace sosicon {
      */
     class CoordinateCollection {
 
-        //! Stores collection of pointers to coordinates
-        std::vector<ICoordinate*> mCoordinates;
+        //! Stores collection of pointers to coordinates for geometries
+        CoordinateList mGeom;
+        CoordinateList::iterator mGeomIterator;
+
+        //! Stores collection of pointers to coordinates for holes
+        CoordinateList mIslands;
+        CoordinateList::iterator mIslandsIterator;
+
+        //! Delete all coordinates
+        /*!
+            Deletes allocated Coordinate objects and resets mGeom and mShape.
+         */
+        void deleteAll();
+
+        //! Get ccordinate values from SOSI element
+        void extractPath( sosi::Reference* ref, ISosiElement* referencedElement );
+
+        //! Populate mCoordinates
+        void ragelParseCoordinates( sosi::Reference* ref, std::string data );
 
     public:
+
+        //! Destructor
+        ~CoordinateCollection();
+
         void discoverCoords( ISosiElement* sosi );
+
+        bool getNextInGeom( ICoordinate*& coord );
+
+        bool getNextInIslands( ICoordinate*& coord );
 
     }; // class Coordinate
     

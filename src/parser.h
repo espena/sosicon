@@ -18,11 +18,12 @@
 #ifndef __PARSER_H__
 #define __PARSER_H__
 
+#include <iostream>
 #include <algorithm>
-#include <vector>
 #include <string>
 #include <sstream>
-#include <iostream>
+#include <vector>
+#include <map>
 #include "string_utils.h"
 #include "command_line.h"
 #include "sosi/sosi_element.h"
@@ -57,6 +58,12 @@ namespace sosicon {
             contain the root element only.
          */
         std::vector<ISosiElement*> mElementStack;
+
+        //! Index
+        /*!
+            Index elements by serial number. Lookup table to resolve SOSI references (REF element).
+         */
+        sosi::SosiElementMap mElementIndex;
 
         //! SOSI level of element currently in parser
         /*!
@@ -125,7 +132,7 @@ namespace sosicon {
 
             \param sosiLine Current line from the SOSI input file.
          */
-        void parseSosiLine( std::string sosiLine );
+        void ragelParseSosiLine( std::string sosiLine );
         
     };
 };

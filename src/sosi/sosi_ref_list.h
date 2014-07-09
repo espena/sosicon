@@ -15,11 +15,13 @@
  *  You should have received a copy of the GNU General Public License
  *  along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-#ifndef __SOSI_REF_H__
-#define __SOSI_REF_H__
+#ifndef __SOSI_REF_LIST_H__
+#define __SOSI_REF_LIST_H__
 
 #include "../interface/i_sosi_element.h"
 #include "sosi_types.h"
+#include <iostream>
+#include <string>
 #include <vector>
 
 namespace sosicon {
@@ -35,23 +37,32 @@ namespace sosicon {
 
         //! SOSI REF list
         /*!
-            Implements basic characteristics of a SOSI element.
+            Implements SOSI reference list, as given via the REF element.
          */
-        class SosiRef {
+        class SosiRefList {
 
             ISosiElement* mSosiElement;
 
             std::vector<Reference*> mRefList;
 
-            void parseSosiRef( std::string data );
+            std::vector<Reference*>::iterator mRefListIterator;
+
+            void ragelParseSosiRef( std::string data );
 
         public:
 
             //! Construct new SOSI REF element
-            SosiRef( ISosiElement* e );
+            SosiRefList( ISosiElement* e );
 
             //! Destructor
-            ~SosiRef();
+            ~SosiRefList();
+
+            //! Iterate through list of references
+            /*!
+                Pass reference to null pointer to start iteration.
+                /return true if there is more elements in list, otherwise false.
+             */
+            bool getNextReference( Reference*& reference );
 
         }; // class SosiRef
        /*! @} end group sosi_elements */

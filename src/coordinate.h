@@ -18,6 +18,7 @@
 #ifndef __COORDINATE_H__
 #define __COORDINATE_H__
 
+#include <string>
 #include "interface/i_coordinate.h"
 
 namespace sosicon {
@@ -30,7 +31,17 @@ namespace sosicon {
         Stores a geographical position with some additional information.
      */
     class Coordinate : public ICoordinate {
-        
+
+        std::string mEast;
+        std::string mNorth;
+
+    public:
+
+        virtual ~Coordinate() { };
+        virtual void setE( std::string coordEast ) { mEast = coordEast; };
+        virtual void setN( std::string coordNorth ) { mNorth = coordNorth; };
+        virtual std::string toString() const { return "POINT( " + mNorth + " " + mEast + " )"; };
+
     }; // class Coordinate
     
 }; // namespece sosicon

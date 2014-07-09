@@ -36,6 +36,15 @@ namespace sosicon {
         //! Destructor
         virtual ~ICoordinate() { };
         
+        //! Set east coordinate
+        virtual void setE( std::string coordEast ) = 0;
+
+        //! Set north coordinate
+        virtual void setN( std::string coordNorth ) = 0;
+
+        //! Make string representation
+        virtual std::string toString() const = 0;
+
     }; // class ICoordinate
    /*! @} end group interfaces */
 }; // namespace sosicon

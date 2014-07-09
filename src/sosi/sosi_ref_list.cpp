@@ -15,18 +15,26 @@
  *  You should have received a copy of the GNU General Public License
  *  along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-#include "sosi_ref.h"
+#include "sosi_ref_list.h"
 
-sosicon::sosi::SosiRef::
-SosiRef( ISosiElement* e ) {
+sosicon::sosi::SosiRefList::
+SosiRefList( ISosiElement* e ) {
     mSosiElement = e;
-    std::string data = e->getData();
-    
+    ragelParseSosiRef( e->getData() );
 }
 
-sosicon::sosi::SosiRef::
-~SosiRef() {
+sosicon::sosi::SosiRefList::
+~SosiRefList() {
     for( std::vector<Reference*>::iterator i = mRefList.begin(); i != mRefList.end(); i++ ) {
         delete *i;
     }
+}
+
+bool sosicon::sosi::SosiRefList::
+getNextReference( Reference*& reference ) {
+    if( 0 == reference ) {
+        mRefListIterator = mRefList.begin();
+    }
+    reference = *mRefListIterator++;
+    return mRefListIterator != mRefList.end();
 }

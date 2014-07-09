@@ -17,16 +17,40 @@
  */
 #include "coordinate_collection.h"
 
+void sosicon::
+deleteCoords( CoordinateList& coords ) {
+    for( CoordinateList::iterator i = coords.begin(); i != coords.end(); i++ ) {
+        delete *i;
+    }
+    coords.clear();
+}
+
+sosicon::CoordinateCollection::
+~CoordinateCollection() {
+    deleteAll();
+}
+
+void sosicon::CoordinateCollection::
+deleteAll() {
+    deleteCoords( mGeom );
+    deleteCoords( mIslands );
+}
+
 void sosicon::CoordinateCollection::
 discoverCoords( ISosiElement* e ) {
     switch( e->getType() ) {
         case sosi::sosi_element_area:
             {
-                ISosiElement* reference = 0;
-                std::vector<ISosiElement*> references;
-                while( e->getChild( reference, sosi::sosi_element_ref ) ) {
-                    sosi::SosiRef ref( reference );
-                    
+                ISosiElement* rawRefElement = 0;
+                while( e->getChild( rawRefElement, sosi::sosi_element_ref ) ) {
+                    sosi::SosiRefList refList( rawRefElement );
+                    sosi::Reference* ref = 0;
+                    while( refList.getNextReference( ref ) ) {
+                        ISosiElement* referencedElement = rawRefElement->find( ref->serial );
+                        if( referencedElement ) {
+                            extractPath( ref, referencedElement );
+                        }
+                    }
                 }
             }
             break;
@@ -48,4 +72,33 @@ discoverCoords( ISosiElement* e ) {
             }
             break;
     }
+}
+
+void sosicon::CoordinateCollection::
+extractPath( sosi::Reference* ref, ISosiElement* referencedElement ) {
+    ISosiElement* ne = 0;
+    while( referencedElement->getChild( ne, sosi::sosi_element_ne ) ) {
+        ragelParseCoordinates( ref, ne->getData() );
+    }
+}
+
+bool sosicon::CoordinateCollection::
+getNextInGeom( ICoordinate*& coord ) {
+    if( 0 == coord ) {
+        mGeomIterator = mGeom.begin();
+    }
+    ICoordinate* test = *( mGeomIterator++ );
+    /*
+    return mGeomIterator != mGeom.end();
+    */
+    return false;
+}
+
+bool sosicon::CoordinateCollection::
+getNextInIslands( ICoordinate*& coord ) {
+    if( 0 == coord ) {
+        mIslandsIterator = mIslands.begin();
+    }
+    coord = *( mIslandsIterator++ );
+    return mIslandsIterator != mIslands.end();
 }

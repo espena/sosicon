@@ -19,6 +19,7 @@
 #define __SOSI_TYPES_H__
 
 #include <string>
+#include <map>
 
 namespace sosicon {
 

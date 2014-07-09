@@ -27,87 +27,99 @@ namespace sosicon {
 /* #line 28 "parser_ragel.cpp" */
 static const char _parseSosiLine_actions[] = {
 	0, 1, 0, 1, 2, 1, 4, 1, 
-	5, 1, 6, 2, 1, 0, 2, 1, 
-	5, 2, 1, 6, 2, 2, 0, 2, 
-	4, 0, 2, 4, 5, 2, 8, 5, 
-	3, 7, 1, 0, 3, 9, 3, 2, 
-	4, 4, 9, 3, 2, 4, 6, 9, 
-	3, 2, 5, 1, 0, 9, 3, 2, 
-	5, 1, 6, 9, 3, 2, 5, 4, 
-	0, 9, 3, 2
+	5, 1, 6, 2, 0, 1, 2, 0, 
+	4, 2, 1, 0, 2, 1, 5, 2, 
+	1, 6, 2, 2, 0, 2, 4, 0, 
+	2, 4, 5, 2, 8, 5, 3, 0, 
+	4, 1, 3, 4, 1, 0, 3, 4, 
+	1, 5, 3, 4, 8, 5, 3, 7, 
+	1, 0, 3, 9, 3, 2, 4, 4, 
+	9, 3, 2, 4, 6, 9, 3, 2, 
+	5, 1, 0, 9, 3, 2, 5, 1, 
+	6, 9, 3, 2, 5, 4, 0, 9, 
+	3, 2, 6, 4, 1, 0, 9, 3, 
+	2
 };
 
 static const char _parseSosiLine_key_offsets[] = {
-	0, 0, 16, 19, 38, 46, 52, 55, 
-	57, 59, 80, 88, 94
+	0, 0, 4, 7, 12, 20, 26, 29, 
+	31, 33, 39, 47, 53, 59, 67, 76, 
+	85, 94
 };
 
 static const char _parseSosiLine_trans_keys[] = {
-	-104, -72, -61, 45, 46, 95, -123, -122, 
-	-91, -90, 48, 57, 65, 90, 97, 122, 
-	10, 13, 33, -104, -72, -61, 10, 13, 
-	33, 45, 46, 95, -123, -122, -91, -90, 
-	48, 57, 65, 90, 97, 122, 9, 10, 
-	13, 32, 33, 58, 48, 57, 9, 10, 
-	13, 32, 33, 58, 10, 13, 33, 33, 
-	46, 33, 46, -104, -72, -61, 9, 10, 
-	13, 32, 33, 45, 46, 95, -123, -122, 
-	-91, -90, 48, 57, 65, 90, 97, 122, 
-	9, 10, 13, 32, 33, 46, 48, 57, 
-	13, 46, 9, 10, 32, 33, -104, -72, 
-	-61, 9, 10, 13, 32, 33, 45, 46, 
-	95, -123, -122, -91, -90, 48, 57, 65, 
-	90, 97, 122, 0
+	10, 13, 32, 46, 10, 13, 33, 10, 
+	13, 32, 33, 46, 9, 10, 13, 32, 
+	33, 58, 48, 57, 9, 10, 13, 32, 
+	33, 58, 10, 13, 33, 33, 46, 33, 
+	46, 9, 10, 13, 32, 33, 46, 9, 
+	10, 13, 32, 33, 46, 48, 57, 9, 
+	10, 13, 32, 33, 46, 13, 46, 9, 
+	10, 32, 33, 9, 10, 13, 32, 33, 
+	46, 48, 57, 9, 10, 13, 32, 33, 
+	46, 58, 48, 57, 9, 10, 13, 32, 
+	33, 46, 58, 48, 57, 9, 10, 13, 
+	32, 33, 46, 58, 48, 57, 9, 10, 
+	13, 32, 33, 46, 0
 };
 
 static const char _parseSosiLine_single_lengths[] = {
-	0, 6, 3, 9, 6, 6, 3, 2, 
-	2, 11, 6, 2, 11
+	0, 4, 3, 5, 6, 6, 3, 2, 
+	2, 6, 6, 6, 2, 6, 7, 7, 
+	7, 6
 };
 
 static const char _parseSosiLine_range_lengths[] = {
-	0, 5, 0, 5, 1, 0, 0, 0, 
-	0, 5, 1, 2, 5
+	0, 0, 0, 0, 1, 0, 0, 0, 
+	0, 0, 1, 0, 2, 1, 1, 1, 
+	1, 0
 };
 
 static const char _parseSosiLine_index_offsets[] = {
-	0, 0, 12, 16, 31, 39, 46, 50, 
-	53, 56, 73, 81, 86
+	0, 0, 5, 9, 15, 23, 30, 34, 
+	37, 40, 47, 55, 62, 67, 75, 84, 
+	93, 102
 };
 
 static const char _parseSosiLine_indicies[] = {
-	0, 0, 0, 0, 2, 0, 0, 0, 
-	0, 0, 0, 1, 4, 4, 1, 3, 
-	5, 5, 5, 4, 4, 1, 5, 6, 
-	5, 5, 5, 5, 5, 5, 3, 7, 
+	1, 1, 1, 2, 0, 4, 4, 1, 
+	3, 4, 4, 3, 0, 6, 5, 7, 
 	4, 4, 7, 1, 9, 8, 3, 7, 
 	4, 4, 7, 1, 9, 3, 10, 10, 
 	1, 3, 1, 12, 11, 1, 14, 13, 
-	15, 15, 15, 16, 17, 17, 16, 17, 
-	15, 18, 15, 15, 15, 15, 15, 15, 
-	1, 20, 21, 21, 20, 22, 23, 24, 
-	19, 22, 25, 22, 22, 1, 26, 26, 
-	26, 27, 28, 28, 27, 17, 26, 29, 
-	26, 26, 26, 26, 26, 26, 3, 0
+	16, 17, 17, 18, 19, 20, 15, 22, 
+	23, 23, 24, 19, 25, 26, 21, 16, 
+	28, 28, 29, 19, 30, 27, 31, 32, 
+	31, 31, 1, 34, 35, 35, 34, 31, 
+	36, 37, 33, 38, 28, 28, 39, 19, 
+	30, 41, 40, 27, 42, 23, 23, 43, 
+	19, 25, 44, 26, 21, 45, 35, 35, 
+	45, 31, 36, 46, 37, 33, 16, 47, 
+	47, 29, 19, 30, 27, 0
 };
 
 static const char _parseSosiLine_trans_targs[] = {
-	9, 0, 1, 2, 11, 12, 3, 5, 
-	4, 6, 11, 8, 1, 8, 1, 9, 
-	10, 11, 1, 2, 10, 11, 11, 3, 
-	4, 1, 12, 10, 11, 3
+	9, 0, 1, 2, 12, 11, 3, 5, 
+	4, 6, 12, 8, 1, 8, 1, 9, 
+	10, 12, 13, 9, 1, 11, 10, 12, 
+	13, 3, 14, 11, 12, 13, 3, 12, 
+	1, 2, 13, 12, 3, 4, 15, 16, 
+	14, 17, 15, 16, 17, 16, 6, 12
 };
 
 static const char _parseSosiLine_trans_actions[] = {
-	32, 0, 3, 1, 7, 32, 20, 1, 
-	1, 1, 29, 11, 56, 1, 45, 1, 
-	5, 5, 40, 11, 11, 14, 0, 50, 
-	11, 36, 1, 23, 26, 62
+	54, 0, 3, 1, 7, 54, 26, 1, 
+	1, 1, 35, 17, 78, 1, 67, 1, 
+	14, 5, 5, 14, 62, 11, 38, 46, 
+	42, 90, 11, 1, 32, 29, 84, 0, 
+	58, 17, 17, 20, 72, 17, 14, 29, 
+	1, 1, 38, 42, 11, 17, 11, 50
 };
 
 static const char _parseSosiLine_eof_actions[] = {
-	0, 0, 0, 0, 0, 0, 0, 17, 
-	9, 5, 0, 0, 5
+	0, 0, 0, 0, 0, 0, 0, 23, 
+	9, 5, 5, 5, 0, 0, 5, 5, 
+	0, 5
 };
 
 static const int parseSosiLine_start = 7;
@@ -124,7 +136,7 @@ static const int parseSosiLine_en_main = 7;
 }
 
 void sosicon::Parser::
-parseSosiLine( std::string sosiLine )
+ragelParseSosiLine( std::string sosiLine )
 {
 
     sosiLine += "\r\n";
@@ -145,12 +157,12 @@ parseSosiLine( std::string sosiLine )
     int tmpint;
 
     
-/* #line 149 "parser_ragel.cpp" */
+/* #line 161 "parser_ragel.cpp" */
 	{
 	cs = parseSosiLine_start;
 	}
 
-/* #line 154 "parser_ragel.cpp" */
+/* #line 166 "parser_ragel.cpp" */
 	{
 	int _klen;
 	unsigned int _trans;
@@ -228,69 +240,90 @@ _match:
 /* #line 55 "ragel/parser.rl" */
 	{
             if( '\r' != (*p) ) {
-                tmpstr += (*p);
+                switch( static_cast<unsigned char>( (*p) ) ) {
+                    case 0xC6:
+                        tmpstr += "AE";
+                        break;
+                    case 0xD8:
+                        tmpstr += "OE";
+                        break;
+                    case 0xC5:
+                        tmpstr += "AA";
+                        break;
+                    case 0xE6:
+                        tmpstr += "ae";
+                        break;
+                    case 0xF8:
+                        tmpstr += "oe";
+                        break;
+                    case 0xE5:
+                        tmpstr += "aa";
+                        break;
+                    default:
+                        tmpstr += (*p);
+                }
             }
         }
 	break;
 	case 1:
-/* #line 61 "ragel/parser.rl" */
+/* #line 82 "ragel/parser.rl" */
 	{
             tmpstr.clear();
         }
 	break;
 	case 2:
-/* #line 65 "ragel/parser.rl" */
+/* #line 86 "ragel/parser.rl" */
 	{
             tmpint++;
         }
 	break;
 	case 3:
-/* #line 69 "ragel/parser.rl" */
+/* #line 90 "ragel/parser.rl" */
 	{
             tmpint = 0;
         }
 	break;
 	case 4:
-/* #line 73 "ragel/parser.rl" */
+/* #line 94 "ragel/parser.rl" */
 	{
             mPendingElementName = tmpstr;
         }
 	break;
 	case 5:
-/* #line 77 "ragel/parser.rl" */
+/* #line 98 "ragel/parser.rl" */
 	{
             mPendingElementAttributes = tmpstr;
             tmpstr.clear();
         }
 	break;
 	case 6:
-/* #line 82 "ragel/parser.rl" */
+/* #line 103 "ragel/parser.rl" */
 	{
             mPendingElementAttributes += ( " " + sosicon::stringUtils::trim( tmpstr ) );
             tmpstr.clear();
         }
 	break;
 	case 7:
-/* #line 87 "ragel/parser.rl" */
+/* #line 108 "ragel/parser.rl" */
 	{
             mPendingElementLevel = tmpint;
             tmpstr.clear();
         }
 	break;
 	case 8:
-/* #line 92 "ragel/parser.rl" */
+/* #line 113 "ragel/parser.rl" */
 	{
             mPendingElementSerial = tmpstr.substr( 0, tmpstr.length() - 1 );
             tmpstr.clear();
         }
 	break;
 	case 9:
-/* #line 97 "ragel/parser.rl" */
+/* #line 118 "ragel/parser.rl" */
 	{
             digestPendingElement();
         }
 	break;
-/* #line 294 "parser_ragel.cpp" */
+/* #line 327 "parser_ragel.cpp" */
 		}
 	}
 
@@ -307,25 +340,25 @@ _again:
 	while ( __nacts-- > 0 ) {
 		switch ( *__acts++ ) {
 	case 1:
-/* #line 61 "ragel/parser.rl" */
+/* #line 82 "ragel/parser.rl" */
 	{
             tmpstr.clear();
         }
 	break;
 	case 4:
-/* #line 73 "ragel/parser.rl" */
+/* #line 94 "ragel/parser.rl" */
 	{
             mPendingElementName = tmpstr;
         }
 	break;
 	case 6:
-/* #line 82 "ragel/parser.rl" */
+/* #line 103 "ragel/parser.rl" */
 	{
             mPendingElementAttributes += ( " " + sosicon::stringUtils::trim( tmpstr ) );
             tmpstr.clear();
         }
 	break;
-/* #line 329 "parser_ragel.cpp" */
+/* #line 362 "parser_ragel.cpp" */
 		}
 	}
 	}
@@ -333,7 +366,7 @@ _again:
 	_out: {}
 	}
 
-/* #line 122 "ragel/parser.rl" */
+/* #line 143 "ragel/parser.rl" */
 
 
 };

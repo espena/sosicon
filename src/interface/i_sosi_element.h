@@ -71,6 +71,8 @@ namespace sosicon {
 
         virtual void dump( int indent = 0 ) = 0;
 
+        virtual ISosiElement* find( std::string ref ) = 0;
+
     };
    /*! @} end group interfaces */
 

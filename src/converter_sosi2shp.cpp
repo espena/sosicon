@@ -49,7 +49,7 @@ run() {
         while( !ifs.eof() ) {
             memset( ln, 0x00, sizeof ln );
             ifs.getline( ln, sizeof ln );
-            p.parseSosiLine( ln );
+            p.ragelParseSosiLine( ln );
         }
         p.complete();
         ifs.close();
