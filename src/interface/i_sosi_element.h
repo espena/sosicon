@@ -67,6 +67,10 @@ namespace sosicon {
 
         virtual sosi::ElementType getType() = 0;
 
+        virtual ISosiElement* getRoot() = 0;
+
+        virtual std::string getSerial() = 0;
+
         virtual void deleteChildren() = 0;
 
         virtual void dump( int indent = 0 ) = 0;

@@ -17,27 +17,34 @@
  */
 #include "coordinate_collection.h"
 
-void sosicon::
-deleteCoords( CoordinateList& coords ) {
-    for( CoordinateList::iterator i = coords.begin(); i != coords.end(); i++ ) {
-        delete *i;
+bool sosicon::
+getNext( ICoordinate*& coord, sosi::NorthEastList& list, sosi::NorthEastList::iterator& iterator ) {
+    if( 0 == coord ) {
+        iterator = list.begin();
     }
-    coords.clear();
+    if( iterator == list.end() ) {
+        return false;
+    }
+    while( false == ( *iterator )->getNext( coord ) ) {
+        iterator++;
+        coord = 0;
+        if( iterator == list.end() ) {
+            return false;
+        }
+    }
+    return true;
 }
 
 sosicon::CoordinateCollection::
 ~CoordinateCollection() {
-    deleteAll();
-}
-
-void sosicon::CoordinateCollection::
-deleteAll() {
-    deleteCoords( mGeom );
-    deleteCoords( mIslands );
+    delete mCenterPoint;
+    sosi::deleteNorthEasts( mGeom );
+    sosi::deleteNorthEasts( mIslands );
 }
 
 void sosicon::CoordinateCollection::
 discoverCoords( ISosiElement* e ) {
+    mCenterPoint = 0;
     switch( e->getType() ) {
         case sosi::sosi_element_area:
             {
@@ -45,6 +52,7 @@ discoverCoords( ISosiElement* e ) {
                 while( e->getChild( rawRefElement, sosi::sosi_element_ref ) ) {
                     sosi::SosiRefList refList( rawRefElement );
                     sosi::Reference* ref = 0;
+                    int i = 0;
                     while( refList.getNextReference( ref ) ) {
                         ISosiElement* referencedElement = rawRefElement->find( ref->serial );
                         if( referencedElement ) {
@@ -58,6 +66,7 @@ discoverCoords( ISosiElement* e ) {
         case sosi::sosi_element_coordsys:
         case sosi::sosi_element_curve:
         case sosi::sosi_element_head:
+        case sosi::sosi_element_kp:
         case sosi::sosi_element_ne:
         case sosi::sosi_element_objtype:
         case sosi::sosi_element_origo_ne:
@@ -76,29 +85,28 @@ discoverCoords( ISosiElement* e ) {
 
 void sosicon::CoordinateCollection::
 extractPath( sosi::Reference* ref, ISosiElement* referencedElement ) {
-    ISosiElement* ne = 0;
-    while( referencedElement->getChild( ne, sosi::sosi_element_ne ) ) {
-        ragelParseCoordinates( ref, ne->getData() );
+    ISosiElement* childElement = 0;
+    if( referencedElement->getType() == sosi::sosi_element_curve ) {
+        // First segment describes the center point
+        referencedElement->getChild( childElement, sosi::sosi_element_ne );
+        mCenterPoint = new sosi::SosiNorthEast( childElement );
+    }
+    while( referencedElement->getChild( childElement, sosi::sosi_element_ne ) ) {
+        sosi::SosiNorthEast* ne = new sosi::SosiNorthEast( childElement );
+        sosi::NorthEastList& lst = ref->subtract ? mIslands : mGeom;
+        if( ref->reverse ) {
+            ne->reverse();
+        }
+        lst.push_back( ne );
     }
 }
 
 bool sosicon::CoordinateCollection::
 getNextInGeom( ICoordinate*& coord ) {
-    if( 0 == coord ) {
-        mGeomIterator = mGeom.begin();
-    }
-    ICoordinate* test = *( mGeomIterator++ );
-    /*
-    return mGeomIterator != mGeom.end();
-    */
-    return false;
+    return getNext( coord, mGeom, mGeomIterator );
 }
 
 bool sosicon::CoordinateCollection::
 getNextInIslands( ICoordinate*& coord ) {
-    if( 0 == coord ) {
-        mIslandsIterator = mIslands.begin();
-    }
-    coord = *( mIslandsIterator++ );
-    return mIslandsIterator != mIslands.end();
+    return getNext( coord, mIslands, mIslandsIterator );
 }

@@ -32,14 +32,26 @@ build( ISosiElement* sosiTree, sosi::ElementType selection ) {
         ISosiElement* sosi = 0;
         while( sosiTree->getChild( sosi ) ) {
             if( selection == sosi->getType() ) {
-                CoordinateCollection cc;
-                cc.discoverCoords( sosi );
-                ICoordinate* c = 0;
-                while( cc.getNextInGeom( c ) ) {
-                    
-                }
+                buildElement( sosi );
             }
         }
+    }
+}
+
+void sosicon::shape::Shapefile::
+buildElement( ISosiElement* sosi ) {
+
+    ISosiElement* sosiHead = 0;
+    ISosiElement* sosiOrigo = 0;
+    sosi->getRoot()->getChild( sosiHead, sosi::sosi_element_head );
+    sosiHead->getChild( sosiOrigo, sosi::sosi_element_origo_ne );
+    std::cout << "Origo: " << sosiOrigo->getData() << "\n";
+
+    CoordinateCollection cc;
+    cc.discoverCoords( sosi );
+    ICoordinate* c = 0;
+    while( cc.getNextInGeom( c ) ) {
+        
     }
 }
 

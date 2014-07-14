@@ -1,5 +1,5 @@
 
-/* #line 1 "ragel/coordinate_collection.rl" */
+/* #line 1 "ragel/sosi_north_east.rl" */
 /*
  *  This file is part of the command-line tool sosicon.
  *  Copyright (C) 2012  Espen Andersen
@@ -17,20 +17,20 @@
  *  You should have received a copy of the GNU General Public License
  *  along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-#include "coordinate_collection.h"
-#include "coordinate.h"
-#include "interface/i_coordinate.h"
+#include "sosi_north_east.h"
+#include "../coordinate.h"
+#include "../interface/i_coordinate.h"
 #pragma warning ( disable: 4244 )
 
 namespace sosicon {
 
     //! \cond 
     
-/* #line 30 "coordinate_collection_ragel.cpp" */
+/* #line 30 "sosi/sosi_north_east_ragel.cpp" */
 static const char _parseCoordinateCollection_actions[] = {
 	0, 1, 0, 1, 1, 1, 2, 1, 
-	4, 2, 3, 0, 2, 3, 4, 3, 
-	2, 3, 0, 3, 2, 3, 4
+	3, 2, 2, 3, 2, 3, 0, 3, 
+	2, 3, 0
 };
 
 static const char _parseCoordinateCollection_key_offsets[] = {
@@ -71,11 +71,11 @@ static const char _parseCoordinateCollection_trans_targs[] = {
 
 static const char _parseCoordinateCollection_trans_actions[] = {
 	1, 0, 3, 1, 1, 0, 1, 5, 
-	15, 0, 9, 9
+	15, 0, 12, 12
 };
 
 static const char _parseCoordinateCollection_eof_actions[] = {
-	0, 0, 0, 0, 0, 7, 19, 12
+	0, 0, 0, 0, 0, 0, 9, 7
 };
 
 static const int parseCoordinateCollection_start = 5;
@@ -85,17 +85,15 @@ static const int parseCoordinateCollection_error = 0;
 static const int parseCoordinateCollection_en_main = 5;
 
 
-/* #line 29 "ragel/coordinate_collection.rl" */
+/* #line 29 "ragel/sosi_north_east.rl" */
 
     //! \endcond
 
 }
 
-void sosicon::CoordinateCollection::
-ragelParseCoordinates( sosi::Reference* ref, std::string data )
+void sosicon::sosi::SosiNorthEast::
+ragelParseCoordinates( std::string data )
 {
-
-    //data = "-123456 789088 987654 321234\r\n";
 
  /* Variables used by Ragel */
     int cs = 0;
@@ -109,18 +107,17 @@ ragelParseCoordinates( sosi::Reference* ref, std::string data )
     const char* pe = p + data.size();
     const char* eof = pe;
 
-    CoordinateList lst;
     std::string tmp;
     std::string coordN;
     std::string coordE;
 
     
-/* #line 119 "coordinate_collection_ragel.cpp" */
+/* #line 116 "sosi/sosi_north_east_ragel.cpp" */
 	{
 	cs = parseCoordinateCollection_start;
 	}
 
-/* #line 124 "coordinate_collection_ragel.cpp" */
+/* #line 121 "sosi/sosi_north_east_ragel.cpp" */
 	{
 	int _klen;
 	unsigned int _trans;
@@ -195,35 +192,35 @@ _match:
 		switch ( *_acts++ )
 		{
 	case 0:
-/* #line 59 "ragel/coordinate_collection.rl" */
+/* #line 56 "ragel/sosi_north_east.rl" */
 	{
             tmp += (*p);
         }
 	break;
 	case 1:
-/* #line 63 "ragel/coordinate_collection.rl" */
+/* #line 60 "ragel/sosi_north_east.rl" */
 	{
             coordN = tmp;
             tmp = "";
         }
 	break;
 	case 2:
-/* #line 68 "ragel/coordinate_collection.rl" */
+/* #line 65 "ragel/sosi_north_east.rl" */
 	{
             coordE = tmp;
             tmp = "";
         }
 	break;
 	case 3:
-/* #line 73 "ragel/coordinate_collection.rl" */
+/* #line 70 "ragel/sosi_north_east.rl" */
 	{
             ICoordinate* c = new Coordinate();
             c->setN( coordN );
             c->setE( coordE );
-            lst.push_back( c );
+            mCoordinates.push_back( c );
         }
 	break;
-/* #line 227 "coordinate_collection_ragel.cpp" */
+/* #line 224 "sosi/sosi_north_east_ragel.cpp" */
 		}
 	}
 
@@ -240,35 +237,22 @@ _again:
 	while ( __nacts-- > 0 ) {
 		switch ( *__acts++ ) {
 	case 2:
-/* #line 68 "ragel/coordinate_collection.rl" */
+/* #line 65 "ragel/sosi_north_east.rl" */
 	{
             coordE = tmp;
             tmp = "";
         }
 	break;
 	case 3:
-/* #line 73 "ragel/coordinate_collection.rl" */
+/* #line 70 "ragel/sosi_north_east.rl" */
 	{
             ICoordinate* c = new Coordinate();
             c->setN( coordN );
             c->setE( coordE );
-            lst.push_back( c );
+            mCoordinates.push_back( c );
         }
 	break;
-	case 4:
-/* #line 80 "ragel/coordinate_collection.rl" */
-	{
-            CoordinateList& target = ref->subtract ? mIslands : mGeom;
-            if( ref->reverse ) {
-                std::reverse( lst.begin(), lst.end() );
-            }
-            for( CoordinateList::iterator i = lst.begin(); i != lst.end(); i++ ) {
-                target.push_back( *i );
-            }
-            lst.clear();
-        }
-	break;
-/* #line 272 "coordinate_collection_ragel.cpp" */
+/* #line 256 "sosi/sosi_north_east_ragel.cpp" */
 		}
 	}
 	}
@@ -276,7 +260,7 @@ _again:
 	_out: {}
 	}
 
-/* #line 97 "ragel/coordinate_collection.rl" */
+/* #line 83 "ragel/sosi_north_east.rl" */
 
 
 };

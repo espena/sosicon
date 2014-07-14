@@ -20,7 +20,7 @@
 sosicon::Parser::
 Parser() {
     mPendingElementLevel = 0;
-    mElementStack.push_back( new sosi::SosiElement( "ROOT", "", "", 0, mElementIndex ) );
+    mElementStack.push_back( new sosi::SosiElement( "ROOT", "", "", 0, 0, mElementIndex ) );
 }
 
 sosicon::Parser::
@@ -47,6 +47,7 @@ digestPendingElement() {
                 mPendingElementSerial,
                 mPendingElementAttributes,
                 mPendingElementLevel,
+                mElementStack.front(),
                 mElementIndex ) );
 
         previousElement->addChild( mElementStack.back() );

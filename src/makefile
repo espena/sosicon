@@ -20,6 +20,7 @@ SOURCEFILES =									\
 				string_utils.cpp				\
 				sosi/sosi_ref_list.cpp			\
 				sosi/sosi_element.cpp			\
+				sosi/sosi_north_east.cpp		\
 				shape/shapefile.cpp				\
 				converter_sosi2shp.cpp			\
 				converter_sosi2xml.cpp			\
@@ -27,7 +28,7 @@ SOURCEFILES =									\
 				coordinate_collection.cpp		\
 				parser.cpp						\
 				sosi/sosi_ref_ragel.cpp			\
-				coordinate_collection_ragel.cpp	\
+				sosi/sosi_north_east_ragel.cpp	\
 				parser_ragel.cpp
 
 HEADERFILES = *.h
@@ -39,7 +40,7 @@ sosicon: $(SOURCEFILES) $(HEADERFILES)
 
 	@echo "** Pre build steps..."
 	$(RAGEL) -C -L -o parser_ragel.cpp ragel/parser.rl
-	$(RAGEL) -C -L -o coordinate_collection_ragel.cpp ragel/coordinate_collection.rl
+	$(RAGEL) -C -L -o sosi/sosi_north_east_ragel.cpp ragel/sosi_north_east.rl
 	$(RAGEL) -C -L -o sosi/sosi_ref_ragel.cpp ragel/sosi_ref.rl
 
 	@echo "** Compiling..."

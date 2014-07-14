@@ -21,18 +21,20 @@
 #include <algorithm>
 #include <vector>
 #include <iostream>
+#include "common_types.h"
 #include "sosi/sosi_types.h"
 #include "sosi/sosi_ref_list.h"
+#include "sosi/sosi_north_east.h"
 #include "interface/i_coordinate.h"
 #include "interface/i_sosi_element.h"
 
 namespace sosicon {
 
-        typedef std::vector<ICoordinate*> CoordinateList;
+    typedef std::vector<ICoordinate*> CoordinateList;
 
-        //! Deletes all items in CoordinateList
-        void deleteCoords( CoordinateList& coords );
-
+    //! Get next coordinate in list
+    bool getNext( ICoordinate*& coord, sosi::NorthEastList& list, sosi::NorthEastList::iterator& iterator );
+    
     //! Coordinate container
     /*!
         \author Espen Andersen
@@ -42,25 +44,19 @@ namespace sosicon {
      */
     class CoordinateCollection {
 
+        //! Stores feature's center point, if applicable
+        sosi::SosiNorthEast* mCenterPoint;
+
         //! Stores collection of pointers to coordinates for geometries
-        CoordinateList mGeom;
-        CoordinateList::iterator mGeomIterator;
+        sosi::NorthEastList mGeom;
+        sosi::NorthEastList::iterator mGeomIterator;
 
         //! Stores collection of pointers to coordinates for holes
-        CoordinateList mIslands;
-        CoordinateList::iterator mIslandsIterator;
-
-        //! Delete all coordinates
-        /*!
-            Deletes allocated Coordinate objects and resets mGeom and mShape.
-         */
-        void deleteAll();
+        sosi::NorthEastList mIslands;
+        sosi::NorthEastList::iterator mIslandsIterator;
 
         //! Get ccordinate values from SOSI element
         void extractPath( sosi::Reference* ref, ISosiElement* referencedElement );
-
-        //! Populate mCoordinates
-        void ragelParseCoordinates( sosi::Reference* ref, std::string data );
 
     public:
 

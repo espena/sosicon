@@ -73,13 +73,16 @@ namespace sosicon {
             //! Current element's serial number if provided
             std::string mSerial;
 
+            //! Pointer to root element
+            ISosiElement* mRoot;
+
             //! Reference to parser's lookup table
             SosiElementMap& mIndex;
 
         public:
 
             //! Construct new SOSI element
-            SosiElement( std::string name, std::string serial, std::string data, int level, SosiElementMap& index );
+            SosiElement( std::string name, std::string serial, std::string data, int level, ISosiElement* root, SosiElementMap& index );
 
             //! Insert children element
             virtual void addChild( ISosiElement* child ) { mChildren.push_back( child ); };
@@ -112,6 +115,12 @@ namespace sosicon {
 
             //! Get name of current element
             virtual std::string getName() { return mName; };
+
+            //! Get root element
+            virtual ISosiElement* getRoot() { return mRoot; };
+
+            //! Get serial number (ID) of current element
+            virtual std::string getSerial() { return mSerial; };
 
             //! Get ElementType of current element
             virtual ElementType getType() { return mType; };

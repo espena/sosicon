@@ -18,7 +18,9 @@
 #ifndef __SOSI_TYPES_H__
 #define __SOSI_TYPES_H__
 
+#include "../interface/i_coordinate.h"
 #include <string>
+#include <vector>
 #include <map>
 
 namespace sosicon {
@@ -39,6 +41,7 @@ namespace sosicon {
             sosi_element_coordsys,         //!< Grid type
             sosi_element_curve,            //!< Curve
             sosi_element_head,             //!< Header
+            sosi_element_kp,               //!< Junction point
             sosi_element_ne,               //!< North-east coordinate
             sosi_element_objtype,          //!< Object type
             sosi_element_origo_ne,         //!< Origo north-east
@@ -50,12 +53,22 @@ namespace sosicon {
             sosi_element_updatedate        //!< Update date
         };
 
+        //! Default SOSI junction point layer types
+        enum JunctionPoint {
+            sosi_junction_node = 1,         //!< Node point (KP 1)
+            sosi_junction_connection = 900, //!< Connection point (KP 900)
+            sosi_junction_open_end = 999    //!< Valid open-ended point (KP 999)
+        };
+
         //! SOSI reference number
         struct Reference {
             std::string serial;  //!< The element ID.
             bool reverse;        //!< Minus sign = reverse coordinate sequence.
             bool subtract;       //!< Parenthesis = subtract shape.
         };
+
+        //! List of SOSI references
+        typedef std::vector<Reference*> SosiReferenceList;
 
        /*! @} end group sosi_elements */
 

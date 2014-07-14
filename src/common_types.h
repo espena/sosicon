@@ -15,28 +15,16 @@
  *  You should have received a copy of the GNU General Public License
  *  along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-#include "sosi_ref_list.h"
+#ifndef __COMMON_TYPES_H__
+#define __COMMON_TYPES_H__
 
-sosicon::sosi::SosiRefList::
-SosiRefList( ISosiElement* e ) {
-    mSosiElement = e;
-    ragelParseSosiRef( e->getData() );
-}
+#include <vector>
+#include "interface/i_coordinate.h"
 
-sosicon::sosi::SosiRefList::
-~SosiRefList() {
-    for( std::vector<Reference*>::iterator i = mRefList.begin(); i != mRefList.end(); i++ ) {
-        delete *i;
-    }
-}
+namespace sosicon {
 
-bool sosicon::sosi::SosiRefList::
-getNextReference( Reference*& reference ) {
-    if( 0 == reference ) {
-        mRefListIterator = mRefList.begin();
-    }
-    reference = *mRefListIterator;
-    bool isMore = mRefListIterator != mRefList.end();
-    mRefListIterator++;
-    return isMore;
-}
+    typedef std::vector<ICoordinate*> CoordinateList;
+    
+}; // namespece sosicon
+
+#endif

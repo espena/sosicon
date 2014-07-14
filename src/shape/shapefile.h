@@ -57,6 +57,9 @@ namespace sosicon {
             // Described in IShapefile
             virtual void build( ISosiElement* sosiTree, sosi::ElementType selection );
 
+            // Described in IShapefile
+            virtual void buildElement( ISosiElement* sosi );
+
             //! Insert SOSI element
             /*!
                 Converts and inserts a SOSI element into current shapefile, if the SOSI element is

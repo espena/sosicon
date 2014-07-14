@@ -15,8 +15,8 @@
  *  You should have received a copy of the GNU General Public License
  *  along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-#ifndef __SOSI_REF_LIST_H__
-#define __SOSI_REF_LIST_H__
+#ifndef __SOSI_JUNCTION_POINT_H__
+#define __SOSI_JUNCTION_POINT_H__
 
 #include "../interface/i_sosi_element.h"
 #include "sosi_types.h"
@@ -35,36 +35,22 @@ namespace sosicon {
             @{
         */
 
-        //! SOSI REF list
+        //! SOSI Junction point
         /*!
-            Implements SOSI reference list, as given via the REF element.
+            Implements SOSI junction point layer specification, as given via the KP element.
+            Norwegian: Knutepunktslag.
          */
-        class SosiRefList {
+        class SosiJunctionPoint {
 
             ISosiElement* mSosiElement;
 
-            SosiReferenceList mRefList;
-
-            SosiReferenceList::iterator mRefListIterator;
-
-            void ragelParseSosiRef( std::string data );
-
         public:
 
-            //! Construct new SOSI REF element
-            SosiRefList( ISosiElement* e );
+            //! Construct new SOSI junction point element
+            SosiJunctionPoint( ISosiElement* e ) { mSosiElement = e; };
 
             //! Destructor
-            ~SosiRefList();
-
-            //! Iterate through list of references
-            /*!
-                Pass reference to null pointer to start iteration.
-                /return true if there is more elements in list, otherwise false.
-             */
-            bool getNextReference( Reference*& reference );
-
-            SosiReferenceList::size_type size() { return mRefList.size(); };
+            ~SosiJunctionPoint();
 
         }; // class SosiRef
        /*! @} end group sosi_elements */

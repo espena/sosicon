@@ -30,7 +30,7 @@ sosiNameToType( std::string sosiElementName ) {
         sosiTypeNameMap[ "HODE"             ] = sosi_element_head;             // File header
         sosiTypeNameMap[ "KOORDSYS"         ] = sosi_element_coordsys;         // Coordinate system
         sosiTypeNameMap[ "KURVE"            ] = sosi_element_curve;            // Curve
-        sosiTypeNameMap[ "NOE"              ] = sosi_element_ne;               // North-east coordinate
+        sosiTypeNameMap[ "N\xD8"            ] = sosi_element_ne;               // North-east coordinate (NØ)
         sosiTypeNameMap[ "OBJTYPE"          ] = sosi_element_objtype;          // Object type
         sosiTypeNameMap[ "OPPDATERINGSDATO" ] = sosi_element_updatedate;       // Update date
         sosiTypeNameMap[ "ORIGO-NOE"        ] = sosi_element_origo_ne;         // Origo north-east
@@ -51,12 +51,13 @@ sosiNameToType( std::string sosiElementName ) {
 }
 
 sosicon::sosi::SosiElement::
-SosiElement( std::string name, std::string serial, std::string data, int level, SosiElementMap& index ) : mIndex( index ) {
+SosiElement( std::string name, std::string serial, std::string data, int level, ISosiElement* root, SosiElementMap& index ) : mIndex( index ) {
     mName = name;
     mSerial = serial;
     mData = data;
     mLevel = level;
     mType = sosiNameToType( mName );
+    mRoot = root ? root : this;
     if( !mSerial.empty() ) {
         mIndex[ mSerial ] = this;
     }
@@ -96,21 +97,21 @@ bool sosicon::sosi::SosiElement::
 getChild( ISosiElement*& e ) {
     bool moreToGo = mChildren.size() > 0;
     if( moreToGo ) {
-        if( e == 0 ) {
+        if( 0 == e ) {
             mChildrenIterator = mChildren.begin();
         }
-        e = *( mChildrenIterator++ );
+        e = *mChildrenIterator;
         moreToGo = mChildrenIterator != mChildren.end();
+        mChildrenIterator++;
     }
     return moreToGo;
 }
 
 bool sosicon::sosi::SosiElement::
 getChild( ISosiElement*& e, ElementType type ) {
-    while( getChild( e ) ) {
-        if( e->getType() == type ) {
-            break;
-        }
-    }
-    return mChildrenIterator != mChildren.end();
+    bool res;
+    do {
+        res = getChild( e );
+    } while( res && e->getType() != type );
+    return res;
 }

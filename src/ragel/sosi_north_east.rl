@@ -15,9 +15,9 @@
  *  You should have received a copy of the GNU General Public License
  *  along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-#include "coordinate_collection.h"
-#include "coordinate.h"
-#include "interface/i_coordinate.h"
+#include "sosi_north_east.h"
+#include "../coordinate.h"
+#include "../interface/i_coordinate.h"
 #pragma warning ( disable: 4244 )
 
 namespace sosicon {
@@ -31,11 +31,9 @@ namespace sosicon {
 
 }
 
-void sosicon::CoordinateCollection::
-ragelParseCoordinates( sosi::Reference* ref, std::string data )
+void sosicon::sosi::SosiNorthEast::
+ragelParseCoordinates( std::string data )
 {
-
-    //data = "-123456 789088 987654 321234\r\n";
 
  /* Variables used by Ragel */
     int cs = 0;
@@ -49,7 +47,6 @@ ragelParseCoordinates( sosi::Reference* ref, std::string data )
     const char* pe = p + data.size();
     const char* eof = pe;
 
-    CoordinateList lst;
     std::string tmp;
     std::string coordN;
     std::string coordE;
@@ -74,22 +71,11 @@ ragelParseCoordinates( sosi::Reference* ref, std::string data )
             ICoordinate* c = new Coordinate();
             c->setN( coordN );
             c->setE( coordE );
-            lst.push_back( c );
-        }
-
-        action merge_list {
-            CoordinateList& target = ref->subtract ? mIslands : mGeom;
-            if( ref->reverse ) {
-                std::reverse( lst.begin(), lst.end() );
-            }
-            for( CoordinateList::iterator i = lst.begin(); i != lst.end(); i++ ) {
-                target.push_back( *i );
-            }
-            lst.clear();
+            mCoordinates.push_back( c );
         }
 
         coord = ( [\-]?[0-9]+ ) $strbuild;
-        main := ( space* ( ( coord %set_n ' ' coord %set_e [ \t\r\n!]* ) %save_coord )** ) %merge_list;
+        main := ( space* ( ( coord %set_n ' ' coord %set_e [ \t\r\n!]* ) %save_coord )** );
 
         write init;
         write exec;

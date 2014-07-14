@@ -54,6 +54,7 @@ ragelParseSosiLine( std::string sosiLine )
 
         action strbuild {
             if( '\r' != fc ) {
+                /*
                 switch( static_cast<unsigned char>( fc ) ) {
                     case 0xC6:
                         tmpstr += "AE";
@@ -76,6 +77,8 @@ ragelParseSosiLine( std::string sosiLine )
                     default:
                         tmpstr += fc;
                 }
+                */
+                tmpstr += fc;
             }
         }
 
@@ -125,13 +128,13 @@ ragelParseSosiLine( std::string sosiLine )
 
         element_level = ( [\.]+ >intinit $intincr %set_level );
 
-        element_name = ( ( [^ \.\r\n] )+ >strinit @strbuild %set_name );
+        element_name = ( ( any - [ \.\r\n] )+ >strinit @strbuild %set_name );
 
         element_serial = ( [\t ]+ ( ( [0-9]+[ \t]*[\:] ) >strinit @strbuild %set_serial ) [\r\n]+ );
 
         element_attributes =  ( [\t ]+ ( ( [^!\r\n]* ) >strinit @strbuild %set_attributes ) . [\r\n]+ );
 
-        prev_element_data = ( [^\.!]* >strinit @strbuild %append_attributes );
+        prev_element_data = ( ( any - [\.!] )* >strinit @strbuild %append_attributes );
 
         next_element = ( element_level element_name ( element_serial | element_attributes )? delimiter* ) >digest_element;
 

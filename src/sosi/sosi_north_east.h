@@ -15,11 +15,14 @@
  *  You should have received a copy of the GNU General Public License
  *  along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-#ifndef __SOSI_REF_LIST_H__
-#define __SOSI_REF_LIST_H__
+#ifndef __SOSI_NORTH_EAST_H__
+#define __SOSI_NORTH_EAST_H__
 
 #include "../interface/i_sosi_element.h"
+#include "../interface/i_coordinate.h"
+#include "../common_types.h"
 #include "sosi_types.h"
+#include <algorithm>
 #include <iostream>
 #include <string>
 #include <vector>
@@ -35,39 +38,48 @@ namespace sosicon {
             @{
         */
 
-        //! SOSI REF list
+        //! SOSI North-east element
         /*!
-            Implements SOSI reference list, as given via the REF element.
+            Implements SOSI north east element, as given via the NØ element.
          */
-        class SosiRefList {
+        class SosiNorthEast {
 
             ISosiElement* mSosiElement;
 
-            SosiReferenceList mRefList;
+            CoordinateList mCoordinates;
 
-            SosiReferenceList::iterator mRefListIterator;
+            CoordinateList::iterator mCoordinatesIterator;
 
-            void ragelParseSosiRef( std::string data );
+            //! Populate mCoordinates
+            void ragelParseCoordinates( std::string data );
+
 
         public:
 
-            //! Construct new SOSI REF element
-            SosiRefList( ISosiElement* e );
+            //! Construct new SOSI north-east element
+            SosiNorthEast( ISosiElement* e );
 
             //! Destructor
-            ~SosiRefList();
+            virtual ~SosiNorthEast();
 
-            //! Iterate through list of references
-            /*!
-                Pass reference to null pointer to start iteration.
-                /return true if there is more elements in list, otherwise false.
-             */
-            bool getNextReference( Reference*& reference );
+            //! Debug
+            void dump();
 
-            SosiReferenceList::size_type size() { return mRefList.size(); };
+            //* Get next coordinate in list
+            bool getNext( ICoordinate*& coord );
 
-        }; // class SosiRef
+            //! Reverse polygon (point order)
+            void reverse() { std::reverse( mCoordinates.begin(), mCoordinates.end() ); };
+
+        }; // class SosiNorthEast
        /*! @} end group sosi_elements */
+
+        //! List of SosiSNorthEast elements
+        typedef std::vector<SosiNorthEast*> NorthEastList;
+
+        //! Deletes SosiNorthEast elements of NorthEastList
+        void deleteNorthEasts( NorthEastList& lst );
+
 
     }; // namespace sosi
 
