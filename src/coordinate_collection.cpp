@@ -48,8 +48,10 @@ discoverCoords( ISosiElement* e ) {
     switch( e->getType() ) {
         case sosi::sosi_element_area:
             {
+                sosi::SosiElementSearch srcRef;
                 ISosiElement* rawRefElement = 0;
-                while( e->getChild( rawRefElement, sosi::sosi_element_ref ) ) {
+                while( e->getChild( srcRef, sosi::sosi_element_ref ) ) {
+                    rawRefElement = srcRef.element();
                     sosi::SosiRefList refList( rawRefElement );
                     sosi::Reference* ref = 0;
                     int i = 0;
@@ -74,6 +76,7 @@ discoverCoords( ISosiElement* e ) {
         case sosi::sosi_element_point:
         case sosi::sosi_element_ref:
         case sosi::sosi_element_text:
+        case sosi::sosi_element_transpar:
         case sosi::sosi_element_unit:
         case sosi::sosi_element_updatedate:
             {
@@ -85,14 +88,14 @@ discoverCoords( ISosiElement* e ) {
 
 void sosicon::CoordinateCollection::
 extractPath( sosi::Reference* ref, ISosiElement* referencedElement ) {
-    ISosiElement* childElement = 0;
+    sosi::SosiElementSearch src;
     if( referencedElement->getType() == sosi::sosi_element_curve ) {
         // First segment describes the center point
-        referencedElement->getChild( childElement, sosi::sosi_element_ne );
-        mCenterPoint = new sosi::SosiNorthEast( childElement );
+        referencedElement->getChild( src, sosi::sosi_element_ne );
+        mCenterPoint = new sosi::SosiNorthEast( src.element() );
     }
-    while( referencedElement->getChild( childElement, sosi::sosi_element_ne ) ) {
-        sosi::SosiNorthEast* ne = new sosi::SosiNorthEast( childElement );
+    while( referencedElement->getChild( src, sosi::sosi_element_ne ) ) {
+        sosi::SosiNorthEast* ne = new sosi::SosiNorthEast( src.element() );
         sosi::NorthEastList& lst = ref->subtract ? mIslands : mGeom;
         if( ref->reverse ) {
             ne->reverse();

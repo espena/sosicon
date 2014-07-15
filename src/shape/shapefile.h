@@ -24,6 +24,7 @@
 #include "shapefile_types.h"
 #include "../coordinate_collection.h"
 #include "../sosi/sosi_types.h"
+#include "../sosi/sosi_element_search.h"
 #include "../interface/i_shapefile.h"
 
 namespace sosicon {
@@ -58,7 +59,7 @@ namespace sosicon {
             virtual void build( ISosiElement* sosiTree, sosi::ElementType selection );
 
             // Described in IShapefile
-            virtual void buildElement( ISosiElement* sosi, ISosiElement* sosiHead );
+            virtual void buildElement( ISosiElement* sosi );
 
             //! Insert SOSI element
             /*!

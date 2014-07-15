@@ -33,11 +33,12 @@ sosiNameToType( std::string sosiElementName ) {
         sosiTypeNameMap[ "N\xD8"            ] = sosi_element_ne;               // North-east coordinate (NØ)
         sosiTypeNameMap[ "OBJTYPE"          ] = sosi_element_objtype;          // Object type
         sosiTypeNameMap[ "OPPDATERINGSDATO" ] = sosi_element_updatedate;       // Update date
-        sosiTypeNameMap[ "ORIGO-NOE"        ] = sosi_element_origo_ne;         // Origo north-east
+        sosiTypeNameMap[ "ORIGO-N\xD8"      ] = sosi_element_origo_ne;         // Origo north-east
         sosiTypeNameMap[ "PUNKT"            ] = sosi_element_point;            // Point
         sosiTypeNameMap[ "REF"              ] = sosi_element_ref;              // Element reference
         sosiTypeNameMap[ "TEGNSETT"         ] = sosi_element_charset;          // Character set
         sosiTypeNameMap[ "TEKST"            ] = sosi_element_text;             // Text
+        sosiTypeNameMap[ "TRANSPAR"         ] = sosi_element_transpar;         // Datum/projection/coordsys
     }
 
     try{
@@ -94,24 +95,24 @@ find( std::string ref ) {
 }
 
 bool sosicon::sosi::SosiElement::
-getChild( ISosiElement*& e ) {
+getChild( SosiElementSearch& src ) {
     bool moreToGo = mChildren.size() > 0;
     if( moreToGo ) {
-        if( 0 == e ) {
-            mChildrenIterator = mChildren.begin();
+        if( src.element() == 0 ) {
+            src.iterator( mChildren.begin() );
         }
-        e = *mChildrenIterator;
-        moreToGo = mChildrenIterator != mChildren.end();
-        mChildrenIterator++;
+        src.element( *( src.iterator() ) );
+        moreToGo = src.iterator() != mChildren.end();
+        src.next();
     }
     return moreToGo;
 }
 
 bool sosicon::sosi::SosiElement::
-getChild( ISosiElement*& e, ElementType type ) {
-    bool res = getChild( e );
-    while( res == true && e->getType() != type ) {
-        res = getChild( e );
+getChild( SosiElementSearch& src, ElementType type ) {
+    bool res = getChild( src );
+    while( res == true && src.element()->getType() != type ) {
+        res = getChild( src );
     }
     return res;
 }

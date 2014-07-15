@@ -21,6 +21,7 @@
 #include <iostream>
 #include <vector>
 #include <string>
+#include "sosi_element_search.h"
 #include "sosi_types.h"
 #include "../interface/i_sosi_element.h"
 
@@ -43,9 +44,6 @@ namespace sosicon {
          */
         ElementType sosiNameToType( std::string sosiElementName );
 
-        //! Element index type
-        typedef std::map<std::string,ISosiElement*> SosiElementMap;
-
         //! Basic SOSI element
         /*!
             Implements basic characteristics of a SOSI element.
@@ -56,10 +54,10 @@ namespace sosicon {
             std::string mData;
 
             //! List of children elements
-            std::vector<ISosiElement*> mChildren;
+            SosiChildrenList mChildren;
 
             //! Iterator for mChildren
-            std::vector<ISosiElement*>::iterator mChildrenIterator;
+            SosiChildrenIterator mChildrenIterator;
 
             //! Current element's nesting level
             int mLevel;
@@ -102,10 +100,10 @@ namespace sosicon {
                 The referenced pointer will point to the next child in list when the function returns.
                 If the end of the list is reached, the function returns false.
              */
-            virtual bool getChild( ISosiElement*& e );
+            virtual bool getChild( SosiElementSearch& src );
 
             //! Get next child of specified type in list
-            virtual bool getChild( ISosiElement*& e, sosi::ElementType type );
+            virtual bool getChild( SosiElementSearch& src, sosi::ElementType type );
 
             //! Get unparsed element data
             virtual std::string getData() { return mData; };

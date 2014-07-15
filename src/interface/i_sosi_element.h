@@ -22,6 +22,7 @@
 #include <vector>
 #include <map>
 #include "../sosi/sosi_types.h"
+#include "../sosi/sosi_element_search.h"
 
 namespace sosicon {
 
@@ -57,9 +58,9 @@ namespace sosicon {
 
         virtual std::string getName() = 0;
 
-        virtual bool getChild( ISosiElement*& e ) = 0;
+        virtual bool getChild( sosi::SosiElementSearch& src ) = 0;
 
-        virtual bool getChild( ISosiElement*& e, sosi::ElementType type ) = 0;
+        virtual bool getChild( sosi::SosiElementSearch& src, sosi::ElementType type ) = 0;
 
         virtual std::string getData() = 0;
 

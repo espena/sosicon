@@ -42,8 +42,11 @@ namespace sosicon {
         //! Set north coordinate
         virtual void setN( std::string coordNorth ) = 0;
 
+        //! Shift coordinate by specified offset
+        virtual void shift( int offsetN, int offsetE ) = 0;
+
         //! Make string representation
-        virtual std::string toString() const = 0;
+        virtual std::string toString() = 0;
 
     }; // class ICoordinate
    /*! @} end group interfaces */

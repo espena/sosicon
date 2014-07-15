@@ -49,6 +49,7 @@ namespace sosicon {
             sosi_element_point,            //!< Point
             sosi_element_ref,              //!< Element reference
             sosi_element_text,             //!< Text
+            sosi_element_transpar,         //!< Datum/projection/coordinate system
             sosi_element_unit,             //!< Unit (mm)
             sosi_element_updatedate        //!< Update date
         };

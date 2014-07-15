@@ -23,6 +23,7 @@
 #include <iostream>
 #include "common_types.h"
 #include "sosi/sosi_types.h"
+#include "sosi/sosi_element_search.h"
 #include "sosi/sosi_ref_list.h"
 #include "sosi/sosi_north_east.h"
 #include "interface/i_coordinate.h"

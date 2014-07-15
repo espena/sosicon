@@ -22,6 +22,7 @@
 #include "../interface/i_coordinate.h"
 #include "../common_types.h"
 #include "sosi_types.h"
+#include "sosi_origo_ne.h"
 #include <algorithm>
 #include <iostream>
 #include <string>
@@ -50,6 +51,8 @@ namespace sosicon {
 
             CoordinateList::iterator mCoordinatesIterator;
 
+            static SosiOrigoNE mOrigo;
+
             //! Populate mCoordinates
             void ragelParseCoordinates( std::string data );
 
@@ -70,6 +73,8 @@ namespace sosicon {
 
             //! Reverse polygon (point order)
             void reverse() { std::reverse( mCoordinates.begin(), mCoordinates.end() ); };
+
+            SosiNorthEast& operator+= ( SosiOrigoNE& origo );
 
         }; // class SosiNorthEast
        /*! @} end group sosi_elements */

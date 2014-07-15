@@ -25,10 +25,31 @@ deleteNorthEasts( NorthEastList& lst ) {
     lst.clear();
 }
 
+sosicon::sosi::SosiOrigoNE sosicon::sosi::SosiNorthEast::mOrigo = sosicon::sosi::SosiOrigoNE();
+
 sosicon::sosi::SosiNorthEast::
 SosiNorthEast( ISosiElement* e ) {
+
     mSosiElement = e;
     ragelParseCoordinates( mSosiElement->getData() );
+
+    SosiElementSearch head;
+    SosiElementSearch transpar;
+    SosiElementSearch origo;
+
+    ISosiElement* root = mSosiElement->getRoot();
+
+    if( !mOrigo.initialized() ) {
+        if( root->getChild( head, sosi_element_head ) &&
+            head.element()->getChild( transpar, sosi_element_transpar ) &&
+            transpar.element()->getChild( origo, sosi_element_origo_ne ) )
+        {
+            mOrigo.init( origo.element() );
+        }
+    }
+
+    *this += mOrigo;
+
 }
 
 sosicon::sosi::SosiNorthEast::
@@ -60,4 +81,15 @@ getNext( ICoordinate*& coord ) {
         }
     }
     return moreToGo;
+}
+
+sosicon::sosi::SosiNorthEast& sosicon::sosi::SosiNorthEast::
+operator+= ( SosiOrigoNE& origo ) {
+    int offsetN = origo.getN();
+    int offsetE = origo.getE();
+    ICoordinate* c = 0;
+    while( getNext( c ) ) {
+        c->shift( offsetN, offsetE );
+    }
+    return *this;
 }

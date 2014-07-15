@@ -34,11 +34,7 @@ init( sosicon::CommandLine cmd ) {
 
 void sosicon::ConverterSosi2xml::
 makeXML( ISosiElement* parent ) {
-    ISosiElement* child = 0;
-    while( parent->getChild( child ) ) {
-        makeXML( child );
-    }
-    
+
 }
 
 void sosicon::ConverterSosi2xml::
