@@ -30,23 +30,21 @@ build( ISosiElement* sosiTree, sosi::ElementType selection ) {
     ShapeType shapeTypeEquivalent = getShapeEquivalent( selection );
     if( shape_type_none != shapeTypeEquivalent ) {
         ISosiElement* sosi = 0;
+        ISosiElement* sosiHead = 0;
+        sosiTree->getChild( sosiHead, sosi::sosi_element_head );
         while( sosiTree->getChild( sosi ) ) {
             if( selection == sosi->getType() ) {
-                buildElement( sosi );
+                buildElement( sosi, sosiHead );
             }
         }
     }
 }
 
 void sosicon::shape::Shapefile::
-buildElement( ISosiElement* sosi ) {
-
-    ISosiElement* sosiHead = 0;
+buildElement( ISosiElement* sosi, ISosiElement* sosiHead ) {
     ISosiElement* sosiOrigo = 0;
-    sosi->getRoot()->getChild( sosiHead, sosi::sosi_element_head );
     sosiHead->getChild( sosiOrigo, sosi::sosi_element_origo_ne );
-    std::cout << "Origo: " << sosiOrigo->getData() << "\n";
-
+    std::cout << sosiOrigo->getData() << "\n";
     CoordinateCollection cc;
     cc.discoverCoords( sosi );
     ICoordinate* c = 0;

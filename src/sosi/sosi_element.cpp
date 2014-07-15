@@ -109,9 +109,9 @@ getChild( ISosiElement*& e ) {
 
 bool sosicon::sosi::SosiElement::
 getChild( ISosiElement*& e, ElementType type ) {
-    bool res;
-    do {
+    bool res = getChild( e );
+    while( res == true && e->getType() != type ) {
         res = getChild( e );
-    } while( res && e->getType() != type );
+    }
     return res;
 }
