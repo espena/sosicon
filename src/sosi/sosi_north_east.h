@@ -21,9 +21,12 @@
 #include "../interface/i_sosi_element.h"
 #include "../interface/i_coordinate.h"
 #include "../common_types.h"
+#include "../coordinate.h"
 #include "sosi_types.h"
 #include "sosi_origo_ne.h"
+#include "sosi_unit.h"
 #include <algorithm>
+#include <limits>
 #include <iostream>
 #include <string>
 #include <vector>
@@ -53,9 +56,17 @@ namespace sosicon {
 
             static SosiOrigoNE mOrigo;
 
+            static SosiUnit mUnit;
+
+            double mMinX;
+            double mMinY;
+            double mMaxX;
+            double mMaxY;
+
             //! Populate mCoordinates
             void ragelParseCoordinates( std::string data );
 
+            void initHeadMember( ISosiHeadMember& headMember, ElementType type );
 
         public:
 
@@ -68,13 +79,20 @@ namespace sosicon {
             //! Debug
             void dump();
 
+            void expandBoundingBox( double& minX, double& minY, double& maxX, double& maxY );
+
             //* Get next coordinate in list
             bool getNext( ICoordinate*& coord );
+
+            //* Get number of points in current segment
+            int getNumPoints() { return mCoordinates.size(); };
 
             //! Reverse polygon (point order)
             void reverse() { std::reverse( mCoordinates.begin(), mCoordinates.end() ); };
 
             SosiNorthEast& operator+= ( SosiOrigoNE& origo );
+
+            SosiNorthEast& operator/= ( SosiUnit& unit );
 
         }; // class SosiNorthEast
        /*! @} end group sosi_elements */

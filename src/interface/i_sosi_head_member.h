@@ -1,6 +1,6 @@
 /*
  *  This file is part of the command-line tool sosicon.
- *  Copyright (C) 2014  Espen Andersen
+ *  Copyright (C) 2012  Espen Andersen
  *
  *  This is free software: you can redistribute it and/or modify
  *  it under the terms of the GNU General Public License as published by
@@ -15,8 +15,10 @@
  *  You should have received a copy of the GNU General Public License
  *  along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-#ifndef __I_COORDINATE_H__
-#define __I_COORDINATE_H__
+#ifndef __I_SOSI_HEAD_MEMBER_H__
+#define __I_SOSI_HEAD_MEMBER_H__
+
+#include "i_sosi_element.h"
 
 namespace sosicon {
 
@@ -25,40 +27,24 @@ namespace sosicon {
         This is a listing of generic interfaces used within sosicon.
         @{
     */
-    //! Interface: Coordinate
+
+    //! Interface: SOSI header element
     /*!
         \author Espen Andersen
         \copyright GNU General Public License
     */
-    class ICoordinate {
+    class ISosiHeadMember {
+
     public:
-
         //! Destructor
-        virtual ~ICoordinate() { };
-        
-        //! Get east coordinate
-        virtual double getE() = 0;
+        virtual ~ISosiHeadMember(){ };
 
-        //! Get north coordinate
-        virtual double getN() = 0;
+        virtual void init( ISosiElement* e ) = 0;
 
-        //! Set east coordinate
-        virtual void setE( std::string coordEast ) = 0;
-
-        //! Set north coordinate
-        virtual void setN( std::string coordNorth ) = 0;
-
-        //! Shift coordinate by specified offset
-        virtual void shift( int offsetN, int offsetE ) = 0;
-
-        //! Divide coordinate by specified divisor
-        virtual void divide( int divisor ) = 0;
-
-        //! Make string representation
-        virtual std::string toString() = 0;
-
-    }; // class ICoordinate
+        virtual bool initialized() = 0;
+    };
    /*! @} end group interfaces */
+
 }; // namespace sosicon
 
 #endif

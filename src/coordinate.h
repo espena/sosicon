@@ -19,6 +19,7 @@
 #define __COORDINATE_H__
 
 #include <string>
+#include <ios>
 #include <sstream>
 #include "interface/i_coordinate.h"
 
@@ -33,16 +34,19 @@ namespace sosicon {
      */
     class Coordinate : public ICoordinate {
 
-        int mEast;
-        int mNorth;
+        double mEast;
+        double mNorth;
 
     public:
 
         virtual ~Coordinate() { };
+        virtual double getE() { return mEast; };
+        virtual double getN() { return mNorth; };
         virtual void setE( std::string coordEast ) { std::stringstream ss; ss << coordEast; ss >> mEast; };
         virtual void setN( std::string coordNorth ) { std::stringstream ss; ss << coordNorth; ss >> mNorth; };
         virtual void shift( int offsetN, int offsetE ) { mNorth += offsetN; mEast += offsetE; };
-        virtual std::string toString() { std::stringstream ss; ss << "POINT( " << mNorth << " " << mEast << " )"; return ss.str(); };
+        virtual void divide( int divisor ) { mNorth /= divisor; mEast /= divisor; };
+        virtual std::string toString() { std::stringstream ss; ss << "POINT( " << std::fixed << mNorth << " " << std::fixed << mEast << " )"; return ss.str(); };
 
     }; // class Coordinate
     

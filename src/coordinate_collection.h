@@ -19,6 +19,7 @@
 #define __COORDINATE_COLLECTION_H__
 
 #include <algorithm>
+#include <limits>
 #include <vector>
 #include <iostream>
 #include "common_types.h"
@@ -36,6 +37,9 @@ namespace sosicon {
     //! Get next coordinate in list
     bool getNext( ICoordinate*& coord, sosi::NorthEastList& list, sosi::NorthEastList::iterator& iterator );
     
+    //! Get next offset in part offsets list
+    bool getNextOffset( int& offset, std::vector<int>& offsets, std::vector<int>::iterator& iterator );
+
     //! Coordinate container
     /*!
         \author Espen Andersen
@@ -51,10 +55,21 @@ namespace sosicon {
         //! Stores collection of pointers to coordinates for geometries
         sosi::NorthEastList mGeom;
         sosi::NorthEastList::iterator mGeomIterator;
+        std::vector<int> mPartOffsetsGeom;
+        std::vector<int>::iterator mPartOffsetsGeomIterator;
+        int mNumPointsGeom;
 
         //! Stores collection of pointers to coordinates for holes
         sosi::NorthEastList mIslands;
         sosi::NorthEastList::iterator mIslandsIterator;
+        std::vector<int> mPartOffsetsIslands;
+        std::vector<int>::iterator mPartOffsetsIslandsIterator;
+        int mNumPointsIslands;
+
+        double mXmin;
+        double mYmin;
+        double mXmax;
+        double mYmax;
 
         //! Get ccordinate values from SOSI element
         void extractPath( sosi::Reference* ref, ISosiElement* referencedElement );
@@ -62,13 +77,42 @@ namespace sosicon {
     public:
 
         //! Destructor
-        ~CoordinateCollection();
+        virtual ~CoordinateCollection();
+
+        //! Constructor
+        CoordinateCollection() :
+            mXmin( +9999999999 ),
+            mYmin( +9999999999 ),
+            mXmax( -9999999999 ),
+            mYmax( -9999999999 ),
+            mNumPointsGeom( 0 ),
+            mNumPointsIslands( 0 ) { };
 
         void discoverCoords( ISosiElement* sosi );
 
+        bool getNextOffsetInGeom( int& offset );
+            
+        bool getNextOffsetInIslands( int& offset );
+            
         bool getNextInGeom( ICoordinate*& coord );
 
         bool getNextInIslands( ICoordinate*& coord );
+
+        CoordinateList::size_type getNumPartsGeom() { return mGeom.size(); };
+
+        CoordinateList::size_type getNumPartsIslands() { return mIslands.size(); };
+
+        int getNumPointsGeom() { return mNumPointsGeom; };
+
+        int getNumPointsIslands() { return mNumPointsIslands; };
+
+        double getXmin() { return mXmin == +9999999999 ? 0 : mXmin; };
+
+        double getYmin() { return mYmin == +9999999999 ? 0 : mYmin; };
+
+        double getXmax() { return mXmax == -9999999999 ? 0 : mXmax; };
+
+        double getYmax() { return mYmax == -9999999999 ? 0 : mYmax; };
 
     }; // class Coordinate
     

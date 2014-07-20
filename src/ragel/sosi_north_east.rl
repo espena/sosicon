@@ -16,8 +16,6 @@
  *  along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 #include "sosi_north_east.h"
-#include "../coordinate.h"
-#include "../interface/i_coordinate.h"
 #pragma warning ( disable: 4244 )
 
 namespace sosicon {
@@ -71,6 +69,10 @@ ragelParseCoordinates( std::string data )
             ICoordinate* c = new Coordinate();
             c->setN( coordN );
             c->setE( coordE );
+            mMinX = std::min( mMinX, c->getE() );
+            mMinY = std::min( mMinY, c->getN() );
+            mMaxX = std::max( mMaxX, c->getE() );
+            mMaxY = std::max( mMaxY, c->getN() );
             mCoordinates.push_back( c );
         }
 

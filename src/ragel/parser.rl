@@ -54,30 +54,6 @@ ragelParseSosiLine( std::string sosiLine )
 
         action strbuild {
             if( '\r' != fc ) {
-                /*
-                switch( static_cast<unsigned char>( fc ) ) {
-                    case 0xC6:
-                        tmpstr += "AE";
-                        break;
-                    case 0xD8:
-                        tmpstr += "OE";
-                        break;
-                    case 0xC5:
-                        tmpstr += "AA";
-                        break;
-                    case 0xE6:
-                        tmpstr += "ae";
-                        break;
-                    case 0xF8:
-                        tmpstr += "oe";
-                        break;
-                    case 0xE5:
-                        tmpstr += "aa";
-                        break;
-                    default:
-                        tmpstr += fc;
-                }
-                */
                 tmpstr += fc;
             }
         }
@@ -95,11 +71,11 @@ ragelParseSosiLine( std::string sosiLine )
         }
 
         action set_name {
-            mPendingElementName = tmpstr;
+            mPendingElementName = sosicon::stringUtils::trim( tmpstr );
         }
 
         action set_attributes {
-            mPendingElementAttributes = tmpstr;
+            mPendingElementAttributes = sosicon::stringUtils::trim( tmpstr );
             tmpstr.clear();
         }
 
@@ -132,7 +108,7 @@ ragelParseSosiLine( std::string sosiLine )
 
         element_serial = ( [\t ]+ ( ( [0-9]+[ \t]*[\:] ) >strinit @strbuild %set_serial ) [\r\n]+ );
 
-        element_attributes =  ( [\t ]+ ( ( [^!\r\n]* ) >strinit @strbuild %set_attributes ) . [\r\n]+ );
+        element_attributes =  ( [\t ]+ ( ( [^!\r\n]* ) >strinit @strbuild %set_attributes ) [\r\n]+ );
 
         prev_element_data = ( ( any - [\.!] )* >strinit @strbuild %append_attributes );
 

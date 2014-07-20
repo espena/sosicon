@@ -19,6 +19,7 @@
 #define __SOSI_ORIGO_NE_H__
 
 #include "../interface/i_sosi_element.h"
+#include "../interface/i_sosi_head_member.h"
 #include "sosi_types.h"
 #include <iostream>
 #include <sstream>
@@ -40,7 +41,7 @@ namespace sosicon {
             Implements SOSI junction point layer specification, as given via the KP element.
             Norwegian: Knutepunktslag.
          */
-        class SosiOrigoNE {
+        class SosiOrigoNE : public ISosiHeadMember {
 
             ISosiElement* mSosiElement;
 
@@ -65,9 +66,9 @@ namespace sosicon {
 
             int getE() { return mOrigoE; };
 
-            void init( ISosiElement* e );
+            virtual void init( ISosiElement* e );
 
-            bool initialized() { return mInitialized; };
+            virtual bool initialized() { return mInitialized; };
 
             //! Ragel parse element data
             void ragelParseSosiOrigoNE( std::string data );

@@ -18,10 +18,13 @@
 #ifndef __SHAPEFILE_H__
 #define __SHAPEFILE_H__
 
+#include <algorithm>
 #include <string>
 #include <vector>
 #include <iostream>
 #include "shapefile_types.h"
+#include "../byte_order.h"
+#include "../string_utils.h"
 #include "../coordinate_collection.h"
 #include "../sosi/sosi_types.h"
 #include "../sosi/sosi_element_search.h"
@@ -47,6 +50,20 @@ namespace sosicon {
         */
         class Shapefile : public IShapefile {
 
+            char mFileHeader[ 100 ];
+            char* mShpBuffer;
+            char* mDbfBuffer;
+            int mShpBufferSize;
+            int mRecordNumber;
+
+            double mXmin;
+            double mYmin;
+            double mXmax;
+            double mYmax;
+
+            DbfRecordLengths mDbfRecordLengths;
+            DbfRecordSet mDbfRecordSet;
+
         public:
 
             //! Constructor
@@ -58,8 +75,11 @@ namespace sosicon {
             // Described in IShapefile
             virtual void build( ISosiElement* sosiTree, sosi::ElementType selection );
 
-            // Described in IShapefile
-            virtual void buildElement( ISosiElement* sosi );
+            // Create SHP element
+            virtual void buildShpElement( ISosiElement* sosi );
+
+            // Create DBF record
+            virtual void buildDbfRecord( ISosiElement* sosi );
 
             //! Insert SOSI element
             /*!

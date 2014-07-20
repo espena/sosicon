@@ -26,30 +26,20 @@ deleteNorthEasts( NorthEastList& lst ) {
 }
 
 sosicon::sosi::SosiOrigoNE sosicon::sosi::SosiNorthEast::mOrigo = sosicon::sosi::SosiOrigoNE();
+sosicon::sosi::SosiUnit sosicon::sosi::SosiNorthEast::mUnit = sosicon::sosi::SosiUnit();
 
 sosicon::sosi::SosiNorthEast::
 SosiNorthEast( ISosiElement* e ) {
-
     mSosiElement = e;
+    mMinX = +9999999999;
+    mMinY = +9999999999;
+    mMaxX = -9999999999;
+    mMaxY = -9999999999;
     ragelParseCoordinates( mSosiElement->getData() );
-
-    SosiElementSearch head;
-    SosiElementSearch transpar;
-    SosiElementSearch origo;
-
-    ISosiElement* root = mSosiElement->getRoot();
-
-    if( !mOrigo.initialized() ) {
-        if( root->getChild( head, sosi_element_head ) &&
-            head.element()->getChild( transpar, sosi_element_transpar ) &&
-            transpar.element()->getChild( origo, sosi_element_origo_ne ) )
-        {
-            mOrigo.init( origo.element() );
-        }
-    }
-
+    initHeadMember( mOrigo, sosi_element_origo_ne );
+    initHeadMember( mUnit, sosi_element_unit );
     *this += mOrigo;
-
+    *this /= mUnit;
 }
 
 sosicon::sosi::SosiNorthEast::
@@ -61,10 +51,34 @@ sosicon::sosi::SosiNorthEast::
 }
 
 void sosicon::sosi::SosiNorthEast::
+initHeadMember( ISosiHeadMember& headMember, ElementType type ) {
+    if( !headMember.initialized() ) {
+        SosiElementSearch head;
+        SosiElementSearch transpar;
+        SosiElementSearch target;
+        ISosiElement* root = mSosiElement->getRoot();
+        if( root->getChild( head, sosi_element_head ) &&
+            head.element()->getChild( transpar, sosi_element_transpar ) &&
+            transpar.element()->getChild( target, type ) )
+        {
+            headMember.init( target.element() );
+        }
+    }
+}
+
+void sosicon::sosi::SosiNorthEast::
 dump() {
     for( CoordinateList::iterator i = mCoordinates.begin(); i != mCoordinates.end(); i++ ) {
         std::cout << ( *i )->toString() << "\n";
     }
+}
+
+void sosicon::sosi::SosiNorthEast::
+expandBoundingBox( double& minX, double& minY, double& maxX, double& maxY ) {
+    minX = std::min( minX, mMinX );
+    minY = std::min( minY, mMinY );
+    maxX = std::max( maxX, mMaxX );
+    maxY = std::max( maxY, mMaxY );
 }
 
 bool sosicon::sosi::SosiNorthEast::
@@ -91,5 +105,23 @@ operator+= ( SosiOrigoNE& origo ) {
     while( getNext( c ) ) {
         c->shift( offsetN, offsetE );
     }
+    mMinX += offsetE;
+    mMinY += offsetN;
+    mMaxX += offsetE;
+    mMaxY += offsetN;
+    return *this;
+}
+
+sosicon::sosi::SosiNorthEast& sosicon::sosi::SosiNorthEast::
+operator/= ( SosiUnit& unit ) {
+    ICoordinate* c = 0;
+    int divisor = unit.getDivisor();
+    while( getNext( c ) ) {
+        c->divide( divisor );
+    }
+    mMinX /= divisor;
+    mMinY /= divisor;
+    mMaxX /= divisor;
+    mMaxY /= divisor;
     return *this;
 }

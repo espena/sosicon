@@ -20,6 +20,7 @@
 
 #include <inttypes.h>
 #include <algorithm>
+#include <cmath>
 #include <iostream>
 
 namespace sosicon {
@@ -45,6 +46,16 @@ namespace sosicon {
             \retval Endianness::little Little endian system.
          */
         Endianness determine();
+
+        //! Writes little endian representation of double
+        /*!
+            Serializes double-precision floating point value to IEEE little endian representation
+            for binary embedding in files.
+            \param from The double value to parse.
+            \param to pointer to destination buffer. The buffer must be at least 8 bytes wide, as this
+                   is the size of the IEEE 754 format.
+         */
+        void doubleToLittleEndian( double from, char* to );
 
         //! Reverses buffer to big endian if required
         /*!

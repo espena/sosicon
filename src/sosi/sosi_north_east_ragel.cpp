@@ -18,15 +18,13 @@
  *  along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 #include "sosi_north_east.h"
-#include "../coordinate.h"
-#include "../interface/i_coordinate.h"
 #pragma warning ( disable: 4244 )
 
 namespace sosicon {
 
     //! \cond 
     
-/* #line 30 "sosi/sosi_north_east_ragel.cpp" */
+/* #line 28 "sosi/sosi_north_east_ragel.cpp" */
 static const char _parseCoordinateCollection_actions[] = {
 	0, 1, 0, 1, 1, 1, 2, 1, 
 	3, 2, 2, 3, 2, 3, 0, 3, 
@@ -85,7 +83,7 @@ static const int parseCoordinateCollection_error = 0;
 static const int parseCoordinateCollection_en_main = 5;
 
 
-/* #line 29 "ragel/sosi_north_east.rl" */
+/* #line 27 "ragel/sosi_north_east.rl" */
 
     //! \endcond
 
@@ -112,12 +110,12 @@ ragelParseCoordinates( std::string data )
     std::string coordE;
 
     
-/* #line 116 "sosi/sosi_north_east_ragel.cpp" */
+/* #line 114 "sosi/sosi_north_east_ragel.cpp" */
 	{
 	cs = parseCoordinateCollection_start;
 	}
 
-/* #line 121 "sosi/sosi_north_east_ragel.cpp" */
+/* #line 119 "sosi/sosi_north_east_ragel.cpp" */
 	{
 	int _klen;
 	unsigned int _trans;
@@ -192,35 +190,39 @@ _match:
 		switch ( *_acts++ )
 		{
 	case 0:
-/* #line 56 "ragel/sosi_north_east.rl" */
+/* #line 54 "ragel/sosi_north_east.rl" */
 	{
             tmp += (*p);
         }
 	break;
 	case 1:
-/* #line 60 "ragel/sosi_north_east.rl" */
+/* #line 58 "ragel/sosi_north_east.rl" */
 	{
             coordN = tmp;
             tmp = "";
         }
 	break;
 	case 2:
-/* #line 65 "ragel/sosi_north_east.rl" */
+/* #line 63 "ragel/sosi_north_east.rl" */
 	{
             coordE = tmp;
             tmp = "";
         }
 	break;
 	case 3:
-/* #line 70 "ragel/sosi_north_east.rl" */
+/* #line 68 "ragel/sosi_north_east.rl" */
 	{
             ICoordinate* c = new Coordinate();
             c->setN( coordN );
             c->setE( coordE );
+            mMinX = std::min( mMinX, c->getE() );
+            mMinY = std::min( mMinY, c->getN() );
+            mMaxX = std::max( mMaxX, c->getE() );
+            mMaxY = std::max( mMaxY, c->getN() );
             mCoordinates.push_back( c );
         }
 	break;
-/* #line 224 "sosi/sosi_north_east_ragel.cpp" */
+/* #line 226 "sosi/sosi_north_east_ragel.cpp" */
 		}
 	}
 
@@ -237,22 +239,26 @@ _again:
 	while ( __nacts-- > 0 ) {
 		switch ( *__acts++ ) {
 	case 2:
-/* #line 65 "ragel/sosi_north_east.rl" */
+/* #line 63 "ragel/sosi_north_east.rl" */
 	{
             coordE = tmp;
             tmp = "";
         }
 	break;
 	case 3:
-/* #line 70 "ragel/sosi_north_east.rl" */
+/* #line 68 "ragel/sosi_north_east.rl" */
 	{
             ICoordinate* c = new Coordinate();
             c->setN( coordN );
             c->setE( coordE );
+            mMinX = std::min( mMinX, c->getE() );
+            mMinY = std::min( mMinY, c->getN() );
+            mMaxX = std::max( mMaxX, c->getE() );
+            mMaxY = std::max( mMaxY, c->getN() );
             mCoordinates.push_back( c );
         }
 	break;
-/* #line 256 "sosi/sosi_north_east_ragel.cpp" */
+/* #line 262 "sosi/sosi_north_east_ragel.cpp" */
 		}
 	}
 	}
@@ -260,7 +266,7 @@ _again:
 	_out: {}
 	}
 
-/* #line 83 "ragel/sosi_north_east.rl" */
+/* #line 85 "ragel/sosi_north_east.rl" */
 
 
 };

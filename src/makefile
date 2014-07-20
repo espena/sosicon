@@ -18,6 +18,7 @@ SOURCEFILES =									\
 				command_line.cpp				\
 				factory.cpp						\
 				string_utils.cpp				\
+				byte_order.cpp					\
 				sosi/sosi_ref_list.cpp			\
 				sosi/sosi_ref_ragel.cpp			\
 				sosi/sosi_element.cpp			\
@@ -25,6 +26,7 @@ SOURCEFILES =									\
 				sosi/sosi_north_east_ragel.cpp	\
 				sosi/sosi_origo_ne.cpp			\
 				sosi/sosi_origo_ne_ragel.cpp	\
+				sosi/sosi_unit.cpp				\
 				shape/shapefile.cpp				\
 				converter_sosi2shp.cpp			\
 				converter_sosi2xml.cpp			\

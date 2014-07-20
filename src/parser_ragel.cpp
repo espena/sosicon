@@ -240,93 +240,69 @@ _match:
 /* #line 55 "ragel/parser.rl" */
 	{
             if( '\r' != (*p) ) {
-                /*
-                switch( static_cast<unsigned char>( fc ) ) {
-                    case 0xC6:
-                        tmpstr += "AE";
-                        break;
-                    case 0xD8:
-                        tmpstr += "OE";
-                        break;
-                    case 0xC5:
-                        tmpstr += "AA";
-                        break;
-                    case 0xE6:
-                        tmpstr += "ae";
-                        break;
-                    case 0xF8:
-                        tmpstr += "oe";
-                        break;
-                    case 0xE5:
-                        tmpstr += "aa";
-                        break;
-                    default:
-                        tmpstr += fc;
-                }
-                */
                 tmpstr += (*p);
             }
         }
 	break;
 	case 1:
-/* #line 85 "ragel/parser.rl" */
+/* #line 61 "ragel/parser.rl" */
 	{
             tmpstr.clear();
         }
 	break;
 	case 2:
-/* #line 89 "ragel/parser.rl" */
+/* #line 65 "ragel/parser.rl" */
 	{
             tmpint++;
         }
 	break;
 	case 3:
-/* #line 93 "ragel/parser.rl" */
+/* #line 69 "ragel/parser.rl" */
 	{
             tmpint = 0;
         }
 	break;
 	case 4:
-/* #line 97 "ragel/parser.rl" */
+/* #line 73 "ragel/parser.rl" */
 	{
-            mPendingElementName = tmpstr;
+            mPendingElementName = sosicon::stringUtils::trim( tmpstr );
         }
 	break;
 	case 5:
-/* #line 101 "ragel/parser.rl" */
+/* #line 77 "ragel/parser.rl" */
 	{
-            mPendingElementAttributes = tmpstr;
+            mPendingElementAttributes = sosicon::stringUtils::trim( tmpstr );
             tmpstr.clear();
         }
 	break;
 	case 6:
-/* #line 106 "ragel/parser.rl" */
+/* #line 82 "ragel/parser.rl" */
 	{
             mPendingElementAttributes += ( " " + sosicon::stringUtils::trim( tmpstr ) );
             tmpstr.clear();
         }
 	break;
 	case 7:
-/* #line 111 "ragel/parser.rl" */
+/* #line 87 "ragel/parser.rl" */
 	{
             mPendingElementLevel = tmpint;
             tmpstr.clear();
         }
 	break;
 	case 8:
-/* #line 116 "ragel/parser.rl" */
+/* #line 92 "ragel/parser.rl" */
 	{
             mPendingElementSerial = tmpstr.substr( 0, tmpstr.length() - 1 );
             tmpstr.clear();
         }
 	break;
 	case 9:
-/* #line 121 "ragel/parser.rl" */
+/* #line 97 "ragel/parser.rl" */
 	{
             digestPendingElement();
         }
 	break;
-/* #line 330 "parser_ragel.cpp" */
+/* #line 306 "parser_ragel.cpp" */
 		}
 	}
 
@@ -343,25 +319,25 @@ _again:
 	while ( __nacts-- > 0 ) {
 		switch ( *__acts++ ) {
 	case 1:
-/* #line 85 "ragel/parser.rl" */
+/* #line 61 "ragel/parser.rl" */
 	{
             tmpstr.clear();
         }
 	break;
 	case 4:
-/* #line 97 "ragel/parser.rl" */
+/* #line 73 "ragel/parser.rl" */
 	{
-            mPendingElementName = tmpstr;
+            mPendingElementName = sosicon::stringUtils::trim( tmpstr );
         }
 	break;
 	case 6:
-/* #line 106 "ragel/parser.rl" */
+/* #line 82 "ragel/parser.rl" */
 	{
             mPendingElementAttributes += ( " " + sosicon::stringUtils::trim( tmpstr ) );
             tmpstr.clear();
         }
 	break;
-/* #line 365 "parser_ragel.cpp" */
+/* #line 341 "parser_ragel.cpp" */
 		}
 	}
 	}
@@ -369,7 +345,7 @@ _again:
 	_out: {}
 	}
 
-/* #line 146 "ragel/parser.rl" */
+/* #line 122 "ragel/parser.rl" */
 
 
 };

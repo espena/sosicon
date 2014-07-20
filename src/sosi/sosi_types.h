@@ -36,6 +36,7 @@ namespace sosicon {
 
         //! List of SOSI types
         enum ElementType {
+            sosi_element_unknown = 0,      //!< Unknown element
             sosi_element_area,             //!< Area
             sosi_element_charset,          //!< Character set
             sosi_element_coordsys,         //!< Grid type
@@ -45,12 +46,11 @@ namespace sosicon {
             sosi_element_ne,               //!< North-east coordinate
             sosi_element_objtype,          //!< Object type
             sosi_element_origo_ne,         //!< Origo north-east
-            sosi_element_other,            //!< Other
             sosi_element_point,            //!< Point
             sosi_element_ref,              //!< Element reference
             sosi_element_text,             //!< Text
             sosi_element_transpar,         //!< Datum/projection/coordinate system
-            sosi_element_unit,             //!< Unit (mm)
+            sosi_element_unit,             //!< Resolution (fraction of a metre)
             sosi_element_updatedate        //!< Update date
         };
 

@@ -38,6 +38,11 @@ makeShp( ISosiElement* sosiTree ) {
     for( std::vector<std::string>::iterator g = mCmd.mGeomTypes.begin(); g != mCmd.mGeomTypes.end(); g++ ) {
         shp.build( sosiTree, sosi::sosiNameToType( *g ) );
     }
+    std::ofstream shpfs;
+
+    shpfs.open( "test.shp", std::ios::out | std::ios::trunc | std::ios::binary );
+    shpfs << *( static_cast<IShapefileShpPart*>( &shp ) );
+    shpfs.close();
 }
 
 void sosicon::ConverterSosi2shp::

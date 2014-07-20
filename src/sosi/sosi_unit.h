@@ -15,10 +15,11 @@
  *  You should have received a copy of the GNU General Public License
  *  along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-#ifndef __SOSI_JUNCTION_POINT_H__
-#define __SOSI_JUNCTION_POINT_H__
+#ifndef __SOSI_UNIT_H__
+#define __SOSI_UNIT_H__
 
 #include "../interface/i_sosi_element.h"
+#include "../interface/i_sosi_head_member.h"
 #include "sosi_types.h"
 #include <iostream>
 #include <string>
@@ -35,24 +36,37 @@ namespace sosicon {
             @{
         */
 
-        //! SOSI Junction point
+        //! SOSI Unit
         /*!
-            Implements SOSI junction point layer specification, as given via the KP element.
-            Norwegian: Knutepunktslag.
+            Implements SOSI unit (coordinate resolution), as given via the ENHET element.
          */
-        class SosiJunctionPoint {
+        class SosiUnit : public ISosiHeadMember {
 
             ISosiElement* mSosiElement;
 
+            bool mInitialized;
+
+            int mDivisor;
+
         public:
 
-            //! Construct new SOSI junction point element
-            SosiJunctionPoint( ISosiElement* e ) { mSosiElement = e; };
+            //! Construct new SOSI Unit element
+            SosiUnit();
 
             //! Destructor
-            ~SosiJunctionPoint();
+            virtual ~SosiUnit() { };
 
-        }; // class SosiJunctionPoint
+            //! Construct new SOSI Unit element
+            SosiUnit( ISosiElement* e ) { init( e ); };
+
+            int getDivisor() { return mDivisor; };
+
+            //! Initnialize SOSI Unit element
+            virtual void init( ISosiElement* e );
+
+            virtual bool initialized() { return mInitialized; };
+
+        }; // class SosiUnit
        /*! @} end group sosi_elements */
 
     }; // namespace sosi

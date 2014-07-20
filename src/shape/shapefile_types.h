@@ -19,6 +19,7 @@
 #define __SHAPEFILE_TYPES_H__
 
 #include <stdint.h>
+#include <map>
 #include <algorithm>
 #include <limits>
 
@@ -78,6 +79,11 @@ namespace sosicon {
             double d;
             char b[ sizeof( double ) ];
         };
+
+        typedef std::map<std::string, std::string> DbfRecord;
+        typedef std::vector<DbfRecord> DbfRecordSet;
+        typedef std::map<std::string, int> DbfRecordLengths;
+
     }; // namespace shape
 }; // namespace sosicon
 

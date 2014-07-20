@@ -35,6 +35,19 @@ getNext( ICoordinate*& coord, sosi::NorthEastList& list, sosi::NorthEastList::it
     return true;
 }
 
+bool sosicon::
+getNextOffset( int& offset, std::vector<int>& offsets, std::vector<int>::iterator& iterator ) {
+    if( -1 == offset ) {
+        iterator = offsets.begin();
+    }
+    if( iterator == offsets.end() ) {
+        return false;
+    }
+    offset = *iterator;
+    iterator++;
+    return true;
+}
+
 sosicon::CoordinateCollection::
 ~CoordinateCollection() {
     delete mCenterPoint;
@@ -72,13 +85,17 @@ discoverCoords( ISosiElement* e ) {
         case sosi::sosi_element_ne:
         case sosi::sosi_element_objtype:
         case sosi::sosi_element_origo_ne:
-        case sosi::sosi_element_other:
         case sosi::sosi_element_point:
         case sosi::sosi_element_ref:
         case sosi::sosi_element_text:
         case sosi::sosi_element_transpar:
         case sosi::sosi_element_unit:
         case sosi::sosi_element_updatedate:
+            {
+                
+            }
+            break;
+        case sosi::sosi_element_unknown:
             {
                 
             }
@@ -97,11 +114,26 @@ extractPath( sosi::Reference* ref, ISosiElement* referencedElement ) {
     while( referencedElement->getChild( src, sosi::sosi_element_ne ) ) {
         sosi::SosiNorthEast* ne = new sosi::SosiNorthEast( src.element() );
         sosi::NorthEastList& lst = ref->subtract ? mIslands : mGeom;
+        std::vector<int>& offsets = ref->subtract ? mPartOffsetsIslands : mPartOffsetsGeom;
+        int& pointCount = ref->subtract ? mNumPointsIslands : mNumPointsGeom;
         if( ref->reverse ) {
             ne->reverse();
         }
         lst.push_back( ne );
+        offsets.push_back( pointCount );
+        pointCount += ne->getNumPoints();
+        ne->expandBoundingBox( mXmin, mYmin, mXmax, mYmax );
     }
+}
+
+bool sosicon::CoordinateCollection::
+getNextOffsetInGeom( int& offset ) {
+    return getNextOffset( offset, mPartOffsetsGeom, mPartOffsetsGeomIterator );
+}
+
+bool sosicon::CoordinateCollection::
+getNextOffsetInIslands( int& offset ) {
+    return getNextOffset( offset, mPartOffsetsIslands, mPartOffsetsIslandsIterator );
 }
 
 bool sosicon::CoordinateCollection::

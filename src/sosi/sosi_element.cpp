@@ -25,7 +25,7 @@ sosiNameToType( std::string sosiElementName ) {
     ElementType type;
 
     if( sosiTypeNameMap.empty() ) {
-        sosiTypeNameMap[ "ENHET"            ] = sosi_element_unit;             // Unit (mm)
+        sosiTypeNameMap[ "ENHET"            ] = sosi_element_unit;             // Unit (fraction of a metre)
         sosiTypeNameMap[ "FLATE"            ] = sosi_element_area;             // Area
         sosiTypeNameMap[ "HODE"             ] = sosi_element_head;             // File header
         sosiTypeNameMap[ "KOORDSYS"         ] = sosi_element_coordsys;         // Coordinate system
@@ -37,7 +37,7 @@ sosiNameToType( std::string sosiElementName ) {
         sosiTypeNameMap[ "PUNKT"            ] = sosi_element_point;            // Point
         sosiTypeNameMap[ "REF"              ] = sosi_element_ref;              // Element reference
         sosiTypeNameMap[ "TEGNSETT"         ] = sosi_element_charset;          // Character set
-        sosiTypeNameMap[ "TEKST"            ] = sosi_element_text;             // Text
+        sosiTypeNameMap[ "TEKST"            ] = sosi_element_text;             // Text label
         sosiTypeNameMap[ "TRANSPAR"         ] = sosi_element_transpar;         // Datum/projection/coordsys
     }
 
@@ -45,7 +45,7 @@ sosiNameToType( std::string sosiElementName ) {
         type = sosiTypeNameMap[ sosiElementName ];
     }
     catch( ... ) {
-        type = sosi_element_other;
+        type = sosi_element_unknown;
     }
 
     return type;
