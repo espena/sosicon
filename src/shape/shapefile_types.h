@@ -80,9 +80,15 @@ namespace sosicon {
             char b[ sizeof( double ) ];
         };
 
+        struct ShxIndex {
+            Int32Field offset;
+            Int32Field length;
+        };
+
         typedef std::map<std::string, std::string> DbfRecord;
         typedef std::vector<DbfRecord> DbfRecordSet;
-        typedef std::map<std::string, int> DbfRecordLengths;
+        typedef std::map<std::string, int> DbfFieldLengths;
+        typedef std::vector<ShxIndex> ShxOffsets;
 
     }; // namespace shape
 }; // namespace sosicon

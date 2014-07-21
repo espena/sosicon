@@ -32,9 +32,6 @@ init( ISosiElement* sosiElement ) {
     else if( data == "0.01" ) mDivisor = 100;
     else if( data == "0.001" ) mDivisor = 1000;
     else if( data == "0.0001" ) mDivisor = 10000;
-
-    std::cout << "Divisor is " << mDivisor << " " << data << "..\n";
-
     mInitialized = true;
 }
 

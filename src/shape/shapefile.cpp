@@ -20,6 +20,7 @@
 sosicon::shape::Shapefile::
 Shapefile() :
     mShpBuffer( 0 ),
+    mShxBuffer( 0 ),
     mDbfBuffer( 0 ),
     mShpBufferSize( 0 ),
     mRecordNumber( 0 ),
@@ -31,6 +32,7 @@ Shapefile() :
 sosicon::shape::Shapefile::
 ~Shapefile() {
     delete [ ] mShpBuffer;
+    delete [ ] mShxBuffer;
     delete [ ] mDbfBuffer;
 }
 
@@ -48,9 +50,11 @@ build( ISosiElement* sosiTree, sosi::ElementType selection ) {
             sosi = src.element();
             if( selection == sosi->getType() ) {
                 buildShpElement( sosi );
-                buildDbfRecord( sosi );
+                insertDbfRecord( sosi );
             }
         }
+
+        buildDbf();
 
         Int32Field fileCode;
         Int32Field unused;
@@ -64,24 +68,25 @@ build( ISosiElement* sosiTree, sosi::ElementType selection ) {
         version.i = 1000;
         shapeType.i = shapeTypeEquivalent;
 
-        byteOrder::toBigEndian( fileCode.b,     &mFileHeader[  0 ], 4 );
-        byteOrder::toBigEndian( unused.b,       &mFileHeader[  4 ], 4 );
-        byteOrder::toBigEndian( unused.b,       &mFileHeader[  8 ], 4 );
-        byteOrder::toBigEndian( unused.b,       &mFileHeader[ 12 ], 4 );
-        byteOrder::toBigEndian( unused.b,       &mFileHeader[ 16 ], 4 );
-        byteOrder::toBigEndian( unused.b,       &mFileHeader[ 20 ], 4 );
-        byteOrder::toBigEndian( fileLength.b,   &mFileHeader[ 24 ], 4 );
-        byteOrder::toLittleEndian( version.b,   &mFileHeader[ 28 ], 4 );
-        byteOrder::toLittleEndian( shapeType.b, &mFileHeader[ 32 ], 4 );
-        byteOrder::doubleToLittleEndian( mXmin, &mFileHeader[ 36 ] );
-        byteOrder::doubleToLittleEndian( mYmin, &mFileHeader[ 44 ] );
-        byteOrder::doubleToLittleEndian( mXmax, &mFileHeader[ 52 ] );
-        byteOrder::doubleToLittleEndian( mYmax, &mFileHeader[ 60 ] );
-        byteOrder::doubleToLittleEndian( 0.0,   &mFileHeader[ 68 ] );
-        byteOrder::doubleToLittleEndian( 0.0,   &mFileHeader[ 76 ] );
-        byteOrder::doubleToLittleEndian( 0.0,   &mFileHeader[ 84 ] );
-        byteOrder::doubleToLittleEndian( 0.0,   &mFileHeader[ 92 ] );
+        byteOrder::toBigEndian( fileCode.b,     &mShpHeader[  0 ], 4 );
+        byteOrder::toBigEndian( unused.b,       &mShpHeader[  4 ], 4 );
+        byteOrder::toBigEndian( unused.b,       &mShpHeader[  8 ], 4 );
+        byteOrder::toBigEndian( unused.b,       &mShpHeader[ 12 ], 4 );
+        byteOrder::toBigEndian( unused.b,       &mShpHeader[ 16 ], 4 );
+        byteOrder::toBigEndian( unused.b,       &mShpHeader[ 20 ], 4 );
+        byteOrder::toBigEndian( fileLength.b,   &mShpHeader[ 24 ], 4 );
+        byteOrder::toLittleEndian( version.b,   &mShpHeader[ 28 ], 4 );
+        byteOrder::toLittleEndian( shapeType.b, &mShpHeader[ 32 ], 4 );
+        byteOrder::doubleToLittleEndian( mXmin, &mShpHeader[ 36 ] );
+        byteOrder::doubleToLittleEndian( mYmin, &mShpHeader[ 44 ] );
+        byteOrder::doubleToLittleEndian( mXmax, &mShpHeader[ 52 ] );
+        byteOrder::doubleToLittleEndian( mYmax, &mShpHeader[ 60 ] );
+        byteOrder::doubleToLittleEndian( 0.0,   &mShpHeader[ 68 ] );
+        byteOrder::doubleToLittleEndian( 0.0,   &mShpHeader[ 76 ] );
+        byteOrder::doubleToLittleEndian( 0.0,   &mShpHeader[ 84 ] );
+        byteOrder::doubleToLittleEndian( 0.0,   &mShpHeader[ 92 ] );
 
+        buildShx();
     }
 }
 
@@ -121,6 +126,11 @@ buildShpElement( ISosiElement* sosi ) {
 
     int o = 0;
 
+    ShxIndex shxIndex;
+    shxIndex.offset.i = 50 + ( mShpBufferSize / 2 );
+    shxIndex.length.i = contentLength.i;
+    mShxOffsets.push_back( shxIndex );
+
     if( 0 == mShpBufferSize ) {
         mShpBufferSize = byteLength + 8;
         mShpBuffer = new char [ mShpBufferSize ];
@@ -135,17 +145,17 @@ buildShpElement( ISosiElement* sosi ) {
     }
 
     // Record header
-    byteOrder::toBigEndian( recordNumber.b,  &mShpBuffer[ o +  0 ], sizeof recordNumber );  // Record serial
-    byteOrder::toBigEndian( contentLength.b, &mShpBuffer[ o +  4 ], sizeof contentLength ); // Record content length
+    byteOrder::toBigEndian( recordNumber.b,  &mShpBuffer[ o +  0 ], 4 ); // Record serial
+    byteOrder::toBigEndian( contentLength.b, &mShpBuffer[ o +  4 ], 4 ); // Record content length
 
     // Record content
-    byteOrder::toLittleEndian( shapeType.b,  &mShpBuffer[ o +  8 ], sizeof shapeType );     // Shape type
-    byteOrder::doubleToLittleEndian( xMin,   &mShpBuffer[ o + 12 ] );                       // Box minX
-    byteOrder::doubleToLittleEndian( yMin,   &mShpBuffer[ o + 20 ] );                       // Box minY
-    byteOrder::doubleToLittleEndian( xMax,   &mShpBuffer[ o + 28 ] );                       // Box maxX
-    byteOrder::doubleToLittleEndian( yMax,   &mShpBuffer[ o + 36 ] );                       // Box maxY
-    byteOrder::toLittleEndian( numParts.b,   &mShpBuffer[ o + 44 ], sizeof numParts );      // NumParts
-    byteOrder::toLittleEndian( numPoints.b,  &mShpBuffer[ o + 52 ], sizeof numPoints );     // NumPoints
+    byteOrder::toLittleEndian( shapeType.b,  &mShpBuffer[ o +  8 ], 4 ); // Shape type
+    byteOrder::doubleToLittleEndian( xMin,   &mShpBuffer[ o + 12 ] );    // Box minX
+    byteOrder::doubleToLittleEndian( yMin,   &mShpBuffer[ o + 20 ] );    // Box minY
+    byteOrder::doubleToLittleEndian( xMax,   &mShpBuffer[ o + 28 ] );    // Box maxX
+    byteOrder::doubleToLittleEndian( yMax,   &mShpBuffer[ o + 36 ] );    // Box maxY
+    byteOrder::toLittleEndian( numParts.b,   &mShpBuffer[ o + 44 ], 4 ); // NumParts
+    byteOrder::toLittleEndian( numPoints.b,  &mShpBuffer[ o + 48 ], 4 ); // NumPoints
 
     o += 52;
 
@@ -166,7 +176,7 @@ buildShpElement( ISosiElement* sosi ) {
 }
 
 void sosicon::shape::Shapefile::
-buildDbfRecord( ISosiElement* sosi ) {
+insertDbfRecord( ISosiElement* sosi ) {
     DbfRecord rec;
     std::string field;
     std::string data;
@@ -178,16 +188,135 @@ buildDbfRecord( ISosiElement* sosi ) {
         int length = data.size();
         if( !data.empty() && length < 254 ) {
             field = child->getName();
-            if( mDbfRecordLengths.find( field ) != mDbfRecordLengths.end() ) {
-                mDbfRecordLengths[ field ] = std::max( mDbfRecordLengths[ field ], length );
+            if( mDbfFieldLengths.find( field ) != mDbfFieldLengths.end() ) {
+                mDbfFieldLengths[ field ] = std::max( mDbfFieldLengths[ field ], length );
             }
             else {
-                mDbfRecordLengths[ field ] = length;
+                mDbfFieldLengths[ field ] = length;
             }
             rec[ field ] = data;
         }
     }
     mDbfRecordSet.push_back( rec );
+}
+
+void sosicon::shape::Shapefile::
+buildDbf() {
+
+    Int16Field recordLength;
+    recordLength.i = 0;
+
+    for( DbfFieldLengths::iterator i = mDbfFieldLengths.begin(); i != mDbfFieldLengths.end(); i++ ) {
+        recordLength.i += i->second;
+    }
+
+    Int16Field headerLength;
+    headerLength.i =
+
+        /* Fixed header size       */   sizeof( mDbfHeader ) +
+        /* Field description array */ ( mDbfFieldLengths.size() * 32 ) +
+        /* Terminator              */   1;
+
+    mDbfBufferSize =                        
+
+        /* Field description array */ ( mDbfFieldLengths.size() * 32 ) +
+        /* Terminator              */   1 +
+        /* Record structure        */ ( recordLength.i * mDbfRecordSet.size() ) +
+        /* EOF                     */   1 ;
+
+    mDbfBuffer = new char [ mDbfBufferSize ];
+
+    time_t rawTime;
+    struct tm* timeInfo;
+    time( &rawTime );
+    timeInfo = localtime( &rawTime );
+    Int32Field numRecords;
+    numRecords.i = mDbfRecordSet.size();
+
+    mDbfHeader[  0 ] = 0x03;                         // Version number
+    mDbfHeader[  1 ] = char( timeInfo->tm_year );    // Year of last update
+    mDbfHeader[  2 ] = char( timeInfo->tm_mon + 1 ); // Month of last update
+    mDbfHeader[  3 ] = char( timeInfo->tm_mday );    // Day of last update
+
+    byteOrder::toLittleEndian( numRecords.b,    &mDbfHeader[  4 ], 4 ); // Number of records
+    byteOrder::toLittleEndian( headerLength.b,  &mDbfHeader[  8 ], 2 ); // Length of header structure
+    byteOrder::toLittleEndian( recordLength.b,  &mDbfHeader[ 10 ], 2 ); // Length of record
+
+    // Reserved or N/A
+    for( int i = 12; i < 32; i++ ) {
+        mDbfHeader[ i ] = 0x00;
+    }
+
+    int o = 0;
+
+    for( DbfFieldLengths::iterator i = mDbfFieldLengths.begin(); i != mDbfFieldLengths.end(); i++ ) {
+
+        std::string fieldName = i->first;
+        fieldName.resize( 10, ' ' );
+        const char* sz = fieldName.c_str();
+        std::copy( sz, sz + 11, &mDbfBuffer[ o ] );
+
+        // Field data type (char)
+        mDbfBuffer[ o + 11 ] = 'C';
+
+        // Field data address (N/A)
+        for( int i = 12; i < 16; i++ ) {
+            mDbfBuffer[ o + i ] = 0x00;
+        }
+        mDbfBuffer[ o + 16 ] = char( i->second );
+
+        // Reserved or N/A
+        for( int i = 17; i < 32; i++ ) {
+            mDbfBuffer[ o + i ] = 0x00;
+        }
+        o += 32;
+    }
+
+    // Terminator
+    mDbfBuffer[ o++ ] = 0x0d;
+    mDbfBuffer[ o++ ] = 0x20;
+
+    // Records
+    for( DbfRecordSet::iterator i = mDbfRecordSet.begin(); i != mDbfRecordSet.end(); i++ ) {
+        int recNumber = 0;
+        int fldOffset = 0;
+        char* recordBuffer = new char[ recordLength.i ];
+        DbfRecord& rec = *i;
+        for( DbfFieldLengths::iterator j = mDbfFieldLengths.begin(); j != mDbfFieldLengths.end(); j++ ) {
+            std::string fieldName = j->first;
+            std::string fieldValue;
+            if( rec.find( fieldName ) != rec.end() ) {
+                fieldValue = rec[ fieldName ];
+            }
+            int fieldLength = mDbfFieldLengths[ fieldName ];
+            fieldValue.resize( fieldLength, ' ' );
+            const char* sz = fieldValue.c_str();
+            std::copy( sz, sz + fieldLength, &recordBuffer[ fldOffset ] );
+            fldOffset += fieldLength;
+        }
+        std::copy( recordBuffer, recordBuffer + recordLength.i, &mDbfBuffer[ o ] );
+        delete [ ] recordBuffer;
+        o += recordLength.i;
+    }
+
+    // End of file
+    mDbfBuffer[ o ] = 0x1a;
+}
+
+void sosicon::shape::Shapefile::
+buildShx() {
+    mShxBufferSize = 8 * mDbfRecordSet.size();
+    mShxBuffer = new char [ mShxBufferSize ];
+    Int32Field fileLength;
+    fileLength.i = ( sizeof( mShxHeader ) + mShxBufferSize ) / 2;
+    std::copy( &mShpHeader[ 0 ], &mShpHeader[ 99 ], mShxHeader );
+    byteOrder::toBigEndian( fileLength.b,   &mShxHeader[ 24 ], 4 );
+    int o = 0;
+    for( ShxOffsets::iterator i = mShxOffsets.begin(); i != mShxOffsets.end(); i++ ) {
+        byteOrder::toBigEndian( ( *i ).offset.b,  &mShxBuffer[ o +  0 ], 4 ); // Offset
+        byteOrder::toBigEndian( ( *i ).length.b,  &mShxBuffer[ o +  4 ], 4 ); // Length
+        o += 8;
+    }
 }
 
 void sosicon::shape::Shapefile::
@@ -197,18 +326,20 @@ insert( ISosiElement* sosiElement ) {
 
 void sosicon::shape::Shapefile::
 writeShp( std::ostream &os ) {
-    os.write( mFileHeader, sizeof( mFileHeader ) );
+    os.write( mShpHeader, sizeof( mShpHeader ) );
     os.write( mShpBuffer, mShpBufferSize );
 }
 
 void sosicon::shape::Shapefile::
 writeShx( std::ostream &os ) {
-
+    os.write( mShxHeader, sizeof( mShxHeader ) );
+    os.write( mShxBuffer, mShxBufferSize );
 }
 
 void sosicon::shape::Shapefile::
 writeDbf( std::ostream &os ) {
-
+    os.write( mDbfHeader, sizeof( mDbfHeader ) );
+    os.write( mDbfBuffer, mDbfBufferSize );
 }
 
 void sosicon::shape::Shapefile::

@@ -19,6 +19,7 @@
 #define __SHAPEFILE_H__
 
 #include <algorithm>
+#include <ctime>
 #include <string>
 #include <vector>
 #include <iostream>
@@ -50,10 +51,18 @@ namespace sosicon {
         */
         class Shapefile : public IShapefile {
 
-            char mFileHeader[ 100 ];
+            char mShpHeader[ 100 ];
             char* mShpBuffer;
-            char* mDbfBuffer;
             int mShpBufferSize;
+
+            char mShxHeader[ 100 ];
+            char* mShxBuffer;
+            int mShxBufferSize;
+
+            char mDbfHeader[ 32 ];
+            char* mDbfBuffer;
+            int mDbfBufferSize;
+
             int mRecordNumber;
 
             double mXmin;
@@ -61,8 +70,9 @@ namespace sosicon {
             double mXmax;
             double mYmax;
 
-            DbfRecordLengths mDbfRecordLengths;
+            DbfFieldLengths mDbfFieldLengths;
             DbfRecordSet mDbfRecordSet;
+            ShxOffsets mShxOffsets;
 
         public:
 
@@ -78,8 +88,14 @@ namespace sosicon {
             // Create SHP element
             virtual void buildShpElement( ISosiElement* sosi );
 
+            // Create DBF file content
+            virtual void buildDbf();
+
+            // Create SHX file content
+            virtual void buildShx();
+
             // Create DBF record
-            virtual void buildDbfRecord( ISosiElement* sosi );
+            virtual void insertDbfRecord( ISosiElement* sosi );
 
             //! Insert SOSI element
             /*!
