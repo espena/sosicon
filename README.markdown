@@ -1,4 +1,4 @@
-# Sosicon v 0.1 (prerelease)
+# Sosicon v 0.1 (under development)
 Converts SOSI files to a number of other formats, including TSV (tab delimited text file) and shape
 files. Support for shape and other formats is yet to be implemented. TSV is well supported for some
 features, but the parser is still under development.
@@ -18,6 +18,13 @@ Contributors are most welcome!
 *  Compiles and runs on OS X, Linux and Windows
 
 ## Quick demo
+
+<strong>
+  NOTE: This demo does not work for the time being, due to refactoring of the code base. However,
+  shapefile export is about to come in place.
+</strong>
+
+<del>
 To convert a SOSI file to tab delimited text, run sosicon from the directory where the SOSI file
 resides. Use the -2tsv parameter to emit tab delimited values and the -o parameter to specify
 output file:
@@ -41,7 +48,7 @@ exported. Use the prefix `hode:` to address fields from the file header, such as
 (applied coordinate system).
 
 If no fields are specified, all available fields will be exported except head element fields.
-
+</del>
 ## Development
 Sosicon is not ready for release, although TSV conversion works well with some SOSI features like
 address points. The parser needs to be extended to include more features in accordance with the
