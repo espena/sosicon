@@ -351,7 +351,7 @@ sosicon::shape::ShapeType sosicon::shape::
 getShapeEquivalent( sosi::ElementType sosiType ) {
     switch( sosiType ) {
         case sosi::sosi_element_area:
-            return shape_type_polygon;
+            return shape_type_polyLine;
         case sosi::sosi_element_curve:
             return shape_type_polyLine;
         case sosi::sosi_element_point:
