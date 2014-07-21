@@ -72,87 +72,68 @@
 <div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;<span class="preprocessor">#ifndef __PARSER_H__</span></div>
 <div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;<span class="preprocessor"></span><span class="preprocessor">#define __PARSER_H__</span></div>
 <div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;<span class="preprocessor"></span></div>
-<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;<span class="preprocessor">#include &lt;algorithm&gt;</span></div>
-<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;<span class="preprocessor">#include &lt;vector&gt;</span></div>
+<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;<span class="preprocessor">#include &lt;iostream&gt;</span></div>
+<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;<span class="preprocessor">#include &lt;algorithm&gt;</span></div>
 <div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;<span class="preprocessor">#include &lt;string&gt;</span></div>
 <div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;<span class="preprocessor">#include &lt;sstream&gt;</span></div>
-<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;<span class="preprocessor">#include &lt;iostream&gt;</span></div>
-<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="command__line_8h.html">command_line.h</a>&quot;</span></div>
-<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="i__sosi__element_8h.html">interface/i_sosi_element.h</a>&quot;</span></div>
-<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="coord__sys_8h.html">sosi/coord_sys.h</a>&quot;</span></div>
-<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="sosi__element__head_8h.html">sosi/sosi_element_head.h</a>&quot;</span></div>
-<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="sosi__element__point_8h.html">sosi/sosi_element_point.h</a>&quot;</span></div>
-<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="sosi__element__text_8h.html">sosi/sosi_element_text.h</a>&quot;</span></div>
-<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;</div>
-<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;<span class="keyword">namespace </span>sosicon {</div>
-<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;</div>
-<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;</div>
-<div class="line"><a name="l00053"></a><span class="lineno"><a class="code" href="classsosicon_1_1_parser.html">   53</a></span>&#160;    <span class="keyword">class </span><a class="code" href="classsosicon_1_1_parser.html" title="SOSI file parser.">Parser</a> {</div>
-<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;</div>
-<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;</div>
-<div class="line"><a name="l00061"></a><span class="lineno"><a class="code" href="classsosicon_1_1_parser.html#ac2d80de58e090fc36ed79ba27445156f">   61</a></span>&#160;        std::vector&lt;ISosiElement*&gt; <a class="code" href="classsosicon_1_1_parser.html#ac2d80de58e090fc36ed79ba27445156f" title="SOSI elements container.">mSosiElements</a>;</div>
-<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;</div>
-<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;</div>
-<div class="line"><a name="l00072"></a><span class="lineno"><a class="code" href="classsosicon_1_1_parser.html#ab8ba218192a83f8085fbbd15b4127e0d">   72</a></span>&#160;        std::vector&lt;ISosiElement*&gt; <a class="code" href="classsosicon_1_1_parser.html#ab8ba218192a83f8085fbbd15b4127e0d" title="SOSI elements selected for output.">mSosiElementsSelection</a>;</div>
+<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;<span class="preprocessor">#include &lt;vector&gt;</span></div>
+<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;<span class="preprocessor">#include &lt;map&gt;</span></div>
+<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="string__utils_8h.html">string_utils.h</a>&quot;</span></div>
+<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="command__line_8h.html">command_line.h</a>&quot;</span></div>
+<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="sosi__element_8h.html">sosi/sosi_element.h</a>&quot;</span></div>
+<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="i__sosi__element_8h.html">interface/i_sosi_element.h</a>&quot;</span></div>
+<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;</div>
+<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;<span class="keyword">namespace </span>sosicon {</div>
+<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;</div>
+<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;</div>
+<div class="line"><a name="l00052"></a><span class="lineno"><a class="code" href="classsosicon_1_1_parser.html">   52</a></span>&#160;    <span class="keyword">class </span><a class="code" href="classsosicon_1_1_parser.html" title="SOSI file parser.">Parser</a> {</div>
+<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;</div>
+<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;</div>
+<div class="line"><a name="l00060"></a><span class="lineno"><a class="code" href="classsosicon_1_1_parser.html#a83968ac6d381b9ca29264886f7ae975a">   60</a></span>&#160;        std::vector&lt;ISosiElement*&gt; <a class="code" href="classsosicon_1_1_parser.html#a83968ac6d381b9ca29264886f7ae975a" title="Working stack.">mElementStack</a>;</div>
+<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;</div>
+<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;</div>
+<div class="line"><a name="l00066"></a><span class="lineno"><a class="code" href="classsosicon_1_1_parser.html#ae4eb84ca3bacc4c1285a4ca903dd5b9b">   66</a></span>&#160;        <a class="code" href="group__sosi__elements.html#ga7bff86740841e8cdbebcfb255e8a221f" title="Element index type.">sosi::SosiElementMap</a> <a class="code" href="classsosicon_1_1_parser.html#ae4eb84ca3bacc4c1285a4ca903dd5b9b" title="Index.">mElementIndex</a>;</div>
+<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;</div>
+<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;</div>
+<div class="line"><a name="l00072"></a><span class="lineno"><a class="code" href="classsosicon_1_1_parser.html#a84d0c47c494b8011261eefa84a681a76">   72</a></span>&#160;        <span class="keywordtype">int</span> <a class="code" href="classsosicon_1_1_parser.html#a84d0c47c494b8011261eefa84a681a76" title="SOSI level of element currently in parser.">mPendingElementLevel</a>;</div>
 <div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;</div>
 <div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;</div>
-<div class="line"><a name="l00081"></a><span class="lineno"><a class="code" href="classsosicon_1_1_parser.html#af3063d1f8e27b4aa14bed17a00be75d0">   81</a></span>&#160;        std::vector&lt;ISosiElement*&gt;::iterator <a class="code" href="classsosicon_1_1_parser.html#af3063d1f8e27b4aa14bed17a00be75d0" title="Current position within Parser::mSosiElements.">mSosiElementsIterator</a>;</div>
-<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;</div>
-<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;</div>
-<div class="line"><a name="l00094"></a><span class="lineno"><a class="code" href="classsosicon_1_1_parser.html#aafcc473f292845dacd2998ae60e0cf16">   94</a></span>&#160;        std::vector&lt;std::string&gt; <a class="code" href="classsosicon_1_1_parser.html#aafcc473f292845dacd2998ae60e0cf16" title="List containing all encountered SOSI fields in file.">mSosiElementsFields</a>;</div>
-<div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;</div>
-<div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160;</div>
-<div class="line"><a name="l00104"></a><span class="lineno"><a class="code" href="classsosicon_1_1_parser.html#a04b45cbeeffff08cd19d98af60e9c03d">  104</a></span>&#160;        std::vector&lt;std::string&gt; <a class="code" href="classsosicon_1_1_parser.html#a04b45cbeeffff08cd19d98af60e9c03d" title="Object type filter.">mObjTypeFilter</a>;</div>
-<div class="line"><a name="l00105"></a><span class="lineno">  105</span>&#160;</div>
+<div class="line"><a name="l00078"></a><span class="lineno"><a class="code" href="classsosicon_1_1_parser.html#a8ca4edce4f46c1b780571436b9c450bd">   78</a></span>&#160;        std::string <a class="code" href="classsosicon_1_1_parser.html#a8ca4edce4f46c1b780571436b9c450bd" title="Name of element currently in parser.">mPendingElementName</a>;</div>
+<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;</div>
+<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;</div>
+<div class="line"><a name="l00084"></a><span class="lineno"><a class="code" href="classsosicon_1_1_parser.html#a96b8eb812cd9d680fe0cf87882f8b208">   84</a></span>&#160;        std::string <a class="code" href="classsosicon_1_1_parser.html#a96b8eb812cd9d680fe0cf87882f8b208" title="Serial number of element currently in parser.">mPendingElementSerial</a>;</div>
+<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;</div>
+<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;</div>
+<div class="line"><a name="l00090"></a><span class="lineno"><a class="code" href="classsosicon_1_1_parser.html#a3b7c305fc7fe8fcfa501df8c090a59db">   90</a></span>&#160;        std::string <a class="code" href="classsosicon_1_1_parser.html#a3b7c305fc7fe8fcfa501df8c090a59db" title="Attribute data of element currently in parser.">mPendingElementAttributes</a>;</div>
+<div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;</div>
+<div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;</div>
+<div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160;        <span class="keywordtype">void</span> <a class="code" href="classsosicon_1_1_parser.html#ad9cf40411e8b5d4ceb9cad31118bd331" title="Save current SOSI element.">digestPendingElement</a>();</div>
+<div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160;</div>
+<div class="line"><a name="l00100"></a><span class="lineno">  100</span>&#160;    <span class="keyword">public</span>:</div>
+<div class="line"><a name="l00101"></a><span class="lineno">  101</span>&#160;</div>
+<div class="line"><a name="l00103"></a><span class="lineno">  103</span>&#160;</div>
+<div class="line"><a name="l00106"></a><span class="lineno">  106</span>&#160;        <a class="code" href="classsosicon_1_1_parser.html#aa4674670e66fba0804c6dd4236c28252" title="Constructor.">Parser</a>();</div>
 <div class="line"><a name="l00107"></a><span class="lineno">  107</span>&#160;</div>
-<div class="line"><a name="l00115"></a><span class="lineno"><a class="code" href="classsosicon_1_1_parser.html#a06987c5d1e0c9ae7c4b2522646de9a64">  115</a></span>&#160;        <a class="code" href="classsosicon_1_1_i_sosi_element.html" title="Interface: SOSI element.">ISosiElement</a>* <a class="code" href="classsosicon_1_1_parser.html#a06987c5d1e0c9ae7c4b2522646de9a64" title="Pointer to the head element.">mHeadElement</a>;</div>
+<div class="line"><a name="l00109"></a><span class="lineno">  109</span>&#160;</div>
+<div class="line"><a name="l00112"></a><span class="lineno">  112</span>&#160;        <a class="code" href="classsosicon_1_1_parser.html#a545072e2779fdea7d4890b56f52cb670" title="Destructor.">~Parser</a>();</div>
+<div class="line"><a name="l00113"></a><span class="lineno">  113</span>&#160;</div>
+<div class="line"><a name="l00115"></a><span class="lineno"><a class="code" href="classsosicon_1_1_parser.html#a992b5da961abd95bd6b1fe2cced6d589">  115</a></span>&#160;        <span class="keywordtype">void</span> <a class="code" href="classsosicon_1_1_parser.html#a992b5da961abd95bd6b1fe2cced6d589" title="Flush parsed data.">complete</a>() { <a class="code" href="classsosicon_1_1_parser.html#ad9cf40411e8b5d4ceb9cad31118bd331" title="Save current SOSI element.">digestPendingElement</a>(); };</div>
 <div class="line"><a name="l00116"></a><span class="lineno">  116</span>&#160;</div>
-<div class="line"><a name="l00118"></a><span class="lineno">  118</span>&#160;</div>
-<div class="line"><a name="l00130"></a><span class="lineno"><a class="code" href="classsosicon_1_1_parser.html#ace6142d9df434c9f3d761931205a1b3f">  130</a></span>&#160;        <a class="code" href="classsosicon_1_1_i_sosi_element.html" title="Interface: SOSI element.">ISosiElement</a>* <a class="code" href="classsosicon_1_1_parser.html#ace6142d9df434c9f3d761931205a1b3f" title="Pointer to last encountered SOSI element.">mCurrentElement</a>;</div>
-<div class="line"><a name="l00131"></a><span class="lineno">  131</span>&#160;</div>
-<div class="line"><a name="l00132"></a><span class="lineno">  132</span>&#160;    <span class="keyword">public</span>:</div>
-<div class="line"><a name="l00133"></a><span class="lineno">  133</span>&#160;</div>
-<div class="line"><a name="l00135"></a><span class="lineno">  135</span>&#160;</div>
-<div class="line"><a name="l00138"></a><span class="lineno">  138</span>&#160;        <a class="code" href="classsosicon_1_1_parser.html#aa4674670e66fba0804c6dd4236c28252" title="Constructor.">Parser</a>();</div>
+<div class="line"><a name="l00118"></a><span class="lineno">  118</span>&#160;        <span class="keywordtype">void</span> <a class="code" href="classsosicon_1_1_parser.html#a838fc23d6f1e8b5d9dc152b8adeee112" title="Debug output.">dump</a>();</div>
+<div class="line"><a name="l00119"></a><span class="lineno">  119</span>&#160;</div>
+<div class="line"><a name="l00121"></a><span class="lineno">  121</span>&#160;        <a class="code" href="classsosicon_1_1_i_sosi_element.html" title="Interface: SOSI element.">ISosiElement</a>* <a class="code" href="classsosicon_1_1_parser.html#a9860cca578a5b3de1f8d130fa031577d" title="Retrieve pointer to root element.">getRootElement</a>();</div>
+<div class="line"><a name="l00122"></a><span class="lineno">  122</span>&#160;</div>
+<div class="line"><a name="l00124"></a><span class="lineno">  124</span>&#160;</div>
+<div class="line"><a name="l00135"></a><span class="lineno">  135</span>&#160;        <span class="keywordtype">void</span> <a class="code" href="classsosicon_1_1_parser.html#abe9ae1ef10a1cd08fb27029a8ec11c72" title="Main parser routine.">ragelParseSosiLine</a>( std::string sosiLine );</div>
+<div class="line"><a name="l00136"></a><span class="lineno">  136</span>&#160;        </div>
+<div class="line"><a name="l00137"></a><span class="lineno">  137</span>&#160;    };</div>
+<div class="line"><a name="l00138"></a><span class="lineno">  138</span>&#160;};</div>
 <div class="line"><a name="l00139"></a><span class="lineno">  139</span>&#160;</div>
-<div class="line"><a name="l00141"></a><span class="lineno">  141</span>&#160;</div>
-<div class="line"><a name="l00144"></a><span class="lineno">  144</span>&#160;        <a class="code" href="classsosicon_1_1_parser.html#a545072e2779fdea7d4890b56f52cb670" title="Destructor.">~Parser</a>();</div>
-<div class="line"><a name="l00145"></a><span class="lineno">  145</span>&#160;</div>
-<div class="line"><a name="l00147"></a><span class="lineno">  147</span>&#160;</div>
-<div class="line"><a name="l00195"></a><span class="lineno">  195</span>&#160;        <span class="keywordtype">bool</span> <a class="code" href="classsosicon_1_1_parser.html#ae85d85b224dbf0bcb560e8b500ee858a" title="Retrieve next SOSI element for output.">getNextSosiElement</a>( <a class="code" href="classsosicon_1_1_i_sosi_element.html" title="Interface: SOSI element.">ISosiElement</a>*&amp; sosiElement );</div>
-<div class="line"><a name="l00196"></a><span class="lineno">  196</span>&#160;</div>
-<div class="line"><a name="l00198"></a><span class="lineno">  198</span>&#160;</div>
-<div class="line"><a name="l00208"></a><span class="lineno">  208</span>&#160;        <a class="code" href="classsosicon_1_1_i_sosi_element.html" title="Interface: SOSI element.">ISosiElement</a>* <a class="code" href="classsosicon_1_1_parser.html#a1994861c3887a7479e22dbc9d1fc8ff4" title="Retrieve SOSI head.">getHeadElement</a>();</div>
-<div class="line"><a name="l00209"></a><span class="lineno">  209</span>&#160;        </div>
-<div class="line"><a name="l00211"></a><span class="lineno">  211</span>&#160;</div>
-<div class="line"><a name="l00219"></a><span class="lineno">  219</span>&#160;        std::vector&lt;std::string&gt;&amp; <a class="code" href="classsosicon_1_1_parser.html#af7561b818353b0c554a4d4b01537aee4" title="Retrieve list of encountered SOSI fields.">getSosiElementsFields</a>();</div>
-<div class="line"><a name="l00220"></a><span class="lineno">  220</span>&#160;        </div>
-<div class="line"><a name="l00222"></a><span class="lineno">  222</span>&#160;</div>
-<div class="line"><a name="l00227"></a><span class="lineno">  227</span>&#160;        std::vector&lt;std::string&gt;::size_type <a class="code" href="classsosicon_1_1_parser.html#ab572a63c55fa68ae4bf6e8cfe027edb9" title="Get total number of SOSI elements.">getCountSosiElements</a>();</div>
-<div class="line"><a name="l00228"></a><span class="lineno">  228</span>&#160;        </div>
-<div class="line"><a name="l00230"></a><span class="lineno">  230</span>&#160;</div>
-<div class="line"><a name="l00239"></a><span class="lineno">  239</span>&#160;        std::vector&lt;std::string&gt;::size_type <a class="code" href="classsosicon_1_1_parser.html#a799aaf4c3692eedb158fea33e364994a" title="Get number of selected SOSI elements.">getCountSosiElementsSelection</a>();</div>
-<div class="line"><a name="l00240"></a><span class="lineno">  240</span>&#160;        </div>
-<div class="line"><a name="l00242"></a><span class="lineno">  242</span>&#160;</div>
-<div class="line"><a name="l00258"></a><span class="lineno">  258</span>&#160;        <span class="keywordtype">void</span> <a class="code" href="classsosicon_1_1_parser.html#afc47b6b613163c065d9f7ed5ad5e6a9e" title="Apply output selection filter.">setObjTypeSelection</a>( std::vector&lt;std::string&gt;&amp; objTypes );</div>
-<div class="line"><a name="l00259"></a><span class="lineno">  259</span>&#160;        </div>
-<div class="line"><a name="l00261"></a><span class="lineno">  261</span>&#160;</div>
-<div class="line"><a name="l00272"></a><span class="lineno">  272</span>&#160;        <span class="keywordtype">void</span> <a class="code" href="classsosicon_1_1_parser.html#ac9565b049142d6d1230cb711ba784ce0" title="Main parser routine.">parseSosiLine</a>( std::string sosiLine );</div>
-<div class="line"><a name="l00273"></a><span class="lineno">  273</span>&#160;        </div>
-<div class="line"><a name="l00275"></a><span class="lineno">  275</span>&#160;</div>
-<div class="line"><a name="l00282"></a><span class="lineno">  282</span>&#160;        <span class="keywordtype">void</span> <a class="code" href="classsosicon_1_1_parser.html#abaa852dbdaea76b73885c96794f04973" title="Dump file content to stdout.">dump</a>( <span class="keywordtype">bool</span> all = <span class="keyword">false</span> );</div>
-<div class="line"><a name="l00283"></a><span class="lineno">  283</span>&#160;        </div>
-<div class="line"><a name="l00285"></a><span class="lineno">  285</span>&#160;</div>
-<div class="line"><a name="l00290"></a><span class="lineno">  290</span>&#160;        <span class="keywordtype">void</span> <a class="code" href="classsosicon_1_1_parser.html#a435511503f0fd401aec802f63c64c5c8" title="Reset parser, free allocated resources.">reset</a>();</div>
-<div class="line"><a name="l00291"></a><span class="lineno">  291</span>&#160;</div>
-<div class="line"><a name="l00292"></a><span class="lineno">  292</span>&#160;    };</div>
-<div class="line"><a name="l00293"></a><span class="lineno">  293</span>&#160;};</div>
-<div class="line"><a name="l00294"></a><span class="lineno">  294</span>&#160;</div>
-<div class="line"><a name="l00295"></a><span class="lineno">  295</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="line"><a name="l00140"></a><span class="lineno">  140</span>&#160;<span class="preprocessor">#endif</span></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sat Mar 30 2013 13:18:18 for sosicon by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Mon Jul 21 2014 23:53:24 for sosicon by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.2
 </small></address>

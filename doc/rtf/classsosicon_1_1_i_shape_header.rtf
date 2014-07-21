@@ -85,8 +85,8 @@
 sosicon::IShapeHeader Class Reference\par \pard\plain 
 {\tc\tcl2 \v sosicon::IShapeHeader}
 {\xe \v sosicon::IShapeHeader}
-{\bkmkstart AAAAAAAAGD}
-{\bkmkend AAAAAAAAGD}
+{\bkmkstart AAAAAAAAIM}
+{\bkmkend AAAAAAAAIM}
 \par
 {
 {\s17\sa60\sb30\widctlpar\qj \fs22\cgrid 
@@ -110,14 +110,14 @@ Destructor. }{
 }\par
 }}
 \pard\plain \s80\fi-360\li360\widctlpar\jclisttab\tx360{\*\pn \pnlvlbody\ilvl0\ls1\pnrnot0\pndec }\ls1\adjustright \fs20\cgrid 
-virtual {\b shape::geom::ShapeType} {\b getShapeType} ()=0\par
+virtual shape::geom::ShapeType {\b getShapeType} ()=0\par
 {
 \pard\plain \s51\li360\sa60\sb30\qj\widctlpar\qj\adjustright \fs20\cgrid {\i {\s17\sa60\sb30\widctlpar\qj \fs22\cgrid 
 Return mShapeType. }{
 }\par
 }}
 \pard\plain \s80\fi-360\li360\widctlpar\jclisttab\tx360{\*\pn \pnlvlbody\ilvl0\ls1\pnrnot0\pndec }\ls1\adjustright \fs20\cgrid 
-virtual {\b shape::geom::ShapeType} {\b setShapeType} ({\b shape::geom::ShapeType} shapeType)=0\par
+virtual void {\b setShapeType} (shape::geom::ShapeType shapeType)=0\par
 {
 \pard\plain \s51\li360\sa60\sb30\qj\widctlpar\qj\adjustright \fs20\cgrid {\i {\s17\sa60\sb30\widctlpar\qj \fs22\cgrid 
 Set mShapeType. }{
@@ -128,9 +128,9 @@ virtual void {\b setFileLength} (int fileLength)=0\par
 \pard\plain \s80\fi-360\li360\widctlpar\jclisttab\tx360{\*\pn \pnlvlbody\ilvl0\ls1\pnrnot0\pndec }\ls1\adjustright \fs20\cgrid 
 virtual int {\b getFileLength} ()=0\par
 \pard\plain \s80\fi-360\li360\widctlpar\jclisttab\tx360{\*\pn \pnlvlbody\ilvl0\ls1\pnrnot0\pndec }\ls1\adjustright \fs20\cgrid 
-virtual void {\b setBoundingBox} ({\b shape::BoundingBox} boundingBox)=0\par
+virtual void {\b setBoundingBox} (shape::BoundingBox boundingBox)=0\par
 \pard\plain \s80\fi-360\li360\widctlpar\jclisttab\tx360{\*\pn \pnlvlbody\ilvl0\ls1\pnrnot0\pndec }\ls1\adjustright \fs20\cgrid 
-virtual {\b shape::BoundingBox} {\b getBoundingBox} ()=0\par
+virtual shape::BoundingBox {\b getBoundingBox} ()=0\par
 \pard\plain \s80\fi-360\li360\widctlpar\jclisttab\tx360{\*\pn \pnlvlbody\ilvl0\ls1\pnrnot0\pndec }\ls1\adjustright \fs20\cgrid 
 virtual int {\b getByteSize} ()=0\par
 {
@@ -174,8 +174,8 @@ Constructor & Destructor Documentation\par
 {\b 
 virtual sosicon::IShapeHeader::~IShapeHeader (){\f2 [inline]}, {\f2 [virtual]}}}
 \par
-{\bkmkstart AAAAAAAAGE}
-{\bkmkend AAAAAAAAGE}
+{\bkmkstart AAAAAAAAIN}
+{\bkmkend AAAAAAAAIN}
 {
 \pard\plain \s51\li360\sa60\sb30\qj\widctlpar\qj\adjustright \fs20\cgrid 
 \par
@@ -193,15 +193,12 @@ Member Function Documentation\par
 {\xe \v sosicon::IShapeHeader\:getBoundingBox}
 \pard\plain \s4\sb240\sa60\keepn\widctlpar\adjustright \b\f1\fs20\cgrid {
 {\b 
-virtual {\b shape::BoundingBox} sosicon::IShapeHeader::getBoundingBox (){\f2 [pure virtual]}}}
+virtual shape::BoundingBox sosicon::IShapeHeader::getBoundingBox (){\f2 [pure virtual]}}}
 \par
-{\bkmkstart AAAAAAAAGF}
-{\bkmkend AAAAAAAAGF}
+{\bkmkstart AAAAAAAAIO}
+{\bkmkend AAAAAAAAIO}
 {
 \pard\plain \s51\li360\sa60\sb30\qj\widctlpar\qj\adjustright \fs20\cgrid 
-\par
-{
-Implemented in {\b sosicon::shape::ShapeHeader} ({\i p.{\field\fldedit {\*\fldinst PAGEREF AAAAAAAAGG \\*MERGEFORMAT}{\fldrslt pagenum}}}).}\par
 }
 {\xe \v getByteSize\:sosicon::IShapeHeader}
 {\xe \v sosicon::IShapeHeader\:getByteSize}
@@ -209,16 +206,14 @@ Implemented in {\b sosicon::shape::ShapeHeader} ({\i p.{\field\fldedit {\*\fldin
 {\b 
 virtual int sosicon::IShapeHeader::getByteSize (){\f2 [pure virtual]}}}
 \par
-{\bkmkstart AAAAAAAAGH}
-{\bkmkend AAAAAAAAGH}
+{\bkmkstart AAAAAAAAIP}
+{\bkmkend AAAAAAAAIP}
 {
 \pard\plain \s51\li360\sa60\sb30\qj\widctlpar\qj\adjustright \fs20\cgrid 
 \par
 {
 {\s17\sa60\sb30\widctlpar\qj \fs22\cgrid 
 Size of header in bytes. }}\par
-{
-Implemented in {\b sosicon::shape::ShapeHeader} ({\i p.{\field\fldedit {\*\fldinst PAGEREF AAAAAAAAGI \\*MERGEFORMAT}{\fldrslt pagenum}}}).}\par
 }
 {\xe \v getFileLength\:sosicon::IShapeHeader}
 {\xe \v sosicon::IShapeHeader\:getFileLength}
@@ -226,22 +221,19 @@ Implemented in {\b sosicon::shape::ShapeHeader} ({\i p.{\field\fldedit {\*\fldin
 {\b 
 virtual int sosicon::IShapeHeader::getFileLength (){\f2 [pure virtual]}}}
 \par
-{\bkmkstart AAAAAAAAGJ}
-{\bkmkend AAAAAAAAGJ}
+{\bkmkstart AAAAAAAAIQ}
+{\bkmkend AAAAAAAAIQ}
 {
 \pard\plain \s51\li360\sa60\sb30\qj\widctlpar\qj\adjustright \fs20\cgrid 
-\par
-{
-Implemented in {\b sosicon::shape::ShapeHeader} ({\i p.{\field\fldedit {\*\fldinst PAGEREF AAAAAAAAGK \\*MERGEFORMAT}{\fldrslt pagenum}}}).}\par
 }
 {\xe \v getShapeType\:sosicon::IShapeHeader}
 {\xe \v sosicon::IShapeHeader\:getShapeType}
 \pard\plain \s4\sb240\sa60\keepn\widctlpar\adjustright \b\f1\fs20\cgrid {
 {\b 
-virtual {\b shape::geom::ShapeType} sosicon::IShapeHeader::getShapeType (){\f2 [pure virtual]}}}
+virtual shape::geom::ShapeType sosicon::IShapeHeader::getShapeType (){\f2 [pure virtual]}}}
 \par
-{\bkmkstart AAAAAAAAGL}
-{\bkmkend AAAAAAAAGL}
+{\bkmkstart AAAAAAAAIR}
+{\bkmkend AAAAAAAAIR}
 {
 \pard\plain \s51\li360\sa60\sb30\qj\widctlpar\qj\adjustright \fs20\cgrid 
 \par
@@ -254,39 +246,32 @@ Return mShapeType. }}\par
 See Also:\par}\pard\plain \s62\li720\widctlpar\ql\adjustright \fs20\cgrid ShapeHeader::mShapeType \par
 }{{\s5\sb90\sa30\keepn\widctlpar\adjustright \b\f1\fs20\cgrid 
 Returns:\par}\pard\plain \s62\li720\widctlpar\ql\adjustright \fs20\cgrid The shape type in current file. \par
-}}{
-Implemented in {\b sosicon::shape::ShapeHeader} ({\i p.{\field\fldedit {\*\fldinst PAGEREF AAAAAAAAGM \\*MERGEFORMAT}{\fldrslt pagenum}}}).}\par
-}
+}}}
 {\xe \v getWordSize\:sosicon::IShapeHeader}
 {\xe \v sosicon::IShapeHeader\:getWordSize}
 \pard\plain \s4\sb240\sa60\keepn\widctlpar\adjustright \b\f1\fs20\cgrid {
 {\b 
 virtual int sosicon::IShapeHeader::getWordSize (){\f2 [pure virtual]}}}
 \par
-{\bkmkstart AAAAAAAAGN}
-{\bkmkend AAAAAAAAGN}
+{\bkmkstart AAAAAAAAIS}
+{\bkmkend AAAAAAAAIS}
 {
 \pard\plain \s51\li360\sa60\sb30\qj\widctlpar\qj\adjustright \fs20\cgrid 
 \par
 {
 {\s17\sa60\sb30\widctlpar\qj \fs22\cgrid 
 Size of header in 16-bit words. }}\par
-{
-Implemented in {\b sosicon::shape::ShapeHeader} ({\i p.{\field\fldedit {\*\fldinst PAGEREF AAAAAAAAGO \\*MERGEFORMAT}{\fldrslt pagenum}}}).}\par
 }
 {\xe \v setBoundingBox\:sosicon::IShapeHeader}
 {\xe \v sosicon::IShapeHeader\:setBoundingBox}
 \pard\plain \s4\sb240\sa60\keepn\widctlpar\adjustright \b\f1\fs20\cgrid {
 {\b 
-virtual void sosicon::IShapeHeader::setBoundingBox ({\b shape::BoundingBox} {\i boundingBox}){\f2 [pure virtual]}}}
+virtual void sosicon::IShapeHeader::setBoundingBox (shape::BoundingBox {\i boundingBox}){\f2 [pure virtual]}}}
 \par
-{\bkmkstart AAAAAAAAGP}
-{\bkmkend AAAAAAAAGP}
+{\bkmkstart AAAAAAAAIT}
+{\bkmkend AAAAAAAAIT}
 {
 \pard\plain \s51\li360\sa60\sb30\qj\widctlpar\qj\adjustright \fs20\cgrid 
-\par
-{
-Implemented in {\b sosicon::shape::ShapeHeader} ({\i p.{\field\fldedit {\*\fldinst PAGEREF AAAAAAAAGQ \\*MERGEFORMAT}{\fldrslt pagenum}}}).}\par
 }
 {\xe \v setFileLength\:sosicon::IShapeHeader}
 {\xe \v sosicon::IShapeHeader\:setFileLength}
@@ -294,22 +279,19 @@ Implemented in {\b sosicon::shape::ShapeHeader} ({\i p.{\field\fldedit {\*\fldin
 {\b 
 virtual void sosicon::IShapeHeader::setFileLength (int {\i fileLength}){\f2 [pure virtual]}}}
 \par
-{\bkmkstart AAAAAAAAGR}
-{\bkmkend AAAAAAAAGR}
+{\bkmkstart AAAAAAAAIU}
+{\bkmkend AAAAAAAAIU}
 {
 \pard\plain \s51\li360\sa60\sb30\qj\widctlpar\qj\adjustright \fs20\cgrid 
-\par
-{
-Implemented in {\b sosicon::shape::ShapeHeader} ({\i p.{\field\fldedit {\*\fldinst PAGEREF AAAAAAAAGS \\*MERGEFORMAT}{\fldrslt pagenum}}}).}\par
 }
 {\xe \v setShapeType\:sosicon::IShapeHeader}
 {\xe \v sosicon::IShapeHeader\:setShapeType}
 \pard\plain \s4\sb240\sa60\keepn\widctlpar\adjustright \b\f1\fs20\cgrid {
 {\b 
-virtual {\b shape::geom::ShapeType} sosicon::IShapeHeader::setShapeType ({\b shape::geom::ShapeType} {\i shapeType}){\f2 [pure virtual]}}}
+virtual void sosicon::IShapeHeader::setShapeType (shape::geom::ShapeType {\i shapeType}){\f2 [pure virtual]}}}
 \par
-{\bkmkstart AAAAAAAAGT}
-{\bkmkend AAAAAAAAGT}
+{\bkmkstart AAAAAAAAIV}
+{\bkmkend AAAAAAAAIV}
 {
 \pard\plain \s51\li360\sa60\sb30\qj\widctlpar\qj\adjustright \fs20\cgrid 
 \par
@@ -320,9 +302,7 @@ Set mShapeType. }}\par
 \par
 {{\s5\sb90\sa30\keepn\widctlpar\adjustright \b\f1\fs20\cgrid 
 See Also:\par}\pard\plain \s62\li720\widctlpar\ql\adjustright \fs20\cgrid ShapeHeader::mShapeType \par
-}}{
-Implemented in {\b sosicon::shape::ShapeHeader} ({\i p.{\field\fldedit {\*\fldinst PAGEREF AAAAAAAAGU \\*MERGEFORMAT}{\fldrslt pagenum}}}).}\par
-}
+}}}
 {\pard\widctlpar\brdrb\brdrs\brdrw5\brsp20 \adjustright \par}
 The documentation for this class was generated from the following file:{\par
 \pard\plain \s81\fi-360\li720\widctlpar\jclisttab\tx720{\*\pn \pnlvlbody\ilvl0\ls2\pnrnot0\pndec }\ls2\adjustright \fs20\cgrid 

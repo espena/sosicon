@@ -77,44 +77,40 @@
 <div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;<span class="preprocessor">#include &lt;vector&gt;</span></div>
 <div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="i__converter_8h.html">interface/i_converter.h</a>&quot;</span></div>
 <div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="i__sosi__element_8h.html">interface/i_sosi_element.h</a>&quot;</span></div>
-<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="i__shapefile__shp__part_8h.html">interface/i_shapefile_shp_part.h</a>&quot;</span></div>
-<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="i__shapefile__shx__part_8h.html">interface/i_shapefile_shx_part.h</a>&quot;</span></div>
-<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="i__shapefile__dbf__part_8h.html">interface/i_shapefile_dbf_part.h</a>&quot;</span></div>
-<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="command__line_8h.html">command_line.h</a>&quot;</span></div>
-<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="string__utils_8h.html">string_utils.h</a>&quot;</span></div>
-<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="parser_8h.html">parser.h</a>&quot;</span></div>
-<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="shapefile_8h.html">shape/shapefile.h</a>&quot;</span></div>
-<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;</div>
-<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;<span class="keyword">namespace </span>sosicon {</div>
-<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;</div>
-<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;</div>
-<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;</div>
-<div class="line"><a name="l00051"></a><span class="lineno"><a class="code" href="classsosicon_1_1_converter_sosi2shp.html">   51</a></span>&#160;    <span class="keyword">class </span><a class="code" href="classsosicon_1_1_converter_sosi2shp.html" title="SOSI to ESRI Shape converter.">ConverterSosi2shp</a> : <span class="keyword">public</span> <a class="code" href="classsosicon_1_1_i_converter.html" title="Interface: Converter.">IConverter</a> {</div>
-<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;</div>
-<div class="line"><a name="l00054"></a><span class="lineno"><a class="code" href="classsosicon_1_1_converter_sosi2shp.html#a4058cf3ef480eeac40ce913e5cb9c840">   54</a></span>&#160;        <a class="code" href="classsosicon_1_1_command_line.html" title="Command-line parser.">CommandLine</a> <a class="code" href="classsosicon_1_1_converter_sosi2shp.html#a4058cf3ef480eeac40ce913e5cb9c840" title="Command line wrapper.">mCmd</a>;</div>
+<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="command__line_8h.html">command_line.h</a>&quot;</span></div>
+<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="parser_8h.html">parser.h</a>&quot;</span></div>
+<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="shapefile_8h.html">shape/shapefile.h</a>&quot;</span></div>
+<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;</div>
+<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;<span class="keyword">namespace </span>sosicon {</div>
+<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;</div>
+<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;</div>
+<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;</div>
+<div class="line"><a name="l00047"></a><span class="lineno"><a class="code" href="classsosicon_1_1_converter_sosi2shp.html">   47</a></span>&#160;    <span class="keyword">class </span><a class="code" href="classsosicon_1_1_converter_sosi2shp.html" title="SOSI to ESRI Shape converter.">ConverterSosi2shp</a> : <span class="keyword">public</span> <a class="code" href="classsosicon_1_1_i_converter.html" title="Interface: Converter.">IConverter</a> {</div>
+<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;</div>
+<div class="line"><a name="l00050"></a><span class="lineno"><a class="code" href="classsosicon_1_1_converter_sosi2shp.html#a4058cf3ef480eeac40ce913e5cb9c840">   50</a></span>&#160;        <a class="code" href="classsosicon_1_1_command_line.html" title="Command-line parser.">CommandLine</a> <a class="code" href="classsosicon_1_1_converter_sosi2shp.html#a4058cf3ef480eeac40ce913e5cb9c840" title="Command line wrapper.">mCmd</a>;</div>
+<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;</div>
+<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;        <span class="keywordtype">void</span> <a class="code" href="classsosicon_1_1_converter_sosi2shp.html#ac4c4bbcad185b5b93aa930e5eec53ee2">makeShp</a>( <a class="code" href="classsosicon_1_1_i_sosi_element.html" title="Interface: SOSI element.">ISosiElement</a>* sosiTree );</div>
+<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;</div>
+<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;    <span class="keyword">public</span>:</div>
 <div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;</div>
-<div class="line"><a name="l00057"></a><span class="lineno"><a class="code" href="classsosicon_1_1_converter_sosi2shp.html#a904a83ad41d58b04d0447fd07cb987f2">   57</a></span>&#160;        <a class="code" href="classsosicon_1_1shape_1_1_shapefile.html" title="Shapefile implementation.">shape::Shapefile</a> <a class="code" href="classsosicon_1_1_converter_sosi2shp.html#a904a83ad41d58b04d0447fd07cb987f2" title="Shapefile wrapper.">mShapefile</a>;</div>
-<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;        </div>
-<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;        <span class="keyword">virtual</span> <a class="code" href="classsosicon_1_1_converter_sosi2shp.html#ae15366cec787269610ce3238fd591828">~ConverterSosi2shp</a>();</div>
-<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;</div>
-<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;    <span class="keyword">public</span>:</div>
-<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;</div>
-<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;        <a class="code" href="classsosicon_1_1_converter_sosi2shp.html#af315b5ea0bf3533875f06abe79c9aa29" title="Constructor.">ConverterSosi2shp</a>();</div>
-<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;</div>
-<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;</div>
-<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;        <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="classsosicon_1_1_converter_sosi2shp.html#af9cae714c060601ac1e97e52497a3c8a" title="Initialize converter.">init</a>( <a class="code" href="classsosicon_1_1_command_line.html" title="Command-line parser.">CommandLine</a> cmd );</div>
-<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;</div>
-<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;</div>
-<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;        <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="classsosicon_1_1_converter_sosi2shp.html#aa65c111b57bfc3f85fe45c687f9e7273" title="Start conversion.">run</a>();</div>
-<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;</div>
-<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;    }; <span class="comment">// class ConverterSosi2shp</span></div>
-<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;<span class="comment"></span>}; <span class="comment">// namespace sosicon</span></div>
-<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;</div>
-<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;        <a class="code" href="classsosicon_1_1_converter_sosi2shp.html#af315b5ea0bf3533875f06abe79c9aa29" title="Constructor.">ConverterSosi2shp</a>();</div>
+<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;</div>
+<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;        <span class="keyword">virtual</span> <a class="code" href="classsosicon_1_1_converter_sosi2shp.html#ae15366cec787269610ce3238fd591828" title="Destructor.">~ConverterSosi2shp</a>();</div>
+<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;</div>
+<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;</div>
+<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;        <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="classsosicon_1_1_converter_sosi2shp.html#af9cae714c060601ac1e97e52497a3c8a" title="Initialize converter.">init</a>( <a class="code" href="classsosicon_1_1_command_line.html" title="Command-line parser.">CommandLine</a> cmd );</div>
+<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;</div>
+<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;</div>
+<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;        <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="classsosicon_1_1_converter_sosi2shp.html#aa65c111b57bfc3f85fe45c687f9e7273" title="Start conversion.">run</a>();</div>
+<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;</div>
+<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;    }; <span class="comment">// class ConverterSosi2shp</span></div>
+<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;<span class="comment"></span>}; <span class="comment">// namespace sosicon</span></div>
+<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;</div>
+<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;<span class="preprocessor">#endif</span></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sat Mar 30 2013 13:18:18 for sosicon by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Mon Jul 21 2014 23:53:24 for sosicon by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.2
 </small></address>

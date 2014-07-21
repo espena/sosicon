@@ -54,7 +54,7 @@
 <a href="#pub-methods">Public Member Functions</a> &#124;
 <a href="classsosicon_1_1_i_shapefile-members.html">List of all members</a>  </div>
   <div class="headertitle">
-<div class="title">sosicon::IShapefile Class Reference<div class="ingroups"><a class="el" href="group__interfaces.html">Interfaces</a></div></div>  </div>
+<div class="title">sosicon::IShapefile Class Reference<span class="mlabels"><span class="mlabel">abstract</span></span><div class="ingroups"><a class="el" href="group__interfaces.html">Interfaces</a></div></div>  </div>
 </div><!--header-->
 <div class="contents">
 
@@ -84,6 +84,9 @@ Inheritance diagram for sosicon::IShapefile:</div>
 Public Member Functions</h2></td></tr>
 <tr class="memitem:a1ccaa2274bc2d9b9c91c98309b426baa"><td class="memItemLeft" align="right" valign="top">virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classsosicon_1_1_i_shapefile.html#a1ccaa2274bc2d9b9c91c98309b426baa">~IShapefile</a> ()</td></tr>
 <tr class="separator:a1ccaa2274bc2d9b9c91c98309b426baa"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a44b64562652dcb7568497ed92edaa4a4"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classsosicon_1_1_i_shapefile.html#a44b64562652dcb7568497ed92edaa4a4">build</a> (<a class="el" href="classsosicon_1_1_i_sosi_element.html">ISosiElement</a> *sosiTree, <a class="el" href="group__sosi__elements.html#ga52dbaad3d1e20075608257e866b0a7ca">sosi::ElementType</a> selection)=0</td></tr>
+<tr class="memdesc:a44b64562652dcb7568497ed92edaa4a4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Build shapefile from SOSI data.  <a href="#a44b64562652dcb7568497ed92edaa4a4"></a><br/></td></tr>
+<tr class="separator:a44b64562652dcb7568497ed92edaa4a4"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="inherit_header pub_methods_classsosicon_1_1_i_shapefile_shp_part"><td colspan="2" onclick="javascript:toggleInherit('pub_methods_classsosicon_1_1_i_shapefile_shp_part')"><img src="closed.png" alt="-"/>&#160;Public Member Functions inherited from <a class="el" href="classsosicon_1_1_i_shapefile_shp_part.html">sosicon::IShapefileShpPart</a></td></tr>
 <tr class="memitem:a9d96bd5f0e1cc053cf3dbdf57558175c inherit pub_methods_classsosicon_1_1_i_shapefile_shp_part"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classsosicon_1_1_i_shapefile_shp_part.html#a9d96bd5f0e1cc053cf3dbdf57558175c">writeBinary</a> (std::ostream &amp;os)</td></tr>
 <tr class="memdesc:a9d96bd5f0e1cc053cf3dbdf57558175c inherit pub_methods_classsosicon_1_1_i_shapefile_shp_part"><td class="mdescLeft">&#160;</td><td class="mdescRight">Writes binary data to output stream.  <a href="#a9d96bd5f0e1cc053cf3dbdf57558175c"></a><br/></td></tr>
@@ -118,7 +121,7 @@ Public Member Functions</h2></td></tr>
 <dl class="section author"><dt>Author</dt><dd>Espen Andersen </dd></dl>
 <dl class="section copyright"><dt>Copyright</dt><dd>GNU General Public License </dd></dl>
 
-<p>Definition at line <a class="el" href="i__shapefile_8h_source.html#l00036">36</a> of file <a class="el" href="i__shapefile_8h_source.html">i_shapefile.h</a>.</p>
+<p>Definition at line <a class="el" href="i__shapefile_8h_source.html#l00039">39</a> of file <a class="el" href="i__shapefile_8h_source.html">i_shapefile.h</a>.</p>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a class="anchor" id="a1ccaa2274bc2d9b9c91c98309b426baa"></a>
 <div class="memitem">
@@ -141,7 +144,53 @@ Public Member Functions</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="i__shapefile_8h_source.html#l00043">43</a> of file <a class="el" href="i__shapefile_8h_source.html">i_shapefile.h</a>.</p>
+<p>Definition at line <a class="el" href="i__shapefile_8h_source.html#l00046">46</a> of file <a class="el" href="i__shapefile_8h_source.html">i_shapefile.h</a>.</p>
+
+</div>
+</div>
+<h2 class="groupheader">Member Function Documentation</h2>
+<a class="anchor" id="a44b64562652dcb7568497ed92edaa4a4"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual void sosicon::IShapefile::build </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classsosicon_1_1_i_sosi_element.html">ISosiElement</a> *&#160;</td>
+          <td class="paramname"><em>sosiTree</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="group__sosi__elements.html#ga52dbaad3d1e20075608257e866b0a7ca">sosi::ElementType</a>&#160;</td>
+          <td class="paramname"><em>selection</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">pure virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Build shapefile from SOSI data. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">sosiTree</td><td>Root SOSI element. The first-level children of this element will be examined and exported if they are compatible. </td></tr>
+    <tr><td class="paramname">selection</td><td>SOSI element type scheduled for shapefile conversion. Since a shapefile may contain only one geometry type at a time, one must select what element type to extract from the SOSI file. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p>Implemented in <a class="el" href="classsosicon_1_1shape_1_1_shapefile.html#a95315c83cebaa1eff2ce44bfa04078e6">sosicon::shape::Shapefile</a>.</p>
 
 </div>
 </div>
@@ -151,7 +200,7 @@ Public Member Functions</h2></td></tr>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sat Mar 30 2013 13:18:18 for sosicon by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Mon Jul 21 2014 23:53:25 for sosicon by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.2
 </small></address>

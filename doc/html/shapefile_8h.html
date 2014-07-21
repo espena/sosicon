@@ -50,20 +50,23 @@
 <div class="header">
   <div class="summary">
 <a href="#nested-classes">Classes</a> &#124;
-<a href="#namespaces">Namespaces</a>  </div>
+<a href="#namespaces">Namespaces</a> &#124;
+<a href="#func-members">Functions</a>  </div>
   <div class="headertitle">
 <div class="title">shapefile.h File Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
-<div class="textblock"><code>#include &lt;string&gt;</code><br/>
+<div class="textblock"><code>#include &lt;algorithm&gt;</code><br/>
+<code>#include &lt;ctime&gt;</code><br/>
+<code>#include &lt;string&gt;</code><br/>
 <code>#include &lt;vector&gt;</code><br/>
 <code>#include &lt;iostream&gt;</code><br/>
-<code>#include &quot;<a class="el" href="shape__header_8h_source.html">shape_header.h</a>&quot;</code><br/>
-<code>#include &quot;<a class="el" href="shape__index_8h_source.html">shape_index.h</a>&quot;</code><br/>
-<code>#include &quot;<a class="el" href="shape__database_8h_source.html">shape_database.h</a>&quot;</code><br/>
-<code>#include &quot;<a class="el" href="shape__element__point_8h_source.html">shape_element_point.h</a>&quot;</code><br/>
-<code>#include &quot;<a class="el" href="i__sosi__element_8h_source.html">../interface/i_sosi_element.h</a>&quot;</code><br/>
-<code>#include &quot;<a class="el" href="i__shape__element_8h_source.html">../interface/i_shape_element.h</a>&quot;</code><br/>
+<code>#include &quot;<a class="el" href="shapefile__types_8h_source.html">shapefile_types.h</a>&quot;</code><br/>
+<code>#include &quot;<a class="el" href="byte__order_8h_source.html">../byte_order.h</a>&quot;</code><br/>
+<code>#include &quot;<a class="el" href="string__utils_8h_source.html">../string_utils.h</a>&quot;</code><br/>
+<code>#include &quot;<a class="el" href="coordinate__collection_8h_source.html">../coordinate_collection.h</a>&quot;</code><br/>
+<code>#include &quot;<a class="el" href="sosi__types_8h_source.html">../sosi/sosi_types.h</a>&quot;</code><br/>
+<code>#include &quot;<a class="el" href="sosi__element__search_8h_source.html">../sosi/sosi_element_search.h</a>&quot;</code><br/>
 <code>#include &quot;<a class="el" href="i__shapefile_8h_source.html">../interface/i_shapefile.h</a>&quot;</code><br/>
 </div>
 <p><a href="shapefile_8h_source.html">Go to the source code of this file.</a></p>
@@ -82,11 +85,17 @@ Namespaces</h2></td></tr>
 <tr class="memitem:namespacesosicon_1_1shape"><td class="memItemLeft" align="right" valign="top">namespace &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacesosicon_1_1shape.html">sosicon::shape</a></td></tr>
 <tr class="memdesc:namespacesosicon_1_1shape"><td class="mdescLeft">&#160;</td><td class="mdescRight">ESRI Shape. <br/></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
+Functions</h2></td></tr>
+<tr class="memitem:aebbc2c1efa2cc1aa0a36be7d0261372e"><td class="memItemLeft" align="right" valign="top">ShapeType&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacesosicon_1_1shape.html#aebbc2c1efa2cc1aa0a36be7d0261372e">sosicon::shape::getShapeEquivalent</a> (sosi::ElementType sosiType)</td></tr>
+<tr class="memdesc:aebbc2c1efa2cc1aa0a36be7d0261372e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Resolve geometry type.  <a href="#aebbc2c1efa2cc1aa0a36be7d0261372e"></a><br/></td></tr>
+<tr class="separator:aebbc2c1efa2cc1aa0a36be7d0261372e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sat Mar 30 2013 13:18:18 for sosicon by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Mon Jul 21 2014 23:53:24 for sosicon by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.2
 </small></address>

@@ -85,18 +85,20 @@
 /prosjekter/sosicon/src/shape/shapefile.h File Reference\par \pard\plain 
 {\tc\tcl2 \v /prosjekter/sosicon/src/shape/shapefile.h}
 {\xe \v /prosjekter/sosicon/src/shape/shapefile.h}
-{\bkmkstart AAAAAAAABS}
-{\bkmkend AAAAAAAABS}
+{\bkmkstart AAAAAAAABQ}
+{\bkmkend AAAAAAAABQ}
 {
-\pard\plain \s18\widctlpar\fs22\cgrid {\f2 #include <string>}\par
+\pard\plain \s18\widctlpar\fs22\cgrid {\f2 #include <algorithm>}\par
+{\f2 #include <ctime>}\par
+{\f2 #include <string>}\par
 {\f2 #include <vector>}\par
 {\f2 #include <iostream>}\par
-{\f2 #include "shape_header.h"}\par
-{\f2 #include "shape_index.h"}\par
-{\f2 #include "shape_database.h"}\par
-{\f2 #include "shape_element_point.h"}\par
-{\f2 #include "../interface/i_sosi_element.h"}\par
-{\f2 #include "../interface/i_shape_element.h"}\par
+{\f2 #include "shapefile_types.h"}\par
+{\f2 #include "../byte_order.h"}\par
+{\f2 #include "../string_utils.h"}\par
+{\f2 #include "../coordinate_collection.h"}\par
+{\f2 #include "../sosi/sosi_types.h"}\par
+{\f2 #include "../sosi/sosi_element_search.h"}\par
 {\f2 #include "../interface/i_shapefile.h"}\par
 }
 \pard\plain \s3\sb240\sa60\keepn\widctlpar\adjustright \b\f1\cgrid 
@@ -125,5 +127,18 @@ namespace {\b sosicon::shape}\par
 {
 \pard\plain \s51\li360\sa60\sb30\qj\widctlpar\qj\adjustright \fs20\cgrid {\i {\s17\sa60\sb30\widctlpar\qj \fs22\cgrid 
 ESRI Shape. }}}
+}
+\pard\plain \s3\sb240\sa60\keepn\widctlpar\adjustright \b\f1\cgrid 
+Functions\par
+\pard\plain 
+
+{
+\pard\plain \s80\fi-360\li360\widctlpar\jclisttab\tx360{\*\pn \pnlvlbody\ilvl0\ls1\pnrnot0\pndec }\ls1\adjustright \fs20\cgrid 
+ShapeType {\b sosicon::shape::getShapeEquivalent} (sosi::ElementType sosiType)\par
+{
+\pard\plain \s51\li360\sa60\sb30\qj\widctlpar\qj\adjustright \fs20\cgrid {\i {\s17\sa60\sb30\widctlpar\qj \fs22\cgrid 
+Resolve geometry type. }{
+}\par
+}}
 }
 }

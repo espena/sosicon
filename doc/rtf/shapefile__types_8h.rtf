@@ -85,13 +85,13 @@
 /prosjekter/sosicon/src/shape/shapefile_types.h File Reference\par \pard\plain 
 {\tc\tcl2 \v /prosjekter/sosicon/src/shape/shapefile_types.h}
 {\xe \v /prosjekter/sosicon/src/shape/shapefile_types.h}
-{\bkmkstart AAAAAAAABT}
-{\bkmkend AAAAAAAABT}
+{\bkmkstart AAAAAAAABR}
+{\bkmkend AAAAAAAABR}
 {
 \pard\plain \s18\widctlpar\fs22\cgrid {\f2 #include <stdint.h>}\par
+{\f2 #include <map>}\par
 {\f2 #include <algorithm>}\par
 {\f2 #include <limits>}\par
-{\f2 #include "../interface/i_rectangle.h"}\par
 }
 \pard\plain \s3\sb240\sa60\keepn\widctlpar\adjustright \b\f1\cgrid 
 Classes\par
@@ -117,12 +117,14 @@ union {\b sosicon::shape::Int32Field}\par
 union {\b sosicon::shape::Int32TField}\par
 {
 \pard\plain \s51\li360\sa60\sb30\qj\widctlpar\qj\adjustright \fs20\cgrid {\i {\s17\sa60\sb30\widctlpar\qj \fs22\cgrid 
-32 bit integer / byte / {\b geom::ShapeType} field }}}
+32 bit integer / byte / geom::ShapeType field }}}
 \pard\plain \s80\fi-360\li360\widctlpar\jclisttab\tx360{\*\pn \pnlvlbody\ilvl0\ls1\pnrnot0\pndec }\ls1\adjustright \fs20\cgrid 
 union {\b sosicon::shape::DoubleField}\par
 {
 \pard\plain \s51\li360\sa60\sb30\qj\widctlpar\qj\adjustright \fs20\cgrid {\i {\s17\sa60\sb30\widctlpar\qj \fs22\cgrid 
 32 bit double / byte field }}}
+\pard\plain \s80\fi-360\li360\widctlpar\jclisttab\tx360{\*\pn \pnlvlbody\ilvl0\ls1\pnrnot0\pndec }\ls1\adjustright \fs20\cgrid 
+struct {\b sosicon::shape::ShxIndex}\par
 }
 \pard\plain \s3\sb240\sa60\keepn\widctlpar\adjustright \b\f1\cgrid 
 Namespaces\par
@@ -139,11 +141,22 @@ namespace {\b sosicon::shape}\par
 {
 \pard\plain \s51\li360\sa60\sb30\qj\widctlpar\qj\adjustright \fs20\cgrid {\i {\s17\sa60\sb30\widctlpar\qj \fs22\cgrid 
 ESRI Shape. }}}
-\pard\plain \s80\fi-360\li360\widctlpar\jclisttab\tx360{\*\pn \pnlvlbody\ilvl0\ls1\pnrnot0\pndec }\ls1\adjustright \fs20\cgrid 
-namespace {\b sosicon::shape::geom}\par
+}
+\pard\plain \s3\sb240\sa60\keepn\widctlpar\adjustright \b\f1\cgrid 
+Typedefs\par
+\pard\plain 
+
 {
-\pard\plain \s51\li360\sa60\sb30\qj\widctlpar\qj\adjustright \fs20\cgrid {\i {\s17\sa60\sb30\widctlpar\qj \fs22\cgrid 
-{\b Shapefile} geometries. }}}
+\pard\plain \s80\fi-360\li360\widctlpar\jclisttab\tx360{\*\pn \pnlvlbody\ilvl0\ls1\pnrnot0\pndec }\ls1\adjustright \fs20\cgrid 
+typedef std::map< std::string, \par
+std::string > {\b sosicon::shape::DbfRecord}\par
+\pard\plain \s80\fi-360\li360\widctlpar\jclisttab\tx360{\*\pn \pnlvlbody\ilvl0\ls1\pnrnot0\pndec }\ls1\adjustright \fs20\cgrid 
+typedef std::vector< DbfRecord > {\b sosicon::shape::DbfRecordSet}\par
+\pard\plain \s80\fi-360\li360\widctlpar\jclisttab\tx360{\*\pn \pnlvlbody\ilvl0\ls1\pnrnot0\pndec }\ls1\adjustright \fs20\cgrid 
+typedef std::map< std::string, \par
+int > {\b sosicon::shape::DbfFieldLengths}\par
+\pard\plain \s80\fi-360\li360\widctlpar\jclisttab\tx360{\*\pn \pnlvlbody\ilvl0\ls1\pnrnot0\pndec }\ls1\adjustright \fs20\cgrid 
+typedef std::vector< ShxIndex > {\b sosicon::shape::ShxOffsets}\par
 }
 \pard\plain \s3\sb240\sa60\keepn\widctlpar\adjustright \b\f1\cgrid 
 Enumerations\par
@@ -151,21 +164,21 @@ Enumerations\par
 
 {
 \pard\plain \s80\fi-360\li360\widctlpar\jclisttab\tx360{\*\pn \pnlvlbody\ilvl0\ls1\pnrnot0\pndec }\ls1\adjustright \fs20\cgrid 
-enum {\b sosicon::shape::geom::ShapeType} \{ {\b sosicon::shape::geom::none}, 
-{\b sosicon::shape::geom::nullShape}, 
-{\b sosicon::shape::geom::point}, 
-{\b sosicon::shape::geom::polyLine}, 
-{\b sosicon::shape::geom::polygon}, 
-{\b sosicon::shape::geom::multipoint}, 
-{\b sosicon::shape::geom::pointZ}, 
-{\b sosicon::shape::geom::polyLineZ}, 
-{\b sosicon::shape::geom::polygonZ}, 
-{\b sosicon::shape::geom::multipointZ}, 
-{\b sosicon::shape::geom::pointM}, 
-{\b sosicon::shape::geom::polyLineM}, 
-{\b sosicon::shape::geom::polygonM}, 
-{\b sosicon::shape::geom::multiPointM}, 
-{\b sosicon::shape::geom::multiPatch}
+enum {\b sosicon::shape::ShapeType} \{ {\b sosicon::shape::shape_type_none}, 
+{\b sosicon::shape::shape_type_nullShape}, 
+{\b sosicon::shape::shape_type_point}, 
+{\b sosicon::shape::shape_type_polyLine}, 
+{\b sosicon::shape::shape_type_polygon}, 
+{\b sosicon::shape::shape_type_multipoint}, 
+{\b sosicon::shape::shape_type_pointZ}, 
+{\b sosicon::shape::shape_type_polyLineZ}, 
+{\b sosicon::shape::shape_type_polygonZ}, 
+{\b sosicon::shape::shape_type_multipointZ}, 
+{\b sosicon::shape::shape_type_pointM}, 
+{\b sosicon::shape::shape_type_polyLineM}, 
+{\b sosicon::shape::shape_type_polygonM}, 
+{\b sosicon::shape::shape_type_multiPointM}, 
+{\b sosicon::shape::shape_type_multiPatch}
  \}\par
 {
 \pard\plain \s51\li360\sa60\sb30\qj\widctlpar\qj\adjustright \fs20\cgrid {\i {\s17\sa60\sb30\widctlpar\qj \fs22\cgrid 

@@ -85,8 +85,8 @@
 Converters\par \pard\plain 
 {\tc\tcl2 \v Converters}
 {\xe \v Converters}
-{\bkmkstart AAAAAAAACI}
-{\bkmkend AAAAAAAACI}
+{\bkmkstart AAAAAAAACK}
+{\bkmkend AAAAAAAACK}
 \pard\plain \s3\sb240\sa60\keepn\widctlpar\adjustright \b\f1\cgrid 
 Classes\par
 \pard\plain 
@@ -102,6 +102,11 @@ class {\b sosicon::ConverterSosi2tsv}\par
 {
 \pard\plain \s51\li360\sa60\sb30\qj\widctlpar\qj\adjustright \fs20\cgrid {\i {\s17\sa60\sb30\widctlpar\qj \fs22\cgrid 
 SOSI to TSV converter. }}}
+\pard\plain \s80\fi-360\li360\widctlpar\jclisttab\tx360{\*\pn \pnlvlbody\ilvl0\ls1\pnrnot0\pndec }\ls1\adjustright \fs20\cgrid 
+class {\b sosicon::ConverterSosi2xml}\par
+{
+\pard\plain \s51\li360\sa60\sb30\qj\widctlpar\qj\adjustright \fs20\cgrid {\i {\s17\sa60\sb30\widctlpar\qj \fs22\cgrid 
+SOSI to ESRI Shape converter. }}}
 }
 {\pard\widctlpar\brdrb\brdrs\brdrw5\brsp20 \adjustright \par}
 \pard\plain \s3\sb240\sa60\keepn\widctlpar\adjustright \b\f1\cgrid 
@@ -113,5 +118,11 @@ Collection of {\b sosicon::IConverter} implementations for handling and generati
 \pard\plain \s80\fi-360\li360\widctlpar\jclisttab\tx360{\*\pn \pnlvlbody\ilvl0\ls1\pnrnot0\pndec }\ls1\adjustright \fs20\cgrid 
 -2tsv: {\b sosicon::ConverterSosi2tsv} TSV file conversion\par
 \pard\plain \s80\fi-360\li360\widctlpar\jclisttab\tx360{\*\pn \pnlvlbody\ilvl0\ls1\pnrnot0\pndec }\ls1\adjustright \fs20\cgrid 
--2shp: {\b sosicon::ConverterSosi2shp} Shape file conversion \par}
+-2shp: {\b sosicon::ConverterSosi2shp} Shape file conversion\par}
+Collection of {\b sosicon::IConverter} implementations for handling and generating file output. Different command-line arguments will employ different converters. The factory class {\b sosicon::Factory} is responsible for creating correct {\b IConverter} instance. The following arguments are currently interpreted:{
+\par
+\pard\plain \s80\fi-360\li360\widctlpar\jclisttab\tx360{\*\pn \pnlvlbody\ilvl0\ls1\pnrnot0\pndec }\ls1\adjustright \fs20\cgrid 
+-2tsv: {\b sosicon::ConverterSosi2tsv} TSV file conversion\par
+\pard\plain \s80\fi-360\li360\widctlpar\jclisttab\tx360{\*\pn \pnlvlbody\ilvl0\ls1\pnrnot0\pndec }\ls1\adjustright \fs20\cgrid 
+-2xml: {\b sosicon::ConverterSosi2xml} Shape file conversion \par}
 }}

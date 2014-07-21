@@ -51,15 +51,16 @@
   <div class="summary">
 <a href="#nested-classes">Classes</a> &#124;
 <a href="#namespaces">Namespaces</a> &#124;
+<a href="#typedef-members">Typedefs</a> &#124;
 <a href="#enum-members">Enumerations</a>  </div>
   <div class="headertitle">
 <div class="title">shapefile_types.h File Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
 <div class="textblock"><code>#include &lt;stdint.h&gt;</code><br/>
+<code>#include &lt;map&gt;</code><br/>
 <code>#include &lt;algorithm&gt;</code><br/>
 <code>#include &lt;limits&gt;</code><br/>
-<code>#include &quot;<a class="el" href="i__rectangle_8h_source.html">../interface/i_rectangle.h</a>&quot;</code><br/>
 </div>
 <p><a href="shapefile__types_8h_source.html">Go to the source code of this file.</a></p>
 <table class="memberdecls">
@@ -75,10 +76,12 @@ Classes</h2></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">32 bit integer / byte field  <a href="unionsosicon_1_1shape_1_1_int32_field.html#details">More...</a><br/></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">union &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="unionsosicon_1_1shape_1_1_int32_t_field.html">sosicon::shape::Int32TField</a></td></tr>
-<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">32 bit integer / byte / <a class="el" href="namespacesosicon_1_1shape_1_1geom.html#a0f6b11a6fdf5551a52a15d05c12dcd86" title="Geometry types.">geom::ShapeType</a> field  <a href="unionsosicon_1_1shape_1_1_int32_t_field.html#details">More...</a><br/></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">32 bit integer / byte / geom::ShapeType field  <a href="unionsosicon_1_1shape_1_1_int32_t_field.html#details">More...</a><br/></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">union &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="unionsosicon_1_1shape_1_1_double_field.html">sosicon::shape::DoubleField</a></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">32 bit double / byte field  <a href="unionsosicon_1_1shape_1_1_double_field.html#details">More...</a><br/></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structsosicon_1_1shape_1_1_shx_index.html">sosicon::shape::ShxIndex</a></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="namespaces"></a>
@@ -89,40 +92,50 @@ Namespaces</h2></td></tr>
 <tr class="memitem:namespacesosicon_1_1shape"><td class="memItemLeft" align="right" valign="top">namespace &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacesosicon_1_1shape.html">sosicon::shape</a></td></tr>
 <tr class="memdesc:namespacesosicon_1_1shape"><td class="mdescLeft">&#160;</td><td class="mdescRight">ESRI Shape. <br/></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:namespacesosicon_1_1shape_1_1geom"><td class="memItemLeft" align="right" valign="top">namespace &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacesosicon_1_1shape_1_1geom.html">sosicon::shape::geom</a></td></tr>
-<tr class="memdesc:namespacesosicon_1_1shape_1_1geom"><td class="mdescLeft">&#160;</td><td class="mdescRight"><a class="el" href="classsosicon_1_1shape_1_1_shapefile.html" title="Shapefile implementation.">Shapefile</a> geometries. <br/></td></tr>
-<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="typedef-members"></a>
+Typedefs</h2></td></tr>
+<tr class="memitem:a0f7f7705397bd412b1ba04f256c13497"><td class="memItemLeft" align="right" valign="top">typedef std::map&lt; std::string, <br class="typebreak"/>
+std::string &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacesosicon_1_1shape.html#a0f7f7705397bd412b1ba04f256c13497">sosicon::shape::DbfRecord</a></td></tr>
+<tr class="separator:a0f7f7705397bd412b1ba04f256c13497"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac352dd2d79c9982b0ceac6d77c93360b"><td class="memItemLeft" align="right" valign="top">typedef std::vector&lt; DbfRecord &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacesosicon_1_1shape.html#ac352dd2d79c9982b0ceac6d77c93360b">sosicon::shape::DbfRecordSet</a></td></tr>
+<tr class="separator:ac352dd2d79c9982b0ceac6d77c93360b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0dc4805fed0e6f17e772619356fb489f"><td class="memItemLeft" align="right" valign="top">typedef std::map&lt; std::string, <br class="typebreak"/>
+int &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacesosicon_1_1shape.html#a0dc4805fed0e6f17e772619356fb489f">sosicon::shape::DbfFieldLengths</a></td></tr>
+<tr class="separator:a0dc4805fed0e6f17e772619356fb489f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afd5e7d3853aabaac4230d6ebe52a1960"><td class="memItemLeft" align="right" valign="top">typedef std::vector&lt; ShxIndex &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacesosicon_1_1shape.html#afd5e7d3853aabaac4230d6ebe52a1960">sosicon::shape::ShxOffsets</a></td></tr>
+<tr class="separator:afd5e7d3853aabaac4230d6ebe52a1960"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="enum-members"></a>
 Enumerations</h2></td></tr>
-<tr class="memitem:a0f6b11a6fdf5551a52a15d05c12dcd86"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacesosicon_1_1shape_1_1geom.html#a0f6b11a6fdf5551a52a15d05c12dcd86">sosicon::shape::geom::ShapeType</a> { <br/>
-&#160;&#160;<a class="el" href="namespacesosicon_1_1shape_1_1geom.html#a0f6b11a6fdf5551a52a15d05c12dcd86abe01d1a14ebe9925348e742d314b17e2">sosicon::shape::geom::none</a>, 
-<a class="el" href="namespacesosicon_1_1shape_1_1geom.html#a0f6b11a6fdf5551a52a15d05c12dcd86a3cf73bc2c373c7ded6d8e4b7c60363f6">sosicon::shape::geom::nullShape</a>, 
-<a class="el" href="namespacesosicon_1_1shape_1_1geom.html#a0f6b11a6fdf5551a52a15d05c12dcd86aa05992a2b2d2b0efd1fdb78f72b1c7fd">sosicon::shape::geom::point</a>, 
-<a class="el" href="namespacesosicon_1_1shape_1_1geom.html#a0f6b11a6fdf5551a52a15d05c12dcd86ab05ba3f6480bc121a47cf80e9f6a743d">sosicon::shape::geom::polyLine</a>, 
+<tr class="memitem:a4a7f54467dc93b98564b38b2f6eb9f75"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacesosicon_1_1shape.html#a4a7f54467dc93b98564b38b2f6eb9f75">sosicon::shape::ShapeType</a> { <br/>
+&#160;&#160;<a class="el" href="namespacesosicon_1_1shape.html#a4a7f54467dc93b98564b38b2f6eb9f75a914eca287599481de4c5cb46b01ed47e">sosicon::shape::shape_type_none</a>, 
+<a class="el" href="namespacesosicon_1_1shape.html#a4a7f54467dc93b98564b38b2f6eb9f75a2e9187fe4e47c6dd181436fa9e7392eb">sosicon::shape::shape_type_nullShape</a>, 
+<a class="el" href="namespacesosicon_1_1shape.html#a4a7f54467dc93b98564b38b2f6eb9f75a86ba1a092f711610afd26b4518907268">sosicon::shape::shape_type_point</a>, 
+<a class="el" href="namespacesosicon_1_1shape.html#a4a7f54467dc93b98564b38b2f6eb9f75aa87cc9571c141e56e4a56ba9e4dcfd3d">sosicon::shape::shape_type_polyLine</a>, 
 <br/>
-&#160;&#160;<a class="el" href="namespacesosicon_1_1shape_1_1geom.html#a0f6b11a6fdf5551a52a15d05c12dcd86a75b5d46958ca75ce6ec21f331d92a534">sosicon::shape::geom::polygon</a>, 
-<a class="el" href="namespacesosicon_1_1shape_1_1geom.html#a0f6b11a6fdf5551a52a15d05c12dcd86a8374a2f4dc0d01417fbee5c3c343fc14">sosicon::shape::geom::multipoint</a>, 
-<a class="el" href="namespacesosicon_1_1shape_1_1geom.html#a0f6b11a6fdf5551a52a15d05c12dcd86a1ed5addc9750a437256586824b5a8b01">sosicon::shape::geom::pointZ</a>, 
-<a class="el" href="namespacesosicon_1_1shape_1_1geom.html#a0f6b11a6fdf5551a52a15d05c12dcd86a44ddac460c4ef77182a151dbd646f694">sosicon::shape::geom::polyLineZ</a>, 
+&#160;&#160;<a class="el" href="namespacesosicon_1_1shape.html#a4a7f54467dc93b98564b38b2f6eb9f75a76f0f58993aa82fb5292a89e1117fe1b">sosicon::shape::shape_type_polygon</a>, 
+<a class="el" href="namespacesosicon_1_1shape.html#a4a7f54467dc93b98564b38b2f6eb9f75a4c8da30e9e61de5b043a7ddc1fd826eb">sosicon::shape::shape_type_multipoint</a>, 
+<a class="el" href="namespacesosicon_1_1shape.html#a4a7f54467dc93b98564b38b2f6eb9f75a062bdfd2097505ff3941cf3d154486a6">sosicon::shape::shape_type_pointZ</a>, 
+<a class="el" href="namespacesosicon_1_1shape.html#a4a7f54467dc93b98564b38b2f6eb9f75a814df855b1c4bbdcba4da9b474d34fbb">sosicon::shape::shape_type_polyLineZ</a>, 
 <br/>
-&#160;&#160;<a class="el" href="namespacesosicon_1_1shape_1_1geom.html#a0f6b11a6fdf5551a52a15d05c12dcd86a2ecf33181ad2bb04015b33fa64613f58">sosicon::shape::geom::polygonZ</a>, 
-<a class="el" href="namespacesosicon_1_1shape_1_1geom.html#a0f6b11a6fdf5551a52a15d05c12dcd86afe9fb1852d9b2f462d8325a672d25948">sosicon::shape::geom::multipointZ</a>, 
-<a class="el" href="namespacesosicon_1_1shape_1_1geom.html#a0f6b11a6fdf5551a52a15d05c12dcd86a5edf3cc86385c19ec47ae478994eae07">sosicon::shape::geom::pointM</a>, 
-<a class="el" href="namespacesosicon_1_1shape_1_1geom.html#a0f6b11a6fdf5551a52a15d05c12dcd86a292eb006a504ee6377b33e98eda0ddfc">sosicon::shape::geom::polyLineM</a>, 
+&#160;&#160;<a class="el" href="namespacesosicon_1_1shape.html#a4a7f54467dc93b98564b38b2f6eb9f75a9fdccf4fa979490bea55c7c299f76d62">sosicon::shape::shape_type_polygonZ</a>, 
+<a class="el" href="namespacesosicon_1_1shape.html#a4a7f54467dc93b98564b38b2f6eb9f75a49185b6da5e01015c186a1fb88c28def">sosicon::shape::shape_type_multipointZ</a>, 
+<a class="el" href="namespacesosicon_1_1shape.html#a4a7f54467dc93b98564b38b2f6eb9f75aac9b8f2c41caac54303cb84832edb13d">sosicon::shape::shape_type_pointM</a>, 
+<a class="el" href="namespacesosicon_1_1shape.html#a4a7f54467dc93b98564b38b2f6eb9f75afec9955879d97a22edea50fe61687b1c">sosicon::shape::shape_type_polyLineM</a>, 
 <br/>
-&#160;&#160;<a class="el" href="namespacesosicon_1_1shape_1_1geom.html#a0f6b11a6fdf5551a52a15d05c12dcd86a820d7464c2e5f5dc96cdf4d0e6bb4395">sosicon::shape::geom::polygonM</a>, 
-<a class="el" href="namespacesosicon_1_1shape_1_1geom.html#a0f6b11a6fdf5551a52a15d05c12dcd86a282623500974c054083542705a8c6be6">sosicon::shape::geom::multiPointM</a>, 
-<a class="el" href="namespacesosicon_1_1shape_1_1geom.html#a0f6b11a6fdf5551a52a15d05c12dcd86a493c81df17a1643fd6b079bec7cf9fc1">sosicon::shape::geom::multiPatch</a>
+&#160;&#160;<a class="el" href="namespacesosicon_1_1shape.html#a4a7f54467dc93b98564b38b2f6eb9f75aca14f18f67261f554b2df096ce3ab38d">sosicon::shape::shape_type_polygonM</a>, 
+<a class="el" href="namespacesosicon_1_1shape.html#a4a7f54467dc93b98564b38b2f6eb9f75adbb01b24e420a8c29f930c1d3e41038c">sosicon::shape::shape_type_multiPointM</a>, 
+<a class="el" href="namespacesosicon_1_1shape.html#a4a7f54467dc93b98564b38b2f6eb9f75a4acd629f76f928cc341b99427b1601df">sosicon::shape::shape_type_multiPatch</a>
 <br/>
  }</td></tr>
-<tr class="memdesc:a0f6b11a6fdf5551a52a15d05c12dcd86"><td class="mdescLeft">&#160;</td><td class="mdescRight">Geometry types.  <a href="namespacesosicon_1_1shape_1_1geom.html#a0f6b11a6fdf5551a52a15d05c12dcd86">More...</a><br/></td></tr>
-<tr class="separator:a0f6b11a6fdf5551a52a15d05c12dcd86"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memdesc:a4a7f54467dc93b98564b38b2f6eb9f75"><td class="mdescLeft">&#160;</td><td class="mdescRight">Geometry types.  <a href="namespacesosicon_1_1shape.html#a4a7f54467dc93b98564b38b2f6eb9f75">More...</a><br/></td></tr>
+<tr class="separator:a4a7f54467dc93b98564b38b2f6eb9f75"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sat Mar 30 2013 13:18:18 for sosicon by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Mon Jul 21 2014 23:53:24 for sosicon by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.2
 </small></address>

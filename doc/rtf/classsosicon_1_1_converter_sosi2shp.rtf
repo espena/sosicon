@@ -85,8 +85,8 @@
 sosicon::ConverterSosi2shp Class Reference\par \pard\plain 
 {\tc\tcl2 \v sosicon::ConverterSosi2shp}
 {\xe \v sosicon::ConverterSosi2shp}
-{\bkmkstart AAAAAAAAED}
-{\bkmkend AAAAAAAAED}
+{\bkmkstart AAAAAAAAEH}
+{\bkmkend AAAAAAAAEH}
 \par
 {
 {\s17\sa60\sb30\widctlpar\qj \fs22\cgrid 
@@ -110,6 +110,13 @@ Constructor. }{
 }\par
 }}
 \pard\plain \s80\fi-360\li360\widctlpar\jclisttab\tx360{\*\pn \pnlvlbody\ilvl0\ls1\pnrnot0\pndec }\ls1\adjustright \fs20\cgrid 
+virtual {\b ~ConverterSosi2shp} ()\par
+{
+\pard\plain \s51\li360\sa60\sb30\qj\widctlpar\qj\adjustright \fs20\cgrid {\i {\s17\sa60\sb30\widctlpar\qj \fs22\cgrid 
+Destructor. }{
+}\par
+}}
+\pard\plain \s80\fi-360\li360\widctlpar\jclisttab\tx360{\*\pn \pnlvlbody\ilvl0\ls1\pnrnot0\pndec }\ls1\adjustright \fs20\cgrid 
 virtual void {\b init} ({\b CommandLine} cmd)\par
 {
 \pard\plain \s51\li360\sa60\sb30\qj\widctlpar\qj\adjustright \fs20\cgrid {\i {\s17\sa60\sb30\widctlpar\qj \fs22\cgrid 
@@ -130,7 +137,7 @@ Private Member Functions\par
 
 {
 \pard\plain \s80\fi-360\li360\widctlpar\jclisttab\tx360{\*\pn \pnlvlbody\ilvl0\ls1\pnrnot0\pndec }\ls1\adjustright \fs20\cgrid 
-virtual {\b ~ConverterSosi2shp} ()\par
+void {\b makeShp} ({\b ISosiElement} *sosiTree)\par
 }
 \pard\plain \s3\sb240\sa60\keepn\widctlpar\adjustright \b\f1\cgrid 
 Private Attributes\par
@@ -142,13 +149,6 @@ Private Attributes\par
 {
 \pard\plain \s51\li360\sa60\sb30\qj\widctlpar\qj\adjustright \fs20\cgrid {\i {\s17\sa60\sb30\widctlpar\qj \fs22\cgrid 
 Command line wrapper. }{
-}\par
-}}
-\pard\plain \s80\fi-360\li360\widctlpar\jclisttab\tx360{\*\pn \pnlvlbody\ilvl0\ls1\pnrnot0\pndec }\ls1\adjustright \fs20\cgrid 
-{\b shape::Shapefile} {\b mShapefile}\par
-{
-\pard\plain \s51\li360\sa60\sb30\qj\widctlpar\qj\adjustright \fs20\cgrid {\i {\s17\sa60\sb30\widctlpar\qj \fs22\cgrid 
-Shapefile wrapper. }{
 }\par
 }}
 }
@@ -164,34 +164,20 @@ SOSI to ESRI Shape converter. \par
 {\s17\sa60\sb30\widctlpar\qj \fs22\cgrid 
 If command-line parameter -2shp is specified, this converter will handle the output generation. Produces an ESRI Shape-file from SOSI source. \par
 }{
-Definition at line 51 of file converter_sosi2shp.h.}\par
+Definition at line 47 of file converter_sosi2shp.h.}\par
 }
 {\pard\widctlpar\brdrb\brdrs\brdrw5\brsp20 \adjustright \par}
 \pard\plain \s3\sb240\sa60\keepn\widctlpar\adjustright \b\f1\cgrid 
 Constructor & Destructor Documentation\par
 \pard\plain 
-{\xe \v ~ConverterSosi2shp\:sosicon::ConverterSosi2shp}
-{\xe \v sosicon::ConverterSosi2shp\:~ConverterSosi2shp}
-\pard\plain \s4\sb240\sa60\keepn\widctlpar\adjustright \b\f1\fs20\cgrid {
-{\b 
-sosicon::ConverterSosi2shp::~ConverterSosi2shp (){\f2 [private]}, {\f2 [virtual]}}}
-\par
-{\bkmkstart AAAAAAAAEE}
-{\bkmkend AAAAAAAAEE}
-{
-\pard\plain \s51\li360\sa60\sb30\qj\widctlpar\qj\adjustright \fs20\cgrid 
-\par
-{
-Definition at line 26 of file converter_sosi2shp.cpp.}\par
-}
 {\xe \v ConverterSosi2shp\:sosicon::ConverterSosi2shp}
 {\xe \v sosicon::ConverterSosi2shp\:ConverterSosi2shp}
 \pard\plain \s4\sb240\sa60\keepn\widctlpar\adjustright \b\f1\fs20\cgrid {
 {\b 
 sosicon::ConverterSosi2shp::ConverterSosi2shp ()}}
 \par
-{\bkmkstart AAAAAAAAEF}
-{\bkmkend AAAAAAAAEF}
+{\bkmkstart AAAAAAAAEI}
+{\bkmkend AAAAAAAAEI}
 {
 \pard\plain \s51\li360\sa60\sb30\qj\widctlpar\qj\adjustright \fs20\cgrid 
 \par
@@ -200,6 +186,23 @@ sosicon::ConverterSosi2shp::ConverterSosi2shp ()}}
 Constructor. }}\par
 {
 Definition at line 21 of file converter_sosi2shp.cpp.}\par
+}
+{\xe \v ~ConverterSosi2shp\:sosicon::ConverterSosi2shp}
+{\xe \v sosicon::ConverterSosi2shp\:~ConverterSosi2shp}
+\pard\plain \s4\sb240\sa60\keepn\widctlpar\adjustright \b\f1\fs20\cgrid {
+{\b 
+sosicon::ConverterSosi2shp::~ConverterSosi2shp (){\f2 [virtual]}}}
+\par
+{\bkmkstart AAAAAAAAEJ}
+{\bkmkend AAAAAAAAEJ}
+{
+\pard\plain \s51\li360\sa60\sb30\qj\widctlpar\qj\adjustright \fs20\cgrid 
+\par
+{
+{\s17\sa60\sb30\widctlpar\qj \fs22\cgrid 
+Destructor. }}\par
+{
+Definition at line 26 of file converter_sosi2shp.cpp.}\par
 }
 {\pard\widctlpar\brdrb\brdrs\brdrw5\brsp20 \adjustright \par}
 \pard\plain \s3\sb240\sa60\keepn\widctlpar\adjustright \b\f1\cgrid 
@@ -211,8 +214,8 @@ Member Function Documentation\par
 {\b 
 void sosicon::ConverterSosi2shp::init ({\b sosicon::CommandLine} {\i cmd}){\f2 [virtual]}}}
 \par
-{\bkmkstart AAAAAAAAEG}
-{\bkmkend AAAAAAAAEG}
+{\bkmkstart AAAAAAAAEK}
+{\bkmkend AAAAAAAAEK}
 {
 \pard\plain \s51\li360\sa60\sb30\qj\widctlpar\qj\adjustright \fs20\cgrid 
 \par
@@ -224,9 +227,23 @@ Implementation details in {\b sosicon::IConverter::init()} \par
 {{\s5\sb90\sa30\keepn\widctlpar\adjustright \b\f1\fs20\cgrid 
 See Also:\par}\pard\plain \s62\li720\widctlpar\ql\adjustright \fs20\cgrid {\b sosicon::IConverter::init()} \par
 }}{
-Implements {\b sosicon::IConverter} ({\i p.{\field\fldedit {\*\fldinst PAGEREF AAAAAAAAEH \\*MERGEFORMAT}{\fldrslt pagenum}}}).}\par
+Implements {\b sosicon::IConverter} ({\i p.{\field\fldedit {\*\fldinst PAGEREF AAAAAAAAEL \\*MERGEFORMAT}{\fldrslt pagenum}}}).}\par
 {
 Definition at line 31 of file converter_sosi2shp.cpp.}\par
+}
+{\xe \v makeShp\:sosicon::ConverterSosi2shp}
+{\xe \v sosicon::ConverterSosi2shp\:makeShp}
+\pard\plain \s4\sb240\sa60\keepn\widctlpar\adjustright \b\f1\fs20\cgrid {
+{\b 
+void sosicon::ConverterSosi2shp::makeShp ({\b ISosiElement} * {\i sosiTree}){\f2 [private]}}}
+\par
+{\bkmkstart AAAAAAAAEM}
+{\bkmkend AAAAAAAAEM}
+{
+\pard\plain \s51\li360\sa60\sb30\qj\widctlpar\qj\adjustright \fs20\cgrid 
+\par
+{
+Definition at line 36 of file converter_sosi2shp.cpp.}\par
 }
 {\xe \v run\:sosicon::ConverterSosi2shp}
 {\xe \v sosicon::ConverterSosi2shp\:run}
@@ -234,8 +251,8 @@ Definition at line 31 of file converter_sosi2shp.cpp.}\par
 {\b 
 void sosicon::ConverterSosi2shp::run (){\f2 [virtual]}}}
 \par
-{\bkmkstart AAAAAAAAEI}
-{\bkmkend AAAAAAAAEI}
+{\bkmkstart AAAAAAAAEN}
+{\bkmkend AAAAAAAAEN}
 {
 \pard\plain \s51\li360\sa60\sb30\qj\widctlpar\qj\adjustright \fs20\cgrid 
 \par
@@ -247,9 +264,9 @@ Implementation details in {\b sosicon::IConverter::run()} \par
 {{\s5\sb90\sa30\keepn\widctlpar\adjustright \b\f1\fs20\cgrid 
 See Also:\par}\pard\plain \s62\li720\widctlpar\ql\adjustright \fs20\cgrid {\b sosicon::IConverter::run()} \par
 }}{
-Implements {\b sosicon::IConverter} ({\i p.{\field\fldedit {\*\fldinst PAGEREF AAAAAAAAEJ \\*MERGEFORMAT}{\fldrslt pagenum}}}).}\par
+Implements {\b sosicon::IConverter} ({\i p.{\field\fldedit {\*\fldinst PAGEREF AAAAAAAAEO \\*MERGEFORMAT}{\fldrslt pagenum}}}).}\par
 {
-Definition at line 36 of file converter_sosi2shp.cpp.}\par
+Definition at line 60 of file converter_sosi2shp.cpp.}\par
 }
 {\pard\widctlpar\brdrb\brdrs\brdrw5\brsp20 \adjustright \par}
 \pard\plain \s3\sb240\sa60\keepn\widctlpar\adjustright \b\f1\cgrid 
@@ -261,8 +278,8 @@ Member Data Documentation\par
 {\b 
 {\b CommandLine} sosicon::ConverterSosi2shp::mCmd{\f2 [private]}}}
 \par
-{\bkmkstart AAAAAAAAEK}
-{\bkmkend AAAAAAAAEK}
+{\bkmkstart AAAAAAAAEP}
+{\bkmkend AAAAAAAAEP}
 {
 \pard\plain \s51\li360\sa60\sb30\qj\widctlpar\qj\adjustright \fs20\cgrid 
 \par
@@ -270,24 +287,7 @@ Member Data Documentation\par
 {\s17\sa60\sb30\widctlpar\qj \fs22\cgrid 
 Command line wrapper. }}\par
 {
-Definition at line 54 of file converter_sosi2shp.h.}\par
-}
-{\xe \v mShapefile\:sosicon::ConverterSosi2shp}
-{\xe \v sosicon::ConverterSosi2shp\:mShapefile}
-\pard\plain \s4\sb240\sa60\keepn\widctlpar\adjustright \b\f1\fs20\cgrid {
-{\b 
-{\b shape::Shapefile} sosicon::ConverterSosi2shp::mShapefile{\f2 [private]}}}
-\par
-{\bkmkstart AAAAAAAAEL}
-{\bkmkend AAAAAAAAEL}
-{
-\pard\plain \s51\li360\sa60\sb30\qj\widctlpar\qj\adjustright \fs20\cgrid 
-\par
-{
-{\s17\sa60\sb30\widctlpar\qj \fs22\cgrid 
-Shapefile wrapper. }}\par
-{
-Definition at line 57 of file converter_sosi2shp.h.}\par
+Definition at line 50 of file converter_sosi2shp.h.}\par
 }
 {\pard\widctlpar\brdrb\brdrs\brdrw5\brsp20 \adjustright \par}
 The documentation for this class was generated from the following files:{\par

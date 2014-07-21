@@ -68,10 +68,7 @@ Inheritance diagram for sosicon::ISosiElement:</div>
  <div class="center">
   <img src="classsosicon_1_1_i_sosi_element.png" usemap="#sosicon::ISosiElement_map" alt=""/>
   <map id="sosicon::ISosiElement_map" name="sosicon::ISosiElement_map">
-<area href="classsosicon_1_1sosi_1_1_sosi_element.html" title="Basic SOSI element." alt="sosicon::sosi::SosiElement" shape="rect" coords="0,56,187,80"/>
-<area href="classsosicon_1_1sosi_1_1_sosi_element_head.html" title="Sosi head element (HODE)" alt="sosicon::sosi::SosiElementHead" shape="rect" coords="197,56,384,80"/>
-<area href="classsosicon_1_1sosi_1_1_sosi_element_point.html" title="Sosi point element (PUNKT)" alt="sosicon::sosi::SosiElementPoint" shape="rect" coords="394,56,581,80"/>
-<area href="classsosicon_1_1sosi_1_1_sosi_element_text.html" title="Sosi text element (TEKST)" alt="sosicon::sosi::SosiElementText" shape="rect" coords="591,56,778,80"/>
+<area href="classsosicon_1_1sosi_1_1_sosi_element.html" title="Basic SOSI element." alt="sosicon::sosi::SosiElement" shape="rect" coords="0,56,157,80"/>
 </map>
  </div></div>
 <table class="memberdecls">
@@ -80,38 +77,40 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a36b2ab6db6147265aa78ff56f9d23dd1"><td class="memItemLeft" align="right" valign="top">virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classsosicon_1_1_i_sosi_element.html#a36b2ab6db6147265aa78ff56f9d23dd1">~ISosiElement</a> ()</td></tr>
 <tr class="memdesc:a36b2ab6db6147265aa78ff56f9d23dd1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Destructor.  <a href="#a36b2ab6db6147265aa78ff56f9d23dd1"></a><br/></td></tr>
 <tr class="separator:a36b2ab6db6147265aa78ff56f9d23dd1"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a1de153b3752be8cbe37a64128f68eeaa"><td class="memItemLeft" align="right" valign="top">virtual std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classsosicon_1_1_i_sosi_element.html#a1de153b3752be8cbe37a64128f68eeaa">getData</a> (const char *key)=0</td></tr>
-<tr class="memdesc:a1de153b3752be8cbe37a64128f68eeaa"><td class="mdescLeft">&#160;</td><td class="mdescRight">Retrieve string data.  <a href="#a1de153b3752be8cbe37a64128f68eeaa"></a><br/></td></tr>
-<tr class="separator:a1de153b3752be8cbe37a64128f68eeaa"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a600609cf7d226c1fd70b580e8acea725"><td class="memItemLeft" align="right" valign="top">virtual std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classsosicon_1_1_i_sosi_element.html#a600609cf7d226c1fd70b580e8acea725">getData</a> (::<a class="el" href="classsosicon_1_1sosi_1_1_cadastral_unit.html">sosicon::sosi::CadastralUnit</a> *&amp;cunit)=0</td></tr>
-<tr class="memdesc:a600609cf7d226c1fd70b580e8acea725"><td class="mdescLeft">&#160;</td><td class="mdescRight">Retrieve next cadastral unit.  <a href="#a600609cf7d226c1fd70b580e8acea725"></a><br/></td></tr>
-<tr class="separator:a600609cf7d226c1fd70b580e8acea725"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad9a4aeaa618bdc080c9858ab0a416c47"><td class="memItemLeft" align="right" valign="top">virtual std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classsosicon_1_1_i_sosi_element.html#ad9a4aeaa618bdc080c9858ab0a416c47">getData</a> (::<a class="el" href="classsosicon_1_1sosi_1_1_address_unit.html">sosicon::sosi::AddressUnit</a> *&amp;aunit)=0</td></tr>
-<tr class="memdesc:ad9a4aeaa618bdc080c9858ab0a416c47"><td class="mdescLeft">&#160;</td><td class="mdescRight">Retrieve next address.  <a href="#ad9a4aeaa618bdc080c9858ab0a416c47"></a><br/></td></tr>
-<tr class="separator:ad9a4aeaa618bdc080c9858ab0a416c47"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a5c78b519d84a4c6958d5464a48d1eae5"><td class="memItemLeft" align="right" valign="top">virtual std::vector<br class="typebreak"/>
-&lt; std::string &gt; &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classsosicon_1_1_i_sosi_element.html#a5c78b519d84a4c6958d5464a48d1eae5">getFields</a> ()=0</td></tr>
-<tr class="memdesc:a5c78b519d84a4c6958d5464a48d1eae5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Retrieve list of available SOSI fields.  <a href="#a5c78b519d84a4c6958d5464a48d1eae5"></a><br/></td></tr>
-<tr class="separator:a5c78b519d84a4c6958d5464a48d1eae5"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a70adbb778e6e6660e286004fe0d3bfbc"><td class="memItemLeft" align="right" valign="top">virtual std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classsosicon_1_1_i_sosi_element.html#a70adbb778e6e6660e286004fe0d3bfbc">getType</a> ()=0</td></tr>
-<tr class="memdesc:a70adbb778e6e6660e286004fe0d3bfbc"><td class="mdescLeft">&#160;</td><td class="mdescRight">Retrieve SOSI element OBJTYPE.  <a href="#a70adbb778e6e6660e286004fe0d3bfbc"></a><br/></td></tr>
-<tr class="separator:a70adbb778e6e6660e286004fe0d3bfbc"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a8f1130de776236e10efdb6704d29e646"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classsosicon_1_1_i_sosi_element.html#a8f1130de776236e10efdb6704d29e646">set</a> (const std::string &amp;key, const std::string &amp;val)=0</td></tr>
-<tr class="memdesc:a8f1130de776236e10efdb6704d29e646"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set value.  <a href="#a8f1130de776236e10efdb6704d29e646"></a><br/></td></tr>
-<tr class="separator:a8f1130de776236e10efdb6704d29e646"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a111d6c927eaef79715bcb30ca2b57a2e"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classsosicon_1_1_i_sosi_element.html#a111d6c927eaef79715bcb30ca2b57a2e">append</a> (const std::string &amp;key, char val)=0</td></tr>
-<tr class="memdesc:a111d6c927eaef79715bcb30ca2b57a2e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Append character to value.  <a href="#a111d6c927eaef79715bcb30ca2b57a2e"></a><br/></td></tr>
-<tr class="separator:a111d6c927eaef79715bcb30ca2b57a2e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:adbc15e2a6631a7d75a24033e53f96e59"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classsosicon_1_1_i_sosi_element.html#adbc15e2a6631a7d75a24033e53f96e59">addChild</a> (<a class="el" href="classsosicon_1_1_i_sosi_element.html">ISosiElement</a> *child)=0</td></tr>
+<tr class="separator:adbc15e2a6631a7d75a24033e53f96e59"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5b3483ad5611e71b40f204427f7a346e"><td class="memItemLeft" align="right" valign="top">virtual std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classsosicon_1_1_i_sosi_element.html#a5b3483ad5611e71b40f204427f7a346e">getName</a> ()=0</td></tr>
+<tr class="separator:a5b3483ad5611e71b40f204427f7a346e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4121803b90b8ce323d9dacefd6794e00"><td class="memItemLeft" align="right" valign="top">virtual bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classsosicon_1_1_i_sosi_element.html#a4121803b90b8ce323d9dacefd6794e00">getChild</a> (<a class="el" href="classsosicon_1_1sosi_1_1_sosi_element_search.html">sosi::SosiElementSearch</a> &amp;src)=0</td></tr>
+<tr class="separator:a4121803b90b8ce323d9dacefd6794e00"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aadbd95dc934270b58d06d26cd438fc77"><td class="memItemLeft" align="right" valign="top">virtual bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classsosicon_1_1_i_sosi_element.html#aadbd95dc934270b58d06d26cd438fc77">getChild</a> (<a class="el" href="classsosicon_1_1sosi_1_1_sosi_element_search.html">sosi::SosiElementSearch</a> &amp;src, <a class="el" href="group__sosi__elements.html#ga52dbaad3d1e20075608257e866b0a7ca">sosi::ElementType</a> type)=0</td></tr>
+<tr class="separator:aadbd95dc934270b58d06d26cd438fc77"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab33deaf4518ec6dd920060b2b4d9461d"><td class="memItemLeft" align="right" valign="top">virtual std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classsosicon_1_1_i_sosi_element.html#ab33deaf4518ec6dd920060b2b4d9461d">getData</a> ()=0</td></tr>
+<tr class="separator:ab33deaf4518ec6dd920060b2b4d9461d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad1a34543eba5cc1e6c769fb15c5ce763"><td class="memItemLeft" align="right" valign="top">virtual int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classsosicon_1_1_i_sosi_element.html#ad1a34543eba5cc1e6c769fb15c5ce763">getLevel</a> ()=0</td></tr>
+<tr class="separator:ad1a34543eba5cc1e6c769fb15c5ce763"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aaeb48f9034e8b968bfc86fd9d186175c"><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="group__sosi__elements.html#ga52dbaad3d1e20075608257e866b0a7ca">sosi::ElementType</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classsosicon_1_1_i_sosi_element.html#aaeb48f9034e8b968bfc86fd9d186175c">getType</a> ()=0</td></tr>
+<tr class="separator:aaeb48f9034e8b968bfc86fd9d186175c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1d2133943bb61d641f57cbbd4aeb632f"><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="classsosicon_1_1_i_sosi_element.html">ISosiElement</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classsosicon_1_1_i_sosi_element.html#a1d2133943bb61d641f57cbbd4aeb632f">getRoot</a> ()=0</td></tr>
+<tr class="separator:a1d2133943bb61d641f57cbbd4aeb632f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab46678fc633317fca491bbe79b9264b8"><td class="memItemLeft" align="right" valign="top">virtual std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classsosicon_1_1_i_sosi_element.html#ab46678fc633317fca491bbe79b9264b8">getSerial</a> ()=0</td></tr>
+<tr class="separator:ab46678fc633317fca491bbe79b9264b8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7a6cacd5be194fd91a163d5d4b9abe2d"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classsosicon_1_1_i_sosi_element.html#a7a6cacd5be194fd91a163d5d4b9abe2d">deleteChildren</a> ()=0</td></tr>
+<tr class="separator:a7a6cacd5be194fd91a163d5d4b9abe2d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a930918cb7a585352f9928176eabe1675"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classsosicon_1_1_i_sosi_element.html#a930918cb7a585352f9928176eabe1675">dump</a> (int indent=0)=0</td></tr>
+<tr class="separator:a930918cb7a585352f9928176eabe1675"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a832e2a22097bae79b3554b33613d7e13"><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="classsosicon_1_1_i_sosi_element.html">ISosiElement</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classsosicon_1_1_i_sosi_element.html#a832e2a22097bae79b3554b33613d7e13">find</a> (std::string ref)=0</td></tr>
+<tr class="separator:a832e2a22097bae79b3554b33613d7e13"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Interface: SOSI element. </p>
 <dl class="section author"><dt>Author</dt><dd>Espen Andersen </dd></dl>
 <dl class="section copyright"><dt>Copyright</dt><dd>GNU General Public License</dd></dl>
 <p>Represents the generic form of a SOSI element. All SOSI elements must implement this interface. It provides functionality for setting and retrieveing field values. The parser writes field values to current SOSI element through this interface.</p>
-<dl class="section see"><dt>See Also</dt><dd><a class="el" href="classsosicon_1_1_parser.html#ac9565b049142d6d1230cb711ba784ce0" title="Main parser routine.">sosicon::Parser::parseSosiLine()</a></dd></dl>
-<p>Data retrieval is provided by one of the <a class="el" href="classsosicon_1_1_i_sosi_element.html#a1de153b3752be8cbe37a64128f68eeaa" title="Retrieve string data.">getData()</a> overloads. Single string data fields are associated with their unique keys, while collections of other data objects, such as address units and cadastral units, are retrieved one-by-one by sequential calls to <a class="el" href="classsosicon_1_1_i_sosi_element.html#a1de153b3752be8cbe37a64128f68eeaa" title="Retrieve string data.">getData()</a>. </p>
+<dl class="section see"><dt>See Also</dt><dd>sosicon::Parser::parseSosiLine()</dd></dl>
+<p>Data retrieval is provided by one of the <a class="el" href="classsosicon_1_1_i_sosi_element.html#ab33deaf4518ec6dd920060b2b4d9461d">getData()</a> overloads. Single string data fields are associated with their unique keys, while collections of other data objects, such as address units and cadastral units, are retrieved one-by-one by sequential calls to <a class="el" href="classsosicon_1_1_i_sosi_element.html#ab33deaf4518ec6dd920060b2b4d9461d">getData()</a>. </p>
 
-<p>Definition at line <a class="el" href="i__sosi__element_8h_source.html#l00049">49</a> of file <a class="el" href="i__sosi__element_8h_source.html">i_sosi_element.h</a>.</p>
+<p>Definition at line <a class="el" href="i__sosi__element_8h_source.html#l00051">51</a> of file <a class="el" href="i__sosi__element_8h_source.html">i_sosi_element.h</a>.</p>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a class="anchor" id="a36b2ab6db6147265aa78ff56f9d23dd1"></a>
 <div class="memitem">
@@ -136,12 +135,12 @@ Public Member Functions</h2></td></tr>
 
 <p>Destructor. </p>
 
-<p>Definition at line <a class="el" href="i__sosi__element_8h_source.html#l00053">53</a> of file <a class="el" href="i__sosi__element_8h_source.html">i_sosi_element.h</a>.</p>
+<p>Definition at line <a class="el" href="i__sosi__element_8h_source.html#l00055">55</a> of file <a class="el" href="i__sosi__element_8h_source.html">i_sosi_element.h</a>.</p>
 
 </div>
 </div>
 <h2 class="groupheader">Member Function Documentation</h2>
-<a class="anchor" id="a111d6c927eaef79715bcb30ca2b57a2e"></a>
+<a class="anchor" id="adbc15e2a6631a7d75a24033e53f96e59"></a>
 <div class="memitem">
 <div class="memproto">
 <table class="mlabels">
@@ -149,16 +148,145 @@ Public Member Functions</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">virtual void sosicon::ISosiElement::append </td>
+          <td class="memname">virtual void sosicon::ISosiElement::addChild </td>
           <td>(</td>
-          <td class="paramtype">const std::string &amp;&#160;</td>
-          <td class="paramname"><em>key</em>, </td>
+          <td class="paramtype"><a class="el" href="classsosicon_1_1_i_sosi_element.html">ISosiElement</a> *&#160;</td>
+          <td class="paramname"><em>child</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">pure virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Implemented in <a class="el" href="classsosicon_1_1sosi_1_1_sosi_element.html#aee9841d31993a16d3b7a17072d90c4bf">sosicon::sosi::SosiElement</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a7a6cacd5be194fd91a163d5d4b9abe2d"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual void sosicon::ISosiElement::deleteChildren </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">pure virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Implemented in <a class="el" href="classsosicon_1_1sosi_1_1_sosi_element.html#ab5607032e208188aa8218507f0c08073">sosicon::sosi::SosiElement</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a930918cb7a585352f9928176eabe1675"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual void sosicon::ISosiElement::dump </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>indent</em> = <code>0</code></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">pure virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Implemented in <a class="el" href="classsosicon_1_1sosi_1_1_sosi_element.html#ac192ce3b9e6f8521c019f64645a6a9f2">sosicon::sosi::SosiElement</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a832e2a22097bae79b3554b33613d7e13"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual <a class="el" href="classsosicon_1_1_i_sosi_element.html">ISosiElement</a>* sosicon::ISosiElement::find </td>
+          <td>(</td>
+          <td class="paramtype">std::string&#160;</td>
+          <td class="paramname"><em>ref</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">pure virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Implemented in <a class="el" href="classsosicon_1_1sosi_1_1_sosi_element.html#a31e25b88aa88d83a9bd9c07f45e0894f">sosicon::sosi::SosiElement</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a4121803b90b8ce323d9dacefd6794e00"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual bool sosicon::ISosiElement::getChild </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classsosicon_1_1sosi_1_1_sosi_element_search.html">sosi::SosiElementSearch</a> &amp;&#160;</td>
+          <td class="paramname"><em>src</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">pure virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Implemented in <a class="el" href="classsosicon_1_1sosi_1_1_sosi_element.html#a38a6829b2cfec6feccc96f7fe0dc8daa">sosicon::sosi::SosiElement</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="aadbd95dc934270b58d06d26cd438fc77"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual bool sosicon::ISosiElement::getChild </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classsosicon_1_1sosi_1_1_sosi_element_search.html">sosi::SosiElementSearch</a> &amp;&#160;</td>
+          <td class="paramname"><em>src</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">char&#160;</td>
-          <td class="paramname"><em>val</em>&#160;</td>
+          <td class="paramtype"><a class="el" href="group__sosi__elements.html#ga52dbaad3d1e20075608257e866b0a7ca">sosi::ElementType</a>&#160;</td>
+          <td class="paramname"><em>type</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -173,22 +301,11 @@ Public Member Functions</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Append character to value. </p>
-<p>Appends one character to a SOSI field. The parser works by consuming characters one-by-one. Upon encountering a SOSI field value, the character is injected into the element's corresponding field through this function, placing the character at the end of the current string. If the field entry does not exist, it will be created.</p>
-<dl class="section see"><dt>See Also</dt><dd><a class="el" href="classsosicon_1_1_parser.html#ac9565b049142d6d1230cb711ba784ce0" title="Main parser routine.">sosicon::Parser::parseSosiLine()</a></dd></dl>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">key</td><td>Name of the SOSI field to update. </td></tr>
-    <tr><td class="paramname">var</td><td>The character to be appended at the end of current SOSI field value. </td></tr>
-  </table>
-  </dd>
-</dl>
-
-<p>Implemented in <a class="el" href="classsosicon_1_1sosi_1_1_sosi_element_point.html#add57105dfdb41ca4ac258b27efa05370">sosicon::sosi::SosiElementPoint</a>, <a class="el" href="classsosicon_1_1sosi_1_1_sosi_element.html#aeb561cfdbc48484c0b3ec30cf7128a42">sosicon::sosi::SosiElement</a>, <a class="el" href="classsosicon_1_1sosi_1_1_sosi_element_head.html#a31c1d1936159280d8421e0ef68096d83">sosicon::sosi::SosiElementHead</a>, and <a class="el" href="classsosicon_1_1sosi_1_1_sosi_element_text.html#a2419f55cd2f9503f1c8ffaa7180eaebc">sosicon::sosi::SosiElementText</a>.</p>
+<p>Implemented in <a class="el" href="classsosicon_1_1sosi_1_1_sosi_element.html#a6ed34230f5c0fe78c6ca816ae2a4efc4">sosicon::sosi::SosiElement</a>.</p>
 
 </div>
 </div>
-<a class="anchor" id="a1de153b3752be8cbe37a64128f68eeaa"></a>
+<a class="anchor" id="ab33deaf4518ec6dd920060b2b4d9461d"></a>
 <div class="memitem">
 <div class="memproto">
 <table class="mlabels">
@@ -197,114 +314,6 @@ Public Member Functions</h2></td></tr>
       <table class="memname">
         <tr>
           <td class="memname">virtual std::string sosicon::ISosiElement::getData </td>
-          <td>(</td>
-          <td class="paramtype">const char *&#160;</td>
-          <td class="paramname"><em>key</em></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">pure virtual</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>Retrieve string data. </p>
-<p>Get string value by key. Every SOSI element has several data fields. These fields are loaded into current element by the parser. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">key</td><td>The key for the string data to be retrieved. </td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>Returns</dt><dd>If the key exists, the corresponding data string will be returned. Otherwise, a blank string is returned. </dd></dl>
-
-<p>Implemented in <a class="el" href="classsosicon_1_1sosi_1_1_sosi_element_point.html#abaffb461e35ade10f1a2bb28c0803341">sosicon::sosi::SosiElementPoint</a>, <a class="el" href="classsosicon_1_1sosi_1_1_sosi_element.html#a658c4867e434020ccda696d0d54a872e">sosicon::sosi::SosiElement</a>, <a class="el" href="classsosicon_1_1sosi_1_1_sosi_element_head.html#aa4baeb51bdf9590142c0ca6379995e8d">sosicon::sosi::SosiElementHead</a>, and <a class="el" href="classsosicon_1_1sosi_1_1_sosi_element_text.html#a1c34c766989a1d6ce2c031f020c004fe">sosicon::sosi::SosiElementText</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="a600609cf7d226c1fd70b580e8acea725"></a>
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">virtual std::string sosicon::ISosiElement::getData </td>
-          <td>(</td>
-          <td class="paramtype">::<a class="el" href="classsosicon_1_1sosi_1_1_cadastral_unit.html">sosicon::sosi::CadastralUnit</a> *&amp;&#160;</td>
-          <td class="paramname"><em>cunit</em></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">pure virtual</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>Retrieve next cadastral unit. </p>
-<p>If there are a vector of CadastralUnit objects associated with current <a class="el" href="classsosicon_1_1_i_sosi_element.html" title="Interface: SOSI element.">ISosiElement</a>, this function will return the next such object in the list. A pointer to the object will be stored in the provided cunit pointer reference.</p>
-<p>If the initial value of the cunit pointer is 0, the first CadastralUnit in the list will be returned. Subsequent calls will retrieve the next item in list, until reaching the end. The pointer will then be set back to 0.</p>
-<dl class="section see"><dt>See Also</dt><dd>sosicon::CadastralUnit</dd></dl>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">cunit</td><td>Reference to a pointer to receive the address to the CadastralUnit object. </td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>Returns</dt><dd>A string representation of the CadastralUnit being returned, or an empty string if the list was empty or the iterator moved past the last element in the list. </dd></dl>
-
-</div>
-</div>
-<a class="anchor" id="ad9a4aeaa618bdc080c9858ab0a416c47"></a>
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">virtual std::string sosicon::ISosiElement::getData </td>
-          <td>(</td>
-          <td class="paramtype">::<a class="el" href="classsosicon_1_1sosi_1_1_address_unit.html">sosicon::sosi::AddressUnit</a> *&amp;&#160;</td>
-          <td class="paramname"><em>aunit</em></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">pure virtual</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>Retrieve next address. </p>
-<p>If there are a vector of AddressUnit objects associated with current <a class="el" href="classsosicon_1_1_i_sosi_element.html" title="Interface: SOSI element.">ISosiElement</a>, this function will return the next such object in the list. A pointer to the object will be stored in the provided cunit pointer reference.</p>
-<p>If the initial value of the aunit pointer is 0, the first AddressUnit in the list will be returned. Subsequent calls will retrieve the next item in list, until reaching the end. The pointer will then be set back to 0.</p>
-<dl class="section see"><dt>See Also</dt><dd>sosicon::CadastralUnit</dd></dl>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">aunit</td><td>Reference to a pointer to receive the address to the AddressUnit object. </td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>Returns</dt><dd>A string representation of the AddressUnit being returned, or an empty string if the list was empty or the iterator moved past the last element in the list. </dd></dl>
-
-</div>
-</div>
-<a class="anchor" id="a5c78b519d84a4c6958d5464a48d1eae5"></a>
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">virtual std::vector&lt;std::string&gt;&amp; sosicon::ISosiElement::getFields </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td></td>
@@ -317,15 +326,11 @@ Public Member Functions</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Retrieve list of available SOSI fields. </p>
-<p>Lists all SOSI fields from current element. These are the fields available for export to other formats.</p>
-<dl class="section return"><dt>Returns</dt><dd>Reference to a string vector containing the names of all SOSI fields encountered by the parser in current element. </dd></dl>
-
-<p>Implemented in <a class="el" href="classsosicon_1_1sosi_1_1_sosi_element_point.html#ad647b746438efcdc2abb81462ad123f2">sosicon::sosi::SosiElementPoint</a>, <a class="el" href="classsosicon_1_1sosi_1_1_sosi_element.html#a771a2d04ccf1d178686d9091a8077586">sosicon::sosi::SosiElement</a>, <a class="el" href="classsosicon_1_1sosi_1_1_sosi_element_head.html#a5c263f6da37ec0139bbc33d14efbec6c">sosicon::sosi::SosiElementHead</a>, and <a class="el" href="classsosicon_1_1sosi_1_1_sosi_element_text.html#a07fcc331c4b98db2e37493257bfba4e2">sosicon::sosi::SosiElementText</a>.</p>
+<p>Implemented in <a class="el" href="classsosicon_1_1sosi_1_1_sosi_element.html#ac5d3bc6bf9dce84b69ff4d1ef9e3dcb5">sosicon::sosi::SosiElement</a>.</p>
 
 </div>
 </div>
-<a class="anchor" id="a70adbb778e6e6660e286004fe0d3bfbc"></a>
+<a class="anchor" id="ad1a34543eba5cc1e6c769fb15c5ce763"></a>
 <div class="memitem">
 <div class="memproto">
 <table class="mlabels">
@@ -333,7 +338,7 @@ Public Member Functions</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">virtual std::string sosicon::ISosiElement::getType </td>
+          <td class="memname">virtual int sosicon::ISosiElement::getLevel </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td></td>
@@ -346,14 +351,11 @@ Public Member Functions</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Retrieve SOSI element OBJTYPE. </p>
-<p>Get the object type for current element. </p>
-
-<p>Implemented in <a class="el" href="classsosicon_1_1sosi_1_1_sosi_element_point.html#ae981186c732a262aeb2eaa08a51b1e5f">sosicon::sosi::SosiElementPoint</a>, <a class="el" href="classsosicon_1_1sosi_1_1_sosi_element.html#a2b564e2d4448215b7d1d74e4036c6bf5">sosicon::sosi::SosiElement</a>, <a class="el" href="classsosicon_1_1sosi_1_1_sosi_element_head.html#aaf3aa0c889b91f44f65265031a3455a9">sosicon::sosi::SosiElementHead</a>, and <a class="el" href="classsosicon_1_1sosi_1_1_sosi_element_text.html#a7ec621c4388687337f046fbbc296ceb1">sosicon::sosi::SosiElementText</a>.</p>
+<p>Implemented in <a class="el" href="classsosicon_1_1sosi_1_1_sosi_element.html#ac89e094790b58c9403309bc343e0196e">sosicon::sosi::SosiElement</a>.</p>
 
 </div>
 </div>
-<a class="anchor" id="a8f1130de776236e10efdb6704d29e646"></a>
+<a class="anchor" id="a5b3483ad5611e71b40f204427f7a346e"></a>
 <div class="memitem">
 <div class="memproto">
 <table class="mlabels">
@@ -361,21 +363,10 @@ Public Member Functions</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">virtual void sosicon::ISosiElement::set </td>
+          <td class="memname">virtual std::string sosicon::ISosiElement::getName </td>
           <td>(</td>
-          <td class="paramtype">const std::string &amp;&#160;</td>
-          <td class="paramname"><em>key</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
+          <td class="paramname"></td><td>)</td>
           <td></td>
-          <td class="paramtype">const std::string &amp;&#160;</td>
-          <td class="paramname"><em>val</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
         </tr>
       </table>
   </td>
@@ -385,17 +376,82 @@ Public Member Functions</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Set value. </p>
-<p>Insert or update a SOSI field value. Call this function to insert string values into current element, or to alter an existing value. If the field entry does not exist, it will be created.</p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">key</td><td>Name of the SOSI field to update/insert. </td></tr>
-    <tr><td class="paramname">val</td><td>New string value. </td></tr>
-  </table>
-  </dd>
-</dl>
+<p>Implemented in <a class="el" href="classsosicon_1_1sosi_1_1_sosi_element.html#aa9cf9bc23e33b352f11b3711cca4ccc0">sosicon::sosi::SosiElement</a>.</p>
 
-<p>Implemented in <a class="el" href="classsosicon_1_1sosi_1_1_sosi_element_point.html#ac5d01905625a34d25fea642737059b58">sosicon::sosi::SosiElementPoint</a>, <a class="el" href="classsosicon_1_1sosi_1_1_sosi_element.html#a8cca217e96b5b74f45cdb2647049e5d7">sosicon::sosi::SosiElement</a>, <a class="el" href="classsosicon_1_1sosi_1_1_sosi_element_head.html#ad310f538a66cba19cac13f853697a705">sosicon::sosi::SosiElementHead</a>, and <a class="el" href="classsosicon_1_1sosi_1_1_sosi_element_text.html#aae2ba56efb8039a7930541e2d0e941bb">sosicon::sosi::SosiElementText</a>.</p>
+</div>
+</div>
+<a class="anchor" id="a1d2133943bb61d641f57cbbd4aeb632f"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual <a class="el" href="classsosicon_1_1_i_sosi_element.html">ISosiElement</a>* sosicon::ISosiElement::getRoot </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">pure virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Implemented in <a class="el" href="classsosicon_1_1sosi_1_1_sosi_element.html#a2ce150b6e38ecfc4cf97f32bcc7a62f4">sosicon::sosi::SosiElement</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="ab46678fc633317fca491bbe79b9264b8"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual std::string sosicon::ISosiElement::getSerial </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">pure virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Implemented in <a class="el" href="classsosicon_1_1sosi_1_1_sosi_element.html#a87dab9af83fb5521153a3467666bf7f9">sosicon::sosi::SosiElement</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="aaeb48f9034e8b968bfc86fd9d186175c"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual <a class="el" href="group__sosi__elements.html#ga52dbaad3d1e20075608257e866b0a7ca">sosi::ElementType</a> sosicon::ISosiElement::getType </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">pure virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Implemented in <a class="el" href="classsosicon_1_1sosi_1_1_sosi_element.html#af0e3be6dee0e03f24a2b121c37899887">sosicon::sosi::SosiElement</a>.</p>
 
 </div>
 </div>
@@ -405,7 +461,7 @@ Public Member Functions</h2></td></tr>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sat Mar 30 2013 13:18:18 for sosicon by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Mon Jul 21 2014 23:53:25 for sosicon by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.2
 </small></address>

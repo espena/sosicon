@@ -74,6 +74,9 @@ Functions</h2></td></tr>
 <tr class="memitem:a2e518b57bc4322a2ebf1dc466e8843e1"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespacesosicon_1_1byte_order.html#a317a11ae7127cfb5a12e6b0e84550241">Endianness</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacesosicon_1_1byte_order.html#a2e518b57bc4322a2ebf1dc466e8843e1">determine</a> ()</td></tr>
 <tr class="memdesc:a2e518b57bc4322a2ebf1dc466e8843e1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Determines system endianness.  <a href="#a2e518b57bc4322a2ebf1dc466e8843e1"></a><br/></td></tr>
 <tr class="separator:a2e518b57bc4322a2ebf1dc466e8843e1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1678ad75456abd35015a115aa03b6eda"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacesosicon_1_1byte_order.html#a1678ad75456abd35015a115aa03b6eda">doubleToLittleEndian</a> (double from, char *to)</td></tr>
+<tr class="memdesc:a1678ad75456abd35015a115aa03b6eda"><td class="mdescLeft">&#160;</td><td class="mdescRight">Writes little endian representation of double.  <a href="#a1678ad75456abd35015a115aa03b6eda"></a><br/></td></tr>
+<tr class="separator:a1678ad75456abd35015a115aa03b6eda"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ad725e3fd599a938bd4ecbf3010bd43bc"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacesosicon_1_1byte_order.html#ad725e3fd599a938bd4ecbf3010bd43bc">toBigEndian</a> (const char *from, char *to, size_t bufSize)</td></tr>
 <tr class="memdesc:ad725e3fd599a938bd4ecbf3010bd43bc"><td class="mdescLeft">&#160;</td><td class="mdescRight">Reverses buffer to big endian if required.  <a href="#ad725e3fd599a938bd4ecbf3010bd43bc"></a><br/></td></tr>
 <tr class="separator:ad725e3fd599a938bd4ecbf3010bd43bc"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -112,7 +115,7 @@ Variables</h2></td></tr>
 </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="byte__order_8h_source.html#l00031">31</a> of file <a class="el" href="byte__order_8h_source.html">byte_order.h</a>.</p>
+<p>Definition at line <a class="el" href="byte__order_8h_source.html#l00032">32</a> of file <a class="el" href="byte__order_8h_source.html">byte_order.h</a>.</p>
 
 </div>
 </div>
@@ -142,6 +145,44 @@ Variables</h2></td></tr>
 </dl>
 
 <p>Definition at line <a class="el" href="byte__order_8cpp_source.html#l00024">24</a> of file <a class="el" href="byte__order_8cpp_source.html">byte_order.cpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a1678ad75456abd35015a115aa03b6eda"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void sosicon::byteOrder::doubleToLittleEndian </td>
+          <td>(</td>
+          <td class="paramtype">double&#160;</td>
+          <td class="paramname"><em>from</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">char *&#160;</td>
+          <td class="paramname"><em>to</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Writes little endian representation of double. </p>
+<p>Serializes double-precision floating point value to IEEE little endian representation for binary embedding in files. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">from</td><td>The double value to parse. </td></tr>
+    <tr><td class="paramname">to</td><td>pointer to destination buffer. The buffer must be at least 8 bytes wide, as this is the size of the IEEE 754 format. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p>Definition at line <a class="el" href="byte__order_8cpp_source.html#l00056">56</a> of file <a class="el" href="byte__order_8cpp_source.html">byte_order.cpp</a>.</p>
 
 </div>
 </div>
@@ -254,7 +295,7 @@ Variables</h2></td></tr>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sat Mar 30 2013 13:18:18 for sosicon by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Mon Jul 21 2014 23:53:25 for sosicon by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.2
 </small></address>

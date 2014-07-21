@@ -79,6 +79,9 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:af315b5ea0bf3533875f06abe79c9aa29"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classsosicon_1_1_converter_sosi2shp.html#af315b5ea0bf3533875f06abe79c9aa29">ConverterSosi2shp</a> ()</td></tr>
 <tr class="memdesc:af315b5ea0bf3533875f06abe79c9aa29"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructor.  <a href="#af315b5ea0bf3533875f06abe79c9aa29"></a><br/></td></tr>
 <tr class="separator:af315b5ea0bf3533875f06abe79c9aa29"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae15366cec787269610ce3238fd591828"><td class="memItemLeft" align="right" valign="top">virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classsosicon_1_1_converter_sosi2shp.html#ae15366cec787269610ce3238fd591828">~ConverterSosi2shp</a> ()</td></tr>
+<tr class="memdesc:ae15366cec787269610ce3238fd591828"><td class="mdescLeft">&#160;</td><td class="mdescRight">Destructor.  <a href="#ae15366cec787269610ce3238fd591828"></a><br/></td></tr>
+<tr class="separator:ae15366cec787269610ce3238fd591828"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:af9cae714c060601ac1e97e52497a3c8a"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classsosicon_1_1_converter_sosi2shp.html#af9cae714c060601ac1e97e52497a3c8a">init</a> (<a class="el" href="classsosicon_1_1_command_line.html">CommandLine</a> cmd)</td></tr>
 <tr class="memdesc:af9cae714c060601ac1e97e52497a3c8a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initialize converter.  <a href="#af9cae714c060601ac1e97e52497a3c8a"></a><br/></td></tr>
 <tr class="separator:af9cae714c060601ac1e97e52497a3c8a"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -92,49 +95,21 @@ Public Member Functions</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pri-methods"></a>
 Private Member Functions</h2></td></tr>
-<tr class="memitem:ae15366cec787269610ce3238fd591828"><td class="memItemLeft" align="right" valign="top">virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classsosicon_1_1_converter_sosi2shp.html#ae15366cec787269610ce3238fd591828">~ConverterSosi2shp</a> ()</td></tr>
-<tr class="separator:ae15366cec787269610ce3238fd591828"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac4c4bbcad185b5b93aa930e5eec53ee2"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classsosicon_1_1_converter_sosi2shp.html#ac4c4bbcad185b5b93aa930e5eec53ee2">makeShp</a> (<a class="el" href="classsosicon_1_1_i_sosi_element.html">ISosiElement</a> *sosiTree)</td></tr>
+<tr class="separator:ac4c4bbcad185b5b93aa930e5eec53ee2"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pri-attribs"></a>
 Private Attributes</h2></td></tr>
 <tr class="memitem:a4058cf3ef480eeac40ce913e5cb9c840"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classsosicon_1_1_command_line.html">CommandLine</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classsosicon_1_1_converter_sosi2shp.html#a4058cf3ef480eeac40ce913e5cb9c840">mCmd</a></td></tr>
 <tr class="memdesc:a4058cf3ef480eeac40ce913e5cb9c840"><td class="mdescLeft">&#160;</td><td class="mdescRight">Command line wrapper.  <a href="#a4058cf3ef480eeac40ce913e5cb9c840"></a><br/></td></tr>
 <tr class="separator:a4058cf3ef480eeac40ce913e5cb9c840"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a904a83ad41d58b04d0447fd07cb987f2"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classsosicon_1_1shape_1_1_shapefile.html">shape::Shapefile</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classsosicon_1_1_converter_sosi2shp.html#a904a83ad41d58b04d0447fd07cb987f2">mShapefile</a></td></tr>
-<tr class="memdesc:a904a83ad41d58b04d0447fd07cb987f2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Shapefile wrapper.  <a href="#a904a83ad41d58b04d0447fd07cb987f2"></a><br/></td></tr>
-<tr class="separator:a904a83ad41d58b04d0447fd07cb987f2"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>SOSI to ESRI Shape converter. </p>
 <p>If command-line parameter -2shp is specified, this converter will handle the output generation. Produces an ESRI Shape-file from SOSI source. </p>
 
-<p>Definition at line <a class="el" href="converter__sosi2shp_8h_source.html#l00051">51</a> of file <a class="el" href="converter__sosi2shp_8h_source.html">converter_sosi2shp.h</a>.</p>
+<p>Definition at line <a class="el" href="converter__sosi2shp_8h_source.html#l00047">47</a> of file <a class="el" href="converter__sosi2shp_8h_source.html">converter_sosi2shp.h</a>.</p>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
-<a class="anchor" id="ae15366cec787269610ce3238fd591828"></a>
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">sosicon::ConverterSosi2shp::~ConverterSosi2shp </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">private</span><span class="mlabel">virtual</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>Definition at line <a class="el" href="converter__sosi2shp_8cpp_source.html#l00026">26</a> of file <a class="el" href="converter__sosi2shp_8cpp_source.html">converter_sosi2shp.cpp</a>.</p>
-
-</div>
-</div>
 <a class="anchor" id="af315b5ea0bf3533875f06abe79c9aa29"></a>
 <div class="memitem">
 <div class="memproto">
@@ -151,6 +126,33 @@ Private Attributes</h2></td></tr>
 <p>Constructor. </p>
 
 <p>Definition at line <a class="el" href="converter__sosi2shp_8cpp_source.html#l00021">21</a> of file <a class="el" href="converter__sosi2shp_8cpp_source.html">converter_sosi2shp.cpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="ae15366cec787269610ce3238fd591828"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">sosicon::ConverterSosi2shp::~ConverterSosi2shp </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Destructor. </p>
+
+<p>Definition at line <a class="el" href="converter__sosi2shp_8cpp_source.html#l00026">26</a> of file <a class="el" href="converter__sosi2shp_8cpp_source.html">converter_sosi2shp.cpp</a>.</p>
 
 </div>
 </div>
@@ -187,6 +189,32 @@ Private Attributes</h2></td></tr>
 
 </div>
 </div>
+<a class="anchor" id="ac4c4bbcad185b5b93aa930e5eec53ee2"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void sosicon::ConverterSosi2shp::makeShp </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classsosicon_1_1_i_sosi_element.html">ISosiElement</a> *&#160;</td>
+          <td class="paramname"><em>sosiTree</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="converter__sosi2shp_8cpp_source.html#l00036">36</a> of file <a class="el" href="converter__sosi2shp_8cpp_source.html">converter_sosi2shp.cpp</a>.</p>
+
+</div>
+</div>
 <a class="anchor" id="aa65c111b57bfc3f85fe45c687f9e7273"></a>
 <div class="memitem">
 <div class="memproto">
@@ -214,7 +242,7 @@ Private Attributes</h2></td></tr>
 
 <p>Implements <a class="el" href="classsosicon_1_1_i_converter.html#a194381cefd5ca10598d838ae9a55cc3e">sosicon::IConverter</a>.</p>
 
-<p>Definition at line <a class="el" href="converter__sosi2shp_8cpp_source.html#l00036">36</a> of file <a class="el" href="converter__sosi2shp_8cpp_source.html">converter_sosi2shp.cpp</a>.</p>
+<p>Definition at line <a class="el" href="converter__sosi2shp_8cpp_source.html#l00060">60</a> of file <a class="el" href="converter__sosi2shp_8cpp_source.html">converter_sosi2shp.cpp</a>.</p>
 
 </div>
 </div>
@@ -239,31 +267,7 @@ Private Attributes</h2></td></tr>
 
 <p>Command line wrapper. </p>
 
-<p>Definition at line <a class="el" href="converter__sosi2shp_8h_source.html#l00054">54</a> of file <a class="el" href="converter__sosi2shp_8h_source.html">converter_sosi2shp.h</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="a904a83ad41d58b04d0447fd07cb987f2"></a>
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname"><a class="el" href="classsosicon_1_1shape_1_1_shapefile.html">shape::Shapefile</a> sosicon::ConverterSosi2shp::mShapefile</td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">private</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>Shapefile wrapper. </p>
-
-<p>Definition at line <a class="el" href="converter__sosi2shp_8h_source.html#l00057">57</a> of file <a class="el" href="converter__sosi2shp_8h_source.html">converter_sosi2shp.h</a>.</p>
+<p>Definition at line <a class="el" href="converter__sosi2shp_8h_source.html#l00050">50</a> of file <a class="el" href="converter__sosi2shp_8h_source.html">converter_sosi2shp.h</a>.</p>
 
 </div>
 </div>
@@ -274,7 +278,7 @@ Private Attributes</h2></td></tr>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sat Mar 30 2013 13:18:18 for sosicon by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Mon Jul 21 2014 23:53:24 for sosicon by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.2
 </small></address>

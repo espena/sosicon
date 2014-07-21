@@ -85,17 +85,15 @@
 /prosjekter/sosicon/src/sosi/sosi_element.h File Reference\par \pard\plain 
 {\tc\tcl2 \v /prosjekter/sosicon/src/sosi/sosi_element.h}
 {\xe \v /prosjekter/sosicon/src/sosi/sosi_element.h}
-{\bkmkstart AAAAAAAACB}
-{\bkmkend AAAAAAAACB}
+{\bkmkstart AAAAAAAABT}
+{\bkmkend AAAAAAAABT}
 {
-\pard\plain \s18\widctlpar\fs22\cgrid {\f2 #include <string>}\par
-{\f2 #include <iostream>}\par
+\pard\plain \s18\widctlpar\fs22\cgrid {\f2 #include <iostream>}\par
 {\f2 #include <vector>}\par
-{\f2 #include <map>}\par
+{\f2 #include <string>}\par
+{\f2 #include "sosi_element_search.h"}\par
+{\f2 #include "sosi_types.h"}\par
 {\f2 #include "../interface/i_sosi_element.h"}\par
-{\f2 #include "coord_sys.h"}\par
-{\f2 #include "address_unit.h"}\par
-{\f2 #include "cadastral_unit.h"}\par
 }
 \pard\plain \s3\sb240\sa60\keepn\widctlpar\adjustright \b\f1\cgrid 
 Classes\par
@@ -123,5 +121,18 @@ namespace {\b sosicon::sosi}\par
 {
 \pard\plain \s51\li360\sa60\sb30\qj\widctlpar\qj\adjustright \fs20\cgrid {\i {\s17\sa60\sb30\widctlpar\qj \fs22\cgrid 
 SOSI. }}}
+}
+\pard\plain \s3\sb240\sa60\keepn\widctlpar\adjustright \b\f1\cgrid 
+Functions\par
+\pard\plain 
+
+{
+\pard\plain \s80\fi-360\li360\widctlpar\jclisttab\tx360{\*\pn \pnlvlbody\ilvl0\ls1\pnrnot0\pndec }\ls1\adjustright \fs20\cgrid 
+ElementType {\b sosicon::sosi::sosiNameToType} (std::string sosiElementName)\par
+{
+\pard\plain \s51\li360\sa60\sb30\qj\widctlpar\qj\adjustright \fs20\cgrid {\i {\s17\sa60\sb30\widctlpar\qj \fs22\cgrid 
+Convert SOSI element names to ElementType enum value. }{
+}\par
+}}
 }
 }

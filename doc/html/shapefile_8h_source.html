@@ -72,67 +72,99 @@
 <div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;<span class="preprocessor">#ifndef __SHAPEFILE_H__</span></div>
 <div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;<span class="preprocessor"></span><span class="preprocessor">#define __SHAPEFILE_H__</span></div>
 <div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;<span class="preprocessor"></span></div>
-<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;<span class="preprocessor">#include &lt;string&gt;</span></div>
-<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;<span class="preprocessor">#include &lt;vector&gt;</span></div>
-<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;<span class="preprocessor">#include &lt;iostream&gt;</span></div>
-<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="shape__header_8h.html">shape_header.h</a>&quot;</span></div>
-<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="shape__index_8h.html">shape_index.h</a>&quot;</span></div>
-<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="shape__database_8h.html">shape_database.h</a>&quot;</span></div>
-<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="shape__element__point_8h.html">shape_element_point.h</a>&quot;</span></div>
-<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;<span class="preprocessor">#include &quot;../interface/i_sosi_element.h&quot;</span></div>
-<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;<span class="preprocessor">#include &quot;../interface/i_shape_element.h&quot;</span></div>
-<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;<span class="preprocessor">#include &quot;../interface/i_shapefile.h&quot;</span></div>
-<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;</div>
-<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;<span class="keyword">namespace </span>sosicon {</div>
+<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;<span class="preprocessor">#include &lt;algorithm&gt;</span></div>
+<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;<span class="preprocessor">#include &lt;ctime&gt;</span></div>
+<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;<span class="preprocessor">#include &lt;string&gt;</span></div>
+<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;<span class="preprocessor">#include &lt;vector&gt;</span></div>
+<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;<span class="preprocessor">#include &lt;iostream&gt;</span></div>
+<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="shapefile__types_8h.html">shapefile_types.h</a>&quot;</span></div>
+<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;<span class="preprocessor">#include &quot;../byte_order.h&quot;</span></div>
+<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;<span class="preprocessor">#include &quot;../string_utils.h&quot;</span></div>
+<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;<span class="preprocessor">#include &quot;../coordinate_collection.h&quot;</span></div>
+<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;<span class="preprocessor">#include &quot;../sosi/sosi_types.h&quot;</span></div>
+<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;<span class="preprocessor">#include &quot;../sosi/sosi_element_search.h&quot;</span></div>
+<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;<span class="preprocessor">#include &quot;../interface/i_shapefile.h&quot;</span></div>
 <div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;</div>
-<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;    <span class="keyword">namespace </span>shape {</div>
-<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;        </div>
-<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;</div>
-<div class="line"><a name="l00043"></a><span class="lineno"><a class="code" href="classsosicon_1_1shape_1_1_shapefile.html">   43</a></span>&#160;        <span class="keyword">class </span><a class="code" href="classsosicon_1_1shape_1_1_shapefile.html" title="Shapefile implementation.">Shapefile</a> : <span class="keyword">public</span> <a class="code" href="classsosicon_1_1_i_shapefile.html" title="Interface: Shapefile.">IShapefile</a> {</div>
-<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;</div>
-<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;        <span class="keyword">private</span>:</div>
-<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;</div>
-<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;</div>
-<div class="line"><a name="l00051"></a><span class="lineno"><a class="code" href="classsosicon_1_1shape_1_1_shapefile.html#ad36fde7b71823ecde4dfddd6a14ee136">   51</a></span>&#160;            <a class="code" href="classsosicon_1_1shape_1_1_shape_header.html" title="Shapefile header.">ShapeHeader</a> <a class="code" href="classsosicon_1_1shape_1_1_shapefile.html#ad36fde7b71823ecde4dfddd6a14ee136" title="Shape file header.">mHeader</a>;</div>
-<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;</div>
-<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;</div>
-<div class="line"><a name="l00057"></a><span class="lineno"><a class="code" href="classsosicon_1_1shape_1_1_shapefile.html#af839675df1678bd2d2d1e21a652ed11f">   57</a></span>&#160;            std::vector&lt;IShapeElement*&gt; <a class="code" href="classsosicon_1_1shape_1_1_shapefile.html#af839675df1678bd2d2d1e21a652ed11f" title="Shape elements list.">mShapeElements</a>;</div>
-<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;            </div>
-<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;            <span class="keywordtype">void</span> <a class="code" href="classsosicon_1_1shape_1_1_shapefile.html#a220accbae530d2ed2d94365ac6abc669">prepareHeader</a>();</div>
-<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;</div>
-<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;            <span class="keywordtype">void</span> <a class="code" href="classsosicon_1_1shape_1_1_shapefile.html#a220accbae530d2ed2d94365ac6abc669">prepareHeader</a>( <span class="keywordtype">int</span> recordSize );</div>
-<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;</div>
-<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;        <span class="keyword">public</span>:</div>
-<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;</div>
-<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;            <a class="code" href="classsosicon_1_1shape_1_1_shapefile.html#a0dc47ea13758d39eb89997985af2e9b2" title="Constructor.">Shapefile</a>();</div>
+<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;<span class="keyword">namespace </span>sosicon {</div>
+<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;</div>
+<div class="line"><a name="l00037"></a><span class="lineno"><a class="code" href="namespacesosicon_1_1shape.html">   37</a></span>&#160;    <span class="keyword">namespace </span>shape {</div>
+<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;        </div>
+<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;</div>
+<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;</div>
+<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;        <a class="code" href="namespacesosicon_1_1shape.html#a4a7f54467dc93b98564b38b2f6eb9f75" title="Geometry types.">ShapeType</a> <a class="code" href="namespacesosicon_1_1shape.html#aebbc2c1efa2cc1aa0a36be7d0261372e" title="Resolve geometry type.">getShapeEquivalent</a>( <a class="code" href="group__sosi__elements.html#ga52dbaad3d1e20075608257e866b0a7ca" title="List of SOSI types.">sosi::ElementType</a> sosiType );</div>
+<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;</div>
+<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;</div>
+<div class="line"><a name="l00052"></a><span class="lineno"><a class="code" href="classsosicon_1_1shape_1_1_shapefile.html">   52</a></span>&#160;        <span class="keyword">class </span><a class="code" href="classsosicon_1_1shape_1_1_shapefile.html" title="Shapefile implementation.">Shapefile</a> : <span class="keyword">public</span> <a class="code" href="classsosicon_1_1_i_shapefile.html" title="Interface: Shapefile.">IShapefile</a> {</div>
+<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;</div>
+<div class="line"><a name="l00054"></a><span class="lineno"><a class="code" href="classsosicon_1_1shape_1_1_shapefile.html#aab149a56ce09b1ad9b396526125192ce">   54</a></span>&#160;            <span class="keywordtype">char</span> <a class="code" href="classsosicon_1_1shape_1_1_shapefile.html#aab149a56ce09b1ad9b396526125192ce">mShpHeader</a>[ 100 ];</div>
+<div class="line"><a name="l00055"></a><span class="lineno"><a class="code" href="classsosicon_1_1shape_1_1_shapefile.html#a532b03ab78124f9705901cdebfe25fea">   55</a></span>&#160;            <span class="keywordtype">char</span>* <a class="code" href="classsosicon_1_1shape_1_1_shapefile.html#a532b03ab78124f9705901cdebfe25fea">mShpBuffer</a>;</div>
+<div class="line"><a name="l00056"></a><span class="lineno"><a class="code" href="classsosicon_1_1shape_1_1_shapefile.html#a11572be48d93527257f1f47bec15ec28">   56</a></span>&#160;            <span class="keywordtype">int</span> <a class="code" href="classsosicon_1_1shape_1_1_shapefile.html#a11572be48d93527257f1f47bec15ec28">mShpBufferSize</a>;</div>
+<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;</div>
+<div class="line"><a name="l00058"></a><span class="lineno"><a class="code" href="classsosicon_1_1shape_1_1_shapefile.html#adf0e803dc28ac1d4588f66d8c589d927">   58</a></span>&#160;            <span class="keywordtype">char</span> <a class="code" href="classsosicon_1_1shape_1_1_shapefile.html#adf0e803dc28ac1d4588f66d8c589d927">mShxHeader</a>[ 100 ];</div>
+<div class="line"><a name="l00059"></a><span class="lineno"><a class="code" href="classsosicon_1_1shape_1_1_shapefile.html#a5eeb1abff8c6fd8b2fd142fa225db203">   59</a></span>&#160;            <span class="keywordtype">char</span>* <a class="code" href="classsosicon_1_1shape_1_1_shapefile.html#a5eeb1abff8c6fd8b2fd142fa225db203">mShxBuffer</a>;</div>
+<div class="line"><a name="l00060"></a><span class="lineno"><a class="code" href="classsosicon_1_1shape_1_1_shapefile.html#adb2fe28814d8d9610a29c8c3a46ef062">   60</a></span>&#160;            <span class="keywordtype">int</span> <a class="code" href="classsosicon_1_1shape_1_1_shapefile.html#adb2fe28814d8d9610a29c8c3a46ef062">mShxBufferSize</a>;</div>
+<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;</div>
+<div class="line"><a name="l00062"></a><span class="lineno"><a class="code" href="classsosicon_1_1shape_1_1_shapefile.html#ad996b404bdcb94c2d69a704a368e7a29">   62</a></span>&#160;            <span class="keywordtype">char</span> <a class="code" href="classsosicon_1_1shape_1_1_shapefile.html#ad996b404bdcb94c2d69a704a368e7a29">mDbfHeader</a>[ 32 ];</div>
+<div class="line"><a name="l00063"></a><span class="lineno"><a class="code" href="classsosicon_1_1shape_1_1_shapefile.html#a23c216652bfdbc59376828c0c35cd6b1">   63</a></span>&#160;            <span class="keywordtype">char</span>* <a class="code" href="classsosicon_1_1shape_1_1_shapefile.html#a23c216652bfdbc59376828c0c35cd6b1">mDbfBuffer</a>;</div>
+<div class="line"><a name="l00064"></a><span class="lineno"><a class="code" href="classsosicon_1_1shape_1_1_shapefile.html#a3bd7ea7ad65c64b7e2e27396d0b94fad">   64</a></span>&#160;            <span class="keywordtype">int</span> <a class="code" href="classsosicon_1_1shape_1_1_shapefile.html#a3bd7ea7ad65c64b7e2e27396d0b94fad">mDbfBufferSize</a>;</div>
+<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;</div>
+<div class="line"><a name="l00066"></a><span class="lineno"><a class="code" href="classsosicon_1_1shape_1_1_shapefile.html#a39b9cda411765a82a898e3741ad8a8cd">   66</a></span>&#160;            <span class="keywordtype">int</span> <a class="code" href="classsosicon_1_1shape_1_1_shapefile.html#a39b9cda411765a82a898e3741ad8a8cd">mRecordNumber</a>;</div>
 <div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;</div>
-<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;            <span class="keyword">virtual</span> <a class="code" href="classsosicon_1_1shape_1_1_shapefile.html#add71bcf08fe9aa118ae0fab4599971b9" title="Destructor.">~Shapefile</a>();</div>
-<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;        </div>
+<div class="line"><a name="l00068"></a><span class="lineno"><a class="code" href="classsosicon_1_1shape_1_1_shapefile.html#a556a05775bf377bd73218a7b7f8466d8">   68</a></span>&#160;            <span class="keywordtype">double</span> <a class="code" href="classsosicon_1_1shape_1_1_shapefile.html#a556a05775bf377bd73218a7b7f8466d8">mXmin</a>;</div>
+<div class="line"><a name="l00069"></a><span class="lineno"><a class="code" href="classsosicon_1_1shape_1_1_shapefile.html#a53e94df26c0d8ade5faac4630acc5d92">   69</a></span>&#160;            <span class="keywordtype">double</span> <a class="code" href="classsosicon_1_1shape_1_1_shapefile.html#a53e94df26c0d8ade5faac4630acc5d92">mYmin</a>;</div>
+<div class="line"><a name="l00070"></a><span class="lineno"><a class="code" href="classsosicon_1_1shape_1_1_shapefile.html#a1a71dd5275f21e0d5d7fa565215a8dd4">   70</a></span>&#160;            <span class="keywordtype">double</span> <a class="code" href="classsosicon_1_1shape_1_1_shapefile.html#a1a71dd5275f21e0d5d7fa565215a8dd4">mXmax</a>;</div>
+<div class="line"><a name="l00071"></a><span class="lineno"><a class="code" href="classsosicon_1_1shape_1_1_shapefile.html#a6e9ea8a5faacb2df0ada4ec78fce07ad">   71</a></span>&#160;            <span class="keywordtype">double</span> <a class="code" href="classsosicon_1_1shape_1_1_shapefile.html#a6e9ea8a5faacb2df0ada4ec78fce07ad">mYmax</a>;</div>
 <div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;</div>
-<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;            <span class="keywordtype">void</span> <a class="code" href="classsosicon_1_1shape_1_1_shapefile.html#a8f6bace6c491e00a37e8a9d297af5db9" title="Insert SOSI element.">insert</a>( <a class="code" href="classsosicon_1_1_i_sosi_element.html" title="Interface: SOSI element.">ISosiElement</a>* sosiElement );</div>
-<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;</div>
-<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;            <span class="comment">// Described in IShapefileShpPart</span></div>
-<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;            <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="classsosicon_1_1shape_1_1_shapefile.html#aa3a8d84ad805e43dd6f50bdb2e217524">writeShp</a>( std::ostream &amp;os );</div>
-<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;            </div>
-<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;            <span class="comment">// Described in IShapefileShxPart</span></div>
-<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;            <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="classsosicon_1_1shape_1_1_shapefile.html#a03ff9674a63ec757c171bad0daafb334">writeShx</a>( std::ostream &amp;os );</div>
-<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;            </div>
-<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;            <span class="comment">// Described in IShapefileDbfPart</span></div>
-<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;            <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="classsosicon_1_1shape_1_1_shapefile.html#a02d975380017ffc0c3ff644583932a6a">writeDbf</a>( std::ostream &amp;os );</div>
-<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;            </div>
-<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;            <span class="comment">// Described in IShapefilePrjPart</span></div>
-<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;            <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="classsosicon_1_1shape_1_1_shapefile.html#a18940750773497d7519e0380116af0bc">writePrj</a>( std::ostream &amp;os );</div>
-<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;        };</div>
+<div class="line"><a name="l00073"></a><span class="lineno"><a class="code" href="classsosicon_1_1shape_1_1_shapefile.html#a147f12d70402292e52cdffbef0d1b5ca">   73</a></span>&#160;            <a class="code" href="namespacesosicon_1_1shape.html#a0dc4805fed0e6f17e772619356fb489f">DbfFieldLengths</a> <a class="code" href="classsosicon_1_1shape_1_1_shapefile.html#a147f12d70402292e52cdffbef0d1b5ca">mDbfFieldLengths</a>;</div>
+<div class="line"><a name="l00074"></a><span class="lineno"><a class="code" href="classsosicon_1_1shape_1_1_shapefile.html#a5bf768c80a5a9f7446a095fd4d930eba">   74</a></span>&#160;            <a class="code" href="namespacesosicon_1_1shape.html#ac352dd2d79c9982b0ceac6d77c93360b">DbfRecordSet</a> <a class="code" href="classsosicon_1_1shape_1_1_shapefile.html#a5bf768c80a5a9f7446a095fd4d930eba">mDbfRecordSet</a>;</div>
+<div class="line"><a name="l00075"></a><span class="lineno"><a class="code" href="classsosicon_1_1shape_1_1_shapefile.html#a7905e750cffce3e203801c1f64569f8f">   75</a></span>&#160;            <a class="code" href="namespacesosicon_1_1shape.html#afd5e7d3853aabaac4230d6ebe52a1960">ShxOffsets</a> <a class="code" href="classsosicon_1_1shape_1_1_shapefile.html#a7905e750cffce3e203801c1f64569f8f">mShxOffsets</a>;</div>
+<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;</div>
+<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;        <span class="keyword">public</span>:</div>
+<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;</div>
+<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;            <a class="code" href="classsosicon_1_1shape_1_1_shapefile.html#a0dc47ea13758d39eb89997985af2e9b2" title="Constructor.">Shapefile</a>();</div>
+<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;</div>
+<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;            <span class="keyword">virtual</span> <a class="code" href="classsosicon_1_1shape_1_1_shapefile.html#add71bcf08fe9aa118ae0fab4599971b9" title="Destructor.">~Shapefile</a>();</div>
+<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;</div>
+<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;            <span class="comment">// Described in IShapefile</span></div>
+<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;            <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="classsosicon_1_1shape_1_1_shapefile.html#a95315c83cebaa1eff2ce44bfa04078e6" title="Build shapefile from SOSI data.">build</a>( <a class="code" href="classsosicon_1_1_i_sosi_element.html" title="Interface: SOSI element.">ISosiElement</a>* sosiTree, <a class="code" href="group__sosi__elements.html#ga52dbaad3d1e20075608257e866b0a7ca" title="List of SOSI types.">sosi::ElementType</a> selection );</div>
+<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;</div>
+<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;            <span class="comment">// Create SHP element</span></div>
+<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;            <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="classsosicon_1_1shape_1_1_shapefile.html#ae3e389f00536f41e1f9aebe97bae4355">buildShpElement</a>( <a class="code" href="classsosicon_1_1_i_sosi_element.html" title="Interface: SOSI element.">ISosiElement</a>* sosi );</div>
 <div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;</div>
-<div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;    }; <span class="comment">// namespace shape</span></div>
-<div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;</div>
-<div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;}; <span class="comment">// namespace sosicon</span></div>
-<div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160;</div>
-<div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;            <span class="comment">// Create DBF file content</span></div>
+<div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;            <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="classsosicon_1_1shape_1_1_shapefile.html#ab872f2eee5f9ddb1732779869e4e0321">buildDbf</a>();</div>
+<div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;</div>
+<div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160;            <span class="comment">// Create SHX file content</span></div>
+<div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;            <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="classsosicon_1_1shape_1_1_shapefile.html#a1ccb2e32b6605ad42f212b40518ebaf6">buildShx</a>();</div>
+<div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160;</div>
+<div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160;            <span class="comment">// Create DBF record</span></div>
+<div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160;            <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="classsosicon_1_1shape_1_1_shapefile.html#a804b7968376b0e78ddb97dc6d3513f16">insertDbfRecord</a>( <a class="code" href="classsosicon_1_1_i_sosi_element.html" title="Interface: SOSI element.">ISosiElement</a>* sosi );</div>
+<div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160;</div>
+<div class="line"><a name="l00101"></a><span class="lineno">  101</span>&#160;</div>
+<div class="line"><a name="l00105"></a><span class="lineno">  105</span>&#160;            <span class="keywordtype">void</span> <a class="code" href="classsosicon_1_1shape_1_1_shapefile.html#a8f6bace6c491e00a37e8a9d297af5db9" title="Insert SOSI element.">insert</a>( <a class="code" href="classsosicon_1_1_i_sosi_element.html" title="Interface: SOSI element.">ISosiElement</a>* sosiElement );</div>
+<div class="line"><a name="l00106"></a><span class="lineno">  106</span>&#160;</div>
+<div class="line"><a name="l00107"></a><span class="lineno">  107</span>&#160;            <span class="comment">// Described in IShapefileDbfPart</span></div>
+<div class="line"><a name="l00108"></a><span class="lineno">  108</span>&#160;            <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="classsosicon_1_1shape_1_1_shapefile.html#a02d975380017ffc0c3ff644583932a6a">writeDbf</a>( std::ostream &amp;os );</div>
+<div class="line"><a name="l00109"></a><span class="lineno">  109</span>&#160;</div>
+<div class="line"><a name="l00110"></a><span class="lineno">  110</span>&#160;            <span class="comment">// Described in IShapefilePrjPart</span></div>
+<div class="line"><a name="l00111"></a><span class="lineno">  111</span>&#160;            <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="classsosicon_1_1shape_1_1_shapefile.html#a18940750773497d7519e0380116af0bc">writePrj</a>( std::ostream &amp;os );</div>
+<div class="line"><a name="l00112"></a><span class="lineno">  112</span>&#160;</div>
+<div class="line"><a name="l00113"></a><span class="lineno">  113</span>&#160;            <span class="comment">// Described in IShapefileShpPart</span></div>
+<div class="line"><a name="l00114"></a><span class="lineno">  114</span>&#160;            <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="classsosicon_1_1shape_1_1_shapefile.html#aa3a8d84ad805e43dd6f50bdb2e217524">writeShp</a>( std::ostream &amp;os );</div>
+<div class="line"><a name="l00115"></a><span class="lineno">  115</span>&#160;</div>
+<div class="line"><a name="l00116"></a><span class="lineno">  116</span>&#160;            <span class="comment">// Described in IShapefileShxPart</span></div>
+<div class="line"><a name="l00117"></a><span class="lineno">  117</span>&#160;            <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="classsosicon_1_1shape_1_1_shapefile.html#a03ff9674a63ec757c171bad0daafb334">writeShx</a>( std::ostream &amp;os );</div>
+<div class="line"><a name="l00118"></a><span class="lineno">  118</span>&#160;        };</div>
+<div class="line"><a name="l00119"></a><span class="lineno">  119</span>&#160;</div>
+<div class="line"><a name="l00120"></a><span class="lineno">  120</span>&#160;    }; <span class="comment">// namespace shape</span></div>
+<div class="line"><a name="l00121"></a><span class="lineno">  121</span>&#160;</div>
+<div class="line"><a name="l00122"></a><span class="lineno">  122</span>&#160;}; <span class="comment">// namespace sosicon</span></div>
+<div class="line"><a name="l00123"></a><span class="lineno">  123</span>&#160;</div>
+<div class="line"><a name="l00124"></a><span class="lineno">  124</span>&#160;<span class="preprocessor">#endif</span></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sat Mar 30 2013 13:18:18 for sosicon by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Mon Jul 21 2014 23:53:24 for sosicon by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.2
 </small></address>

@@ -86,18 +86,18 @@
 <div class="line"><a name="l00041"></a><span class="lineno"><a class="code" href="classsosicon_1_1_i_shape_header.html#a06346c91f64476f93ab0f93b9a872345">   41</a></span>&#160;        <span class="keyword">virtual</span> <a class="code" href="classsosicon_1_1_i_shape_header.html#a06346c91f64476f93ab0f93b9a872345" title="Destructor.">~IShapeHeader</a>() { };</div>
 <div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;</div>
 <div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;</div>
-<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;        <span class="keyword">virtual</span> <a class="code" href="namespacesosicon_1_1shape_1_1geom.html#a0f6b11a6fdf5551a52a15d05c12dcd86" title="Geometry types.">shape::geom::ShapeType</a> <a class="code" href="classsosicon_1_1_i_shape_header.html#a07467306f13205bff5d3859d0bf915cb" title="Return mShapeType.">getShapeType</a>() = 0;</div>
+<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;        <span class="keyword">virtual</span> <a class="code" href="namespacesosicon_1_1shape.html#a4a7f54467dc93b98564b38b2f6eb9f75" title="Geometry types.">shape::geom::ShapeType</a> <a class="code" href="classsosicon_1_1_i_shape_header.html#a07467306f13205bff5d3859d0bf915cb" title="Return mShapeType.">getShapeType</a>() = 0;</div>
 <div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;</div>
 <div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;</div>
-<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;        <span class="keyword">virtual</span> <a class="code" href="namespacesosicon_1_1shape_1_1geom.html#a0f6b11a6fdf5551a52a15d05c12dcd86" title="Geometry types.">shape::geom::ShapeType</a> <a class="code" href="classsosicon_1_1_i_shape_header.html#aec4377b8bcfaf03e9be56d0b39c227d8" title="Set mShapeType.">setShapeType</a>( <a class="code" href="namespacesosicon_1_1shape_1_1geom.html#a0f6b11a6fdf5551a52a15d05c12dcd86" title="Geometry types.">shape::geom::ShapeType</a> shapeType ) = 0;</div>
+<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;        <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="classsosicon_1_1_i_shape_header.html#aeeb70873a7bc124b8823c688946a83a1" title="Set mShapeType.">setShapeType</a>( <a class="code" href="namespacesosicon_1_1shape.html#a4a7f54467dc93b98564b38b2f6eb9f75" title="Geometry types.">shape::geom::ShapeType</a> shapeType ) = 0;</div>
 <div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;    </div>
 <div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;        <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="classsosicon_1_1_i_shape_header.html#a1679936996702d676eff035eaf37b4c9">setFileLength</a>( <span class="keywordtype">int</span> fileLength ) = 0;</div>
 <div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;</div>
 <div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;        <span class="keyword">virtual</span> <span class="keywordtype">int</span> <a class="code" href="classsosicon_1_1_i_shape_header.html#a1828bc09626e0c301105e59b7a807953">getFileLength</a>() = 0;</div>
 <div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;</div>
-<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;        <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="classsosicon_1_1_i_shape_header.html#a11b92dd6e2b30991573ff71981c47e08">setBoundingBox</a>( <a class="code" href="classsosicon_1_1shape_1_1_bounding_box.html" title="Shapefile bounding box.">shape::BoundingBox</a> boundingBox ) = 0;</div>
+<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;        <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="classsosicon_1_1_i_shape_header.html#a11b92dd6e2b30991573ff71981c47e08">setBoundingBox</a>( shape::BoundingBox boundingBox ) = 0;</div>
 <div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;</div>
-<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;        <span class="keyword">virtual</span> <a class="code" href="classsosicon_1_1shape_1_1_bounding_box.html" title="Shapefile bounding box.">shape::BoundingBox</a> <a class="code" href="classsosicon_1_1_i_shape_header.html#ad82685c63b08d11e32c2f68f27e33398">getBoundingBox</a>() = 0;</div>
+<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;        <span class="keyword">virtual</span> shape::BoundingBox <a class="code" href="classsosicon_1_1_i_shape_header.html#ad82685c63b08d11e32c2f68f27e33398">getBoundingBox</a>() = 0;</div>
 <div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;        </div>
 <div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;        <span class="keyword">virtual</span> <span class="keywordtype">int</span> <a class="code" href="classsosicon_1_1_i_shape_header.html#a02969187296cff3317bbe2a488e9dd18" title="Size of header in bytes.">getByteSize</a>() = 0;</div>
 <div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;        </div>
@@ -110,7 +110,7 @@
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sat Mar 30 2013 13:18:18 for sosicon by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Mon Jul 21 2014 23:53:24 for sosicon by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.2
 </small></address>

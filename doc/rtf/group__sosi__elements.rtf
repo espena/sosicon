@@ -85,8 +85,8 @@
 SOSI Elements\par \pard\plain 
 {\tc\tcl2 \v SOSI Elements}
 {\xe \v SOSI Elements}
-{\bkmkstart AAAAAAAADM}
-{\bkmkend AAAAAAAADM}
+{\bkmkstart AAAAAAAACN}
+{\bkmkend AAAAAAAACN}
 \pard\plain \s3\sb240\sa60\keepn\widctlpar\adjustright \b\f1\cgrid 
 Classes\par
 \pard\plain 
@@ -98,20 +98,111 @@ class {\b sosicon::sosi::SosiElement}\par
 \pard\plain \s51\li360\sa60\sb30\qj\widctlpar\qj\adjustright \fs20\cgrid {\i {\s17\sa60\sb30\widctlpar\qj \fs22\cgrid 
 Basic SOSI element. }}}
 \pard\plain \s80\fi-360\li360\widctlpar\jclisttab\tx360{\*\pn \pnlvlbody\ilvl0\ls1\pnrnot0\pndec }\ls1\adjustright \fs20\cgrid 
-class {\b sosicon::sosi::SosiElementHead}\par
-{
-\pard\plain \s51\li360\sa60\sb30\qj\widctlpar\qj\adjustright \fs20\cgrid {\i {\s17\sa60\sb30\widctlpar\qj \fs22\cgrid 
-Sosi head element (HODE) }}}
+class {\b sosicon::sosi::SosiElementSearch}\par
 \pard\plain \s80\fi-360\li360\widctlpar\jclisttab\tx360{\*\pn \pnlvlbody\ilvl0\ls1\pnrnot0\pndec }\ls1\adjustright \fs20\cgrid 
-class {\b sosicon::sosi::SosiElementPoint}\par
+class {\b sosicon::sosi::SosiJunctionPoint}\par
 {
 \pard\plain \s51\li360\sa60\sb30\qj\widctlpar\qj\adjustright \fs20\cgrid {\i {\s17\sa60\sb30\widctlpar\qj \fs22\cgrid 
-Sosi point element (PUNKT) }}}
+SOSI Junction point. }}}
 \pard\plain \s80\fi-360\li360\widctlpar\jclisttab\tx360{\*\pn \pnlvlbody\ilvl0\ls1\pnrnot0\pndec }\ls1\adjustright \fs20\cgrid 
-class {\b sosicon::sosi::SosiElementText}\par
+class {\b sosicon::sosi::SosiNorthEast}\par
 {
 \pard\plain \s51\li360\sa60\sb30\qj\widctlpar\qj\adjustright \fs20\cgrid {\i {\s17\sa60\sb30\widctlpar\qj \fs22\cgrid 
-Sosi text element (TEKST) }}}
+SOSI North-east element. }}}
+\pard\plain \s80\fi-360\li360\widctlpar\jclisttab\tx360{\*\pn \pnlvlbody\ilvl0\ls1\pnrnot0\pndec }\ls1\adjustright \fs20\cgrid 
+class {\b sosicon::sosi::SosiOrigoNE}\par
+{
+\pard\plain \s51\li360\sa60\sb30\qj\widctlpar\qj\adjustright \fs20\cgrid {\i {\s17\sa60\sb30\widctlpar\qj \fs22\cgrid 
+SOSI Junction point. }}}
+\pard\plain \s80\fi-360\li360\widctlpar\jclisttab\tx360{\*\pn \pnlvlbody\ilvl0\ls1\pnrnot0\pndec }\ls1\adjustright \fs20\cgrid 
+class {\b sosicon::sosi::SosiRefList}\par
+{
+\pard\plain \s51\li360\sa60\sb30\qj\widctlpar\qj\adjustright \fs20\cgrid {\i {\s17\sa60\sb30\widctlpar\qj \fs22\cgrid 
+SOSI REF list. }}}
+\pard\plain \s80\fi-360\li360\widctlpar\jclisttab\tx360{\*\pn \pnlvlbody\ilvl0\ls1\pnrnot0\pndec }\ls1\adjustright \fs20\cgrid 
+struct {\b sosicon::sosi::Reference}\par
+{
+\pard\plain \s51\li360\sa60\sb30\qj\widctlpar\qj\adjustright \fs20\cgrid {\i {\s17\sa60\sb30\widctlpar\qj \fs22\cgrid 
+SOSI reference number. }}}
+\pard\plain \s80\fi-360\li360\widctlpar\jclisttab\tx360{\*\pn \pnlvlbody\ilvl0\ls1\pnrnot0\pndec }\ls1\adjustright \fs20\cgrid 
+class {\b sosicon::sosi::SosiUnit}\par
+{
+\pard\plain \s51\li360\sa60\sb30\qj\widctlpar\qj\adjustright \fs20\cgrid {\i {\s17\sa60\sb30\widctlpar\qj \fs22\cgrid 
+SOSI Unit. }}}
+}
+\pard\plain \s3\sb240\sa60\keepn\widctlpar\adjustright \b\f1\cgrid 
+Typedefs\par
+\pard\plain 
+
+{
+\pard\plain \s80\fi-360\li360\widctlpar\jclisttab\tx360{\*\pn \pnlvlbody\ilvl0\ls1\pnrnot0\pndec }\ls1\adjustright \fs20\cgrid 
+typedef std::map< std::string, \par
+ISosiElement * > {\b sosicon::sosi::SosiElementMap}\par
+{
+\pard\plain \s51\li360\sa60\sb30\qj\widctlpar\qj\adjustright \fs20\cgrid {\i {\s17\sa60\sb30\widctlpar\qj \fs22\cgrid 
+Element index type. }{
+}\par
+}}
+\pard\plain \s80\fi-360\li360\widctlpar\jclisttab\tx360{\*\pn \pnlvlbody\ilvl0\ls1\pnrnot0\pndec }\ls1\adjustright \fs20\cgrid 
+typedef std::vector\par
+< ISosiElement * > {\b sosicon::sosi::SosiChildrenList}\par
+\pard\plain \s80\fi-360\li360\widctlpar\jclisttab\tx360{\*\pn \pnlvlbody\ilvl0\ls1\pnrnot0\pndec }\ls1\adjustright \fs20\cgrid 
+typedef SosiChildrenList::iterator {\b sosicon::sosi::SosiChildrenIterator}\par
+\pard\plain \s80\fi-360\li360\widctlpar\jclisttab\tx360{\*\pn \pnlvlbody\ilvl0\ls1\pnrnot0\pndec }\ls1\adjustright \fs20\cgrid 
+typedef std::vector< Reference * > {\b sosicon::sosi::SosiReferenceList}\par
+{
+\pard\plain \s51\li360\sa60\sb30\qj\widctlpar\qj\adjustright \fs20\cgrid {\i {\s17\sa60\sb30\widctlpar\qj \fs22\cgrid 
+List of SOSI references. }{
+}\par
+}}
+}
+\pard\plain \s3\sb240\sa60\keepn\widctlpar\adjustright \b\f1\cgrid 
+Enumerations\par
+\pard\plain 
+
+{
+\pard\plain \s80\fi-360\li360\widctlpar\jclisttab\tx360{\*\pn \pnlvlbody\ilvl0\ls1\pnrnot0\pndec }\ls1\adjustright \fs20\cgrid 
+enum {\b sosicon::sosi::ElementType} \{ {\b sosicon::sosi::sosi_element_unknown}, 
+{\b sosicon::sosi::sosi_element_area}, 
+{\b sosicon::sosi::sosi_element_charset}, 
+{\b sosicon::sosi::sosi_element_coordsys}, 
+{\b sosicon::sosi::sosi_element_curve}, 
+{\b sosicon::sosi::sosi_element_head}, 
+{\b sosicon::sosi::sosi_element_kp}, 
+{\b sosicon::sosi::sosi_element_ne}, 
+{\b sosicon::sosi::sosi_element_objtype}, 
+{\b sosicon::sosi::sosi_element_origo_ne}, 
+{\b sosicon::sosi::sosi_element_point}, 
+{\b sosicon::sosi::sosi_element_ref}, 
+{\b sosicon::sosi::sosi_element_text}, 
+{\b sosicon::sosi::sosi_element_transpar}, 
+{\b sosicon::sosi::sosi_element_unit}, 
+{\b sosicon::sosi::sosi_element_updatedate}
+ \}\par
+{
+\pard\plain \s51\li360\sa60\sb30\qj\widctlpar\qj\adjustright \fs20\cgrid {\i {\s17\sa60\sb30\widctlpar\qj \fs22\cgrid 
+List of SOSI types. }}}
+\pard\plain \s80\fi-360\li360\widctlpar\jclisttab\tx360{\*\pn \pnlvlbody\ilvl0\ls1\pnrnot0\pndec }\ls1\adjustright \fs20\cgrid 
+enum {\b sosicon::sosi::JunctionPoint} \{ {\b sosicon::sosi::sosi_junction_node}, 
+{\b sosicon::sosi::sosi_junction_connection}, 
+{\b sosicon::sosi::sosi_junction_open_end}
+ \}\par
+{
+\pard\plain \s51\li360\sa60\sb30\qj\widctlpar\qj\adjustright \fs20\cgrid {\i {\s17\sa60\sb30\widctlpar\qj \fs22\cgrid 
+Default SOSI junction point layer types. }}}
+}
+\pard\plain \s3\sb240\sa60\keepn\widctlpar\adjustright \b\f1\cgrid 
+Functions\par
+\pard\plain 
+
+{
+\pard\plain \s80\fi-360\li360\widctlpar\jclisttab\tx360{\*\pn \pnlvlbody\ilvl0\ls1\pnrnot0\pndec }\ls1\adjustright \fs20\cgrid 
+ElementType {\b sosicon::sosi::sosiNameToType} (std::string sosiElementName)\par
+{
+\pard\plain \s51\li360\sa60\sb30\qj\widctlpar\qj\adjustright \fs20\cgrid {\i {\s17\sa60\sb30\widctlpar\qj \fs22\cgrid 
+Convert SOSI element names to ElementType enum value. }{
+}\par
+}}
 }
 {\pard\widctlpar\brdrb\brdrs\brdrw5\brsp20 \adjustright \par}
 \pard\plain \s3\sb240\sa60\keepn\widctlpar\adjustright \b\f1\cgrid 
@@ -119,4 +210,262 @@ Detailed Description\par
 \pard\plain 
 {\s17\sa60\sb30\widctlpar\qj \fs22\cgrid 
 Implemented representation of SOSI file elements. \par
+}{\pard\widctlpar\brdrb\brdrs\brdrw5\brsp20 \adjustright \par}
+\pard\plain \s3\sb240\sa60\keepn\widctlpar\adjustright \b\f1\cgrid 
+Typedef Documentation\par
+\pard\plain 
+{\xe \v SosiChildrenIterator\:SOSI Elements}
+{\xe \v SOSI Elements\:SosiChildrenIterator}
+\pard\plain \s4\sb240\sa60\keepn\widctlpar\adjustright \b\f1\fs20\cgrid {
+{\b 
+typedef SosiChildrenList::iterator {\b sosicon::sosi::SosiChildrenIterator}}}
+\par
+{\bkmkstart AAAAAAAACO}
+{\bkmkend AAAAAAAACO}
+{
+\pard\plain \s51\li360\sa60\sb30\qj\widctlpar\qj\adjustright \fs20\cgrid 
+\par
+{
+Definition at line 43 of file sosi_element_search.h.}\par
+}
+{\xe \v SosiChildrenList\:SOSI Elements}
+{\xe \v SOSI Elements\:SosiChildrenList}
+\pard\plain \s4\sb240\sa60\keepn\widctlpar\adjustright \b\f1\fs20\cgrid {
+{\b 
+typedef std::vector<ISosiElement*> {\b sosicon::sosi::SosiChildrenList}}}
+\par
+{\bkmkstart AAAAAAAACP}
+{\bkmkend AAAAAAAACP}
+{
+\pard\plain \s51\li360\sa60\sb30\qj\widctlpar\qj\adjustright \fs20\cgrid 
+\par
+{
+Definition at line 41 of file sosi_element_search.h.}\par
+}
+{\xe \v SosiElementMap\:SOSI Elements}
+{\xe \v SOSI Elements\:SosiElementMap}
+\pard\plain \s4\sb240\sa60\keepn\widctlpar\adjustright \b\f1\fs20\cgrid {
+{\b 
+typedef std::map<std::string,ISosiElement*> {\b sosicon::sosi::SosiElementMap}}}
+\par
+{\bkmkstart AAAAAAAACQ}
+{\bkmkend AAAAAAAACQ}
+{
+\pard\plain \s51\li360\sa60\sb30\qj\widctlpar\qj\adjustright \fs20\cgrid 
+\par
+{
+{\s17\sa60\sb30\widctlpar\qj \fs22\cgrid 
+Element index type. }}\par
+{
+Definition at line 39 of file sosi_element_search.h.}\par
+}
+{\xe \v SosiReferenceList\:SOSI Elements}
+{\xe \v SOSI Elements\:SosiReferenceList}
+\pard\plain \s4\sb240\sa60\keepn\widctlpar\adjustright \b\f1\fs20\cgrid {
+{\b 
+typedef std::vector<Reference*> {\b sosicon::sosi::SosiReferenceList}}}
+\par
+{\bkmkstart AAAAAAAACR}
+{\bkmkend AAAAAAAACR}
+{
+\pard\plain \s51\li360\sa60\sb30\qj\widctlpar\qj\adjustright \fs20\cgrid 
+\par
+{
+{\s17\sa60\sb30\widctlpar\qj \fs22\cgrid 
+List of SOSI references. }}\par
+{
+Definition at line 72 of file sosi_types.h.}\par
+}
+{\pard\widctlpar\brdrb\brdrs\brdrw5\brsp20 \adjustright \par}
+\pard\plain \s3\sb240\sa60\keepn\widctlpar\adjustright \b\f1\cgrid 
+Enumeration Type Documentation\par
+\pard\plain 
+{\xe \v ElementType\:SOSI Elements}
+{\xe \v SOSI Elements\:ElementType}
+\pard\plain \s4\sb240\sa60\keepn\widctlpar\adjustright \b\f1\fs20\cgrid {
+{\b 
+enum {\b sosicon::sosi::ElementType}}}
+\par
+{\bkmkstart AAAAAAAACS}
+{\bkmkend AAAAAAAACS}
+{
+\pard\plain \s51\li360\sa60\sb30\qj\widctlpar\qj\adjustright \fs20\cgrid 
+\par
+{
+{\s17\sa60\sb30\widctlpar\qj \fs22\cgrid 
+List of SOSI types. }}\par
+{{{\b Enumerator: }}\par
+\pard\plain \s62\li720\widctlpar\ql\adjustright \fs20\cgrid {\xe \v sosi_element_unknown\:SOSI Elements}
+{\xe \v SOSI Elements\:sosi_element_unknown}
+{\b {\i sosi_element_unknown{\bkmkstart AAAAAAAACT}
+{\bkmkend AAAAAAAACT}
+}}  {\s17\sa60\sb30\widctlpar\qj \fs22\cgrid 
+Unknown element. \par
+}{\xe \v sosi_element_area\:SOSI Elements}
+{\xe \v SOSI Elements\:sosi_element_area}
+{\b {\i sosi_element_area{\bkmkstart AAAAAAAACU}
+{\bkmkend AAAAAAAACU}
+}}  {\s17\sa60\sb30\widctlpar\qj \fs22\cgrid 
+Area. \par
+}{\xe \v sosi_element_charset\:SOSI Elements}
+{\xe \v SOSI Elements\:sosi_element_charset}
+{\b {\i sosi_element_charset{\bkmkstart AAAAAAAACV}
+{\bkmkend AAAAAAAACV}
+}}  {\s17\sa60\sb30\widctlpar\qj \fs22\cgrid 
+Character set. \par
+}{\xe \v sosi_element_coordsys\:SOSI Elements}
+{\xe \v SOSI Elements\:sosi_element_coordsys}
+{\b {\i sosi_element_coordsys{\bkmkstart AAAAAAAACW}
+{\bkmkend AAAAAAAACW}
+}}  {\s17\sa60\sb30\widctlpar\qj \fs22\cgrid 
+Grid type. \par
+}{\xe \v sosi_element_curve\:SOSI Elements}
+{\xe \v SOSI Elements\:sosi_element_curve}
+{\b {\i sosi_element_curve{\bkmkstart AAAAAAAACX}
+{\bkmkend AAAAAAAACX}
+}}  {\s17\sa60\sb30\widctlpar\qj \fs22\cgrid 
+Curve. \par
+}{\xe \v sosi_element_head\:SOSI Elements}
+{\xe \v SOSI Elements\:sosi_element_head}
+{\b {\i sosi_element_head{\bkmkstart AAAAAAAACY}
+{\bkmkend AAAAAAAACY}
+}}  {\s17\sa60\sb30\widctlpar\qj \fs22\cgrid 
+Header. \par
+}{\xe \v sosi_element_kp\:SOSI Elements}
+{\xe \v SOSI Elements\:sosi_element_kp}
+{\b {\i sosi_element_kp{\bkmkstart AAAAAAAACZ}
+{\bkmkend AAAAAAAACZ}
+}}  {\s17\sa60\sb30\widctlpar\qj \fs22\cgrid 
+Junction point. \par
+}{\xe \v sosi_element_ne\:SOSI Elements}
+{\xe \v SOSI Elements\:sosi_element_ne}
+{\b {\i sosi_element_ne{\bkmkstart AAAAAAAADA}
+{\bkmkend AAAAAAAADA}
+}}  {\s17\sa60\sb30\widctlpar\qj \fs22\cgrid 
+North-east coordinate. \par
+}{\xe \v sosi_element_objtype\:SOSI Elements}
+{\xe \v SOSI Elements\:sosi_element_objtype}
+{\b {\i sosi_element_objtype{\bkmkstart AAAAAAAADB}
+{\bkmkend AAAAAAAADB}
+}}  {\s17\sa60\sb30\widctlpar\qj \fs22\cgrid 
+Object type. \par
+}{\xe \v sosi_element_origo_ne\:SOSI Elements}
+{\xe \v SOSI Elements\:sosi_element_origo_ne}
+{\b {\i sosi_element_origo_ne{\bkmkstart AAAAAAAADC}
+{\bkmkend AAAAAAAADC}
+}}  {\s17\sa60\sb30\widctlpar\qj \fs22\cgrid 
+Origo north-east. \par
+}{\xe \v sosi_element_point\:SOSI Elements}
+{\xe \v SOSI Elements\:sosi_element_point}
+{\b {\i sosi_element_point{\bkmkstart AAAAAAAADD}
+{\bkmkend AAAAAAAADD}
+}}  {\s17\sa60\sb30\widctlpar\qj \fs22\cgrid 
+Point. \par
+}{\xe \v sosi_element_ref\:SOSI Elements}
+{\xe \v SOSI Elements\:sosi_element_ref}
+{\b {\i sosi_element_ref{\bkmkstart AAAAAAAADE}
+{\bkmkend AAAAAAAADE}
+}}  {\s17\sa60\sb30\widctlpar\qj \fs22\cgrid 
+Element reference. \par
+}{\xe \v sosi_element_text\:SOSI Elements}
+{\xe \v SOSI Elements\:sosi_element_text}
+{\b {\i sosi_element_text{\bkmkstart AAAAAAAADF}
+{\bkmkend AAAAAAAADF}
+}}  {\s17\sa60\sb30\widctlpar\qj \fs22\cgrid 
+Text. \par
+}{\xe \v sosi_element_transpar\:SOSI Elements}
+{\xe \v SOSI Elements\:sosi_element_transpar}
+{\b {\i sosi_element_transpar{\bkmkstart AAAAAAAADG}
+{\bkmkend AAAAAAAADG}
+}}  {\s17\sa60\sb30\widctlpar\qj \fs22\cgrid 
+Datum/projection/coordinate system. \par
+}{\xe \v sosi_element_unit\:SOSI Elements}
+{\xe \v SOSI Elements\:sosi_element_unit}
+{\b {\i sosi_element_unit{\bkmkstart AAAAAAAADH}
+{\bkmkend AAAAAAAADH}
+}}  {\s17\sa60\sb30\widctlpar\qj \fs22\cgrid 
+Resolution (fraction of a metre) \par
+}{\xe \v sosi_element_updatedate\:SOSI Elements}
+{\xe \v SOSI Elements\:sosi_element_updatedate}
+{\b {\i sosi_element_updatedate{\bkmkstart AAAAAAAADI}
+{\bkmkend AAAAAAAADI}
+}}  {\s17\sa60\sb30\widctlpar\qj \fs22\cgrid 
+Update date. \par
 }}
+\par
+{
+Definition at line 38 of file sosi_types.h.}\par
+}
+{\xe \v JunctionPoint\:SOSI Elements}
+{\xe \v SOSI Elements\:JunctionPoint}
+\pard\plain \s4\sb240\sa60\keepn\widctlpar\adjustright \b\f1\fs20\cgrid {
+{\b 
+enum {\b sosicon::sosi::JunctionPoint}}}
+\par
+{\bkmkstart AAAAAAAADJ}
+{\bkmkend AAAAAAAADJ}
+{
+\pard\plain \s51\li360\sa60\sb30\qj\widctlpar\qj\adjustright \fs20\cgrid 
+\par
+{
+{\s17\sa60\sb30\widctlpar\qj \fs22\cgrid 
+Default SOSI junction point layer types. }}\par
+{{{\b Enumerator: }}\par
+\pard\plain \s62\li720\widctlpar\ql\adjustright \fs20\cgrid {\xe \v sosi_junction_node\:SOSI Elements}
+{\xe \v SOSI Elements\:sosi_junction_node}
+{\b {\i sosi_junction_node{\bkmkstart AAAAAAAADK}
+{\bkmkend AAAAAAAADK}
+}}  {\s17\sa60\sb30\widctlpar\qj \fs22\cgrid 
+Node point (KP 1) \par
+}{\xe \v sosi_junction_connection\:SOSI Elements}
+{\xe \v SOSI Elements\:sosi_junction_connection}
+{\b {\i sosi_junction_connection{\bkmkstart AAAAAAAADL}
+{\bkmkend AAAAAAAADL}
+}}  {\s17\sa60\sb30\widctlpar\qj \fs22\cgrid 
+Connection point (KP 900) \par
+}{\xe \v sosi_junction_open_end\:SOSI Elements}
+{\xe \v SOSI Elements\:sosi_junction_open_end}
+{\b {\i sosi_junction_open_end{\bkmkstart AAAAAAAADM}
+{\bkmkend AAAAAAAADM}
+}}  {\s17\sa60\sb30\widctlpar\qj \fs22\cgrid 
+Valid open-ended point (KP 999) \par
+}}
+\par
+{
+Definition at line 58 of file sosi_types.h.}\par
+}
+{\pard\widctlpar\brdrb\brdrs\brdrw5\brsp20 \adjustright \par}
+\pard\plain \s3\sb240\sa60\keepn\widctlpar\adjustright \b\f1\cgrid 
+Function Documentation\par
+\pard\plain 
+{\xe \v sosiNameToType\:SOSI Elements}
+{\xe \v SOSI Elements\:sosiNameToType}
+\pard\plain \s4\sb240\sa60\keepn\widctlpar\adjustright \b\f1\fs20\cgrid {
+{\b 
+{\b sosicon::sosi::ElementType} sosicon::sosi::sosiNameToType (std::string {\i sosiElementName})}}
+\par
+{\bkmkstart AAAAAAAADN}
+{\bkmkend AAAAAAAADN}
+{
+\pard\plain \s51\li360\sa60\sb30\qj\widctlpar\qj\adjustright \fs20\cgrid 
+\par
+{
+{\s17\sa60\sb30\widctlpar\qj \fs22\cgrid 
+Convert SOSI element names to ElementType enum value. }}\par
+{\s17\sa60\sb30\widctlpar\qj \fs22\cgrid 
+The enum member names are translations of the Norwegian element names. {\par
+{\s5\sb90\sa30\keepn\widctlpar\adjustright \b\f1\fs20\cgrid 
+Parameters:\par}
+\pard\plain \s61\li360\widctlpar\ql\adjustright \fs20\cgrid \trowd \trgaph108\trleft426\tblind426\trbrdrt\brdrs\brdrw10\brdrcf15 \trbrdrl\brdrs\brdrw10\brdrcf15 \trbrdrb\brdrs\brdrw10\brdrcf15 \trbrdrr\brdrs\brdrw10\brdrcf15 \trbrdrh\brdrs\brdrw10\brdrcf15 \trbrdrv\brdrs\brdrw10\brdrcf15 
+\clvertalt\clbrdrt\brdrs\brdrw10\brdrcf15 \clbrdrl\brdrs\brdrw10\brdrcf15 \clbrdrb\brdrs\brdrw10\brdrcf15 \clbrdrr \brdrs\brdrw10\brdrcf15 \cltxlrtb \cellx2187
+\clvertalt\clbrdrt\brdrs\brdrw10\brdrcf15 \clbrdrl\brdrs\brdrw10\brdrcf15 \clbrdrb\brdrs\brdrw10\brdrcf15 \clbrdrr \brdrs\brdrw10\brdrcf15 \cltxlrtb \cellx8748
+\pard \widctlpar\intbl\adjustright
+{{\i std::string} \cell }{sosiElementName The standard SOSI element name in Norwegian. \cell }
+{\row }
+}
+{{\s5\sb90\sa30\keepn\widctlpar\adjustright \b\f1\fs20\cgrid 
+Returns:\par}\pard\plain \s62\li720\widctlpar\ql\adjustright \fs20\cgrid ElementType enumeration value representing current element type. \par
+}}{
+Definition at line 21 of file sosi_element.cpp.}\par
+}
+}
