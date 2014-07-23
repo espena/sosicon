@@ -15,7 +15,7 @@
  *  You should have received a copy of the GNU General Public License
  *  along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-#include "sosi_ref_list.h"
+#include "sosi/sosi_ref_list.h"
 #pragma warning ( disable: 4244 )
 
 namespace sosicon {
@@ -35,7 +35,6 @@ ragelParseSosiRef( std::string data )
 
  /* Variables used by Ragel */
     int cs = 0;
-    int stack[ 1024 ];
     int top = 0;
     int act = 0;
     char* ts = 0;

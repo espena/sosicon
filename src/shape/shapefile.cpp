@@ -260,8 +260,8 @@ buildDbf() {
         mDbfBuffer[ o + 11 ] = 'C';
 
         // Field data address (N/A)
-        for( int i = 12; i < 16; i++ ) {
-            mDbfBuffer[ o + i ] = 0x00;
+        for( int j = 12; j < 16; j++ ) {
+            mDbfBuffer[ o + j ] = 0x00;
         }
         mDbfBuffer[ o + 16 ] = char( i->second );
 

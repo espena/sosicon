@@ -1,5 +1,5 @@
 
-/* #line 1 "ragel/sosi_ref.rl" */
+/* #line 1 "D:\\Prosjekter\\sosicon\\src\\ragel\\sosi_ref.rl" */
 /*
  *  This file is part of the command-line tool sosicon.
  *  Copyright (C) 2012  Espen Andersen
@@ -17,14 +17,14 @@
  *  You should have received a copy of the GNU General Public License
  *  along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-#include "sosi_ref_list.h"
+#include "sosi/sosi_ref_list.h"
 #pragma warning ( disable: 4244 )
 
 namespace sosicon {
 
     //! \cond 
     
-/* #line 28 "sosi/sosi_ref_ragel.cpp" */
+/* #line 2 "D:\\Prosjekter\\sosicon\\src\\sosi_ref_ragel.cpp" */
 static const char _parseSosiRef_actions[] = {
 	0, 1, 1, 1, 2, 1, 3, 2, 
 	0, 1, 2, 4, 5, 3, 4, 0, 
@@ -80,7 +80,7 @@ static const int parseSosiRef_error = 0;
 static const int parseSosiRef_en_main = 1;
 
 
-/* #line 27 "ragel/sosi_ref.rl" */
+/* #line 27 "D:\\Prosjekter\\sosicon\\src\\ragel\\sosi_ref.rl" */
 
     //! \endcond
 
@@ -92,7 +92,6 @@ ragelParseSosiRef( std::string data )
 
  /* Variables used by Ragel */
     int cs = 0;
-    int stack[ 1024 ];
     int top = 0;
     int act = 0;
     char* ts = 0;
@@ -107,12 +106,12 @@ ragelParseSosiRef( std::string data )
     bool subtract = false;
 
     
-/* #line 111 "sosi/sosi_ref_ragel.cpp" */
+/* #line 56 "D:\\Prosjekter\\sosicon\\src\\sosi_ref_ragel.cpp" */
 	{
 	cs = parseSosiRef_start;
 	}
 
-/* #line 116 "sosi/sosi_ref_ragel.cpp" */
+/* #line 59 "D:\\Prosjekter\\sosicon\\src\\sosi_ref_ragel.cpp" */
 	{
 	int _klen;
 	unsigned int _trans;
@@ -187,7 +186,7 @@ _match:
 		switch ( *_acts++ )
 		{
 	case 0:
-/* #line 54 "ragel/sosi_ref.rl" */
+/* #line 53 "D:\\Prosjekter\\sosicon\\src\\ragel\\sosi_ref.rl" */
 	{
             ref = new Reference();
             ref->reverse = reverse;
@@ -196,28 +195,28 @@ _match:
         }
 	break;
 	case 1:
-/* #line 61 "ragel/sosi_ref.rl" */
+/* #line 60 "D:\\Prosjekter\\sosicon\\src\\ragel\\sosi_ref.rl" */
 	{
             ref->serial += (*p);
         }
 	break;
 	case 2:
-/* #line 65 "ragel/sosi_ref.rl" */
+/* #line 64 "D:\\Prosjekter\\sosicon\\src\\ragel\\sosi_ref.rl" */
 	{ subtract = ( (*p) == '(' ); }
 	break;
 	case 3:
-/* #line 66 "ragel/sosi_ref.rl" */
+/* #line 65 "D:\\Prosjekter\\sosicon\\src\\ragel\\sosi_ref.rl" */
 	{ subtract = ( (*p) == ')' ); }
 	break;
 	case 4:
-/* #line 67 "ragel/sosi_ref.rl" */
+/* #line 66 "D:\\Prosjekter\\sosicon\\src\\ragel\\sosi_ref.rl" */
 	{ reverse = false; }
 	break;
 	case 5:
-/* #line 67 "ragel/sosi_ref.rl" */
+/* #line 66 "D:\\Prosjekter\\sosicon\\src\\ragel\\sosi_ref.rl" */
 	{ reverse = true; }
 	break;
-/* #line 221 "sosi/sosi_ref_ragel.cpp" */
+/* #line 157 "D:\\Prosjekter\\sosicon\\src\\sosi_ref_ragel.cpp" */
 		}
 	}
 
@@ -230,7 +229,7 @@ _again:
 	_out: {}
 	}
 
-/* #line 75 "ragel/sosi_ref.rl" */
+/* #line 74 "D:\\Prosjekter\\sosicon\\src\\ragel\\sosi_ref.rl" */
 
 
 };

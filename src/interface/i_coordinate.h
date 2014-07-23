@@ -18,6 +18,8 @@
 #ifndef __I_COORDINATE_H__
 #define __I_COORDINATE_H__
 
+#include <string>
+
 namespace sosicon {
 
     /*!
@@ -60,5 +62,4 @@ namespace sosicon {
     }; // class ICoordinate
    /*! @} end group interfaces */
 }; // namespace sosicon
-
 #endif

@@ -1,0 +1,224 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hpp;hxx;hm;inl;inc;xsd</Extensions>
+    </Filter>
+    <Filter Include="Header Files\Inteface">
+      <UniqueIdentifier>{7e1deea7-259a-4061-9ad4-37809b927d16}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Ragel">
+      <UniqueIdentifier>{d686122a-5d30-4965-976b-31f4aedfb476}</UniqueIdentifier>
+      <Extensions>rl</Extensions>
+    </Filter>
+    <Filter Include="Header Files\Sosi">
+      <UniqueIdentifier>{eb1df3c0-9337-4594-bcc8-d0d0314c8d45}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Sosi">
+      <UniqueIdentifier>{469c86df-9fca-44aa-aba2-4bb7e11ba24e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Shape">
+      <UniqueIdentifier>{8a14c588-62f4-435c-9e49-3283a79c77bd}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Shape">
+      <UniqueIdentifier>{cba81efe-7444-4230-85a9-9469b1b1fbd8}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="byte_order.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="command_line.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="common_types.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="converter_sosi2shp.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="converter_sosi2tsv.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="converter_sosi2xml.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="coordinate.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="coordinate_collection.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="factory.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="main.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="parser.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="string_utils.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="interface\i_binary_streamable.h">
+      <Filter>Header Files\Inteface</Filter>
+    </ClInclude>
+    <ClInclude Include="interface\i_converter.h">
+      <Filter>Header Files\Inteface</Filter>
+    </ClInclude>
+    <ClInclude Include="interface\i_coordinate.h">
+      <Filter>Header Files\Inteface</Filter>
+    </ClInclude>
+    <ClInclude Include="interface\i_lookup_table.h">
+      <Filter>Header Files\Inteface</Filter>
+    </ClInclude>
+    <ClInclude Include="interface\i_rectangle.h">
+      <Filter>Header Files\Inteface</Filter>
+    </ClInclude>
+    <ClInclude Include="interface\i_shape_element.h">
+      <Filter>Header Files\Inteface</Filter>
+    </ClInclude>
+    <ClInclude Include="interface\i_shape_element_header.h">
+      <Filter>Header Files\Inteface</Filter>
+    </ClInclude>
+    <ClInclude Include="interface\i_shape_header.h">
+      <Filter>Header Files\Inteface</Filter>
+    </ClInclude>
+    <ClInclude Include="interface\i_shapefile.h">
+      <Filter>Header Files\Inteface</Filter>
+    </ClInclude>
+    <ClInclude Include="interface\i_shapefile_dbf_part.h">
+      <Filter>Header Files\Inteface</Filter>
+    </ClInclude>
+    <ClInclude Include="interface\i_shapefile_prj_part.h">
+      <Filter>Header Files\Inteface</Filter>
+    </ClInclude>
+    <ClInclude Include="interface\i_shapefile_shp_part.h">
+      <Filter>Header Files\Inteface</Filter>
+    </ClInclude>
+    <ClInclude Include="interface\i_shapefile_shx_part.h">
+      <Filter>Header Files\Inteface</Filter>
+    </ClInclude>
+    <ClInclude Include="interface\i_sosi_element.h">
+      <Filter>Header Files\Inteface</Filter>
+    </ClInclude>
+    <ClInclude Include="interface\i_sosi_head_member.h">
+      <Filter>Header Files\Inteface</Filter>
+    </ClInclude>
+    <ClInclude Include="sosi\sosi_element.h">
+      <Filter>Header Files\Sosi</Filter>
+    </ClInclude>
+    <ClInclude Include="sosi\sosi_element_search.h">
+      <Filter>Header Files\Sosi</Filter>
+    </ClInclude>
+    <ClInclude Include="sosi\sosi_junction_point.h">
+      <Filter>Header Files\Sosi</Filter>
+    </ClInclude>
+    <ClInclude Include="sosi\sosi_north_east.h">
+      <Filter>Header Files\Sosi</Filter>
+    </ClInclude>
+    <ClInclude Include="sosi\sosi_origo_ne.h">
+      <Filter>Header Files\Sosi</Filter>
+    </ClInclude>
+    <ClInclude Include="sosi\sosi_ref_list.h">
+      <Filter>Header Files\Sosi</Filter>
+    </ClInclude>
+    <ClInclude Include="sosi\sosi_types.h">
+      <Filter>Header Files\Sosi</Filter>
+    </ClInclude>
+    <ClInclude Include="sosi\sosi_unit.h">
+      <Filter>Header Files\Sosi</Filter>
+    </ClInclude>
+    <ClInclude Include="shape\shapefile.h">
+      <Filter>Header Files\Shape</Filter>
+    </ClInclude>
+    <ClInclude Include="shape\shapefile_types.h">
+      <Filter>Header Files\Shape</Filter>
+    </ClInclude>
+    <ClInclude Include="inttypes.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="byte_order.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="command_line.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="converter_sosi2shp.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="converter_sosi2tsv.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="converter_sosi2xml.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="coordinate_collection.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="factory.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="main.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="parser.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="string_utils.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="sosi\sosi_element.cpp">
+      <Filter>Source Files\Sosi</Filter>
+    </ClCompile>
+    <ClCompile Include="sosi\sosi_north_east.cpp">
+      <Filter>Source Files\Sosi</Filter>
+    </ClCompile>
+    <ClCompile Include="sosi\sosi_origo_ne.cpp">
+      <Filter>Source Files\Sosi</Filter>
+    </ClCompile>
+    <ClCompile Include="sosi\sosi_ref_list.cpp">
+      <Filter>Source Files\Sosi</Filter>
+    </ClCompile>
+    <ClCompile Include="sosi\sosi_unit.cpp">
+      <Filter>Source Files\Sosi</Filter>
+    </ClCompile>
+    <ClCompile Include="shape\shapefile.cpp">
+      <Filter>Source Files\Shape</Filter>
+    </ClCompile>
+    <ClCompile Include="parser_ragel.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="sosi_north_east_ragel.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="sosi_origo_ne_ragel.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="sosi_ref_ragel.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <CustomBuild Include="ragel\parser.rl">
+      <Filter>Source Files\Ragel</Filter>
+    </CustomBuild>
+    <CustomBuild Include="ragel\sosi_north_east.rl">
+      <Filter>Source Files\Ragel</Filter>
+    </CustomBuild>
+    <CustomBuild Include="ragel\sosi_origo_ne.rl">
+      <Filter>Source Files\Ragel</Filter>
+    </CustomBuild>
+    <CustomBuild Include="ragel\sosi_ref.rl">
+      <Filter>Source Files\Ragel</Filter>
+    </CustomBuild>
+  </ItemGroup>
+</Project>
