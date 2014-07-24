@@ -44,9 +44,9 @@ sosicon: $(SOURCEFILES) $(HEADERFILES)
 
 	@echo "** Pre build steps..."
 	$(RAGEL) -C -L -o parser_ragel.cpp ragel/parser.rl
-	$(RAGEL) -C -L -o sosi/sosi_north_east_ragel.cpp ragel/sosi_north_east.rl
-	$(RAGEL) -C -L -o sosi/sosi_origo_ne_ragel.cpp ragel/sosi_origo_ne.rl
-	$(RAGEL) -C -L -o sosi/sosi_ref_ragel.cpp ragel/sosi_ref.rl
+	$(RAGEL) -C -L -o sosi_north_east_ragel.cpp ragel/sosi_north_east.rl
+	$(RAGEL) -C -L -o sosi_origo_ne_ragel.cpp ragel/sosi_origo_ne.rl
+	$(RAGEL) -C -L -o sosi_ref_ragel.cpp ragel/sosi_ref.rl
 
 	@echo "** Compiling..."
 	$(CC) -o $(OUTDIR)/$(PROJ) $(SOURCEFILES) $(COMPILER_OPTS);

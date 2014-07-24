@@ -21,7 +21,9 @@
 #pragma warning ( disable: 4996 )
 #pragma warning ( disable: 4244 )
 
+#ifdef _WIN32
 #include "inttypes.h"
+#endif
 #include <algorithm>
 #include <cmath>
 #include <iostream>

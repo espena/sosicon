@@ -22,7 +22,12 @@
 #include <iostream>
 #include <vector>
 #include <string>
+
+#ifdef __INTEL_COMPILER_
 #include <io.h>
+#else
+#include <unistd.h>
+#endif
 #include "utils.h"
 
 namespace sosicon {
