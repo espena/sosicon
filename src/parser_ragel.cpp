@@ -1,5 +1,5 @@
 
-/* #line 1 "D:\\Prosjekter\\sosicon\\src\\ragel\\parser.rl" */
+/* #line 1 "ragel/parser.rl" */
 /*
  *  This file is part of the command-line tool sosicon.
  *  Copyright (C) 2012  Espen Andersen
@@ -24,7 +24,7 @@ namespace sosicon {
 
     //! \cond 
     
-/* #line 2 "D:\\Prosjekter\\sosicon\\src\\parser_ragel.cpp" */
+/* #line 28 "parser_ragel.cpp" */
 static const char _parseSosiLine_actions[] = {
 	0, 1, 0, 1, 2, 1, 4, 1, 
 	5, 1, 6, 2, 0, 1, 2, 0, 
@@ -129,7 +129,7 @@ static const int parseSosiLine_error = 0;
 static const int parseSosiLine_en_main = 7;
 
 
-/* #line 27 "D:\\Prosjekter\\sosicon\\src\\ragel\\parser.rl" */
+/* #line 27 "ragel/parser.rl" */
 
     //! \endcond
 
@@ -156,12 +156,12 @@ ragelParseSosiLine( std::string sosiLine )
     int tmpint;
 
     
-/* #line 105 "D:\\Prosjekter\\sosicon\\src\\parser_ragel.cpp" */
+/* #line 160 "parser_ragel.cpp" */
 	{
 	cs = parseSosiLine_start;
 	}
 
-/* #line 108 "D:\\Prosjekter\\sosicon\\src\\parser_ragel.cpp" */
+/* #line 165 "parser_ragel.cpp" */
 	{
 	int _klen;
 	unsigned int _trans;
@@ -236,7 +236,7 @@ _match:
 		switch ( *_acts++ )
 		{
 	case 0:
-/* #line 54 "D:\\Prosjekter\\sosicon\\src\\ragel\\parser.rl" */
+/* #line 54 "ragel/parser.rl" */
 	{
             if( '\r' != (*p) ) {
                 tmpstr += (*p);
@@ -244,64 +244,64 @@ _match:
         }
 	break;
 	case 1:
-/* #line 60 "D:\\Prosjekter\\sosicon\\src\\ragel\\parser.rl" */
+/* #line 60 "ragel/parser.rl" */
 	{
             tmpstr.clear();
         }
 	break;
 	case 2:
-/* #line 64 "D:\\Prosjekter\\sosicon\\src\\ragel\\parser.rl" */
+/* #line 64 "ragel/parser.rl" */
 	{
             tmpint++;
         }
 	break;
 	case 3:
-/* #line 68 "D:\\Prosjekter\\sosicon\\src\\ragel\\parser.rl" */
+/* #line 68 "ragel/parser.rl" */
 	{
             tmpint = 0;
         }
 	break;
 	case 4:
-/* #line 72 "D:\\Prosjekter\\sosicon\\src\\ragel\\parser.rl" */
+/* #line 72 "ragel/parser.rl" */
 	{
             mPendingElementName = sosicon::utils::trim( tmpstr );
         }
 	break;
 	case 5:
-/* #line 76 "D:\\Prosjekter\\sosicon\\src\\ragel\\parser.rl" */
+/* #line 76 "ragel/parser.rl" */
 	{
             mPendingElementAttributes = sosicon::utils::trim( tmpstr );
             tmpstr.clear();
         }
 	break;
 	case 6:
-/* #line 81 "D:\\Prosjekter\\sosicon\\src\\ragel\\parser.rl" */
+/* #line 81 "ragel/parser.rl" */
 	{
             mPendingElementAttributes += ( " " + sosicon::utils::trim( tmpstr ) );
             tmpstr.clear();
         }
 	break;
 	case 7:
-/* #line 86 "D:\\Prosjekter\\sosicon\\src\\ragel\\parser.rl" */
+/* #line 86 "ragel/parser.rl" */
 	{
             mPendingElementLevel = tmpint;
             tmpstr.clear();
         }
 	break;
 	case 8:
-/* #line 91 "D:\\Prosjekter\\sosicon\\src\\ragel\\parser.rl" */
+/* #line 91 "ragel/parser.rl" */
 	{
             mPendingElementSerial = tmpstr.substr( 0, tmpstr.length() - 1 );
             tmpstr.clear();
         }
 	break;
 	case 9:
-/* #line 96 "D:\\Prosjekter\\sosicon\\src\\ragel\\parser.rl" */
+/* #line 96 "ragel/parser.rl" */
 	{
             digestPendingElement();
         }
 	break;
-/* #line 237 "D:\\Prosjekter\\sosicon\\src\\parser_ragel.cpp" */
+/* #line 305 "parser_ragel.cpp" */
 		}
 	}
 
@@ -318,25 +318,25 @@ _again:
 	while ( __nacts-- > 0 ) {
 		switch ( *__acts++ ) {
 	case 1:
-/* #line 60 "D:\\Prosjekter\\sosicon\\src\\ragel\\parser.rl" */
+/* #line 60 "ragel/parser.rl" */
 	{
             tmpstr.clear();
         }
 	break;
 	case 4:
-/* #line 72 "D:\\Prosjekter\\sosicon\\src\\ragel\\parser.rl" */
+/* #line 72 "ragel/parser.rl" */
 	{
             mPendingElementName = sosicon::utils::trim( tmpstr );
         }
 	break;
 	case 6:
-/* #line 81 "D:\\Prosjekter\\sosicon\\src\\ragel\\parser.rl" */
+/* #line 81 "ragel/parser.rl" */
 	{
             mPendingElementAttributes += ( " " + sosicon::utils::trim( tmpstr ) );
             tmpstr.clear();
         }
 	break;
-/* #line 268 "D:\\Prosjekter\\sosicon\\src\\parser_ragel.cpp" */
+/* #line 340 "parser_ragel.cpp" */
 		}
 	}
 	}
@@ -344,7 +344,7 @@ _again:
 	_out: {}
 	}
 
-/* #line 121 "D:\\Prosjekter\\sosicon\\src\\ragel\\parser.rl" */
+/* #line 121 "ragel/parser.rl" */
 
 
 };

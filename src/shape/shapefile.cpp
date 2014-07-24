@@ -227,12 +227,13 @@ buildDbf() {
 
         /* Fixed header size       */   sizeof( mDbfHeader ) +
         /* Field description array */ ( mDbfFieldLengths.size() * 32 ) +
-        /* Terminator              */   2;
+        /* Terminator              */   1;
 
     mDbfBufferSize =                        
 
         /* Field description array */ ( mDbfFieldLengths.size() * 32 ) +
-        /* Terminator              */   2 +
+        /* Terminator              */   1 +
+        /* Extra spacing           */   1 +
         /* Record structure        */ ( recordLength.i * mDbfRecordSet.size() ) +
         /* EOF                     */   1 ;
 
@@ -286,6 +287,8 @@ buildDbf() {
 
     // Terminator
     mDbfBuffer[ o++ ] = 0x0d;
+
+    // Extra space
     mDbfBuffer[ o++ ] = 0x20;
 
     // Records

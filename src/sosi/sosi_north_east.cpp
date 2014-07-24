@@ -45,7 +45,6 @@ SosiNorthEast( ISosiElement* e ) {
 sosicon::sosi::SosiNorthEast::
 ~SosiNorthEast() {
     for( CoordinateList::iterator i = mCoordinates.begin(); i != mCoordinates.end(); i++ ) {
-        std::cout << "deleting coordinate\n";
         delete *i;
     }
     mCoordinates.clear();
