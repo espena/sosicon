@@ -18,7 +18,7 @@
 #include "byte_order.h"
 
 // Initialize endianness variable
-enum sosicon::byteOrder::Endianness sosicon::byteOrder::endianness = not_set;
+enum sosicon::byteOrder::Endianness sosicon::byteOrder::endianness = sosicon::byteOrder::not_set;
 
 sosicon::byteOrder::Endianness sosicon::byteOrder::
 determine() {
@@ -102,4 +102,3 @@ doubleToLittleEndian( double from, char* to ) {
     }
     std::copy( data, data + sizeof( double ), to );
 }
-

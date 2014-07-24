@@ -18,7 +18,10 @@
 #ifndef __BYTE_ORDER_H__
 #define __BYTE_ORDER_H__
 
-#include <inttypes.h>
+#pragma warning ( disable: 4996 )
+#pragma warning ( disable: 4244 )
+
+#include "inttypes.h"
 #include <algorithm>
 #include <cmath>
 #include <iostream>
@@ -28,7 +31,7 @@ namespace sosicon {
     //! Big/low-endian conversions
     namespace byteOrder {
 
-        //! Big/little flag
+		//! Big/little flag
         extern enum Endianness {
             not_set,
             big,
