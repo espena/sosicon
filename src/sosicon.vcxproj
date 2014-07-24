@@ -172,7 +172,7 @@ rd /s /q $(IntermediateOutputPath)</Command>
     <ClInclude Include="sosi\sosi_ref_list.h" />
     <ClInclude Include="sosi\sosi_types.h" />
     <ClInclude Include="sosi\sosi_unit.h" />
-    <ClInclude Include="string_utils.h" />
+    <ClInclude Include="utils.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="byte_order.cpp" />
@@ -194,7 +194,7 @@ rd /s /q $(IntermediateOutputPath)</Command>
     <ClCompile Include="sosi_north_east_ragel.cpp" />
     <ClCompile Include="sosi_origo_ne_ragel.cpp" />
     <ClCompile Include="sosi_ref_ragel.cpp" />
-    <ClCompile Include="string_utils.cpp" />
+    <ClCompile Include="utils.cpp" />
   </ItemGroup>
   <ItemGroup>
     <CustomBuild Include="ragel\parser.rl">

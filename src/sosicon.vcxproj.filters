@@ -63,9 +63,6 @@
     <ClInclude Include="parser.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="string_utils.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="interface\i_binary_streamable.h">
       <Filter>Header Files\Inteface</Filter>
     </ClInclude>
@@ -144,6 +141,9 @@
     <ClInclude Include="inttypes.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="utils.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="byte_order.cpp">
@@ -171,9 +171,6 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="parser.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="string_utils.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="sosi\sosi_element.cpp">
@@ -204,6 +201,9 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="sosi_ref_ragel.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="utils.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

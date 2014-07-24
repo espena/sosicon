@@ -30,7 +30,7 @@ void sosicon::CommandLine::
 parse( int argc, char* argv[] ) {
 
     std::string inputLine = "";
-    if( !isatty( fileno( stdin ) ) ) {
+    if( !_isatty( _fileno( stdin ) ) ) {
         while( std::cin ) {
             std::cin >> inputLine;
             mSourceFiles.push_back( inputLine );

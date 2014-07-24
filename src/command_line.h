@@ -23,7 +23,7 @@
 #include <vector>
 #include <string>
 
-#ifdef __INTEL_COMPILER_
+#ifdef _WIN32
 #include <io.h>
 #else
 #include <unistd.h>
