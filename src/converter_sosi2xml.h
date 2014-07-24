@@ -24,7 +24,7 @@
 #include "interface/i_converter.h"
 #include "interface/i_sosi_element.h"
 #include "command_line.h"
-#include "string_utils.h"
+#include "utils.h"
 #include "parser.h"
 
 namespace sosicon {

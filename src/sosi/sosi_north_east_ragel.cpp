@@ -212,17 +212,10 @@ _match:
 	case 3:
 /* #line 68 "ragel/sosi_north_east.rl" */
 	{
-            ICoordinate* c = new Coordinate();
-            c->setN( coordN );
-            c->setE( coordE );
-            mMinX = std::min( mMinX, c->getE() );
-            mMinY = std::min( mMinY, c->getN() );
-            mMaxX = std::max( mMaxX, c->getE() );
-            mMaxY = std::max( mMaxY, c->getN() );
-            mCoordinates.push_back( c );
+            append( coordN, coordE );
         }
 	break;
-/* #line 226 "sosi/sosi_north_east_ragel.cpp" */
+/* #line 219 "sosi/sosi_north_east_ragel.cpp" */
 		}
 	}
 
@@ -248,17 +241,10 @@ _again:
 	case 3:
 /* #line 68 "ragel/sosi_north_east.rl" */
 	{
-            ICoordinate* c = new Coordinate();
-            c->setN( coordN );
-            c->setE( coordE );
-            mMinX = std::min( mMinX, c->getE() );
-            mMinY = std::min( mMinY, c->getN() );
-            mMaxX = std::max( mMaxX, c->getE() );
-            mMaxY = std::max( mMaxY, c->getN() );
-            mCoordinates.push_back( c );
+            append( coordN, coordE );
         }
 	break;
-/* #line 262 "sosi/sosi_north_east_ragel.cpp" */
+/* #line 248 "sosi/sosi_north_east_ragel.cpp" */
 		}
 	}
 	}
@@ -266,7 +252,7 @@ _again:
 	_out: {}
 	}
 
-/* #line 85 "ragel/sosi_north_east.rl" */
+/* #line 78 "ragel/sosi_north_east.rl" */
 
 
 };

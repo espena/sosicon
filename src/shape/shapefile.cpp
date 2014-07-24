@@ -49,7 +49,7 @@ build( ISosiElement* sosiTree, sosi::ElementType selection ) {
         while( sosiTree->getChild( src ) ) {
             sosi = src.element();
             if( selection == sosi->getType() ) {
-                buildShpElement( sosi );
+                buildShpElement( sosi, shapeTypeEquivalent );
                 insertDbfRecord( sosi );
             }
         }
@@ -91,25 +91,29 @@ build( ISosiElement* sosiTree, sosi::ElementType selection ) {
 }
 
 void sosicon::shape::Shapefile::
-buildShpElement( ISosiElement* sosi ) {
+buildShpElement( ISosiElement* sosi, ShapeType type ) {
 
     CoordinateCollection cc;
     cc.discoverCoords( sosi );
+    if( type == shape_type_polygon ) {
+        cc.mkClosedPolygon();
+    }
     ICoordinate* c = 0;
 
     Int32Field recordNumber;
     recordNumber.i = ++mRecordNumber;
 
     Int32Field shapeType;
-    shapeType.i = 3;
+    shapeType.i = type;
 
     Int32Field numParts;
-    numParts.i = cc.getNumPartsGeom(); 
+    numParts.i = 1; //cc.getNumPartsGeom(); 
 
     Int32Field numPoints;
     numPoints.i = cc.getNumPointsGeom(); 
 
-    int byteLength = 44 + ( 4 * numParts.i ) + ( 16 * numPoints.i );
+    //int byteLength = 44 + ( 4 * numParts.i ) + ( 16 * numPoints.i );
+    int byteLength = 44 + ( 4 ) + ( 16 * numPoints.i );
 
     Int32Field contentLength;
     contentLength.i = byteLength / 2;
@@ -166,6 +170,7 @@ buildShpElement( ISosiElement* sosi ) {
         offset.i = part;
         byteOrder::toLittleEndian( offset.b,  &mShpBuffer[ o ], sizeof( offset.b ) );       // Shape type
         o += 4;
+        break;
     }
 
     while( cc.getNextInGeom( c ) ) {
@@ -173,6 +178,7 @@ buildShpElement( ISosiElement* sosi ) {
         byteOrder::doubleToLittleEndian( c->getN(), &mShpBuffer[ o + 8 ] );
         o += 16;
     }
+
 }
 
 void sosicon::shape::Shapefile::
@@ -182,22 +188,28 @@ insertDbfRecord( ISosiElement* sosi ) {
     std::string data;
     ISosiElement* child = 0;
     sosi::SosiElementSearch src;
+    saveToDbf( rec, "TYPE", sosi->getName() );
     while( sosi->getChild( src ) ) {
         child = src.element();
-        data = stringUtils::trim( child->getData() );
-        int length = data.size();
-        if( !data.empty() && length < 254 ) {
-            field = child->getName();
-            if( mDbfFieldLengths.find( field ) != mDbfFieldLengths.end() ) {
-                mDbfFieldLengths[ field ] = std::max( mDbfFieldLengths[ field ], length );
-            }
-            else {
-                mDbfFieldLengths[ field ] = length;
-            }
-            rec[ field ] = data;
-        }
+        field = child->getName();
+        data = utils::trim( child->getData() );
+        saveToDbf( rec, field, data );
     }
     mDbfRecordSet.push_back( rec );
+}
+
+void sosicon::shape::Shapefile::
+saveToDbf( DbfRecord& rec, std::string field, std::string data ) {
+    int length = data.size();
+    if( !data.empty() && length < 254 ) {
+        if( mDbfFieldLengths.find( field ) != mDbfFieldLengths.end() ) {
+            mDbfFieldLengths[ field ] = std::max( mDbfFieldLengths[ field ], length );
+        }
+        else {
+            mDbfFieldLengths[ field ] = length;
+        }
+        rec[ field ] = data;
+    }
 }
 
 void sosicon::shape::Shapefile::
@@ -351,7 +363,7 @@ sosicon::shape::ShapeType sosicon::shape::
 getShapeEquivalent( sosi::ElementType sosiType ) {
     switch( sosiType ) {
         case sosi::sosi_element_area:
-            return shape_type_polyLine;
+            return shape_type_polygon;
         case sosi::sosi_element_curve:
             return shape_type_polyLine;
         case sosi::sosi_element_point:

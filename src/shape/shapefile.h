@@ -25,7 +25,7 @@
 #include <iostream>
 #include "shapefile_types.h"
 #include "../byte_order.h"
-#include "../string_utils.h"
+#include "../utils.h"
 #include "../coordinate_collection.h"
 #include "../sosi/sosi_types.h"
 #include "../sosi/sosi_element_search.h"
@@ -51,28 +51,43 @@ namespace sosicon {
         */
         class Shapefile : public IShapefile {
 
-            char mShpHeader[ 100 ];
-            char* mShpBuffer;
-            int mShpBufferSize;
+            char mShpHeader[ 100 ]; //!< Main SHP file header
+            char* mShpBuffer;       //!< SHP file payload
+            int mShpBufferSize;     //!< Length of SHP file buffer
 
-            char mShxHeader[ 100 ];
-            char* mShxBuffer;
-            int mShxBufferSize;
+            char mShxHeader[ 100 ]; //!< Index file header
+            char* mShxBuffer;       //!< Index file payload
+            int mShxBufferSize;     //!< Length of SHX file buffer
 
-            char mDbfHeader[ 32 ];
-            char* mDbfBuffer;
-            int mDbfBufferSize;
+            char mDbfHeader[ 32 ];  //!< dBase file header
+            char* mDbfBuffer;       //!< dBase file payload
+            int mDbfBufferSize;     //!< Length of dBase file buffer
 
-            int mRecordNumber;
+            int mRecordNumber;      //!< Number of current record in process
 
-            double mXmin;
-            double mYmin;
-            double mXmax;
-            double mYmax;
+            double mXmin;           //!< Minimum bounding rectangle, min X
+            double mYmin;           //!< Minimum bounding rectangle, min Y
+            double mXmax;           //!< Minimum bounding rectangle, max X
+            double mYmax;           //!< Minimum bounding rectangle, max Y
 
-            DbfFieldLengths mDbfFieldLengths;
-            DbfRecordSet mDbfRecordSet;
-            ShxOffsets mShxOffsets;
+            DbfFieldLengths mDbfFieldLengths; //!< Accumulation of DBF fields and their lenghts
+            DbfRecordSet mDbfRecordSet;       //!< All DBF records
+            ShxOffsets mShxOffsets;           //!< Index file offsets
+
+            // Create SHP element
+            virtual void buildShpElement( ISosiElement* sosi, ShapeType type );
+
+            // Create DBF file content
+            virtual void buildDbf();
+
+            // Create SHX file content
+            virtual void buildShx();
+
+            // Create DBF record
+            virtual void insertDbfRecord( ISosiElement* sosi );
+
+            //! Update or insert new DBF field
+            void saveToDbf( DbfRecord& rec, std::string field, std::string data );
 
         public:
 
@@ -84,18 +99,6 @@ namespace sosicon {
 
             // Described in IShapefile
             virtual void build( ISosiElement* sosiTree, sosi::ElementType selection );
-
-            // Create SHP element
-            virtual void buildShpElement( ISosiElement* sosi );
-
-            // Create DBF file content
-            virtual void buildDbf();
-
-            // Create SHX file content
-            virtual void buildShx();
-
-            // Create DBF record
-            virtual void insertDbfRecord( ISosiElement* sosi );
 
             //! Insert SOSI element
             /*!

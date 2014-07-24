@@ -66,13 +66,13 @@ parse( int argc, char* argv[] ) {
                     std::string::size_type j = 0, k = 0;
                     for( k = 0; k < objtypes.length(); k++ ) {
                         if( objtypes.at( k ) == ',' ) {
-                            if( !( objType = stringUtils::trim( objtypes.substr( j, k - j ) ) ).empty() ) {
+                            if( !( objType = utils::trim( objtypes.substr( j, k - j ) ) ).empty() ) {
                                 mObjTypes.push_back( objType );                     
                             }
                             j = k + 1;
                         }
                     }
-                    if( !( objType = stringUtils::trim( objtypes.substr( j, k - j ) ) ).empty() ) {
+                    if( !( objType = utils::trim( objtypes.substr( j, k - j ) ) ).empty() ) {
                         mObjTypes.push_back( objType );                     
                     }
                 }
@@ -84,13 +84,13 @@ parse( int argc, char* argv[] ) {
                     std::string::size_type j = 0, k = 0;
                     for( k = 0; k < geomtypes.length(); k++ ) {
                         if( geomtypes.at( k ) == ',' ) {
-                            if( !( geomType = stringUtils::trim( geomtypes.substr( j, k - j ) ) ).empty() ) {
+                            if( !( geomType = utils::trim( geomtypes.substr( j, k - j ) ) ).empty() ) {
                                 mGeomTypes.push_back( geomType );                     
                             }
                             j = k + 1;
                         }
                     }
-                    if( !( geomType = stringUtils::trim( geomtypes.substr( j, k - j ) ) ).empty() ) {
+                    if( !( geomType = utils::trim( geomtypes.substr( j, k - j ) ) ).empty() ) {
                         mGeomTypes.push_back( geomType );
                     }
                 }
@@ -102,13 +102,13 @@ parse( int argc, char* argv[] ) {
                     std::string::size_type j = 0, k = 0;
                     for( k = 0; k < fields.length(); k++ ) {
                         if( fields.at( k ) == ',' ) {
-                            if( !( field = stringUtils::trim( fields.substr( j, k - j ) ) ).empty() ) {
+                            if( !( field = utils::trim( fields.substr( j, k - j ) ) ).empty() ) {
                                 mFieldSelection.push_back( field );
                             }
                             j = k + 1;
                         }
                     }
-                    if( !( field = stringUtils::trim( fields.substr( j, k - j ) ) ).empty() ) {
+                    if( !( field = utils::trim( fields.substr( j, k - j ) ) ).empty() ) {
                         mFieldSelection.push_back( field );
                     }
                 }

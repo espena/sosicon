@@ -17,7 +17,7 @@ SOURCEFILES =									\
 				main.cpp						\
 				command_line.cpp				\
 				factory.cpp						\
-				string_utils.cpp				\
+				utils.cpp						\
 				byte_order.cpp					\
 				sosi/sosi_ref_list.cpp			\
 				sosi/sosi_ref_ragel.cpp			\

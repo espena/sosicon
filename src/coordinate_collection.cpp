@@ -145,3 +145,19 @@ bool sosicon::CoordinateCollection::
 getNextInIslands( ICoordinate*& coord ) {
     return getNext( coord, mIslands, mIslandsIterator );
 }
+
+void sosicon::CoordinateCollection::
+mkClosedPolygon() {
+    if( mGeom.size() > 0 ) {
+        sosi::SosiNorthEast* neFront = mGeom.front();
+        sosi::SosiNorthEast* neBack = mGeom.back();
+        ICoordinate* coordFront = neFront->front();
+        ICoordinate* coordBack = neBack->back();
+        if( coordFront && coordBack &&
+            ( coordFront->getE() != coordBack->getE() ||
+              coordFront->getN() != coordBack->getN() ) )
+        {
+            neBack->append( coordFront->getN(), coordFront->getE() );
+        }
+    }
+}

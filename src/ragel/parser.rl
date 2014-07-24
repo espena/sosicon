@@ -71,16 +71,16 @@ ragelParseSosiLine( std::string sosiLine )
         }
 
         action set_name {
-            mPendingElementName = sosicon::stringUtils::trim( tmpstr );
+            mPendingElementName = sosicon::utils::trim( tmpstr );
         }
 
         action set_attributes {
-            mPendingElementAttributes = sosicon::stringUtils::trim( tmpstr );
+            mPendingElementAttributes = sosicon::utils::trim( tmpstr );
             tmpstr.clear();
         }
 
         action append_attributes {
-            mPendingElementAttributes += ( " " + sosicon::stringUtils::trim( tmpstr ) );
+            mPendingElementAttributes += ( " " + sosicon::utils::trim( tmpstr ) );
             tmpstr.clear();
         }
 

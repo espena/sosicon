@@ -15,11 +15,11 @@
  *  You should have received a copy of the GNU General Public License
  *  along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-#include "string_utils.h"
+#include "utils.h"
 
 using std::string;
 
-string sosicon::stringUtils::
+string sosicon::utils::
 className2FileName( const std::string &className )
 {
     string clsL = toLower( className );
@@ -40,7 +40,7 @@ className2FileName( const std::string &className )
     return res;
 }
 
-string sosicon::stringUtils::
+string sosicon::utils::
 normalizeAppClassName( const std::string &className )
 {
     string clsL = toLower( className );
@@ -60,7 +60,7 @@ normalizeAppClassName( const std::string &className )
     return res;
 }
 
-string sosicon::stringUtils::
+string sosicon::utils::
 repeat( const std::string &seq, unsigned int count )
 {
     std::string s;
@@ -71,7 +71,7 @@ repeat( const std::string &seq, unsigned int count )
     return s;
 }
 
-string sosicon::stringUtils::
+string sosicon::utils::
 replaceAll( const std::string &from, const std::string &to, const std::string &subject )
 {
     string res = subject;
@@ -85,7 +85,7 @@ replaceAll( const std::string &from, const std::string &to, const std::string &s
     return res;
 }
 
-string sosicon::stringUtils::
+string sosicon::utils::
 toLower( const std::string &str )
 {
     static std::locale loc = std::locale( "no_NO" );
@@ -102,20 +102,20 @@ toLower( const std::string &str )
     return res;
 }
 
-string sosicon::stringUtils::
+string sosicon::utils::
 trim( const std::string &str )
 {
     return trimLeft( trimRight( str ) );
 }
 
-string sosicon::stringUtils::
+string sosicon::utils::
 trimLeft( const std::string &str )
 {
     string trm = str;
     return trm.erase( 0, trm.find_first_not_of( " \t\r\n" ) );
 }
 
-string sosicon::stringUtils::
+string sosicon::utils::
 trimRight( const std::string &str )
 {
     string trm = str;
@@ -123,7 +123,7 @@ trimRight( const std::string &str )
     return i == string::npos ? "" : trm.erase( i + 1 );
 }
 
-string sosicon::stringUtils::
+string sosicon::utils::
 ucFirst( const std::string &str )
 {
     const string::size_type len = str.length();
@@ -143,7 +143,7 @@ ucFirst( const std::string &str )
     return res;
 }
 
-void sosicon::stringUtils::
+void sosicon::utils::
 getPathInfo( std::string path, std::string &dir, std::string &tit, std::string &ext ) {
 	std::string::size_type len = path.length();
 	std::string tmp;

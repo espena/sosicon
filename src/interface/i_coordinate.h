@@ -43,10 +43,10 @@ namespace sosicon {
         virtual double getN() = 0;
 
         //! Set east coordinate
-        virtual void setE( std::string coordEast ) = 0;
+        virtual void setE( double coordEast ) = 0;
 
         //! Set north coordinate
-        virtual void setN( std::string coordNorth ) = 0;
+        virtual void setN( double coordNorth ) = 0;
 
         //! Shift coordinate by specified offset
         virtual void shift( int offsetN, int offsetE ) = 0;

@@ -19,12 +19,16 @@
 #define __CONVERTER_SOSI2SHP_H__
 
 #include <iostream>
+#include <iomanip>
 #include <fstream>
 #include <vector>
+#include <sstream>
+#include <string>
 #include "interface/i_converter.h"
 #include "interface/i_sosi_element.h"
 #include "command_line.h"
 #include "parser.h"
+#include "utils.h"
 #include "shape/shapefile.h"
 
 namespace sosicon {
@@ -50,6 +54,20 @@ namespace sosicon {
         CommandLine mCmd;
 
         void makeShp( ISosiElement* sosiTree );
+
+        //! Make base file path for destination files
+        /*!
+            If the user specified an output file name, it will be used as a candidate for a
+            base name to create shp, shx and dbf files for the shape export. Otherwise, the
+            name of the first source file will be used by default.
+
+            This function checks if there are any name collisions, incrementing a postfixed number
+            to the base name until a unique name is found.
+
+            \return Modified, unique destination base name with directory (if provided), without
+                    file name extension.
+        */
+        std::string makeBasePath();
 
     public:
 

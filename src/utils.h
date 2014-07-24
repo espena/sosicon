@@ -15,10 +15,11 @@
  *  You should have received a copy of the GNU General Public License
  *  along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-#ifndef __STRING_UTILS_H
-#define __STRING_UTILS_H
+#ifndef __UTILS_H
+#define __UTILS_H
 
 #include "memory.h"
+#include <sys/stat.h>
 #include <locale>
 #include <string>
 #include <ctype.h>
@@ -26,7 +27,7 @@
 namespace sosicon {
 
     //! String manipulation routines
-    namespace stringUtils {
+    namespace utils {
 
         //! Converts Class name to file name string
         /*!
@@ -38,6 +39,12 @@ namespace sosicon {
             \return The file name string without extension.
         */
         std::string className2FileName( const std::string &className );
+
+        //! Test if file exists
+        inline bool fileExists( const std::string& name ) {
+          struct stat buffer;
+          return ( stat( name.c_str(), &buffer ) == 0 );
+        }
 
         //! Asserts correct name of application classes
         /*!

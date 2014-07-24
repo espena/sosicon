@@ -43,9 +43,9 @@ digestPendingElement() {
 
         mElementStack.push_back(
             new sosi::SosiElement(
-                sosicon::stringUtils::trim( mPendingElementName ),
-                sosicon::stringUtils::trim( mPendingElementSerial ),
-                sosicon::stringUtils::trim( mPendingElementAttributes ),
+                sosicon::utils::trim( mPendingElementName ),
+                sosicon::utils::trim( mPendingElementSerial ),
+                sosicon::utils::trim( mPendingElementAttributes ),
                 mPendingElementLevel,
                 mElementStack.front(),
                 mElementIndex ) );

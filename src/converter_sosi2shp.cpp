@@ -40,20 +40,45 @@ makeShp( ISosiElement* sosiTree ) {
         shp.build( sosiTree, sosi::sosiNameToType( *g ) );
     }
 
+    std::string basePath = makeBasePath();
+
     std::ofstream shpfs;
-    shpfs.open( "test.shp", std::ios::out | std::ios::trunc | std::ios::binary );
+    shpfs.open( basePath + ".shp", std::ios::out | std::ios::trunc | std::ios::binary );
     shpfs << *( static_cast<IShapefileShpPart*>( &shp ) );
     shpfs.close();
 
     std::ofstream shxfs;
-    shxfs.open( "test.shx", std::ios::out | std::ios::trunc | std::ios::binary );
+    shxfs.open( basePath + ".shx", std::ios::out | std::ios::trunc | std::ios::binary );
     shxfs << *( static_cast<IShapefileShxPart*>( &shp ) );
     shxfs.close();
 
     std::ofstream dbffs;
-    dbffs.open( "test.dbf", std::ios::out | std::ios::trunc | std::ios::binary );
+    dbffs.open( basePath + ".dbf", std::ios::out | std::ios::trunc | std::ios::binary );
     dbffs << *( static_cast<IShapefileDbfPart*>( &shp ) );
     dbffs.close();
+}
+
+std::string sosicon::ConverterSosi2shp::
+makeBasePath() {
+
+    std::string candidatePath = mCmd.mOutputFile.empty() ? mCmd.mSourceFiles[ 0 ] : mCmd.mOutputFile;
+    std::string dir, tit, ext;
+    utils::getPathInfo( candidatePath, dir, tit, ext );
+
+    candidatePath = dir + tit;
+    int sequence = 0;
+
+    while( utils::fileExists( candidatePath + ".shp" ) ||
+           utils::fileExists( candidatePath + ".shx" ) ||
+           utils::fileExists( candidatePath + ".dbf" ) ||
+           utils::fileExists( candidatePath + ".prj" ) )
+    {
+        std::stringstream ss;
+        ss << dir << tit << "_" << std::setw( 2 ) << std::setfill( '0' ) << ++sequence;
+        candidatePath = ss.str();
+    }
+
+    return candidatePath;
 }
 
 void sosicon::ConverterSosi2shp::

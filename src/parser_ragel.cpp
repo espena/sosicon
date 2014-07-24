@@ -265,20 +265,20 @@ _match:
 	case 4:
 /* #line 73 "ragel/parser.rl" */
 	{
-            mPendingElementName = sosicon::stringUtils::trim( tmpstr );
+            mPendingElementName = sosicon::utils::trim( tmpstr );
         }
 	break;
 	case 5:
 /* #line 77 "ragel/parser.rl" */
 	{
-            mPendingElementAttributes = sosicon::stringUtils::trim( tmpstr );
+            mPendingElementAttributes = sosicon::utils::trim( tmpstr );
             tmpstr.clear();
         }
 	break;
 	case 6:
 /* #line 82 "ragel/parser.rl" */
 	{
-            mPendingElementAttributes += ( " " + sosicon::stringUtils::trim( tmpstr ) );
+            mPendingElementAttributes += ( " " + sosicon::utils::trim( tmpstr ) );
             tmpstr.clear();
         }
 	break;
@@ -327,13 +327,13 @@ _again:
 	case 4:
 /* #line 73 "ragel/parser.rl" */
 	{
-            mPendingElementName = sosicon::stringUtils::trim( tmpstr );
+            mPendingElementName = sosicon::utils::trim( tmpstr );
         }
 	break;
 	case 6:
 /* #line 82 "ragel/parser.rl" */
 	{
-            mPendingElementAttributes += ( " " + sosicon::stringUtils::trim( tmpstr ) );
+            mPendingElementAttributes += ( " " + sosicon::utils::trim( tmpstr ) );
             tmpstr.clear();
         }
 	break;

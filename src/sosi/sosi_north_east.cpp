@@ -45,9 +45,33 @@ SosiNorthEast( ISosiElement* e ) {
 sosicon::sosi::SosiNorthEast::
 ~SosiNorthEast() {
     for( CoordinateList::iterator i = mCoordinates.begin(); i != mCoordinates.end(); i++ ) {
+        std::cout << "deleting coordinate\n";
         delete *i;
     }
     mCoordinates.clear();
+}
+
+void sosicon::sosi::SosiNorthEast::
+append( std::string n, std::string e ) {
+    double coordN, coordE;
+    std::stringstream ssN, ssE;
+    ssN << n;
+    ssE << e;
+    ssN >> coordN;
+    ssE >> coordE;
+    append( coordN, coordE );
+}
+
+void sosicon::sosi::SosiNorthEast::
+append( double n, double e ) {
+    ICoordinate* c = new Coordinate();
+    c->setN( n );
+    c->setE( e );
+    mMinX = std::min( mMinX, c->getE() );
+    mMinY = std::min( mMinY, c->getN() );
+    mMaxX = std::max( mMaxX, c->getE() );
+    mMaxY = std::max( mMaxY, c->getN() );
+    mCoordinates.push_back( c );
 }
 
 void sosicon::sosi::SosiNorthEast::

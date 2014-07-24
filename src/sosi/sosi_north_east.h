@@ -29,6 +29,7 @@
 #include <limits>
 #include <iostream>
 #include <string>
+#include <sstream>
 #include <vector>
 
 namespace sosicon {
@@ -70,6 +71,9 @@ namespace sosicon {
 
         public:
 
+            void append( double n, double e );
+            void append( std::string n, std::string e );
+
             //! Construct new SOSI north-east element
             SosiNorthEast( ISosiElement* e );
 
@@ -80,6 +84,10 @@ namespace sosicon {
             void dump();
 
             void expandBoundingBox( double& minX, double& minY, double& maxX, double& maxY );
+
+            ICoordinate* front() { return mCoordinates.size() > 0 ? mCoordinates.front() : 0; }
+
+            ICoordinate* back() { return mCoordinates.size() > 0 ? mCoordinates.back() : 0; }
 
             //* Get next coordinate in list
             bool getNext( ICoordinate*& coord );

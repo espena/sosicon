@@ -114,6 +114,13 @@ namespace sosicon {
 
         double getYmax() { return mYmax == -9999999999 ? 0 : mYmax; };
 
+        //! Make first and last point equal
+        /*!
+            Inserts an additional end point if required, to make current coordinate
+            collection a closed polgon.
+        */
+        void mkClosedPolygon();
+
     }; // class Coordinate
     
 }; // namespece sosicon
