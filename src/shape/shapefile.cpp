@@ -227,12 +227,12 @@ buildDbf() {
 
         /* Fixed header size       */   sizeof( mDbfHeader ) +
         /* Field description array */ ( mDbfFieldLengths.size() * 32 ) +
-        /* Terminator              */   1;
+        /* Terminator              */   2;
 
     mDbfBufferSize =                        
 
         /* Field description array */ ( mDbfFieldLengths.size() * 32 ) +
-        /* Terminator              */   1 +
+        /* Terminator              */   2 +
         /* Record structure        */ ( recordLength.i * mDbfRecordSet.size() ) +
         /* EOF                     */   1 ;
 

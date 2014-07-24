@@ -101,9 +101,14 @@ getChild( SosiElementSearch& src ) {
         if( src.element() == 0 ) {
             src.iterator( mChildren.begin() );
         }
-        src.element( *( src.iterator() ) );
-        moreToGo = src.iterator() != mChildren.end();
-        src.next();
+		if( src.iterator() != mChildren.end() ) {
+			src.element( *( src.iterator() ) );
+			moreToGo = true;
+			src.next();
+		}
+		else {
+			moreToGo = false;
+		}
     }
     return moreToGo;
 }

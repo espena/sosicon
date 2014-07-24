@@ -35,8 +35,11 @@ getNextReference( Reference*& reference ) {
     if( 0 == reference ) {
         mRefListIterator = mRefList.begin();
     }
-    reference = *mRefListIterator;
-    bool isMore = mRefListIterator != mRefList.end();
-    mRefListIterator++;
+	bool isMore = false;
+	if( mRefListIterator == mRefList.end() ) {
+		reference = *mRefListIterator;
+		mRefListIterator++;
+		isMore = mRefListIterator != mRefList.end();
+	}
     return isMore;
 }
