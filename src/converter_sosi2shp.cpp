@@ -83,19 +83,29 @@ makeBasePath() {
 
 void sosicon::ConverterSosi2shp::
 run() {
-    for( std::vector<std::string>::iterator f = mCmd.mSourceFiles.begin(); f != mCmd.mSourceFiles.end(); f++ ) {
-        Parser p;
+    Parser* pp;
+	for( std::vector<std::string>::iterator f = mCmd.mSourceFiles.begin(); f != mCmd.mSourceFiles.end(); f++ ) {
+        std::cout << "Reading " << *f << "\n";
+		Parser p;
+		pp = &p;
         char ln[ 1024 ];
         std::ifstream ifs( ( *f ).c_str() );
-        while( !ifs.eof() ) {
-            memset( ln, 0x00, sizeof ln );
+		int n = 0;
+		std::cout << "Reading line 0";
+		while( !ifs.eof() ) {
+            if( ++n % 1000 == 0 ) {
+				std::cout << "\rReading line " << n;
+			}
+			memset( ln, 0x00, sizeof ln );
             ifs.getline( ln, sizeof ln );
             p.ragelParseSosiLine( ln );
         }
         p.complete();
-        ifs.close();
+		ifs.close();
+		std::cout << "\r" << n << "lines read        \n";
+		std::cout << "Building shape file...\n";
         ISosiElement* root = p.getRootElement();
-        makeShp( root );
+		makeShp( root );
     }
 }
 

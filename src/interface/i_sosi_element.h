@@ -54,7 +54,9 @@ namespace sosicon {
         //! Destructor
         virtual ~ISosiElement(){ };
 
-        virtual void addChild( ISosiElement* child ) = 0;
+        virtual std::vector<ISosiElement*>& children() = 0;
+		
+		virtual void addChild( ISosiElement* child ) = 0;
 
         virtual std::string getName() = 0;
 

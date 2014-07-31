@@ -19,8 +19,11 @@
 
 void sosicon::sosi::
 deleteNorthEasts( NorthEastList& lst ) {
-    for( NorthEastList::iterator i = lst.begin(); i != lst.end(); i++ ) {
-        delete *i;
+	static int n = 0;
+	for( NorthEastList::iterator i = lst.begin(); i != lst.end(); i++ ) {
+		//std::cout << "\rcounting: " << ++n << "    ";
+        ( *i )->free();
+		delete *i;
     }
     lst.clear();
 }
@@ -43,12 +46,7 @@ SosiNorthEast( ISosiElement* e ) {
 }
 
 sosicon::sosi::SosiNorthEast::
-~SosiNorthEast() {
-    for( CoordinateList::iterator i = mCoordinates.begin(); i != mCoordinates.end(); i++ ) {
-        delete *i;
-    }
-    mCoordinates.clear();
-}
+~SosiNorthEast() { }
 
 void sosicon::sosi::SosiNorthEast::
 append( std::string n, std::string e ) {
@@ -62,8 +60,22 @@ append( std::string n, std::string e ) {
 }
 
 void sosicon::sosi::SosiNorthEast::
+free() {
+	for( CoordinateList::iterator i = mCoordinates.begin(); i != mCoordinates.end(); i++ ) {
+		delete *i;
+	}
+	mCoordinates.clear();
+}
+
+void sosicon::sosi::SosiNorthEast::
 append( double n, double e ) {
-    ICoordinate* c = new Coordinate();
+	ICoordinate* c = 0;
+	try {
+		c = new Coordinate();
+	}
+	catch( ... ) {
+		std::cout << "Memory allocation failed";
+	}
     c->setN( n );
     c->setE( e );
     mMinX = std::min( mMinX, c->getE() );

@@ -57,7 +57,7 @@ namespace sosicon {
 
             static SosiOrigoNE mOrigo;
 
-            static SosiUnit mUnit;
+			static SosiUnit mUnit;
 
             double mMinX;
             double mMinY;
@@ -74,7 +74,10 @@ namespace sosicon {
             void append( double n, double e );
             void append( std::string n, std::string e );
 
-            //! Construct new SOSI north-east element
+			//!< Frees allocated memory
+			void free();
+			
+			//! Construct new SOSI north-east element
             SosiNorthEast( ISosiElement* e );
 
             //! Destructor

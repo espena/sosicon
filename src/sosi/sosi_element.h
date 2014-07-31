@@ -83,7 +83,7 @@ namespace sosicon {
             SosiElement( std::string name, std::string serial, std::string data, int level, ISosiElement* root, SosiElementMap& index );
 
             //! Insert children element
-            virtual void addChild( ISosiElement* child ) { mChildren.push_back( child ); };
+            virtual void addChild( ISosiElement* child );
 
             //! Recursively deletes all children
             virtual void deleteChildren();
@@ -94,7 +94,9 @@ namespace sosicon {
             //! Find element by reference
             virtual ISosiElement* find( std::string ref );
 
-            //! Get next child in list
+            std::vector<ISosiElement*>& children() { return mChildren; };
+			
+			//! Get next child in list
             /*!
                 Always pass a null pointer to start iterating through the children list.
                 The referenced pointer will point to the next child in list when the function returns.

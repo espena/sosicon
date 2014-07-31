@@ -50,7 +50,16 @@ getNextOffset( int& offset, std::vector<int>& offsets, std::vector<int>::iterato
 
 sosicon::CoordinateCollection::
 ~CoordinateCollection() {
-    delete mCenterPoint;
+	free();
+}
+
+void sosicon::CoordinateCollection::
+free() {
+	if( mCenterPoint ) {
+		mCenterPoint->free();
+		delete mCenterPoint;
+		mCenterPoint = 0;
+	}
     sosi::deleteNorthEasts( mGeom );
     sosi::deleteNorthEasts( mIslands );
 }
@@ -105,14 +114,14 @@ discoverCoords( ISosiElement* e ) {
 
 void sosicon::CoordinateCollection::
 extractPath( sosi::Reference* ref, ISosiElement* referencedElement ) {
-    sosi::SosiElementSearch src;
+	sosi::SosiElementSearch src;
     if( referencedElement->getType() == sosi::sosi_element_curve ) {
         // First segment describes the center point
         referencedElement->getChild( src, sosi::sosi_element_ne );
         mCenterPoint = new sosi::SosiNorthEast( src.element() );
     }
     while( referencedElement->getChild( src, sosi::sosi_element_ne ) ) {
-        sosi::SosiNorthEast* ne = new sosi::SosiNorthEast( src.element() );
+		sosi::SosiNorthEast* ne = new sosi::SosiNorthEast( src.element() );
         sosi::NorthEastList& lst = ref->subtract ? mIslands : mGeom;
         std::vector<int>& offsets = ref->subtract ? mPartOffsetsIslands : mPartOffsetsGeom;
         int& pointCount = ref->subtract ? mNumPointsIslands : mNumPointsGeom;
@@ -158,6 +167,7 @@ mkClosedPolygon() {
               coordFront->getN() != coordBack->getN() ) )
         {
             neBack->append( coordFront->getN(), coordFront->getE() );
+			mNumPointsGeom++;
         }
     }
 }

@@ -20,6 +20,7 @@
 int main ( int argc, char* argv[] ) {
 	
 	int res;
+	
 	try {
         sosicon::CommandLine cmd;
 		cmd.parse( argc, argv );
@@ -35,6 +36,7 @@ int main ( int argc, char* argv[] ) {
 		std::cout << ex.what() << "\n";
 		res = -1;
 	}
+	
 	return res;
 
 }

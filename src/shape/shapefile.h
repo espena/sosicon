@@ -53,11 +53,14 @@ namespace sosicon {
         */
         class Shapefile : public IShapefile {
 
-            char mShpHeader[ 100 ]; //!< Main SHP file header
-            char* mShpBuffer;       //!< SHP file payload
-            int mShpBufferSize;     //!< Length of SHP file buffer
+			const int  BUFFER_CHUNK_SIZE = 4096;
 
-            char mShxHeader[ 100 ]; //!< Index file header
+			char mShpHeader[ 100 ];			//!< Main SHP file header
+            char* mShpBuffer;				//!< SHP file payload
+            int mShpBufferSize;				//!< Length of SHP file buffer
+			int mAllocatedShpBufferSize;	//!< Allocated buffer size
+
+			char mShxHeader[ 100 ]; //!< Index file header
             char* mShxBuffer;       //!< Index file payload
             int mShxBufferSize;     //!< Length of SHX file buffer
 
@@ -77,7 +80,7 @@ namespace sosicon {
             ShxOffsets mShxOffsets;           //!< Index file offsets
 
             // Create SHP element
-            virtual void buildShpElement( ISosiElement* sosi, ShapeType type );
+            virtual void buildShpElement( ISosiElement* sosi, ShapeType type, bool f );
 
             // Create DBF file content
             virtual void buildDbf();

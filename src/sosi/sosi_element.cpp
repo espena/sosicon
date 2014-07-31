@@ -65,6 +65,12 @@ SosiElement( std::string name, std::string serial, std::string data, int level, 
 }
 
 void sosicon::sosi::SosiElement::
+addChild( ISosiElement* child ) {
+	mChildren.push_back( child );
+	std::string test = child->getData();
+};
+
+void sosicon::sosi::SosiElement::
 deleteChildren() {
     for( std::vector<ISosiElement*>::iterator i = mChildren.begin(); i != mChildren.end(); i++ ) {
         ( *i )->deleteChildren();

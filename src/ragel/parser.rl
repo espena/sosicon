@@ -36,6 +36,7 @@ ragelParseSosiLine( std::string sosiLine )
     sosiLine += "\r\n";
 
  /* Variables used by Ragel */
+
     int cs = 0;
     int top = 0;
     int act = 0;

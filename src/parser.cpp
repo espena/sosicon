@@ -39,9 +39,9 @@ digestPendingElement() {
             mElementStack.pop_back();
         }
 
-        previousElement = mElementStack.back();
+		previousElement = mElementStack.back();
 
-        mElementStack.push_back(
+		mElementStack.push_back(
             new sosi::SosiElement(
                 sosicon::utils::trim( mPendingElementName ),
                 sosicon::utils::trim( mPendingElementSerial ),

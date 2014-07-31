@@ -19,13 +19,14 @@
 #define __COORDINATE_H__
 
 #include <string>
+#include <iostream>
 #include <sstream>
 #include <ios>
 #include "interface/i_coordinate.h"
 
 namespace sosicon {
 
-    //! Coordinate container
+	//! Coordinate container
     /*!
         \author Espen Andersen
         \copyright GNU General Public License
@@ -39,7 +40,8 @@ namespace sosicon {
 
     public:
 
-        virtual ~Coordinate() { };
+        virtual ~Coordinate() {};
+        Coordinate() {};
         virtual double getE() { return mEast; };
         virtual double getN() { return mNorth; };
         virtual void setE( double coordEast ) { mEast = coordEast; };
