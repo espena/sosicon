@@ -57,8 +57,8 @@ namespace sosicon {
 
 			char mShpHeader[ 100 ];			//!< Main SHP file header
             char* mShpBuffer;				//!< SHP file payload
-            int mShpBufferSize;				//!< Length of SHP file buffer
-			int mAllocatedShpBufferSize;	//!< Allocated buffer size
+            int mShpBufferSize;				//!< Accurate length of SHP file buffer
+			int mAllocatedShpBufferSize;	//!< Actual buffer length (allocation size)
 
 			char mShxHeader[ 100 ]; //!< Index file header
             char* mShxBuffer;       //!< Index file payload
@@ -79,16 +79,16 @@ namespace sosicon {
             DbfRecordSet mDbfRecordSet;       //!< All DBF records
             ShxOffsets mShxOffsets;           //!< Index file offsets
 
-            // Create SHP element
+            //! Create SHP element
             virtual void buildShpElement( ISosiElement* sosi, ShapeType type, bool f );
 
-            // Create DBF file content
+            //! Create DBF file content
             virtual void buildDbf();
 
-            // Create SHX file content
+            //! Create SHX file content
             virtual void buildShx();
 
-            // Create DBF record
+            //! Create and insert DBF record
             virtual void insertDbfRecord( ISosiElement* sosi );
 
             //! Update or insert new DBF field
