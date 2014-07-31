@@ -22,8 +22,8 @@ Shapefile() :
     mShpBuffer( 0 ),
     mShxBuffer( 0 ),
     mDbfBuffer( 0 ),
+    mShpSize( 0 ),
     mShpBufferSize( 0 ),
-    mAllocatedShpBufferSize( 0 ),
     mRecordNumber( 0 ),
     mXmin( +99999999 ),
     mYmin( +99999999 ),
@@ -65,7 +65,7 @@ build( ISosiElement* sosiTree, sosi::ElementType selection ) {
 
         fileCode.i = 9994;
         unused.i = 0;
-        fileLength.i = ( mShpBufferSize / 2 ) + 50;
+        fileLength.i = ( mShpSize / 2 ) + 50;
         version.i = 1000;
         shapeType.i = shapeTypeEquivalent;
 
@@ -132,17 +132,17 @@ buildShpElement( ISosiElement* sosi, ShapeType type, bool f ) {
     int o = 0;
 
     ShxIndex shxIndex;
-    shxIndex.offset.i = 50 + ( mShpBufferSize / 2 );
+    shxIndex.offset.i = 50 + ( mShpSize / 2 );
     shxIndex.length.i = contentLength.i;
     mShxOffsets.push_back( shxIndex );
 
-	if( 0 == mShpBufferSize ) {
-        mShpBufferSize = byteLength;
-		while( mAllocatedShpBufferSize < mShpBufferSize ) {
-			mAllocatedShpBufferSize += BUFFER_CHUNK_SIZE;
+	if( 0 == mShpSize ) {
+        mShpSize = byteLength;
+		while( mShpBufferSize < mShpSize ) {
+			mShpBufferSize += BUFFER_CHUNK_SIZE;
 		}
 		try {
-			mShpBuffer = new char [ mAllocatedShpBufferSize ];
+			mShpBuffer = new char [ mShpBufferSize ];
 		}
 		catch( ... ) {
 			std::cout << "Memory allocation error\n";
@@ -150,15 +150,15 @@ buildShpElement( ISosiElement* sosi, ShapeType type, bool f ) {
 		}
     }
     else {
-        o = mShpBufferSize;
-        mShpBufferSize += byteLength;
-		if( mAllocatedShpBufferSize < mShpBufferSize ) {
-			while( mAllocatedShpBufferSize < mShpBufferSize ) {
-				mAllocatedShpBufferSize += BUFFER_CHUNK_SIZE;
+        o = mShpSize;
+        mShpSize += byteLength;
+		if( mShpBufferSize < mShpSize ) {
+			while( mShpBufferSize < mShpSize ) {
+				mShpBufferSize += BUFFER_CHUNK_SIZE;
 			}
 	        char* oldBuffer = mShpBuffer;
 		    try {
-				mShpBuffer = new char [ mAllocatedShpBufferSize ];
+				mShpBuffer = new char [ mShpBufferSize ];
 			}
 			catch( ... ) {
 				std::cout << "Memory allocation error\n";
@@ -389,7 +389,7 @@ insert( ISosiElement* sosiElement ) {
 void sosicon::shape::Shapefile::
 writeShp( std::ostream &os ) {
     os.write( mShpHeader, sizeof( mShpHeader ) );
-    os.write( mShpBuffer, mShpBufferSize );
+    os.write( mShpBuffer, mShpSize );
 }
 
 void sosicon::shape::Shapefile::
