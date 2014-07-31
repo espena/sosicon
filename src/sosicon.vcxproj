@@ -47,7 +47,7 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <OutDir>$(SolutionDir)..\bin\win\debug\</OutDir>
     <IntDir>$(OutDir)</IntDir>
-    <TargetName>$(ProjectName)_debug2</TargetName>
+    <TargetName>$(ProjectName)_debug</TargetName>
     <LinkIncremental>false</LinkIncremental>
     <PreBuildEventUseInBuild>false</PreBuildEventUseInBuild>
   </PropertyGroup>
