@@ -53,7 +53,7 @@ namespace sosicon {
         */
         class Shapefile : public IShapefile {
 
-			const int  BUFFER_CHUNK_SIZE = 4096;
+			static const int  BUFFER_CHUNK_SIZE = 4096;
 
 			char mShpHeader[ 100 ];			//!< Main SHP file header
             char* mShpBuffer;				//!< SHP file payload
