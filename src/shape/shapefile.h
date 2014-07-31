@@ -53,14 +53,20 @@ namespace sosicon {
         */
         class Shapefile : public IShapefile {
 
-			static const int  BUFFER_CHUNK_SIZE = 4096;
+            //! Buffer allocation size
+            /*!
+                To speed things up, heap allocations are done in large chunks.
+                This parameters defines how many bytes to request for each
+                buffer expansion.
+            */
+            static const int  BUFFER_CHUNK_SIZE = 4096;
 
-			char mShpHeader[ 100 ];			//!< Main SHP file header
-            char* mShpBuffer;				//!< SHP file payload
-            int mShpBufferSize;				//!< Length of SHP file buffer
-			int mAllocatedShpBufferSize;	//!< Allocated buffer size
+            char mShpHeader[ 100 ]; //!< Main SHP file header
+            char* mShpBuffer;       //!< SHP file payload
+            int mShpSize;           //!< Data length of SHP file buffer
+            int mShpBufferSize;     //!< Allocated buffer length
 
-			char mShxHeader[ 100 ]; //!< Index file header
+            char mShxHeader[ 100 ]; //!< Index file header
             char* mShxBuffer;       //!< Index file payload
             int mShxBufferSize;     //!< Length of SHX file buffer
 
@@ -102,7 +108,7 @@ namespace sosicon {
             //! Destructor
             virtual ~Shapefile();
 
-            // Described in IShapefile
+            //! Described in IShapefile
             virtual void build( ISosiElement* sosiTree, sosi::ElementType selection );
 
             //! Insert SOSI element
@@ -112,16 +118,16 @@ namespace sosicon {
              */
             void insert( ISosiElement* sosiElement );
 
-            // Described in IShapefileDbfPart
+            //! Described in IShapefileDbfPart
             virtual void writeDbf( std::ostream &os );
 
-            // Described in IShapefilePrjPart
+            //! Described in IShapefilePrjPart
             virtual void writePrj( std::ostream &os );
 
-            // Described in IShapefileShpPart
+            //! Described in IShapefileShpPart
             virtual void writeShp( std::ostream &os );
 
-            // Described in IShapefileShxPart
+            //! Described in IShapefileShxPart
             virtual void writeShx( std::ostream &os );
         };
 
