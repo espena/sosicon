@@ -51,6 +51,34 @@ sosiNameToType( std::string sosiElementName ) {
     return type;
 }
 
+sosicon::sosi::ObjType sosicon::sosi::
+sosiObjNameToType( std::string sosiObjTypeName ) {
+
+    static std::map<std::string, ObjType> sosiObjTypeNameMap;
+
+    ObjType type;
+
+    if( sosiObjTypeNameMap.empty() ) {
+        sosiObjTypeNameMap[ "Innsj\xF8" ]           = sosi_objtype_lake;             // Lake
+        sosiObjTypeNameMap[ "Arealbrukgrense" ]     = sosi_objtype_land_use_border;  // Land use border
+        sosiObjTypeNameMap[ "FiktivDelelinje" ]     = sosi_objtype_virtual_border;   // Virtual border
+        sosiObjTypeNameMap[ "Golfbane" ]            = sosi_objtype_golf_course;      // Golf course
+        sosiObjTypeNameMap[ "Havflate" ]            = sosi_objtype_ocean_surface;    // Land use border
+        sosiObjTypeNameMap[ "Kystkontur" ]          = sosi_objtype_shoreline;        // Shoreline
+        sosiObjTypeNameMap[ "TettBebyggelse" ]      = sosi_objtype_built_up_area;    // Built-up area
+        sosiObjTypeNameMap[ "\xC5pentOmr\xE5""de" ] = sosi_objtype_open_land;        // Open land
+    }
+
+    try{
+        type = sosiObjTypeNameMap[ sosiObjTypeName ];
+    }
+    catch( ... ) {
+        type = sosi_objtype_unknown;
+    }
+
+    return type;
+}
+
 sosicon::sosi::SosiElement::
 SosiElement( std::string name, std::string serial, std::string data, int level, ISosiElement* root, SosiElementMap& index ) : mIndex( index ) {
     mName = name;
@@ -58,6 +86,7 @@ SosiElement( std::string name, std::string serial, std::string data, int level, 
     mData = data;
     mLevel = level;
     mType = sosiNameToType( mName );
+    mObjType = sosi::sosi_objtype_unknown;
     mRoot = root ? root : this;
     if( !mSerial.empty() ) {
         mIndex[ mSerial ] = this;
@@ -66,8 +95,10 @@ SosiElement( std::string name, std::string serial, std::string data, int level, 
 
 void sosicon::sosi::SosiElement::
 addChild( ISosiElement* child ) {
-	mChildren.push_back( child );
-	std::string test = child->getData();
+	if( child->getType() == sosi::sosi_element_objtype ) {
+        mObjType = sosiObjNameToType( child->getData() );
+    }
+    mChildren.push_back( child );
 };
 
 void sosicon::sosi::SosiElement::
@@ -102,13 +133,14 @@ find( std::string ref ) {
 
 bool sosicon::sosi::SosiElement::
 getChild( SosiElementSearch& src ) {
-    bool moreToGo = mChildren.size() > 0;
+    SosiChildrenList::size_type n = mChildren.size();
+    bool moreToGo = n > 0;
     if( moreToGo ) {
         if( src.element() == 0 ) {
-            src.iterator( mChildren.begin() );
+            src.index( 0 );
         }
-		if( src.iterator() != mChildren.end() ) {
-			src.element( *( src.iterator() ) );
+		if( src.index() < n ) {
+			src.element( mChildren[ src.index() ] );
 			moreToGo = true;
 			src.next();
 		}

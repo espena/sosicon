@@ -43,15 +43,15 @@ namespace sosicon {
         typedef SosiChildrenList::iterator SosiChildrenIterator;
 
         class SosiElementSearch {
-            SosiChildrenIterator mIterator;
+            SosiChildrenList::size_type mIndex;
             ISosiElement* mSosiElement;
         public:
-            SosiElementSearch() { mSosiElement = 0; };
-            SosiChildrenIterator& iterator() { return mIterator; };
-            SosiChildrenIterator& iterator( SosiChildrenIterator i ) { mIterator = i; return mIterator; };
+            SosiElementSearch() : mIndex( 0 ), mSosiElement( 0 ) { };
+            SosiChildrenList::size_type index() { return mIndex; };
+            SosiChildrenList::size_type index( SosiChildrenList::size_type i ) { mIndex = i; return mIndex; };
             ISosiElement* element() { return mSosiElement; };
             ISosiElement* element( ISosiElement* e ) { mSosiElement = e; return mSosiElement; };
-            void next() { mIterator++; };
+            void next() { mIndex++; };
         };
 
        /*! @} end group sosi_elements */

@@ -125,6 +125,9 @@ parse( int argc, char* argv[] ) {
             else if( "-2tsv" == param ) {
                 mCommand = param;
             }
+            else if( "-stat" == param ) {
+                mCommand = param;
+            }
             else if( "-help" == param ) {
                 outputHelpText();
                 break;
@@ -146,6 +149,9 @@ outputHelpText() {
     std::cout << "\n";
     std::cout << "  -2shp\n";
     std::cout << "      Convert SOSI source to ESRI Shape (shp).\n";
+    std::cout << "\n";
+    std::cout << "  -stat\n";
+    std::cout << "      Print out statistics for a SOSI file.\n";
     std::cout << "\n";
     std::cout << "Export options:\n";
     std::cout << "\n";

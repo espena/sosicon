@@ -102,7 +102,7 @@ run() {
         }
         p.complete();
 		ifs.close();
-		std::cout << "\r" << n << "lines read        \n";
+        std::cout << "\r" << n << "lines read        \n";
 		std::cout << "Building shape file...\n";
         ISosiElement* root = p.getRootElement();
 		makeShp( root );

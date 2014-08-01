@@ -39,8 +39,10 @@ namespace sosicon {
         Different command-line arguments will employ different converters. The factory class
         sosicon::Factory is responsible for creating correct IConverter instance. The following
         arguments are currently interpreted:
+        - -2shp: sosicon::ConverterSosi2shp Shapefile conversion
         - -2tsv: sosicon::ConverterSosi2tsv TSV file conversion
-        - -2shp: sosicon::ConverterSosi2shp Shape file conversion
+        - -2xml: sosicon::ConverterSosi2xml Shape file conversion
+        - -stat: sosicon::ConverterSosiStat SOSI statistics (printout)
         @{
     */
     //! SOSI to ESRI Shape converter

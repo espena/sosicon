@@ -70,6 +70,9 @@ discoverCoords( ISosiElement* e ) {
     switch( e->getType() ) {
         case sosi::sosi_element_area:
             {
+                if( e->getSerial() == "17006" ) {
+                    e->dump();
+                }
                 sosi::SosiElementSearch srcRef;
                 ISosiElement* rawRefElement = 0;
                 while( e->getChild( srcRef, sosi::sosi_element_ref ) ) {
@@ -116,6 +119,7 @@ void sosicon::CoordinateCollection::
 extractPath( sosi::Reference* ref, ISosiElement* referencedElement ) {
 	sosi::SosiElementSearch src;
     if( referencedElement->getType() == sosi::sosi_element_curve ) {
+        
         // First segment describes the center point
         referencedElement->getChild( src, sosi::sosi_element_ne );
         mCenterPoint = new sosi::SosiNorthEast( src.element() );
@@ -127,9 +131,13 @@ extractPath( sosi::Reference* ref, ISosiElement* referencedElement ) {
         int& pointCount = ref->subtract ? mNumPointsIslands : mNumPointsGeom;
         if( ref->reverse ) {
             ne->reverse();
+            lst.insert( lst.begin(), ne );
+            offsets.insert( offsets.begin(), pointCount );
         }
-        lst.push_back( ne );
-        offsets.push_back( pointCount );
+        else {
+            lst.push_back( ne );
+            offsets.push_back( pointCount );
+        }
         pointCount += ne->getNumPoints();
         ne->expandBoundingBox( mXmin, mYmin, mXmax, mYmax );
     }

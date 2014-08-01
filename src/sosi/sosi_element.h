@@ -44,6 +44,14 @@ namespace sosicon {
          */
         ElementType sosiNameToType( std::string sosiElementName );
 
+        //! Convert SOSI objtype names to ObjType enum value
+        /*!
+            The enum member names are translations of the Norwegian geograpic features.
+            \param std::string sosiObjtypeName The standard SOSI objtype name in Norwegian.
+            \return ObjType enumeration value representing current element objtype.
+         */
+        ObjType sosiObjNameToType( std::string sosiObjTypeName );
+
         //! Basic SOSI element
         /*!
             Implements basic characteristics of a SOSI element.
@@ -56,17 +64,17 @@ namespace sosicon {
             //! List of children elements
             SosiChildrenList mChildren;
 
-            //! Iterator for mChildren
-            SosiChildrenIterator mChildrenIterator;
-
             //! Current element's nesting level
             int mLevel;
 
             //! Current element's name
             std::string mName;
 
-            //! Current element's type
+            //! Current element's geometric type
             ElementType mType;
+
+            //! Current element's objtype
+            ObjType mObjType;
 
             //! Current element's serial number if provided
             std::string mSerial;
@@ -112,6 +120,9 @@ namespace sosicon {
 
             //! Get nesting level of current element
             virtual int getLevel() { return mLevel; };
+
+            //! Get ObjType of current element
+            virtual ObjType getObjType() { return mObjType; };
 
             //! Get name of current element
             virtual std::string getName() { return mName; };

@@ -47,7 +47,7 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <OutDir>$(SolutionDir)..\bin\win\debug\</OutDir>
     <IntDir>$(OutDir)</IntDir>
-    <TargetName>$(ProjectName)_debug</TargetName>
+    <TargetName>$(ProjectName)_dbg</TargetName>
     <LinkIncremental>false</LinkIncremental>
     <PreBuildEventUseInBuild>false</PreBuildEventUseInBuild>
   </PropertyGroup>
@@ -147,6 +147,7 @@ rd /s /q $(IntermediateOutputPath)</Command>
     <ClInclude Include="converter_sosi2shp.h" />
     <ClInclude Include="converter_sosi2tsv.h" />
     <ClInclude Include="converter_sosi2xml.h" />
+    <ClInclude Include="converter_sosi_stat.h" />
     <ClInclude Include="coordinate.h" />
     <ClInclude Include="coordinate_collection.h" />
     <ClInclude Include="factory.h" />
@@ -186,6 +187,7 @@ rd /s /q $(IntermediateOutputPath)</Command>
     <ClCompile Include="converter_sosi2shp.cpp" />
     <ClCompile Include="converter_sosi2tsv.cpp" />
     <ClCompile Include="converter_sosi2xml.cpp" />
+    <ClCompile Include="converter_sosi_stat.cpp" />
     <ClCompile Include="coordinate_collection.cpp" />
     <ClCompile Include="factory.cpp" />
     <ClCompile Include="main.cpp" />
