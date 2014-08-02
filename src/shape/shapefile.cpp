@@ -412,7 +412,7 @@ writePrj( std::ostream &os ) {
 sosicon::shape::ShapeType sosicon::shape::
 getShapeEquivalent( sosi::ElementType sosiType ) {
     switch( sosiType ) {
-        case sosi::sosi_element_surfaence:
+        case sosi::sosi_element_surface:
             return shape_type_polygon;
         case sosi::sosi_element_curve:
             return shape_type_polyLine;
