@@ -43,17 +43,17 @@ makeShp( ISosiElement* sosiTree ) {
     std::string basePath = makeBasePath();
 
     std::ofstream shpfs;
-    shpfs.open( basePath + ".shp", std::ios::out | std::ios::trunc | std::ios::binary );
+    shpfs.open( ( basePath + ".shp" ).c_str(), std::ios::out | std::ios::trunc | std::ios::binary );
     shpfs << *( static_cast<IShapefileShpPart*>( &shp ) );
     shpfs.close();
 
     std::ofstream shxfs;
-    shxfs.open( basePath + ".shx", std::ios::out | std::ios::trunc | std::ios::binary );
+    shxfs.open( ( basePath + ".shx" ).c_str(), std::ios::out | std::ios::trunc | std::ios::binary );
     shxfs << *( static_cast<IShapefileShxPart*>( &shp ) );
     shxfs.close();
 
     std::ofstream dbffs;
-    dbffs.open( basePath + ".dbf", std::ios::out | std::ios::trunc | std::ios::binary );
+    dbffs.open( ( basePath + ".dbf" ).c_str(), std::ios::out | std::ios::trunc | std::ios::binary );
     dbffs << *( static_cast<IShapefileDbfPart*>( &shp ) );
     dbffs.close();
 }
@@ -83,29 +83,33 @@ makeBasePath() {
 
 void sosicon::ConverterSosi2shp::
 run() {
+    if( mCmd.mIsTtyOut ) {
+        std::cout << "\e[?25l"; // Cursor off
+    }
     Parser* pp;
-	for( std::vector<std::string>::iterator f = mCmd.mSourceFiles.begin(); f != mCmd.mSourceFiles.end(); f++ ) {
+    for( std::vector<std::string>::iterator f = mCmd.mSourceFiles.begin(); f != mCmd.mSourceFiles.end(); f++ ) {
         std::cout << "Reading " << *f << "\n";
-		Parser p;
-		pp = &p;
+        Parser p;
+        pp = &p;
         char ln[ 1024 ];
         std::ifstream ifs( ( *f ).c_str() );
-		int n = 0;
-		std::cout << "Reading line 0";
-		while( !ifs.eof() ) {
-            if( ++n % 1000 == 0 ) {
-				std::cout << "\rReading line " << n;
-			}
-			memset( ln, 0x00, sizeof ln );
+        int n = 0;
+        while( !ifs.eof() ) {
+            if( mCmd.mIsTtyOut && ++n % 100 == 0 ) {
+                std::cout << "\rReading line " << n;
+            }
+            memset( ln, 0x00, sizeof ln );
             ifs.getline( ln, sizeof ln );
             p.ragelParseSosiLine( ln );
         }
         p.complete();
-		ifs.close();
+        ifs.close();
         std::cout << "\r" << n << "lines read        \n";
-		std::cout << "Building shape file...\n";
+        std::cout << "Building shape file...\n";
         ISosiElement* root = p.getRootElement();
-		makeShp( root );
+        makeShp( root );
+    }
+    if( mCmd.mIsTtyOut ) {
+        std::cout << "\e[?25h"; // Cursor on
     }
 }
-

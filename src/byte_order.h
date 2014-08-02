@@ -23,6 +23,8 @@
 
 #ifdef _WIN32
 #include "inttypes.h"
+#else
+#include <inttypes.h>
 #endif
 #include <algorithm>
 #include <cmath>
