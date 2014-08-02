@@ -20,6 +20,7 @@
 
 #include <map>
 #include <vector>
+#include "sosi_types.h"
 
 namespace sosicon {
 
@@ -45,12 +46,16 @@ namespace sosicon {
         class SosiElementSearch {
             SosiChildrenList::size_type mIndex;
             ISosiElement* mSosiElement;
+            sosi::ElementType mElementType;
         public:
-            SosiElementSearch() : mIndex( 0 ), mSosiElement( 0 ) { };
+            SosiElementSearch() : mIndex( 0 ), mSosiElement( 0 ), mElementType( sosi_element_unknown ) { };
+            SosiElementSearch( sosi::ElementType filter ) : mIndex( 0 ), mSosiElement( 0 ), mElementType( filter ) { };
             SosiChildrenList::size_type index() { return mIndex; };
             SosiChildrenList::size_type index( SosiChildrenList::size_type i ) { mIndex = i; return mIndex; };
             ISosiElement* element() { return mSosiElement; };
             ISosiElement* element( ISosiElement* e ) { mSosiElement = e; return mSosiElement; };
+            sosi::ElementType type() { return mElementType; };
+            sosi::ElementType type( sosi::ElementType t ) { mElementType = t; return mElementType; };
             void next() { mIndex++; };
         };
 

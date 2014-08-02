@@ -73,9 +73,9 @@ discoverCoords( ISosiElement* e ) {
                 if( e->getSerial() == "17006" ) {
                     e->dump();
                 }
-                sosi::SosiElementSearch srcRef;
+                sosi::SosiElementSearch srcRef( sosi::sosi_element_ref );
                 ISosiElement* rawRefElement = 0;
-                while( e->getChild( srcRef, sosi::sosi_element_ref ) ) {
+                while( e->getChild( srcRef ) ) {
                     rawRefElement = srcRef.element();
                     sosi::SosiRefList refList( rawRefElement );
                     sosi::Reference* ref = 0;
@@ -117,14 +117,14 @@ discoverCoords( ISosiElement* e ) {
 
 void sosicon::CoordinateCollection::
 extractPath( sosi::Reference* ref, ISosiElement* referencedElement ) {
-	sosi::SosiElementSearch src;
+	sosi::SosiElementSearch src( sosi::sosi_element_ne );
     if( referencedElement->getType() == sosi::sosi_element_curve ) {
         
         // First segment describes the center point
-        referencedElement->getChild( src, sosi::sosi_element_ne );
+        referencedElement->getChild( src );
         mCenterPoint = new sosi::SosiNorthEast( src.element() );
     }
-    while( referencedElement->getChild( src, sosi::sosi_element_ne ) ) {
+    while( referencedElement->getChild( src ) ) {
 		sosi::SosiNorthEast* ne = new sosi::SosiNorthEast( src.element() );
         sosi::NorthEastList& lst = ref->subtract ? mIslands : mGeom;
         std::vector<int>& offsets = ref->subtract ? mPartOffsetsIslands : mPartOffsetsGeom;

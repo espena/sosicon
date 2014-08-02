@@ -59,6 +59,13 @@ namespace sosicon {
         //! Map keeping count of geometry
         std::map<std::string, int> mGeoTypes;
 
+        //! Output simple element attributes
+        void printElementData( ISosiElement* e, sosi::SosiElementSearch src, int padding );
+
+        //! Output simple element attributes
+        void printTableHeader( std::string col1, std::string col2, int padding );
+
+        //! Output table header with column titles
         void makeStat( ISosiElement* parent );
 
     public:

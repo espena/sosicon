@@ -57,24 +57,82 @@ makeStat( ISosiElement* parent ) {
 }
 
 void sosicon::ConverterSosiStat::
+printElementData( ISosiElement* e, sosi::SosiElementSearch src, int padding ) {
+    while( e->getChild( src ) ) {
+        ISosiElement* child = src.element();
+        if( !child->getData().empty() ) {
+            std::string label = child->getName();
+            label.resize( padding, '.' );
+            std::cout << " " << label << ": " << child->getData() << "\n";
+        }
+    }
+}
+
+void sosicon::ConverterSosiStat::
+printTableHeader( std::string col1, std::string col2, int padding ) {
+    col1.resize( padding, ' ' );
+    std::cout << " " << col1 << ": " << col2 << "\n";
+    std::cout << "------------------------------------------\n";
+}
+
+void sosicon::ConverterSosiStat::
 run() {
+    std::cout << "\e[?25l"; // Cursor off
     for( std::vector<std::string>::iterator f = mCmd.mSourceFiles.begin(); f != mCmd.mSourceFiles.end(); f++ ) {
-        std::cout << "Generating statistics for " << *f << "\n";
+        std::cout << "\nGenerating statistics for " << *f << "\n";
         Parser p;
         char ln[ 1024 ];
         std::ifstream ifs( ( *f ).c_str() );
+        int c = 0;
         while( !ifs.eof() ) {
+            if( ( ++c % 100 ) == 0 ) {
+                std::cout << "\rParsing " << c << " lines...";
+            }
             memset( ln, 0x00, sizeof ln );
             ifs.getline( ln, sizeof ln );
             p.ragelParseSosiLine( ln );
         }
+        std::cout << "\r" << c << " lines in file   \n\n";
         p.complete();
         ifs.close();
+
         ISosiElement* root = p.getRootElement();
         makeStat( root );
-        for( std::map<std::string, int>::iterator i = mObjTypes.begin(); i != mObjTypes.end(); i++ ) {
-            std::cout << i->first << ": " << i->second << "\n";
+
+        sosi::SosiElementSearch srcHead( sosi::sosi_element_head );
+        if( root->getChild( srcHead ) ) {
+            sosi::SosiElementSearch srcHeadItem;
+            
+            printTableHeader( "SOSI HEADER", "VALUE", 22 );
+            printElementData( srcHead.element(), sosi::SosiElementSearch(), 22 );
+            std::cout << "\n\n";
+            
+            sosi::SosiElementSearch srcTranspar( sosi::sosi_element_transpar );
+            if( srcHead.element()->getChild( srcTranspar ) ) {
+                sosi::SosiElementSearch srcTransparItem;
+                printTableHeader( "SOSI HEADER/TRANSPAR", "VALUE", 22 );
+                printElementData( srcTranspar.element(), sosi::SosiElementSearch(), 22 );
+                std::cout << "\n\n";
+            }
         }
+
+        printTableHeader( "SOSI ELEMENT", "COUNT", 30 );
+        for( std::map<std::string, int>::iterator i = mGeoTypes.begin(); i != mGeoTypes.end(); i++ ) {
+            std::string label = i->first;
+            label.resize( 30, '.' );
+            std::cout << " " << label << ": " << i->second << "\n";
+        }
+        std::cout << "\n\n";
+
+        printTableHeader( "OBJTYPE", "COUNT", 30 );
+        for( std::map<std::string, int>::iterator i = mObjTypes.begin(); i != mObjTypes.end(); i++ ) {
+            std::string label = i->first;
+            label.resize( 30, '.' );
+            std::cout << " " << label << ": " << i->second << "\n";
+        }
+        std::cout << "\n\n";
+
     }
+    std::cout << "\e[?25h"; // Cursor on
 }
 

@@ -88,13 +88,13 @@ append( double n, double e ) {
 void sosicon::sosi::SosiNorthEast::
 initHeadMember( ISosiHeadMember& headMember, ElementType type ) {
     if( !headMember.initialized() ) {
-        SosiElementSearch head;
-        SosiElementSearch transpar;
-        SosiElementSearch target;
+        SosiElementSearch head( sosi_element_head );
+        SosiElementSearch transpar( sosi_element_transpar );
+        SosiElementSearch target( type );
         ISosiElement* root = mSosiElement->getRoot();
-        if( root->getChild( head, sosi_element_head ) &&
-            head.element()->getChild( transpar, sosi_element_transpar ) &&
-            transpar.element()->getChild( target, type ) )
+        if( root->getChild( head ) &&
+            head.element()->getChild( transpar ) &&
+            transpar.element()->getChild( target ) )
         {
             headMember.init( target.element() );
         }

@@ -95,7 +95,7 @@ SosiElement( std::string name, std::string serial, std::string data, int level, 
 
 void sosicon::sosi::SosiElement::
 addChild( ISosiElement* child ) {
-	if( child->getType() == sosi::sosi_element_objtype ) {
+    if( child->getType() == sosi::sosi_element_objtype ) {
         mObjType = sosiObjNameToType( child->getData() );
     }
     mChildren.push_back( child );
@@ -132,29 +132,30 @@ find( std::string ref ) {
 }
 
 bool sosicon::sosi::SosiElement::
-getChild( SosiElementSearch& src ) {
+nextChild( SosiElementSearch& src ) {
     SosiChildrenList::size_type n = mChildren.size();
     bool moreToGo = n > 0;
     if( moreToGo ) {
         if( src.element() == 0 ) {
             src.index( 0 );
         }
-		if( src.index() < n ) {
-			src.element( mChildren[ src.index() ] );
-			moreToGo = true;
-			src.next();
-		}
-		else {
-			moreToGo = false;
-		}
+        if( src.index() < n ) {
+            src.element( mChildren[ src.index() ] );
+            moreToGo = true;
+            src.next();
+        }
+        else {
+            moreToGo = false;
+        }
     }
     return moreToGo;
 }
 
 bool sosicon::sosi::SosiElement::
-getChild( SosiElementSearch& src, ElementType type ) {
-    bool res = getChild( src );
-    while( res == true && src.element()->getType() != type ) {
+getChild( SosiElementSearch& src ) {
+    bool res = nextChild( src );
+    sosi::ElementType t = src.type();
+    while( res == true  && t != sosi::sosi_element_unknown && src.element()->getType() != t ) {
         res = getChild( src );
     }
     return res;

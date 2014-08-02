@@ -85,6 +85,9 @@ namespace sosicon {
             //! Reference to parser's lookup table
             SosiElementMap& mIndex;
 
+            //! Increment to next child in list
+            virtual bool nextChild( SosiElementSearch& src );
+
         public:
 
             //! Construct new SOSI element
@@ -111,9 +114,6 @@ namespace sosicon {
                 If the end of the list is reached, the function returns false.
              */
             virtual bool getChild( SosiElementSearch& src );
-
-            //! Get next child of specified type in list
-            virtual bool getChild( SosiElementSearch& src, sosi::ElementType type );
 
             //! Get unparsed element data
             virtual std::string getData() { return mData; };
