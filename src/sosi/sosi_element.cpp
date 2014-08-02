@@ -25,20 +25,37 @@ sosiNameToType( std::string sosiElementName ) {
     ElementType type;
 
     if( sosiTypeNameMap.empty() ) {
+        sosiTypeNameMap[ "EIER"             ] = sosi_element_owner;            // Dataset owner
         sosiTypeNameMap[ "ENHET"            ] = sosi_element_unit;             // Unit (fraction of a metre)
-        sosiTypeNameMap[ "FLATE"            ] = sosi_element_area;             // Area
+        sosiTypeNameMap[ "FLATE"            ] = sosi_element_surface;          // Surface
         sosiTypeNameMap[ "HODE"             ] = sosi_element_head;             // File header
+        sosiTypeNameMap[ "H\xD8YDE"         ] = sosi_element_height;           // Height
+        sosiTypeNameMap[ "IATAKODE"         ] = sosi_element_iata_code;        // IATA code (aviation)
+        sosiTypeNameMap[ "ICAOKODE"         ] = sosi_element_icao_code;        // ICAO code (aviation)
+        sosiTypeNameMap[ "KOMM"             ] = sosi_element_municipality;     // Municipality
         sosiTypeNameMap[ "KOORDSYS"         ] = sosi_element_coordsys;         // Coordinate system
         sosiTypeNameMap[ "KURVE"            ] = sosi_element_curve;            // Curve
+        sosiTypeNameMap[ "KVALITET"         ] = sosi_element_quality;          // Quality of data
+        sosiTypeNameMap[ "LUFTHAVNEIER"     ] = sosi_element_airport_roads;    // Airport roads
+        sosiTypeNameMap[ "LUFTHAVNTYPE"     ] = sosi_element_airport_type;     // Airport type
+        sosiTypeNameMap[ "MAX-N\xD8"        ] = sosi_element_max_ne;           // Maximum north-east (bbox)
+        sosiTypeNameMap[ "MIN-N\xD8"        ] = sosi_element_min_ne;           // Minimum north-east (bbox)
+        sosiTypeNameMap[ "NAVN"             ] = sosi_element_name;             // Name
         sosiTypeNameMap[ "N\xD8"            ] = sosi_element_ne;               // North-east coordinate (NØ)
         sosiTypeNameMap[ "OBJTYPE"          ] = sosi_element_objtype;          // Object type
+        sosiTypeNameMap[ "OMR\xC5""DE"      ] = sosi_element_area;             // Area
         sosiTypeNameMap[ "OPPDATERINGSDATO" ] = sosi_element_updatedate;       // Update date
         sosiTypeNameMap[ "ORIGO-N\xD8"      ] = sosi_element_origo_ne;         // Origo north-east
+        sosiTypeNameMap[ "PRODUSENT"        ] = sosi_element_vendor;           // Data vendor
         sosiTypeNameMap[ "PUNKT"            ] = sosi_element_point;            // Point
         sosiTypeNameMap[ "REF"              ] = sosi_element_ref;              // Element reference
+        sosiTypeNameMap[ "SOSI-NIV\xC5"     ] = sosi_element_level;            // SOSI level
+        sosiTypeNameMap[ "SOSI-VERSJON"     ] = sosi_element_version;          // SOSI version
         sosiTypeNameMap[ "TEGNSETT"         ] = sosi_element_charset;          // Character set
         sosiTypeNameMap[ "TEKST"            ] = sosi_element_text;             // Text label
+        sosiTypeNameMap[ "TRAFIKKTYPE"      ] = sosi_element_traffic_type;     // Traffic type
         sosiTypeNameMap[ "TRANSPAR"         ] = sosi_element_transpar;         // Datum/projection/coordsys
+        sosiTypeNameMap[ "VANNBR"           ] = sosi_element_water_width;      // Water width
     }
 
     try{

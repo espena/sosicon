@@ -21,6 +21,8 @@ sosicon::CommandLine::
 CommandLine() {
     mCommand = "-2tsv";
     mVerbose = 0;   
+    mIsTtyIn = isatty( fileno( stdin ) );
+    mIsTtyOut = isatty( fileno( stdout ) );
 }
 
 sosicon::CommandLine::
@@ -30,7 +32,7 @@ void sosicon::CommandLine::
 parse( int argc, char* argv[] ) {
 
     std::string inputLine = "";
-    if( !isatty( fileno( stdin ) ) ) {
+    if( !mIsTtyIn ) {
         while( std::cin ) {
             std::cin >> inputLine;
             mSourceFiles.push_back( inputLine );

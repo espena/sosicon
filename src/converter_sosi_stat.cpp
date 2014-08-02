@@ -69,6 +69,18 @@ printElementData( ISosiElement* e, sosi::SosiElementSearch src, int padding ) {
 }
 
 void sosicon::ConverterSosiStat::
+printListContent( std::map<std::string, int> list, int padding ) {
+    for( std::map<std::string, int>::iterator i = list.begin(); i != list.end(); i++ ) {
+        std::string label = i->first;
+        std::stringstream ss;
+        ss << i->second;
+        std::string value = std::string( 8 - ss.str().size(), ' ' ) + ss.str();
+        label.resize( padding, '.' );
+        std::cout << " " << label << ": " << value << "\n";
+    }
+}
+
+void sosicon::ConverterSosiStat::
 printTableHeader( std::string col1, std::string col2, int padding ) {
     col1.resize( padding, ' ' );
     std::cout << " " << col1 << ": " << col2 << "\n";
@@ -77,7 +89,9 @@ printTableHeader( std::string col1, std::string col2, int padding ) {
 
 void sosicon::ConverterSosiStat::
 run() {
-    std::cout << "\e[?25l"; // Cursor off
+    if( mCmd.mIsTtyOut ) {
+        std::cout << "\e[?25l"; // Cursor off
+    }
     for( std::vector<std::string>::iterator f = mCmd.mSourceFiles.begin(); f != mCmd.mSourceFiles.end(); f++ ) {
         std::cout << "\nGenerating statistics for " << *f << "\n";
         Parser p;
@@ -85,14 +99,15 @@ run() {
         std::ifstream ifs( ( *f ).c_str() );
         int c = 0;
         while( !ifs.eof() ) {
-            if( ( ++c % 100 ) == 0 ) {
+            c++;
+            if( mCmd.mIsTtyOut && ( c % 100 ) == 0 ) {
                 std::cout << "\rParsing " << c << " lines...";
             }
             memset( ln, 0x00, sizeof ln );
             ifs.getline( ln, sizeof ln );
             p.ragelParseSosiLine( ln );
         }
-        std::cout << "\r" << c << " lines in file   \n\n";
+        std::cout << "\n" << c << " lines in file   \n\n";
         p.complete();
         ifs.close();
 
@@ -117,22 +132,16 @@ run() {
         }
 
         printTableHeader( "SOSI ELEMENT", "COUNT", 30 );
-        for( std::map<std::string, int>::iterator i = mGeoTypes.begin(); i != mGeoTypes.end(); i++ ) {
-            std::string label = i->first;
-            label.resize( 30, '.' );
-            std::cout << " " << label << ": " << i->second << "\n";
-        }
+        printListContent( mGeoTypes, 30 );
         std::cout << "\n\n";
 
         printTableHeader( "OBJTYPE", "COUNT", 30 );
-        for( std::map<std::string, int>::iterator i = mObjTypes.begin(); i != mObjTypes.end(); i++ ) {
-            std::string label = i->first;
-            label.resize( 30, '.' );
-            std::cout << " " << label << ": " << i->second << "\n";
-        }
+        printListContent( mObjTypes, 30 );
         std::cout << "\n\n";
 
     }
-    std::cout << "\e[?25h"; // Cursor on
+    if( mCmd.mIsTtyOut ) {
+        std::cout << "\e[?25h"; // Cursor off
+    }
 }
 

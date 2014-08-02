@@ -37,21 +37,39 @@ namespace sosicon {
         //! List of SOSI types
         enum ElementType {
             sosi_element_unknown = 0,       //!< Unknown element
+            sosi_element_airport_roads,     //!< Airport roads
+            sosi_element_airport_type,      //!< Airport type
             sosi_element_area,              //!< Area
             sosi_element_charset,           //!< Character set
             sosi_element_coordsys,          //!< Grid type
             sosi_element_curve,             //!< Curve
+            sosi_element_eof,               //!< End of file
             sosi_element_head,              //!< Header
+            sosi_element_height,            //!< Height
+            sosi_element_iata_code,         //!< IATA code (aviation)
+            sosi_element_icao_code,         //!< ICAO code (aviation)
             sosi_element_kp,                //!< Junction point
+            sosi_element_level,             //!< SOSI level
+            sosi_element_max_ne,            //!< Maximum north-east (bbox)
+            sosi_element_min_ne,            //!< Minimum north-east (bbox)
+            sosi_element_municipality,      //!< Municipality
+            sosi_element_name,              //!< Name
             sosi_element_ne,                //!< North-east coordinate
             sosi_element_objtype,           //!< Object type
             sosi_element_origo_ne,          //!< Origo north-east
+            sosi_element_owner,             //!< Dataset owner
             sosi_element_point,             //!< Point
+            sosi_element_quality,           //!< Quality of data
             sosi_element_ref,               //!< Element reference
+            sosi_element_surface,           //!< Surface
             sosi_element_text,              //!< Text
+            sosi_element_traffic_type,      //!< Traffic type
             sosi_element_transpar,          //!< Datum/projection/coordinate system
             sosi_element_unit,              //!< Resolution (fraction of a metre)
-            sosi_element_updatedate         //!< Update date
+            sosi_element_updatedate,        //!< Update date
+            sosi_element_water_width,       //!< Water width
+            sosi_element_vendor,            //!< Data vendor
+            sosi_element_version            //!< SOSI version
         };
 
         //! List of SOSI OBJTYPEs

@@ -62,6 +62,9 @@ namespace sosicon {
         //! Output simple element attributes
         void printElementData( ISosiElement* e, sosi::SosiElementSearch src, int padding );
 
+        //! Output content of map<string,int>
+        void printListContent( std::map<std::string, int> list, int padding );
+
         //! Output simple element attributes
         void printTableHeader( std::string col1, std::string col2, int padding );
 

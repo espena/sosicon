@@ -100,6 +100,18 @@ namespace sosicon {
          */
         std::string mOutputFile;
         
+        //! TTY in flag
+        /*!
+            This flag is false if input is redirected (not a terminal window).
+         */
+        bool mIsTtyIn;
+
+        //! TTY out flag
+        /*!
+            This flag is false if output is redirected (not a terminal window).
+         */
+        bool mIsTtyOut;
+
         //! Append flag
         /*!
             If the destination file (-o ...) is specified together with the -a argument, this
