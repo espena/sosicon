@@ -36,7 +36,7 @@ sosiNameToType( std::string sosiElementName ) {
         sosiTypeNameMap[ "KOORDSYS"         ] = sosi_element_coordsys;         // Coordinate system
         sosiTypeNameMap[ "KURVE"            ] = sosi_element_curve;            // Curve
         sosiTypeNameMap[ "KVALITET"         ] = sosi_element_quality;          // Quality of data
-        sosiTypeNameMap[ "LUFTHAVNEIER"     ] = sosi_element_airport_roads;    // Airport roads
+        sosiTypeNameMap[ "LUFTHAVNVEIER"    ] = sosi_element_airport_roads;    // Airport roads
         sosiTypeNameMap[ "LUFTHAVNTYPE"     ] = sosi_element_airport_type;     // Airport type
         sosiTypeNameMap[ "MAX-N\xD8"        ] = sosi_element_max_ne;           // Maximum north-east (bbox)
         sosiTypeNameMap[ "MIN-N\xD8"        ] = sosi_element_min_ne;           // Minimum north-east (bbox)
@@ -76,14 +76,34 @@ sosiObjNameToType( std::string sosiObjTypeName ) {
     ObjType type;
 
     if( sosiObjTypeNameMap.empty() ) {
-        sosiObjTypeNameMap[ "Innsj\xF8" ]           = sosi_objtype_lake;             // Lake
-        sosiObjTypeNameMap[ "Arealbrukgrense" ]     = sosi_objtype_land_use_border;  // Land use border
-        sosiObjTypeNameMap[ "FiktivDelelinje" ]     = sosi_objtype_virtual_border;   // Virtual border
-        sosiObjTypeNameMap[ "Golfbane" ]            = sosi_objtype_golf_course;      // Golf course
-        sosiObjTypeNameMap[ "Havflate" ]            = sosi_objtype_ocean_surface;    // Land use border
-        sosiObjTypeNameMap[ "Kystkontur" ]          = sosi_objtype_shoreline;        // Shoreline
-        sosiObjTypeNameMap[ "TettBebyggelse" ]      = sosi_objtype_built_up_area;    // Built-up area
-        sosiObjTypeNameMap[ "\xC5pentOmr\xE5""de" ] = sosi_objtype_open_land;        // Open land
+        sosiObjTypeNameMap[ "Arealbrukgrense"      ] = sosi_objtype_land_use_boundary;      // Land use boundary
+        sosiObjTypeNameMap[ "Dataavgrensning"      ] = sosi_objtype_data_delineation;       // Data delineation
+        sosiObjTypeNameMap[ "ElvBekk"              ] = sosi_objtype_river_brook;            // River or stream
+        sosiObjTypeNameMap[ "ElvBekkKant"          ] = sosi_objtype_river_brook_edge;       // River or stream bank
+        sosiObjTypeNameMap[ "FiktivDelelinje"      ] = sosi_objtype_fictious_dividing_line; // Line splitting large surfeces
+        sosiObjTypeNameMap[ "Fylkesgrense"         ] = sosi_objtype_county_boundary;        // Virtual border
+        sosiObjTypeNameMap[ "Golfbane"             ] = sosi_objtype_golf_course;            // Golf course
+        sosiObjTypeNameMap[ "Grunnlinje"           ] = sosi_objtype_baseline;               // Baseline
+        sosiObjTypeNameMap[ "HavElvSperre"         ] = sosi_objtype_sea_river_delineation;  // Sea or river delineation
+        sosiObjTypeNameMap[ "Havflate"             ] = sosi_objtype_sea_surface;            // Sea surface
+        sosiObjTypeNameMap[ "Industriomr\xE5""de"  ] = sosi_objtype_industrial_area;        // Industrial area
+        sosiObjTypeNameMap[ "Innsj\xF8"            ] = sosi_objtype_lake;                   // Lake
+        sosiObjTypeNameMap[ "Innsj\xF8""ElvSperre" ] = sosi_objtype_lake_river_barrier;     // Lake-to-river delineation
+        sosiObjTypeNameMap[ "Innsj\xF8kant"        ] = sosi_objtype_lake_edge;              // Lake edge
+        sosiObjTypeNameMap[ "Kantutsnitt"          ] = sosi_objtype_edge_view;              // Edge view
+        sosiObjTypeNameMap[ "Kommune"              ] = sosi_objtype_municipality;           // Municipality
+        sosiObjTypeNameMap[ "Kommunegrense"        ] = sosi_objtype_municipality_boundary;  // Municipality boundary
+        sosiObjTypeNameMap[ "Kystkontur"           ] = sosi_objtype_coastline;              // Shoreline
+        sosiObjTypeNameMap[ "Lufthavn"             ] = sosi_objtype_airport;                // Airport
+        sosiObjTypeNameMap[ "LufthavnType"         ] = sosi_objtype_airport_type;           // Airport type
+        sosiObjTypeNameMap[ "Myr"                  ] = sosi_objtype_marsh;                  // Marsh
+        sosiObjTypeNameMap[ "Riksgrense"           ] = sosi_objtype_national_border;        // National border
+        sosiObjTypeNameMap[ "Skog"                 ] = sosi_objtype_forest;                 // Forest
+        sosiObjTypeNameMap[ "Sn\xF8Isbre"          ] = sosi_objtype_snow_field;             // Snow/glacier
+        sosiObjTypeNameMap[ "Steinbrudd"           ] = sosi_objtype_stone_quarry;           // Area for stone quarry
+        sosiObjTypeNameMap[ "Territorialgrense"    ] = sosi_objtype_territorial_boundary;   // Territorial boundary (nautical)
+        sosiObjTypeNameMap[ "TettBebyggelse"       ] = sosi_objtype_developed_area;         // Built-up area
+        sosiObjTypeNameMap[ "\xC5pentOmr\xE5""de"  ] = sosi_objtype_open_land;              // Open land
     }
 
     try{

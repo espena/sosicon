@@ -68,11 +68,8 @@ void sosicon::CoordinateCollection::
 discoverCoords( ISosiElement* e ) {
     mCenterPoint = 0;
     switch( e->getType() ) {
-        case sosi::sosi_element_area:
+        case sosi::sosi_element_surface:
             {
-                if( e->getSerial() == "17006" ) {
-                    e->dump();
-                }
                 sosi::SosiElementSearch srcRef( sosi::sosi_element_ref );
                 ISosiElement* rawRefElement = 0;
                 while( e->getChild( srcRef ) ) {
@@ -89,29 +86,8 @@ discoverCoords( ISosiElement* e ) {
                 }
             }
             break;
-        case sosi::sosi_element_charset:
-        case sosi::sosi_element_coordsys:
-        case sosi::sosi_element_curve:
-        case sosi::sosi_element_head:
-        case sosi::sosi_element_kp:
-        case sosi::sosi_element_ne:
-        case sosi::sosi_element_objtype:
-        case sosi::sosi_element_origo_ne:
-        case sosi::sosi_element_point:
-        case sosi::sosi_element_ref:
-        case sosi::sosi_element_text:
-        case sosi::sosi_element_transpar:
-        case sosi::sosi_element_unit:
-        case sosi::sosi_element_updatedate:
-            {
-                
-            }
-            break;
-        case sosi::sosi_element_unknown:
-            {
-                
-            }
-            break;
+        default:
+            ;
     }
 }
 

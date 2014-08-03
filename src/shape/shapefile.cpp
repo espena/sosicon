@@ -50,7 +50,7 @@ build( ISosiElement* sosiTree, sosi::ElementType selection ) {
         while( sosiTree->getChild( src ) ) {
             sosi = src.element();
             if( selection == sosi->getType() ) {
-                buildShpElement( sosi, shapeTypeEquivalent, false );
+                buildShpElement( sosi, shapeTypeEquivalent );
                 insertDbfRecord( sosi );
             }
         }
@@ -92,7 +92,7 @@ build( ISosiElement* sosiTree, sosi::ElementType selection ) {
 }
 
 void sosicon::shape::Shapefile::
-buildShpElement( ISosiElement* sosi, ShapeType type, bool f ) {
+buildShpElement( ISosiElement* sosi, ShapeType type ) {
 
     CoordinateCollection cc;
     cc.discoverCoords( sosi );
@@ -189,10 +189,12 @@ buildShpElement( ISosiElement* sosi, ShapeType type, bool f ) {
     while( cc.getNextOffsetInGeom( part ) ) {
         Int32Field offset;
         offset.i = part;
-        byteOrder::toLittleEndian( offset.b,  &mShpBuffer[ o ], 4 );       // Shape type
+        byteOrder::toLittleEndian( offset.b,  &mShpBuffer[ o ], 4 );
         o += 4;
         break;
     }
+
+    static int cnt = 0;
 
     while( cc.getNextInGeom( c ) ) {
         byteOrder::doubleToLittleEndian( c->getE(), &mShpBuffer[ o ] );

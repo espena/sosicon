@@ -34,56 +34,75 @@ namespace sosicon {
             @{
         */
 
-        //! List of SOSI types
+        //! List of SOSI element types
         enum ElementType {
-            sosi_element_unknown = 0,       //!< Unknown element
-            sosi_element_airport_roads,     //!< Airport roads
-            sosi_element_airport_type,      //!< Airport type
-            sosi_element_area,              //!< Area
-            sosi_element_charset,           //!< Character set
-            sosi_element_coordsys,          //!< Grid type
-            sosi_element_curve,             //!< Curve
-            sosi_element_eof,               //!< End of file
-            sosi_element_head,              //!< Header
-            sosi_element_height,            //!< Height
-            sosi_element_iata_code,         //!< IATA code (aviation)
-            sosi_element_icao_code,         //!< ICAO code (aviation)
-            sosi_element_kp,                //!< Junction point
-            sosi_element_level,             //!< SOSI level
-            sosi_element_max_ne,            //!< Maximum north-east (bbox)
-            sosi_element_min_ne,            //!< Minimum north-east (bbox)
-            sosi_element_municipality,      //!< Municipality
-            sosi_element_name,              //!< Name
-            sosi_element_ne,                //!< North-east coordinate
-            sosi_element_objtype,           //!< Object type
-            sosi_element_origo_ne,          //!< Origo north-east
-            sosi_element_owner,             //!< Dataset owner
-            sosi_element_point,             //!< Point
-            sosi_element_quality,           //!< Quality of data
-            sosi_element_ref,               //!< Element reference
-            sosi_element_surface,           //!< Surface
-            sosi_element_text,              //!< Text
-            sosi_element_traffic_type,      //!< Traffic type
-            sosi_element_transpar,          //!< Datum/projection/coordinate system
-            sosi_element_unit,              //!< Resolution (fraction of a metre)
-            sosi_element_updatedate,        //!< Update date
-            sosi_element_water_width,       //!< Water width
-            sosi_element_vendor,            //!< Data vendor
-            sosi_element_version            //!< SOSI version
+            sosi_element_unknown = 0,           //!< Unknown element
+            sosi_element_airport_roads,         //!< Airport roads
+            sosi_element_airport_type,          //!< Airport type
+            sosi_element_area,                  //!< Area
+            sosi_element_charset,               //!< Character set
+            sosi_element_coordsys,              //!< Grid type
+            sosi_element_curve,                 //!< Curve
+            sosi_element_eof,                   //!< End of file
+            sosi_element_head,                  //!< Header
+            sosi_element_height,                //!< Height
+            sosi_element_iata_code,             //!< IATA code (aviation)
+            sosi_element_icao_code,             //!< ICAO code (aviation)
+            sosi_element_kp,                    //!< Junction point
+            sosi_element_level,                 //!< SOSI level
+            sosi_element_max_ne,                //!< Maximum north-east (bbox)
+            sosi_element_min_ne,                //!< Minimum north-east (bbox)
+            sosi_element_municipality,          //!< Municipality
+            sosi_element_name,                  //!< Name
+            sosi_element_ne,                    //!< North-east coordinate
+            sosi_element_objtype,               //!< Object type
+            sosi_element_origo_ne,              //!< Origo north-east
+            sosi_element_owner,                 //!< Dataset owner
+            sosi_element_point,                 //!< Point
+            sosi_element_quality,               //!< Quality of data
+            sosi_element_ref,                   //!< Element reference
+            sosi_element_surface,               //!< Surface
+            sosi_element_text,                  //!< Text
+            sosi_element_traffic_type,          //!< Traffic type
+            sosi_element_transpar,              //!< Datum/projection/coordinate system
+            sosi_element_unit,                  //!< Resolution (fraction of a metre)
+            sosi_element_updatedate,            //!< Update date
+            sosi_element_water_width,           //!< Water width
+            sosi_element_vendor,                //!< Data vendor
+            sosi_element_version                //!< SOSI version
         };
 
         //! List of SOSI OBJTYPEs
         enum ObjType {
-            sosi_objtype_unknown = 0,       //!< Unknown or no feature
-            sosi_objtype_golf_course,       //!< Golf course
-            sosi_objtype_lake,              //!< Lake
-            sosi_objtype_land_use_border,   //!< Land use border
-            sosi_objtype_ocean_surface,     //!< Ocean surface
-            sosi_objtype_open_land,         //!< Open land
-            sosi_objtype_shoreline,         //!< Shoreline
-            sosi_objtype_virtual_border,    //!< Virtual border line
-            sosi_objtype_built_up_area      //!< Built up area
-
+            sosi_objtype_unknown = 0,            //!< Unknown or no feature
+            sosi_objtype_airport,                //!< Airport
+            sosi_objtype_airport_type,           //!< Airport type
+            sosi_objtype_baseline,               //!< Baseline
+            sosi_objtype_coastline,              //!< Coast line
+            sosi_objtype_county_boundary,        //!< County boundary
+            sosi_objtype_data_delineation,       //!< Clipping path
+            sosi_objtype_edge_view,              //!< Edge view
+            sosi_objtype_fictious_dividing_line, //!< Line splitting large surfeces
+            sosi_objtype_forest,                 //!< Forest
+            sosi_objtype_developed_area,         //!< Built up area
+            sosi_objtype_golf_course,            //!< Golf course
+            sosi_objtype_industrial_area,        //!< Industrial area
+            sosi_objtype_lake,                   //!< Lake
+            sosi_objtype_lake_edge,              //!< Lake edge
+            sosi_objtype_lake_river_barrier,     //!< Lake-to-river delimitation
+            sosi_objtype_land_use_boundary,      //!< Land use border
+            sosi_objtype_municipality,           //!< Municipality
+            sosi_objtype_municipality_boundary,  //!< Municipality boundary
+            sosi_objtype_marsh,                  //!< Marsh
+            sosi_objtype_national_border,        //!< National border
+            sosi_objtype_sea_river_delineation,  //!< Sea or river delineation
+            sosi_objtype_snow_field,             //!< Snow/glacier
+            sosi_objtype_open_land,              //!< Open land
+            sosi_objtype_river_brook,            //!< River or stream
+            sosi_objtype_river_brook_edge,       //!< River or stream bank
+            sosi_objtype_sea_surface,            //!< Sea surface
+            sosi_objtype_stone_quarry,           //!< Area for stone quarry
+            sosi_objtype_territorial_boundary    //!< Territorial boundary (nautical)
         };
 
         //! Default SOSI junction point layer types

@@ -86,7 +86,7 @@ namespace sosicon {
             ShxOffsets mShxOffsets;           //!< Index file offsets
 
             //! Create SHP element
-            virtual void buildShpElement( ISosiElement* sosi, ShapeType type, bool f );
+            virtual void buildShpElement( ISosiElement* sosi, ShapeType type );
 
             //! Create DBF file content
             virtual void buildDbf();
