@@ -85,17 +85,26 @@ namespace sosicon {
             DbfRecordSet mDbfRecordSet;       //!< All DBF records
             ShxOffsets mShxOffsets;           //!< Index file offsets
 
+            //! Expand MBR to contain Coordinate collection
+            void adjustMasterMbr( double xMin, double yMin, double xMax, double yMax );
+
             //! Create SHP element
-            virtual void buildShpElement( ISosiElement* sosi, ShapeType type );
+            void buildShpElement( ISosiElement* sosi, ShapeType type );
+
+            //! Populate shape header struct
+            void buildShpHeader( ShapeType type );
 
             //! Create DBF file content
-            virtual void buildDbf();
+            void buildDbf();
 
             //! Create SHX file content
-            virtual void buildShx();
+            void buildShx();
+
+            //! Expand shp payload buffer
+            int expandShpBuffer( int byteLength );
 
             //! Create and insert DBF record
-            virtual void insertDbfRecord( ISosiElement* sosi );
+            void insertDbfRecord( ISosiElement* sosi );
 
             //! Update or insert new DBF field
             void saveToDbf( DbfRecord& rec, std::string field, std::string data );

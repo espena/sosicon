@@ -38,6 +38,14 @@ sosicon::shape::Shapefile::
 }
 
 void sosicon::shape::Shapefile::
+adjustMasterMbr( double xMin, double yMin, double xMax, double yMax ) {
+    mXmin = std::min( mXmin, xMin );
+    mYmin = std::min( mYmin, yMin );
+    mXmax = std::max( mXmax, xMax );
+    mYmax = std::max( mYmax, yMax );
+}
+
+void sosicon::shape::Shapefile::
 build( ISosiElement* sosiTree, sosi::ElementType selection ) {
 
     ShapeType shapeTypeEquivalent = getShapeEquivalent( selection );
@@ -56,85 +64,50 @@ build( ISosiElement* sosiTree, sosi::ElementType selection ) {
         }
 
         buildDbf();
-
-        Int32Field fileCode;
-        Int32Field unused;
-        Int32Field fileLength;
-        Int32Field version;
-        Int32Field shapeType;
-
-        fileCode.i = 9994;
-        unused.i = 0;
-        fileLength.i = ( mShpSize / 2 ) + 50;
-        version.i = 1000;
-        shapeType.i = shapeTypeEquivalent;
-
-        byteOrder::toBigEndian( fileCode.b,     &mShpHeader[  0 ], 4 );
-        byteOrder::toBigEndian( unused.b,       &mShpHeader[  4 ], 4 );
-        byteOrder::toBigEndian( unused.b,       &mShpHeader[  8 ], 4 );
-        byteOrder::toBigEndian( unused.b,       &mShpHeader[ 12 ], 4 );
-        byteOrder::toBigEndian( unused.b,       &mShpHeader[ 16 ], 4 );
-        byteOrder::toBigEndian( unused.b,       &mShpHeader[ 20 ], 4 );
-        byteOrder::toBigEndian( fileLength.b,   &mShpHeader[ 24 ], 4 );
-        byteOrder::toLittleEndian( version.b,   &mShpHeader[ 28 ], 4 );
-        byteOrder::toLittleEndian( shapeType.b, &mShpHeader[ 32 ], 4 );
-        byteOrder::doubleToLittleEndian( mXmin, &mShpHeader[ 36 ] );
-        byteOrder::doubleToLittleEndian( mYmin, &mShpHeader[ 44 ] );
-        byteOrder::doubleToLittleEndian( mXmax, &mShpHeader[ 52 ] );
-        byteOrder::doubleToLittleEndian( mYmax, &mShpHeader[ 60 ] );
-        byteOrder::doubleToLittleEndian( 0.0,   &mShpHeader[ 68 ] );
-        byteOrder::doubleToLittleEndian( 0.0,   &mShpHeader[ 76 ] );
-        byteOrder::doubleToLittleEndian( 0.0,   &mShpHeader[ 84 ] );
-        byteOrder::doubleToLittleEndian( 0.0,   &mShpHeader[ 92 ] );
-
+        buildShpHeader( shapeTypeEquivalent );
         buildShx();
     }
 }
 
 void sosicon::shape::Shapefile::
-buildShpElement( ISosiElement* sosi, ShapeType type ) {
+buildShpHeader( ShapeType type ) {
 
-    CoordinateCollection cc;
-    cc.discoverCoords( sosi );
-    if( type == shape_type_polygon ) {
-        cc.mkClosedPolygon();
-    }
-    ICoordinate* c = 0;
-
-    Int32Field recordNumber;
-    recordNumber.i = ++mRecordNumber;
-
+    Int32Field fileCode;
+    Int32Field unused;
+    Int32Field fileLength;
+    Int32Field version;
     Int32Field shapeType;
+
+    fileCode.i = 9994;
+    unused.i = 0;
+    fileLength.i = ( mShpSize / 2 ) + 50;
+    version.i = 1000;
     shapeType.i = type;
 
-    Int32Field numParts;
-    numParts.i = 1; //cc.getNumPartsGeom(); 
+    byteOrder::toBigEndian( fileCode.b,     &mShpHeader[  0 ], 4 );
+    byteOrder::toBigEndian( unused.b,       &mShpHeader[  4 ], 4 );
+    byteOrder::toBigEndian( unused.b,       &mShpHeader[  8 ], 4 );
+    byteOrder::toBigEndian( unused.b,       &mShpHeader[ 12 ], 4 );
+    byteOrder::toBigEndian( unused.b,       &mShpHeader[ 16 ], 4 );
+    byteOrder::toBigEndian( unused.b,       &mShpHeader[ 20 ], 4 );
+    byteOrder::toBigEndian( fileLength.b,   &mShpHeader[ 24 ], 4 );
+    byteOrder::toLittleEndian( version.b,   &mShpHeader[ 28 ], 4 );
+    byteOrder::toLittleEndian( shapeType.b, &mShpHeader[ 32 ], 4 );
+    byteOrder::doubleToLittleEndian( mXmin, &mShpHeader[ 36 ] );
+    byteOrder::doubleToLittleEndian( mYmin, &mShpHeader[ 44 ] );
+    byteOrder::doubleToLittleEndian( mXmax, &mShpHeader[ 52 ] );
+    byteOrder::doubleToLittleEndian( mYmax, &mShpHeader[ 60 ] );
+    byteOrder::doubleToLittleEndian( 0.0,   &mShpHeader[ 68 ] );
+    byteOrder::doubleToLittleEndian( 0.0,   &mShpHeader[ 76 ] );
+    byteOrder::doubleToLittleEndian( 0.0,   &mShpHeader[ 84 ] );
+    byteOrder::doubleToLittleEndian( 0.0,   &mShpHeader[ 92 ] );
 
-    Int32Field numPoints;
-    numPoints.i = cc.getNumPointsGeom(); 
+}
 
-    //int byteLength = 44 + ( 4 * numParts.i ) + ( 16 * numPoints.i );
-    int byteLength = 52 + ( 4 ) + ( 16 * numPoints.i );
+int sosicon::shape::Shapefile::
+expandShpBuffer( int byteLength ) {
 
-    Int32Field contentLength;
-    contentLength.i = byteLength / 2;
-
-    double xMin = cc.getXmin();
-    double yMin = cc.getYmin();
-    double xMax = cc.getXmax();
-    double yMax = cc.getYmax();
-
-    mXmin = std::min( mXmin, xMin );
-    mYmin = std::min( mYmin, yMin );
-    mXmax = std::max( mXmax, xMax );
-    mYmax = std::max( mYmax, yMax );
-
-    int o = 0;
-
-    ShxIndex shxIndex;
-    shxIndex.offset.i = 50 + ( mShpSize / 2 );
-    shxIndex.length.i = contentLength.i;
-    mShxOffsets.push_back( shxIndex );
+    int offset = 0;
 
     if( 0 == mShpSize ) {
         mShpSize = byteLength;
@@ -150,7 +123,7 @@ buildShpElement( ISosiElement* sosi, ShapeType type ) {
         }
     }
     else {
-        o = mShpSize;
+        offset = mShpSize;
         mShpSize += byteLength;
         if( mShpBufferSize < mShpSize ) {
             while( mShpBufferSize < mShpSize ) {
@@ -164,10 +137,53 @@ buildShpElement( ISosiElement* sosi, ShapeType type ) {
                 std::cout << "Memory allocation error\n";
                 throw;
             }
-            std::copy( oldBuffer, oldBuffer + o, mShpBuffer );
+            std::copy( oldBuffer, oldBuffer + offset, mShpBuffer );
             delete [ ] oldBuffer;
         }
     }
+    return offset;
+}
+
+void sosicon::shape::Shapefile::
+buildShpElement( ISosiElement* sosi, ShapeType type ) {
+
+    CoordinateCollection cc;
+    cc.discoverCoords( sosi );
+    if( type == shape_type_polygon ) {
+        //cc.mkClosedPolygon();
+    }
+    ICoordinate* c = 0;
+
+    Int32Field recordNumber;
+    recordNumber.i = ++mRecordNumber;
+
+    Int32Field shapeType;
+    shapeType.i = type;
+
+    Int32Field numParts;
+    numParts.i = cc.getNumPartsGeom(); 
+
+    Int32Field numPoints;
+    numPoints.i = cc.getNumPointsGeom(); 
+
+    //int byteLength = 44 + ( 4 * numParts.i ) + ( 16 * numPoints.i );
+    int byteLength = 52 + ( 4 ) + ( 16 * numPoints.i );
+    int o = expandShpBuffer( byteLength );
+
+    Int32Field contentLength;
+    contentLength.i = byteLength / 2;
+
+    double xMin = cc.getXmin();
+    double yMin = cc.getYmin();
+    double xMax = cc.getXmax();
+    double yMax = cc.getYmax();
+
+    adjustMasterMbr( xMin, yMin, xMax, yMax );
+
+    ShxIndex shxIndex;
+    shxIndex.offset.i = 50 + ( mShpSize / 2 );
+    shxIndex.length.i = contentLength.i;
+    mShxOffsets.push_back( shxIndex );
 
     // Record header
     byteOrder::toBigEndian( recordNumber.b,  &mShpBuffer[ o +  0 ], 4 ); // Record serial

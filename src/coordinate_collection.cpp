@@ -150,8 +150,8 @@ mkClosedPolygon() {
             ( coordFront->getE() != coordBack->getE() ||
               coordFront->getN() != coordBack->getN() ) )
         {
-            //neBack->append( coordFront->getN(), coordFront->getE() );
-			//mNumPointsGeom++;
+            neBack->append( coordFront->getN(), coordFront->getE() );
+			mNumPointsGeom++;
         }
     }
 }

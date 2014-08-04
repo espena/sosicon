@@ -96,7 +96,7 @@ run() {
         int n = 0;
         while( !ifs.eof() ) {
             if( mCmd.mIsTtyOut && ++n % 100 == 0 ) {
-                std::cout << "\rReading line " << n;
+                std::cout << "\rParsing line " << n;
             }
             memset( ln, 0x00, sizeof ln );
             ifs.getline( ln, sizeof ln );
@@ -104,7 +104,7 @@ run() {
         }
         p.complete();
         ifs.close();
-        std::cout << "\r" << n << "lines read        \n";
+        std::cout << "\r" << n << " lines parsed        \n";
         std::cout << "Building shape file...\n";
         ISosiElement* root = p.getRootElement();
         makeShp( root );
