@@ -44,6 +44,12 @@ namespace sosicon {
         //! Get north coordinate
         virtual double getN() = 0;
 
+        //! Test if this coordinate is to the left of another
+        virtual bool leftOf( ICoordinate* c ) = 0;
+
+        //! Test if this coordinate is to the right of another
+        virtual bool rightOf( ICoordinate* c ) = 0;
+
         //! Set east coordinate
         virtual void setE( double coordEast ) = 0;
 

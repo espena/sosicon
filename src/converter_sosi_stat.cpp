@@ -89,9 +89,6 @@ printTableHeader( std::string col1, std::string col2, int padding ) {
 
 void sosicon::ConverterSosiStat::
 run() {
-    if( mCmd.mIsTtyOut ) {
-        std::cout << "\e[?25l"; // Cursor off
-    }
     for( std::vector<std::string>::iterator f = mCmd.mSourceFiles.begin(); f != mCmd.mSourceFiles.end(); f++ ) {
         std::cout << "\nGenerating statistics for " << *f << "\n";
         Parser p;
@@ -139,9 +136,6 @@ run() {
         printListContent( mObjTypes, 30 );
         std::cout << "\n\n";
 
-    }
-    if( mCmd.mIsTtyOut ) {
-        std::cout << "\e[?25h"; // Cursor off
     }
 }
 

@@ -83,9 +83,6 @@ makeBasePath() {
 
 void sosicon::ConverterSosi2shp::
 run() {
-    if( mCmd.mIsTtyOut ) {
-        std::cout << "\e[?25l"; // Cursor off
-    }
     Parser* pp;
     for( std::vector<std::string>::iterator f = mCmd.mSourceFiles.begin(); f != mCmd.mSourceFiles.end(); f++ ) {
         std::cout << "Reading " << *f << "\n";
@@ -108,8 +105,5 @@ run() {
         std::cout << "Building shape file...\n";
         ISosiElement* root = p.getRootElement();
         makeShp( root );
-    }
-    if( mCmd.mIsTtyOut ) {
-        std::cout << "\e[?25h"; // Cursor on
     }
 }

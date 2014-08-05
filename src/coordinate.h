@@ -44,6 +44,8 @@ namespace sosicon {
         Coordinate() {};
         virtual double getE() { return mEast; };
         virtual double getN() { return mNorth; };
+        virtual bool leftOf( ICoordinate* c ) { return mEast < c->getE(); };
+        virtual bool rightOf( ICoordinate* c ) { return mEast > c->getE(); };
         virtual void setE( double coordEast ) { mEast = coordEast; };
         virtual void setN( double coordNorth ) { mNorth = coordNorth; };
         virtual void shift( int offsetN, int offsetE ) { mNorth += offsetN; mEast += offsetE; };

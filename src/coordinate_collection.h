@@ -35,7 +35,7 @@ namespace sosicon {
     typedef std::vector<ICoordinate*> CoordinateList;
 
     //! Get next coordinate in list
-    bool getNext( ICoordinate*& coord, sosi::NorthEastList& list, sosi::NorthEastList::iterator& iterator );
+    bool getNext( ICoordinate*& coord, sosi::NorthEastList& list, sosi::NorthEastList::size_type& index );
     
     //! Get next offset in part offsets list
     bool getNextOffset( int& offset, std::vector<int>& offsets, std::vector<int>::iterator& iterator );
@@ -54,14 +54,14 @@ namespace sosicon {
 
         //! Stores collection of pointers to coordinates for geometries
         sosi::NorthEastList mGeom;
-        sosi::NorthEastList::iterator mGeomIterator;
+        sosi::NorthEastList::size_type mGeomIndex;
         std::vector<int> mPartOffsetsGeom;
         std::vector<int>::iterator mPartOffsetsGeomIterator;
         int mNumPointsGeom;
 
         //! Stores collection of pointers to coordinates for holes
         sosi::NorthEastList mIslands;
-        sosi::NorthEastList::iterator mIslandsIterator;
+        sosi::NorthEastList::size_type mIslandsIndex;
         std::vector<int> mPartOffsetsIslands;
         std::vector<int>::iterator mPartOffsetsIslandsIterator;
         int mNumPointsIslands;

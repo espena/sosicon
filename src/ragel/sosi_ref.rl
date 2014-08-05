@@ -54,7 +54,7 @@ ragelParseSosiRef( std::string data )
             ref = new Reference();
             ref->reverse = reverse;
             ref->subtract = subtract;
-            mRefList.push_back( ref );
+            mRefList.insert( mRefList.begin(), ref );
         }
 
         action build_serial {

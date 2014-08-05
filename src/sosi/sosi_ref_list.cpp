@@ -21,6 +21,7 @@ sosicon::sosi::SosiRefList::
 SosiRefList( ISosiElement* e ) {
     mSosiElement = e;
     ragelParseSosiRef( e->getData() );
+    mRefListIndex = 0;
 }
 
 sosicon::sosi::SosiRefList::
@@ -33,15 +34,15 @@ sosicon::sosi::SosiRefList::
 bool sosicon::sosi::SosiRefList::
 getNextReference( Reference*& reference ) {
     if( 0 == reference ) {
-        mRefListIterator = mRefList.begin();
+        mRefListIndex = 0;
     }
     bool isMore;
-    if( mRefListIterator == mRefList.end() ) {
+    if( mRefListIndex >= mRefList.size() ) {
         isMore = false;
     }
     else {
-        reference = *mRefListIterator;
-        mRefListIterator++;
+        reference = mRefList[ mRefListIndex ];
+        mRefListIndex++;
         isMore = true;
     }
     return isMore;

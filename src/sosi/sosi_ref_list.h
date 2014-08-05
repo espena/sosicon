@@ -45,11 +45,14 @@ namespace sosicon {
 
             SosiReferenceList mRefList;
 
-            SosiReferenceList::iterator mRefListIterator;
+            SosiReferenceList::size_type mRefListIndex;
 
             void ragelParseSosiRef( std::string data );
 
         public:
+
+            //! Construct new SOSI REF element
+            SosiRefList() : mSosiElement( 0 ), mRefListIndex( 0 ) { };
 
             //! Construct new SOSI REF element
             SosiRefList( ISosiElement* e );

@@ -32,6 +32,7 @@
 #include "../sosi/sosi_types.h"
 #include "../sosi/sosi_element_search.h"
 #include "../interface/i_shapefile.h"
+#include "../interface/i_coordinate.h"
 
 namespace sosicon {
 
@@ -106,6 +107,9 @@ namespace sosicon {
             //! Create and insert DBF record
             void insertDbfRecord( ISosiElement* sosi );
 
+            //! Shapefile polys must have clockwise-ordered vertices
+            std::vector<ICoordinate*> getNormalized( CoordinateCollection& cc );
+            
             //! Update or insert new DBF field
             void saveToDbf( DbfRecord& rec, std::string field, std::string data );
 

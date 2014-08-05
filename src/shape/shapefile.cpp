@@ -149,10 +149,9 @@ buildShpElement( ISosiElement* sosi, ShapeType type ) {
 
     CoordinateCollection cc;
     cc.discoverCoords( sosi );
-    if( type == shape_type_polygon ) {
+    if( type == shape_type_polygon || type == shape_type_polyLine ) {
         //cc.mkClosedPolygon();
     }
-    ICoordinate* c = 0;
 
     Int32Field recordNumber;
     recordNumber.i = ++mRecordNumber;
@@ -161,17 +160,23 @@ buildShpElement( ISosiElement* sosi, ShapeType type ) {
     shapeType.i = type;
 
     Int32Field numParts;
-    numParts.i = cc.getNumPartsGeom(); 
+    numParts.i = 1; //cc.getNumPartsGeom(); 
 
     Int32Field numPoints;
     numPoints.i = cc.getNumPointsGeom(); 
 
     //int byteLength = 44 + ( 4 * numParts.i ) + ( 16 * numPoints.i );
     int byteLength = 52 + ( 4 ) + ( 16 * numPoints.i );
-    int o = expandShpBuffer( byteLength );
 
     Int32Field contentLength;
-    contentLength.i = byteLength / 2;
+    contentLength.i = ( byteLength / 2 ) - 4; // Record header not included in contentLength
+
+    ShxIndex shxIndex;
+    shxIndex.offset.i = 50 + ( mShpSize / 2 );
+    shxIndex.length.i = contentLength.i;
+    mShxOffsets.push_back( shxIndex );
+
+    int o = expandShpBuffer( byteLength );
 
     double xMin = cc.getXmin();
     double yMin = cc.getYmin();
@@ -179,11 +184,6 @@ buildShpElement( ISosiElement* sosi, ShapeType type ) {
     double yMax = cc.getYmax();
 
     adjustMasterMbr( xMin, yMin, xMax, yMax );
-
-    ShxIndex shxIndex;
-    shxIndex.offset.i = 50 + ( mShpSize / 2 );
-    shxIndex.length.i = contentLength.i;
-    mShxOffsets.push_back( shxIndex );
 
     // Record header
     byteOrder::toBigEndian( recordNumber.b,  &mShpBuffer[ o +  0 ], 4 ); // Record serial
@@ -202,6 +202,8 @@ buildShpElement( ISosiElement* sosi, ShapeType type ) {
 
     int part = -1;
 
+    std::vector<ICoordinate*> theGeom = getNormalized( cc );
+    
     while( cc.getNextOffsetInGeom( part ) ) {
         Int32Field offset;
         offset.i = part;
@@ -212,11 +214,27 @@ buildShpElement( ISosiElement* sosi, ShapeType type ) {
 
     static int cnt = 0;
 
-    while( cc.getNextInGeom( c ) ) {
+    for( std::vector<ICoordinate*>::size_type i = 0; i < theGeom.size(); i++ ) {
+        ICoordinate* c = theGeom[ i ];
         byteOrder::doubleToLittleEndian( c->getE(), &mShpBuffer[ o ] );
         byteOrder::doubleToLittleEndian( c->getN(), &mShpBuffer[ o + 8 ] );
         o += 16;
     }
+}
+
+std::vector<sosicon::ICoordinate*> sosicon::shape::Shapefile::
+getNormalized( CoordinateCollection& cc ) {
+    std::vector<sosicon::ICoordinate*> theGeom;
+    ICoordinate* c = 0;
+    while( cc.getNextInGeom( c ) ) {
+        theGeom.push_back( c );
+    }
+    if( theGeom.size() > 1 ) {
+        if( theGeom[ 0 ]->rightOf( theGeom[ 1 ] ) ) {
+            std::reverse( theGeom.begin(), theGeom.end() );
+        }
+    }
+    return theGeom;
 }
 
 void sosicon::shape::Shapefile::
@@ -228,6 +246,7 @@ insertDbfRecord( ISosiElement* sosi ) {
     ISosiElement* child = 0;
     sosi::SosiElementSearch src;
 
+    saveToDbf( rec, "SOSI_ID", sosi->getSerial() );
     saveToDbf( rec, "TYPE", sosi->getName() );
     
     std::vector<ISosiElement*>& children = sosi->children();
@@ -262,7 +281,7 @@ void sosicon::shape::Shapefile::
 buildDbf() {
 
     Int16Field recordLength;
-    recordLength.i = 0;
+    recordLength.i = 1; // Deleted flag == 1 byte
 
     for( DbfFieldLengths::iterator i = mDbfFieldLengths.begin(); i != mDbfFieldLengths.end(); i++ ) {
         recordLength.i += i->second;
@@ -279,7 +298,6 @@ buildDbf() {
 
         /* Field description array */ ( mDbfFieldLengths.size() * 32 ) +
         /* Terminator              */   1 +
-        /* Extra spacing           */   1 +
         /* Record structure        */ ( recordLength.i * mDbfRecordSet.size() ) +
         /* EOF                     */   1 ;
 
@@ -341,13 +359,8 @@ buildDbf() {
     // Terminator
     mDbfBuffer[ o++ ] = 0x0d;
 
-    // Extra space
-    mDbfBuffer[ o++ ] = 0x20;
-
     // Records
     for( DbfRecordSet::iterator i = mDbfRecordSet.begin(); i != mDbfRecordSet.end(); i++ ) {
-        int recNumber = 0;
-        int fldOffset = 0;
         char* recordBuffer = 0;
         try {
             recordBuffer = new char[ recordLength.i ];
@@ -355,6 +368,9 @@ buildDbf() {
         catch( ... ) {
             std::cout << "Memory allocation error\n";
         }
+        int recNumber = 0;
+        int fldOffset = 0;
+        recordBuffer[ fldOffset++ ] = 0x20; // Record deleted flag
         DbfRecord& rec = *i;
         for( DbfFieldLengths::iterator j = mDbfFieldLengths.begin(); j != mDbfFieldLengths.end(); j++ ) {
             std::string fieldName = j->first;
@@ -430,9 +446,8 @@ writePrj( std::ostream &os ) {
 sosicon::shape::ShapeType sosicon::shape::
 getShapeEquivalent( sosi::ElementType sosiType ) {
     switch( sosiType ) {
-        case sosi::sosi_element_surface:
-            return shape_type_polygon;
         case sosi::sosi_element_curve:
+        case sosi::sosi_element_surface:
             return shape_type_polyLine;
         case sosi::sosi_element_point:
         case sosi::sosi_element_text:

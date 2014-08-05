@@ -21,12 +21,24 @@ sosicon::CommandLine::
 CommandLine() {
     mCommand = "-2tsv";
     mVerbose = 0;   
-    mIsTtyIn = isatty( fileno( stdin ) );
-    mIsTtyOut = isatty( fileno( stdout ) );
+
+    int test = isatty( fileno( stdin ) );
+
+    mIsTtyIn = isatty( fileno( stdin ) ) != 0;
+    mIsTtyOut = isatty( fileno( stdout ) ) != 0;
+#if defined( __linux__ ) || defined( __APPLE__ )
+    if( mIsTtyOut )
+        std::cout << "\e[?25l"; // Cursor off
+#endif
 }
 
 sosicon::CommandLine::
-~CommandLine() { }
+~CommandLine() {
+#if defined( __linux__ ) || defined( __APPLE__ )
+    if( mCmd.mIsTtyOut )
+        std::cout << "\e[?25h"; // Cursor on
+#endif
+}
 
 void sosicon::CommandLine::
 parse( int argc, char* argv[] ) {

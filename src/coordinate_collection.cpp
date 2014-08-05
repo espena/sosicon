@@ -18,18 +18,21 @@
 #include "coordinate_collection.h"
 
 bool sosicon::
-getNext( ICoordinate*& coord, sosi::NorthEastList& list, sosi::NorthEastList::iterator& iterator ) {
+getNext( ICoordinate*& coord, sosi::NorthEastList& list, sosi::NorthEastList::size_type& index ) {
     if( 0 == coord ) {
-        iterator = list.begin();
+        index = 0;
     }
-    if( iterator == list.end() ) {
+    if( index >= list.size() ) {
         return false;
     }
-    while( false == ( *iterator )->getNext( coord ) ) {
-        iterator++;
+    if( false == ( list[ index ] )->getNext( coord ) ) {
+        index++;
         coord = 0;
-        if( iterator == list.end() ) {
+        if( index >= list.size() ) {
             return false;
+        }
+        else {
+            ( list[ index ] )->getNext( coord );
         }
     }
     return true;
@@ -86,6 +89,18 @@ discoverCoords( ISosiElement* e ) {
                 }
             }
             break;
+        case sosi::sosi_element_curve:
+            {
+                sosi::SosiElementSearch srcNe( sosi::sosi_element_ne );
+                while( e->getChild( srcNe ) ) {
+		            sosi::SosiNorthEast* ne = new sosi::SosiNorthEast( srcNe.element() );
+                    mGeom.push_back( ne );
+                    mPartOffsetsGeom.push_back( mNumPointsGeom );
+                    mNumPointsGeom += ne->getNumPoints();
+                    ne->expandBoundingBox( mXmin, mYmin, mXmax, mYmax );
+                }
+            }
+            break;
         default:
             ;
     }
@@ -93,30 +108,40 @@ discoverCoords( ISosiElement* e ) {
 
 void sosicon::CoordinateCollection::
 extractPath( sosi::Reference* ref, ISosiElement* referencedElement ) {
-	sosi::SosiElementSearch src( sosi::sosi_element_ne );
-    if( referencedElement->getType() == sosi::sosi_element_curve ) {
-        
+    sosi::SosiElementSearch src( sosi::sosi_element_ne );
+    sosi::ElementType type = referencedElement->getType();
+    sosi::ObjType obj = referencedElement->getObjType();
+    /*
+    if( type == sosi::sosi_element_curve ) {
         // First segment describes the center point
         referencedElement->getChild( src );
         mCenterPoint = new sosi::SosiNorthEast( src.element() );
     }
+    */
+    sosi::NorthEastList& lst = ref->subtract ? mIslands : mGeom;
+    std::vector<int>& offsets = ref->subtract ? mPartOffsetsIslands : mPartOffsetsGeom;
+    sosi::NorthEastList tmpLst;
     while( referencedElement->getChild( src ) ) {
 		sosi::SosiNorthEast* ne = new sosi::SosiNorthEast( src.element() );
-        sosi::NorthEastList& lst = ref->subtract ? mIslands : mGeom;
-        std::vector<int>& offsets = ref->subtract ? mPartOffsetsIslands : mPartOffsetsGeom;
         int& pointCount = ref->subtract ? mNumPointsIslands : mNumPointsGeom;
         if( ref->reverse ) {
             ne->reverse();
-            lst.insert( lst.begin(), ne );
+            if( tmpLst.size() == 0 ) {
+                tmpLst.push_back( ne );
+            }
+            else {
+                tmpLst.insert( tmpLst.begin(), ne );
+            }
             offsets.insert( offsets.begin(), pointCount );
         }
         else {
-            lst.push_back( ne );
+            tmpLst.push_back( ne );
             offsets.push_back( pointCount );
         }
         pointCount += ne->getNumPoints();
         ne->expandBoundingBox( mXmin, mYmin, mXmax, mYmax );
     }
+    lst.insert( lst.begin(), tmpLst.begin(), tmpLst.end() );
 }
 
 bool sosicon::CoordinateCollection::
@@ -131,12 +156,12 @@ getNextOffsetInIslands( int& offset ) {
 
 bool sosicon::CoordinateCollection::
 getNextInGeom( ICoordinate*& coord ) {
-    return getNext( coord, mGeom, mGeomIterator );
+    return getNext( coord, mGeom, mGeomIndex );
 }
 
 bool sosicon::CoordinateCollection::
 getNextInIslands( ICoordinate*& coord ) {
-    return getNext( coord, mIslands, mIslandsIterator );
+    return getNext( coord, mIslands, mIslandsIndex );
 }
 
 void sosicon::CoordinateCollection::
