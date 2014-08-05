@@ -19,11 +19,18 @@
 
 int main ( int argc, char* argv[] ) {
 	
+    sosicon::CommandLine cmd;
+	cmd.parse( argc, argv );
+
+#if defined( __APPLE__ ) || defined( __linux__ )
+    if( cmd.mIsTtyOut ) {
+        std::cout << "\e[?25l"; // Cursor off
+    }
+#endif
+
 	int res;
 	
 	try {
-        sosicon::CommandLine cmd;
-		cmd.parse( argc, argv );
 		sosicon::IConverter* converter = 0;
 		sosicon::Factory::get( converter, cmd );
 		if( converter ) {
@@ -37,6 +44,12 @@ int main ( int argc, char* argv[] ) {
 		res = -1;
 	}
 	
+#if defined( __APPLE__ ) || defined( __linux__ )
+    if( cmd.mIsTtyOut ) {
+        std::cout << "\e[?25h"; // Cursor on
+    }
+#endif
+
 	return res;
 
 }
