@@ -17,21 +17,6 @@
  */
 #include "converter_sosi2tsv.h"
 
-sosicon::ConverterSosi2tsv::
-ConverterSosi2tsv() {
-
-}
-
-sosicon::ConverterSosi2tsv::
-~ConverterSosi2tsv() {
-
-}
-
-void sosicon::ConverterSosi2tsv::
-init( sosicon::CommandLine cmd ) {
-    mCmd = cmd;
-}
-
 void sosicon::ConverterSosi2tsv::
 run() {
     

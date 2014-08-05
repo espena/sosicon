@@ -17,26 +17,11 @@
  */
 #include "converter_sosi2shp.h"
 
-sosicon::ConverterSosi2shp::
-ConverterSosi2shp() {
-
-}
-
-sosicon::ConverterSosi2shp::
-~ConverterSosi2shp() {
-
-}
-
-void sosicon::ConverterSosi2shp::
-init( sosicon::CommandLine cmd ) {
-    mCmd = cmd;
-}
-
 void sosicon::ConverterSosi2shp::
 makeShp( ISosiElement* sosiTree ) {
 
     shape::Shapefile shp;
-    for( std::vector<std::string>::iterator g = mCmd.mGeomTypes.begin(); g != mCmd.mGeomTypes.end(); g++ ) {
+    for( std::vector<std::string>::iterator g = mCmd->mGeomTypes.begin(); g != mCmd->mGeomTypes.end(); g++ ) {
         shp.build( sosiTree, sosi::sosiNameToType( *g ) );
     }
 
@@ -61,7 +46,7 @@ makeShp( ISosiElement* sosiTree ) {
 std::string sosicon::ConverterSosi2shp::
 makeBasePath() {
 
-    std::string candidatePath = mCmd.mOutputFile.empty() ? mCmd.mSourceFiles[ 0 ] : mCmd.mOutputFile;
+    std::string candidatePath = mCmd->mOutputFile.empty() ? mCmd->mSourceFiles[ 0 ] : mCmd->mOutputFile;
     std::string dir, tit, ext;
     utils::getPathInfo( candidatePath, dir, tit, ext );
 
@@ -84,7 +69,7 @@ makeBasePath() {
 void sosicon::ConverterSosi2shp::
 run() {
     Parser* pp;
-    for( std::vector<std::string>::iterator f = mCmd.mSourceFiles.begin(); f != mCmd.mSourceFiles.end(); f++ ) {
+    for( std::vector<std::string>::iterator f = mCmd->mSourceFiles.begin(); f != mCmd->mSourceFiles.end(); f++ ) {
         std::cout << "Reading " << *f << "\n";
         Parser p;
         pp = &p;
@@ -92,7 +77,7 @@ run() {
         std::ifstream ifs( ( *f ).c_str() );
         int n = 0;
         while( !ifs.eof() ) {
-            if( mCmd.mIsTtyOut && ++n % 100 == 0 ) {
+            if( mCmd->mIsTtyOut && ++n % 100 == 0 ) {
                 std::cout << "\rParsing line " << n;
             }
             memset( ln, 0x00, sizeof ln );

@@ -50,7 +50,7 @@ namespace sosicon {
             \param converter Reference to the pointer to receive the new IConverter.
             \param cmd CommandLine object with current command-line arguments.
          */
-        static void get( IConverter* &converter, CommandLine cmd );
+        static void get( IConverter* &converter, CommandLine* cmd );
 
         //! Releases converter
         /*!

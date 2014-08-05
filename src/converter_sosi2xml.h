@@ -49,24 +49,24 @@ namespace sosicon {
     class ConverterSosi2xml : public IConverter {
 
         //! Command line wrapper
-        CommandLine mCmd;
+        CommandLine* mCmd;
 
         void makeXML( ISosiElement* parent );
 
     public:
 
         //! Constructor
-        ConverterSosi2xml();
+        ConverterSosi2xml() : mCmd( 0 ) { };
 
         //! Destructor
-        virtual ~ConverterSosi2xml();
+        virtual ~ConverterSosi2xml() { };
 
         //! Initialize converter
         /*!
             Implementation details in sosicon::IConverter::init()
             \sa sosicon::IConverter::init()
          */
-        virtual void init( CommandLine cmd );
+        virtual void init( CommandLine* cmd ) { mCmd = cmd; };
 
         //! Start conversion
         /*!

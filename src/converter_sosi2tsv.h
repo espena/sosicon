@@ -39,21 +39,21 @@ namespace sosicon {
     class ConverterSosi2tsv : public IConverter {
 
         //! Command line wrapper
-        CommandLine mCmd;
+        CommandLine* mCmd;
 
         //! Destructor
-        virtual ~ConverterSosi2tsv();
+        virtual ~ConverterSosi2tsv() { };
 
     public:
         //! Constructor
-        ConverterSosi2tsv();
+        ConverterSosi2tsv() : mCmd( 0 ) { };
         
         //! Initialize converter
         /*!
             Implementation details in sosicon::IConverter::init()
             \sa sosicon::IConverter::init()
          */
-        virtual void init( CommandLine cmd );
+        virtual void init( CommandLine* cmd ) { mCmd = cmd; };
 
         //! Start conversion
         /*!

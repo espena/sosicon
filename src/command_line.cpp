@@ -23,10 +23,21 @@ CommandLine() {
     mVerbose = 0;   
     mIsTtyIn = isatty( fileno( stdin ) ) != 0;
     mIsTtyOut = isatty( fileno( stdout ) ) != 0;
+#if defined( __APPLE__ ) || defined( __linux__ )
+    if( mIsTtyOut ) {
+        std::cout << "\e[?25l"; // Cursor off
+    }
+#endif
 }
 
 sosicon::CommandLine::
-~CommandLine() { }
+~CommandLine() {
+#if defined( __APPLE__ ) || defined( __linux__ )
+    if( mIsTtyOut ) {
+        std::cout << "\e[?25h"; // Cursor on
+    }
+#endif
+}
 
 void sosicon::CommandLine::
 parse( int argc, char* argv[] ) {

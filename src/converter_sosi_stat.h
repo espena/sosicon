@@ -51,7 +51,7 @@ namespace sosicon {
     class ConverterSosiStat : public IConverter {
 
         //! Command line wrapper
-        CommandLine mCmd;
+        CommandLine* mCmd;
 
         //! Map keeping count of objtypes
         std::map<std::string, int> mObjTypes;
@@ -74,17 +74,17 @@ namespace sosicon {
     public:
 
         //! Constructor
-        ConverterSosiStat();
+        ConverterSosiStat() : mCmd( 0 ) { };
 
         //! Destructor
-        virtual ~ConverterSosiStat();
+        virtual ~ConverterSosiStat() { };
 
         //! Initialize converter
         /*!
             Implementation details in sosicon::IConverter::init()
             \sa sosicon::IConverter::init()
          */
-        virtual void init( CommandLine cmd );
+        virtual void init( CommandLine* cmd ) { mCmd = cmd; };
 
         //! Start conversion
         /*!

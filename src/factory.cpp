@@ -18,20 +18,20 @@
 #include "factory.h"
 
 void sosicon::Factory::
-get( sosicon::IConverter* &converter, sosicon::CommandLine cmd ) {
-    if( cmd.mCommand == "-2shp" ) {
+get( sosicon::IConverter* &converter, sosicon::CommandLine* cmd ) {
+    if( cmd->mCommand == "-2shp" ) {
         converter = new ConverterSosi2shp();
         converter->init( cmd );
     }
-    else if( cmd.mCommand == "-2xml" ) {
+    else if( cmd->mCommand == "-2xml" ) {
         converter = new ConverterSosi2xml();
         converter->init( cmd );
     }
-    else if( cmd.mCommand == "-2tsv" ) {
+    else if( cmd->mCommand == "-2tsv" ) {
         converter = new ConverterSosi2tsv();
         converter->init( cmd );
     }
-    else if( cmd.mCommand == "-stat" ) {
+    else if( cmd->mCommand == "-stat" ) {
         converter = new ConverterSosiStat();
         converter->init( cmd );
     }

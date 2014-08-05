@@ -17,21 +17,6 @@
  */
 #include "converter_sosi2xml.h"
 
-sosicon::ConverterSosi2xml::
-ConverterSosi2xml() {
-
-}
-
-sosicon::ConverterSosi2xml::
-~ConverterSosi2xml() {
-
-}
-
-void sosicon::ConverterSosi2xml::
-init( sosicon::CommandLine cmd ) {
-    mCmd = cmd;
-}
-
 void sosicon::ConverterSosi2xml::
 makeXML( ISosiElement* parent ) {
 
@@ -39,7 +24,7 @@ makeXML( ISosiElement* parent ) {
 
 void sosicon::ConverterSosi2xml::
 run() {
-    for( std::vector<std::string>::iterator f = mCmd.mSourceFiles.begin(); f != mCmd.mSourceFiles.end(); f++ ) {
+    for( std::vector<std::string>::iterator f = mCmd->mSourceFiles.begin(); f != mCmd->mSourceFiles.end(); f++ ) {
         Parser p;
         char ln[ 1024 ];
         std::ifstream ifs( ( *f ).c_str() );

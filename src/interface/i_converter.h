@@ -48,7 +48,7 @@ namespace sosicon {
             \param cmd Arguments from the command-line parsed and ready within a
             sosicon::CommandLine object.
          */
-        virtual void init( CommandLine cmd ) = 0;
+        virtual void init( CommandLine* cmd ) = 0;
 
         //! Start conversion
         /*!

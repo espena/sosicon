@@ -53,7 +53,7 @@ namespace sosicon {
     class ConverterSosi2shp : public IConverter {
 
         //! Command line wrapper
-        CommandLine mCmd;
+        CommandLine* mCmd;
 
         void makeShp( ISosiElement* sosiTree );
 
@@ -74,17 +74,17 @@ namespace sosicon {
     public:
 
         //! Constructor
-        ConverterSosi2shp();
+        ConverterSosi2shp() : mCmd( 0 ) { };
 
         //! Destructor
-        virtual ~ConverterSosi2shp();
+        virtual ~ConverterSosi2shp() { };
 
         //! Initialize converter
         /*!
             Implementation details in sosicon::IConverter::init()
             \sa sosicon::IConverter::init()
          */
-        virtual void init( CommandLine cmd );
+        virtual void init( CommandLine* cmd ) { mCmd = cmd; };
 
         //! Start conversion
         /*!

@@ -17,20 +17,6 @@
  */
 #include "converter_sosi_stat.h"
 
-sosicon::ConverterSosiStat::
-ConverterSosiStat() {
-}
-
-sosicon::ConverterSosiStat::
-~ConverterSosiStat() {
-
-}
-
-void sosicon::ConverterSosiStat::
-init( sosicon::CommandLine cmd ) {
-    mCmd = cmd;
-}
-
 void sosicon::ConverterSosiStat::
 makeStat( ISosiElement* parent ) {
 
@@ -89,7 +75,7 @@ printTableHeader( std::string col1, std::string col2, int padding ) {
 
 void sosicon::ConverterSosiStat::
 run() {
-    for( std::vector<std::string>::iterator f = mCmd.mSourceFiles.begin(); f != mCmd.mSourceFiles.end(); f++ ) {
+    for( std::vector<std::string>::iterator f = mCmd->mSourceFiles.begin(); f != mCmd->mSourceFiles.end(); f++ ) {
         std::cout << "\nGenerating statistics for " << *f << "\n";
         Parser p;
         char ln[ 1024 ];
@@ -97,7 +83,7 @@ run() {
         int c = 0;
         while( !ifs.eof() ) {
             c++;
-            if( mCmd.mIsTtyOut && ( c % 100 ) == 0 ) {
+            if( mCmd->mIsTtyOut && ( c % 100 ) == 0 ) {
                 std::cout << "\rParsing " << c << " lines...";
             }
             memset( ln, 0x00, sizeof ln );
