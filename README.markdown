@@ -37,7 +37,7 @@ To convert a SOSI file to shape, run sosicon from the directory where the SOSI f
 resides. Use the -2shp parameter to emit the three required files for the shapefile format.
 Use the -o parameter to specify output file name and the -g parameter to select the type
 of geometry to export. In the following example, the SOSI element FLATE (surface) is scheduled
-for to shapefile.
+for export to shapefile.
 
 `sosicon -2shp -g FLATE -o my_output input.sos`
 
