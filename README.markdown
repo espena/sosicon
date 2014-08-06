@@ -19,7 +19,7 @@ Contributors are most welcome!
 *  Compiles and runs on OS X, Linux and Windows
 
 ## Quick demo
-Prebuilt Sosicon binaries are located in the /bin direcoty of the repo. Choose your OS and put the
+Prebuilt Sosicon binaries are located in the /bin directory of the repo. Choose your OS and put the
 executable in a location where it can be run from the command line.
 
 * [Linux executable](https://github.com/espena/sosicon/tree/master/bin/linux)
