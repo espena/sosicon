@@ -50,7 +50,7 @@ On Linux and OS X, batch conversion is supported by piping:
 `ls *.sos | sosicon -2shp -g FLATE`
 
 The above command will convert every *.sos file in current directory to corresponding shapefiles.
-The files will be written to the same directory with the same file title with tsv extension.
+The files will be written to the same directory with the same file title with shp/shx/dbf extensions.
 
 ## Build from source code
 
@@ -62,11 +62,7 @@ Project files for Visual Studio is included in the repository. Open src/sosicon.
 file in Visual Studio (Express) 2013 and build the project from there.
 
 ## Development
-Sosicon is not ready for release, although TSV conversion works well with some SOSI features like
-address points. The parser needs to be extended to include more features in accordance with the
-SOSI specification.
-
-
+Sosicon is not ready for release, although SHP conversion works reasonably well with some SOSI features.
 
 ## Source documentation
 Documentation exists in html, rtf and pdf formats. See the doc directory within the repository or visit [sosicon.espenandersen.no](http://sosicon.espenandersen.no/) for an online version.
