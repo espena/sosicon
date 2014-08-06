@@ -33,6 +33,8 @@ void sosicon::sosi::SosiOrigoNE::
 ragelParseSosiOrigoNE( std::string data )
 {
 
+ data += "\n";
+
  /* Variables used by Ragel */
     int cs = 0;
     int top = 0;
@@ -49,7 +51,7 @@ ragelParseSosiOrigoNE( std::string data )
     %%{
 
         action see_n {
-            n += fc;
+			n += fc;
         }
 
         action see_e {
@@ -57,14 +59,14 @@ ragelParseSosiOrigoNE( std::string data )
         }
 
         action save_ne {
-            std::stringstream ssN, ssE;
+			std::stringstream ssN, ssE;
             ssN << n;
             ssN >> mOrigoN;
             ssE << e;
             ssE >> mOrigoE;
         }
 
-        main := space* ( [\+\-0-9]+ $see_n ) space+ ( [\+\-0-9]+ $see_e ) [ \r\n] %save_ne;
+        main := space* ( [\+\-0-9]+ $see_n ) space+ ( [\+\-0-9]+ $see_e ) ( ( any - [0-9] ) %save_ne );
 
         write init;
         write exec;

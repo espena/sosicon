@@ -95,14 +95,32 @@ namespace sosicon {
             //! Populate shape header struct
             void buildShpHeader( ShapeType type );
 
+            //! Write coordinate pair to shapefile buffer
+            void buildShpRecCoordinate( ICoordinate* c, int o );
+
+            //! Create shapefile record header, common part
+            void buildShpRecHeaderCommonPart( int o, Int32Field recordNumber, Int32Field contentLength, Int32Field shapeType );
+
             //! Create DBF file content
             void buildDbf();
+
+            //! Create DBF field descriptor
+            int buildDbfFieldDescriptor();
+            
+            //! Create DBF header
+            void buildDbfHeader( Int16Field recordLength );
+
+            //! Create DBF records
+            int buildDbfRecordSection( int o, Int16Field recordLength );
 
             //! Create SHX file content
             void buildShx();
 
             //! Expand shp payload buffer
             int expandShpBuffer( int byteLength );
+
+            //! Recursive func to extract SOSI field data
+            void extractDbfFields( ISosiElement* sosi, DbfRecord& rec );
 
             //! Create and insert DBF record
             void insertDbfRecord( ISosiElement* sosi );
@@ -135,13 +153,6 @@ namespace sosicon {
 
             //! Described in IShapefile
             virtual void build( ISosiElement* sosiTree, sosi::ElementType selection );
-
-            //! Insert SOSI element
-            /*!
-                Converts and inserts a SOSI element into current shapefile, if the SOSI element is
-                compatible with current shapefile's geometry type.
-             */
-            void insert( ISosiElement* sosiElement );
 
             //! Described in IShapefileDbfPart
             virtual void writeDbf( std::ostream &os );

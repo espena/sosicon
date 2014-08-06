@@ -89,6 +89,7 @@ discoverCoords( ISosiElement* e ) {
                 }
             }
             break;
+        case sosi::sosi_element_text:
         case sosi::sosi_element_curve:
             {
                 sosi::SosiElementSearch srcNe( sosi::sosi_element_ne );

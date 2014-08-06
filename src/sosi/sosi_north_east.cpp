@@ -41,8 +41,8 @@ SosiNorthEast( ISosiElement* e ) {
     ragelParseCoordinates( mSosiElement->getData() );
     initHeadMember( mOrigo, sosi_element_origo_ne );
     initHeadMember( mUnit, sosi_element_unit );
-    *this += mOrigo;
     *this /= mUnit;
+    *this += mOrigo;
 }
 
 sosicon::sosi::SosiNorthEast::
