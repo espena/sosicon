@@ -116,7 +116,19 @@ namespace sosicon {
         public:
 
             //! Constructor
-            Shapefile();
+            Shapefile() :
+                mShpBuffer( 0 ),
+                mShxBuffer( 0 ),
+                mDbfBuffer( 0 ),
+                mShpSize( 0 ),
+                mShpBufferSize( 0 ),
+                mShxBufferSize( 0 ),
+                mDbfBufferSize( 0 ),
+                mRecordNumber( 0 ),
+                mXmin( +99999999 ),
+                mYmin( +99999999 ),
+                mXmax( -99999999 ),
+                mYmax( -99999999 ) { };
 
             //! Destructor
             virtual ~Shapefile();

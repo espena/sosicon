@@ -1,12 +1,13 @@
 # Sosicon v 0.1 (under development)
-Converts SOSI files to a number of other formats, including TSV (tab delimited text file) and shape
-files. Support for shape and other formats is yet to be implemented. TSV is well supported for some
-features, but the parser is still under development.
+For Linux, OS X and Windows. Converts SOSI files to a number of other formats, including shapefile.
+The parser is still under development.
 
 SOSI is a data format used for exchanging geographical information in Norway. The name is an acronym
 for _"Samordnet Opplegg for Stedfestet Informasjon"_, which translates into something like
 _"Coordinated Approach for Geospatial Information"_. [Wikipedia](https://en.wikipedia.org/wiki/SOSI)
 has more.
+
+Project home page: [sosicon.espenandersen.no](http://sosicon.espenandersen.no/).
 
 Contributors are most welcome!
 
@@ -18,37 +19,20 @@ Contributors are most welcome!
 *  Compiles and runs on OS X, Linux and Windows
 
 ## Quick demo
+To convert a SOSI file to shape, run sosicon from the directory where the SOSI file
+resides. Use the -2shp parameter to emit the three required files for the shapefile format.
+Use the -o parameter to specify output file name and the -g parameter to select the type
+of geometry to export.
 
-<strong>
-  NOTE: This demo does not work for the time being, due to refactoring of the code base. However,
-  shapefile export is about to come in place.
-</strong>
-
-<del>
-To convert a SOSI file to tab delimited text, run sosicon from the directory where the SOSI file
-resides. Use the -2tsv parameter to emit tab delimited values and the -o parameter to specify
-output file:
-
-`sosicon -2tsv -o output.tsv input.sos`
+`sosicon -2shp -g FLATE -o my_output input.sos`
 
 On Linux and OS X, batch conversion is supported by piping:
 
-`ls *.sos | sosicon -2tsv`
+`ls *.sos | sosicon -2shp -g FLATE`
 
-The above command will convert every *.sos file in current directory to corresponding .tsv files.
+The above command will convert every *.sos file in current directory to corresponding shapefiles.
 The files will be written to the same directory with the same file title with tsv extension.
-NOTE: Existing tsv-files will be overwritten.
 
-To specify which SOSI fields to be included in the TSV output, use the -f parameter like this:
-
-`ls *.sos | sosicon -2tsv -f "komm, post_nr, gatenavn, aid_husnr, aid_bokstav, hode:koordsys, koord_n, koord_o"`
-
-The comma separated list of field names will be matched and their corresponding values will be
-exported. Use the prefix `hode:` to address fields from the file header, such as `hode:koordsys`
-(applied coordinate system).
-
-If no fields are specified, all available fields will be exported except head element fields.
-</del>
 ## Development
 Sosicon is not ready for release, although TSV conversion works well with some SOSI features like
 address points. The parser needs to be extended to include more features in accordance with the
@@ -70,8 +54,7 @@ Ragel was designed and written by Adrian Thurston and released under the
 on the excellent work of Thurston and [his team of contributors](http://www.complang.org/ragel/CREDITS).
 
 ## License and disclaimer
-Sosicon is written by Espen Andersen and released under the
-[GNU General Public License](http://www.gnu.org/licenses/gpl.txt).
+Sosicon is written by Espen Andersen and released under the [GNU General Public License](http://www.gnu.org/licenses/gpl.txt).
 
 This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 

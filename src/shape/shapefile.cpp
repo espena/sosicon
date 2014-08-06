@@ -18,19 +18,6 @@
 #include "shapefile.h"
 
 sosicon::shape::Shapefile::
-Shapefile() :
-    mShpBuffer( 0 ),
-    mShxBuffer( 0 ),
-    mDbfBuffer( 0 ),
-    mShpSize( 0 ),
-    mShpBufferSize( 0 ),
-    mRecordNumber( 0 ),
-    mXmin( +99999999 ),
-    mYmin( +99999999 ),
-    mXmax( -99999999 ),
-    mYmax( -99999999 ) { }
-
-sosicon::shape::Shapefile::
 ~Shapefile() {
     delete [ ] mShpBuffer;
     delete [ ] mShxBuffer;
@@ -149,7 +136,7 @@ buildShpElement( ISosiElement* sosi, ShapeType type ) {
 
     CoordinateCollection cc;
     cc.discoverCoords( sosi );
-    if( type == shape_type_polygon || type == shape_type_polyLine ) {
+    if( type == shape_type_polygon ) {
         //cc.mkClosedPolygon();
     }
 
