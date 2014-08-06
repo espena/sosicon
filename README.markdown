@@ -19,12 +19,31 @@ Contributors are most welcome!
 *  Compiles and runs on OS X, Linux and Windows
 
 ## Quick demo
+Prebuilt Sosicon binaries are located in the /bin direcoty of the repo. Choose your OS and put the
+executable in a location where it can be run from the command line.
+
+* [Linux executable](https://github.com/espena/sosicon/tree/master/bin/linux)
+* [OS X executable](https://github.com/espena/sosicon/tree/master/bin/osx)
+* [Windows executable](https://github.com/espena/sosicon/tree/master/bin/win)
+
+You can inspect the content of a SOSI file by using the -stat command, like this:
+
+`sosicon -stat input.sos`
+
+This command will render a list of SOSI elements (geometry types among other things) and SOSI
+object types (OBJTYPE).
+
 To convert a SOSI file to shape, run sosicon from the directory where the SOSI file
 resides. Use the -2shp parameter to emit the three required files for the shapefile format.
 Use the -o parameter to specify output file name and the -g parameter to select the type
-of geometry to export.
+of geometry to export. In the following example, the SOSI element FLATE (surface) is scheduled
+for to shapefile.
 
 `sosicon -2shp -g FLATE -o my_output input.sos`
+
+Likewise, a file containing points (sosi name PUNKT) may be exported with this command:
+
+`sosicon -2shp -g PUNKT -o my_output input.sos`
 
 On Linux and OS X, batch conversion is supported by piping:
 
@@ -33,10 +52,21 @@ On Linux and OS X, batch conversion is supported by piping:
 The above command will convert every *.sos file in current directory to corresponding shapefiles.
 The files will be written to the same directory with the same file title with tsv extension.
 
+## Build from source code
+
+###Linux/OS X
+To build from source code, check out the git repository, enter the src directory and run `make`.
+
+###Windows
+Project files for Visual Studio is included in the repository. Open src/sosicon.sln solution
+file in Visual Studio (Express) 2013 and build the project from there.
+
 ## Development
 Sosicon is not ready for release, although TSV conversion works well with some SOSI features like
 address points. The parser needs to be extended to include more features in accordance with the
 SOSI specification.
+
+
 
 ## Source documentation
 Documentation exists in html, rtf and pdf formats. See the doc directory within the repository or visit [sosicon.espenandersen.no](http://sosicon.espenandersen.no/) for an online version.
