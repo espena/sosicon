@@ -28,19 +28,25 @@ makeShp( ISosiElement* sosiTree ) {
     std::string basePath = makeBasePath();
 
     std::ofstream shpfs;
-    shpfs.open( ( basePath + ".shp" ).c_str(), std::ios::out | std::ios::trunc | std::ios::binary );
+    std::string shpFileName = basePath + ".shp";
+    shpfs.open( shpFileName.c_str(), std::ios::out | std::ios::trunc | std::ios::binary );
     shpfs << *( static_cast<IShapefileShpPart*>( &shp ) );
     shpfs.close();
+    std::cout << shpFileName << " written\n";
 
     std::ofstream shxfs;
-    shxfs.open( ( basePath + ".shx" ).c_str(), std::ios::out | std::ios::trunc | std::ios::binary );
+    std::string shxFileName = basePath + ".shx";
+    shxfs.open( shxFileName.c_str(), std::ios::out | std::ios::trunc | std::ios::binary );
     shxfs << *( static_cast<IShapefileShxPart*>( &shp ) );
     shxfs.close();
+    std::cout << shxFileName << " written\n";
 
     std::ofstream dbffs;
-    dbffs.open( ( basePath + ".dbf" ).c_str(), std::ios::out | std::ios::trunc | std::ios::binary );
+    std::string dbfFileName = basePath + ".dbf";
+    dbffs.open( dbfFileName.c_str(), std::ios::out | std::ios::trunc | std::ios::binary );
     dbffs << *( static_cast<IShapefileDbfPart*>( &shp ) );
     dbffs.close();
+    std::cout << dbfFileName << " written\n";
 }
 
 std::string sosicon::ConverterSosi2shp::

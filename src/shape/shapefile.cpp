@@ -17,6 +17,20 @@
  */
 #include "shapefile.h"
 
+sosicon::shape::ShapeType sosicon::shape::
+getShapeEquivalent( sosi::ElementType sosiType ) {
+    switch( sosiType ) {
+        case sosi::sosi_element_curve:
+        case sosi::sosi_element_surface:
+            return shape_type_polyLine;
+        case sosi::sosi_element_point:
+        case sosi::sosi_element_text:
+            return shape_type_point;
+        default:
+            return shape_type_none;
+    }
+}
+
 sosicon::shape::Shapefile::
 ~Shapefile() {
     delete [ ] mShpBuffer;
@@ -91,143 +105,36 @@ buildShpHeader( ShapeType type ) {
 
 }
 
-int sosicon::shape::Shapefile::
-expandShpBuffer( int byteLength ) {
-
-    int offset = 0;
-
-    if( 0 == mShpSize ) {
-        mShpSize = byteLength;
-        while( mShpBufferSize < mShpSize ) {
-            mShpBufferSize += BUFFER_CHUNK_SIZE;
-        }
-        try {
-            mShpBuffer = new char [ mShpBufferSize ];
-        }
-        catch( ... ) {
-            std::cout << "Memory allocation error\n";
-            throw;
-        }
-    }
-    else {
-        offset = mShpSize;
-        mShpSize += byteLength;
-        if( mShpBufferSize < mShpSize ) {
-            while( mShpBufferSize < mShpSize ) {
-                mShpBufferSize += BUFFER_CHUNK_SIZE;
-            }
-            char* oldBuffer = mShpBuffer;
-            try {
-                mShpBuffer = new char [ mShpBufferSize ];
-            }
-            catch( ... ) {
-                std::cout << "Memory allocation error\n";
-                throw;
-            }
-            std::copy( oldBuffer, oldBuffer + offset, mShpBuffer );
-            delete [ ] oldBuffer;
-        }
-    }
-    return offset;
-}
-
 void sosicon::shape::Shapefile::
 buildShpElement( ISosiElement* sosi, ShapeType type ) {
 
     CoordinateCollection cc;
     cc.discoverCoords( sosi );
-    if( type == shape_type_polygon ) {
-        //cc.mkClosedPolygon();
-    }
-
-    Int32Field recordNumber;
-    recordNumber.i = ++mRecordNumber;
-
-    Int32Field shapeType;
-    shapeType.i = type;
 
     switch( type ) {
     
     case shape_type_point:
         {
             int byteLength = 28;
-
-            ICoordinate* c = 0;
-            cc.getNextInGeom( c );
-
-            Int32Field contentLength;
-            contentLength.i = 10; // In 16-bit words, record header not included
-
-            ShxIndex shxIndex;
-            shxIndex.offset.i = 50 + ( mShpSize / 2 );
-            shxIndex.length.i = contentLength.i;
-            mShxOffsets.push_back( shxIndex );
-
+            int contentLength = 10; // In 16-bit words, record header not included
+            insertShxOffset( contentLength );
             int o = expandShpBuffer( byteLength );
-
-            adjustMasterMbr( c->getE(), c->getN(), c->getE(), c->getN() );
-            buildShpRecHeaderCommonPart( o, recordNumber, contentLength, shapeType );
-            buildShpRecCoordinate( c, o + 12 );
-
+            buildShpRecHeaderCommonPart( o, contentLength, type );
+            buildShpRecCoordinate( o + 12, cc );
         }
         break;
 
     case shape_type_polyLine:
     case shape_type_polygon:
         {
-    
-            Int32Field numParts;
-            numParts.i = 1; //cc.getNumPartsGeom(); 
-
-            Int32Field numPoints;
-            numPoints.i = cc.getNumPointsGeom(); 
-
-            //int byteLength = 44 + ( 4 * numParts.i ) + ( 16 * numPoints.i );
-            int byteLength = 52 + ( 4 ) + ( 16 * numPoints.i );
-
-            Int32Field contentLength;
-            contentLength.i = ( byteLength / 2 ) - 4; // Record header not included in contentLength
-
-            ShxIndex shxIndex;
-            shxIndex.offset.i = 50 + ( mShpSize / 2 );
-            shxIndex.length.i = contentLength.i;
-            mShxOffsets.push_back( shxIndex );
-
+            int byteLength = 52 + ( 4 ) + ( 16 * cc.getNumPointsGeom() );
+            int contentLength = ( byteLength / 2 ) - 4; // Record header not included in contentLength
+            insertShxOffset( contentLength );
             int o = expandShpBuffer( byteLength );
-
-            double xMin = cc.getXmin();
-            double yMin = cc.getYmin();
-            double xMax = cc.getXmax();
-            double yMax = cc.getYmax();
-
-            adjustMasterMbr( xMin, yMin, xMax, yMax );
-            buildShpRecHeaderCommonPart( o, recordNumber, contentLength, shapeType );
-            
-            byteOrder::doubleToLittleEndian( xMin,   &mShpBuffer[ o + 12 ] );    // Box minX
-            byteOrder::doubleToLittleEndian( yMin,   &mShpBuffer[ o + 20 ] );    // Box minY
-            byteOrder::doubleToLittleEndian( xMax,   &mShpBuffer[ o + 28 ] );    // Box maxX
-            byteOrder::doubleToLittleEndian( yMax,   &mShpBuffer[ o + 36 ] );    // Box maxY
-            byteOrder::toLittleEndian( numParts.b,   &mShpBuffer[ o + 44 ], 4 ); // NumParts
-            byteOrder::toLittleEndian( numPoints.b,  &mShpBuffer[ o + 48 ], 4 ); // NumPoints
-
-            o += 52;
-
-            int part = -1;
-
-            std::vector<ICoordinate*> theGeom = getNormalized( cc );
-    
-            while( cc.getNextOffsetInGeom( part ) ) {
-                Int32Field offset;
-                offset.i = part;
-                byteOrder::toLittleEndian( offset.b,  &mShpBuffer[ o ], 4 );
-                o += 4;
-                break;
-            }
-
-            for( std::vector<ICoordinate*>::size_type i = 0; i < theGeom.size(); i++ ) {
-                buildShpRecCoordinate( theGeom[ i ], o );
-                o += 16;
-            }
+            buildShpRecHeaderCommonPart( o, contentLength, type );
+            o = buildShpRecHeaderExtended( o, cc );
+            o = buildShpRecHeaderOffsets( o, cc );
+            o = buildShpRecCoordinates( o, cc );
         }
         break;
 
@@ -237,80 +144,94 @@ buildShpElement( ISosiElement* sosi, ShapeType type ) {
 }
 
 void sosicon::shape::Shapefile::
-buildShpRecCoordinate( ICoordinate* c, int o ) {
+buildShpRecCoordinate( int o, CoordinateCollection& cc ) {
+
+    ICoordinate* c = 0;
+
+    cc.getNextInGeom( c );
+    if( c ) {
+        buildShpRecCoordinate( o, c );
+    }
+}
+
+void sosicon::shape::Shapefile::
+buildShpRecCoordinate( int o, ICoordinate* c ) {
+
     byteOrder::doubleToLittleEndian( c->getE(), &mShpBuffer[ o ] );
     byteOrder::doubleToLittleEndian( c->getN(), &mShpBuffer[ o + 8 ] );
+    adjustMasterMbr( c->getE(), c->getN(), c->getE(), c->getN() );
+}
+
+int sosicon::shape::Shapefile::
+buildShpRecCoordinates( int o, CoordinateCollection& cc ) {
+
+    std::vector<ICoordinate*> theGeom = getNormalized( cc );
+    for( std::vector<ICoordinate*>::size_type i = 0; i < theGeom.size(); i++ ) {
+        buildShpRecCoordinate( o, theGeom[ i ] );
+        o += 16;
+    }
+
+    return o;
+}
+
+int sosicon::shape::Shapefile::
+buildShpRecHeaderExtended( int o, CoordinateCollection& cc ) {
+
+    Int32Field numParts;
+    numParts.i = 1; //cc.getNumPartsGeom(); 
+
+    Int32Field numPoints;
+    numPoints.i = cc.getNumPointsGeom();
+
+    double xMin = cc.getXmin();
+    double yMin = cc.getYmin();
+    double xMax = cc.getXmax();
+    double yMax = cc.getYmax();
+
+    byteOrder::doubleToLittleEndian( xMin,   &mShpBuffer[ o + 12 ] );    // Box minX
+    byteOrder::doubleToLittleEndian( yMin,   &mShpBuffer[ o + 20 ] );    // Box minY
+    byteOrder::doubleToLittleEndian( xMax,   &mShpBuffer[ o + 28 ] );    // Box maxX
+    byteOrder::doubleToLittleEndian( yMax,   &mShpBuffer[ o + 36 ] );    // Box maxY
+    byteOrder::toLittleEndian( numParts.b,   &mShpBuffer[ o + 44 ], 4 ); // NumParts
+    byteOrder::toLittleEndian( numPoints.b,  &mShpBuffer[ o + 48 ], 4 ); // NumPoints
+
+    adjustMasterMbr( xMin, yMin, xMax, yMax );
+
+    return o + 52;
+}
+
+int sosicon::shape::Shapefile::
+buildShpRecHeaderOffsets( int o, CoordinateCollection& cc ) {
+
+    int part = -1;
+
+    std::vector<ICoordinate*> theGeom = getNormalized( cc );
+    while( cc.getNextOffsetInGeom( part ) ) {
+        Int32Field offset;
+        offset.i = part;
+        byteOrder::toLittleEndian( offset.b,  &mShpBuffer[ o ], 4 );
+        o += 4;
+        break;
+    }
+
+    return o;
 }
 
 void sosicon::shape::Shapefile::
-buildShpRecHeaderCommonPart( int o, Int32Field recordNumber, Int32Field contentLength, Int32Field shapeType ) {
-    // Record header
+buildShpRecHeaderCommonPart( int o, int contentLength, ShapeType type ) {
+
+    Int32Field len;
+    len.i = contentLength;
+
+    Int32Field shapeType;
+    shapeType.i = type;
+
+    Int32Field recordNumber;
+    recordNumber.i = ++mRecordNumber;
+
     byteOrder::toBigEndian( recordNumber.b,  &mShpBuffer[ o +  0 ], 4 ); // Record serial
-    byteOrder::toBigEndian( contentLength.b, &mShpBuffer[ o +  4 ], 4 ); // Record content length
-    // Record content
+    byteOrder::toBigEndian( len.b, &mShpBuffer[ o +  4 ], 4 ); // Record content length
     byteOrder::toLittleEndian( shapeType.b,  &mShpBuffer[ o +  8 ], 4 ); // Shape type
-}
-
-std::vector<sosicon::ICoordinate*> sosicon::shape::Shapefile::
-getNormalized( CoordinateCollection& cc ) {
-    std::vector<sosicon::ICoordinate*> theGeom;
-    ICoordinate* c = 0;
-    while( cc.getNextInGeom( c ) ) {
-        theGeom.push_back( c );
-    }
-    if( theGeom.size() > 1 ) {
-        if( theGeom[ 0 ]->rightOf( theGeom[ 1 ] ) ) {
-            std::reverse( theGeom.begin(), theGeom.end() );
-        }
-    }
-    return theGeom;
-}
-
-void sosicon::shape::Shapefile::
-insertDbfRecord( ISosiElement* sosi ) {
-    DbfRecord rec;
-
-    saveToDbf( rec, "SOSI_ID", sosi->getSerial() );
-    saveToDbf( rec, "TYPE", sosi->getName() );
-    
-    extractDbfFields( sosi, rec );
-    mDbfRecordSet.push_back( rec );
-}
-
-void sosicon::shape::Shapefile::
-extractDbfFields( ISosiElement* sosi, DbfRecord& rec ) {
-
-    std::string field;
-    std::string data;
-    ISosiElement* child = 0;
-    sosi::SosiElementSearch src;
-    std::vector<ISosiElement*>& children = sosi->children();
-
-    while( sosi->getChild( src ) ) {
-        child = src.element();
-        // No need to write coordinates to DBF
-        if( child->getType() != sosi::sosi_element_ne ) {
-            data = utils::trim( child->getData() );
-            saveToDbf( rec, child->getName(), data );
-            extractDbfFields( child, rec );
-        }
-    }
-}
-
-void sosicon::shape::Shapefile::
-saveToDbf( DbfRecord& rec, std::string field, std::string data ) {
-
-    int length = data.size();
-
-    if( !data.empty() && length < 254 ) {
-        if( mDbfFieldLengths.find( field ) != mDbfFieldLengths.end() ) {
-            mDbfFieldLengths[ field ] = std::max( mDbfFieldLengths[ field ], length );
-        }
-        else {
-            mDbfFieldLengths[ field ] = length;
-        }
-        rec[ field ] = data;
-    }
 }
 
 void sosicon::shape::Shapefile::
@@ -452,6 +373,7 @@ buildDbfRecordSection( int o, Int16Field recordLength ) {
 
 void sosicon::shape::Shapefile::
 buildShx() {
+
     mShxBufferSize = 8 * mDbfRecordSet.size();
     try {
         mShxBuffer = 0;
@@ -460,15 +382,129 @@ buildShx() {
     catch( ... ) {
         std::cout << "Memory allocation error\n";
     }
+
     Int32Field fileLength;
     fileLength.i = ( sizeof( mShxHeader ) + mShxBufferSize ) / 2;
     std::copy( &mShpHeader[ 0 ], &mShpHeader[ 99 ], mShxHeader );
     byteOrder::toBigEndian( fileLength.b,   &mShxHeader[ 24 ], 4 );
     int o = 0;
+
     for( ShxOffsets::iterator i = mShxOffsets.begin(); i != mShxOffsets.end(); i++ ) {
         byteOrder::toBigEndian( ( *i ).offset.b,  &mShxBuffer[ o +  0 ], 4 ); // Offset
         byteOrder::toBigEndian( ( *i ).length.b,  &mShxBuffer[ o +  4 ], 4 ); // Length
         o += 8;
+    }
+}
+
+int sosicon::shape::Shapefile::
+expandShpBuffer( int byteLength ) {
+
+    int offset = 0;
+
+    if( 0 == mShpSize ) {
+        mShpSize = byteLength;
+        while( mShpBufferSize < mShpSize ) {
+            mShpBufferSize += BUFFER_CHUNK_SIZE;
+        }
+        try {
+            mShpBuffer = new char [ mShpBufferSize ];
+        }
+        catch( ... ) {
+            std::cout << "Memory allocation error\n";
+            throw;
+        }
+    }
+    else {
+        offset = mShpSize;
+        mShpSize += byteLength;
+        if( mShpBufferSize < mShpSize ) {
+            while( mShpBufferSize < mShpSize ) {
+                mShpBufferSize += BUFFER_CHUNK_SIZE;
+            }
+            char* oldBuffer = mShpBuffer;
+            try {
+                mShpBuffer = new char [ mShpBufferSize ];
+            }
+            catch( ... ) {
+                std::cout << "Memory allocation error\n";
+                throw;
+            }
+            std::copy( oldBuffer, oldBuffer + offset, mShpBuffer );
+            delete [ ] oldBuffer;
+        }
+    }
+    return offset;
+}
+
+void sosicon::shape::Shapefile::
+extractDbfFields( ISosiElement* sosi, DbfRecord& rec ) {
+
+    std::string field;
+    std::string data;
+    ISosiElement* child = 0;
+    sosi::SosiElementSearch src;
+    std::vector<ISosiElement*>& children = sosi->children();
+
+    while( sosi->getChild( src ) ) {
+        child = src.element();
+        // No need to write coordinates to DBF
+        if( child->getType() != sosi::sosi_element_ne ) {
+            data = utils::trim( child->getData() );
+            saveToDbf( rec, child->getName(), data );
+            extractDbfFields( child, rec );
+        }
+    }
+}
+
+std::vector<sosicon::ICoordinate*> sosicon::shape::Shapefile::
+getNormalized( CoordinateCollection& cc ) {
+    std::vector<sosicon::ICoordinate*> theGeom;
+    ICoordinate* c = 0;
+    while( cc.getNextInGeom( c ) ) {
+        theGeom.push_back( c );
+    }
+    if( theGeom.size() > 1 ) {
+        if( theGeom[ 0 ]->rightOf( theGeom[ 1 ] ) ) {
+            std::reverse( theGeom.begin(), theGeom.end() );
+        }
+    }
+    return theGeom;
+}
+
+void sosicon::shape::Shapefile::
+insertDbfRecord( ISosiElement* sosi ) {
+    DbfRecord rec;
+
+    saveToDbf( rec, "SOSI_ID", sosi->getSerial() );
+    saveToDbf( rec, "TYPE", sosi->getName() );
+    
+    extractDbfFields( sosi, rec );
+    mDbfRecordSet.push_back( rec );
+}
+
+void sosicon::shape::Shapefile::
+insertShxOffset( int contentLength ) {
+
+    ShxIndex shxIndex;
+    shxIndex.offset.i = 50 + ( mShpSize / 2 );
+    shxIndex.length.i = contentLength;
+
+    mShxOffsets.push_back( shxIndex );
+}
+
+void sosicon::shape::Shapefile::
+saveToDbf( DbfRecord& rec, std::string field, std::string data ) {
+
+    int length = data.size();
+
+    if( !data.empty() && length < 254 ) {
+        if( mDbfFieldLengths.find( field ) != mDbfFieldLengths.end() ) {
+            mDbfFieldLengths[ field ] = std::max( mDbfFieldLengths[ field ], length );
+        }
+        else {
+            mDbfFieldLengths[ field ] = length;
+        }
+        rec[ field ] = data;
     }
 }
 
@@ -493,18 +529,4 @@ writeDbf( std::ostream &os ) {
 void sosicon::shape::Shapefile::
 writePrj( std::ostream &os ) {
 
-}
-
-sosicon::shape::ShapeType sosicon::shape::
-getShapeEquivalent( sosi::ElementType sosiType ) {
-    switch( sosiType ) {
-        case sosi::sosi_element_curve:
-        case sosi::sosi_element_surface:
-            return shape_type_polyLine;
-        case sosi::sosi_element_point:
-        case sosi::sosi_element_text:
-            return shape_type_point;
-        default:
-            return shape_type_none;
-    }
 }

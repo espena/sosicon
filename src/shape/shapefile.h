@@ -95,11 +95,23 @@ namespace sosicon {
             //! Populate shape header struct
             void buildShpHeader( ShapeType type );
 
+            //! Write first coordinate pair in collection to shapefile buffer
+            void buildShpRecCoordinate( int o, CoordinateCollection& cc );
+
             //! Write coordinate pair to shapefile buffer
-            void buildShpRecCoordinate( ICoordinate* c, int o );
+            void buildShpRecCoordinate( int o, ICoordinate* c );
+
+            //! Write multiple coordinate pairs to shapefile buffer
+            int buildShpRecCoordinates( int o, CoordinateCollection& cc );
 
             //! Create shapefile record header, common part
-            void buildShpRecHeaderCommonPart( int o, Int32Field recordNumber, Int32Field contentLength, Int32Field shapeType );
+            void buildShpRecHeaderCommonPart( int o, int contentLength, ShapeType type );
+
+            //! Create shapefile record header, multipoint/polyLine/polygon part
+            int buildShpRecHeaderExtended( int o, CoordinateCollection& cc );
+
+            //! Create shapefile record header, offsets
+            int buildShpRecHeaderOffsets( int o, CoordinateCollection& cc );
 
             //! Create DBF file content
             void buildDbf();
@@ -124,6 +136,9 @@ namespace sosicon {
 
             //! Create and insert DBF record
             void insertDbfRecord( ISosiElement* sosi );
+
+            //! Append offset value to SHX (index)
+            void insertShxOffset( int contentLength );
 
             //! Shapefile polys must have clockwise-ordered vertices
             std::vector<ICoordinate*> getNormalized( CoordinateCollection& cc );
