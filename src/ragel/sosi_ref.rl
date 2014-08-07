@@ -57,7 +57,7 @@ ragelParseSosiRef( std::string data )
             ref->subtract = subtract;
 			if( 0 == refList ) {
 				refList = new SosiReferenceList();
-				mRefListCollection.insert( mRefListCollection.begin(), refList );
+				mRefListCollection.push_back( refList );
 			}
             refList->insert( refList->begin(), ref );
         }
@@ -69,7 +69,7 @@ ragelParseSosiRef( std::string data )
 		action see_opening_parenthesis {
 			subtract = ( fc == '(' );
 			refList = new SosiReferenceList();
-			mRefListCollection.insert( mRefListCollection.begin(), refList );
+			mRefListCollection.push_back( refList );
 		}
 
 		action see_closing_parenthesis {

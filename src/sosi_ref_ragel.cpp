@@ -194,7 +194,7 @@ _match:
             ref->subtract = subtract;
 			if( 0 == refList ) {
 				refList = new SosiReferenceList();
-				mRefListCollection.insert( mRefListCollection.begin(), refList );
+				mRefListCollection.push_back( refList );
 			}
             refList->insert( refList->begin(), ref );
         }
@@ -210,7 +210,7 @@ _match:
 	{
 			subtract = ( (*p) == '(' );
 			refList = new SosiReferenceList();
-			mRefListCollection.insert( mRefListCollection.begin(), refList );
+			mRefListCollection.push_back( refList );
 		}
 	break;
 	case 3:
