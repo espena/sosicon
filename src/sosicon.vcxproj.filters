@@ -93,9 +93,6 @@
     <ClInclude Include="interface\i_shapefile_dbf_part.h">
       <Filter>Header Files\Inteface</Filter>
     </ClInclude>
-    <ClInclude Include="interface\i_shapefile_prj_part.h">
-      <Filter>Header Files\Inteface</Filter>
-    </ClInclude>
     <ClInclude Include="interface\i_shapefile_shp_part.h">
       <Filter>Header Files\Inteface</Filter>
     </ClInclude>

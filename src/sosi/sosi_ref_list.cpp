@@ -26,24 +26,40 @@ SosiRefList( ISosiElement* e ) {
 
 sosicon::sosi::SosiRefList::
 ~SosiRefList() {
-    for( std::vector<Reference*>::iterator i = mRefList.begin(); i != mRefList.end(); i++ ) {
-        delete *i;
+    for( std::vector<SosiReferenceList*>::iterator l = mRefListCollection.begin(); l != mRefListCollection.end(); l++ ) {
+        std::vector<Reference*>* refList = *l;
+        for( std::vector<Reference*>::iterator i = refList->begin(); i != refList->end(); i++ ) {
+            delete *i;
+        }
+        refList->clear();
     }
+    mRefListCollection.clear();
 }
 
 bool sosicon::sosi::SosiRefList::
 getNextReference( Reference*& reference ) {
+
     if( 0 == reference ) {
+        mRefListColletionIndex = 0;
         mRefListIndex = 0;
     }
-    bool isMore;
-    if( mRefListIndex >= mRefList.size() ) {
-        isMore = false;
+
+    if( mRefListCollection.size() == 0 || mRefListColletionIndex >= mRefListCollection.size() ) {
+        return false;
     }
     else {
-        reference = mRefList[ mRefListIndex ];
+        SosiReferenceList* refList = mRefListCollection[ mRefListColletionIndex ];
+        if( mRefListIndex == refList->size() ) {
+            if( ++mRefListColletionIndex == mRefListCollection.size() ) {
+                return false;
+            }
+            SosiReferenceList* refList = mRefListCollection[ mRefListColletionIndex ];
+        }
+        if( mRefListIndex == refList->size() ) {
+            return false;
+        }
+        reference = ( *refList ) [ mRefListIndex ];
         mRefListIndex++;
-        isMore = true;
     }
-    return isMore;
+    return true;
 }

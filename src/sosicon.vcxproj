@@ -158,7 +158,6 @@ rd /s /q $(IntermediateOutputPath)</Command>
     <ClInclude Include="interface\i_rectangle.h" />
     <ClInclude Include="interface\i_shapefile.h" />
     <ClInclude Include="interface\i_shapefile_dbf_part.h" />
-    <ClInclude Include="interface\i_shapefile_prj_part.h" />
     <ClInclude Include="interface\i_shapefile_shp_part.h" />
     <ClInclude Include="interface\i_shapefile_shx_part.h" />
     <ClInclude Include="interface\i_shape_element.h" />

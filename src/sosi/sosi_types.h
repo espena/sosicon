@@ -121,6 +121,9 @@ namespace sosicon {
 
         //! List of SOSI references
         typedef std::vector<Reference*> SosiReferenceList;
+        
+        //! Collection of SOSI reference lists
+        typedef std::vector<SosiReferenceList*> SosiReferenceListCollection;
 
        /*! @} end group sosi_elements */
 

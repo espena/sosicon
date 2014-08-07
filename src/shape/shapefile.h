@@ -172,9 +172,6 @@ namespace sosicon {
             //! Described in IShapefileDbfPart
             virtual void writeDbf( std::ostream &os );
 
-            //! Described in IShapefilePrjPart
-            virtual void writePrj( std::ostream &os );
-
             //! Described in IShapefileShpPart
             virtual void writeShp( std::ostream &os );
 

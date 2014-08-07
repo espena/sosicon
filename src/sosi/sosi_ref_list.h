@@ -43,8 +43,9 @@ namespace sosicon {
 
             ISosiElement* mSosiElement;
 
-            SosiReferenceList mRefList;
+            SosiReferenceListCollection mRefListCollection;
 
+            SosiReferenceListCollection::size_type mRefListColletionIndex;
             SosiReferenceList::size_type mRefListIndex;
 
             void ragelParseSosiRef( std::string data );
@@ -67,10 +68,10 @@ namespace sosicon {
              */
             bool getNextReference( Reference*& reference );
 
-            SosiReferenceList::size_type size() { return mRefList.size(); };
+            //SosiReferenceListCollection::size_type size() { return mRefListCollection.size(); };
 
         }; // class SosiRef
-       /*! @} end group sosi_elements */
+        /*! @} end group sosi_elements */
 
     }; // namespace sosi
 

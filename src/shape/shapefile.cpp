@@ -525,8 +525,3 @@ writeDbf( std::ostream &os ) {
     os.write( mDbfHeader, sizeof( mDbfHeader ) );
     os.write( mDbfBuffer, mDbfBufferSize );
 }
-
-void sosicon::shape::Shapefile::
-writePrj( std::ostream &os ) {
-
-}
