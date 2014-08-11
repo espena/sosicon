@@ -30,11 +30,22 @@ namespace sosicon {
     //! SOSI
     namespace sosi {
 
+        //! Number of entries in coordsys lookup table
+        static const int MAX_COORDSYS_TABLE = 184;
+
         /*!
             \addtogroup sosi_elements SOSI Elements
             Implemented representation of SOSI file elements.
             @{
         */
+
+        //! Convert SOSI SYSKODE value to coordinate system data
+        /*!
+            \param int The SOSI SYSKODE value.
+            \return CoordSys structure with information about the requested
+                    coordinate system.
+         */
+        CoordSys sysCodeToCoordSys( int sysCode );
 
         //! Convert SOSI element names to ElementType enum value
         /*!

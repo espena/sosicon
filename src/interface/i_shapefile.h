@@ -21,6 +21,7 @@
 #include "i_shapefile_shp_part.h"
 #include "i_shapefile_shx_part.h"
 #include "i_shapefile_dbf_part.h"
+#include "i_shapefile_prj_part.h"
 #include "i_sosi_element.h"
 #include "../sosi/sosi_types.h"
 
@@ -37,7 +38,8 @@ namespace sosicon {
     */
     class IShapefile : public IShapefileShpPart,
                        public IShapefileShxPart,
-                       public IShapefileDbfPart {
+                       public IShapefileDbfPart,
+                       public IShapefilePrjPart {
 
         public:
             

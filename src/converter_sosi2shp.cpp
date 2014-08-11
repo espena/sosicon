@@ -27,6 +27,7 @@ makeShp( ISosiElement* sosiTree ) {
         writeFile<IShapefileShpPart>( f, basePath, "shp" );
         writeFile<IShapefileShxPart>( f, basePath, "shx" );
         writeFile<IShapefileDbfPart>( f, basePath, "dbf" );
+        writeFile<IShapefilePrjPart>( f, basePath, "prj" );
     }
 }
 

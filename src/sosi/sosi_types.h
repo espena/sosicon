@@ -119,6 +119,29 @@ namespace sosicon {
             bool subtract;       //!< Parenthesis = subtract shape.
         };
 
+        //! SOSI coordinate system
+        class CoordSys {
+
+            int mSysCode;               //!< SOSI SYSKODE
+            std::string mPrjString;     //!< Projection string
+            std::string mDisplayString; //!< Display string
+
+        public:
+
+            CoordSys( ) : mSysCode( 0 ) {};
+
+            CoordSys( int sysCode,
+                      std::string displayString,
+                      std::string prjString ) : mSysCode( sysCode ),
+                                                mDisplayString( displayString ),
+                                                mPrjString( prjString ) {};
+
+            std::string prjString() { return mPrjString; };
+
+            bool valid() { return mSysCode != 0; };
+
+        };
+
         //! List of SOSI references
         typedef std::vector<Reference*> SosiReferenceList;
         

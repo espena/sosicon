@@ -49,6 +49,8 @@ adjustMasterMbr( double xMin, double yMin, double xMax, double yMax ) {
 void sosicon::shape::Shapefile::
 build( ISosiElement* sosiTree, sosi::ElementType selection ) {
 
+    mSosiTree = sosiTree;
+
     ShapeType shapeTypeEquivalent = getShapeEquivalent( selection );
 
     if( shape_type_none != shapeTypeEquivalent ) {
@@ -302,7 +304,6 @@ buildDbfFieldDescriptor( int& pos ) {
 
     // Terminator
     mDbfBuffer[ pos++ ] = 0x0d;
-
 }
 
 void sosicon::shape::Shapefile::
@@ -524,4 +525,25 @@ void sosicon::shape::Shapefile::
 writeDbf( std::ostream &os ) {
     os.write( mDbfHeader, sizeof( mDbfHeader ) );
     os.write( mDbfBuffer, mDbfBufferSize );
+}
+
+void sosicon::shape::Shapefile::
+writePrj( std::ostream &os ) {
+    sosi::SosiElementSearch srcHeader( sosi::sosi_element_head );
+    sosi::SosiElementSearch srcTranspar( sosi::sosi_element_transpar );
+    sosi::SosiElementSearch srcKoordsys( sosi::sosi_element_coordsys );
+    ISosiElement* coordSys = 0;
+    if( mSosiTree && 
+        mSosiTree->getChild( srcHeader ) &&
+        srcHeader.element()->getChild( srcTranspar ) &&
+        srcTranspar.element()->getChild( srcKoordsys ) )
+    {
+        std::stringstream ss;
+        int coordSys;
+        ss << srcKoordsys.element()->getData();
+        ss >> coordSys;
+        if( coordSys > 0 && coordSys <= sosi::MAX_COORDSYS_TABLE ) {
+            os << sosi::sysCodeToCoordSys( coordSys ).prjString();
+        }
+    }
 }

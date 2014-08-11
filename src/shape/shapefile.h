@@ -30,6 +30,7 @@
 #include "../utils.h"
 #include "../coordinate_collection.h"
 #include "../sosi/sosi_types.h"
+#include "../sosi/sosi_element.h"
 #include "../sosi/sosi_element_search.h"
 #include "../interface/i_shapefile.h"
 #include "../interface/i_coordinate.h"
@@ -61,6 +62,8 @@ namespace sosicon {
                 buffer expansion.
             */
             static const int  BUFFER_CHUNK_SIZE = 4096;
+
+            ISosiElement* mSosiTree;    //!< SOSI source
 
             char mShpHeader[ 100 ]; //!< Main SHP file header
             char* mShpBuffer;       //!< SHP file payload
@@ -156,6 +159,7 @@ namespace sosicon {
 
             //! Constructor
             Shapefile() :
+                mSosiTree( 0 ),
                 mShpBuffer( 0 ),
                 mShxBuffer( 0 ),
                 mDbfBuffer( 0 ),
@@ -183,6 +187,9 @@ namespace sosicon {
 
             //! Described in IShapefileShxPart
             virtual void writeShx( std::ostream &os );
+
+            //! Described in IShapefilePrjPart
+            virtual void writePrj( std::ostream &os );
         };
 
     }; // namespace shape
