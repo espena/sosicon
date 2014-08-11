@@ -52,6 +52,16 @@ namespace sosicon {
      */
     class ConverterSosi2shp : public IConverter {
 
+        template<typename T>
+        void writeFile( shape::Shapefile& shp, std::string basePath, std::string extension ) {
+            std::ofstream fs;
+            std::string fileName = basePath + "." + extension;
+            fs.open( fileName.c_str(), std::ios::out | std::ios::trunc | std::ios::binary );
+            fs << *( static_cast<T*>( &shp ) );
+            fs.close();
+            std::cout << fileName << " written\n";
+        }
+
         //! Command line wrapper
         CommandLine* mCmd;
 

@@ -95,35 +95,41 @@ namespace sosicon {
             //! Populate shape header struct
             void buildShpHeader( ShapeType type );
 
+            //! Build shape element: Point
+            void buildShpPoint( CoordinateCollection& cc );
+
+            //! Build shape element: PolyLine
+            void buildShpPolyLine( CoordinateCollection& cc );
+
             //! Write first coordinate pair in collection to shapefile buffer
-            void buildShpRecCoordinate( int o, CoordinateCollection& cc );
+            void buildShpRecCoordinate( int& o, CoordinateCollection& cc );
 
             //! Write coordinate pair to shapefile buffer
-            void buildShpRecCoordinate( int o, ICoordinate* c );
+            void buildShpRecCoordinate( int& o, ICoordinate* c );
 
             //! Write multiple coordinate pairs to shapefile buffer
-            int buildShpRecCoordinates( int o, CoordinateCollection& cc );
+            void buildShpRecCoordinates( int& o, CoordinateCollection& cc );
 
             //! Create shapefile record header, common part
-            void buildShpRecHeaderCommonPart( int o, int contentLength, ShapeType type );
+            void buildShpRecHeaderCommonPart( int& o, int contentLength, ShapeType type );
 
             //! Create shapefile record header, multipoint/polyLine/polygon part
-            int buildShpRecHeaderExtended( int o, CoordinateCollection& cc );
+            void buildShpRecHeaderExtended( int& o, CoordinateCollection& cc );
 
             //! Create shapefile record header, offsets
-            int buildShpRecHeaderOffsets( int o, CoordinateCollection& cc );
+            void buildShpRecHeaderOffsets( int& o, CoordinateCollection& cc );
 
             //! Create DBF file content
             void buildDbf();
 
             //! Create DBF field descriptor
-            int buildDbfFieldDescriptor();
+            void buildDbfFieldDescriptor( int& pos );
             
             //! Create DBF header
             void buildDbfHeader( Int16Field recordLength );
 
             //! Create DBF records
-            int buildDbfRecordSection( int o, Int16Field recordLength );
+            void buildDbfRecordSection( int& pos, int recordLength );
 
             //! Create SHX file content
             void buildShx();
