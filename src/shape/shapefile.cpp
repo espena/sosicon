@@ -20,12 +20,17 @@
 sosicon::shape::ShapeType sosicon::shape::
 getShapeEquivalent( sosi::ElementType sosiType ) {
     switch( sosiType ) {
+
         case sosi::sosi_element_curve:
-        case sosi::sosi_element_surface:
             return shape_type_polyLine;
+
+        case sosi::sosi_element_surface:
+            return shape_type_polygon;
+
         case sosi::sosi_element_point:
         case sosi::sosi_element_text:
             return shape_type_point;
+
         default:
             return shape_type_none;
     }
@@ -71,6 +76,34 @@ build( ISosiElement* sosiTree, sosi::ElementType selection ) {
         buildDbf(); // database (attributes table)
         buildShx(); // index
     }
+}
+
+void sosicon::shape::Shapefile::
+build( ISosiElement* sosiTree, sosi::ObjType selection ) {
+
+    mSosiTree = sosiTree;
+
+    ISosiElement* sosi = 0;
+    sosi::SosiElementSearch src;
+    ShapeType shapeTypeEquivalent = shape_type_none;
+
+    while( sosiTree->getChild( src ) ) {
+
+        sosi = src.element();
+
+        if( selection == sosi->getObjType() ) {
+            if( shapeTypeEquivalent == shape_type_none ) {
+                shapeTypeEquivalent = getShapeEquivalent( sosi->getType() );
+            }
+            buildShpElement( sosi, shapeTypeEquivalent );
+            insertDbfRecord( sosi );
+        }
+    }
+
+    buildShpHeader( shapeTypeEquivalent );
+
+    buildDbf(); // database (attributes table)
+    buildShx(); // index
 }
 
 void sosicon::shape::Shapefile::
@@ -121,6 +154,9 @@ buildShpElement( ISosiElement* sosi, ShapeType type ) {
         break;
 
     case shape_type_polygon:
+        buildShpPolygon( cc );
+        break;
+
     case shape_type_polyLine:
         buildShpPolyLine( cc );
         break;
@@ -147,6 +183,18 @@ buildShpPolyLine( CoordinateCollection& cc ) {
     insertShxOffset( contentLength );
     int pos = expandShpBuffer( byteLength );
     buildShpRecHeaderCommonPart( pos, contentLength, shape_type_polyLine );
+    buildShpRecHeaderExtended( pos, cc );
+    buildShpRecHeaderOffsets( pos, cc );
+    buildShpRecCoordinates( pos, cc );
+}
+
+void sosicon::shape::Shapefile::
+buildShpPolygon( CoordinateCollection& cc ) {
+    int byteLength = 52 + ( 4 ) + ( 16 * cc.getNumPointsGeom() );
+    int contentLength = ( byteLength / 2 ) - 4; // In 16-bit words, record header not included
+    insertShxOffset( contentLength );
+    int pos = expandShpBuffer( byteLength );
+    buildShpRecHeaderCommonPart( pos, contentLength, shape_type_polygon );
     buildShpRecHeaderExtended( pos, cc );
     buildShpRecHeaderOffsets( pos, cc );
     buildShpRecCoordinates( pos, cc );
@@ -195,8 +243,8 @@ buildShpRecHeaderExtended( int& pos, CoordinateCollection& cc ) {
     double xMax = cc.getXmax();
     double yMax = cc.getYmax();
 
-    byteOrder::doubleToLittleEndian( xMin,   &mShpBuffer[ pos ] );    // Box minX
-    byteOrder::doubleToLittleEndian( yMin,   &mShpBuffer[ pos + 8 ] );    // Box minY
+    byteOrder::doubleToLittleEndian( xMin,   &mShpBuffer[ pos ] );         // Box minX
+    byteOrder::doubleToLittleEndian( yMin,   &mShpBuffer[ pos + 8 ] );     // Box minY
     byteOrder::doubleToLittleEndian( xMax,   &mShpBuffer[ pos + 16 ] );    // Box maxX
     byteOrder::doubleToLittleEndian( yMax,   &mShpBuffer[ pos + 24 ] );    // Box maxY
     byteOrder::toLittleEndian( numParts.b,   &mShpBuffer[ pos + 32 ], 4 ); // NumParts
@@ -210,8 +258,8 @@ buildShpRecHeaderExtended( int& pos, CoordinateCollection& cc ) {
 void sosicon::shape::Shapefile::
 buildShpRecHeaderOffsets( int& pos, CoordinateCollection& cc ) {
 
+    /*
     int part = -1;
-
     std::vector<ICoordinate*> theGeom = getNormalized( cc );
     while( cc.getNextOffsetInGeom( part ) ) {
         Int32Field offset;
@@ -220,6 +268,11 @@ buildShpRecHeaderOffsets( int& pos, CoordinateCollection& cc ) {
         pos += 4;
         break;
     }
+    */
+    Int32Field offset;
+    offset.i = 0;
+    byteOrder::toLittleEndian( offset.b,  &mShpBuffer[ pos ], 4 );
+    pos += 4;
 }
 
 void sosicon::shape::Shapefile::
@@ -465,7 +518,7 @@ getNormalized( CoordinateCollection& cc ) {
         theGeom.push_back( c );
     }
     if( theGeom.size() > 1 ) {
-        if( theGeom[ 0 ]->rightOf( theGeom[ 1 ] ) ) {
+        if( theGeom[ 0 ]->leftOf( theGeom[ 1 ] ) ) {
             std::reverse( theGeom.begin(), theGeom.end() );
         }
     }
@@ -529,6 +582,7 @@ writeDbf( std::ostream &os ) {
 
 void sosicon::shape::Shapefile::
 writePrj( std::ostream &os ) {
+    sosi::SosiTranslationTable ttbl;
     sosi::SosiElementSearch srcHeader( sosi::sosi_element_head );
     sosi::SosiElementSearch srcTranspar( sosi::sosi_element_transpar );
     sosi::SosiElementSearch srcKoordsys( sosi::sosi_element_coordsys );
@@ -543,7 +597,7 @@ writePrj( std::ostream &os ) {
         ss << srcKoordsys.element()->getData();
         ss >> coordSys;
         if( coordSys > 0 && coordSys <= sosi::MAX_COORDSYS_TABLE ) {
-            os << sosi::sysCodeToCoordSys( coordSys ).prjString();
+            os << ttbl.sysCodeToCoordSys( coordSys ).prjString();
         }
     }
 }

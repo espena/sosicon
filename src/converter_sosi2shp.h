@@ -59,7 +59,7 @@ namespace sosicon {
             fs.open( fileName.c_str(), std::ios::out | std::ios::trunc | std::ios::binary );
             fs << *( static_cast<T*>( &shp ) );
             fs.close();
-            std::cout << fileName << " written\n";
+            std::cout << "    > " << fileName << " written\n";
         }
 
         //! Command line wrapper
@@ -79,7 +79,7 @@ namespace sosicon {
             \return Modified, unique destination base name with directory (if provided), without
                     file name extension.
         */
-        std::string makeBasePath();
+        std::string makeBasePath( std::string objTypeName );
 
     public:
 

@@ -27,6 +27,7 @@ SOURCEFILES =									\
 				sosi/sosi_origo_ne.cpp			\
 				sosi_origo_ne_ragel.cpp	        \
 				sosi/sosi_unit.cpp				\
+				sosi/sosi_translation_table.cpp	\
 				shape/shapefile.cpp				\
 				converter_sosi2shp.cpp			\
 				converter_sosi2xml.cpp			\

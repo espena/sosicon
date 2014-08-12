@@ -101,6 +101,7 @@ namespace sosicon {
             sosi_objtype_river_brook,            //!< River or stream
             sosi_objtype_river_brook_edge,       //!< River or stream bank
             sosi_objtype_sea_surface,            //!< Sea surface
+            sosi_objtype_spelling,               //!< Spelling of place name
             sosi_objtype_stone_quarry,           //!< Area for stone quarry
             sosi_objtype_territorial_boundary    //!< Territorial boundary (nautical)
         };

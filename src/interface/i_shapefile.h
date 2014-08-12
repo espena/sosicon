@@ -54,6 +54,7 @@ namespace sosicon {
                        one must select what element type to extract from the SOSI file.
              */
             virtual void build( ISosiElement* sosiTree, sosi::ElementType selection ) = 0;
+            virtual void build( ISosiElement* sosiTree, sosi::ObjType selection ) = 0;
 
     };
    /*! @} end group interfaces */

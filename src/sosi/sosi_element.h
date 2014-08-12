@@ -22,6 +22,7 @@
 #include <vector>
 #include <string>
 #include "sosi_element_search.h"
+#include "sosi_translation_table.h"
 #include "sosi_types.h"
 #include "../interface/i_sosi_element.h"
 
@@ -68,6 +69,9 @@ namespace sosicon {
             Implements basic characteristics of a SOSI element.
          */
         class SosiElement : public ISosiElement {
+
+            //! SOSI string translations
+            SosiTranslationTable mTranslation;
 
             //! Current element's data content
             std::string mData;

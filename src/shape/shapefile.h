@@ -101,6 +101,9 @@ namespace sosicon {
             //! Build shape element: Point
             void buildShpPoint( CoordinateCollection& cc );
 
+            //! Build shape element: Polygon
+            void buildShpPolygon( CoordinateCollection& cc );
+
             //! Build shape element: PolyLine
             void buildShpPolyLine( CoordinateCollection& cc );
 
@@ -178,6 +181,9 @@ namespace sosicon {
 
             //! Described in IShapefile
             virtual void build( ISosiElement* sosiTree, sosi::ElementType selection );
+
+            //! Described in IShapefile
+            virtual void build( ISosiElement* sosiTree, sosi::ObjType selection );
 
             //! Described in IShapefileDbfPart
             virtual void writeDbf( std::ostream &os );

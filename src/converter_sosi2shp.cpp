@@ -20,25 +20,46 @@
 void sosicon::ConverterSosi2shp::
 makeShp( ISosiElement* sosiTree ) {
 
-    std::string basePath = makeBasePath();
-    for( std::vector<std::string>::iterator g = mCmd->mGeomTypes.begin(); g != mCmd->mGeomTypes.end(); g++ ) {
+    sosi::SosiTranslationTable ttbl;
+
+    std::map<sosi::ObjType,int> objTypes;
+    sosi::SosiElementSearch src;
+    while( sosiTree->getChild( src ) ) {
+        ISosiElement* sosi = src.element();
+        sosi::ObjType objType = sosi->getObjType();
+        if( objType != sosi::sosi_objtype_unknown ) {
+            if( objTypes.find( objType ) == objTypes.end() ) {
+                objTypes[ objType ] = 1;
+            }
+            else {
+                objTypes[ objType ]++;
+            }
+        }
+    }
+
+    std::cout << "Processing OBJTYPE";
+    for( std::map<sosi::ObjType,int>::iterator i = objTypes.begin(); i != objTypes.end(); i++ ) {
+        std::string objTypeName = ttbl.sosiTypeToObjName( i->first );
+        std::cout << "\rProcessing OBJTYPE " << objTypeName << "\n";
         shape::Shapefile f;
-        f.build( sosiTree, sosi::sosiNameToType( *g ) );
+        f.build( sosiTree, i->first );
+        std::string basePath = makeBasePath( objTypeName );
         writeFile<IShapefileShpPart>( f, basePath, "shp" );
         writeFile<IShapefileShxPart>( f, basePath, "shx" );
         writeFile<IShapefileDbfPart>( f, basePath, "dbf" );
         writeFile<IShapefilePrjPart>( f, basePath, "prj" );
     }
+    std::cout << "\rProcessing OBJTYPEs done\n";
 }
 
 std::string sosicon::ConverterSosi2shp::
-makeBasePath() {
+makeBasePath( std::string objTypeName ) {
 
     std::string candidatePath = mCmd->mOutputFile.empty() ? mCmd->mSourceFiles[ 0 ] : mCmd->mOutputFile;
     std::string dir, tit, ext;
     utils::getPathInfo( candidatePath, dir, tit, ext );
 
-    candidatePath = dir + tit;
+    candidatePath = dir + tit + "_" + objTypeName;
     int sequence = 0;
 
     while( utils::fileExists( candidatePath + ".shp" ) ||
@@ -47,7 +68,7 @@ makeBasePath() {
            utils::fileExists( candidatePath + ".prj" ) )
     {
         std::stringstream ss;
-        ss << dir << tit << "_" << std::setw( 2 ) << std::setfill( '0' ) << ++sequence;
+        ss << dir << tit << "_" << objTypeName << "_" << std::setw( 2 ) << std::setfill( '0' ) << ++sequence;
         candidatePath = ss.str();
     }
 
