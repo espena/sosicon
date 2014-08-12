@@ -49,12 +49,13 @@ namespace sosicon {
             /*!
                 \param sosiTree Root SOSI element. The first-level children of this element
                        will be examined and exported if they are compatible.
-                \param selection SOSI element type scheduled for shapefile conversion.
+                \param selection SOSI OBJTYPE scheduled for shapefile conversion.
+                \param geomType SOSI element type scheduled for shapefile conversion.
                        Since a shapefile may contain only one geometry type at a time,
                        one must select what element type to extract from the SOSI file.
+                \return Number of elements exported.
              */
-            virtual void build( ISosiElement* sosiTree, sosi::ElementType selection ) = 0;
-            virtual void build( ISosiElement* sosiTree, sosi::ObjType selection ) = 0;
+            virtual int build( ISosiElement* sosiTree, sosi::ObjType selection, sosi::ElementType geomType ) = 0;
 
     };
    /*! @} end group interfaces */

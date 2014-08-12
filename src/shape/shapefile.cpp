@@ -51,35 +51,10 @@ adjustMasterMbr( double xMin, double yMin, double xMax, double yMax ) {
     mYmax = std::max( mYmax, yMax );
 }
 
-void sosicon::shape::Shapefile::
-build( ISosiElement* sosiTree, sosi::ElementType selection ) {
+int sosicon::shape::Shapefile::
+build( ISosiElement* sosiTree, sosi::ObjType selection, sosi::ElementType geomType ) {
 
-    mSosiTree = sosiTree;
-
-    ShapeType shapeTypeEquivalent = getShapeEquivalent( selection );
-
-    if( shape_type_none != shapeTypeEquivalent ) {
-
-        ISosiElement* sosi = 0;
-        sosi::SosiElementSearch src;
-
-        while( sosiTree->getChild( src ) ) {
-            sosi = src.element();
-            if( selection == sosi->getType() ) {
-                buildShpElement( sosi, shapeTypeEquivalent );
-                insertDbfRecord( sosi );
-            }
-        }
-
-        buildShpHeader( shapeTypeEquivalent );
-
-        buildDbf(); // database (attributes table)
-        buildShx(); // index
-    }
-}
-
-void sosicon::shape::Shapefile::
-build( ISosiElement* sosiTree, sosi::ObjType selection ) {
+    int count = 0;
 
     mSosiTree = sosiTree;
 
@@ -92,18 +67,24 @@ build( ISosiElement* sosiTree, sosi::ObjType selection ) {
         sosi = src.element();
 
         if( selection == sosi->getObjType() ) {
-            if( shapeTypeEquivalent == shape_type_none ) {
-                shapeTypeEquivalent = getShapeEquivalent( sosi->getType() );
+            if( sosi->getType() == geomType ) {
+                buildShpElement( sosi, getShapeEquivalent( sosi->getType() ) );
+                insertDbfRecord( sosi );
+                count++;
             }
-            buildShpElement( sosi, shapeTypeEquivalent );
-            insertDbfRecord( sosi );
         }
     }
 
-    buildShpHeader( shapeTypeEquivalent );
+    if( count > 0 ) {
 
-    buildDbf(); // database (attributes table)
-    buildShx(); // index
+        buildShpHeader( shapeTypeEquivalent );
+
+        buildDbf(); // database (attributes table)
+        buildShx(); // index
+
+    }
+
+    return count;
 }
 
 void sosicon::shape::Shapefile::

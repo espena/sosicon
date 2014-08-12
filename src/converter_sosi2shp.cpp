@@ -23,7 +23,9 @@ makeShp( ISosiElement* sosiTree ) {
     sosi::SosiTranslationTable ttbl;
 
     std::map<sosi::ObjType,int> objTypes;
+
     sosi::SosiElementSearch src;
+
     while( sosiTree->getChild( src ) ) {
         ISosiElement* sosi = src.element();
         sosi::ObjType objType = sosi->getObjType();
@@ -38,16 +40,35 @@ makeShp( ISosiElement* sosiTree ) {
     }
 
     std::cout << "Processing OBJTYPE";
+
+    sosi::ElementType geometries[] = {
+        sosi::sosi_element_text,
+        sosi::sosi_element_point,
+        sosi::sosi_element_curve,
+        sosi::sosi_element_surface };
+
     for( std::map<sosi::ObjType,int>::iterator i = objTypes.begin(); i != objTypes.end(); i++ ) {
+
         std::string objTypeName = ttbl.sosiTypeToObjName( i->first );
         std::cout << "\rProcessing OBJTYPE " << objTypeName << "\n";
-        shape::Shapefile f;
-        f.build( sosiTree, i->first );
-        std::string basePath = makeBasePath( objTypeName );
-        writeFile<IShapefileShpPart>( f, basePath, "shp" );
-        writeFile<IShapefileShxPart>( f, basePath, "shx" );
-        writeFile<IShapefileDbfPart>( f, basePath, "dbf" );
-        writeFile<IShapefilePrjPart>( f, basePath, "prj" );
+
+        for( int j = 0; j < sizeof geometries; j++ ) {
+
+            sosi::ElementType geometry = geometries[ j ];
+            shape::Shapefile f;
+            std::string geometryName = ttbl.sosiTypeToName( geometry );
+            std::string basePath = makeBasePath( objTypeName + "_" + geometryName );
+
+            int count = f.build( sosiTree, i->first, geometry );
+
+            if( count > 0 ) {
+                std::cout << "      (" << count << " elements of type " << geometryName << ")\n";
+                writeFile<IShapefileShpPart>( f, basePath, "shp" );
+                writeFile<IShapefileShxPart>( f, basePath, "shx" );
+                writeFile<IShapefileDbfPart>( f, basePath, "dbf" );
+                writeFile<IShapefilePrjPart>( f, basePath, "prj" );
+            }
+        }
     }
     std::cout << "\rProcessing OBJTYPEs done\n";
 }
