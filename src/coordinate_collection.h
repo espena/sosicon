@@ -59,13 +59,6 @@ namespace sosicon {
         std::vector<int>::iterator mPartOffsetsGeomIterator;
         int mNumPointsGeom;
 
-        //! Stores collection of pointers to coordinates for holes
-        sosi::NorthEastList mIslands;
-        sosi::NorthEastList::size_type mIslandsIndex;
-        std::vector<int> mPartOffsetsIslands;
-        std::vector<int>::iterator mPartOffsetsIslandsIterator;
-        int mNumPointsIslands;
-
         double mXmin;
         double mYmin;
         double mXmax;
@@ -86,8 +79,7 @@ namespace sosicon {
             mYmin( +9999999999 ),
             mXmax( -9999999999 ),
             mYmax( -9999999999 ),
-            mNumPointsGeom( 0 ),
-            mNumPointsIslands( 0 ) { };
+            mNumPointsGeom( 0 ) { };
 
 		//!< Free allocated memory
 		void free();
@@ -96,19 +88,11 @@ namespace sosicon {
 
         bool getNextOffsetInGeom( int& offset );
             
-        bool getNextOffsetInIslands( int& offset );
-            
         bool getNextInGeom( ICoordinate*& coord );
-
-        bool getNextInIslands( ICoordinate*& coord );
 
         CoordinateList::size_type getNumPartsGeom() { return mGeom.size(); };
 
-        CoordinateList::size_type getNumPartsIslands() { return mIslands.size(); };
-
         int getNumPointsGeom() { return mNumPointsGeom; };
-
-        int getNumPointsIslands() { return mNumPointsIslands; };
 
         double getXmin() { return mXmin == +9999999999 ? 0 : mXmin; };
 

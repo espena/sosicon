@@ -100,19 +100,22 @@ ragelParseSosiRef( std::string data )
     const char* p = s;
     const char* pe = p + data.size();
     const char* eof = pe;
+
     std::string tmpstr;
-    ReferenceData* refData = 0;
+
     bool reverse = false;
     bool subtract = false;
-    GeometryRef* refList = 0;
+
+    ReferenceData* refData = 0;
+    GeometryRef* geomRef = 0;
 
     
-/* #line 111 "sosi_ref_ragel.cpp" */
+/* #line 114 "sosi_ref_ragel.cpp" */
 	{
 	cs = parseSosiRef_start;
 	}
 
-/* #line 116 "sosi_ref_ragel.cpp" */
+/* #line 119 "sosi_ref_ragel.cpp" */
 	{
 	int _klen;
 	unsigned int _trans;
@@ -187,48 +190,48 @@ _match:
 		switch ( *_acts++ )
 		{
 	case 0:
-/* #line 54 "ragel/sosi_ref.rl" */
+/* #line 57 "ragel/sosi_ref.rl" */
 	{
             refData = new ReferenceData();
             refData->reverse = reverse;
             refData->subtract = subtract;
-            if( 0 == refList ) {
-                refList = new GeometryRef();
-                mRefListCollection.push_back( refList );
+            if( 0 == geomRef ) {
+                geomRef = new GeometryRef();
+                mRefListCollection.push_back( geomRef );
             }
-            refList->insert( refList->begin(), refData );
+            geomRef->insert( geomRef->begin(), refData );
         }
 	break;
 	case 1:
-/* #line 65 "ragel/sosi_ref.rl" */
+/* #line 68 "ragel/sosi_ref.rl" */
 	{
             refData->serial += (*p);
         }
 	break;
 	case 2:
-/* #line 69 "ragel/sosi_ref.rl" */
+/* #line 72 "ragel/sosi_ref.rl" */
 	{
             subtract = ( (*p) == '(' );
-            refList = new GeometryRef();
-            mRefListCollection.push_back( refList );
+            geomRef = new GeometryRef();
+            mRefListCollection.push_back( geomRef );
         }
 	break;
 	case 3:
-/* #line 75 "ragel/sosi_ref.rl" */
+/* #line 78 "ragel/sosi_ref.rl" */
 	{
             subtract = ( (*p) == ')' );
-            refList = 0;
+            geomRef = 0;
         }
 	break;
 	case 4:
-/* #line 82 "ragel/sosi_ref.rl" */
+/* #line 85 "ragel/sosi_ref.rl" */
 	{ reverse = false; }
 	break;
 	case 5:
-/* #line 82 "ragel/sosi_ref.rl" */
+/* #line 85 "ragel/sosi_ref.rl" */
 	{ reverse = true; }
 	break;
-/* #line 232 "sosi_ref_ragel.cpp" */
+/* #line 235 "sosi_ref_ragel.cpp" */
 		}
 	}
 
@@ -241,7 +244,7 @@ _again:
 	_out: {}
 	}
 
-/* #line 90 "ragel/sosi_ref.rl" */
+/* #line 93 "ragel/sosi_ref.rl" */
 
 
 };

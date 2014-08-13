@@ -43,11 +43,14 @@ ragelParseSosiRef( std::string data )
     const char* p = s;
     const char* pe = p + data.size();
     const char* eof = pe;
+
     std::string tmpstr;
-    ReferenceData* refData = 0;
+
     bool reverse = false;
     bool subtract = false;
-    GeometryRef* refList = 0;
+
+    ReferenceData* refData = 0;
+    GeometryRef* geomRef = 0;
 
     %%{
 
@@ -55,11 +58,11 @@ ragelParseSosiRef( std::string data )
             refData = new ReferenceData();
             refData->reverse = reverse;
             refData->subtract = subtract;
-            if( 0 == refList ) {
-                refList = new GeometryRef();
-                mRefListCollection.push_back( refList );
+            if( 0 == geomRef ) {
+                geomRef = new GeometryRef();
+                mRefListCollection.push_back( geomRef );
             }
-            refList->insert( refList->begin(), refData );
+            geomRef->insert( geomRef->begin(), refData );
         }
 
         action build_serial {
@@ -68,13 +71,13 @@ ragelParseSosiRef( std::string data )
 
         action see_opening_parenthesis {
             subtract = ( fc == '(' );
-            refList = new GeometryRef();
-            mRefListCollection.push_back( refList );
+            geomRef = new GeometryRef();
+            mRefListCollection.push_back( geomRef );
         }
 
         action see_closing_parenthesis {
             subtract = ( fc == ')' );
-            refList = 0;
+            geomRef = 0;
         }
 
         open_parenthesis = ( [\(]? $see_opening_parenthesis );

@@ -64,7 +64,6 @@ free() {
 		mCenterPoint = 0;
 	}
     sosi::deleteNorthEasts( mGeom );
-    sosi::deleteNorthEasts( mIslands );
 }
 
 void sosicon::CoordinateCollection::
@@ -112,12 +111,12 @@ extractPath( sosi::ReferenceData* refData, ISosiElement* referencedElement ) {
     sosi::SosiElementSearch  src( sosi::sosi_element_ne );
     sosi::ElementType type = referencedElement->getType();
     sosi::ObjType obj = referencedElement->getObjType();
-    sosi::NorthEastList& lst = refData->subtract ? mIslands : mGeom;
-    std::vector<int>& offsets = refData->subtract ? mPartOffsetsIslands : mPartOffsetsGeom;
+    sosi::NorthEastList& lst = mGeom;
+    std::vector<int>& offsets = mPartOffsetsGeom;
     sosi::NorthEastList tmpLst;
     while( referencedElement->getChild( src ) ) {
 		sosi::SosiNorthEast* ne = new sosi::SosiNorthEast( src.element() );
-        int& pointCount = refData->subtract ? mNumPointsIslands : mNumPointsGeom;
+        int& pointCount = mNumPointsGeom;
         if( refData->reverse ) {
             ne->reverse();
             if( tmpLst.size() == 0 ) {
@@ -144,18 +143,8 @@ getNextOffsetInGeom( int& offset ) {
 }
 
 bool sosicon::CoordinateCollection::
-getNextOffsetInIslands( int& offset ) {
-    return getNextOffset( offset, mPartOffsetsIslands, mPartOffsetsIslandsIterator );
-}
-
-bool sosicon::CoordinateCollection::
 getNextInGeom( ICoordinate*& coord ) {
     return getNext( coord, mGeom, mGeomIndex );
-}
-
-bool sosicon::CoordinateCollection::
-getNextInIslands( ICoordinate*& coord ) {
-    return getNext( coord, mIslands, mIslandsIndex );
 }
 
 void sosicon::CoordinateCollection::
