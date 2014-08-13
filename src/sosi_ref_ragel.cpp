@@ -101,10 +101,10 @@ ragelParseSosiRef( std::string data )
     const char* pe = p + data.size();
     const char* eof = pe;
     std::string tmpstr;
-    Reference* ref = 0;
+    ReferenceData* refData = 0;
     bool reverse = false;
     bool subtract = false;
-	SosiReferenceList* refList = 0;
+    SosiReferenceList* refList = 0;
 
     
 /* #line 111 "sosi_ref_ragel.cpp" */
@@ -143,7 +143,7 @@ _resume:
 			else if ( (*p) > *_mid )
 				_lower = _mid + 1;
 			else {
-				_trans += (unsigned int)(_mid - _keys);
+				_trans += (_mid - _keys);
 				goto _match;
 			}
 		}
@@ -166,7 +166,7 @@ _resume:
 			else if ( (*p) > _mid[1] )
 				_lower = _mid + 2;
 			else {
-				_trans += (unsigned int)((_mid - _keys)>>1);
+				_trans += ((_mid - _keys)>>1);
 				goto _match;
 			}
 		}
@@ -189,36 +189,36 @@ _match:
 	case 0:
 /* #line 54 "ragel/sosi_ref.rl" */
 	{
-            ref = new Reference();
-            ref->reverse = reverse;
-            ref->subtract = subtract;
-			if( 0 == refList ) {
-				refList = new SosiReferenceList();
-				mRefListCollection.push_back( refList );
-			}
-            refList->insert( refList->begin(), ref );
+            refData = new ReferenceData();
+            refData->reverse = reverse;
+            refData->subtract = subtract;
+            if( 0 == refList ) {
+                refList = new SosiReferenceList();
+                mRefListCollection.push_back( refList );
+            }
+            refList->insert( refList->begin(), refData );
         }
 	break;
 	case 1:
 /* #line 65 "ragel/sosi_ref.rl" */
 	{
-            ref->serial += (*p);
+            refData->serial += (*p);
         }
 	break;
 	case 2:
 /* #line 69 "ragel/sosi_ref.rl" */
 	{
-			subtract = ( (*p) == '(' );
-			refList = new SosiReferenceList();
-			mRefListCollection.push_back( refList );
-		}
+            subtract = ( (*p) == '(' );
+            refList = new SosiReferenceList();
+            mRefListCollection.push_back( refList );
+        }
 	break;
 	case 3:
 /* #line 75 "ragel/sosi_ref.rl" */
 	{
-			subtract = ( (*p) == ')' );
-			refList = 0;
-		}
+            subtract = ( (*p) == ')' );
+            refList = 0;
+        }
 	break;
 	case 4:
 /* #line 82 "ragel/sosi_ref.rl" */

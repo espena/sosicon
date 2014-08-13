@@ -44,38 +44,38 @@ ragelParseSosiRef( std::string data )
     const char* pe = p + data.size();
     const char* eof = pe;
     std::string tmpstr;
-    Reference* ref = 0;
+    ReferenceData* refData = 0;
     bool reverse = false;
     bool subtract = false;
-	SosiReferenceList* refList = 0;
+    SosiReferenceList* refList = 0;
 
     %%{
 
         action init_ref {
-            ref = new Reference();
-            ref->reverse = reverse;
-            ref->subtract = subtract;
-			if( 0 == refList ) {
-				refList = new SosiReferenceList();
-				mRefListCollection.push_back( refList );
-			}
-            refList->insert( refList->begin(), ref );
+            refData = new ReferenceData();
+            refData->reverse = reverse;
+            refData->subtract = subtract;
+            if( 0 == refList ) {
+                refList = new SosiReferenceList();
+                mRefListCollection.push_back( refList );
+            }
+            refList->insert( refList->begin(), refData );
         }
 
         action build_serial {
-            ref->serial += fc;
+            refData->serial += fc;
         }
 
-		action see_opening_parenthesis {
-			subtract = ( fc == '(' );
-			refList = new SosiReferenceList();
-			mRefListCollection.push_back( refList );
-		}
+        action see_opening_parenthesis {
+            subtract = ( fc == '(' );
+            refList = new SosiReferenceList();
+            mRefListCollection.push_back( refList );
+        }
 
-		action see_closing_parenthesis {
-			subtract = ( fc == ')' );
-			refList = 0;
-		}
+        action see_closing_parenthesis {
+            subtract = ( fc == ')' );
+            refList = 0;
+        }
 
         open_parenthesis = ( [\(]? $see_opening_parenthesis );
         close_parenthesis = ( [\)]? $see_closing_parenthesis );

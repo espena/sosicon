@@ -78,12 +78,12 @@ discoverCoords( ISosiElement* e ) {
                 while( e->getChild( srcRef ) ) {
                     rawRefElement = srcRef.element();
                     sosi::SosiRefList refList( rawRefElement );
-                    sosi::Reference* ref = 0;
+                    sosi::ReferenceData* refData = 0;
                     int i = 0;
-                    while( refList.getNextReference( ref ) ) {
-                        ISosiElement* referencedElement = rawRefElement->find( ref->serial );
+                    while( refList.getNextReference( refData ) ) {
+                        ISosiElement* referencedElement = rawRefElement->find( refData->serial );
                         if( referencedElement ) {
-                            extractPath( ref, referencedElement );
+                            extractPath( refData, referencedElement );
                         }
                     }
                 }
@@ -108,24 +108,17 @@ discoverCoords( ISosiElement* e ) {
 }
 
 void sosicon::CoordinateCollection::
-extractPath( sosi::Reference* ref, ISosiElement* referencedElement ) {
-    sosi::SosiElementSearch src( sosi::sosi_element_ne );
+extractPath( sosi::ReferenceData* refData, ISosiElement* referencedElement ) {
+    sosi::SosiElementSearch  src( sosi::sosi_element_ne );
     sosi::ElementType type = referencedElement->getType();
     sosi::ObjType obj = referencedElement->getObjType();
-    /*
-    if( type == sosi::sosi_element_curve ) {
-        // First segment describes the center point
-        referencedElement->getChild( src );
-        mCenterPoint = new sosi::SosiNorthEast( src.element() );
-    }
-    */
-    sosi::NorthEastList& lst = ref->subtract ? mIslands : mGeom;
-    std::vector<int>& offsets = ref->subtract ? mPartOffsetsIslands : mPartOffsetsGeom;
+    sosi::NorthEastList& lst = refData->subtract ? mIslands : mGeom;
+    std::vector<int>& offsets = refData->subtract ? mPartOffsetsIslands : mPartOffsetsGeom;
     sosi::NorthEastList tmpLst;
     while( referencedElement->getChild( src ) ) {
 		sosi::SosiNorthEast* ne = new sosi::SosiNorthEast( src.element() );
-        int& pointCount = ref->subtract ? mNumPointsIslands : mNumPointsGeom;
-        if( ref->reverse ) {
+        int& pointCount = refData->subtract ? mNumPointsIslands : mNumPointsGeom;
+        if( refData->reverse ) {
             ne->reverse();
             if( tmpLst.size() == 0 ) {
                 tmpLst.push_back( ne );

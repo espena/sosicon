@@ -127,7 +127,7 @@ namespace sosicon {
         };
 
         //! SOSI reference number
-        struct Reference {
+        struct ReferenceData {
             std::string serial;  //!< The element ID.
             bool reverse;        //!< Minus sign = reverse coordinate sequence.
             bool subtract;       //!< Parenthesis = subtract shape.
@@ -157,7 +157,7 @@ namespace sosicon {
         };
 
         //! List of SOSI references
-        typedef std::vector<Reference*> SosiReferenceList;
+        typedef std::vector<ReferenceData*> SosiReferenceList;
         
         //! Collection of SOSI reference lists
         typedef std::vector<SosiReferenceList*> SosiReferenceListCollection;

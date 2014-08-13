@@ -72,7 +72,7 @@ namespace sosicon {
         double mYmax;
 
         //! Get ccordinate values from SOSI element
-        void extractPath( sosi::Reference* ref, ISosiElement* referencedElement );
+        void extractPath( sosi::ReferenceData* refData, ISosiElement* referencedElement );
 
     public:
 

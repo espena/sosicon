@@ -27,8 +27,8 @@ SosiRefList( ISosiElement* e ) {
 sosicon::sosi::SosiRefList::
 ~SosiRefList() {
     for( std::vector<SosiReferenceList*>::iterator l = mRefListCollection.begin(); l != mRefListCollection.end(); l++ ) {
-        std::vector<Reference*>* refList = *l;
-        for( std::vector<Reference*>::iterator i = refList->begin(); i != refList->end(); i++ ) {
+        sosi::SosiReferenceList* refList = *l;
+        for( sosi::SosiReferenceList::iterator i = refList->begin(); i != refList->end(); i++ ) {
             delete *i;
         }
         refList->clear();
@@ -37,9 +37,9 @@ sosicon::sosi::SosiRefList::
 }
 
 bool sosicon::sosi::SosiRefList::
-getNextReference( Reference*& reference ) {
+getNextReference( ReferenceData*& refData ) {
 
-    if( 0 == reference ) {
+    if( 0 == refData ) {
         mRefListColletionIndex = 0;
         mRefListIndex = 0;
     }
@@ -58,7 +58,7 @@ getNextReference( Reference*& reference ) {
         if( mRefListIndex == refList->size() ) {
             return false;
         }
-        reference = ( *refList ) [ mRefListIndex ];
+        refData = ( *refList ) [ mRefListIndex ];
         mRefListIndex++;
     }
     return true;

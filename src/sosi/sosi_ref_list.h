@@ -66,7 +66,7 @@ namespace sosicon {
                 Pass reference to null pointer to start iteration.
                 /return true if there is more elements in list, otherwise false.
              */
-            bool getNextReference( Reference*& reference );
+            bool getNextReference( ReferenceData*& refData );
 
             //SosiReferenceListCollection::size_type size() { return mRefListCollection.size(); };
 
