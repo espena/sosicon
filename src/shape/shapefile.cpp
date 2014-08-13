@@ -171,7 +171,7 @@ buildShpPolyLine( CoordinateCollection& cc ) {
 
 void sosicon::shape::Shapefile::
 buildShpPolygon( CoordinateCollection& cc ) {
-    int byteLength = 52 + ( 4 ) + ( 16 * cc.getNumPointsGeom() );
+    int byteLength = 52 + ( 4 ) + ( 16 * cc.getNumPointsGeom() ) + ( 16 * cc.getNumPointsHoles() );
     int contentLength = ( byteLength / 2 ) - 4; // In 16-bit words, record header not included
     insertShxOffset( contentLength );
     int pos = expandShpBuffer( byteLength );
@@ -204,9 +204,13 @@ buildShpRecCoordinate( int& pos, ICoordinate* c ) {
 void sosicon::shape::Shapefile::
 buildShpRecCoordinates( int& pos, CoordinateCollection& cc ) {
 
-    std::vector<ICoordinate*> theGeom = getNormalized( cc );
+    std::vector<ICoordinate*> theGeom = getNormalized( cc.getGeom() );
     for( std::vector<ICoordinate*>::size_type i = 0; i < theGeom.size(); i++ ) {
         buildShpRecCoordinate( pos, theGeom[ i ] );
+    }
+    std::vector<ICoordinate*> theHoles = getNormalized( cc.getHoles() );
+    for( std::vector<ICoordinate*>::size_type i = 0; i < theHoles.size(); i++ ) {
+        buildShpRecCoordinate( pos, theHoles[ i ] );
     }
 }
 
@@ -492,11 +496,13 @@ extractDbfFields( ISosiElement* sosi, DbfRecord& rec ) {
 }
 
 std::vector<sosicon::ICoordinate*> sosicon::shape::Shapefile::
-getNormalized( CoordinateCollection& cc ) {
+getNormalized( sosi::NorthEastList& neLst ) {
     std::vector<sosicon::ICoordinate*> theGeom;
-    ICoordinate* c = 0;
-    while( cc.getNextInGeom( c ) ) {
-        theGeom.push_back( c );
+    for( sosi::NorthEastList::size_type i = 0; i < neLst.size(); i++ ) {
+        ICoordinate* c = 0;
+        while( neLst[ i ]->getNext( c ) ) {
+            theGeom.push_back( c );
+        }
     }
     if( theGeom.size() > 1 ) {
         if( theGeom[ 0 ]->leftOf( theGeom[ 1 ] ) ) {

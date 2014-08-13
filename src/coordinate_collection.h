@@ -53,6 +53,8 @@ namespace sosicon {
         sosi::SosiNorthEast* mCenterPoint;
 
         //! Stores collection of pointers to coordinates for geometries
+        sosi::NorthEastList mHoles;
+
         sosi::NorthEastList mGeom;
         sosi::NorthEastList::size_type mGeomIndex;
         std::vector<int> mPartOffsetsGeom;
@@ -90,9 +92,15 @@ namespace sosicon {
             
         bool getNextInGeom( ICoordinate*& coord );
 
+        sosi::NorthEastList& getGeom() { return mGeom; };
+
+        sosi::NorthEastList& getHoles() { return mHoles; };
+
         CoordinateList::size_type getNumPartsGeom() { return mGeom.size(); };
 
         int getNumPointsGeom() { return mNumPointsGeom; };
+
+        int getNumPointsHoles() { return 0; };
 
         double getXmin() { return mXmin == +9999999999 ? 0 : mXmin; };
 

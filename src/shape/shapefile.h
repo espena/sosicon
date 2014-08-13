@@ -153,7 +153,7 @@ namespace sosicon {
             void insertShxOffset( int contentLength );
 
             //! Shapefile polys must have clockwise-ordered vertices
-            std::vector<ICoordinate*> getNormalized( CoordinateCollection& cc );
+            std::vector<ICoordinate*> getNormalized( sosi::NorthEastList& neLst );
             
             //! Update or insert new DBF field
             void saveToDbf( DbfRecord& rec, std::string field, std::string data );
