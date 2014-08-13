@@ -146,20 +146,3 @@ bool sosicon::CoordinateCollection::
 getNextInGeom( ICoordinate*& coord ) {
     return getNext( coord, mGeom, mGeomIndex );
 }
-
-void sosicon::CoordinateCollection::
-mkClosedPolygon() {
-    if( mGeom.size() > 0 ) {
-        sosi::SosiNorthEast* neFront = mGeom.front();
-        sosi::SosiNorthEast* neBack = mGeom.back();
-        ICoordinate* coordFront = neFront->front();
-        ICoordinate* coordBack = neBack->back();
-        if( coordFront && coordBack &&
-            ( coordFront->getE() != coordBack->getE() ||
-              coordFront->getN() != coordBack->getN() ) )
-        {
-            neBack->append( coordFront->getN(), coordFront->getE() );
-			mNumPointsGeom++;
-        }
-    }
-}
