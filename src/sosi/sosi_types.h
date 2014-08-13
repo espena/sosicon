@@ -55,6 +55,7 @@ namespace sosicon {
             sosi_element_municipality,          //!< Municipality
             sosi_element_name,                  //!< Name
             sosi_element_ne,                    //!< North-east coordinate
+            sosi_element_neh,                   //!< North-east/height coordinate
             sosi_element_objtype,               //!< Object type
             sosi_element_origo_ne,              //!< Origo north-east
             sosi_element_owner,                 //!< Dataset owner
@@ -74,36 +75,48 @@ namespace sosicon {
 
         //! List of SOSI OBJTYPEs
         enum ObjType {
-            sosi_objtype_unknown = 0,            //!< Unknown or no feature
-            sosi_objtype_airport,                //!< Airport
-            sosi_objtype_airport_type,           //!< Airport type
-            sosi_objtype_baseline,               //!< Baseline
-            sosi_objtype_coastline,              //!< Coast line
-            sosi_objtype_county_boundary,        //!< County boundary
-            sosi_objtype_data_delineation,       //!< Clipping path
-            sosi_objtype_edge_view,              //!< Edge view
-            sosi_objtype_fictious_dividing_line, //!< Line splitting large surfeces
-            sosi_objtype_forest,                 //!< Forest
-            sosi_objtype_developed_area,         //!< Built up area
-            sosi_objtype_golf_course,            //!< Golf course
-            sosi_objtype_industrial_area,        //!< Industrial area
-            sosi_objtype_lake,                   //!< Lake
-            sosi_objtype_lake_edge,              //!< Lake edge
-            sosi_objtype_lake_river_barrier,     //!< Lake-to-river delimitation
-            sosi_objtype_land_use_boundary,      //!< Land use border
-            sosi_objtype_municipality,           //!< Municipality
-            sosi_objtype_municipality_boundary,  //!< Municipality boundary
-            sosi_objtype_marsh,                  //!< Marsh
-            sosi_objtype_national_border,        //!< National border
-            sosi_objtype_sea_river_delineation,  //!< Sea or river delineation
-            sosi_objtype_snow_field,             //!< Snow/glacier
-            sosi_objtype_open_land,              //!< Open land
-            sosi_objtype_river_brook,            //!< River or stream
-            sosi_objtype_river_brook_edge,       //!< River or stream bank
-            sosi_objtype_sea_surface,            //!< Sea surface
-            sosi_objtype_spelling,               //!< Spelling of place name
-            sosi_objtype_stone_quarry,           //!< Area for stone quarry
-            sosi_objtype_territorial_boundary    //!< Territorial boundary (nautical)
+            sosi_objtype_unknown = 0,                         //!< Unknown or no feature
+            sosi_objtype_airport,                             //!< Airport
+            sosi_objtype_airport_type,                        //!< Airport type
+            sosi_objtype_baseline,                            //!< Baseline
+            sosi_objtype_carriageway,                         //!< Carriageway
+            sosi_objtype_cadastral_address,                   //!< Cadastral address
+            sosi_objtype_coastline,                           //!< Coast line
+            sosi_objtype_county_boundary,                     //!< County boundary
+            sosi_objtype_data_delineation,                    //!< Clipping path
+            sosi_objtype_edge_view,                           //!< Edge view
+            sosi_objtype_fictious_dividing_line,              //!< Line splitting large surfeces
+            sosi_objtype_forest,                              //!< Forest
+            sosi_objtype_developed_area,                      //!< Built up area
+            sosi_objtype_golf_course,                         //!< Golf course
+            sosi_objtype_industrial_area,                     //!< Industrial area
+            sosi_objtype_lake,                                //!< Lake
+            sosi_objtype_lane,                                //!< Driving lane
+            sosi_objtype_lake_edge,                           //!< Lake edge
+            sosi_objtype_lake_river_barrier,                  //!< Lake-to-river delimitation
+            sosi_objtype_land_use_boundary,                   //!< Land use border
+            sosi_objtype_level_crossing,                      //!< Track level crossing
+            sosi_objtype_municipal_divide,                    //!< Municipal boundary crossing
+            sosi_objtype_municipality,                        //!< Municipality
+            sosi_objtype_municipality_boundary,               //!< Municipality boundary
+            sosi_objtype_marsh,                               //!< Marsh
+            sosi_objtype_national_border,                     //!< National border
+            sosi_objtype_pedestrian_bicycle_road_centre_line, //!< mid-way line
+            sosi_objtype_sea_river_delineation,               //!< Sea or river delineation
+            sosi_objtype_snow_field,                          //!< Snow/glacier
+            sosi_objtype_open_land,                           //!< Open land
+            sosi_objtype_river_brook,                         //!< River or stream
+            sosi_objtype_river_brook_edge,                    //!< River or stream bank
+            sosi_objtype_road_block,                          //!< Road block
+            sosi_objtype_road_centre_line,                    //!< Road centre line
+            sosi_objtype_road_under_railway,                  //!< Road under railway
+            sosi_objtype_sea_surface,                         //!< Sea surface
+            sosi_objtype_sidewalk,                            //!< Sidewalk
+            sosi_objtype_spelling,                            //!< Spelling of place name
+            sosi_objtype_stone_quarry,                        //!< Area for stone quarry
+            sosi_objtype_street_address,                      //!< Street address
+            sosi_objtype_territorial_boundary,                //!< Territorial boundary (nautical)
+            sosi_objtype_turn_connecting_segment              //!< Turn connection segment (artificial)
         };
 
         //! Default SOSI junction point layer types

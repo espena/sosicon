@@ -22,7 +22,7 @@ namespace sosicon {
 
     //! \cond 
     %%{
-        machine parseCoordinateHeightCollection;
+        machine parseCoordinateCollection;
         write data;
     }%%
     //! \endcond
@@ -30,7 +30,7 @@ namespace sosicon {
 }
 
 void sosicon::sosi::SosiNorthEast::
-ragelParseCoordinatesNe( std::string data )
+ragelParseCoordinatesNeh( std::string data )
 {
 
  /* Variables used by Ragel */
@@ -47,6 +47,7 @@ ragelParseCoordinatesNe( std::string data )
     std::string tmp;
     std::string coordN;
     std::string coordE;
+    std::string coordH;
 
     %%{
 
@@ -64,13 +65,18 @@ ragelParseCoordinatesNe( std::string data )
             tmp = "";
         }
 
+        action set_h {
+            coordH = tmp;
+            tmp = "";
+        }
+
         action save_coord {
             append( coordN, coordE );
         }
 
         coord = ( [\-]?[0-9]+ ) $strbuild;
 
-        main := space* ( ( coord %set_n ' ' coord %set_e [ \t\r\n!]* ) %save_coord )**;
+        main := space* ( ( coord %set_n ' ' coord %set_e ' ' coord %set_h [ \t\r\n!]* ) %save_coord )**;
 
         write init;
         write exec;

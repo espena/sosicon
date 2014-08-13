@@ -76,7 +76,7 @@ makeShp( ISosiElement* sosiTree ) {
 std::string sosicon::ConverterSosi2shp::
 makeBasePath( std::string objTypeName ) {
 
-    std::string candidatePath = mCmd->mOutputFile.empty() ? mCmd->mSourceFiles[ 0 ] : mCmd->mOutputFile;
+    std::string candidatePath = mCmd->mOutputFile.empty() ? mCurrentSourcefile : mCmd->mOutputFile;
     std::string dir, tit, ext;
     utils::getPathInfo( candidatePath, dir, tit, ext );
 
@@ -100,11 +100,12 @@ void sosicon::ConverterSosi2shp::
 run() {
     Parser* pp;
     for( std::vector<std::string>::iterator f = mCmd->mSourceFiles.begin(); f != mCmd->mSourceFiles.end(); f++ ) {
-        std::cout << "Reading " << *f << "\n";
+        mCurrentSourcefile = *f;
+        std::cout << "Reading " << mCurrentSourcefile << "\n";
         Parser p;
         pp = &p;
         char ln[ 1024 ];
-        std::ifstream ifs( ( *f ).c_str() );
+        std::ifstream ifs( ( mCurrentSourcefile ).c_str() );
         int n = 0;
         while( !ifs.eof() ) {
             if( mCmd->mIsTtyOut && ++n % 100 == 0 ) {

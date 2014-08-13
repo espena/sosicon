@@ -38,7 +38,12 @@ SosiNorthEast( ISosiElement* e ) {
     mMinY = +9999999999;
     mMaxX = -9999999999;
     mMaxY = -9999999999;
-    ragelParseCoordinates( mSosiElement->getData() );
+    if( e->getName() == "N\xD8H" ) {
+        ragelParseCoordinatesNeh( mSosiElement->getData() );
+    }
+    else {
+        ragelParseCoordinatesNe( mSosiElement->getData() );
+    }
     initHeadMember( mOrigo, sosi_element_origo_ne );
     initHeadMember( mUnit, sosi_element_unit );
     *this /= mUnit;
@@ -60,6 +65,19 @@ append( std::string n, std::string e ) {
 }
 
 void sosicon::sosi::SosiNorthEast::
+append( std::string n, std::string e, std::string h ) {
+    double coordN, coordE, height;
+    std::stringstream ssN, ssE, ssH;
+    ssN << n;
+    ssE << e;
+    ssH << h;
+    ssN >> coordN;
+    ssE >> coordE;
+    ssH >> height;
+    append( coordN, coordE, height );
+}
+
+void sosicon::sosi::SosiNorthEast::
 free() {
 	for( CoordinateList::iterator i = mCoordinates.begin(); i != mCoordinates.end(); i++ ) {
 		delete *i;
@@ -69,15 +87,24 @@ free() {
 
 void sosicon::sosi::SosiNorthEast::
 append( double n, double e ) {
-	ICoordinate* c = 0;
-	try {
-		c = new Coordinate();
-	}
-	catch( ... ) {
-		std::cout << "Memory allocation failed";
-	}
+    append( n, e, 0 );
+}
+
+void sosicon::sosi::SosiNorthEast::
+append( double n, double e, double h ) {
+
+    ICoordinate* c = 0;
+    try {
+        c = new Coordinate();
+    }
+    catch( ... ) {
+        std::cout << "Memory allocation failed";
+    }
+
     c->setN( n );
     c->setE( e );
+    c->setH( h );
+
     mMinX = std::min( mMinX, c->getE() );
     mMinY = std::min( mMinY, c->getN() );
     mMaxX = std::max( mMaxX, c->getE() );

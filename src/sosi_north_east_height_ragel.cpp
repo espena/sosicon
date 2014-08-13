@@ -1,5 +1,5 @@
 
-/* #line 1 "ragel/sosi_north_east.rl" */
+/* #line 1 "ragel/sosi_north_east_height.rl" */
 /*
  *  This file is part of the command-line tool sosicon.
  *  Copyright (C) 2012  Espen Andersen
@@ -24,18 +24,20 @@ namespace sosicon {
 
     //! \cond 
     
-/* #line 28 "sosi_north_east_ragel.cpp" */
-static const char _parseCoordinateHeightCollection_actions[] = {
+/* #line 28 "sosi_north_east_height_ragel.cpp" */
+static const char _parseCoordinateCollection_actions[] = {
 	0, 1, 0, 1, 1, 1, 2, 1, 
-	3, 2, 2, 3, 2, 3, 0, 3, 
-	2, 3, 0
+	3, 1, 4, 2, 3, 4, 2, 4, 
+	0, 3, 3, 4, 0
 };
 
-static const char _parseCoordinateHeightCollection_key_offsets[] = {
-	0, 0, 2, 5, 8, 10, 16, 24
+static const char _parseCoordinateCollection_key_offsets[] = {
+	0, 0, 2, 5, 8, 10, 13, 16, 
+	18, 24, 32
 };
 
-static const char _parseCoordinateHeightCollection_trans_keys[] = {
+static const char _parseCoordinateCollection_trans_keys[] = {
+	48, 57, 32, 48, 57, 45, 48, 57, 
 	48, 57, 32, 48, 57, 45, 48, 57, 
 	48, 57, 32, 45, 9, 13, 48, 57, 
 	13, 45, 9, 10, 32, 33, 48, 57, 
@@ -43,54 +45,59 @@ static const char _parseCoordinateHeightCollection_trans_keys[] = {
 	0
 };
 
-static const char _parseCoordinateHeightCollection_single_lengths[] = {
-	0, 0, 1, 1, 0, 2, 2, 2
+static const char _parseCoordinateCollection_single_lengths[] = {
+	0, 0, 1, 1, 0, 1, 1, 0, 
+	2, 2, 2
 };
 
-static const char _parseCoordinateHeightCollection_range_lengths[] = {
-	0, 1, 1, 1, 1, 2, 3, 3
+static const char _parseCoordinateCollection_range_lengths[] = {
+	0, 1, 1, 1, 1, 1, 1, 1, 
+	2, 3, 3
 };
 
-static const char _parseCoordinateHeightCollection_index_offsets[] = {
-	0, 0, 2, 5, 8, 10, 15, 21
+static const char _parseCoordinateCollection_index_offsets[] = {
+	0, 0, 2, 5, 8, 10, 13, 16, 
+	18, 23, 29
 };
 
-static const char _parseCoordinateHeightCollection_indicies[] = {
+static const char _parseCoordinateCollection_indicies[] = {
 	0, 1, 2, 0, 1, 3, 4, 1, 
-	4, 1, 5, 6, 5, 0, 1, 7, 
-	8, 7, 7, 4, 1, 9, 10, 9, 
-	9, 11, 1, 0
+	4, 1, 5, 4, 1, 6, 7, 1, 
+	7, 1, 8, 9, 8, 0, 1, 10, 
+	11, 10, 10, 7, 1, 12, 13, 12, 
+	12, 14, 1, 0
 };
 
-static const char _parseCoordinateHeightCollection_trans_targs[] = {
-	2, 0, 3, 4, 6, 5, 1, 7, 
-	1, 7, 1, 2
+static const char _parseCoordinateCollection_trans_targs[] = {
+	2, 0, 3, 4, 5, 6, 7, 9, 
+	8, 1, 10, 1, 10, 1, 2
 };
 
-static const char _parseCoordinateHeightCollection_trans_actions[] = {
-	1, 0, 3, 1, 1, 0, 1, 5, 
-	15, 0, 12, 12
+static const char _parseCoordinateCollection_trans_actions[] = {
+	1, 0, 3, 1, 1, 5, 1, 1, 
+	0, 1, 7, 17, 0, 14, 14
 };
 
-static const char _parseCoordinateHeightCollection_eof_actions[] = {
-	0, 0, 0, 0, 0, 0, 9, 7
+static const char _parseCoordinateCollection_eof_actions[] = {
+	0, 0, 0, 0, 0, 0, 0, 0, 
+	0, 11, 9
 };
 
-static const int parseCoordinateHeightCollection_start = 5;
-static const int parseCoordinateHeightCollection_first_final = 5;
-static const int parseCoordinateHeightCollection_error = 0;
+static const int parseCoordinateCollection_start = 8;
+static const int parseCoordinateCollection_first_final = 8;
+static const int parseCoordinateCollection_error = 0;
 
-static const int parseCoordinateHeightCollection_en_main = 5;
+static const int parseCoordinateCollection_en_main = 8;
 
 
-/* #line 27 "ragel/sosi_north_east.rl" */
+/* #line 27 "ragel/sosi_north_east_height.rl" */
 
     //! \endcond
 
 }
 
 void sosicon::sosi::SosiNorthEast::
-ragelParseCoordinatesNe( std::string data )
+ragelParseCoordinatesNeh( std::string data )
 {
 
  /* Variables used by Ragel */
@@ -107,14 +114,15 @@ ragelParseCoordinatesNe( std::string data )
     std::string tmp;
     std::string coordN;
     std::string coordE;
+    std::string coordH;
 
     
-/* #line 113 "sosi_north_east_ragel.cpp" */
+/* #line 121 "sosi_north_east_height_ragel.cpp" */
 	{
-	cs = parseCoordinateHeightCollection_start;
+	cs = parseCoordinateCollection_start;
 	}
 
-/* #line 118 "sosi_north_east_ragel.cpp" */
+/* #line 126 "sosi_north_east_height_ragel.cpp" */
 	{
 	int _klen;
 	unsigned int _trans;
@@ -127,10 +135,10 @@ ragelParseCoordinatesNe( std::string data )
 	if ( cs == 0 )
 		goto _out;
 _resume:
-	_keys = _parseCoordinateHeightCollection_trans_keys + _parseCoordinateHeightCollection_key_offsets[cs];
-	_trans = _parseCoordinateHeightCollection_index_offsets[cs];
+	_keys = _parseCoordinateCollection_trans_keys + _parseCoordinateCollection_key_offsets[cs];
+	_trans = _parseCoordinateCollection_index_offsets[cs];
 
-	_klen = _parseCoordinateHeightCollection_single_lengths[cs];
+	_klen = _parseCoordinateCollection_single_lengths[cs];
 	if ( _klen > 0 ) {
 		const char *_lower = _keys;
 		const char *_mid;
@@ -153,7 +161,7 @@ _resume:
 		_trans += _klen;
 	}
 
-	_klen = _parseCoordinateHeightCollection_range_lengths[cs];
+	_klen = _parseCoordinateCollection_range_lengths[cs];
 	if ( _klen > 0 ) {
 		const char *_lower = _keys;
 		const char *_mid;
@@ -176,45 +184,52 @@ _resume:
 	}
 
 _match:
-	_trans = _parseCoordinateHeightCollection_indicies[_trans];
-	cs = _parseCoordinateHeightCollection_trans_targs[_trans];
+	_trans = _parseCoordinateCollection_indicies[_trans];
+	cs = _parseCoordinateCollection_trans_targs[_trans];
 
-	if ( _parseCoordinateHeightCollection_trans_actions[_trans] == 0 )
+	if ( _parseCoordinateCollection_trans_actions[_trans] == 0 )
 		goto _again;
 
-	_acts = _parseCoordinateHeightCollection_actions + _parseCoordinateHeightCollection_trans_actions[_trans];
+	_acts = _parseCoordinateCollection_actions + _parseCoordinateCollection_trans_actions[_trans];
 	_nacts = (unsigned int) *_acts++;
 	while ( _nacts-- > 0 )
 	{
 		switch ( *_acts++ )
 		{
 	case 0:
-/* #line 53 "ragel/sosi_north_east.rl" */
+/* #line 54 "ragel/sosi_north_east_height.rl" */
 	{
             tmp += (*p);
         }
 	break;
 	case 1:
-/* #line 57 "ragel/sosi_north_east.rl" */
+/* #line 58 "ragel/sosi_north_east_height.rl" */
 	{
             coordN = tmp;
             tmp = "";
         }
 	break;
 	case 2:
-/* #line 62 "ragel/sosi_north_east.rl" */
+/* #line 63 "ragel/sosi_north_east_height.rl" */
 	{
             coordE = tmp;
             tmp = "";
         }
 	break;
 	case 3:
-/* #line 67 "ragel/sosi_north_east.rl" */
+/* #line 68 "ragel/sosi_north_east_height.rl" */
+	{
+            coordH = tmp;
+            tmp = "";
+        }
+	break;
+	case 4:
+/* #line 73 "ragel/sosi_north_east_height.rl" */
 	{
             append( coordN, coordE );
         }
 	break;
-/* #line 218 "sosi_north_east_ragel.cpp" */
+/* #line 233 "sosi_north_east_height_ragel.cpp" */
 		}
 	}
 
@@ -226,24 +241,24 @@ _again:
 	_test_eof: {}
 	if ( p == eof )
 	{
-	const char *__acts = _parseCoordinateHeightCollection_actions + _parseCoordinateHeightCollection_eof_actions[cs];
+	const char *__acts = _parseCoordinateCollection_actions + _parseCoordinateCollection_eof_actions[cs];
 	unsigned int __nacts = (unsigned int) *__acts++;
 	while ( __nacts-- > 0 ) {
 		switch ( *__acts++ ) {
-	case 2:
-/* #line 62 "ragel/sosi_north_east.rl" */
+	case 3:
+/* #line 68 "ragel/sosi_north_east_height.rl" */
 	{
-            coordE = tmp;
+            coordH = tmp;
             tmp = "";
         }
 	break;
-	case 3:
-/* #line 67 "ragel/sosi_north_east.rl" */
+	case 4:
+/* #line 73 "ragel/sosi_north_east_height.rl" */
 	{
             append( coordN, coordE );
         }
 	break;
-/* #line 247 "sosi_north_east_ragel.cpp" */
+/* #line 262 "sosi_north_east_height_ragel.cpp" */
 		}
 	}
 	}
@@ -251,7 +266,7 @@ _again:
 	_out: {}
 	}
 
-/* #line 78 "ragel/sosi_north_east.rl" */
+/* #line 84 "ragel/sosi_north_east_height.rl" */
 
 
 };

@@ -35,22 +35,21 @@ object types (OBJTYPE).
 
 To convert a SOSI file to shape, run sosicon from the directory where the SOSI file
 resides. Use the -2shp parameter to emit the three required files: Shape file (shp), database
-file (dbf) and index file (shx). Use the -o parameter to specify output file name and the -g parameter
-to select the type of geometry to export. In the following example, the SOSI element FLATE (surface)
-is scheduled for export to shapefile.
+file (dbf) and index file (shx).
 
-`sosicon -2shp -g FLATE -o my_output input.sos`
-
-Likewise, a file containing points (sosi name PUNKT) may be exported with this command:
-
-`sosicon -2shp -g PUNKT -o my_output input.sos`
+`sosicon -2shp input.sos`
 
 On Linux and OS X, batch conversion is supported by piping:
 
-`ls *.sos | sosicon -2shp -g FLATE`
+`ls *.sos | sosicon -2shp`
 
 The above command will convert every *.sos file in current directory to corresponding shapefiles.
-The files will be written to the same directory with the same file title with shp/shx/dbf extensions.
+The files will be written to the same directory, keeping the file title extended with feature name,
+geometry type and shp/shx/dbf extensions.
+
+Use the -o parameter to specify optional output file basename:
+
+`sosicon -2shp -o ~/myfolder/arealdekke input.sos`
 
 ## Build from source code
 

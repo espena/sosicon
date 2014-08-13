@@ -65,6 +65,9 @@ namespace sosicon {
         //! Command line wrapper
         CommandLine* mCmd;
 
+        //! Souce file currently in process
+        std::string mCurrentSourcefile;
+
         void makeShp( ISosiElement* sosiTree );
 
         //! Make base file path for destination files

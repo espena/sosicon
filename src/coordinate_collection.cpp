@@ -94,7 +94,7 @@ discoverCoords( ISosiElement* e ) {
             {
                 sosi::SosiElementSearch srcNe( sosi::sosi_element_ne );
                 while( e->getChild( srcNe ) ) {
-		            sosi::SosiNorthEast* ne = new sosi::SosiNorthEast( srcNe.element() );
+                    sosi::SosiNorthEast* ne = new sosi::SosiNorthEast( srcNe.element() );
                     mGeom.push_back( ne );
                     mPartOffsetsGeom.push_back( mNumPointsGeom );
                     mNumPointsGeom += ne->getNumPoints();

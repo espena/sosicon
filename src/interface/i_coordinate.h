@@ -56,6 +56,9 @@ namespace sosicon {
         //! Set north coordinate
         virtual void setN( double coordNorth ) = 0;
 
+        //! Set altitude
+        virtual void setH( double altitude ) = 0;
+
         //! Shift coordinate by specified offset
         virtual void shift( int offsetN, int offsetE ) = 0;
 

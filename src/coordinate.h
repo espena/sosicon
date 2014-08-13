@@ -37,6 +37,7 @@ namespace sosicon {
 
         double mEast;
         double mNorth;
+        double mAltitude;
 
     public:
 
@@ -48,6 +49,7 @@ namespace sosicon {
         virtual bool rightOf( ICoordinate* c ) { return mEast > c->getE(); };
         virtual void setE( double coordEast ) { mEast = coordEast; };
         virtual void setN( double coordNorth ) { mNorth = coordNorth; };
+        virtual void setH( double altitude ) { mAltitude = altitude; };
         virtual void shift( int offsetN, int offsetE ) { mNorth += offsetN; mEast += offsetE; };
         virtual void divide( int divisor ) { mNorth /= divisor; mEast /= divisor; };
         virtual std::string toString() { std::stringstream ss; ss << "POINT( " << std::fixed << mNorth << " " << std::fixed << mEast << " )"; return ss.str(); };

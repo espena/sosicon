@@ -65,14 +65,17 @@ namespace sosicon {
             double mMaxY;
 
             //! Populate mCoordinates
-            void ragelParseCoordinates( std::string data );
+            void ragelParseCoordinatesNe( std::string data );
+            void ragelParseCoordinatesNeh( std::string data );
 
             void initHeadMember( ISosiHeadMember& headMember, ElementType type );
 
         public:
 
             void append( double n, double e );
+            void append( double n, double e, double h );
             void append( std::string n, std::string e );
+            void append( std::string n, std::string e, std::string h );
 
 			//!< Frees allocated memory
 			void free();
