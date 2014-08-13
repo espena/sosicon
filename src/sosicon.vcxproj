@@ -176,6 +176,7 @@ rd /s /q $(IntermediateOutputPath)</Command>
     <ClInclude Include="sosi\sosi_north_east.h" />
     <ClInclude Include="sosi\sosi_origo_ne.h" />
     <ClInclude Include="sosi\sosi_ref_list.h" />
+    <ClInclude Include="sosi\sosi_translation_table.h" />
     <ClInclude Include="sosi\sosi_types.h" />
     <ClInclude Include="sosi\sosi_unit.h" />
     <ClInclude Include="utils.h" />
@@ -197,7 +198,9 @@ rd /s /q $(IntermediateOutputPath)</Command>
     <ClCompile Include="sosi\sosi_north_east.cpp" />
     <ClCompile Include="sosi\sosi_origo_ne.cpp" />
     <ClCompile Include="sosi\sosi_ref_list.cpp" />
+    <ClCompile Include="sosi\sosi_translation_table.cpp" />
     <ClCompile Include="sosi\sosi_unit.cpp" />
+    <ClCompile Include="sosi_north_east_height_ragel.cpp" />
     <ClCompile Include="sosi_north_east_ragel.cpp" />
     <ClCompile Include="sosi_origo_ne_ragel.cpp" />
     <ClCompile Include="sosi_ref_ragel.cpp" />
@@ -224,6 +227,25 @@ rd /s /q $(IntermediateOutputPath)</Command>
       <LinkObjects Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">true</LinkObjects>
     </CustomBuild>
     <CustomBuild Include="ragel\sosi_north_east.rl">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">false</ExcludedFromBuild>
+      <DeploymentContent Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</DeploymentContent>
+      <FileType>Document</FileType>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(ProjectDir)ragel\bin\win32\ragel.exe -C -L -o $(ProjectDir)%(Filename)_ragel.cpp $(ProjectDir)ragel\%(Filename).rl</Command>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Ragel: %(Filename).%(Extension) :: %(Filename)_ragel.cpp</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='release|Win32'">$(ProjectDir)ragel\bin\win32\ragel.exe -C -L -o $(ProjectDir)%(Filename)_ragel.cpp $(ProjectDir)ragel\%(Filename).rl</Command>
+      <Message Condition="'$(Configuration)|$(Platform)'=='release|Win32'">Ragel: %(Filename).%(Extension) :: %(Filename)_ragel.cpp</Message>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(ProjectDir)%(Filename)_ragel.cpp</Outputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='release|Win32'">$(ProjectDir)%(Filename)_ragel.cpp</Outputs>
+      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">false</LinkObjects>
+      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='release|Win32'">true</LinkObjects>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(ProjectDir)ragel\%(Filename).rl</AdditionalInputs>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='release|Win32'">$(ProjectDir)ragel\%(Filename).rl</AdditionalInputs>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='release|Win32'">false</ExcludedFromBuild>
+      <TreatOutputAsContent Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">true</TreatOutputAsContent>
+      <TreatOutputAsContent Condition="'$(Configuration)|$(Platform)'=='release|Win32'">true</TreatOutputAsContent>
+      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='debug|Win32'">true</LinkObjects>
+    </CustomBuild>
+    <CustomBuild Include="ragel\sosi_north_east_height.rl">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">false</ExcludedFromBuild>
       <DeploymentContent Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</DeploymentContent>
       <FileType>Document</FileType>

@@ -144,6 +144,9 @@
     <ClInclude Include="converter_sosi_stat.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="sosi\sosi_translation_table.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="byte_order.cpp">
@@ -209,6 +212,12 @@
     <ClCompile Include="converter_sosi_stat.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="sosi_north_east_height_ragel.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="sosi\sosi_translation_table.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <CustomBuild Include="ragel\parser.rl">
@@ -223,5 +232,10 @@
     <CustomBuild Include="ragel\sosi_ref.rl">
       <Filter>Source Files\Ragel</Filter>
     </CustomBuild>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="ragel\sosi_north_east_height.rl">
+      <Filter>Source Files\Ragel</Filter>
+    </None>
   </ItemGroup>
 </Project>
