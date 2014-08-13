@@ -157,10 +157,10 @@ namespace sosicon {
         };
 
         //! List of SOSI references
-        typedef std::vector<ReferenceData*> SosiReferenceList;
-        
+        typedef std::vector<ReferenceData*> GeometryRef;
+
         //! Collection of SOSI reference lists
-        typedef std::vector<SosiReferenceList*> SosiReferenceListCollection;
+        typedef std::vector<GeometryRef*> GeometryCollection;
 
        /*! @} end group sosi_elements */
 

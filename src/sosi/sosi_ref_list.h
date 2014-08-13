@@ -43,10 +43,10 @@ namespace sosicon {
 
             ISosiElement* mSosiElement;
 
-            SosiReferenceListCollection mRefListCollection;
+            GeometryCollection mRefListCollection;
 
-            SosiReferenceListCollection::size_type mRefListColletionIndex;
-            SosiReferenceList::size_type mRefListIndex;
+            GeometryCollection::size_type mRefListColletionIndex;
+            GeometryRef::size_type mRefListIndex;
 
             void ragelParseSosiRef( std::string data );
 

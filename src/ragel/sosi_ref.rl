@@ -47,7 +47,7 @@ ragelParseSosiRef( std::string data )
     ReferenceData* refData = 0;
     bool reverse = false;
     bool subtract = false;
-    SosiReferenceList* refList = 0;
+    GeometryRef* refList = 0;
 
     %%{
 
@@ -56,7 +56,7 @@ ragelParseSosiRef( std::string data )
             refData->reverse = reverse;
             refData->subtract = subtract;
             if( 0 == refList ) {
-                refList = new SosiReferenceList();
+                refList = new GeometryRef();
                 mRefListCollection.push_back( refList );
             }
             refList->insert( refList->begin(), refData );
@@ -68,7 +68,7 @@ ragelParseSosiRef( std::string data )
 
         action see_opening_parenthesis {
             subtract = ( fc == '(' );
-            refList = new SosiReferenceList();
+            refList = new GeometryRef();
             mRefListCollection.push_back( refList );
         }
 
