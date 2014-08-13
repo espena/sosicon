@@ -45,7 +45,7 @@ namespace sosicon {
 
             GeometryCollection mRefListCollection;
 
-            GeometryCollection::size_type mRefListColletionIndex;
+            GeometryCollection::size_type mRefListCollectionIndex;
             GeometryRef::size_type mRefListIndex;
 
             void ragelParseSosiRef( std::string data );
@@ -61,12 +61,11 @@ namespace sosicon {
             //! Destructor
             ~SosiRefList();
 
-            //! Iterate through list of references
+            //! Next list of references
             /*!
-                Pass reference to null pointer to start iteration.
-                /return true if there is more elements in list, otherwise false.
-             */
-            bool getNextReference( ReferenceData*& refData );
+                A reference list represents a geometry, i.e. a polygon or its holes.
+            */
+            bool getNextGeometry( GeometryRef*& geometry );
 
             //SosiReferenceListCollection::size_type size() { return mRefListCollection.size(); };
 

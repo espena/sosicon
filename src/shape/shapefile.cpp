@@ -208,6 +208,7 @@ buildShpRecCoordinates( int& pos, CoordinateCollection& cc ) {
     for( std::vector<ICoordinate*>::size_type i = 0; i < theGeom.size(); i++ ) {
         buildShpRecCoordinate( pos, theGeom[ i ] );
     }
+
     std::vector<ICoordinate*> theHoles = getNormalized( cc.getHoles() );
     for( std::vector<ICoordinate*>::size_type i = 0; i < theHoles.size(); i++ ) {
         buildShpRecCoordinate( pos, theHoles[ i ] );
@@ -221,7 +222,7 @@ buildShpRecHeaderExtended( int& pos, CoordinateCollection& cc ) {
     numParts.i = 1; //cc.getNumPartsGeom(); 
 
     Int32Field numPoints;
-    numPoints.i = cc.getNumPointsGeom();
+    numPoints.i = cc.getNumPointsGeom() + cc.getNumPointsHoles();
 
     double xMin = cc.getXmin();
     double yMin = cc.getYmin();
@@ -486,7 +487,6 @@ extractDbfFields( ISosiElement* sosi, DbfRecord& rec ) {
 
     while( sosi->getChild( src ) ) {
         child = src.element();
-        // No need to write coordinates to DBF
         if( child->getType() != sosi::sosi_element_ne ) {
             data = utils::trim( child->getData() );
             saveToDbf( rec, child->getName(), data );

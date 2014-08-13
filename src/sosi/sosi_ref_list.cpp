@@ -37,29 +37,15 @@ sosicon::sosi::SosiRefList::
 }
 
 bool sosicon::sosi::SosiRefList::
-getNextReference( ReferenceData*& refData ) {
-
-    if( 0 == refData ) {
-        mRefListColletionIndex = 0;
-        mRefListIndex = 0;
+getNextGeometry( GeometryRef*& geometry ) {
+    if( 0 == geometry ) {
+        mRefListCollectionIndex = 0;
     }
-
-    if( mRefListCollection.size() == 0 || mRefListColletionIndex >= mRefListCollection.size() ) {
+    if( mRefListCollection.size() == 0 || mRefListCollectionIndex >= mRefListCollection.size() ) {
         return false;
     }
     else {
-        GeometryRef* refList = mRefListCollection[ mRefListColletionIndex ];
-        if( mRefListIndex == refList->size() ) {
-            if( ++mRefListColletionIndex == mRefListCollection.size() ) {
-                return false;
-            }
-            GeometryRef* refList = mRefListCollection[ mRefListColletionIndex ];
-        }
-        if( mRefListIndex == refList->size() ) {
-            return false;
-        }
-        refData = ( *refList ) [ mRefListIndex ];
-        mRefListIndex++;
+        geometry = mRefListCollection[ mRefListCollectionIndex++ ];
     }
     return true;
 }

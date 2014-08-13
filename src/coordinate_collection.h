@@ -77,16 +77,16 @@ namespace sosicon {
         //! Default constructor
         CoordinateCollection() :
             mCenterPoint( 0 ),
-			mXmin( +9999999999 ),
+            mXmin( +9999999999 ),
             mYmin( +9999999999 ),
             mXmax( -9999999999 ),
             mYmax( -9999999999 ),
             mNumPointsGeom( 0 ) { };
 
-		//!< Free allocated memory
-		void free();
+        //!< Free allocated memory
+        void free();
 
-		void discoverCoords( ISosiElement* sosi );
+        void discoverCoords( ISosiElement* sosi );
 
         bool getNextOffsetInGeom( int& offset );
             

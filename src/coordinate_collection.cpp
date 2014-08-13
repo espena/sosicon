@@ -53,16 +53,16 @@ getNextOffset( int& offset, std::vector<int>& offsets, std::vector<int>::iterato
 
 sosicon::CoordinateCollection::
 ~CoordinateCollection() {
-	free();
+    free();
 }
 
 void sosicon::CoordinateCollection::
 free() {
-	if( mCenterPoint ) {
-		mCenterPoint->free();
-		delete mCenterPoint;
-		mCenterPoint = 0;
-	}
+    if( mCenterPoint ) {
+        mCenterPoint->free();
+        delete mCenterPoint;
+        mCenterPoint = 0;
+    }
     sosi::deleteNorthEasts( mGeom );
 }
 
@@ -77,12 +77,18 @@ discoverCoords( ISosiElement* e ) {
                 while( e->getChild( srcRef ) ) {
                     rawRefElement = srcRef.element();
                     sosi::SosiRefList refList( rawRefElement );
-                    sosi::ReferenceData* refData = 0;
-                    int i = 0;
-                    while( refList.getNextReference( refData ) ) {
-                        ISosiElement* referencedElement = rawRefElement->find( refData->serial );
-                        if( referencedElement ) {
-                            extractPath( refData, referencedElement );
+                    sosi::GeometryRef* geometry = 0;
+                    while( refList.getNextGeometry( geometry ) ) {
+                        bool isHole = ( *geometry )[ 0 ]->subtract;
+                        for( sosi::GeometryRef::iterator i = geometry->begin(); i != geometry->end(); i++ ) {
+                            sosi::ReferenceData* refData = *i;
+                            ISosiElement* referencedElement = rawRefElement->find( refData->serial );
+                            if( referencedElement ) {
+                                extractPath( refData, referencedElement );
+
+                                //TODO: Extract path to correct collection: Holes or Geom.
+
+                            }
                         }
                     }
                 }
@@ -115,7 +121,7 @@ extractPath( sosi::ReferenceData* refData, ISosiElement* referencedElement ) {
     std::vector<int>& offsets = mPartOffsetsGeom;
     sosi::NorthEastList tmpLst;
     while( referencedElement->getChild( src ) ) {
-		sosi::SosiNorthEast* ne = new sosi::SosiNorthEast( src.element() );
+        sosi::SosiNorthEast* ne = new sosi::SosiNorthEast( src.element() );
         int& pointCount = mNumPointsGeom;
         if( refData->reverse ) {
             ne->reverse();
