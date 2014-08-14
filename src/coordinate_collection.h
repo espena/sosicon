@@ -53,13 +53,16 @@ namespace sosicon {
         sosi::SosiNorthEast* mCenterPoint;
 
         //! Stores collection of pointers to coordinates for geometries
+        sosi::NorthEastList mGeom;
         sosi::NorthEastList mHoles;
 
-        sosi::NorthEastList mGeom;
-        sosi::NorthEastList::size_type mGeomIndex;
-        std::vector<int> mPartOffsetsGeom;
-        std::vector<int>::iterator mPartOffsetsGeomIterator;
         int mNumPointsGeom;
+        int mNumPointsHoles;
+
+        std::vector<int> mGeomSizes;
+        std::vector<int> mHoleSizes;
+
+        sosi::NorthEastList::size_type mGeomIndex;
 
         double mXmin;
         double mYmin;
@@ -67,40 +70,42 @@ namespace sosicon {
         double mYmax;
 
         //! Get ccordinate values from SOSI element
-        void extractPath( sosi::ReferenceData* refData, ISosiElement* referencedElement );
+        void extractPath( ISosiElement* referencedElement,
+                          bool reverse,
+                          int& numPoints,
+                          std::vector<int>& offsets,
+                          sosi::NorthEastList& target );
 
     public:
 
         //! Destructor
         virtual ~CoordinateCollection();
 
-        //! Default constructor
+        //! Constructor
         CoordinateCollection() :
             mCenterPoint( 0 ),
             mXmin( +9999999999 ),
             mYmin( +9999999999 ),
             mXmax( -9999999999 ),
             mYmax( -9999999999 ),
-            mNumPointsGeom( 0 ) { };
+            mNumPointsGeom( 0 ),
+            mNumPointsHoles( 0 ) { };
 
         //!< Free allocated memory
         void free();
 
         void discoverCoords( ISosiElement* sosi );
-
-        bool getNextOffsetInGeom( int& offset );
-            
         bool getNextInGeom( ICoordinate*& coord );
 
         sosi::NorthEastList& getGeom() { return mGeom; };
+        std::vector<int>& getGeomSizes() { return mGeomSizes; };
+        int getNumPointsGeom() { return mNumPointsGeom; };
+        int getNumPartsGeom() { return mGeom.size(); };
 
         sosi::NorthEastList& getHoles() { return mHoles; };
-
-        CoordinateList::size_type getNumPartsGeom() { return mGeom.size(); };
-
-        int getNumPointsGeom() { return mNumPointsGeom; };
-
-        int getNumPointsHoles() { return 0; };
+        std::vector<int>& getHoleSizes() { return mHoleSizes; };
+        int getNumPointsHoles() { return mNumPointsHoles; };
+        int getNumPartsHoles() { return mHoles.size(); };
 
         double getXmin() { return mXmin == +9999999999 ? 0 : mXmin; };
 

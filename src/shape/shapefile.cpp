@@ -159,7 +159,7 @@ buildShpPoint( CoordinateCollection& cc ) {
 
 void sosicon::shape::Shapefile::
 buildShpPolyLine( CoordinateCollection& cc ) {
-    int byteLength = 52 + ( 4 ) + ( 16 * cc.getNumPointsGeom() );
+    int byteLength = 52 + ( 4 ) + ( 16 * cc.getNumPointsGeom() ) + ( 16 * cc.getNumPointsHoles() );
     int contentLength = ( byteLength / 2 ) - 4; // In 16-bit words, record header not included
     insertShxOffset( contentLength );
     int pos = expandShpBuffer( byteLength );
@@ -203,12 +203,10 @@ buildShpRecCoordinate( int& pos, ICoordinate* c ) {
 
 void sosicon::shape::Shapefile::
 buildShpRecCoordinates( int& pos, CoordinateCollection& cc ) {
-
     std::vector<ICoordinate*> theGeom = getNormalized( cc.getGeom() );
     for( std::vector<ICoordinate*>::size_type i = 0; i < theGeom.size(); i++ ) {
         buildShpRecCoordinate( pos, theGeom[ i ] );
     }
-
     std::vector<ICoordinate*> theHoles = getNormalized( cc.getHoles() );
     for( std::vector<ICoordinate*>::size_type i = 0; i < theHoles.size(); i++ ) {
         buildShpRecCoordinate( pos, theHoles[ i ] );
@@ -219,7 +217,7 @@ void sosicon::shape::Shapefile::
 buildShpRecHeaderExtended( int& pos, CoordinateCollection& cc ) {
 
     Int32Field numParts;
-    numParts.i = 1; //cc.getNumPartsGeom(); 
+    numParts.i = cc.getNumPartsGeom() + cc.getNumPartsHoles(); 
 
     Int32Field numPoints;
     numPoints.i = cc.getNumPointsGeom() + cc.getNumPointsHoles();
@@ -244,21 +242,22 @@ buildShpRecHeaderExtended( int& pos, CoordinateCollection& cc ) {
 void sosicon::shape::Shapefile::
 buildShpRecHeaderOffsets( int& pos, CoordinateCollection& cc ) {
 
-    /*
-    int part = -1;
-    std::vector<ICoordinate*> theGeom = getNormalized( cc );
-    while( cc.getNextOffsetInGeom( part ) ) {
-        Int32Field offset;
-        offset.i = part;
+    std::vector<int> geomSizes = cc.getGeomSizes();
+    std::vector<int> holeSizes = cc.getHoleSizes();
+
+    Int32Field offset = { 0 };
+
+    for( std::vector<int>::size_type i = 0; i < geomSizes.size(); i++ ) {
         byteOrder::toLittleEndian( offset.b,  &mShpBuffer[ pos ], 4 );
         pos += 4;
-        break;
+        offset.i += geomSizes[ i ];
     }
-    */
-    Int32Field offset;
-    offset.i = 0;
-    byteOrder::toLittleEndian( offset.b,  &mShpBuffer[ pos ], 4 );
-    pos += 4;
+
+    for( std::vector<int>::size_type i = 0; i < holeSizes.size(); i++ ) {
+        byteOrder::toLittleEndian( offset.b,  &mShpBuffer[ pos ], 4 );
+        pos += 4;
+        offset.i += holeSizes[ i ];
+    }
 }
 
 void sosicon::shape::Shapefile::
