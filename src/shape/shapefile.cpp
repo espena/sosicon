@@ -159,7 +159,13 @@ buildShpPoint( CoordinateCollection& cc ) {
 
 void sosicon::shape::Shapefile::
 buildShpPolyLine( CoordinateCollection& cc ) {
-    int byteLength = 52 + ( 4 ) + ( 16 * cc.getNumPointsGeom() ) + ( 16 * cc.getNumPointsHoles() );
+    int byteLength =
+          52                            +
+        (  4 * cc.getNumPartsGeom()   ) +
+        (  4 * cc.getNumPartsHoles()  ) +
+        ( 16 * cc.getNumPointsGeom()  ) +
+        ( 16 * cc.getNumPointsHoles() );
+
     int contentLength = ( byteLength / 2 ) - 4; // In 16-bit words, record header not included
     insertShxOffset( contentLength );
     int pos = expandShpBuffer( byteLength );
@@ -171,7 +177,14 @@ buildShpPolyLine( CoordinateCollection& cc ) {
 
 void sosicon::shape::Shapefile::
 buildShpPolygon( CoordinateCollection& cc ) {
-    int byteLength = 52 + ( 4 ) + ( 16 * cc.getNumPointsGeom() ) + ( 16 * cc.getNumPointsHoles() );
+
+    int byteLength =
+          52                            +
+        (  4 * cc.getNumPartsGeom()   ) +
+        (  4 * cc.getNumPartsHoles()  ) +
+        ( 16 * cc.getNumPointsGeom()  ) +
+        ( 16 * cc.getNumPointsHoles() );
+
     int contentLength = ( byteLength / 2 ) - 4; // In 16-bit words, record header not included
     insertShxOffset( contentLength );
     int pos = expandShpBuffer( byteLength );
@@ -208,6 +221,7 @@ buildShpRecCoordinates( int& pos, CoordinateCollection& cc ) {
         buildShpRecCoordinate( pos, theGeom[ i ] );
     }
     std::vector<ICoordinate*> theHoles = getNormalized( cc.getHoles() );
+    std::reverse( theHoles.begin(), theHoles.end() );
     for( std::vector<ICoordinate*>::size_type i = 0; i < theHoles.size(); i++ ) {
         buildShpRecCoordinate( pos, theHoles[ i ] );
     }

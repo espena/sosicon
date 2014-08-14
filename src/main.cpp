@@ -19,6 +19,8 @@
 
 int main ( int argc, char* argv[] ) {
 	
+    std::ios_base::sync_with_stdio( 0 );
+
     sosicon::CommandLine cmd;
 	cmd.parse( argc, argv );
 

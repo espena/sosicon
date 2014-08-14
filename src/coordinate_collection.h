@@ -56,6 +56,9 @@ namespace sosicon {
         sosi::NorthEastList mGeom;
         sosi::NorthEastList mHoles;
 
+        int mNumPartsGeom;
+        int mNumPartsHoles;
+
         int mNumPointsGeom;
         int mNumPointsHoles;
 
@@ -73,7 +76,6 @@ namespace sosicon {
         void extractPath( ISosiElement* referencedElement,
                           bool reverse,
                           int& numPoints,
-                          std::vector<int>& offsets,
                           sosi::NorthEastList& target );
 
     public:
@@ -88,6 +90,8 @@ namespace sosicon {
             mYmin( +9999999999 ),
             mXmax( -9999999999 ),
             mYmax( -9999999999 ),
+            mNumPartsGeom( 0 ),
+            mNumPartsHoles( 0 ),
             mNumPointsGeom( 0 ),
             mNumPointsHoles( 0 ) { };
 
@@ -97,15 +101,15 @@ namespace sosicon {
         void discoverCoords( ISosiElement* sosi );
         bool getNextInGeom( ICoordinate*& coord );
 
-        sosi::NorthEastList& getGeom() { return mGeom; };
+        sosi::NorthEastList& getGeom();
         std::vector<int>& getGeomSizes() { return mGeomSizes; };
         int getNumPointsGeom() { return mNumPointsGeom; };
-        int getNumPartsGeom() { return mGeom.size(); };
+        int getNumPartsGeom() { return mNumPartsGeom; };
 
-        sosi::NorthEastList& getHoles() { return mHoles; };
+        sosi::NorthEastList& getHoles();
         std::vector<int>& getHoleSizes() { return mHoleSizes; };
         int getNumPointsHoles() { return mNumPointsHoles; };
-        int getNumPartsHoles() { return mHoles.size(); };
+        int getNumPartsHoles() { return mNumPartsHoles; };
 
         double getXmin() { return mXmin == +9999999999 ? 0 : mXmin; };
 

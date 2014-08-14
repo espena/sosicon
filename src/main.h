@@ -19,6 +19,7 @@
 #define __MAIN_H__
 
 #include <exception>
+#include <ios>
 #include <iostream>
 #include <locale>
 #include "command_line.h"

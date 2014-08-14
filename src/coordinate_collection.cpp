@@ -80,6 +80,8 @@ discoverCoords( ISosiElement* e ) {
                     sosi::GeometryRef* geometry = 0;
                     while( refList.getNextGeometry( geometry ) ) {
                         bool isHole = ( *geometry )[ 0 ]->subtract;
+                        int numPoints = 0;
+                        sosi::NorthEastList tmpNEList;
                         for( sosi::GeometryRef::iterator i = geometry->begin(); i != geometry->end(); i++ ) {
                             sosi::ReferenceData* refData = *i;
                             ISosiElement* referencedElement = rawRefElement->find( refData->serial );
@@ -87,19 +89,14 @@ discoverCoords( ISosiElement* e ) {
 
                                 extractPath( referencedElement,
                                              refData->reverse,
-                                             isHole? mNumPointsHoles : mNumPointsGeom,  // numPoints&
-                                             isHole? mHoleSizes : mGeomSizes,           // sizes&
-                                             isHole? mHoles : mGeom );                  // target&
+                                             numPoints,
+                                             isHole? mHoles : mGeom ); // target&
 
-                                /*
-                                extractPath( referencedElement,
-                                             refData->reverse,
-                                             isHole ? mNumPointsHoles : mNumPointsGeom, // numPoints&
-                                             isHole ? mOffsetsHoles   : mOffsetsGeom,   // offsets&
-                                             isHole ? mHoles          : mGeom );        // target&
-                                */
                             }
                         }
+                        ( isHole ? mHoleSizes : mGeomSizes ).push_back( numPoints );
+                        ( isHole ? mNumPointsHoles : mNumPointsGeom ) += numPoints;
+                        ( isHole ? mNumPartsHoles : mNumPartsGeom ) ++;
                     }
                 }
             }
@@ -107,14 +104,18 @@ discoverCoords( ISosiElement* e ) {
         case sosi::sosi_element_text:
         case sosi::sosi_element_curve:
             {
+                mNumPartsGeom = 1;
+                mNumPartsHoles = 0;
+                int numPoints = 0;
                 sosi::SosiElementSearch srcNe( sosi::sosi_element_ne );
                 while( e->getChild( srcNe ) ) {
                     sosi::SosiNorthEast* ne = new sosi::SosiNorthEast( srcNe.element() );
                     mGeom.push_back( ne );
-                    mNumPointsGeom += ne->getNumPoints();
-                    mGeomSizes.push_back( ne->getNumPoints() );
+                    numPoints += ne->getNumPoints();
                     ne->expandBoundingBox( mXmin, mYmin, mXmax, mYmax );
                 }
+                mGeomSizes.push_back( numPoints );
+                mNumPointsGeom = numPoints;
             }
             break;
         default:
@@ -126,14 +127,12 @@ void sosicon::CoordinateCollection::
 extractPath( ISosiElement* referencedElement,
              bool reverse,
              int& numPoints,
-             std::vector<int>& sizes,
              sosi::NorthEastList& target ) {
 
     sosi::SosiElementSearch  src( sosi::sosi_element_ne );
     sosi::ElementType type = referencedElement->getType();
     sosi::ObjType obj = referencedElement->getObjType();
     sosi::NorthEastList tmpLst;
-    int tmpNumPoints = 0;
 
     while( referencedElement->getChild( src ) ) {
         sosi::SosiNorthEast* ne = new sosi::SosiNorthEast( src.element() );
@@ -149,12 +148,24 @@ extractPath( ISosiElement* referencedElement,
         else {
             tmpLst.push_back( ne );
         }
-        tmpNumPoints += ne->getNumPoints();
+        numPoints += ne->getNumPoints();
         ne->expandBoundingBox( mXmin, mYmin, mXmax, mYmax );
     }
     target.insert( target.begin(), tmpLst.begin(), tmpLst.end() );
-    sizes.insert( sizes.begin(), tmpNumPoints );
-    numPoints += tmpNumPoints;
+}
+
+sosicon::sosi::NorthEastList& sosicon::CoordinateCollection::
+getGeom() {
+
+    for( sosi::NorthEastList::size_type i = 0; i < mGeom.size(); i++ ) {
+        
+    }
+
+}
+
+sosicon::sosi::NorthEastList& sosicon::CoordinateCollection::
+getHoles() {
+    
 }
 
 bool sosicon::CoordinateCollection::
