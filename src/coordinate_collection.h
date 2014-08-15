@@ -78,6 +78,9 @@ namespace sosicon {
                           int& numPoints,
                           sosi::NorthEastList& target );
 
+        bool isClockwise( std::vector<ICoordinate*>::iterator begin, std::vector<ICoordinate*>::iterator end );
+        bool isCounterClockwise( std::vector<ICoordinate*>::iterator begin, std::vector<ICoordinate*>::iterator end ) { return end != ( begin + 2 ) ? false : !isClockwise( begin, end ); };
+
     public:
 
         //! Destructor
