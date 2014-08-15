@@ -41,7 +41,7 @@ makeShp( ISosiElement* sosiTree ) {
 
     std::cout << "Processing OBJTYPE";
 
-    sosi::ElementType geometries[] = {
+    sosi::ElementType geometries[ 4 ] = {
         sosi::sosi_element_text,
         sosi::sosi_element_point,
         sosi::sosi_element_curve,
@@ -77,7 +77,7 @@ makeShp( ISosiElement* sosiTree ) {
 
         std::cout << "\rProcessing GEOMETRIES \n";
 
-        for( int j = 0; j < sizeof geometries; j++ ) {
+        for( int j = 0; j < 4; j++ ) {
 
             shape::Shapefile f;
             sosi::ElementType geometry = geometries[ j ];

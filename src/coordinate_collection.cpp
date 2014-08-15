@@ -212,7 +212,6 @@ getNextInGeom( ICoordinate*& coord ) {
 
 bool sosicon::CoordinateCollection::
 isClockwise( std::vector<ICoordinate*>::iterator begin, std::vector<ICoordinate*>::iterator end ) {
-    if( end > begin - 2 ) return false;
     double edgeSum = 0.0;
     for( std::vector<ICoordinate*>::iterator i = begin; i != end; i++ ) {
         ICoordinate* v1 = *i;
