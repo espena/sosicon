@@ -2,7 +2,7 @@
 /* #line 1 "ragel/sosi_ref.rl" */
 /*
  *  This file is part of the command-line tool sosicon.
- *  Copyright (C) 2012  Espen Andersen
+ *  Copyright (C) 2014  Espen Andersen, Norwegian Broadcast Corporation (NRK)
  *
  *  This is free software: you can redistribute it and/or modify
  *  it under the terms of the GNU General Public License as published by
@@ -146,7 +146,7 @@ _resume:
 			else if ( (*p) > *_mid )
 				_lower = _mid + 1;
 			else {
-				_trans += (unsigned int)(_mid - _keys);
+				_trans += (_mid - _keys);
 				goto _match;
 			}
 		}
@@ -169,7 +169,7 @@ _resume:
 			else if ( (*p) > _mid[1] )
 				_lower = _mid + 2;
 			else {
-				_trans += (unsigned int)((_mid - _keys)>>1);
+				_trans += ((_mid - _keys)>>1);
 				goto _match;
 			}
 		}

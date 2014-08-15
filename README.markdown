@@ -33,10 +33,10 @@ You can inspect the content of a SOSI file by using the -stat command, like this
 This command will render a list of SOSI elements (geometry types among other things) and SOSI
 object types (OBJTYPE).
 
-To convert a SOSI file to shape, run sosicon from the directory where the SOSI file
+To convert a SOSI file to shape, run Sosicon from the directory where the SOSI file
 resides. Use the -2shp parameter to emit the three required files: Shape file (shp), database
 file (dbf) and index file (shx). A projection fils (prj) will also be created if the
-reference grid is recognized by sosicon.
+reference grid is recognized by Sosicon.
 
 `sosicon -2shp input.sos`
 
@@ -55,7 +55,7 @@ Use the -o parameter to specify optional output file basename:
 ## Build from source code
 
 ###Linux/OS X
-You need g++ to compile sosicon. To build from source code, check out the git repository, enter the
+You need g++ to compile Sosicon. To build from source code, check out the git repository, enter the
 src directory and run `make`. There's no `configure` or `make install` yet. The binaries will be
 output to [bin/linux](https://github.com/espena/sosicon/tree/master/bin/linux) or
 <em>[bin/osx](https://github.com/espena/sosicon/tree/master/bin/osx)</em>.
@@ -83,7 +83,7 @@ Ragel was designed and written by Adrian Thurston and released under the
 on the excellent work of Thurston and [his team of contributors](http://www.complang.org/ragel/CREDITS).
 
 ## License and disclaimer
-Sosicon is written by Espen Andersen and released under the [GNU General Public License](http://www.gnu.org/licenses/gpl.txt).
+Sosicon is written by Espen Andersen at the Norwegian Broadcast Corporation, and released under the [GNU General Public License](http://www.gnu.org/licenses/gpl.txt).
 
 This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
