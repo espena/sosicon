@@ -35,7 +35,8 @@ object types (OBJTYPE).
 
 To convert a SOSI file to shape, run sosicon from the directory where the SOSI file
 resides. Use the -2shp parameter to emit the three required files: Shape file (shp), database
-file (dbf) and index file (shx).
+file (dbf) and index file (shx). A projection fils (prj) will also be created if the
+reference grid is recognized by sosicon.
 
 `sosicon -2shp input.sos`
 
