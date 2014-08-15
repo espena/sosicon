@@ -106,6 +106,7 @@ discoverCoords( ISosiElement* e ) {
             }
             break;
         case sosi::sosi_element_text:
+        case sosi::sosi_element_point:
         case sosi::sosi_element_curve:
             {
                 mNumPartsGeom = 1;

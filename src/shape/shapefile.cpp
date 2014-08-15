@@ -66,7 +66,7 @@ build( ISosiElement* sosiTree, std::string objType, sosi::ElementType geomType )
 
         sosi = src.element();
 
-        if( objType.empty() || objType == sosi->getObjType() ) {
+        if( ( objType.empty() || objType == sosi->getObjType() ) && sosi->getSerial() == "1406" ) {
             if( sosi->getType() == geomType ) {
                 shapeTypeEquivalent = getShapeEquivalent( sosi->getType() );
                 buildShpElement( sosi, shapeTypeEquivalent );
