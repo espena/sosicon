@@ -22,14 +22,14 @@ makeShp( ISosiElement* sosiTree ) {
 
     sosi::SosiTranslationTable ttbl;
 
-    std::map<sosi::ObjType,int> objTypes;
+    std::map<std::string,int> objTypes;
 
     sosi::SosiElementSearch src;
 
     while( sosiTree->getChild( src ) ) {
         ISosiElement* sosi = src.element();
-        sosi::ObjType objType = sosi->getObjType();
-        if( objType != sosi::sosi_objtype_unknown ) {
+        std::string objType = sosi->getObjType();
+        if( !objType.empty() ) {
             if( objTypes.find( objType ) == objTypes.end() ) {
                 objTypes[ objType ] = 1;
             }
@@ -47,22 +47,47 @@ makeShp( ISosiElement* sosiTree ) {
         sosi::sosi_element_curve,
         sosi::sosi_element_surface };
 
-    for( std::map<sosi::ObjType,int>::iterator i = objTypes.begin(); i != objTypes.end(); i++ ) {
+    if( objTypes.size() > 0 ) {
+        for( std::map<std::string,int>::iterator i = objTypes.begin(); i != objTypes.end(); i++ ) {
 
-        std::string objTypeName = ttbl.sosiTypeToObjName( i->first );
-        std::cout << "\rProcessing OBJTYPE " << objTypeName << "\n";
+            std::string objTypeName = i->first;
+            std::cout << "\rProcessing OBJTYPE " << objTypeName << "\n";
+
+            for( int j = 0; j < sizeof geometries; j++ ) {
+
+                sosi::ElementType geometry = geometries[ j ];
+                shape::Shapefile f;
+                std::string geometryName = ttbl.sosiTypeToName( geometry );
+                std::string basePath = makeBasePath( objTypeName + "_" + geometryName );
+
+                int count = f.build( sosiTree, i->first, geometry );
+
+                if( count > 0 ) {
+                    std::cout << "  (" << count << " elements of type " << geometryName << ")\n";
+                    writeFile<IShapefileShpPart>( f, basePath, "shp" );
+                    writeFile<IShapefileShxPart>( f, basePath, "shx" );
+                    writeFile<IShapefileDbfPart>( f, basePath, "dbf" );
+                    writeFile<IShapefilePrjPart>( f, basePath, "prj" );
+                }
+            }
+        }
+        std::cout << "\rProcessing OBJTYPEs done\n";
+    }
+    else {
+
+        std::cout << "\rProcessing GEOMETRIES \n";
 
         for( int j = 0; j < sizeof geometries; j++ ) {
 
-            sosi::ElementType geometry = geometries[ j ];
             shape::Shapefile f;
+            sosi::ElementType geometry = geometries[ j ];
             std::string geometryName = ttbl.sosiTypeToName( geometry );
-            std::string basePath = makeBasePath( objTypeName + "_" + geometryName );
+            std::string basePath = makeBasePath( geometryName );
 
-            int count = f.build( sosiTree, i->first, geometry );
+            int count = f.build( sosiTree, "", geometry );
 
             if( count > 0 ) {
-                std::cout << "      (" << count << " elements of type " << geometryName << ")\n";
+                std::cout << "  (" << count << " elements of type " << geometryName << ")\n";
                 writeFile<IShapefileShpPart>( f, basePath, "shp" );
                 writeFile<IShapefileShxPart>( f, basePath, "shx" );
                 writeFile<IShapefileDbfPart>( f, basePath, "dbf" );
@@ -70,7 +95,6 @@ makeShp( ISosiElement* sosiTree ) {
             }
         }
     }
-    std::cout << "\rProcessing OBJTYPEs done\n";
 }
 
 std::string sosicon::ConverterSosi2shp::

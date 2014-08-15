@@ -52,7 +52,7 @@ adjustMasterMbr( double xMin, double yMin, double xMax, double yMax ) {
 }
 
 int sosicon::shape::Shapefile::
-build( ISosiElement* sosiTree, sosi::ObjType selection, sosi::ElementType geomType ) {
+build( ISosiElement* sosiTree, std::string objType, sosi::ElementType geomType ) {
 
     int count = 0;
 
@@ -66,7 +66,7 @@ build( ISosiElement* sosiTree, sosi::ObjType selection, sosi::ElementType geomTy
 
         sosi = src.element();
 
-        if( selection == sosi->getObjType() ) {
+        if( objType.empty() || objType == sosi->getObjType() ) {
             if( sosi->getType() == geomType ) {
                 shapeTypeEquivalent = getShapeEquivalent( sosi->getType() );
                 buildShpElement( sosi, shapeTypeEquivalent );

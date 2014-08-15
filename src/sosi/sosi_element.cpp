@@ -34,7 +34,8 @@ SosiElement( std::string name, std::string serial, std::string data, int level, 
 void sosicon::sosi::SosiElement::
 addChild( ISosiElement* child ) {
     if( child->getType() == sosi::sosi_element_objtype ) {
-        mObjType = mTranslation.sosiObjNameToType( child->getData() );
+        mObjTypeStr = child->getData();
+        mObjType = mTranslation.sosiObjNameToType( mObjTypeStr );
     }
     mChildren.push_back( child );
 };

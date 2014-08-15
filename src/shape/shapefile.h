@@ -180,7 +180,7 @@ namespace sosicon {
             virtual ~Shapefile();
 
             //! Described in IShapefile
-            int build( ISosiElement* sosiTree, sosi::ObjType selection, sosi::ElementType geomType );
+            int build( ISosiElement* sosiTree, std::string objType, sosi::ElementType geomType );
 
             //! Described in IShapefileDbfPart
             virtual void writeDbf( std::ostream &os );

@@ -91,6 +91,9 @@ namespace sosicon {
             //! Current element's objtype
             ObjType mObjType;
 
+            //! Current element's objtype
+            std::string mObjTypeStr;
+
             //! Current element's serial number if provided
             std::string mSerial;
 
@@ -137,7 +140,7 @@ namespace sosicon {
             virtual int getLevel() { return mLevel; };
 
             //! Get ObjType of current element
-            virtual ObjType getObjType() { return mObjType; };
+            virtual std::string getObjType() { return mObjTypeStr; };
 
             //! Get name of current element
             virtual std::string getName() { return mName; };

@@ -68,7 +68,7 @@ namespace sosicon {
 
         virtual sosi::ElementType getType() = 0;
 
-        virtual sosi::ObjType getObjType() = 0;
+        virtual std::string getObjType() = 0;
 
         virtual ISosiElement* getRoot() = 0;
 

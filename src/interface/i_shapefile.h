@@ -55,7 +55,7 @@ namespace sosicon {
                        one must select what element type to extract from the SOSI file.
                 \return Number of elements exported.
              */
-            virtual int build( ISosiElement* sosiTree, sosi::ObjType selection, sosi::ElementType geomType ) = 0;
+            virtual int build( ISosiElement* sosiTree, std::string selection, sosi::ElementType geomType ) = 0;
 
     };
    /*! @} end group interfaces */
