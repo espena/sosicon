@@ -55,7 +55,10 @@ Use the -o parameter to specify optional output file basename:
 ## Build from source code
 
 ###Linux/OS X
-To build from source code, check out the git repository, enter the src directory and run `make`.
+You need g++ to compile sosicon. To build from source code, check out the git repository, enter the
+src directory and run `make`. There's no `configure` or `make install` yet. The binaries will be
+output to [bin/linux](https://github.com/espena/sosicon/tree/master/bin/linux) or
+<em>[bin/osx](https://github.com/espena/sosicon/tree/master/bin/osx)</em>.
 
 ###Windows
 Project files for Visual Studio is included in the repository. Open src/sosicon.sln solution
