@@ -58,17 +58,12 @@ sosicon::CoordinateCollection::
 
 void sosicon::CoordinateCollection::
 free() {
-    if( mCenterPoint ) {
-        mCenterPoint->free();
-        delete mCenterPoint;
-        mCenterPoint = 0;
-    }
     sosi::deleteNorthEasts( mGeom );
+    sosi::deleteNorthEasts( mHoles );
 }
 
 void sosicon::CoordinateCollection::
 discoverCoords( ISosiElement* e ) {
-    mCenterPoint = 0;
     switch( e->getType() ) {
         case sosi::sosi_element_surface:
             {
@@ -94,9 +89,18 @@ discoverCoords( ISosiElement* e ) {
 
                             }
                         }
-                        ( isHole ? mHoleSizes : mGeomSizes ).push_back( numPoints );
-                        ( isHole ? mNumPointsHoles : mNumPointsGeom ) += numPoints;
-                        ( isHole ? mNumPartsHoles : mNumPartsGeom ) ++;
+
+                        if( isHole ) {
+                            mHoleSizes.insert( mHoleSizes.begin(), numPoints );
+                            mNumPointsHoles += numPoints;
+                            mNumPartsHoles++;
+                        }
+                        else {
+                            mGeomSizes.insert( mGeomSizes.begin(), numPoints );
+                            mNumPointsGeom += numPoints;
+                            mNumPartsGeom++;
+                        }
+
                     }
                 }
             }
@@ -154,18 +158,51 @@ extractPath( ISosiElement* referencedElement,
     target.insert( target.begin(), tmpLst.begin(), tmpLst.end() );
 }
 
-sosicon::sosi::NorthEastList& sosicon::CoordinateCollection::
+std::vector<sosicon::ICoordinate*>& sosicon::CoordinateCollection::
 getGeom() {
-
+    mGeomNormalized.clear();
     for( sosi::NorthEastList::size_type i = 0; i < mGeom.size(); i++ ) {
-        
+        sosi::SosiNorthEast* ne = mGeom[ i ];
+        ICoordinate* c = 0;
+        while( ne->getNext( c ) ) {
+            mGeomNormalized.push_back( c );
+        }
     }
-
+    if( mGeomNormalized.size() > 1 ) {
+        if( mGeomNormalized[ 0 ]->rightOf( mGeomNormalized[ 1 ] ) ) {
+            std::reverse( mGeomNormalized.begin(), mGeomNormalized.end() );
+        }
+    }
+    return mGeomNormalized;
 }
 
-sosicon::sosi::NorthEastList& sosicon::CoordinateCollection::
+std::vector<sosicon::ICoordinate*>& sosicon::CoordinateCollection::
 getHoles() {
-    
+    mHolesNormalized.clear();
+    for( sosi::NorthEastList::size_type i = 0; i < mHoles.size(); i++ ) {
+        sosi::SosiNorthEast* ne = mHoles[ i ];
+        ICoordinate* c = 0;
+        while( ne->getNext( c ) ) {
+            mHolesNormalized.push_back( c );
+        }
+    }
+    if( mHolesNormalized.size() > 1 ) {
+        int p0 = 0;
+        int p1 = 0;
+        for( std::vector<int>::iterator i = mHoleSizes.begin(); i != mHoleSizes.end(); i++ ) {
+            int size = *i;
+            p1 += size;
+            if( size > 1 ) {
+                if( mHolesNormalized[ p0 ]->rightOf( mHolesNormalized[ p0 + 1 ] ) ) {
+                    std::reverse(
+                        mHolesNormalized.begin() + p0,
+                        p1 == mHolesNormalized.size() ? mHolesNormalized.end() : mHolesNormalized.begin() + p1 );
+                }
+            }
+            p0 += size;
+        }
+    }
+    return mHolesNormalized;
 }
 
 bool sosicon::CoordinateCollection::

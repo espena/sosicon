@@ -49,12 +49,12 @@ namespace sosicon {
      */
     class CoordinateCollection {
 
-        //! Stores feature's center point, if applicable
-        sosi::SosiNorthEast* mCenterPoint;
-
         //! Stores collection of pointers to coordinates for geometries
         sosi::NorthEastList mGeom;
+        std::vector<ICoordinate*> mGeomNormalized;
+
         sosi::NorthEastList mHoles;
+        std::vector<ICoordinate*> mHolesNormalized;
 
         int mNumPartsGeom;
         int mNumPartsHoles;
@@ -85,7 +85,6 @@ namespace sosicon {
 
         //! Constructor
         CoordinateCollection() :
-            mCenterPoint( 0 ),
             mXmin( +9999999999 ),
             mYmin( +9999999999 ),
             mXmax( -9999999999 ),
@@ -101,12 +100,12 @@ namespace sosicon {
         void discoverCoords( ISosiElement* sosi );
         bool getNextInGeom( ICoordinate*& coord );
 
-        sosi::NorthEastList& getGeom();
+        std::vector<ICoordinate*>& getGeom();
         std::vector<int>& getGeomSizes() { return mGeomSizes; };
         int getNumPointsGeom() { return mNumPointsGeom; };
         int getNumPartsGeom() { return mNumPartsGeom; };
 
-        sosi::NorthEastList& getHoles();
+        std::vector<ICoordinate*>& getHoles();
         std::vector<int>& getHoleSizes() { return mHoleSizes; };
         int getNumPointsHoles() { return mNumPointsHoles; };
         int getNumPartsHoles() { return mNumPartsHoles; };
