@@ -1,5 +1,5 @@
 
-/* #line 1 "ragel/sosi_north_east.rl" */
+/* #line 1 "D:\\Prosjekter\\sosicon\\src\\ragel\\sosi_north_east.rl" */
 /*
  *  This file is part of the command-line tool sosicon.
  *  Copyright (C) 2012  Espen Andersen
@@ -24,7 +24,7 @@ namespace sosicon {
 
     //! \cond 
     
-/* #line 28 "sosi_north_east_ragel.cpp" */
+/* #line 2 "D:\\Prosjekter\\sosicon\\src\\sosi_north_east_ragel.cpp" */
 static const char _parseCoordinateHeightCollection_actions[] = {
 	0, 1, 0, 1, 1, 1, 2, 1, 
 	3, 2, 2, 3, 2, 3, 0, 3, 
@@ -83,7 +83,7 @@ static const int parseCoordinateHeightCollection_error = 0;
 static const int parseCoordinateHeightCollection_en_main = 5;
 
 
-/* #line 27 "ragel/sosi_north_east.rl" */
+/* #line 27 "D:\\Prosjekter\\sosicon\\src\\ragel\\sosi_north_east.rl" */
 
     //! \endcond
 
@@ -109,12 +109,12 @@ ragelParseCoordinatesNe( std::string data )
     std::string coordE;
 
     
-/* #line 113 "sosi_north_east_ragel.cpp" */
+/* #line 59 "D:\\Prosjekter\\sosicon\\src\\sosi_north_east_ragel.cpp" */
 	{
 	cs = parseCoordinateHeightCollection_start;
 	}
 
-/* #line 118 "sosi_north_east_ragel.cpp" */
+/* #line 62 "D:\\Prosjekter\\sosicon\\src\\sosi_north_east_ragel.cpp" */
 	{
 	int _klen;
 	unsigned int _trans;
@@ -145,7 +145,7 @@ _resume:
 			else if ( (*p) > *_mid )
 				_lower = _mid + 1;
 			else {
-				_trans += (unsigned int)(_mid - _keys);
+				_trans += (_mid - _keys);
 				goto _match;
 			}
 		}
@@ -168,7 +168,7 @@ _resume:
 			else if ( (*p) > _mid[1] )
 				_lower = _mid + 2;
 			else {
-				_trans += (unsigned int)((_mid - _keys)>>1);
+				_trans += ((_mid - _keys)>>1);
 				goto _match;
 			}
 		}
@@ -189,32 +189,32 @@ _match:
 		switch ( *_acts++ )
 		{
 	case 0:
-/* #line 53 "ragel/sosi_north_east.rl" */
+/* #line 53 "D:\\Prosjekter\\sosicon\\src\\ragel\\sosi_north_east.rl" */
 	{
             tmp += (*p);
         }
 	break;
 	case 1:
-/* #line 57 "ragel/sosi_north_east.rl" */
+/* #line 57 "D:\\Prosjekter\\sosicon\\src\\ragel\\sosi_north_east.rl" */
 	{
             coordN = tmp;
             tmp = "";
         }
 	break;
 	case 2:
-/* #line 62 "ragel/sosi_north_east.rl" */
+/* #line 62 "D:\\Prosjekter\\sosicon\\src\\ragel\\sosi_north_east.rl" */
 	{
             coordE = tmp;
             tmp = "";
         }
 	break;
 	case 3:
-/* #line 67 "ragel/sosi_north_east.rl" */
+/* #line 67 "D:\\Prosjekter\\sosicon\\src\\ragel\\sosi_north_east.rl" */
 	{
             append( coordN, coordE );
         }
 	break;
-/* #line 218 "sosi_north_east_ragel.cpp" */
+/* #line 157 "D:\\Prosjekter\\sosicon\\src\\sosi_north_east_ragel.cpp" */
 		}
 	}
 
@@ -231,19 +231,19 @@ _again:
 	while ( __nacts-- > 0 ) {
 		switch ( *__acts++ ) {
 	case 2:
-/* #line 62 "ragel/sosi_north_east.rl" */
+/* #line 62 "D:\\Prosjekter\\sosicon\\src\\ragel\\sosi_north_east.rl" */
 	{
             coordE = tmp;
             tmp = "";
         }
 	break;
 	case 3:
-/* #line 67 "ragel/sosi_north_east.rl" */
+/* #line 67 "D:\\Prosjekter\\sosicon\\src\\ragel\\sosi_north_east.rl" */
 	{
             append( coordN, coordE );
         }
 	break;
-/* #line 247 "sosi_north_east_ragel.cpp" */
+/* #line 183 "D:\\Prosjekter\\sosicon\\src\\sosi_north_east_ragel.cpp" */
 		}
 	}
 	}
@@ -251,7 +251,7 @@ _again:
 	_out: {}
 	}
 
-/* #line 78 "ragel/sosi_north_east.rl" */
+/* #line 78 "D:\\Prosjekter\\sosicon\\src\\ragel\\sosi_north_east.rl" */
 
 
 };
