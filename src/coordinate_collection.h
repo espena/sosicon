@@ -40,6 +40,33 @@ namespace sosicon {
     //! Get next offset in part offsets list
     bool getNextOffset( int& offset, std::vector<int>& offsets, std::vector<int>::iterator& iterator );
 
+    //! Analyzes polygon direction
+    /*!
+        Checks a series of coordinates to see if they are ordered in a clockwise manner.
+        \param begin Iterator to the first item to be analyzed.
+        \param end Iterator to the end item, one item past the last one to be analyzed.
+        \return true if the coordinates are ordered clockwise.
+    */
+    bool isClockwise( std::vector<ICoordinate*>::iterator& begin, std::vector<ICoordinate*>::iterator& end );
+
+    //! Analyzes polygon direction
+    /*!
+        Checks a series of coordinates to see if they are ordered in a counter-clockwise manner.
+        \param begin Iterator to the first item to be analyzed.
+        \param end Iterator to the end item, one item past the last one to be analyzed.
+        \return true if the coordinates are ordered counter-clockwise.
+    */
+    bool isCounterClockwise( std::vector<ICoordinate*>::iterator& begin, std::vector<ICoordinate*>::iterator& end );
+
+    //! Extracts single coordinates from list of North-East elements
+    /*!
+        Converts a vector of NE elements to a vector of coordinates.
+
+        \param neList The source vector.
+        \param coordList The destination vector.
+    */
+    void neListToCoordList( sosi::NorthEastList& neList, std::vector<ICoordinate*>& coordList );
+
     //! Coordinate container
     /*!
         \author Espen Andersen
@@ -77,9 +104,6 @@ namespace sosicon {
                           bool reverse,
                           int& numPoints,
                           sosi::NorthEastList& target );
-
-        bool isClockwise( std::vector<ICoordinate*>::iterator& begin, std::vector<ICoordinate*>::iterator& end );
-        bool isCounterClockwise( std::vector<ICoordinate*>::iterator begin, std::vector<ICoordinate*>::iterator end ) { return end != ( begin + 2 ) ? false : !isClockwise( begin, end ); };
 
     public:
 

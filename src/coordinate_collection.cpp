@@ -51,6 +51,34 @@ getNextOffset( int& offset, std::vector<int>& offsets, std::vector<int>::iterato
     return true;
 }
 
+bool sosicon::
+isCounterClockwise( std::vector<ICoordinate*>::iterator& begin, std::vector<ICoordinate*>::iterator& end ) {
+    return end != ( begin + 2 ) ? false : !isClockwise( begin, end );
+}
+
+bool sosicon::
+isClockwise( std::vector<ICoordinate*>::iterator& begin, std::vector<ICoordinate*>::iterator& end ) {
+    double edgeSum = 0.0;
+    for( std::vector<ICoordinate*>::iterator i = begin; i != end; i++ ) {
+        ICoordinate* v1 = *i;
+        ICoordinate* v2 = *( i + 1 != end ? i + 1 : begin );
+        edgeSum += ( v2->getE() - v1->getE() ) * ( v2->getN() + v1->getN() );
+    }
+    return edgeSum > 0;
+}
+
+void sosicon::
+neListToCoordList( sosi::NorthEastList& neList, std::vector<ICoordinate*>& coordList ) {
+    coordList.clear();
+    for( sosi::NorthEastList::iterator i = neList.begin(); i != neList.end(); i++ ) {
+        sosi::SosiNorthEast* ne = *i;
+        ICoordinate* c = 0;
+        while( ne->getNext( c ) ) {
+            coordList.push_back( c );
+        }
+    }
+}
+
 sosicon::CoordinateCollection::
 ~CoordinateCollection() {
     free();
@@ -161,16 +189,12 @@ extractPath( ISosiElement* referencedElement,
 
 std::vector<sosicon::ICoordinate*>& sosicon::CoordinateCollection::
 getGeom() {
-    mGeomNormalized.clear();
-    for( sosi::NorthEastList::iterator i = mGeom.begin(); i != mGeom.end(); i++ ) {
-        sosi::SosiNorthEast* ne = *i;
-        ICoordinate* c = 0;
-        while( ne->getNext( c ) ) {
-            mGeomNormalized.push_back( c );
-        }
-    }
+
+    neListToCoordList( mGeom, mGeomNormalized );
     if( mGeomNormalized.size() > 1 ) {
-        if( isCounterClockwise( mGeomNormalized.begin(), mGeomNormalized.end() ) ) {
+        std::vector<ICoordinate*>::iterator i0 = mGeomNormalized.begin();
+        std::vector<ICoordinate*>::iterator i1 = mGeomNormalized.end();
+        if( isCounterClockwise( i0, i1 ) ) {
             std::reverse( mGeomNormalized.begin(), mGeomNormalized.end() );
         }
     }
@@ -179,14 +203,8 @@ getGeom() {
 
 std::vector<sosicon::ICoordinate*>& sosicon::CoordinateCollection::
 getHoles() {
-    mHolesNormalized.clear();
-    for( sosi::NorthEastList::iterator i = mHoles.begin(); i != mHoles.end(); i++ ) {
-        sosi::SosiNorthEast* ne = *i;
-        ICoordinate* c = 0;
-        while( ne->getNext( c ) ) {
-            mHolesNormalized.push_back( c );
-        }
-    }
+
+    neListToCoordList( mHoles, mHolesNormalized );
     if( mHolesNormalized.size() > 1 ) {
         int p0 = 0;
         int p1 = 0;
@@ -209,15 +227,4 @@ getHoles() {
 bool sosicon::CoordinateCollection::
 getNextInGeom( ICoordinate*& coord ) {
     return getNext( coord, mGeom, mGeomIndex );
-}
-
-bool sosicon::CoordinateCollection::
-isClockwise( std::vector<ICoordinate*>::iterator& begin, std::vector<ICoordinate*>::iterator& end ) {
-    double edgeSum = 0.0;
-    for( std::vector<ICoordinate*>::iterator i = begin; i != end; i++ ) {
-        ICoordinate* v1 = *i;
-        ICoordinate* v2 = *( i + 1 != end ? i + 1 : begin );
-        edgeSum += ( v2->getE() - v1->getE() ) * ( v2->getN() + v1->getN() );
-    }
-    return edgeSum > 0;
 }
