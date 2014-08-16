@@ -195,7 +195,7 @@ getHoles() {
             p1 += size;
             if( size > 1 ) {
                 std::vector<ICoordinate*>::iterator i0 = mHolesNormalized.begin() + p0;
-                std::vector<ICoordinate*>::iterator i1 = ( p1 < mHolesNormalized.size() ? mHolesNormalized.begin() + p1
+                std::vector<ICoordinate*>::iterator i1 = p1 < mHolesNormalized.size() ? mHolesNormalized.begin() + p1 : mHolesNormalized.end();
                 if( isClockwise( i0, i1 ) ) {
                     std::reverse( i0, i1 );
                 }
