@@ -42,12 +42,12 @@ namespace sosicon {
         http://www.complang.org/ragel/
         
         Specifically, the function parseSosiLine() is implemented in Ragel. The implementation
-        script is located in parser/parser_sosi_line.rl. The file parser_sosi_line.cpp is generated
-        on the basis of parser/parser_sosi_line.rl during pre-build processing.
+        script is located in parser/parser_sosi_line.rl. The file parser_ragel.cpp is generated
+        on the basis of parser/parser.rl during pre-build processing.
         
-        \note Since parser_sosi_line.cpp is automatically re-generated before each compile, no
-              redacting mat take place here. Any changes will be lost upon compile. Instead, its
-              source script parser/parser_sosi_line.rl have to be edited.
+        \note Since parser_ragel.cpp is automatically re-generated before each compile, no
+              redacting may take place here. Any changes will be lost upon compile. Instead, its
+              source script parser/parser_rl has to be edited.
     */
     class Parser {
 
