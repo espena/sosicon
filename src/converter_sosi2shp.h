@@ -52,6 +52,26 @@ namespace sosicon {
      */
     class ConverterSosi2shp : public IConverter {
 
+        //! Save specific shapefile part
+        /*!
+            The shapefile format consists of several files. Use corresponding interface to cast
+            a instance of IShapefile to the correct file part for writing. The shapefile parts
+            interfaces are:
+
+            - IShapefileShpPart
+            - IShapefileShxPart
+            - IShapefileDbfPart
+            - IShapefilePrjPart
+
+            \param shp Reference to the source ShapeFile instance.
+            \param basePath Path and file title for the file to be written, without extension.
+            \param extension additional file extensions to be appended before the main extension,
+                   which is one of the following:
+                   - shp (shapefile part)
+                   - shx (index part)
+                   - dbf (attributes part)
+                   - prj (projection part)
+        */
         template<typename T>
         void writeFile( shape::Shapefile& shp, std::string basePath, std::string extension ) {
             std::ofstream fs;

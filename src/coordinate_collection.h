@@ -35,7 +35,7 @@ namespace sosicon {
     typedef std::vector<ICoordinate*> CoordinateList;
 
     //! Get next coordinate in list
-    bool getNext( ICoordinate*& coord, sosi::NorthEastList& list, sosi::NorthEastList::size_type& index );
+    bool getNext( ICoordinate*& coord, sosi::NorthEastList& list, sosi::NorthEastList::iterator& i );
     
     //! Get next offset in part offsets list
     bool getNextOffset( int& offset, std::vector<int>& offsets, std::vector<int>::iterator& iterator );
@@ -65,20 +65,20 @@ namespace sosicon {
         std::vector<int> mGeomSizes;
         std::vector<int> mHoleSizes;
 
-        sosi::NorthEastList::size_type mGeomIndex;
+        sosi::NorthEastList::iterator mGeomIndex;
 
         double mXmin;
         double mYmin;
         double mXmax;
         double mYmax;
 
-        //! Get ccordinate values from SOSI element
+        //! Get coordinate values from SOSI element
         void extractPath( ISosiElement* referencedElement,
                           bool reverse,
                           int& numPoints,
                           sosi::NorthEastList& target );
 
-        bool isClockwise( std::vector<ICoordinate*>::iterator begin, std::vector<ICoordinate*>::iterator end );
+        bool isClockwise( std::vector<ICoordinate*>::iterator& begin, std::vector<ICoordinate*>::iterator& end );
         bool isCounterClockwise( std::vector<ICoordinate*>::iterator begin, std::vector<ICoordinate*>::iterator end ) { return end != ( begin + 2 ) ? false : !isClockwise( begin, end ); };
 
     public:
