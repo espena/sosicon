@@ -125,25 +125,30 @@ run() {
     Parser* pp;
     for( std::vector<std::string>::iterator f = mCmd->mSourceFiles.begin(); f != mCmd->mSourceFiles.end(); f++ ) {
         mCurrentSourcefile = *f;
-        std::cout << "Reading " << mCurrentSourcefile << "\n";
-        Parser p;
-        pp = &p;
-        char ln[ 1024 ];
-        std::ifstream ifs( ( mCurrentSourcefile ).c_str() );
-        int n = 0;
-        while( !ifs.eof() ) {
-            if( mCmd->mIsTtyOut && ++n % 100 == 0 ) {
-                std::cout << "\rParsing line " << n;
-            }
-            memset( ln, 0x00, sizeof ln );
-            ifs.getline( ln, sizeof ln );
-            p.ragelParseSosiLine( ln );
+        if( !utils::fileExists( mCurrentSourcefile ) ) {
+            std::cout << mCurrentSourcefile << " not found\n";
         }
-        p.complete();
-        ifs.close();
-        std::cout << "\r" << n << " lines parsed        \n";
-        std::cout << "Building shape file...\n";
-        ISosiElement* root = p.getRootElement();
-        makeShp( root );
+        else {
+            std::cout << "Reading " << mCurrentSourcefile << "\n";
+            Parser p;
+            pp = &p;
+            char ln[ 1024 ];
+            std::ifstream ifs( ( mCurrentSourcefile ).c_str() );
+            int n = 0;
+            while( !ifs.eof() ) {
+                if( mCmd->mIsTtyOut && ++n % 100 == 0 ) {
+                    std::cout << "\rParsing line " << n;
+                }
+                memset( ln, 0x00, sizeof ln );
+                ifs.getline( ln, sizeof ln );
+                p.ragelParseSosiLine( ln );
+            }
+            p.complete();
+            ifs.close();
+            std::cout << "\r" << n << " lines parsed        \n";
+            std::cout << "Building shape file...\n";
+            ISosiElement* root = p.getRootElement();
+            makeShp( root );
+        }
     }
 }
