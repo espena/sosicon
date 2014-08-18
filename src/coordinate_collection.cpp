@@ -206,8 +206,8 @@ getHoles() {
 
     neListToCoordList( mHoles, mHolesNormalized );
     if( mHolesNormalized.size() > 1 ) {
-        int p0 = 0;
-        int p1 = 0;
+        std::vector<ICoordinate*>::size_type p0 = 0;
+        std::vector<ICoordinate*>::size_type p1 = 0;
         for( std::vector<int>::iterator i = mHoleSizes.begin(); i != mHoleSizes.end(); i++ ) {
             int size = *i;
             p1 += size;
