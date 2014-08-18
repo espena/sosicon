@@ -71,11 +71,10 @@ build( ISosiElement* sosiTree, std::string objType, sosi::ElementType geomType )
                 shapeTypeEquivalent = getShapeEquivalent( sosi->getType() );
                 buildShpElement( sosi, shapeTypeEquivalent );
                 insertDbfRecord( sosi );
-                count++;
+                ++count;
             }
         }
     }
-
     if( count > 0 ) {
 
         buildShpHeader( shapeTypeEquivalent );
@@ -439,11 +438,22 @@ int sosicon::shape::Shapefile::
 expandShpBuffer( int byteLength ) {
 
     int offset = 0;
+    int chunkSize = 0;
+
+    if( 0 == mShpBufferSize ) {
+        chunkSize = 1024;
+    }
+    else if( mShpBufferSize < ( MAX_BUFFER_CHUNK_SIZE / 2 ) ) {
+        chunkSize = mShpBufferSize * 2;
+    }
+    else {
+        chunkSize = MAX_BUFFER_CHUNK_SIZE;
+    }
 
     if( 0 == mShpSize ) {
         mShpSize = byteLength;
         while( mShpBufferSize < mShpSize ) {
-            mShpBufferSize += BUFFER_CHUNK_SIZE;
+            mShpBufferSize += chunkSize;
         }
         try {
             mShpBuffer = new char [ mShpBufferSize ];
@@ -458,7 +468,7 @@ expandShpBuffer( int byteLength ) {
         mShpSize += byteLength;
         if( mShpBufferSize < mShpSize ) {
             while( mShpBufferSize < mShpSize ) {
-                mShpBufferSize += BUFFER_CHUNK_SIZE;
+                mShpBufferSize += chunkSize;
             }
             char* oldBuffer = mShpBuffer;
             try {

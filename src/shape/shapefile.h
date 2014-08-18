@@ -57,11 +57,11 @@ namespace sosicon {
 
             //! Buffer allocation size
             /*!
-                To speed things up, heap allocations are done in large chunks.
-                This parameters defines how many bytes to request for each
+                To speed things up, heap allocations are done in increasingly large
+                chunks. This parameters defines how many bytes to request for the largest
                 buffer expansion.
             */
-            static const int  BUFFER_CHUNK_SIZE = 4096;
+            static const int  MAX_BUFFER_CHUNK_SIZE = 262144;
 
             ISosiElement* mSosiTree;    //!< SOSI source
 
