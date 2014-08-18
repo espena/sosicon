@@ -18,28 +18,28 @@
 #include "main.h"
 
 int main ( int argc, char* argv[] ) {
-	
+
     std::ios_base::sync_with_stdio( 0 );
 
     sosicon::CommandLine cmd;
-	cmd.parse( argc, argv );
+    cmd.parse( argc, argv );
 
-	int res;
-	
-	try {
-		sosicon::IConverter* converter = 0;
-		sosicon::Factory::get( converter, &cmd );
-		if( converter ) {
-			converter->run();
-			sosicon::Factory::release( converter );
-		}
-		res = 0;
-	}
-	catch( std::exception ex ) {
-		std::cout << ex.what() << "\n";
-		res = -1;
-	}
-	
-	return res;
+    int res;
+
+    try {
+        sosicon::IConverter* converter = 0;
+        sosicon::Factory::get( converter, &cmd );
+        if( converter ) {
+            converter->run();
+            sosicon::Factory::release( converter );
+        }
+        res = 0;
+    }
+    catch( std::exception ex ) {
+        std::cout << ex.what() << "\n";
+        res = -1;
+    }
+
+    return res;
 
 }
