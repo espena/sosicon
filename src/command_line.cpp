@@ -28,10 +28,10 @@ CommandLine() {
     }
 #endif
     std::cout << "\n";
-    std::cout << "SOSI file conversion tool\n";
-    std::cout << "Author: Espen Andersen, NRK\n";
-    std::cout << "This software is licensed under the GNU General Public License.\n";
-    std::cout << "Please visit sosicon.espenandersen.no for details.\n";
+
+    std::cout << "Sosicon, Copyright (C) 2014 Espen Andersen.\n";
+    std::cout << "This program comes with ABSOLUTELY NO WARRANTY; for details type `sosicon -w'\n";
+    std::cout << "This is free software, and you are welcome to redistribute it under certain\nconditions; type `sosicon -c' for details.\n";
     std::cout << "\n";
 }
 
@@ -47,6 +47,7 @@ sosicon::CommandLine::
 void sosicon::CommandLine::
 parse( int argc, char* argv[] ) {
 
+    bool inputExpected = true;
     std::string inputLine = "";
     if( !mIsTtyIn ) {
         while( std::cin ) {
@@ -147,14 +148,27 @@ parse( int argc, char* argv[] ) {
                 mCommand = param;
             }
             else if( "-help" == param ) {
+                inputExpected = false;
                 mCommand = param;
                 outputHelpText();
+                break;
+            }
+            else if( "-w" == param ) {
+                inputExpected = false;
+                mCommand = param;
+                outputDisclaimer();
+                break;
+            }
+            else if( "-c" == param ) {
+                inputExpected = false;
+                mCommand = param;
+                outputLicense();
                 break;
             }
         }
     }
 
-    if( mCommand.empty() || ( mCommand != "-help" && mSourceFiles.size() == 0 ) ) {
+    if( mCommand.empty() || ( inputExpected && mSourceFiles.size() == 0 ) ) {
         std::cout << "Missing input parameters.\n";
         std::cout << "Type sosicon -help for instructions.\n\n";
         return;
@@ -183,5 +197,16 @@ outputHelpText() {
     std::cout << "\n";
 }
 
+void sosicon::CommandLine::
+outputDisclaimer() {
+    std::cout << "\n";
+    std::cout << "Disclaimer here\n";
+    std::cout << "\n";
+}
 
-
+void sosicon::CommandLine::
+outputLicense() {
+    std::cout << "\n";
+    std::cout << "License information here\n";
+    std::cout << "\n";
+}

@@ -142,6 +142,18 @@ namespace sosicon {
          */
         void outputHelpText();
 
+        //! Display disclaimer
+        /*!
+            Outputs disclaimer text.
+         */
+        void outputDisclaimer();
+
+        //! Display license
+        /*!
+            Outputs lisence text.
+         */
+        void outputLicense();
+
         //! Read command-line arguments
         /*!
             Parses the command-line arguments and loads the settings into the member variables.
