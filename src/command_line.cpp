@@ -69,6 +69,9 @@ parse( int argc, char* argv[] ) {
             if( "-a" == param ) {
                 mAppend = true;
             }
+            else if( "-id" == param && argc > ( ++i ) ) {
+                mFilterSosiId = argv[ i ];
+            }
             else if( "-d" == param && argc > ( ++i ) ) {
                 mDestinationDirectory = argv[ i ];
             }

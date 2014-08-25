@@ -63,27 +63,29 @@ namespace sosicon {
             */
             static const int  MAX_BUFFER_CHUNK_SIZE = 262144;
 
-            ISosiElement* mSosiTree;    //!< SOSI source
+            ISosiElement* mSosiTree;   //!< SOSI source
 
-            char mShpHeader[ 100 ]; //!< Main SHP file header
-            char* mShpBuffer;       //!< SHP file payload
-            int mShpSize;           //!< Data length of SHP file buffer
-            int mShpBufferSize;     //!< Allocated buffer length
+            char mShpHeader[ 100 ];    //!< Main SHP file header
+            char* mShpBuffer;          //!< SHP file payload
+            int mShpSize;              //!< Data length of SHP file buffer
+            int mShpBufferSize;        //!< Allocated buffer length
 
-            char mShxHeader[ 100 ]; //!< Index file header
-            char* mShxBuffer;       //!< Index file payload
-            int mShxBufferSize;     //!< Length of SHX file buffer
+            char mShxHeader[ 100 ];    //!< Index file header
+            char* mShxBuffer;          //!< Index file payload
+            int mShxBufferSize;        //!< Length of SHX file buffer
 
-            char mDbfHeader[ 32 ];  //!< dBase file header
-            char* mDbfBuffer;       //!< dBase file payload
-            int mDbfBufferSize;     //!< Length of dBase file buffer
+            char mDbfHeader[ 32 ];     //!< dBase file header
+            char* mDbfBuffer;          //!< dBase file payload
+            int mDbfBufferSize;        //!< Length of dBase file buffer
 
-            int mRecordNumber;      //!< Number of current record in process
+            std::string mFilterSosiId; //!< ID of single SOSI element to be exported, if specified
 
-            double mXmin;           //!< Minimum bounding rectangle, min X
-            double mYmin;           //!< Minimum bounding rectangle, min Y
-            double mXmax;           //!< Minimum bounding rectangle, max X
-            double mYmax;           //!< Minimum bounding rectangle, max Y
+            int mRecordNumber;         //!< Number of current record in process
+
+            double mXmin;              //!< Minimum bounding rectangle, min X
+            double mYmin;              //!< Minimum bounding rectangle, min Y
+            double mXmax;              //!< Minimum bounding rectangle, max X
+            double mYmax;              //!< Minimum bounding rectangle, max Y
 
             DbfFieldLengths mDbfFieldLengths; //!< Accumulation of DBF fields and their lenghts
             DbfRecordSet mDbfRecordSet;       //!< All DBF records
@@ -180,7 +182,9 @@ namespace sosicon {
             virtual ~Shapefile();
 
             //! Described in IShapefile
-            int build( ISosiElement* sosiTree, std::string objType, sosi::ElementType geomType );
+            virtual int build( ISosiElement* sosiTree, std::string objType, sosi::ElementType geomType );
+
+            virtual void filterSosiId( std::string sosiId ) { mFilterSosiId = sosiId; };
 
             //! Described in IShapefileDbfPart
             virtual void writeDbf( std::ostream &os );

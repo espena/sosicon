@@ -57,6 +57,9 @@ makeShp( ISosiElement* sosiTree ) {
 
                 sosi::ElementType geometry = geometries[ j ];
                 shape::Shapefile f;
+                if( !mCmd->mFilterSosiId.empty() ) {
+                    f.filterSosiId( mCmd->mFilterSosiId );
+                }
                 std::string geometryName = ttbl.sosiTypeToName( geometry );
                 std::string basePath = makeBasePath( objTypeName + "_" + geometryName );
 

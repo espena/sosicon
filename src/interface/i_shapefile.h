@@ -57,6 +57,9 @@ namespace sosicon {
              */
             virtual int build( ISosiElement* sosiTree, std::string selection, sosi::ElementType geomType ) = 0;
 
+            //! Set ID for single-element export
+            virtual void filterSosiId( std::string sosiId ) = 0;
+
     };
    /*! @} end group interfaces */
 }; // namespace sosicon

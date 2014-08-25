@@ -135,7 +135,13 @@ namespace sosicon {
             more comprehensive summary of every SOSI element in all source files will be output.
          */
         int  mVerbose;
-        
+
+        //! Export single SOSI element
+        /*!
+            SOSI ID of single element/feature to be exported.
+         */
+        std::string mFilterSosiId;
+
         //! Display help text
         /*!
             Outputs simple help text to the command-line.
