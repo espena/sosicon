@@ -22,6 +22,7 @@
 #include "converter_sosi2shp.h"
 #include "converter_sosi2xml.h"
 #include "converter_sosi2tsv.h"
+#include "converter_sosi2psql.h"
 #include "converter_sosi_stat.h"
 
 namespace sosicon {

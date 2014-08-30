@@ -35,7 +35,7 @@ object types (OBJTYPE).
 
 To convert a SOSI file to shape, run Sosicon from the directory where the SOSI file
 resides. Use the -2shp parameter to emit the three required files: Shape file (shp), database
-file (dbf) and index file (shx). A projection fils (prj) will also be created if the
+file (dbf) and index file (shx). A projection file (prj) will also be created if the
 reference grid is recognized by Sosicon.
 
 `sosicon -2shp input.sos`
@@ -83,7 +83,7 @@ Ragel was designed and written by Adrian Thurston and released under the
 on the excellent work of Thurston and [his team of contributors](http://www.complang.org/ragel/CREDITS).
 
 ## License and disclaimer
-Sosicon is written by Espen Andersen at the Norwegian Broadcast Corporation, and released under the [GNU General Public License](http://www.gnu.org/licenses/gpl.txt).
+Sosicon is written by Espen Andersen, and released under the [GNU General Public License](http://www.gnu.org/licenses/gpl.txt).
 
 This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 

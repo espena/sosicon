@@ -33,6 +33,7 @@ SOURCEFILES =										\
 				converter_sosi2shp.cpp				\
 				converter_sosi2xml.cpp				\
 				converter_sosi2tsv.cpp				\
+				converter_sosi2psql.cpp				\
 				converter_sosi_stat.cpp				\
 				coordinate_collection.cpp			\
 				parser.cpp							\
