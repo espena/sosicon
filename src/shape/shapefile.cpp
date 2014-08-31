@@ -284,17 +284,17 @@ buildShpRecHeaderCommonPart( int& pos, int contentLength, ShapeType type ) {
 void sosicon::shape::Shapefile::
 buildDbf() {
 
-    Int16Field recordLength;
-    recordLength.i = 1; // Deleted flag == 1 byte
+    int recLen;
+    recLen = 1; // Deleted flag == 1 byte
     for( DbfFieldLengths::iterator i = mDbfFieldLengths.begin(); i != mDbfFieldLengths.end(); i++ ) {
-        recordLength.i += i->second;
+        recLen += i->second;
     }
 
     mDbfBufferSize =
 
         /* Field description array */ ( mDbfFieldLengths.size() * 32 ) +
         /* Terminator              */   1 +
-        /* Record structure        */ ( recordLength.i * mDbfRecordSet.size() ) +
+        /* Record structure        */ ( recLen * mDbfRecordSet.size() ) +
         /* EOF                     */   1 ;
 
     try {
@@ -307,12 +307,12 @@ buildDbf() {
     }
 
     // Header
-    buildDbfHeader( recordLength );
+    buildDbfHeader( recLen );
 
     // Payload buffer
     int pos = 0;
     buildDbfFieldDescriptor( pos );
-    buildDbfRecordSection( pos, recordLength.i );
+    buildDbfRecordSection( pos, recLen );
 }
 
 void sosicon::shape::Shapefile::
@@ -347,9 +347,10 @@ buildDbfFieldDescriptor( int& pos ) {
 }
 
 void sosicon::shape::Shapefile::
-buildDbfHeader( Int16Field recordLength ) {
+buildDbfHeader( int recLen ) {
 
     Int16Field headerLength;
+    Int16Field recordLength = { recLen };
     headerLength.i =
         /* Fixed header size       */   sizeof( mDbfHeader ) +
         /* Field description array */ ( mDbfFieldLengths.size() * 32 ) +
@@ -378,12 +379,12 @@ buildDbfHeader( Int16Field recordLength ) {
 }
 
 void sosicon::shape::Shapefile::
-buildDbfRecordSection( int& pos, int recordLength ) {
+buildDbfRecordSection( int& pos, int recLen ) {
 
     for( DbfRecordSet::iterator i = mDbfRecordSet.begin(); i != mDbfRecordSet.end(); i++ ) {
         char* recordBuffer = 0;
         try {
-            recordBuffer = new char[ recordLength ];
+            recordBuffer = new char[ recLen ];
         }
         catch( ... ) {
             std::cout << "Memory allocation error\n";
@@ -404,9 +405,9 @@ buildDbfRecordSection( int& pos, int recordLength ) {
             std::copy( sz, sz + fieldLength, &recordBuffer[ fldOffset ] );
             fldOffset += fieldLength;
         }
-        std::copy( recordBuffer, recordBuffer + recordLength, &mDbfBuffer[ pos ] );
+        std::copy( recordBuffer, recordBuffer + recLen, &mDbfBuffer[ pos ] );
         delete [ ] recordBuffer;
-        pos += recordLength;
+        pos += recLen;
     }
     // End of file
     mDbfBuffer[ pos ] = 0x1a;
@@ -519,11 +520,11 @@ insertDbfRecord( ISosiElement* sosi ) {
 }
 
 void sosicon::shape::Shapefile::
-insertShxOffset( int contentLength ) {
+insertShxOffset( int contentLen ) {
 
     ShxIndex shxIndex;
     shxIndex.offset.i = 50 + ( mShpSize / 2 );
-    shxIndex.length.i = contentLength;
+    shxIndex.length.i = contentLen;
 
     mShxOffsets.push_back( shxIndex );
 }

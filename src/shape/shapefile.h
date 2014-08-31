@@ -118,8 +118,9 @@ namespace sosicon {
 
             //! Populate shape header struct
             /*!
-                Creates master file header for SHP and SHX file parts.
-                \param type The shape type in current file.
+                Creates master file header for SHP and SHX file parts and writes it
+                to the DBF header buffer Shapefile::mDbfHeader.
+                \param type The shape type for current file.
             */
             void buildShpHeader( ShapeType type );
 
@@ -153,7 +154,7 @@ namespace sosicon {
                 provided CoordinateCollection and update buffer position.
                 \param pos Reference to an integer holding current position within
                            the shapefile buffer Shapefile::mShpBuffer. The position
-                           is updated to reflect the new "free" position after
+                           is updated to reflect the first "free" position after
                            writing to the buffer.
                 \param cc The coordinate collection from which the first coordinate
                           pair is to be extracted.
@@ -166,38 +167,140 @@ namespace sosicon {
                 update buffer position.
                 \param pos Reference to an integer holding current position within
                            the shapefile buffer Shapefile::mShpBuffer. The position
-                           is updated to reflect the new "free" position after
+                           is updated to reflect the first "free" position after
                            writing to the buffer.
                 \param c The coordinate to be written to the buffer.
             */
             void buildShpRecCoordinate( int& pos, ICoordinate* c );
 
             //! Write multiple coordinate pairs to shapefile buffer
+            /*!
+                Build shapefile coordinate from a collection of coordinate pairs and
+                update buffer position.
+                \param pos Reference to an integer holding current position within
+                           the shapefile buffer Shapefile::mShpBuffer. The position
+                           is updated to reflect the first "free" position after
+                           writing to the buffer.
+                \param cc The coordinate collection to be written to the buffer.
+            */
             void buildShpRecCoordinates( int& pos, CoordinateCollection& cc );
 
             //! Create shapefile record header, common part
+            /*!
+                The first part of the shapefile record header are common for all
+                geometry types. This method writes the common part to the buffer.
+                \see Shapefile::buildShpRecHeaderExtended
+                \param pos Reference to an integer holding current position within
+                           the shapefile buffer Shapefile::mShpBuffer. The position
+                           is updated to reflect the first "free" position after
+                           writing to the buffer.
+                \param contentLength Length of the record in 16-bit words, record
+                                     header not included.
+                \param type The shape type for current file.
+            */
             void buildShpRecHeaderCommonPart( int& pos, int contentLength, ShapeType type );
 
-            //! Create shapefile record header, multipoint/polyLine/polygon part
+            //! Create shapefile record header, extended part
+            /*!
+                For multipoint, polyLine and polygon. This is the second part of the
+                shapefile record header.
+                \see Shapefile::buildShpRecHeaderCommonPart
+                \param pos Reference to an integer holding current position within
+                           the shapefile buffer Shapefile::mShpBuffer. The position
+                           is updated to reflect the first "free" position after
+                           writing to the buffer.
+                \param cc The coordinate collection containing the points for the
+                          geometry in current record.
+            */
             void buildShpRecHeaderExtended( int& pos, CoordinateCollection& cc );
 
             //! Create shapefile record header, offsets
+            /*!
+                The shapefile record header includes a list of offsets to the various
+                parts of the geometry. Applicable to polygons where the main
+                outline is the first part and subsequent parts denotes holes or islands.
+                This method constructs the list of offset values for the multipart
+                geometry and writes it to the shapefile buffer.
+                \param pos Reference to an integer holding current position within
+                           the shapefile buffer Shapefile::mShpBuffer. The position
+                           is updated to reflect the first "free" position after
+                           writing to the buffer.
+                \param cc The coordinate collection containing the points for the
+                          multi-part geometry in current record.
+            */
             void buildShpRecHeaderOffsets( int& pos, CoordinateCollection& cc );
 
             //! Create DBF file content
+            /*!
+                Part of DBF creation.
+                Creates the dBase file content for current shapefile. Populates
+                \see Shapefile::buildDbfHeader
+                \see Shapefile::buildDbfFieldDescriptor
+                \see Shapefile::buildDbfRecordSection
+                Shapefile::mDbfBuffer.
+            */
             void buildDbf();
 
             //! Create DBF field descriptor
+            /*!
+                Part of DBF creation.
+                Iterates through individual fields found in current dataset and
+                creates a field descriptor header for the following dBase records.
+                \see Shapefile::buildDbf
+                \see Shapefile::buildDbfHeader
+                \see Shapefile::buildDbfRecordSection
+                \param pos Reference to an integer holding current position within
+                           the shapefile buffer Shapefile::mShpBuffer. The position
+                           is updated to reflect the first "free" position after
+                           writing to the buffer.
+            */
             void buildDbfFieldDescriptor( int& pos );
             
             //! Create DBF header
-            void buildDbfHeader( Int16Field recordLength );
+            /*!
+                Part of DBF creation.
+                Creates dBase file header and writes it to Shapefile::mDbfHeader.
+                \see Shapefile::buildDbf
+                \see Shapefile::buildDbfFieldDescriptor
+                \see Shapefile::buildDbfRecordSection
+                \param recLen Length of a single record, in bytes.
+            */
+            void buildDbfHeader( int recLen );
 
             //! Create DBF records
-            void buildDbfRecordSection( int& pos, int recordLength );
+            /*!
+                Part of DBF creation.
+                Iterates through all records and writes each one to the DBF buffer
+                Shapefile::mDbfBuffer.
+                \see Shapefile::buildDbf
+                \see Shapefile::buildDbfFieldDescriptor
+                \see Shapefile::buildDbfHeader
+                \param pos Reference to an integer holding current position within
+                           the shapefile buffer Shapefile::mShpBuffer. The position
+                           is updated to reflect the first "free" position after
+                           writing to the buffer.
+                \param recLen Length of a single record, in bytes.
+            */
+            void buildDbfRecordSection( int& pos, int recLen );
 
             //! Create SHX file content
+            /*!
+                Part of SHX index creation.
+                Builds the shapefile index from the Shapefile::mShxOffsets entries and
+                writes it to the SHX buffer Shapefile::mShxBuffer and the SHX header
+                Shapefile::mShxHeader.
+                \see Shapefile::insertShxOffset
+            */
             void buildShx();
+
+            //! Append offset value to SHX (index)
+            /*!
+                For each shapefile record, it's offset within the main file is pushed
+                to the Shapefile::mShxOffsets vector.
+                \param contentLen Length of the shapefile record content, in 16-bit
+                                  words, record header not included.
+            */
+            void insertShxOffset( int contentLen );
 
             //! Expand shp payload buffer
             int expandShpBuffer( int byteLength );
@@ -207,9 +310,6 @@ namespace sosicon {
 
             //! Create and insert DBF record
             void insertDbfRecord( ISosiElement* sosi );
-
-            //! Append offset value to SHX (index)
-            void insertShxOffset( int contentLength );
 
             //! Shapefile polys must have clockwise-ordered vertices
             std::vector<ICoordinate*> getNormalized( sosi::NorthEastList& neLst );
