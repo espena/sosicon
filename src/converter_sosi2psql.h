@@ -34,10 +34,10 @@ namespace sosicon {
         \addtogroup converters
         @{
     */
-    //! SOSI to TSV converter
+    //! SOSI to PostGreSQL converter
     /*!
-        If command-line parameter -2tsv is specified, this converter will handle the output
-        generation. Produces a TSV file (tab separated values) SOSI source.
+        If command-line parameter -2psql is specified, this converter will handle the output
+        generation. Produces a PostGreSQL dump file from the SOSI source(s).
      */
     class ConverterSosi2psql : public IConverter {
 
@@ -47,6 +47,7 @@ namespace sosicon {
         //! Souce file currently in process
         std::string mCurrentSourcefile;
 
+        //! Make SQL dump from SOSI tree
         void makePsql( ISosiElement* sosiTree );
 
         //! Destructor
@@ -59,6 +60,7 @@ namespace sosicon {
         //! Initialize converter
         /*!
             Implementation details in sosicon::IConverter::init()
+            \param cmd Pointer to (the one and only) CommandLine instance.
             \sa sosicon::IConverter::init()
          */
         virtual void init( CommandLine* cmd ) { mCmd = cmd; };

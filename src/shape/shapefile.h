@@ -93,40 +93,96 @@ namespace sosicon {
             ShxOffsets mShxOffsets;           //!< Index file offsets
 
             //! Expand MBR to contain Coordinate collection
+            /*!
+                The minimum bounding rectangle (MBR) for all geometries in current
+                file is stored in members Shapefile::mXmin, Shapefile::mYmin,
+                Shapefile::mXmax and Shapefile::mYmax.
+                This method expands the MBR to fit provided coordinates.
+                \param xMin Minimum X coordinate of geometry to be included i MBR.
+                \param yMin Minimum Y coordinate of geometry to be included i MBR.
+                \param xMAx Maximum X coordinate of geometry to be included i MBR.
+                \param yMax Maximum Y coordinate of geometry to be included i MBR.
+            */
             void adjustMasterMbr( double xMin, double yMin, double xMax, double yMax );
 
             //! Create SHP element
+            /*!
+                If a shapefile equivalent to current SOSI element exists, this method
+                creates the low-level shape data structure and writes it to the output
+                buffer Shapefile::mShpBuffer.
+                \param sosi Pointer to SOSI element to be converted to shape.
+                \param type Type of Shapefile geometry equivalent to the
+                            SOSI element to be converted.
+            */
             void buildShpElement( ISosiElement* sosi, ShapeType type );
 
             //! Populate shape header struct
+            /*!
+                Creates master file header for SHP and SHX file parts.
+                \param type The shape type in current file.
+            */
             void buildShpHeader( ShapeType type );
 
             //! Build shape element: Point
+            /*!
+                Inserts a single point into the shapefile buffer.
+                \param cc CoordinateCollection containing one or more points. Only the
+                          first point in the collection will be handled.
+            */
             void buildShpPoint( CoordinateCollection& cc );
 
             //! Build shape element: Polygon
+            /*!
+                Inserts a polygon into the shapefile buffer.
+                \param cc CoordinateCollection containing three or more points,
+                          defining the polygon and holes.
+            */
             void buildShpPolygon( CoordinateCollection& cc );
 
             //! Build shape element: PolyLine
+            /*!
+                Inserts a polyLine into the shapefile buffer.
+                \param cc CoordinateCollection containing two or more points,
+                          defining the polyLine.
+            */
             void buildShpPolyLine( CoordinateCollection& cc );
 
             //! Write first coordinate pair in collection to shapefile buffer
-            void buildShpRecCoordinate( int& o, CoordinateCollection& cc );
+            /*!
+                Build shapefile coordinate from the first coordinate pair in the
+                provided CoordinateCollection and update buffer position.
+                \param pos Reference to an integer holding current position within
+                           the shapefile buffer Shapefile::mShpBuffer. The position
+                           is updated to reflect the new "free" position after
+                           writing to the buffer.
+                \param cc The coordinate collection from which the first coordinate
+                          pair is to be extracted.
+            */
+            void buildShpRecCoordinate( int& pos, CoordinateCollection& cc );
 
             //! Write coordinate pair to shapefile buffer
-            void buildShpRecCoordinate( int& o, ICoordinate* c );
+            /*!
+                Build shapefile coordinate from the provided coordinate pair and
+                update buffer position.
+                \param pos Reference to an integer holding current position within
+                           the shapefile buffer Shapefile::mShpBuffer. The position
+                           is updated to reflect the new "free" position after
+                           writing to the buffer.
+                \param c The coordinate to be written to the buffer.
+            */
+            void buildShpRecCoordinate( int& pos, ICoordinate* c );
 
             //! Write multiple coordinate pairs to shapefile buffer
-            void buildShpRecCoordinates( int& o, CoordinateCollection& cc );
+            void buildShpRecCoordinates( int& pos, CoordinateCollection& cc );
 
             //! Create shapefile record header, common part
-            void buildShpRecHeaderCommonPart( int& o, int contentLength, ShapeType type );
+            void buildShpRecHeaderCommonPart( int& pos, int contentLength, ShapeType type );
 
             //! Create shapefile record header, multipoint/polyLine/polygon part
-            void buildShpRecHeaderExtended( int& o, CoordinateCollection& cc );
+            void buildShpRecHeaderExtended( int& pos, CoordinateCollection& cc );
 
             //! Create shapefile record header, offsets
-            void buildShpRecHeaderOffsets( int& o, CoordinateCollection& cc );
+            void buildShpRecHeaderOffsets( int& pos, CoordinateCollection& cc );
 
             //! Create DBF file content
             void buildDbf();

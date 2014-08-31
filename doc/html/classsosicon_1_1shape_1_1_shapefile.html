@@ -92,9 +92,12 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:add71bcf08fe9aa118ae0fab4599971b9"><td class="memItemLeft" align="right" valign="top">virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classsosicon_1_1shape_1_1_shapefile.html#add71bcf08fe9aa118ae0fab4599971b9">~Shapefile</a> ()</td></tr>
 <tr class="memdesc:add71bcf08fe9aa118ae0fab4599971b9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Destructor.  <a href="#add71bcf08fe9aa118ae0fab4599971b9">More...</a><br /></td></tr>
 <tr class="separator:add71bcf08fe9aa118ae0fab4599971b9"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a95ae0567878bbc1e57c04716814b098c"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classsosicon_1_1shape_1_1_shapefile.html#a95ae0567878bbc1e57c04716814b098c">build</a> (<a class="el" href="classsosicon_1_1_i_sosi_element.html">ISosiElement</a> *sosiTree, std::string objType, <a class="el" href="group__sosi__elements.html#ga52dbaad3d1e20075608257e866b0a7ca">sosi::ElementType</a> geomType)</td></tr>
+<tr class="memitem:a95ae0567878bbc1e57c04716814b098c"><td class="memItemLeft" align="right" valign="top">virtual int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classsosicon_1_1shape_1_1_shapefile.html#a95ae0567878bbc1e57c04716814b098c">build</a> (<a class="el" href="classsosicon_1_1_i_sosi_element.html">ISosiElement</a> *sosiTree, std::string objType, <a class="el" href="group__sosi__elements.html#ga52dbaad3d1e20075608257e866b0a7ca">sosi::ElementType</a> geomType)</td></tr>
 <tr class="memdesc:a95ae0567878bbc1e57c04716814b098c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Described in <a class="el" href="classsosicon_1_1_i_shapefile.html" title="Interface: Shapefile. ">IShapefile</a>.  <a href="#a95ae0567878bbc1e57c04716814b098c">More...</a><br /></td></tr>
 <tr class="separator:a95ae0567878bbc1e57c04716814b098c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5733ee00dd4e18f8261b3ae75483b08f"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classsosicon_1_1shape_1_1_shapefile.html#a5733ee00dd4e18f8261b3ae75483b08f">filterSosiId</a> (std::string sosiId)</td></tr>
+<tr class="memdesc:a5733ee00dd4e18f8261b3ae75483b08f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Described in <a class="el" href="classsosicon_1_1_i_shapefile.html" title="Interface: Shapefile. ">IShapefile</a>.  <a href="#a5733ee00dd4e18f8261b3ae75483b08f">More...</a><br /></td></tr>
+<tr class="separator:a5733ee00dd4e18f8261b3ae75483b08f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a02d975380017ffc0c3ff644583932a6a"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classsosicon_1_1shape_1_1_shapefile.html#a02d975380017ffc0c3ff644583932a6a">writeDbf</a> (std::ostream &amp;os)</td></tr>
 <tr class="memdesc:a02d975380017ffc0c3ff644583932a6a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Described in <a class="el" href="classsosicon_1_1_i_shapefile_dbf_part.html" title="Interface: ShapefileDbfPart. ">IShapefileDbfPart</a>.  <a href="#a02d975380017ffc0c3ff644583932a6a">More...</a><br /></td></tr>
 <tr class="separator:a02d975380017ffc0c3ff644583932a6a"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -151,24 +154,24 @@ Private Member Functions</h2></td></tr>
 <tr class="memitem:a22476c7bb55f7d5f9948507e2146e7a0"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classsosicon_1_1shape_1_1_shapefile.html#a22476c7bb55f7d5f9948507e2146e7a0">buildShpPolyLine</a> (<a class="el" href="classsosicon_1_1_coordinate_collection.html">CoordinateCollection</a> &amp;cc)</td></tr>
 <tr class="memdesc:a22476c7bb55f7d5f9948507e2146e7a0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Build shape element: PolyLine.  <a href="#a22476c7bb55f7d5f9948507e2146e7a0">More...</a><br /></td></tr>
 <tr class="separator:a22476c7bb55f7d5f9948507e2146e7a0"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a69a63951d38d7b47ebc503bf3a0ea9c1"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classsosicon_1_1shape_1_1_shapefile.html#a69a63951d38d7b47ebc503bf3a0ea9c1">buildShpRecCoordinate</a> (int &amp;o, <a class="el" href="classsosicon_1_1_coordinate_collection.html">CoordinateCollection</a> &amp;cc)</td></tr>
-<tr class="memdesc:a69a63951d38d7b47ebc503bf3a0ea9c1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Write first coordinate pair in collection to shapefile buffer.  <a href="#a69a63951d38d7b47ebc503bf3a0ea9c1">More...</a><br /></td></tr>
-<tr class="separator:a69a63951d38d7b47ebc503bf3a0ea9c1"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad0055ca9e43081b7c7e95904ed434b67"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classsosicon_1_1shape_1_1_shapefile.html#ad0055ca9e43081b7c7e95904ed434b67">buildShpRecCoordinate</a> (int &amp;o, <a class="el" href="classsosicon_1_1_i_coordinate.html">ICoordinate</a> *c)</td></tr>
-<tr class="memdesc:ad0055ca9e43081b7c7e95904ed434b67"><td class="mdescLeft">&#160;</td><td class="mdescRight">Write coordinate pair to shapefile buffer.  <a href="#ad0055ca9e43081b7c7e95904ed434b67">More...</a><br /></td></tr>
-<tr class="separator:ad0055ca9e43081b7c7e95904ed434b67"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a47e2f126552cf9f59814388cccb177dc"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classsosicon_1_1shape_1_1_shapefile.html#a47e2f126552cf9f59814388cccb177dc">buildShpRecCoordinates</a> (int &amp;o, <a class="el" href="classsosicon_1_1_coordinate_collection.html">CoordinateCollection</a> &amp;cc)</td></tr>
-<tr class="memdesc:a47e2f126552cf9f59814388cccb177dc"><td class="mdescLeft">&#160;</td><td class="mdescRight">Write multiple coordinate pairs to shapefile buffer.  <a href="#a47e2f126552cf9f59814388cccb177dc">More...</a><br /></td></tr>
-<tr class="separator:a47e2f126552cf9f59814388cccb177dc"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:acadc26511da8290e3c9581a8b59b585f"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classsosicon_1_1shape_1_1_shapefile.html#acadc26511da8290e3c9581a8b59b585f">buildShpRecHeaderCommonPart</a> (int &amp;o, int contentLength, <a class="el" href="namespacesosicon_1_1shape.html#a4a7f54467dc93b98564b38b2f6eb9f75">ShapeType</a> type)</td></tr>
-<tr class="memdesc:acadc26511da8290e3c9581a8b59b585f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Create shapefile record header, common part.  <a href="#acadc26511da8290e3c9581a8b59b585f">More...</a><br /></td></tr>
-<tr class="separator:acadc26511da8290e3c9581a8b59b585f"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a3200578830bf1024f27e713cb95034d7"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classsosicon_1_1shape_1_1_shapefile.html#a3200578830bf1024f27e713cb95034d7">buildShpRecHeaderExtended</a> (int &amp;o, <a class="el" href="classsosicon_1_1_coordinate_collection.html">CoordinateCollection</a> &amp;cc)</td></tr>
-<tr class="memdesc:a3200578830bf1024f27e713cb95034d7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Create shapefile record header, multipoint/polyLine/polygon part.  <a href="#a3200578830bf1024f27e713cb95034d7">More...</a><br /></td></tr>
-<tr class="separator:a3200578830bf1024f27e713cb95034d7"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac64676eb5c663b176f0140c67ee8072a"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classsosicon_1_1shape_1_1_shapefile.html#ac64676eb5c663b176f0140c67ee8072a">buildShpRecHeaderOffsets</a> (int &amp;o, <a class="el" href="classsosicon_1_1_coordinate_collection.html">CoordinateCollection</a> &amp;cc)</td></tr>
-<tr class="memdesc:ac64676eb5c663b176f0140c67ee8072a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Create shapefile record header, offsets.  <a href="#ac64676eb5c663b176f0140c67ee8072a">More...</a><br /></td></tr>
-<tr class="separator:ac64676eb5c663b176f0140c67ee8072a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a68c912cf38eec83e26342cb9587b4f8f"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classsosicon_1_1shape_1_1_shapefile.html#a68c912cf38eec83e26342cb9587b4f8f">buildShpRecCoordinate</a> (int &amp;pos, <a class="el" href="classsosicon_1_1_coordinate_collection.html">CoordinateCollection</a> &amp;cc)</td></tr>
+<tr class="memdesc:a68c912cf38eec83e26342cb9587b4f8f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Write first coordinate pair in collection to shapefile buffer.  <a href="#a68c912cf38eec83e26342cb9587b4f8f">More...</a><br /></td></tr>
+<tr class="separator:a68c912cf38eec83e26342cb9587b4f8f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab98dc66f0d5c708ebb6916b1353e8ab9"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classsosicon_1_1shape_1_1_shapefile.html#ab98dc66f0d5c708ebb6916b1353e8ab9">buildShpRecCoordinate</a> (int &amp;pos, <a class="el" href="classsosicon_1_1_i_coordinate.html">ICoordinate</a> *c)</td></tr>
+<tr class="memdesc:ab98dc66f0d5c708ebb6916b1353e8ab9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Write coordinate pair to shapefile buffer.  <a href="#ab98dc66f0d5c708ebb6916b1353e8ab9">More...</a><br /></td></tr>
+<tr class="separator:ab98dc66f0d5c708ebb6916b1353e8ab9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4698ee8c9446807614d6ad394b560c4e"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classsosicon_1_1shape_1_1_shapefile.html#a4698ee8c9446807614d6ad394b560c4e">buildShpRecCoordinates</a> (int &amp;pos, <a class="el" href="classsosicon_1_1_coordinate_collection.html">CoordinateCollection</a> &amp;cc)</td></tr>
+<tr class="memdesc:a4698ee8c9446807614d6ad394b560c4e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Write multiple coordinate pairs to shapefile buffer.  <a href="#a4698ee8c9446807614d6ad394b560c4e">More...</a><br /></td></tr>
+<tr class="separator:a4698ee8c9446807614d6ad394b560c4e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ace95e0be21cd4d04e3532697e1c11523"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classsosicon_1_1shape_1_1_shapefile.html#ace95e0be21cd4d04e3532697e1c11523">buildShpRecHeaderCommonPart</a> (int &amp;pos, int contentLength, <a class="el" href="namespacesosicon_1_1shape.html#a4a7f54467dc93b98564b38b2f6eb9f75">ShapeType</a> type)</td></tr>
+<tr class="memdesc:ace95e0be21cd4d04e3532697e1c11523"><td class="mdescLeft">&#160;</td><td class="mdescRight">Create shapefile record header, common part.  <a href="#ace95e0be21cd4d04e3532697e1c11523">More...</a><br /></td></tr>
+<tr class="separator:ace95e0be21cd4d04e3532697e1c11523"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3a78351df96304c6315bcbcd46e23f03"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classsosicon_1_1shape_1_1_shapefile.html#a3a78351df96304c6315bcbcd46e23f03">buildShpRecHeaderExtended</a> (int &amp;pos, <a class="el" href="classsosicon_1_1_coordinate_collection.html">CoordinateCollection</a> &amp;cc)</td></tr>
+<tr class="memdesc:a3a78351df96304c6315bcbcd46e23f03"><td class="mdescLeft">&#160;</td><td class="mdescRight">Create shapefile record header, multipoint/polyLine/polygon part.  <a href="#a3a78351df96304c6315bcbcd46e23f03">More...</a><br /></td></tr>
+<tr class="separator:a3a78351df96304c6315bcbcd46e23f03"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0877af86d2a47c199917101dfc4ffe7a"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classsosicon_1_1shape_1_1_shapefile.html#a0877af86d2a47c199917101dfc4ffe7a">buildShpRecHeaderOffsets</a> (int &amp;pos, <a class="el" href="classsosicon_1_1_coordinate_collection.html">CoordinateCollection</a> &amp;cc)</td></tr>
+<tr class="memdesc:a0877af86d2a47c199917101dfc4ffe7a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Create shapefile record header, offsets.  <a href="#a0877af86d2a47c199917101dfc4ffe7a">More...</a><br /></td></tr>
+<tr class="separator:a0877af86d2a47c199917101dfc4ffe7a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab872f2eee5f9ddb1732779869e4e0321"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classsosicon_1_1shape_1_1_shapefile.html#ab872f2eee5f9ddb1732779869e4e0321">buildDbf</a> ()</td></tr>
 <tr class="memdesc:ab872f2eee5f9ddb1732779869e4e0321"><td class="mdescLeft">&#160;</td><td class="mdescRight">Create DBF file content.  <a href="#ab872f2eee5f9ddb1732779869e4e0321">More...</a><br /></td></tr>
 <tr class="separator:ab872f2eee5f9ddb1732779869e4e0321"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -208,6 +211,12 @@ Private Attributes</h2></td></tr>
 <tr class="memitem:a11619bf8c3e30f81ca74b3e05745b74b"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classsosicon_1_1_i_sosi_element.html">ISosiElement</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classsosicon_1_1shape_1_1_shapefile.html#a11619bf8c3e30f81ca74b3e05745b74b">mSosiTree</a></td></tr>
 <tr class="memdesc:a11619bf8c3e30f81ca74b3e05745b74b"><td class="mdescLeft">&#160;</td><td class="mdescRight">SOSI source.  <a href="#a11619bf8c3e30f81ca74b3e05745b74b">More...</a><br /></td></tr>
 <tr class="separator:a11619bf8c3e30f81ca74b3e05745b74b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aaa80014c199864a4b9075a7c3c9c35e7"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classsosicon_1_1shape_1_1_shapefile.html#aaa80014c199864a4b9075a7c3c9c35e7">mFilterSosiId</a></td></tr>
+<tr class="memdesc:aaa80014c199864a4b9075a7c3c9c35e7"><td class="mdescLeft">&#160;</td><td class="mdescRight">ID of single SOSI element to be exported, if specified.  <a href="#aaa80014c199864a4b9075a7c3c9c35e7">More...</a><br /></td></tr>
+<tr class="separator:aaa80014c199864a4b9075a7c3c9c35e7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abe84eee6570a837a50f1b5d25e3637a4"><td class="memItemLeft" align="right" valign="top">std::vector&lt; std::string &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classsosicon_1_1shape_1_1_shapefile.html#abe84eee6570a837a50f1b5d25e3637a4">mFilterSosiObjTypes</a></td></tr>
+<tr class="memdesc:abe84eee6570a837a50f1b5d25e3637a4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Objtypes of selected elements to be exported, if specified.  <a href="#abe84eee6570a837a50f1b5d25e3637a4">More...</a><br /></td></tr>
+<tr class="separator:abe84eee6570a837a50f1b5d25e3637a4"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aab149a56ce09b1ad9b396526125192ce"><td class="memItemLeft" align="right" valign="top">char&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classsosicon_1_1shape_1_1_shapefile.html#aab149a56ce09b1ad9b396526125192ce">mShpHeader</a> [100]</td></tr>
 <tr class="memdesc:aab149a56ce09b1ad9b396526125192ce"><td class="mdescLeft">&#160;</td><td class="mdescRight">Main SHP file header.  <a href="#aab149a56ce09b1ad9b396526125192ce">More...</a><br /></td></tr>
 <tr class="separator:aab149a56ce09b1ad9b396526125192ce"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -265,9 +274,9 @@ Private Attributes</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pri-static-attribs"></a>
 Static Private Attributes</h2></td></tr>
-<tr class="memitem:a2d1b4a168191445eacb755458cfed062"><td class="memItemLeft" align="right" valign="top">static const int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classsosicon_1_1shape_1_1_shapefile.html#a2d1b4a168191445eacb755458cfed062">BUFFER_CHUNK_SIZE</a></td></tr>
-<tr class="memdesc:a2d1b4a168191445eacb755458cfed062"><td class="mdescLeft">&#160;</td><td class="mdescRight">Buffer allocation size.  <a href="#a2d1b4a168191445eacb755458cfed062">More...</a><br /></td></tr>
-<tr class="separator:a2d1b4a168191445eacb755458cfed062"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:acfbc20cac145dc5fe233253ce4d3c974"><td class="memItemLeft" align="right" valign="top">static const int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classsosicon_1_1shape_1_1_shapefile.html#acfbc20cac145dc5fe233253ce4d3c974">MAX_BUFFER_CHUNK_SIZE</a></td></tr>
+<tr class="memdesc:acfbc20cac145dc5fe233253ce4d3c974"><td class="mdescLeft">&#160;</td><td class="mdescRight">Buffer allocation size.  <a href="#acfbc20cac145dc5fe233253ce4d3c974">More...</a><br /></td></tr>
+<tr class="separator:acfbc20cac145dc5fe233253ce4d3c974"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p><a class="el" href="classsosicon_1_1shape_1_1_shapefile.html" title="Shapefile implementation. ">Shapefile</a> implementation. </p>
@@ -299,7 +308,7 @@ Static Private Attributes</h2></td></tr>
 
 <p>Constructor. </p>
 
-<p>Definition at line <a class="el" href="shapefile_8h_source.html#l00164">164</a> of file <a class="el" href="shapefile_8h_source.html">shapefile.h</a>.</p>
+<p>Definition at line <a class="el" href="shapefile_8h_source.html#l00223">223</a> of file <a class="el" href="shapefile_8h_source.html">shapefile.h</a>.</p>
 
 </div>
 </div>
@@ -376,6 +385,15 @@ Static Private Attributes</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Expand MBR to contain <a class="el" href="classsosicon_1_1_coordinate.html" title="Coordinate container. ">Coordinate</a> collection. </p>
+<p>The minimum bounding rectangle (MBR) for all geometries in current file is stored in members <a class="el" href="classsosicon_1_1shape_1_1_shapefile.html#a556a05775bf377bd73218a7b7f8466d8" title="Minimum bounding rectangle, min X. ">Shapefile::mXmin</a>, <a class="el" href="classsosicon_1_1shape_1_1_shapefile.html#a53e94df26c0d8ade5faac4630acc5d92" title="Minimum bounding rectangle, min Y. ">Shapefile::mYmin</a>, <a class="el" href="classsosicon_1_1shape_1_1_shapefile.html#a1a71dd5275f21e0d5d7fa565215a8dd4" title="Minimum bounding rectangle, max X. ">Shapefile::mXmax</a> and <a class="el" href="classsosicon_1_1shape_1_1_shapefile.html#a6e9ea8a5faacb2df0ada4ec78fce07ad" title="Minimum bounding rectangle, max Y. ">Shapefile::mYmax</a>. This method expands the MBR to fit provided coordinates. </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">xMin</td><td>Minimum X coordinate of geometry to be included i MBR. </td></tr>
+    <tr><td class="paramname">yMin</td><td>Minimum Y coordinate of geometry to be included i MBR. </td></tr>
+    <tr><td class="paramname">xMAx</td><td>Maximum X coordinate of geometry to be included i MBR. </td></tr>
+    <tr><td class="paramname">yMax</td><td>Maximum Y coordinate of geometry to be included i MBR. </td></tr>
+  </table>
+  </dd>
+</dl>
 
 <p>Definition at line <a class="el" href="shapefile_8cpp_source.html#l00047">47</a> of file <a class="el" href="shapefile_8cpp_source.html">shapefile.cpp</a>.</p>
 
@@ -450,7 +468,7 @@ Static Private Attributes</h2></td></tr>
 
 <p>Create DBF file content. </p>
 
-<p>Definition at line <a class="el" href="shapefile_8cpp_source.html#l00283">283</a> of file <a class="el" href="shapefile_8cpp_source.html">shapefile.cpp</a>.</p>
+<p>Definition at line <a class="el" href="shapefile_8cpp_source.html#l00285">285</a> of file <a class="el" href="shapefile_8cpp_source.html">shapefile.cpp</a>.</p>
 
 </div>
 </div>
@@ -478,7 +496,7 @@ Static Private Attributes</h2></td></tr>
 
 <p>Create DBF field descriptor. </p>
 
-<p>Definition at line <a class="el" href="shapefile_8cpp_source.html#l00317">317</a> of file <a class="el" href="shapefile_8cpp_source.html">shapefile.cpp</a>.</p>
+<p>Definition at line <a class="el" href="shapefile_8cpp_source.html#l00319">319</a> of file <a class="el" href="shapefile_8cpp_source.html">shapefile.cpp</a>.</p>
 
 </div>
 </div>
@@ -506,7 +524,7 @@ Static Private Attributes</h2></td></tr>
 
 <p>Create DBF header. </p>
 
-<p>Definition at line <a class="el" href="shapefile_8cpp_source.html#l00348">348</a> of file <a class="el" href="shapefile_8cpp_source.html">shapefile.cpp</a>.</p>
+<p>Definition at line <a class="el" href="shapefile_8cpp_source.html#l00350">350</a> of file <a class="el" href="shapefile_8cpp_source.html">shapefile.cpp</a>.</p>
 
 </div>
 </div>
@@ -544,7 +562,7 @@ Static Private Attributes</h2></td></tr>
 
 <p>Create DBF records. </p>
 
-<p>Definition at line <a class="el" href="shapefile_8cpp_source.html#l00379">379</a> of file <a class="el" href="shapefile_8cpp_source.html">shapefile.cpp</a>.</p>
+<p>Definition at line <a class="el" href="shapefile_8cpp_source.html#l00381">381</a> of file <a class="el" href="shapefile_8cpp_source.html">shapefile.cpp</a>.</p>
 
 </div>
 </div>
@@ -581,8 +599,15 @@ Static Private Attributes</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Create SHP element. </p>
+<p>If a shapefile equivalent to current SOSI element exists, this method creates the low-level shape data structure and writes it to the output buffer <a class="el" href="classsosicon_1_1shape_1_1_shapefile.html#a532b03ab78124f9705901cdebfe25fea" title="SHP file payload. ">Shapefile::mShpBuffer</a>. </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">sosi</td><td>Pointer to SOSI element to be converted to shape. </td></tr>
+    <tr><td class="paramname">type</td><td>Type of <a class="el" href="classsosicon_1_1shape_1_1_shapefile.html" title="Shapefile implementation. ">Shapefile</a> geometry equivalent to the SOSI element to be converted. </td></tr>
+  </table>
+  </dd>
+</dl>
 
-<p>Definition at line <a class="el" href="shapefile_8cpp_source.html#l00127">127</a> of file <a class="el" href="shapefile_8cpp_source.html">shapefile.cpp</a>.</p>
+<p>Definition at line <a class="el" href="shapefile_8cpp_source.html#l00131">131</a> of file <a class="el" href="shapefile_8cpp_source.html">shapefile.cpp</a>.</p>
 
 </div>
 </div>
@@ -609,8 +634,14 @@ Static Private Attributes</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Populate shape header struct. </p>
+<p>Creates master file header for SHP and SHX file parts. </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">type</td><td>The shape type in current file. </td></tr>
+  </table>
+  </dd>
+</dl>
 
-<p>Definition at line <a class="el" href="shapefile_8cpp_source.html#l00092">92</a> of file <a class="el" href="shapefile_8cpp_source.html">shapefile.cpp</a>.</p>
+<p>Definition at line <a class="el" href="shapefile_8cpp_source.html#l00096">96</a> of file <a class="el" href="shapefile_8cpp_source.html">shapefile.cpp</a>.</p>
 
 </div>
 </div>
@@ -637,8 +668,14 @@ Static Private Attributes</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Build shape element: Point. </p>
+<p>Inserts a single point into the shapefile buffer. </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">cc</td><td><a class="el" href="classsosicon_1_1_coordinate_collection.html" title="Coordinate container. ">CoordinateCollection</a> containing one or more points. Only the first point in the collection will be handled. </td></tr>
+  </table>
+  </dd>
+</dl>
 
-<p>Definition at line <a class="el" href="shapefile_8cpp_source.html#l00152">152</a> of file <a class="el" href="shapefile_8cpp_source.html">shapefile.cpp</a>.</p>
+<p>Definition at line <a class="el" href="shapefile_8cpp_source.html#l00156">156</a> of file <a class="el" href="shapefile_8cpp_source.html">shapefile.cpp</a>.</p>
 
 </div>
 </div>
@@ -665,8 +702,14 @@ Static Private Attributes</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Build shape element: Polygon. </p>
+<p>Inserts a polygon into the shapefile buffer. </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">cc</td><td><a class="el" href="classsosicon_1_1_coordinate_collection.html" title="Coordinate container. ">CoordinateCollection</a> containing three or more points, defining the polygon and holes. </td></tr>
+  </table>
+  </dd>
+</dl>
 
-<p>Definition at line <a class="el" href="shapefile_8cpp_source.html#l00174">174</a> of file <a class="el" href="shapefile_8cpp_source.html">shapefile.cpp</a>.</p>
+<p>Definition at line <a class="el" href="shapefile_8cpp_source.html#l00178">178</a> of file <a class="el" href="shapefile_8cpp_source.html">shapefile.cpp</a>.</p>
 
 </div>
 </div>
@@ -693,12 +736,18 @@ Static Private Attributes</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Build shape element: PolyLine. </p>
+<p>Inserts a polyLine into the shapefile buffer. </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">cc</td><td><a class="el" href="classsosicon_1_1_coordinate_collection.html" title="Coordinate container. ">CoordinateCollection</a> containing two or more points, defining the polyLine. </td></tr>
+  </table>
+  </dd>
+</dl>
 
-<p>Definition at line <a class="el" href="shapefile_8cpp_source.html#l00162">162</a> of file <a class="el" href="shapefile_8cpp_source.html">shapefile.cpp</a>.</p>
+<p>Definition at line <a class="el" href="shapefile_8cpp_source.html#l00166">166</a> of file <a class="el" href="shapefile_8cpp_source.html">shapefile.cpp</a>.</p>
 
 </div>
 </div>
-<a class="anchor" id="a69a63951d38d7b47ebc503bf3a0ea9c1"></a>
+<a class="anchor" id="a68c912cf38eec83e26342cb9587b4f8f"></a>
 <div class="memitem">
 <div class="memproto">
 <table class="mlabels">
@@ -709,7 +758,7 @@ Static Private Attributes</h2></td></tr>
           <td class="memname">void sosicon::shape::Shapefile::buildShpRecCoordinate </td>
           <td>(</td>
           <td class="paramtype">int &amp;&#160;</td>
-          <td class="paramname"><em>o</em>, </td>
+          <td class="paramname"><em>pos</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
@@ -731,12 +780,19 @@ Static Private Attributes</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Write first coordinate pair in collection to shapefile buffer. </p>
+<p>Build shapefile coordinate from the first coordinate pair in the provided <a class="el" href="classsosicon_1_1_coordinate_collection.html" title="Coordinate container. ">CoordinateCollection</a> and update buffer position. </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">pos</td><td>Reference to an integer holding current position within the shapefile buffer <a class="el" href="classsosicon_1_1shape_1_1_shapefile.html#a532b03ab78124f9705901cdebfe25fea" title="SHP file payload. ">Shapefile::mShpBuffer</a>. The position is updated to reflect the new "free" position after writing to the buffer. </td></tr>
+    <tr><td class="paramname">cc</td><td>The coordinate collection from which the first coordinate pair is to be extracted. </td></tr>
+  </table>
+  </dd>
+</dl>
 
-<p>Definition at line <a class="el" href="shapefile_8cpp_source.html#l00186">186</a> of file <a class="el" href="shapefile_8cpp_source.html">shapefile.cpp</a>.</p>
+<p>Definition at line <a class="el" href="shapefile_8cpp_source.html#l00190">190</a> of file <a class="el" href="shapefile_8cpp_source.html">shapefile.cpp</a>.</p>
 
 </div>
 </div>
-<a class="anchor" id="ad0055ca9e43081b7c7e95904ed434b67"></a>
+<a class="anchor" id="ab98dc66f0d5c708ebb6916b1353e8ab9"></a>
 <div class="memitem">
 <div class="memproto">
 <table class="mlabels">
@@ -747,7 +803,7 @@ Static Private Attributes</h2></td></tr>
           <td class="memname">void sosicon::shape::Shapefile::buildShpRecCoordinate </td>
           <td>(</td>
           <td class="paramtype">int &amp;&#160;</td>
-          <td class="paramname"><em>o</em>, </td>
+          <td class="paramname"><em>pos</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
@@ -769,12 +825,19 @@ Static Private Attributes</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Write coordinate pair to shapefile buffer. </p>
+<p>Build shapefile coordinate from the provided coordinate pair and update buffer position. </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">pos</td><td>Reference to an integer holding current position within the shapefile buffer <a class="el" href="classsosicon_1_1shape_1_1_shapefile.html#a532b03ab78124f9705901cdebfe25fea" title="SHP file payload. ">Shapefile::mShpBuffer</a>. The position is updated to reflect the new "free" position after writing to the buffer. </td></tr>
+    <tr><td class="paramname">c</td><td>The coordinate to be written to the buffer. </td></tr>
+  </table>
+  </dd>
+</dl>
 
-<p>Definition at line <a class="el" href="shapefile_8cpp_source.html#l00197">197</a> of file <a class="el" href="shapefile_8cpp_source.html">shapefile.cpp</a>.</p>
+<p>Definition at line <a class="el" href="shapefile_8cpp_source.html#l00199">199</a> of file <a class="el" href="shapefile_8cpp_source.html">shapefile.cpp</a>.</p>
 
 </div>
 </div>
-<a class="anchor" id="a47e2f126552cf9f59814388cccb177dc"></a>
+<a class="anchor" id="a4698ee8c9446807614d6ad394b560c4e"></a>
 <div class="memitem">
 <div class="memproto">
 <table class="mlabels">
@@ -785,7 +848,7 @@ Static Private Attributes</h2></td></tr>
           <td class="memname">void sosicon::shape::Shapefile::buildShpRecCoordinates </td>
           <td>(</td>
           <td class="paramtype">int &amp;&#160;</td>
-          <td class="paramname"><em>o</em>, </td>
+          <td class="paramname"><em>pos</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
@@ -808,11 +871,11 @@ Static Private Attributes</h2></td></tr>
 
 <p>Write multiple coordinate pairs to shapefile buffer. </p>
 
-<p>Definition at line <a class="el" href="shapefile_8cpp_source.html#l00205">205</a> of file <a class="el" href="shapefile_8cpp_source.html">shapefile.cpp</a>.</p>
+<p>Definition at line <a class="el" href="shapefile_8cpp_source.html#l00207">207</a> of file <a class="el" href="shapefile_8cpp_source.html">shapefile.cpp</a>.</p>
 
 </div>
 </div>
-<a class="anchor" id="acadc26511da8290e3c9581a8b59b585f"></a>
+<a class="anchor" id="ace95e0be21cd4d04e3532697e1c11523"></a>
 <div class="memitem">
 <div class="memproto">
 <table class="mlabels">
@@ -823,7 +886,7 @@ Static Private Attributes</h2></td></tr>
           <td class="memname">void sosicon::shape::Shapefile::buildShpRecHeaderCommonPart </td>
           <td>(</td>
           <td class="paramtype">int &amp;&#160;</td>
-          <td class="paramname"><em>o</em>, </td>
+          <td class="paramname"><em>pos</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
@@ -852,11 +915,11 @@ Static Private Attributes</h2></td></tr>
 
 <p>Create shapefile record header, common part. </p>
 
-<p>Definition at line <a class="el" href="shapefile_8cpp_source.html#l00264">264</a> of file <a class="el" href="shapefile_8cpp_source.html">shapefile.cpp</a>.</p>
+<p>Definition at line <a class="el" href="shapefile_8cpp_source.html#l00266">266</a> of file <a class="el" href="shapefile_8cpp_source.html">shapefile.cpp</a>.</p>
 
 </div>
 </div>
-<a class="anchor" id="a3200578830bf1024f27e713cb95034d7"></a>
+<a class="anchor" id="a3a78351df96304c6315bcbcd46e23f03"></a>
 <div class="memitem">
 <div class="memproto">
 <table class="mlabels">
@@ -867,7 +930,7 @@ Static Private Attributes</h2></td></tr>
           <td class="memname">void sosicon::shape::Shapefile::buildShpRecHeaderExtended </td>
           <td>(</td>
           <td class="paramtype">int &amp;&#160;</td>
-          <td class="paramname"><em>o</em>, </td>
+          <td class="paramname"><em>pos</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
@@ -890,11 +953,11 @@ Static Private Attributes</h2></td></tr>
 
 <p>Create shapefile record header, multipoint/polyLine/polygon part. </p>
 
-<p>Definition at line <a class="el" href="shapefile_8cpp_source.html#l00217">217</a> of file <a class="el" href="shapefile_8cpp_source.html">shapefile.cpp</a>.</p>
+<p>Definition at line <a class="el" href="shapefile_8cpp_source.html#l00219">219</a> of file <a class="el" href="shapefile_8cpp_source.html">shapefile.cpp</a>.</p>
 
 </div>
 </div>
-<a class="anchor" id="ac64676eb5c663b176f0140c67ee8072a"></a>
+<a class="anchor" id="a0877af86d2a47c199917101dfc4ffe7a"></a>
 <div class="memitem">
 <div class="memproto">
 <table class="mlabels">
@@ -905,7 +968,7 @@ Static Private Attributes</h2></td></tr>
           <td class="memname">void sosicon::shape::Shapefile::buildShpRecHeaderOffsets </td>
           <td>(</td>
           <td class="paramtype">int &amp;&#160;</td>
-          <td class="paramname"><em>o</em>, </td>
+          <td class="paramname"><em>pos</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
@@ -928,7 +991,7 @@ Static Private Attributes</h2></td></tr>
 
 <p>Create shapefile record header, offsets. </p>
 
-<p>Definition at line <a class="el" href="shapefile_8cpp_source.html#l00243">243</a> of file <a class="el" href="shapefile_8cpp_source.html">shapefile.cpp</a>.</p>
+<p>Definition at line <a class="el" href="shapefile_8cpp_source.html#l00245">245</a> of file <a class="el" href="shapefile_8cpp_source.html">shapefile.cpp</a>.</p>
 
 </div>
 </div>
@@ -955,7 +1018,7 @@ Static Private Attributes</h2></td></tr>
 
 <p>Create SHX file content. </p>
 
-<p>Definition at line <a class="el" href="shapefile_8cpp_source.html#l00414">414</a> of file <a class="el" href="shapefile_8cpp_source.html">shapefile.cpp</a>.</p>
+<p>Definition at line <a class="el" href="shapefile_8cpp_source.html#l00416">416</a> of file <a class="el" href="shapefile_8cpp_source.html">shapefile.cpp</a>.</p>
 
 </div>
 </div>
@@ -983,7 +1046,7 @@ Static Private Attributes</h2></td></tr>
 
 <p>Expand shp payload buffer. </p>
 
-<p>Definition at line <a class="el" href="shapefile_8cpp_source.html#l00439">439</a> of file <a class="el" href="shapefile_8cpp_source.html">shapefile.cpp</a>.</p>
+<p>Definition at line <a class="el" href="shapefile_8cpp_source.html#l00441">441</a> of file <a class="el" href="shapefile_8cpp_source.html">shapefile.cpp</a>.</p>
 
 </div>
 </div>
@@ -1021,7 +1084,37 @@ Static Private Attributes</h2></td></tr>
 
 <p>Recursive func to extract SOSI field data. </p>
 
-<p>Definition at line <a class="el" href="shapefile_8cpp_source.html#l00479">479</a> of file <a class="el" href="shapefile_8cpp_source.html">shapefile.cpp</a>.</p>
+<p>Definition at line <a class="el" href="shapefile_8cpp_source.html#l00492">492</a> of file <a class="el" href="shapefile_8cpp_source.html">shapefile.cpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a5733ee00dd4e18f8261b3ae75483b08f"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual void sosicon::shape::Shapefile::filterSosiId </td>
+          <td>(</td>
+          <td class="paramtype">std::string&#160;</td>
+          <td class="paramname"><em>sosiId</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Described in <a class="el" href="classsosicon_1_1_i_shapefile.html" title="Interface: Shapefile. ">IShapefile</a>. </p>
+
+<p>Implements <a class="el" href="classsosicon_1_1_i_shapefile.html#ad9400d46937c003085a3c8c873e6aac3">sosicon::IShapefile</a>.</p>
+
+<p>Definition at line <a class="el" href="shapefile_8h_source.html#l00245">245</a> of file <a class="el" href="shapefile_8h_source.html">shapefile.h</a>.</p>
 
 </div>
 </div>
@@ -1075,7 +1168,7 @@ Static Private Attributes</h2></td></tr>
 
 <p>Create and insert DBF record. </p>
 
-<p>Definition at line <a class="el" href="shapefile_8cpp_source.html#l00498">498</a> of file <a class="el" href="shapefile_8cpp_source.html">shapefile.cpp</a>.</p>
+<p>Definition at line <a class="el" href="shapefile_8cpp_source.html#l00511">511</a> of file <a class="el" href="shapefile_8cpp_source.html">shapefile.cpp</a>.</p>
 
 </div>
 </div>
@@ -1103,7 +1196,7 @@ Static Private Attributes</h2></td></tr>
 
 <p>Append offset value to SHX (index) </p>
 
-<p>Definition at line <a class="el" href="shapefile_8cpp_source.html#l00509">509</a> of file <a class="el" href="shapefile_8cpp_source.html">shapefile.cpp</a>.</p>
+<p>Definition at line <a class="el" href="shapefile_8cpp_source.html#l00522">522</a> of file <a class="el" href="shapefile_8cpp_source.html">shapefile.cpp</a>.</p>
 
 </div>
 </div>
@@ -1147,7 +1240,7 @@ Static Private Attributes</h2></td></tr>
 
 <p>Update or insert new DBF field. </p>
 
-<p>Definition at line <a class="el" href="shapefile_8cpp_source.html#l00519">519</a> of file <a class="el" href="shapefile_8cpp_source.html">shapefile.cpp</a>.</p>
+<p>Definition at line <a class="el" href="shapefile_8cpp_source.html#l00532">532</a> of file <a class="el" href="shapefile_8cpp_source.html">shapefile.cpp</a>.</p>
 
 </div>
 </div>
@@ -1177,7 +1270,7 @@ Static Private Attributes</h2></td></tr>
 
 <p>Implements <a class="el" href="classsosicon_1_1_i_shapefile_dbf_part.html#abeb8d00459d46b035d1b6928e850c50c">sosicon::IShapefileDbfPart</a>.</p>
 
-<p>Definition at line <a class="el" href="shapefile_8cpp_source.html#l00547">547</a> of file <a class="el" href="shapefile_8cpp_source.html">shapefile.cpp</a>.</p>
+<p>Definition at line <a class="el" href="shapefile_8cpp_source.html#l00560">560</a> of file <a class="el" href="shapefile_8cpp_source.html">shapefile.cpp</a>.</p>
 
 </div>
 </div>
@@ -1207,7 +1300,7 @@ Static Private Attributes</h2></td></tr>
 
 <p>Implements <a class="el" href="classsosicon_1_1_i_shapefile_prj_part.html#a0d50d800946c9bb04acb2605ef58f4d3">sosicon::IShapefilePrjPart</a>.</p>
 
-<p>Definition at line <a class="el" href="shapefile_8cpp_source.html#l00553">553</a> of file <a class="el" href="shapefile_8cpp_source.html">shapefile.cpp</a>.</p>
+<p>Definition at line <a class="el" href="shapefile_8cpp_source.html#l00566">566</a> of file <a class="el" href="shapefile_8cpp_source.html">shapefile.cpp</a>.</p>
 
 </div>
 </div>
@@ -1237,7 +1330,7 @@ Static Private Attributes</h2></td></tr>
 
 <p>Implements <a class="el" href="classsosicon_1_1_i_shapefile_shp_part.html#a3d78d95ea5a2ea816340da56ca36e28f">sosicon::IShapefileShpPart</a>.</p>
 
-<p>Definition at line <a class="el" href="shapefile_8cpp_source.html#l00535">535</a> of file <a class="el" href="shapefile_8cpp_source.html">shapefile.cpp</a>.</p>
+<p>Definition at line <a class="el" href="shapefile_8cpp_source.html#l00548">548</a> of file <a class="el" href="shapefile_8cpp_source.html">shapefile.cpp</a>.</p>
 
 </div>
 </div>
@@ -1267,12 +1360,12 @@ Static Private Attributes</h2></td></tr>
 
 <p>Implements <a class="el" href="classsosicon_1_1_i_shapefile_shx_part.html#a1c0d1b1ab7c09b3bce24ff6f5186271d">sosicon::IShapefileShxPart</a>.</p>
 
-<p>Definition at line <a class="el" href="shapefile_8cpp_source.html#l00541">541</a> of file <a class="el" href="shapefile_8cpp_source.html">shapefile.cpp</a>.</p>
+<p>Definition at line <a class="el" href="shapefile_8cpp_source.html#l00554">554</a> of file <a class="el" href="shapefile_8cpp_source.html">shapefile.cpp</a>.</p>
 
 </div>
 </div>
 <h2 class="groupheader">Member Data Documentation</h2>
-<a class="anchor" id="a2d1b4a168191445eacb755458cfed062"></a>
+<a class="anchor" id="acfbc20cac145dc5fe233253ce4d3c974"></a>
 <div class="memitem">
 <div class="memproto">
 <table class="mlabels">
@@ -1280,7 +1373,7 @@ Static Private Attributes</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">const int sosicon::shape::Shapefile::BUFFER_CHUNK_SIZE</td>
+          <td class="memname">const int sosicon::shape::Shapefile::MAX_BUFFER_CHUNK_SIZE</td>
         </tr>
       </table>
   </td>
@@ -1291,7 +1384,7 @@ Static Private Attributes</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Buffer allocation size. </p>
-<p>To speed things up, heap allocations are done in large chunks. This parameters defines how many bytes to request for each buffer expansion. </p>
+<p>To speed things up, heap allocations are done in increasingly large chunks. This parameters defines how many bytes to request for the largest buffer expansion. </p>
 
 <p>Definition at line <a class="el" href="shapefile_8h_source.html#l00064">64</a> of file <a class="el" href="shapefile_8h_source.html">shapefile.h</a>.</p>
 
@@ -1317,7 +1410,7 @@ Static Private Attributes</h2></td></tr>
 
 <p>dBase file payload </p>
 
-<p>Definition at line <a class="el" href="shapefile_8h_source.html#l00078">78</a> of file <a class="el" href="shapefile_8h_source.html">shapefile.h</a>.</p>
+<p>Definition at line <a class="el" href="shapefile_8h_source.html#l00081">81</a> of file <a class="el" href="shapefile_8h_source.html">shapefile.h</a>.</p>
 
 </div>
 </div>
@@ -1341,7 +1434,7 @@ Static Private Attributes</h2></td></tr>
 
 <p>Length of dBase file buffer. </p>
 
-<p>Definition at line <a class="el" href="shapefile_8h_source.html#l00079">79</a> of file <a class="el" href="shapefile_8h_source.html">shapefile.h</a>.</p>
+<p>Definition at line <a class="el" href="shapefile_8h_source.html#l00082">82</a> of file <a class="el" href="shapefile_8h_source.html">shapefile.h</a>.</p>
 
 </div>
 </div>
@@ -1365,7 +1458,7 @@ Static Private Attributes</h2></td></tr>
 
 <p>Accumulation of DBF fields and their lenghts. </p>
 
-<p>Definition at line <a class="el" href="shapefile_8h_source.html#l00088">88</a> of file <a class="el" href="shapefile_8h_source.html">shapefile.h</a>.</p>
+<p>Definition at line <a class="el" href="shapefile_8h_source.html#l00091">91</a> of file <a class="el" href="shapefile_8h_source.html">shapefile.h</a>.</p>
 
 </div>
 </div>
@@ -1389,7 +1482,7 @@ Static Private Attributes</h2></td></tr>
 
 <p>dBase file header </p>
 
-<p>Definition at line <a class="el" href="shapefile_8h_source.html#l00077">77</a> of file <a class="el" href="shapefile_8h_source.html">shapefile.h</a>.</p>
+<p>Definition at line <a class="el" href="shapefile_8h_source.html#l00080">80</a> of file <a class="el" href="shapefile_8h_source.html">shapefile.h</a>.</p>
 
 </div>
 </div>
@@ -1413,7 +1506,55 @@ Static Private Attributes</h2></td></tr>
 
 <p>All DBF records. </p>
 
-<p>Definition at line <a class="el" href="shapefile_8h_source.html#l00089">89</a> of file <a class="el" href="shapefile_8h_source.html">shapefile.h</a>.</p>
+<p>Definition at line <a class="el" href="shapefile_8h_source.html#l00092">92</a> of file <a class="el" href="shapefile_8h_source.html">shapefile.h</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="aaa80014c199864a4b9075a7c3c9c35e7"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::string sosicon::shape::Shapefile::mFilterSosiId</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>ID of single SOSI element to be exported, if specified. </p>
+
+<p>Definition at line <a class="el" href="shapefile_8h_source.html#l00068">68</a> of file <a class="el" href="shapefile_8h_source.html">shapefile.h</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="abe84eee6570a837a50f1b5d25e3637a4"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::vector&lt;std::string&gt; sosicon::shape::Shapefile::mFilterSosiObjTypes</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Objtypes of selected elements to be exported, if specified. </p>
+
+<p>Definition at line <a class="el" href="shapefile_8h_source.html#l00069">69</a> of file <a class="el" href="shapefile_8h_source.html">shapefile.h</a>.</p>
 
 </div>
 </div>
@@ -1437,7 +1578,7 @@ Static Private Attributes</h2></td></tr>
 
 <p>Number of current record in process. </p>
 
-<p>Definition at line <a class="el" href="shapefile_8h_source.html#l00081">81</a> of file <a class="el" href="shapefile_8h_source.html">shapefile.h</a>.</p>
+<p>Definition at line <a class="el" href="shapefile_8h_source.html#l00084">84</a> of file <a class="el" href="shapefile_8h_source.html">shapefile.h</a>.</p>
 
 </div>
 </div>
@@ -1461,7 +1602,7 @@ Static Private Attributes</h2></td></tr>
 
 <p>SHP file payload. </p>
 
-<p>Definition at line <a class="el" href="shapefile_8h_source.html#l00069">69</a> of file <a class="el" href="shapefile_8h_source.html">shapefile.h</a>.</p>
+<p>Definition at line <a class="el" href="shapefile_8h_source.html#l00072">72</a> of file <a class="el" href="shapefile_8h_source.html">shapefile.h</a>.</p>
 
 </div>
 </div>
@@ -1485,7 +1626,7 @@ Static Private Attributes</h2></td></tr>
 
 <p>Allocated buffer length. </p>
 
-<p>Definition at line <a class="el" href="shapefile_8h_source.html#l00071">71</a> of file <a class="el" href="shapefile_8h_source.html">shapefile.h</a>.</p>
+<p>Definition at line <a class="el" href="shapefile_8h_source.html#l00074">74</a> of file <a class="el" href="shapefile_8h_source.html">shapefile.h</a>.</p>
 
 </div>
 </div>
@@ -1509,7 +1650,7 @@ Static Private Attributes</h2></td></tr>
 
 <p>Main SHP file header. </p>
 
-<p>Definition at line <a class="el" href="shapefile_8h_source.html#l00068">68</a> of file <a class="el" href="shapefile_8h_source.html">shapefile.h</a>.</p>
+<p>Definition at line <a class="el" href="shapefile_8h_source.html#l00071">71</a> of file <a class="el" href="shapefile_8h_source.html">shapefile.h</a>.</p>
 
 </div>
 </div>
@@ -1533,7 +1674,7 @@ Static Private Attributes</h2></td></tr>
 
 <p>Data length of SHP file buffer. </p>
 
-<p>Definition at line <a class="el" href="shapefile_8h_source.html#l00070">70</a> of file <a class="el" href="shapefile_8h_source.html">shapefile.h</a>.</p>
+<p>Definition at line <a class="el" href="shapefile_8h_source.html#l00073">73</a> of file <a class="el" href="shapefile_8h_source.html">shapefile.h</a>.</p>
 
 </div>
 </div>
@@ -1557,7 +1698,7 @@ Static Private Attributes</h2></td></tr>
 
 <p>Index file payload. </p>
 
-<p>Definition at line <a class="el" href="shapefile_8h_source.html#l00074">74</a> of file <a class="el" href="shapefile_8h_source.html">shapefile.h</a>.</p>
+<p>Definition at line <a class="el" href="shapefile_8h_source.html#l00077">77</a> of file <a class="el" href="shapefile_8h_source.html">shapefile.h</a>.</p>
 
 </div>
 </div>
@@ -1581,7 +1722,7 @@ Static Private Attributes</h2></td></tr>
 
 <p>Length of SHX file buffer. </p>
 
-<p>Definition at line <a class="el" href="shapefile_8h_source.html#l00075">75</a> of file <a class="el" href="shapefile_8h_source.html">shapefile.h</a>.</p>
+<p>Definition at line <a class="el" href="shapefile_8h_source.html#l00078">78</a> of file <a class="el" href="shapefile_8h_source.html">shapefile.h</a>.</p>
 
 </div>
 </div>
@@ -1605,7 +1746,7 @@ Static Private Attributes</h2></td></tr>
 
 <p>Index file header. </p>
 
-<p>Definition at line <a class="el" href="shapefile_8h_source.html#l00073">73</a> of file <a class="el" href="shapefile_8h_source.html">shapefile.h</a>.</p>
+<p>Definition at line <a class="el" href="shapefile_8h_source.html#l00076">76</a> of file <a class="el" href="shapefile_8h_source.html">shapefile.h</a>.</p>
 
 </div>
 </div>
@@ -1629,7 +1770,7 @@ Static Private Attributes</h2></td></tr>
 
 <p>Index file offsets. </p>
 
-<p>Definition at line <a class="el" href="shapefile_8h_source.html#l00090">90</a> of file <a class="el" href="shapefile_8h_source.html">shapefile.h</a>.</p>
+<p>Definition at line <a class="el" href="shapefile_8h_source.html#l00093">93</a> of file <a class="el" href="shapefile_8h_source.html">shapefile.h</a>.</p>
 
 </div>
 </div>
@@ -1677,7 +1818,7 @@ Static Private Attributes</h2></td></tr>
 
 <p>Minimum bounding rectangle, max X. </p>
 
-<p>Definition at line <a class="el" href="shapefile_8h_source.html#l00085">85</a> of file <a class="el" href="shapefile_8h_source.html">shapefile.h</a>.</p>
+<p>Definition at line <a class="el" href="shapefile_8h_source.html#l00088">88</a> of file <a class="el" href="shapefile_8h_source.html">shapefile.h</a>.</p>
 
 </div>
 </div>
@@ -1701,7 +1842,7 @@ Static Private Attributes</h2></td></tr>
 
 <p>Minimum bounding rectangle, min X. </p>
 
-<p>Definition at line <a class="el" href="shapefile_8h_source.html#l00083">83</a> of file <a class="el" href="shapefile_8h_source.html">shapefile.h</a>.</p>
+<p>Definition at line <a class="el" href="shapefile_8h_source.html#l00086">86</a> of file <a class="el" href="shapefile_8h_source.html">shapefile.h</a>.</p>
 
 </div>
 </div>
@@ -1725,7 +1866,7 @@ Static Private Attributes</h2></td></tr>
 
 <p>Minimum bounding rectangle, max Y. </p>
 
-<p>Definition at line <a class="el" href="shapefile_8h_source.html#l00086">86</a> of file <a class="el" href="shapefile_8h_source.html">shapefile.h</a>.</p>
+<p>Definition at line <a class="el" href="shapefile_8h_source.html#l00089">89</a> of file <a class="el" href="shapefile_8h_source.html">shapefile.h</a>.</p>
 
 </div>
 </div>
@@ -1749,7 +1890,7 @@ Static Private Attributes</h2></td></tr>
 
 <p>Minimum bounding rectangle, min Y. </p>
 
-<p>Definition at line <a class="el" href="shapefile_8h_source.html#l00084">84</a> of file <a class="el" href="shapefile_8h_source.html">shapefile.h</a>.</p>
+<p>Definition at line <a class="el" href="shapefile_8h_source.html#l00087">87</a> of file <a class="el" href="shapefile_8h_source.html">shapefile.h</a>.</p>
 
 </div>
 </div>
@@ -1760,7 +1901,7 @@ Static Private Attributes</h2></td></tr>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sat Aug 16 2014 12:10:58 for sosicon by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Sun Aug 31 2014 15:50:11 for sosicon by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.7
 </small></address>

@@ -78,6 +78,9 @@ Classes</h2></td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classsosicon_1_1_command_line.html">CommandLine</a></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Command-line parser.  <a href="classsosicon_1_1_command_line.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classsosicon_1_1_converter_sosi2psql.html">ConverterSosi2psql</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">SOSI to PostGreSQL converter.  <a href="classsosicon_1_1_converter_sosi2psql.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classsosicon_1_1_converter_sosi2shp.html">ConverterSosi2shp</a></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">SOSI to ESRI Shape converter.  <a href="classsosicon_1_1_converter_sosi2shp.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -162,6 +165,15 @@ Functions</h2></td></tr>
 <tr class="memitem:a8dc8117df5516a76487834bde50de332"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacesosicon.html#a8dc8117df5516a76487834bde50de332">getNextOffset</a> (int &amp;offset, std::vector&lt; int &gt; &amp;offsets, std::vector&lt; int &gt;::iterator &amp;iterator)</td></tr>
 <tr class="memdesc:a8dc8117df5516a76487834bde50de332"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get next offset in part offsets list.  <a href="#a8dc8117df5516a76487834bde50de332">More...</a><br /></td></tr>
 <tr class="separator:a8dc8117df5516a76487834bde50de332"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afebda08b22ac958a5d67104a6b1ef621"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacesosicon.html#afebda08b22ac958a5d67104a6b1ef621">isClockwise</a> (std::vector&lt; <a class="el" href="classsosicon_1_1_i_coordinate.html">ICoordinate</a> * &gt;::iterator &amp;begin, std::vector&lt; <a class="el" href="classsosicon_1_1_i_coordinate.html">ICoordinate</a> * &gt;::iterator &amp;end)</td></tr>
+<tr class="memdesc:afebda08b22ac958a5d67104a6b1ef621"><td class="mdescLeft">&#160;</td><td class="mdescRight">Analyzes polygon direction.  <a href="#afebda08b22ac958a5d67104a6b1ef621">More...</a><br /></td></tr>
+<tr class="separator:afebda08b22ac958a5d67104a6b1ef621"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:acced20e8668f5cb51be156aa213b6f6f"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacesosicon.html#acced20e8668f5cb51be156aa213b6f6f">isCounterClockwise</a> (std::vector&lt; <a class="el" href="classsosicon_1_1_i_coordinate.html">ICoordinate</a> * &gt;::iterator &amp;begin, std::vector&lt; <a class="el" href="classsosicon_1_1_i_coordinate.html">ICoordinate</a> * &gt;::iterator &amp;end)</td></tr>
+<tr class="memdesc:acced20e8668f5cb51be156aa213b6f6f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Analyzes polygon direction.  <a href="#acced20e8668f5cb51be156aa213b6f6f">More...</a><br /></td></tr>
+<tr class="separator:acced20e8668f5cb51be156aa213b6f6f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a05bf8d9d2adcb178f6afdbbba03eda4c"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacesosicon.html#a05bf8d9d2adcb178f6afdbbba03eda4c">neListToCoordList</a> (<a class="el" href="namespacesosicon_1_1sosi.html#a344e5f6447a6314e7fee9bb348ad4b2b">sosi::NorthEastList</a> &amp;neList, std::vector&lt; <a class="el" href="classsosicon_1_1_i_coordinate.html">ICoordinate</a> * &gt; &amp;coordList)</td></tr>
+<tr class="memdesc:a05bf8d9d2adcb178f6afdbbba03eda4c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Extracts single coordinates from list of North-East elements.  <a href="#a05bf8d9d2adcb178f6afdbbba03eda4c">More...</a><br /></td></tr>
+<tr class="separator:a05bf8d9d2adcb178f6afdbbba03eda4c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ga049a325bbc15451411dc594b7433457d"><td class="memItemLeft" align="right" valign="top">std::ostream &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__interfaces.html#ga049a325bbc15451411dc594b7433457d">operator&lt;&lt;</a> (std::ostream &amp;os, <a class="el" href="classsosicon_1_1_i_binary_streamable.html">IBinaryStreamable</a> &amp;binaryStreamable)</td></tr>
 <tr class="memdesc:ga049a325bbc15451411dc594b7433457d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Stream output operator.  <a href="group__interfaces.html#ga049a325bbc15451411dc594b7433457d">More...</a><br /></td></tr>
 <tr class="separator:ga049a325bbc15451411dc594b7433457d"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -256,10 +268,124 @@ Functions</h2></td></tr>
 
 </div>
 </div>
+<a class="anchor" id="afebda08b22ac958a5d67104a6b1ef621"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool sosicon::isClockwise </td>
+          <td>(</td>
+          <td class="paramtype">std::vector&lt; ICoordinate * &gt;::iterator &amp;&#160;</td>
+          <td class="paramname"><em>begin</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">std::vector&lt; ICoordinate * &gt;::iterator &amp;&#160;</td>
+          <td class="paramname"><em>end</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Analyzes polygon direction. </p>
+<p>Checks a series of coordinates to see if they are ordered in a clockwise manner. </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">begin</td><td>Iterator to the first item to be analyzed. </td></tr>
+    <tr><td class="paramname">end</td><td>Iterator to the end item, one item past the last one to be analyzed. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>true if the coordinates are ordered clockwise. </dd></dl>
+
+<p>Definition at line <a class="el" href="coordinate__collection_8cpp_source.html#l00060">60</a> of file <a class="el" href="coordinate__collection_8cpp_source.html">coordinate_collection.cpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="acced20e8668f5cb51be156aa213b6f6f"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool sosicon::isCounterClockwise </td>
+          <td>(</td>
+          <td class="paramtype">std::vector&lt; ICoordinate * &gt;::iterator &amp;&#160;</td>
+          <td class="paramname"><em>begin</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">std::vector&lt; ICoordinate * &gt;::iterator &amp;&#160;</td>
+          <td class="paramname"><em>end</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Analyzes polygon direction. </p>
+<p>Checks a series of coordinates to see if they are ordered in a counter-clockwise manner. </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">begin</td><td>Iterator to the first item to be analyzed. </td></tr>
+    <tr><td class="paramname">end</td><td>Iterator to the end item, one item past the last one to be analyzed. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>true if the coordinates are ordered counter-clockwise. </dd></dl>
+
+<p>Definition at line <a class="el" href="coordinate__collection_8cpp_source.html#l00055">55</a> of file <a class="el" href="coordinate__collection_8cpp_source.html">coordinate_collection.cpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a05bf8d9d2adcb178f6afdbbba03eda4c"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void sosicon::neListToCoordList </td>
+          <td>(</td>
+          <td class="paramtype">sosi::NorthEastList &amp;&#160;</td>
+          <td class="paramname"><em>neList</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">std::vector&lt; ICoordinate * &gt; &amp;&#160;</td>
+          <td class="paramname"><em>coordList</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Extracts single coordinates from list of North-East elements. </p>
+<p>Converts a vector of NE elements to a vector of coordinates.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">neList</td><td>The source vector. </td></tr>
+    <tr><td class="paramname">coordList</td><td>The destination vector. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p>Definition at line <a class="el" href="coordinate__collection_8cpp_source.html#l00071">71</a> of file <a class="el" href="coordinate__collection_8cpp_source.html">coordinate_collection.cpp</a>.</p>
+
+</div>
+</div>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sat Aug 16 2014 12:10:57 for sosicon by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Sun Aug 31 2014 15:50:10 for sosicon by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.7
 </small></address>

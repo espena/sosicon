@@ -119,8 +119,8 @@ Private Attributes</h2></td></tr>
 <dl class="section author"><dt>Author</dt><dd>Espen Andersen </dd></dl>
 <dl class="section copyright"><dt>Copyright</dt><dd>GNU General Public License</dd></dl>
 <p>The file parser. Reads and organizes SOSI file input, preparing the data for conversion and output. This class wraps a Ragel-generated state machine set up to parse SOSI content line-by-line. For more information about the Ragel state machine compiler, visit <a href="http://www.complang.org/ragel/">http://www.complang.org/ragel/</a></p>
-<p>Specifically, the function parseSosiLine() is implemented in Ragel. The implementation script is located in parser/parser_sosi_line.rl. The file parser_sosi_line.cpp is generated on the basis of parser/parser_sosi_line.rl during pre-build processing.</p>
-<dl class="section note"><dt>Note</dt><dd>Since parser_sosi_line.cpp is automatically re-generated before each compile, no redacting mat take place here. Any changes will be lost upon compile. Instead, its source script parser/parser_sosi_line.rl have to be edited. </dd></dl>
+<p>Specifically, the function parseSosiLine() is implemented in Ragel. The implementation script is located in parser/parser_sosi_line.rl. The file <a class="el" href="parser__ragel_8cpp.html">parser_ragel.cpp</a> is generated on the basis of parser/parser.rl during pre-build processing.</p>
+<dl class="section note"><dt>Note</dt><dd>Since <a class="el" href="parser__ragel_8cpp.html">parser_ragel.cpp</a> is automatically re-generated before each compile, no redacting may take place here. Any changes will be lost upon compile. Instead, its source script parser/parser_rl has to be edited. </dd></dl>
 
 <p>Definition at line <a class="el" href="parser_8h_source.html#l00052">52</a> of file <a class="el" href="parser_8h_source.html">parser.h</a>.</p>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
@@ -446,7 +446,7 @@ Private Attributes</h2></td></tr>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sat Aug 16 2014 12:10:58 for sosicon by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Sun Aug 31 2014 15:50:10 for sosicon by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.7
 </small></address>

@@ -188,9 +188,7 @@ buildShpPolygon( CoordinateCollection& cc ) {
 
 void sosicon::shape::Shapefile::
 buildShpRecCoordinate( int& pos, CoordinateCollection& cc ) {
-
     ICoordinate* c = 0;
-
     cc.getNextInGeom( c );
     if( c ) {
         buildShpRecCoordinate( pos, c );

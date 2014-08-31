@@ -88,6 +88,9 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a331c53ecd7ae5981f6a58fe6cb68eae4"><td class="memItemLeft" align="right" valign="top">virtual int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classsosicon_1_1_i_shapefile.html#a331c53ecd7ae5981f6a58fe6cb68eae4">build</a> (<a class="el" href="classsosicon_1_1_i_sosi_element.html">ISosiElement</a> *sosiTree, std::string selection, <a class="el" href="group__sosi__elements.html#ga52dbaad3d1e20075608257e866b0a7ca">sosi::ElementType</a> geomType)=0</td></tr>
 <tr class="memdesc:a331c53ecd7ae5981f6a58fe6cb68eae4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Build shapefile from SOSI data.  <a href="#a331c53ecd7ae5981f6a58fe6cb68eae4">More...</a><br /></td></tr>
 <tr class="separator:a331c53ecd7ae5981f6a58fe6cb68eae4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad9400d46937c003085a3c8c873e6aac3"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classsosicon_1_1_i_shapefile.html#ad9400d46937c003085a3c8c873e6aac3">filterSosiId</a> (std::string sosiId)=0</td></tr>
+<tr class="memdesc:ad9400d46937c003085a3c8c873e6aac3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set ID for single-element export.  <a href="#ad9400d46937c003085a3c8c873e6aac3">More...</a><br /></td></tr>
+<tr class="separator:ad9400d46937c003085a3c8c873e6aac3"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="inherit_header pub_methods_classsosicon_1_1_i_shapefile_shp_part"><td colspan="2" onclick="javascript:toggleInherit('pub_methods_classsosicon_1_1_i_shapefile_shp_part')"><img src="closed.png" alt="-"/>&#160;Public Member Functions inherited from <a class="el" href="classsosicon_1_1_i_shapefile_shp_part.html">sosicon::IShapefileShpPart</a></td></tr>
 <tr class="memitem:a9d96bd5f0e1cc053cf3dbdf57558175c inherit pub_methods_classsosicon_1_1_i_shapefile_shp_part"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classsosicon_1_1_i_shapefile_shp_part.html#a9d96bd5f0e1cc053cf3dbdf57558175c">writeBinary</a> (std::ostream &amp;os)</td></tr>
 <tr class="memdesc:a9d96bd5f0e1cc053cf3dbdf57558175c inherit pub_methods_classsosicon_1_1_i_shapefile_shp_part"><td class="mdescLeft">&#160;</td><td class="mdescRight">Writes binary data to output stream.  <a href="#a9d96bd5f0e1cc053cf3dbdf57558175c">More...</a><br /></td></tr>
@@ -203,13 +206,41 @@ Public Member Functions</h2></td></tr>
 
 </div>
 </div>
+<a class="anchor" id="ad9400d46937c003085a3c8c873e6aac3"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual void sosicon::IShapefile::filterSosiId </td>
+          <td>(</td>
+          <td class="paramtype">std::string&#160;</td>
+          <td class="paramname"><em>sosiId</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">pure virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Set ID for single-element export. </p>
+
+<p>Implemented in <a class="el" href="classsosicon_1_1shape_1_1_shapefile.html#a5733ee00dd4e18f8261b3ae75483b08f">sosicon::shape::Shapefile</a>.</p>
+
+</div>
+</div>
 <hr/>The documentation for this class was generated from the following file:<ul>
 <li>/prosjekter/sosicon/src/interface/<a class="el" href="i__shapefile_8h_source.html">i_shapefile.h</a></li>
 </ul>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sat Aug 16 2014 12:10:58 for sosicon by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Sun Aug 31 2014 15:50:10 for sosicon by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.7
 </small></address>

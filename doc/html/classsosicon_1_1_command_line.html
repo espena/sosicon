@@ -70,6 +70,12 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a405aaf8a5a25b3e186ec62743531ea5c"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classsosicon_1_1_command_line.html#a405aaf8a5a25b3e186ec62743531ea5c">outputHelpText</a> ()</td></tr>
 <tr class="memdesc:a405aaf8a5a25b3e186ec62743531ea5c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Display help text.  <a href="#a405aaf8a5a25b3e186ec62743531ea5c">More...</a><br /></td></tr>
 <tr class="separator:a405aaf8a5a25b3e186ec62743531ea5c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1728b3b59f62643843a6c11a54e4edf3"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classsosicon_1_1_command_line.html#a1728b3b59f62643843a6c11a54e4edf3">outputDisclaimer</a> ()</td></tr>
+<tr class="memdesc:a1728b3b59f62643843a6c11a54e4edf3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Display disclaimer.  <a href="#a1728b3b59f62643843a6c11a54e4edf3">More...</a><br /></td></tr>
+<tr class="separator:a1728b3b59f62643843a6c11a54e4edf3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a762239d77f03097bd3f720d6a7c6fbd4"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classsosicon_1_1_command_line.html#a762239d77f03097bd3f720d6a7c6fbd4">outputLicense</a> ()</td></tr>
+<tr class="memdesc:a762239d77f03097bd3f720d6a7c6fbd4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Display license.  <a href="#a762239d77f03097bd3f720d6a7c6fbd4">More...</a><br /></td></tr>
+<tr class="separator:a762239d77f03097bd3f720d6a7c6fbd4"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a731b9378cf054aed7f9c32d0f617f4cb"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classsosicon_1_1_command_line.html#a731b9378cf054aed7f9c32d0f617f4cb">parse</a> (int argc, char *argv[])</td></tr>
 <tr class="memdesc:a731b9378cf054aed7f9c32d0f617f4cb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Read command-line arguments.  <a href="#a731b9378cf054aed7f9c32d0f617f4cb">More...</a><br /></td></tr>
 <tr class="separator:a731b9378cf054aed7f9c32d0f617f4cb"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -118,6 +124,9 @@ Public Attributes</h2></td></tr>
 <tr class="memitem:aacc29d32a729335b65c7e25178651a33"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classsosicon_1_1_command_line.html#aacc29d32a729335b65c7e25178651a33">mVerbose</a></td></tr>
 <tr class="memdesc:aacc29d32a729335b65c7e25178651a33"><td class="mdescLeft">&#160;</td><td class="mdescRight">Verbose output.  <a href="#aacc29d32a729335b65c7e25178651a33">More...</a><br /></td></tr>
 <tr class="separator:aacc29d32a729335b65c7e25178651a33"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7f65d47a9453066bf45aeb8f615928f9"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classsosicon_1_1_command_line.html#a7f65d47a9453066bf45aeb8f615928f9">mFilterSosiId</a></td></tr>
+<tr class="memdesc:a7f65d47a9453066bf45aeb8f615928f9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Export single SOSI element.  <a href="#a7f65d47a9453066bf45aeb8f615928f9">More...</a><br /></td></tr>
+<tr class="separator:a7f65d47a9453066bf45aeb8f615928f9"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Command-line parser. </p>
@@ -169,11 +178,31 @@ Public Attributes</h2></td></tr>
 
 <p>Destructor. </p>
 
-<p>Definition at line <a class="el" href="command__line_8cpp_source.html#l00034">34</a> of file <a class="el" href="command__line_8cpp_source.html">command_line.cpp</a>.</p>
+<p>Definition at line <a class="el" href="command__line_8cpp_source.html#l00039">39</a> of file <a class="el" href="command__line_8cpp_source.html">command_line.cpp</a>.</p>
 
 </div>
 </div>
 <h2 class="groupheader">Member Function Documentation</h2>
+<a class="anchor" id="a1728b3b59f62643843a6c11a54e4edf3"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void sosicon::CommandLine::outputDisclaimer </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Display disclaimer. </p>
+<p>Outputs disclaimer text. </p>
+
+<p>Definition at line <a class="el" href="command__line_8cpp_source.html#l00218">218</a> of file <a class="el" href="command__line_8cpp_source.html">command_line.cpp</a>.</p>
+
+</div>
+</div>
 <a class="anchor" id="a405aaf8a5a25b3e186ec62743531ea5c"></a>
 <div class="memitem">
 <div class="memproto">
@@ -190,7 +219,27 @@ Public Attributes</h2></td></tr>
 <p>Display help text. </p>
 <p>Outputs simple help text to the command-line. </p>
 
-<p>Definition at line <a class="el" href="command__line_8cpp_source.html#l00153">153</a> of file <a class="el" href="command__line_8cpp_source.html">command_line.cpp</a>.</p>
+<p>Definition at line <a class="el" href="command__line_8cpp_source.html#l00182">182</a> of file <a class="el" href="command__line_8cpp_source.html">command_line.cpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a762239d77f03097bd3f720d6a7c6fbd4"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void sosicon::CommandLine::outputLicense </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Display license. </p>
+<p>Outputs lisence text. </p>
+
+<p>Definition at line <a class="el" href="command__line_8cpp_source.html#l00255">255</a> of file <a class="el" href="command__line_8cpp_source.html">command_line.cpp</a>.</p>
 
 </div>
 </div>
@@ -228,7 +277,7 @@ Public Attributes</h2></td></tr>
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="command__line_8cpp_source.html#l00043">43</a> of file <a class="el" href="command__line_8cpp_source.html">command_line.cpp</a>.</p>
+<p>Definition at line <a class="el" href="command__line_8cpp_source.html#l00048">48</a> of file <a class="el" href="command__line_8cpp_source.html">command_line.cpp</a>.</p>
 
 </div>
 </div>
@@ -298,6 +347,23 @@ Public Attributes</h2></td></tr>
 <p>String vector containing the identifiers for the SOSI fields to be included in the export. Specified as a comma-separated list of strings following the -f argument. </p>
 
 <p>Definition at line <a class="el" href="command__line_8h_source.html#l00088">88</a> of file <a class="el" href="command__line_8h_source.html">command_line.h</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a7f65d47a9453066bf45aeb8f615928f9"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::string sosicon::CommandLine::mFilterSosiId</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Export single SOSI element. </p>
+<p>SOSI ID of single element/feature to be exported. </p>
+
+<p>Definition at line <a class="el" href="command__line_8h_source.html#l00143">143</a> of file <a class="el" href="command__line_8h_source.html">command_line.h</a>.</p>
 
 </div>
 </div>
@@ -444,7 +510,7 @@ Public Attributes</h2></td></tr>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sat Aug 16 2014 12:10:57 for sosicon by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Sun Aug 31 2014 15:50:10 for sosicon by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.7
 </small></address>

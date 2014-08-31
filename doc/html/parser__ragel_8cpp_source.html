@@ -246,7 +246,7 @@
 <div class="line"><a name="l00193"></a><span class="lineno">  193</span>&#160;            <span class="keywordflow">else</span> <span class="keywordflow">if</span> ( (*p) &gt; *_mid )</div>
 <div class="line"><a name="l00194"></a><span class="lineno">  194</span>&#160;                _lower = _mid + 1;</div>
 <div class="line"><a name="l00195"></a><span class="lineno">  195</span>&#160;            <span class="keywordflow">else</span> {</div>
-<div class="line"><a name="l00196"></a><span class="lineno">  196</span>&#160;                _trans += (_mid - _keys);</div>
+<div class="line"><a name="l00196"></a><span class="lineno">  196</span>&#160;                _trans += (<span class="keywordtype">unsigned</span> int)(_mid - _keys);</div>
 <div class="line"><a name="l00197"></a><span class="lineno">  197</span>&#160;                <span class="keywordflow">goto</span> _match;</div>
 <div class="line"><a name="l00198"></a><span class="lineno">  198</span>&#160;            }</div>
 <div class="line"><a name="l00199"></a><span class="lineno">  199</span>&#160;        }</div>
@@ -269,7 +269,7 @@
 <div class="line"><a name="l00216"></a><span class="lineno">  216</span>&#160;            <span class="keywordflow">else</span> <span class="keywordflow">if</span> ( (*p) &gt; _mid[1] )</div>
 <div class="line"><a name="l00217"></a><span class="lineno">  217</span>&#160;                _lower = _mid + 2;</div>
 <div class="line"><a name="l00218"></a><span class="lineno">  218</span>&#160;            <span class="keywordflow">else</span> {</div>
-<div class="line"><a name="l00219"></a><span class="lineno">  219</span>&#160;                _trans += ((_mid - _keys)&gt;&gt;1);</div>
+<div class="line"><a name="l00219"></a><span class="lineno">  219</span>&#160;                _trans += (<span class="keywordtype">unsigned</span> int)((_mid - _keys)&gt;&gt;1);</div>
 <div class="line"><a name="l00220"></a><span class="lineno">  220</span>&#160;                <span class="keywordflow">goto</span> _match;</div>
 <div class="line"><a name="l00221"></a><span class="lineno">  221</span>&#160;            }</div>
 <div class="line"><a name="l00222"></a><span class="lineno">  222</span>&#160;        }</div>
@@ -413,7 +413,7 @@
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sat Aug 16 2014 12:10:57 for sosicon by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Sun Aug 31 2014 15:50:10 for sosicon by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.7
 </small></address>
