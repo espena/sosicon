@@ -50,6 +50,12 @@ makeShp( ISosiElement* sosiTree ) {
     if( objTypes.size() > 0 ) {
         for( std::map<std::string,int>::iterator i = objTypes.begin(); i != objTypes.end(); i++ ) {
 
+            std::vector<std::string>& ot = mCmd->mObjTypes;
+            if( ot.size() > 0 && std::find( ot.begin(), ot.end(), i->first ) == ot.end() )
+            {
+                continue;
+            }
+
             std::string objTypeName = i->first;
             std::cout << "\rProcessing OBJTYPE " << objTypeName << "\n";
 
@@ -60,7 +66,15 @@ makeShp( ISosiElement* sosiTree ) {
                 if( !mCmd->mFilterSosiId.empty() ) {
                     f.filterSosiId( mCmd->mFilterSosiId );
                 }
+
                 std::string geometryName = ttbl.sosiTypeToName( geometry );
+
+                std::vector<std::string>& gt = mCmd->mGeomTypes;
+                if( gt.size() > 0 && std::find( gt.begin(), gt.end(), geometryName ) == gt.end() )
+                {
+                    continue;
+                }
+
                 std::string basePath = makeBasePath( objTypeName + "_" + geometryName );
 
                 int count = f.build( sosiTree, i->first, geometry );

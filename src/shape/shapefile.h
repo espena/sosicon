@@ -65,6 +65,9 @@ namespace sosicon {
 
             ISosiElement* mSosiTree;   //!< SOSI source
 
+            std::string mFilterSosiId;                    //!< ID of single SOSI element to be exported, if specified
+            std::vector<std::string> mFilterSosiObjTypes; //!< Objtypes of selected elements to be exported, if specified
+
             char mShpHeader[ 100 ];    //!< Main SHP file header
             char* mShpBuffer;          //!< SHP file payload
             int mShpSize;              //!< Data length of SHP file buffer
@@ -77,8 +80,6 @@ namespace sosicon {
             char mDbfHeader[ 32 ];     //!< dBase file header
             char* mDbfBuffer;          //!< dBase file payload
             int mDbfBufferSize;        //!< Length of dBase file buffer
-
-            std::string mFilterSosiId; //!< ID of single SOSI element to be exported, if specified
 
             int mRecordNumber;         //!< Number of current record in process
 
@@ -184,6 +185,7 @@ namespace sosicon {
             //! Described in IShapefile
             virtual int build( ISosiElement* sosiTree, std::string objType, sosi::ElementType geomType );
 
+            //! Described in IShapefile
             virtual void filterSosiId( std::string sosiId ) { mFilterSosiId = sosiId; };
 
             //! Described in IShapefileDbfPart

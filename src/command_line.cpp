@@ -28,10 +28,10 @@ CommandLine() {
     }
 #endif
     std::cout << "\n";
-
     std::cout << "Sosicon, Copyright (C) 2014 Espen Andersen.\n";
     std::cout << "This program comes with ABSOLUTELY NO WARRANTY; for details type `sosicon -w'\n";
-    std::cout << "This is free software, and you are welcome to redistribute it under certain\nconditions; type `sosicon -c' for details.\n";
+    std::cout << "This is free software, and you are welcome to redistribute it under certain\n";
+    std::cout << "conditions; type `sosicon -c' for details.\n";
     std::cout << "\n";
 }
 
@@ -107,7 +107,7 @@ parse( int argc, char* argv[] ) {
                     for( k = 0; k < geomtypes.length(); k++ ) {
                         if( geomtypes.at( k ) == ',' ) {
                             if( !( geomType = utils::trim( geomtypes.substr( j, k - j ) ) ).empty() ) {
-                                mGeomTypes.push_back( geomType );                     
+                                mGeomTypes.push_back( geomType );
                             }
                             j = k + 1;
                         }
@@ -180,16 +180,16 @@ parse( int argc, char* argv[] ) {
 
 void sosicon::CommandLine::
 outputHelpText() {
-    std::cout << "\n";
-    std::cout << "Usage: sosicon [OPTIONS]... [FILES]...\n";
+    std::cout << "Usage: sosicon [OPERATION] [OPTIONS]... [FILES]...\n";
     std::cout << "\n";
     std::cout << "Converts SOSI files to other output formats.\n";
     std::cout << "\n";
     std::cout << "Example:\n";
-    std::cout << "sosicon -2shp cities.sos poi.sos\n";
     std::cout << "\n";
-    std::cout << "Conversion output formats:\n";
+    std::cout << "  sosicon -2shp cities.sos poi.sos\n";
     std::cout << "\n";
+    std::cout << "\n";
+    std::cout << "OPERATION:\n";
     std::cout << "\n";
     std::cout << "  -2shp\n";
     std::cout << "      Convert SOSI source to ESRI Shape (shp).\n";
@@ -197,6 +197,20 @@ outputHelpText() {
     std::cout << "  -stat\n";
     std::cout << "      Print out statistics for a SOSI file.\n";
     std::cout << "\n";
+    std::cout << "\n";
+    std::cout << "OPTIONS:\n";
+    std::cout << "\n";
+    std::cout << "  -t <OBJTYPES>\n";
+    std::cout << "      Export features of given OBJTYPES only, where\n";
+    std::cout << "      <OBJTYPES> is a comma-separated list of SOSI object\n";
+    std::cout << "      types. Use the -stat OPERATION to obtain a list of\n";
+    std::cout << "      OBJTYPEs contained in a SOSI file.\n";
+    std::cout << "\n";
+    std::cout << "  -g <GEOMETRIES>\n";
+    std::cout << "      Export features of given GEOMETRIES only, where\n";
+    std::cout << "      <GEOMETRIES> is a comma-separated list of SOSI geometry\n";
+    std::cout << "      types. Use the -stat OPERATION to obtain a list of\n";
+    std::cout << "      GEOMETRIES contained in a SOSI file.\n";
     std::cout << "\n";
 }
 
