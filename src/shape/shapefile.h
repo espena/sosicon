@@ -303,18 +303,61 @@ namespace sosicon {
             void insertShxOffset( int contentLen );
 
             //! Expand shp payload buffer
-            int expandShpBuffer( int byteLength );
+            /*!
+                The shape buffer grows by larger chunks as it is gradually filled up with
+                smaller blocks. For each expansion, the allocation size is doubled, until
+                it reaches MAX_BUFFER_CHUNK_SIZE bytes. This is a tradeoff between execution
+                time and memory consumption. For larger files, there will be relatively few
+                buffer re-allocations and block transfers, in order to save time. For smaller
+                files there will be more frequent re-allocations to save memory.
+                \param byteLen The exact length in bytes of the amount of data about to be
+                               written to the shapefile buffer. If the current buffer is too
+                               small to hold the new block, it will be expanded.
+            */
+            int expandShpBuffer( int byteLen );
 
             //! Recursive func to extract SOSI field data
+            /*!
+                Traverses the SOSI element, mining the data fields and stores them in the
+                provided record set container.
+                \see Shapefile::insertDbfRecord
+                \param sosi The SOSI element (sub tree) to extract data fields from.
+                \param rec The recordset container to populate with data.
+            */
             void extractDbfFields( ISosiElement* sosi, DbfRecord& rec );
 
             //! Create and insert DBF record
+            /*!
+                Prepares dBase record for current SOSI element. Creates the two mandatory
+                fields "SOSI_ID" and "TYPE", before it calls Shapefil::extractDbfFields to
+                retrieve the other data fields. The record is then inserted into the
+                Shapefile::mDbfRecordSet member.
+                \see Shapefil::extractDbfFields
+                \param sosi The SOSI element (sub tree) to extract data fields from.
+            */
             void insertDbfRecord( ISosiElement* sosi );
 
             //! Shapefile polys must have clockwise-ordered vertices
+            /*!
+                This is one of the core functions for handling polygons. Tests the direction
+                for SOSI coordinates, and reverses them if they are in the wrong order with
+                respect to the Shapefile format epscification.
+
+                \note The direction of the vertices in a SOSI polygon is not significant, whist
+                in a Shapefile polygon, it is crucial. The vertices in the outer polygon should
+                always be ordered in a clockwise direction, while the holes or islands must be
+                ordered in a counter-clockwise direction.
+
+                \param neLst List of SOSI NorthEast elements describing current multipart
+                             gemoetry (polygon with holes/islands).
+            */
             std::vector<ICoordinate*> getNormalized( sosi::NorthEastList& neLst );
             
             //! Update or insert new DBF field
+            /*!
+                Appends or updates data for the DFB record, updating list of field names
+                and langths.
+            */
             void saveToDbf( DbfRecord& rec, std::string field, std::string data );
 
         public:

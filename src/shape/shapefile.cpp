@@ -439,7 +439,7 @@ buildShx() {
 }
 
 int sosicon::shape::Shapefile::
-expandShpBuffer( int byteLength ) {
+expandShpBuffer( int byteLen ) {
 
     int offset = 0;
     int chunkSize = 0;
@@ -455,7 +455,7 @@ expandShpBuffer( int byteLength ) {
     }
 
     if( 0 == mShpSize ) {
-        mShpSize = byteLength;
+        mShpSize = byteLen;
         while( mShpBufferSize < mShpSize ) {
             mShpBufferSize += chunkSize;
         }
@@ -469,7 +469,7 @@ expandShpBuffer( int byteLength ) {
     }
     else {
         offset = mShpSize;
-        mShpSize += byteLength;
+        mShpSize += byteLen;
         if( mShpBufferSize < mShpSize ) {
             while( mShpBufferSize < mShpSize ) {
                 mShpBufferSize += chunkSize;
@@ -511,29 +511,23 @@ extractDbfFields( ISosiElement* sosi, DbfRecord& rec ) {
 void sosicon::shape::Shapefile::
 insertDbfRecord( ISosiElement* sosi ) {
     DbfRecord rec;
-
     saveToDbf( rec, "SOSI_ID", sosi->getSerial() );
     saveToDbf( rec, "TYPE", sosi->getName() );
-    
     extractDbfFields( sosi, rec );
     mDbfRecordSet.push_back( rec );
 }
 
 void sosicon::shape::Shapefile::
 insertShxOffset( int contentLen ) {
-
     ShxIndex shxIndex;
     shxIndex.offset.i = 50 + ( mShpSize / 2 );
     shxIndex.length.i = contentLen;
-
     mShxOffsets.push_back( shxIndex );
 }
 
 void sosicon::shape::Shapefile::
 saveToDbf( DbfRecord& rec, std::string field, std::string data ) {
-
     int length = data.size();
-
     if( !data.empty() && length < 254 ) {
         if( mDbfFieldLengths.find( field ) != mDbfFieldLengths.end() ) {
             mDbfFieldLengths[ field ] = std::max( mDbfFieldLengths[ field ], length );

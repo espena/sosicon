@@ -187,12 +187,12 @@ Private Member Functions</h2></td></tr>
 <tr class="memitem:a1ccb2e32b6605ad42f212b40518ebaf6"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classsosicon_1_1shape_1_1_shapefile.html#a1ccb2e32b6605ad42f212b40518ebaf6">buildShx</a> ()</td></tr>
 <tr class="memdesc:a1ccb2e32b6605ad42f212b40518ebaf6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Create SHX file content.  <a href="#a1ccb2e32b6605ad42f212b40518ebaf6">More...</a><br /></td></tr>
 <tr class="separator:a1ccb2e32b6605ad42f212b40518ebaf6"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a25e5d991dcbdba7f4f4cbcf2547a0aaa"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classsosicon_1_1shape_1_1_shapefile.html#a25e5d991dcbdba7f4f4cbcf2547a0aaa">insertShxOffset</a> (int contentLength)</td></tr>
-<tr class="memdesc:a25e5d991dcbdba7f4f4cbcf2547a0aaa"><td class="mdescLeft">&#160;</td><td class="mdescRight">Append offset value to SHX (index)  <a href="#a25e5d991dcbdba7f4f4cbcf2547a0aaa">More...</a><br /></td></tr>
-<tr class="separator:a25e5d991dcbdba7f4f4cbcf2547a0aaa"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a3f54ed13ae8cfd0c9d45456d1be876db"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classsosicon_1_1shape_1_1_shapefile.html#a3f54ed13ae8cfd0c9d45456d1be876db">expandShpBuffer</a> (int byteLength)</td></tr>
-<tr class="memdesc:a3f54ed13ae8cfd0c9d45456d1be876db"><td class="mdescLeft">&#160;</td><td class="mdescRight">Expand shp payload buffer.  <a href="#a3f54ed13ae8cfd0c9d45456d1be876db">More...</a><br /></td></tr>
-<tr class="separator:a3f54ed13ae8cfd0c9d45456d1be876db"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad0df6190a78c26f6c87e400541d79b99"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classsosicon_1_1shape_1_1_shapefile.html#ad0df6190a78c26f6c87e400541d79b99">insertShxOffset</a> (int contentLen)</td></tr>
+<tr class="memdesc:ad0df6190a78c26f6c87e400541d79b99"><td class="mdescLeft">&#160;</td><td class="mdescRight">Append offset value to SHX (index)  <a href="#ad0df6190a78c26f6c87e400541d79b99">More...</a><br /></td></tr>
+<tr class="separator:ad0df6190a78c26f6c87e400541d79b99"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a068a4f102b63630714817b990c6454bb"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classsosicon_1_1shape_1_1_shapefile.html#a068a4f102b63630714817b990c6454bb">expandShpBuffer</a> (int byteLen)</td></tr>
+<tr class="memdesc:a068a4f102b63630714817b990c6454bb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Expand shp payload buffer.  <a href="#a068a4f102b63630714817b990c6454bb">More...</a><br /></td></tr>
+<tr class="separator:a068a4f102b63630714817b990c6454bb"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a3b5a8e3fe49a88af9657f9228e9ac957"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classsosicon_1_1shape_1_1_shapefile.html#a3b5a8e3fe49a88af9657f9228e9ac957">extractDbfFields</a> (<a class="el" href="classsosicon_1_1_i_sosi_element.html">ISosiElement</a> *sosi, <a class="el" href="namespacesosicon_1_1shape.html#a0f7f7705397bd412b1ba04f256c13497">DbfRecord</a> &amp;rec)</td></tr>
 <tr class="memdesc:a3b5a8e3fe49a88af9657f9228e9ac957"><td class="mdescLeft">&#160;</td><td class="mdescRight">Recursive func to extract SOSI field data.  <a href="#a3b5a8e3fe49a88af9657f9228e9ac957">More...</a><br /></td></tr>
 <tr class="separator:a3b5a8e3fe49a88af9657f9228e9ac957"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -308,7 +308,7 @@ Static Private Attributes</h2></td></tr>
 
 <p>Constructor. </p>
 
-<p>Definition at line <a class="el" href="shapefile_8h_source.html#l00317">317</a> of file <a class="el" href="shapefile_8h_source.html">shapefile.h</a>.</p>
+<p>Definition at line <a class="el" href="shapefile_8h_source.html#l00366">366</a> of file <a class="el" href="shapefile_8h_source.html">shapefile.h</a>.</p>
 
 </div>
 </div>
@@ -1087,13 +1087,13 @@ Static Private Attributes</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Create SHX file content. </p>
-<p>Part of SHX index creation. Builds the shapefile index from the <a class="el" href="classsosicon_1_1shape_1_1_shapefile.html#a7905e750cffce3e203801c1f64569f8f" title="Index file offsets. ">Shapefile::mShxOffsets</a> entries and writes it to the SHX buffer <a class="el" href="classsosicon_1_1shape_1_1_shapefile.html#a5eeb1abff8c6fd8b2fd142fa225db203" title="Index file payload. ">Shapefile::mShxBuffer</a> and the SHX header <a class="el" href="classsosicon_1_1shape_1_1_shapefile.html#adf0e803dc28ac1d4588f66d8c589d927" title="Index file header. ">Shapefile::mShxHeader</a>. </p><dl class="section see"><dt>See also</dt><dd><a class="el" href="classsosicon_1_1shape_1_1_shapefile.html#a25e5d991dcbdba7f4f4cbcf2547a0aaa" title="Append offset value to SHX (index) ">Shapefile::insertShxOffset</a> </dd></dl>
+<p>Part of SHX index creation. Builds the shapefile index from the <a class="el" href="classsosicon_1_1shape_1_1_shapefile.html#a7905e750cffce3e203801c1f64569f8f" title="Index file offsets. ">Shapefile::mShxOffsets</a> entries and writes it to the SHX buffer <a class="el" href="classsosicon_1_1shape_1_1_shapefile.html#a5eeb1abff8c6fd8b2fd142fa225db203" title="Index file payload. ">Shapefile::mShxBuffer</a> and the SHX header <a class="el" href="classsosicon_1_1shape_1_1_shapefile.html#adf0e803dc28ac1d4588f66d8c589d927" title="Index file header. ">Shapefile::mShxHeader</a>. </p><dl class="section see"><dt>See also</dt><dd><a class="el" href="classsosicon_1_1shape_1_1_shapefile.html#ad0df6190a78c26f6c87e400541d79b99" title="Append offset value to SHX (index) ">Shapefile::insertShxOffset</a> </dd></dl>
 
 <p>Definition at line <a class="el" href="shapefile_8cpp_source.html#l00417">417</a> of file <a class="el" href="shapefile_8cpp_source.html">shapefile.cpp</a>.</p>
 
 </div>
 </div>
-<a class="anchor" id="a3f54ed13ae8cfd0c9d45456d1be876db"></a>
+<a class="anchor" id="a068a4f102b63630714817b990c6454bb"></a>
 <div class="memitem">
 <div class="memproto">
 <table class="mlabels">
@@ -1104,7 +1104,7 @@ Static Private Attributes</h2></td></tr>
           <td class="memname">int sosicon::shape::Shapefile::expandShpBuffer </td>
           <td>(</td>
           <td class="paramtype">int&#160;</td>
-          <td class="paramname"><em>byteLength</em></td><td>)</td>
+          <td class="paramname"><em>byteLen</em></td><td>)</td>
           <td></td>
         </tr>
       </table>
@@ -1116,6 +1116,12 @@ Static Private Attributes</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Expand shp payload buffer. </p>
+<p>The shape buffer grows by larger chunks as it is gradually filled up with smaller blocks. For each expansion, the allocation size is doubled, until it reaches MAX_BUFFER_CHUNK_SIZE bytes. This is a tradeoff between execution time and memory consumption. For larger files, there will be relatively few buffer re-allocations and block transfers, in order to save time. For smaller files there will be more frequent re-allocations to save memory. </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">byteLen</td><td>The exact length in bytes of the amount of data about to be written to the shapefile buffer. If the current buffer is too small to hold the new block, it will be expanded. </td></tr>
+  </table>
+  </dd>
+</dl>
 
 <p>Definition at line <a class="el" href="shapefile_8cpp_source.html#l00442">442</a> of file <a class="el" href="shapefile_8cpp_source.html">shapefile.cpp</a>.</p>
 
@@ -1154,6 +1160,14 @@ Static Private Attributes</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Recursive func to extract SOSI field data. </p>
+<p>Traverses the SOSI element, mining the data fields and stores them in the provided record set container. </p><dl class="section see"><dt>See also</dt><dd><a class="el" href="classsosicon_1_1shape_1_1_shapefile.html#a804b7968376b0e78ddb97dc6d3513f16" title="Create and insert DBF record. ">Shapefile::insertDbfRecord</a> </dd></dl>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">sosi</td><td>The SOSI element (sub tree) to extract data fields from. </td></tr>
+    <tr><td class="paramname">rec</td><td>The recordset container to populate with data. </td></tr>
+  </table>
+  </dd>
+</dl>
 
 <p>Definition at line <a class="el" href="shapefile_8cpp_source.html#l00493">493</a> of file <a class="el" href="shapefile_8cpp_source.html">shapefile.cpp</a>.</p>
 
@@ -1185,7 +1199,7 @@ Static Private Attributes</h2></td></tr>
 
 <p>Implements <a class="el" href="classsosicon_1_1_i_shapefile.html#ad9400d46937c003085a3c8c873e6aac3">sosicon::IShapefile</a>.</p>
 
-<p>Definition at line <a class="el" href="shapefile_8h_source.html#l00339">339</a> of file <a class="el" href="shapefile_8h_source.html">shapefile.h</a>.</p>
+<p>Definition at line <a class="el" href="shapefile_8h_source.html#l00388">388</a> of file <a class="el" href="shapefile_8h_source.html">shapefile.h</a>.</p>
 
 </div>
 </div>
@@ -1212,6 +1226,14 @@ Static Private Attributes</h2></td></tr>
 </div><div class="memdoc">
 
 <p><a class="el" href="classsosicon_1_1shape_1_1_shapefile.html" title="Shapefile implementation. ">Shapefile</a> polys must have clockwise-ordered vertices. </p>
+<p>This is one of the core functions for handling polygons. Tests the direction for SOSI coordinates, and reverses them if they are in the wrong order with respect to the <a class="el" href="classsosicon_1_1shape_1_1_shapefile.html" title="Shapefile implementation. ">Shapefile</a> format epscification.</p>
+<dl class="section note"><dt>Note</dt><dd>The direction of the vertices in a SOSI polygon is not significant, whist in a <a class="el" href="classsosicon_1_1shape_1_1_shapefile.html" title="Shapefile implementation. ">Shapefile</a> polygon, it is crucial. The vertices in the outer polygon should always be ordered in a clockwise direction, while the holes or islands must be ordered in a counter-clockwise direction.</dd></dl>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">neLst</td><td>List of SOSI NorthEast elements describing current multipart gemoetry (polygon with holes/islands). </td></tr>
+  </table>
+  </dd>
+</dl>
 
 </div>
 </div>
@@ -1238,12 +1260,19 @@ Static Private Attributes</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Create and insert DBF record. </p>
+<p>Prepares dBase record for current SOSI element. Creates the two mandatory fields "SOSI_ID" and "TYPE", before it calls Shapefil::extractDbfFields to retrieve the other data fields. The record is then inserted into the <a class="el" href="classsosicon_1_1shape_1_1_shapefile.html#a5bf768c80a5a9f7446a095fd4d930eba" title="All DBF records. ">Shapefile::mDbfRecordSet</a> member. </p><dl class="section see"><dt>See also</dt><dd>Shapefil::extractDbfFields </dd></dl>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">sosi</td><td>The SOSI element (sub tree) to extract data fields from. </td></tr>
+  </table>
+  </dd>
+</dl>
 
 <p>Definition at line <a class="el" href="shapefile_8cpp_source.html#l00512">512</a> of file <a class="el" href="shapefile_8cpp_source.html">shapefile.cpp</a>.</p>
 
 </div>
 </div>
-<a class="anchor" id="a25e5d991dcbdba7f4f4cbcf2547a0aaa"></a>
+<a class="anchor" id="ad0df6190a78c26f6c87e400541d79b99"></a>
 <div class="memitem">
 <div class="memproto">
 <table class="mlabels">
@@ -1254,7 +1283,7 @@ Static Private Attributes</h2></td></tr>
           <td class="memname">void sosicon::shape::Shapefile::insertShxOffset </td>
           <td>(</td>
           <td class="paramtype">int&#160;</td>
-          <td class="paramname"><em>contentLength</em></td><td>)</td>
+          <td class="paramname"><em>contentLen</em></td><td>)</td>
           <td></td>
         </tr>
       </table>
@@ -1266,8 +1295,14 @@ Static Private Attributes</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Append offset value to SHX (index) </p>
+<p>For each shapefile record, it's offset within the main file is pushed to the <a class="el" href="classsosicon_1_1shape_1_1_shapefile.html#a7905e750cffce3e203801c1f64569f8f" title="Index file offsets. ">Shapefile::mShxOffsets</a> vector. </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">contentLen</td><td>Length of the shapefile record content, in 16-bit words, record header not included. </td></tr>
+  </table>
+  </dd>
+</dl>
 
-<p>Definition at line <a class="el" href="shapefile_8cpp_source.html#l00523">523</a> of file <a class="el" href="shapefile_8cpp_source.html">shapefile.cpp</a>.</p>
+<p>Definition at line <a class="el" href="shapefile_8cpp_source.html#l00521">521</a> of file <a class="el" href="shapefile_8cpp_source.html">shapefile.cpp</a>.</p>
 
 </div>
 </div>
@@ -1310,8 +1345,9 @@ Static Private Attributes</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Update or insert new DBF field. </p>
+<p>Appends or updates data for the DFB record, updating list of field names and langths. </p>
 
-<p>Definition at line <a class="el" href="shapefile_8cpp_source.html#l00533">533</a> of file <a class="el" href="shapefile_8cpp_source.html">shapefile.cpp</a>.</p>
+<p>Definition at line <a class="el" href="shapefile_8cpp_source.html#l00529">529</a> of file <a class="el" href="shapefile_8cpp_source.html">shapefile.cpp</a>.</p>
 
 </div>
 </div>
@@ -1341,7 +1377,7 @@ Static Private Attributes</h2></td></tr>
 
 <p>Implements <a class="el" href="classsosicon_1_1_i_shapefile_dbf_part.html#abeb8d00459d46b035d1b6928e850c50c">sosicon::IShapefileDbfPart</a>.</p>
 
-<p>Definition at line <a class="el" href="shapefile_8cpp_source.html#l00561">561</a> of file <a class="el" href="shapefile_8cpp_source.html">shapefile.cpp</a>.</p>
+<p>Definition at line <a class="el" href="shapefile_8cpp_source.html#l00555">555</a> of file <a class="el" href="shapefile_8cpp_source.html">shapefile.cpp</a>.</p>
 
 </div>
 </div>
@@ -1371,7 +1407,7 @@ Static Private Attributes</h2></td></tr>
 
 <p>Implements <a class="el" href="classsosicon_1_1_i_shapefile_prj_part.html#a0d50d800946c9bb04acb2605ef58f4d3">sosicon::IShapefilePrjPart</a>.</p>
 
-<p>Definition at line <a class="el" href="shapefile_8cpp_source.html#l00567">567</a> of file <a class="el" href="shapefile_8cpp_source.html">shapefile.cpp</a>.</p>
+<p>Definition at line <a class="el" href="shapefile_8cpp_source.html#l00561">561</a> of file <a class="el" href="shapefile_8cpp_source.html">shapefile.cpp</a>.</p>
 
 </div>
 </div>
@@ -1401,7 +1437,7 @@ Static Private Attributes</h2></td></tr>
 
 <p>Implements <a class="el" href="classsosicon_1_1_i_shapefile_shp_part.html#a3d78d95ea5a2ea816340da56ca36e28f">sosicon::IShapefileShpPart</a>.</p>
 
-<p>Definition at line <a class="el" href="shapefile_8cpp_source.html#l00549">549</a> of file <a class="el" href="shapefile_8cpp_source.html">shapefile.cpp</a>.</p>
+<p>Definition at line <a class="el" href="shapefile_8cpp_source.html#l00543">543</a> of file <a class="el" href="shapefile_8cpp_source.html">shapefile.cpp</a>.</p>
 
 </div>
 </div>
@@ -1431,7 +1467,7 @@ Static Private Attributes</h2></td></tr>
 
 <p>Implements <a class="el" href="classsosicon_1_1_i_shapefile_shx_part.html#a1c0d1b1ab7c09b3bce24ff6f5186271d">sosicon::IShapefileShxPart</a>.</p>
 
-<p>Definition at line <a class="el" href="shapefile_8cpp_source.html#l00555">555</a> of file <a class="el" href="shapefile_8cpp_source.html">shapefile.cpp</a>.</p>
+<p>Definition at line <a class="el" href="shapefile_8cpp_source.html#l00549">549</a> of file <a class="el" href="shapefile_8cpp_source.html">shapefile.cpp</a>.</p>
 
 </div>
 </div>
@@ -1972,7 +2008,7 @@ Static Private Attributes</h2></td></tr>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sun Aug 31 2014 17:07:08 for sosicon by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Sun Aug 31 2014 18:12:31 for sosicon by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.7
 </small></address>
