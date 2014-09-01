@@ -124,7 +124,27 @@ namespace sosicon {
         //!< Free allocated memory
         void free();
 
+        //! Extracts coordinates from SOSI element
+        /*!
+            This method retrieves the physical coordinates for a SOSI geometry,
+            if applicable, and populates the coordinate collection.
+
+            This algorithm resolves referenced objects for polygons and presents
+            the coordinates in correct order.
+            \param sosi SOSI element from which to extract coordinates.
+        */
         void discoverCoords( ISosiElement* sosi );
+
+        //! Retrieve next coordinate in collection
+        /*!
+            Iterates through the coordinate list until it reaches the end,
+            passing a pointer to the next element to the coord reference. 
+            Tne value of coord must be zero on the first pass in order to
+            start the iteration on the first ISosiElement.
+            \return The function returns true if there are more coordinates in
+                    the collection, or false if the last coordinate is
+                    encoutered.
+        */
         bool getNextInGeom( ICoordinate*& coord );
 
         std::vector<ICoordinate*>& getGeom();

@@ -23,6 +23,10 @@
 
 namespace sosicon {
 
+    //! List of coordinate pairs
+    /*!
+        Used throughout the application.
+    */
     typedef std::vector<ICoordinate*> CoordinateList;
     
 }; // namespece sosicon

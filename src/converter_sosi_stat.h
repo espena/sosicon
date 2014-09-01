@@ -39,7 +39,8 @@ namespace sosicon {
         arguments are currently interpreted:
         - -2shp: sosicon::ConverterSosi2shp Shapefile conversion
         - -2tsv: sosicon::ConverterSosi2tsv TSV file conversion
-        - -stat: sosicon::ConverterSosi2Xml XML conversion
+        - -2xml: sosicon::ConverterSosi2Xml XML conversion
+        - -2psql: sosicon::ConverterSosi2Psql PstgreSQL dump file conversion
         - -stat: sosicon::ConverterSosiStat SOSI statistics (printout)
         @{
     */
