@@ -40,6 +40,28 @@ className2FileName( const std::string &className )
     return res;
 }
 
+std::vector<std::string> sosicon::utils::
+explode( char delimiter, std::string str ) {
+    const std::string::size_type len = str.length();
+    std::string val;
+    std::vector<std::string> lst;
+    if( len > 0 ) {
+        std::string::size_type j = 0, k = 0;
+        for( k = 0; k < len; k++ ) {
+            if( str.at( k ) == delimiter ) {
+                if( !( val = utils::trim( str.substr( j, k - j ) ) ).empty() ) {
+                    lst.push_back( val );
+                }
+                j = k + 1;
+            }
+        }
+        if( !( val = utils::trim( str.substr( j, k - j ) ) ).empty() ) {
+            lst.push_back( val );
+        }
+    }
+    return lst;
+}
+
 string sosicon::utils::
 normalizeAppClassName( const std::string &className )
 {

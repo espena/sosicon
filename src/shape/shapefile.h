@@ -65,7 +65,7 @@ namespace sosicon {
 
             ISosiElement* mSosiTree;   //!< SOSI source
 
-            std::string mFilterSosiId;                    //!< ID of single SOSI element to be exported, if specified
+            std::vector<std::string> mFilterSosiId;       //!< List of IDs of SOSI elements to be exported, if specified
             std::vector<std::string> mFilterSosiObjTypes; //!< Objtypes of selected elements to be exported, if specified
 
             char mShpHeader[ 100 ];    //!< Main SHP file header
@@ -356,13 +356,16 @@ namespace sosicon {
             //! Update or insert new DBF field
             /*!
                 Appends or updates data for the DFB record, updating list of field names
-                and langths.
+                and lengths.
             */
             void saveToDbf( DbfRecord& rec, std::string field, std::string data );
 
         public:
 
             //! Constructor
+            /*!
+                Inlined, initializes native members.
+            */
             Shapefile() :
                 mSosiTree( 0 ),
                 mShpBuffer( 0 ),
@@ -385,7 +388,7 @@ namespace sosicon {
             virtual int build( ISosiElement* sosiTree, std::string objType, sosi::ElementType geomType );
 
             //! Described in IShapefile
-            virtual void filterSosiId( std::string sosiId ) { mFilterSosiId = sosiId; };
+            virtual void filterSosiId( std::vector<std::string> sosiId ) { mFilterSosiId = sosiId; };
 
             //! Described in IShapefileDbfPart
             virtual void writeDbf( std::ostream &os );

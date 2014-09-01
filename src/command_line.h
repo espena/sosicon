@@ -71,6 +71,13 @@ namespace sosicon {
          */
         std::vector<std::string> mObjTypes;
 
+        //! Export specific SOSI elements
+        /*!
+            List of SOSI IDs of individual element/features to be exported.
+            Specified as a comma-separated list of strings following the -id argument.
+         */
+        std::vector<std::string> mFilterSosiId;
+
         //! List of geometry types to output
         /*!
             String vector containing the geometry types for the elements to be included in the
@@ -135,12 +142,6 @@ namespace sosicon {
             more comprehensive summary of every SOSI element in all source files will be output.
          */
         int  mVerbose;
-
-        //! Export single SOSI element
-        /*!
-            SOSI ID of single element/feature to be exported.
-         */
-        std::string mFilterSosiId;
 
         //! Display help text
         /*!

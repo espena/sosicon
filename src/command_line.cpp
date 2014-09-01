@@ -70,7 +70,7 @@ parse( int argc, char* argv[] ) {
                 mAppend = true;
             }
             else if( "-id" == param && argc > ( ++i ) ) {
-                mFilterSosiId = argv[ i ];
+                mFilterSosiId = utils::explode( ',', argv[ i ] );
             }
             else if( "-d" == param && argc > ( ++i ) ) {
                 mDestinationDirectory = argv[ i ];
@@ -82,58 +82,13 @@ parse( int argc, char* argv[] ) {
                 mOutputFile = argv[ i ];
             }
             else if( "-t" == param && argc > ( ++i ) ) {
-                std::string objType;
-                std::string objtypes = argv[ i ];
-                if( objtypes.length() > 0 ) {
-                    std::string::size_type j = 0, k = 0;
-                    for( k = 0; k < objtypes.length(); k++ ) {
-                        if( objtypes.at( k ) == ',' ) {
-                            if( !( objType = utils::trim( objtypes.substr( j, k - j ) ) ).empty() ) {
-                                mObjTypes.push_back( objType );                     
-                            }
-                            j = k + 1;
-                        }
-                    }
-                    if( !( objType = utils::trim( objtypes.substr( j, k - j ) ) ).empty() ) {
-                        mObjTypes.push_back( objType );                     
-                    }
-                }
+                mObjTypes = utils::explode( ',', argv[ i ] );
             }
             else if( "-g" == param && argc > ( ++i ) ) {
-                std::string geomType;
-                std::string geomtypes = argv[ i ];
-                if( geomtypes.length() > 0 ) {
-                    std::string::size_type j = 0, k = 0;
-                    for( k = 0; k < geomtypes.length(); k++ ) {
-                        if( geomtypes.at( k ) == ',' ) {
-                            if( !( geomType = utils::trim( geomtypes.substr( j, k - j ) ) ).empty() ) {
-                                mGeomTypes.push_back( geomType );
-                            }
-                            j = k + 1;
-                        }
-                    }
-                    if( !( geomType = utils::trim( geomtypes.substr( j, k - j ) ) ).empty() ) {
-                        mGeomTypes.push_back( geomType );
-                    }
-                }
+                mGeomTypes = utils::explode( ',', argv[ i ] );
             }
             else if( "-f" == param && argc > ( ++i ) ) {
-                std::string field;
-                std::string fields = argv[ i ];
-                if( fields.length() > 0 ) {
-                    std::string::size_type j = 0, k = 0;
-                    for( k = 0; k < fields.length(); k++ ) {
-                        if( fields.at( k ) == ',' ) {
-                            if( !( field = utils::trim( fields.substr( j, k - j ) ) ).empty() ) {
-                                mFieldSelection.push_back( field );
-                            }
-                            j = k + 1;
-                        }
-                    }
-                    if( !( field = utils::trim( fields.substr( j, k - j ) ) ).empty() ) {
-                        mFieldSelection.push_back( field );
-                    }
-                }
+                mFieldSelection = utils::explode( ',', argv[ i ] );
             }
             else if( "-v" == param ) {
                 mVerbose = 1;

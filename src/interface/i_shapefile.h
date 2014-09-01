@@ -57,8 +57,14 @@ namespace sosicon {
              */
             virtual int build( ISosiElement* sosiTree, std::string selection, sosi::ElementType geomType ) = 0;
 
-            //! Set ID for single-element export
-            virtual void filterSosiId( std::string sosiId ) = 0;
+            //! Set IDs for seleced element export
+            /*!
+                Sets a list of ID flags for elements to be included in the export.
+                All other objects in the source file are ignored.
+                \param sosiId List of the SOSI serials (IDs) of the element(s) to be
+                              included in the export.
+            */
+            virtual void filterSosiId( std::vector<std::string> sosiId ) = 0;
 
     };
    /*! @} end group interfaces */

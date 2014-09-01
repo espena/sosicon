@@ -22,6 +22,7 @@
 #include <sys/stat.h>
 #include <locale>
 #include <string>
+#include <vector>
 #include <ctype.h>
 
 namespace sosicon {
@@ -39,6 +40,17 @@ namespace sosicon {
             \return The file name string without extension.
         */
         std::string className2FileName( const std::string &className );
+
+        //! Split a string by a character
+        /*!
+            The source string str is split by the delimiter character, and each part 
+            is put sequentially in a vector of strings, excluding the
+            delimiter character.
+            \param delimiter The delimiter character, typically a comma or a semicolon.
+            \param str The source string to be split into a vector of substrings.
+            \return A vector of strings, each of which are substrings of str.
+        */
+        std::vector<std::string> explode( char delimiter, std::string str );
 
         //! Test if file exists
         inline bool fileExists( const std::string& name ) {

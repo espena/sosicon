@@ -62,13 +62,14 @@ build( ISosiElement* sosiTree, std::string objType, sosi::ElementType geomType )
     sosi::SosiElementSearch src;
     ShapeType shapeTypeEquivalent = shape_type_none;
 
+    std::vector<std::string>& f = mFilterSosiId;
     while( sosiTree->getChild( src ) ) {
 
         sosi = src.element();
 
         if( 
             ( objType.empty() || objType == sosi->getObjType() ) &&
-            ( mFilterSosiId.empty() || mFilterSosiId == sosi->getSerial() )
+            ( f.size() == 0 || std::find( f.begin(), f.end(), sosi->getSerial() ) != f.end() )
           )
         {
             
