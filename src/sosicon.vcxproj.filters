@@ -137,6 +137,7 @@
     <ClInclude Include="sosi\sosi_unit.h">
       <Filter>Source Files\Sosi</Filter>
     </ClInclude>
+    <ClInclude Include="converter_sosi2psql.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="byte_order.cpp">
@@ -206,6 +207,9 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="sosi\sosi_translation_table.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="converter_sosi2psql.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

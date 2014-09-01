@@ -144,6 +144,7 @@ rd /s /q $(IntermediateOutputPath)</Command>
     <ClInclude Include="byte_order.h" />
     <ClInclude Include="command_line.h" />
     <ClInclude Include="common_types.h" />
+    <ClInclude Include="converter_sosi2psql.h" />
     <ClInclude Include="converter_sosi2shp.h" />
     <ClInclude Include="converter_sosi2tsv.h" />
     <ClInclude Include="converter_sosi2xml.h" />
@@ -184,6 +185,7 @@ rd /s /q $(IntermediateOutputPath)</Command>
   <ItemGroup>
     <ClCompile Include="byte_order.cpp" />
     <ClCompile Include="command_line.cpp" />
+    <ClCompile Include="converter_sosi2psql.cpp" />
     <ClCompile Include="converter_sosi2shp.cpp" />
     <ClCompile Include="converter_sosi2tsv.cpp" />
     <ClCompile Include="converter_sosi2xml.cpp" />
