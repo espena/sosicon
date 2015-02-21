@@ -14,8 +14,8 @@ ifeq ($(LBIT), 64)
 OUTDIR = ../bin/linux64
 RAGEL = ragel/bin/linux64/ragel
 else
-OUTDIR = ../bin/linux
-RAGEL = ragel/bin/linux/ragel
+OUTDIR = ../bin/linux32
+RAGEL = ragel/bin/linux32/ragel
 endif
 endif
 
