@@ -23,6 +23,7 @@
 #include "sosi_types.h"
 #include <iostream>
 #include <string>
+#include <strstream>
 #include <vector>
 
 namespace sosicon {

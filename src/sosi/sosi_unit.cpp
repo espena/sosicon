@@ -28,10 +28,11 @@ void sosicon::sosi::SosiUnit::
 init( ISosiElement* sosiElement ) {
     mSosiElement = sosiElement;
     std::string data = sosiElement->getData();
-    if( data == "0.1" ) mDivisor = 10;
-    else if( data == "0.01" ) mDivisor = 100;
-    else if( data == "0.001" ) mDivisor = 1000;
-    else if( data == "0.0001" ) mDivisor = 10000;
+    double d = 0;
+    std::strstream ss;
+    ss << data;
+    ss >> d;
+    mDivisor = 1 / ( d > 0 ? d : 1 );
     mInitialized = true;
 }
 

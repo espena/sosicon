@@ -186,7 +186,7 @@ _match:
 	case 0:
 /* #line 53 "ragel/sosi_origo_ne.rl" */
 	{
-			n += (*p);
+            n += (*p);
         }
 	break;
 	case 1:
@@ -214,7 +214,7 @@ _again:
 	case 2:
 /* #line 61 "ragel/sosi_origo_ne.rl" */
 	{
-			std::stringstream ssN, ssE;
+          std::stringstream ssN, ssE;
             ssN << n;
             ssN >> mOrigoN;
             ssE << e;

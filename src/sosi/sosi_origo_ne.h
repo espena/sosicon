@@ -53,7 +53,7 @@ namespace sosicon {
 
         public:
 
-            //! Construct new SOSI junction point element
+            //! Construct new SOSI origo element
             SosiOrigoNE();
 
             //! Construct new SOSI junction point element

@@ -19,11 +19,10 @@
 
 void sosicon::sosi::
 deleteNorthEasts( NorthEastList& lst ) {
-	static int n = 0;
-	for( NorthEastList::iterator i = lst.begin(); i != lst.end(); i++ ) {
-		//std::cout << "\rcounting: " << ++n << "    ";
+    static int n = 0;
+    for( NorthEastList::iterator i = lst.begin(); i != lst.end(); i++ ) {
         ( *i )->free();
-		delete *i;
+        delete *i;
     }
     lst.clear();
 }
@@ -166,6 +165,7 @@ operator+= ( SosiOrigoNE& origo ) {
     ICoordinate* c = 0;
     while( getNext( c ) ) {
         c->shift( offsetN, offsetE );
+
     }
     mMinX += offsetE;
     mMinY += offsetN;

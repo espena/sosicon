@@ -57,7 +57,7 @@ namespace sosicon {
 
             static SosiOrigoNE mOrigo;
 
-			static SosiUnit mUnit;
+            static SosiUnit mUnit;
 
             double mMinX;
             double mMinY;
