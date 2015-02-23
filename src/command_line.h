@@ -134,6 +134,14 @@ namespace sosicon {
          */
         bool mIncludeHeader;
 
+        //! Create a sub directory for the output files
+        /*!
+            If the /s switch is specified, this flag is set to true. Instead of emitting the output
+            files directly to current directory, a sub directory will be created, to which the 
+            ouput files are written.
+         */
+        bool mMakeSubDir;
+
         //! Verbose output
         /*!
             Verbose level. If this value is 0, no informative output will be emitted during file

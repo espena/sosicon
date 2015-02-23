@@ -22,6 +22,7 @@ CommandLine() {
     mVerbose = 0;   
     mIsTtyIn = isatty( fileno( stdin ) ) != 0;
     mIsTtyOut = isatty( fileno( stdout ) ) != 0;
+    mMakeSubDir = false;
 #if defined( __APPLE__ ) || defined( __linux__ )
     if( mIsTtyOut ) {
         std::cout << "\e[?25l"; // Cursor off
@@ -75,26 +76,29 @@ parse( int argc, char* argv[] ) {
             else if( "-d" == param && argc > ( ++i ) ) {
                 mDestinationDirectory = argv[ i ];
             }
+            else if( "-f" == param && argc > ( ++i ) ) {
+                mFieldSelection = utils::explode( ',', argv[ i ] );
+            }
+            else if( "-g" == param && argc > ( ++i ) ) {
+                mGeomTypes = utils::explode( ',', argv[ i ] );
+            }
             else if( "-h" == param ) {
                 mIncludeHeader = true;
             }
             else if( "-o" == param && argc > ( ++i ) ) {
                 mOutputFile = argv[ i ];
             }
+            else if( "-s" == param ) {
+                mMakeSubDir = true;
+            }
             else if( "-t" == param && argc > ( ++i ) ) {
                 mObjTypes = utils::explode( ',', argv[ i ] );
             }
-            else if( "-g" == param && argc > ( ++i ) ) {
-                mGeomTypes = utils::explode( ',', argv[ i ] );
-            }
-            else if( "-f" == param && argc > ( ++i ) ) {
-                mFieldSelection = utils::explode( ',', argv[ i ] );
+            else if( "-V" == param ) {
+                mVerbose = 2;
             }
             else if( "-v" == param ) {
                 mVerbose = 1;
-            }
-            else if( "-V" == param ) {
-                mVerbose = 2;
             }
             else if( "-2shp" == param ) {
                 mCommand = param;

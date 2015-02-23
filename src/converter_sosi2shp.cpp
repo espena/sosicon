@@ -121,7 +121,20 @@ makeBasePath( std::string objTypeName ) {
     std::string dir, tit, ext;
     utils::getPathInfo( candidatePath, dir, tit, ext );
 
-    candidatePath = dir + tit + "_" + objTypeName;
+    std::string subdir = dir + tit;
+    char separator;
+
+    if( mCmd->mMakeSubDir ) {
+        if( !utils::fileExists( subdir ) ) {
+            mkdir( subdir.c_str(), S_IRWXU | S_IRWXG | S_IROTH | S_IXOTH );
+        }
+        separator = '/';
+        candidatePath = subdir + separator + objTypeName;
+    }
+    else {
+        separator = '_';
+        candidatePath = dir + tit + separator + objTypeName;
+    }
     int sequence = 0;
 
     while( utils::fileExists( candidatePath + ".shp" ) ||
@@ -130,7 +143,7 @@ makeBasePath( std::string objTypeName ) {
            utils::fileExists( candidatePath + ".prj" ) )
     {
         std::stringstream ss;
-        ss << dir << tit << "_" << objTypeName << "_" << std::setw( 2 ) << std::setfill( '0' ) << ++sequence;
+        ss << subdir << separator << objTypeName << "_" << std::setw( 2 ) << std::setfill( '0' ) << ++sequence;
         candidatePath = ss.str();
     }
 

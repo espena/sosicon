@@ -35,4 +35,3 @@ init( ISosiElement* sosiElement ) {
     mDivisor = 1 / ( d > 0 ? d : 1 );
     mInitialized = true;
 }
-
