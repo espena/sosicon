@@ -4,7 +4,7 @@
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.7"/>
-<title>sosicon: /prosjekter/sosicon/src/interface/i_shapefile.h Source File</title>
+<title>sosicon: /prosjekter/sosicon/sosicon/src/interface/i_shapefile.h Source File</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -94,14 +94,14 @@
 <div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;</div>
 <div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;            <span class="keyword">virtual</span> <span class="keywordtype">int</span> <a class="code" href="classsosicon_1_1_i_shapefile.html#a331c53ecd7ae5981f6a58fe6cb68eae4">build</a>( <a class="code" href="classsosicon_1_1_i_sosi_element.html">ISosiElement</a>* sosiTree, std::string selection, <a class="code" href="group__sosi__elements.html#ga52dbaad3d1e20075608257e866b0a7ca">sosi::ElementType</a> geomType ) = 0;</div>
 <div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;</div>
-<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;            <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="classsosicon_1_1_i_shapefile.html#ad9400d46937c003085a3c8c873e6aac3">filterSosiId</a>( std::string sosiId ) = 0;</div>
-<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;</div>
-<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;    };</div>
-<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;}; <span class="comment">// namespace sosicon</span></div>
-<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;</div>
-<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;</div>
+<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;            <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="classsosicon_1_1_i_shapefile.html#a1f0cefa11311a2caae9d9195da2d9639">filterSosiId</a>( std::vector&lt;std::string&gt; sosiId ) = 0;</div>
+<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;</div>
+<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;    };</div>
+<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;}; <span class="comment">// namespace sosicon</span></div>
+<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;</div>
+<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;<span class="preprocessor">#endif</span></div>
 <div class="ttc" id="classsosicon_1_1_i_shapefile_html_a331c53ecd7ae5981f6a58fe6cb68eae4"><div class="ttname"><a href="classsosicon_1_1_i_shapefile.html#a331c53ecd7ae5981f6a58fe6cb68eae4">sosicon::IShapefile::build</a></div><div class="ttdeci">virtual int build(ISosiElement *sosiTree, std::string selection, sosi::ElementType geomType)=0</div><div class="ttdoc">Build shapefile from SOSI data. </div></div>
-<div class="ttc" id="classsosicon_1_1_i_shapefile_html_ad9400d46937c003085a3c8c873e6aac3"><div class="ttname"><a href="classsosicon_1_1_i_shapefile.html#ad9400d46937c003085a3c8c873e6aac3">sosicon::IShapefile::filterSosiId</a></div><div class="ttdeci">virtual void filterSosiId(std::string sosiId)=0</div><div class="ttdoc">Set ID for single-element export. </div></div>
 <div class="ttc" id="i__shapefile__shx__part_8h_html"><div class="ttname"><a href="i__shapefile__shx__part_8h.html">i_shapefile_shx_part.h</a></div></div>
 <div class="ttc" id="classsosicon_1_1_i_shapefile_dbf_part_html"><div class="ttname"><a href="classsosicon_1_1_i_shapefile_dbf_part.html">sosicon::IShapefileDbfPart</a></div><div class="ttdoc">Interface: ShapefileDbfPart. </div><div class="ttdef"><b>Definition:</b> <a href="i__shapefile__dbf__part_8h_source.html#l00035">i_shapefile_dbf_part.h:35</a></div></div>
 <div class="ttc" id="i__shapefile__dbf__part_8h_html"><div class="ttname"><a href="i__shapefile__dbf__part_8h.html">i_shapefile_dbf_part.h</a></div></div>
@@ -110,6 +110,7 @@
 <div class="ttc" id="i__shapefile__prj__part_8h_html"><div class="ttname"><a href="i__shapefile__prj__part_8h.html">i_shapefile_prj_part.h</a></div></div>
 <div class="ttc" id="i__sosi__element_8h_html"><div class="ttname"><a href="i__sosi__element_8h.html">i_sosi_element.h</a></div></div>
 <div class="ttc" id="classsosicon_1_1_i_shapefile_html_a1ccaa2274bc2d9b9c91c98309b426baa"><div class="ttname"><a href="classsosicon_1_1_i_shapefile.html#a1ccaa2274bc2d9b9c91c98309b426baa">sosicon::IShapefile::~IShapefile</a></div><div class="ttdeci">virtual ~IShapefile()</div><div class="ttdef"><b>Definition:</b> <a href="i__shapefile_8h_source.html#l00046">i_shapefile.h:46</a></div></div>
+<div class="ttc" id="classsosicon_1_1_i_shapefile_html_a1f0cefa11311a2caae9d9195da2d9639"><div class="ttname"><a href="classsosicon_1_1_i_shapefile.html#a1f0cefa11311a2caae9d9195da2d9639">sosicon::IShapefile::filterSosiId</a></div><div class="ttdeci">virtual void filterSosiId(std::vector&lt; std::string &gt; sosiId)=0</div><div class="ttdoc">Set IDs for seleced element export. </div></div>
 <div class="ttc" id="group__sosi__elements_html_ga52dbaad3d1e20075608257e866b0a7ca"><div class="ttname"><a href="group__sosi__elements.html#ga52dbaad3d1e20075608257e866b0a7ca">sosicon::sosi::ElementType</a></div><div class="ttdeci">ElementType</div><div class="ttdoc">List of SOSI element types. </div><div class="ttdef"><b>Definition:</b> <a href="sosi__types_8h_source.html#l00038">sosi_types.h:38</a></div></div>
 <div class="ttc" id="classsosicon_1_1_i_shapefile_shx_part_html"><div class="ttname"><a href="classsosicon_1_1_i_shapefile_shx_part.html">sosicon::IShapefileShxPart</a></div><div class="ttdoc">Interface: ShapefileShxPart. </div><div class="ttdef"><b>Definition:</b> <a href="i__shapefile__shx__part_8h_source.html#l00035">i_shapefile_shx_part.h:35</a></div></div>
 <div class="ttc" id="classsosicon_1_1_i_sosi_element_html"><div class="ttname"><a href="classsosicon_1_1_i_sosi_element.html">sosicon::ISosiElement</a></div><div class="ttdoc">Interface: SOSI element. </div><div class="ttdef"><b>Definition:</b> <a href="i__sosi__element_8h_source.html#l00051">i_sosi_element.h:51</a></div></div>
@@ -118,7 +119,7 @@
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sun Aug 31 2014 18:12:30 for sosicon by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Sun Feb 22 2015 22:39:16 for sosicon by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.7
 </small></address>

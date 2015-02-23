@@ -1,6 +1,7 @@
 CC = g++
 
 UNAME := $(shell uname)
+LBIT := $(shell getconf LONG_BIT)
 
 PROJ = sosicon
 
@@ -9,8 +10,13 @@ OUTDIR = ../bin/osx
 RAGEL = ragel/bin/osx/ragel
 endif
 ifeq ($(UNAME), Linux)
-OUTDIR = ../bin/linux
-RAGEL = ragel/bin/linux/ragel
+ifeq ($(LBIT), 64)
+OUTDIR = ../bin/linux64
+RAGEL = ragel/bin/linux64/ragel
+else
+OUTDIR = ../bin/linux32
+RAGEL = ragel/bin/linux32/ragel
+endif
 endif
 
 SOURCEFILES =										\

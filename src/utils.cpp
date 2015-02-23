@@ -167,37 +167,37 @@ ucFirst( const std::string &str )
 
 void sosicon::utils::
 getPathInfo( std::string path, std::string &dir, std::string &tit, std::string &ext ) {
-	std::string::size_type len = path.length();
-	std::string tmp;
-	while( len > 0 ) {
-		const char c = path.at( --len );
-		switch( c ) {
-			case '.':
-				tmp = ( c + tmp );
-				if( ext.empty() ) {
-					ext = tmp;
-					tmp = "";
-				}
-				break;
-			case '\\':
-			case '/':
-				if( tit.empty() ) {
-					tit = tmp;
-					tmp = c;
-				}
-				else {
-					tmp = ( c + tmp );
-				}
-				break;
-			default:
-				tmp = ( c + tmp );
-				break;
-		}
-	}
-	if( tit.empty() ) {
-		tit = tmp;
-	}
-	else {
-		dir = tmp;
-	}
+    std::string::size_type len = path.length();
+    std::string tmp;
+    while( len > 0 ) {
+        const char c = path.at( --len );
+        switch( c ) {
+            case '.':
+                tmp = ( c + tmp );
+                if( ext.empty() ) {
+                    ext = tmp;
+                    tmp = "";
+                }
+                break;
+            case '\\':
+            case '/':
+                if( tit.empty() ) {
+                    tit = tmp;
+                    tmp = c;
+                }
+                else {
+                    tmp = ( c + tmp );
+                }
+                break;
+            default:
+                tmp = ( c + tmp );
+                break;
+        }
+    }
+    if( tit.empty() ) {
+        tit = tmp;
+    }
+    else {
+        dir = tmp;
+    }
 }

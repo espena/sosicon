@@ -51,7 +51,7 @@ ragelParseSosiOrigoNE( std::string data )
     %%{
 
         action see_n {
-			n += fc;
+            n += fc;
         }
 
         action see_e {
@@ -59,7 +59,7 @@ ragelParseSosiOrigoNE( std::string data )
         }
 
         action save_ne {
-			std::stringstream ssN, ssE;
+          std::stringstream ssN, ssE;
             ssN << n;
             ssN >> mOrigoN;
             ssE << e;

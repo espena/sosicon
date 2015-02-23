@@ -30,6 +30,13 @@
 #include "parser.h"
 #include "utils.h"
 #include "shape/shapefile.h"
+#if defined( _WIN32 ) || defined( _WIN64 )
+#include <direct.h>
+#define mkdir _mkdir
+#else
+#include <sys/stat.h>
+#include <sys/types.h>
+#endif
 
 namespace sosicon {
 
