@@ -91,6 +91,9 @@ parse( int argc, char* argv[] ) {
             else if( "-s" == param ) {
                 mMakeSubDir = true;
             }
+            else if( "-srid" == param && argc > ( ++i ) ) {
+                mSrid = argv[ i ];
+            }
             else if( "-t" == param && argc > ( ++i ) ) {
                 mObjTypes = utils::explode( ',', argv[ i ] );
             }
@@ -99,6 +102,9 @@ parse( int argc, char* argv[] ) {
             }
             else if( "-v" == param ) {
                 mVerbose = 1;
+            }
+            else if( "-2psql" == param ) {
+                mCommand = param;
             }
             else if( "-2shp" == param ) {
                 mCommand = param;

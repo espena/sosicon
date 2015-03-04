@@ -142,6 +142,12 @@ namespace sosicon {
          */
         bool mMakeSubDir;
 
+        //! Specifies SRID for exports
+        /*!
+            Used for grid conversion exports to postGIS or other conversions that supports this.
+         */
+        std::string mSrid;
+
         //! Verbose output
         /*!
             Verbose level. If this value is 0, no informative output will be emitted during file

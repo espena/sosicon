@@ -19,12 +19,16 @@
 #define __CONVERTER_SOSI2PSQL_H__
 
 #include <iostream>
-#include <iomanip>
 #include <fstream>
 #include <sstream>
 #include <vector>
 #include <map>
+#include "utils.h"
 #include "interface/i_converter.h"
+#include "interface/i_sosi_element.h"
+#include "sosi/sosi_types.h"
+#include "sosi/sosi_translation_table.h"
+#include "sosi/sosi_north_east.h"
 #include "command_line.h"
 #include "parser.h"
 
@@ -48,7 +52,10 @@ namespace sosicon {
         std::string mCurrentSourcefile;
 
         //! Make SQL dump from SOSI tree
-        void makePsql( ISosiElement* sosiTree );
+        void makePsql( ISosiElement* sosiTree,
+                       std::string sridDest,
+                       std::map<std::string,std::string::size_type>& fields,
+                       std::vector<std::map<std::string,std::string>*>& rows );
 
         //! Destructor
         virtual ~ConverterSosi2psql() { };
@@ -71,6 +78,10 @@ namespace sosicon {
             \sa sosicon::IConverter::run()
          */
         virtual void run();
+
+        void writePsql( std::string sridDest,
+                        std::map<std::string,std::string::size_type>& fields,
+                        std::vector<std::map<std::string,std::string>*>& rows );
 
     }; // class ConverterSosi2tsv
    /*! @} end group converters */

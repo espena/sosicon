@@ -137,6 +137,7 @@ namespace sosicon {
         class CoordSys {
 
             int mSysCode;               //!< SOSI SYSKODE
+            std::string mSrid;          //!< EPSG SRID
             std::string mPrjString;     //!< Projection string
             std::string mDisplayString; //!< Display string
 
@@ -145,12 +146,18 @@ namespace sosicon {
             CoordSys( ) : mSysCode( 0 ) {};
 
             CoordSys( int sysCode,
+                      std::string srid,
                       std::string displayString,
                       std::string prjString ) : mSysCode( sysCode ),
+                                                mSrid( srid ),
                                                 mDisplayString( displayString ),
                                                 mPrjString( prjString ) {};
 
+            std::string displayString() { return mDisplayString; };
+
             std::string prjString() { return mPrjString; };
+
+            std::string srid() { return mSrid; };
 
             bool valid() { return mSysCode != 0; };
 

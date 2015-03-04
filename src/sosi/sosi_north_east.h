@@ -77,10 +77,10 @@ namespace sosicon {
             void append( std::string n, std::string e );
             void append( std::string n, std::string e, std::string h );
 
-			//!< Frees allocated memory
-			void free();
-			
-			//! Construct new SOSI north-east element
+            //!< Frees allocated memory
+            void free();
+            
+            //! Construct new SOSI north-east element
             SosiNorthEast( ISosiElement* e );
 
             //! Destructor
