@@ -57,6 +57,11 @@ namespace sosicon {
                        std::map<std::string,std::string::size_type>& fields,
                        std::vector<std::map<std::string,std::string>*>& rows );
 
+        //! Fetch element data fields recursively
+        void extractData( ISosiElement* parent,
+                          std::map<std::string,std::string::size_type>& fields,
+                          std::map<std::string,std::string>*& row );
+
         //! Destructor
         virtual ~ConverterSosi2psql() { };
 
@@ -71,6 +76,8 @@ namespace sosicon {
             \sa sosicon::IConverter::init()
          */
         virtual void init( CommandLine* cmd ) { mCmd = cmd; };
+
+
 
         //! Start conversion
         /*!

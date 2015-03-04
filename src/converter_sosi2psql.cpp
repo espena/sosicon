@@ -18,6 +18,36 @@
 #include "converter_sosi2psql.h"
 
 void sosicon::ConverterSosi2psql::
+extractData( ISosiElement* parent,
+             std::map<std::string,std::string::size_type>& fields,
+             std::map<std::string,std::string>*& row ) {
+
+    sosi::SosiElementSearch srcData;
+    while( parent->getChild( srcData ) ) {
+
+        ISosiElement* dataElement = srcData.element();
+
+        extractData( dataElement, fields, row );
+
+        std::string field = dataElement->getName();
+        std::string data = dataElement->getData();
+        
+        if( data.empty() ) {
+            continue;
+        }
+        
+        if( fields.find( field ) == fields.end() ) {
+            fields[ field ] = data.length();
+        }
+        else {
+            fields[ field ] = std::max( fields[ field ], data.length() );
+        }
+        
+        ( *row )[ field ] = data;
+    }
+}
+
+void sosicon::ConverterSosi2psql::
 makePsql( ISosiElement* sosiTree,
           std::string sridDest,
           std::map<std::string,std::string::size_type>& fields,
@@ -66,7 +96,6 @@ makePsql( ISosiElement* sosiTree,
 
             sosi::SosiNorthEast ne = sosi::SosiNorthEast( srcNe.element() );
             ICoordinate* coord = ne.front();
-            sosi::SosiElementSearch srcData = sosi::SosiElementSearch();
             std::stringstream ss;
 
             std::map<std::string,std::string>* row = new std::map<std::string,std::string>();
@@ -88,27 +117,7 @@ makePsql( ISosiElement* sosiTree,
             ( *row )[ "sosicon_geom" ] = data;
             fields[ "sosicon_geom" ] = std::max( fields[ "sosicon_geom" ], data.length() );
 
-            while( point->getChild( srcData ) ) {
-
-                ISosiElement* dataElement = srcData.element();
-                std::string field = dataElement->getName();
-
-                data = dataElement->getData();
-                
-                if( data.empty() ) {
-                    continue;
-                }
-                
-                if( fields.find( field ) == fields.end() ) {
-                    fields[ field ] = data.length();
-                }
-                else {
-                    fields[ field ] = std::max( fields[ field ], data.length() );
-                }
-                
-                ( *row )[ field ] = data;
-            }
-
+            extractData( point, fields, row );
             rows.push_back( row );
         }
     }
@@ -177,9 +186,10 @@ writePsql( std::string sridDest,
     fs.precision( 0 );
 
     fs << "SET NAMES 'LATIN1';\n";
-    fs << "CREATE SCHEMA IF NOT EXISTS sosicon;\n";
+    fs << "DROP SCHEMA sosicon CASCADE;\n";
+    fs << "CREATE SCHEMA sosicon;\n";
     fs << "CREATE SEQUENCE sosicon.point_serial;\n";
-    fs << "CREATE TABLE IF NOT EXISTS sosicon.point(id_point INT DEFAULT nextval('sosicon.point_serial')";
+    fs << "CREATE TABLE sosicon.point(id_point INT DEFAULT nextval('sosicon.point_serial')";
 
     for( itrFields = fields.begin(); itrFields != fields.end(); itrFields++ ) {
         std::string field = utils::toLower( itrFields->first );
@@ -237,7 +247,8 @@ writePsql( std::string sridDest,
     sqlComposite += ( sqlInsert + sqlValues );
 
     fs << sqlComposite;
-
+    fs << "ALTER TABLE sosicon.point ALTER COLUMN id_point DROP DEFAULT;\n";
+    fs << "DROP SEQUENCE sosicon.point_serial;\n";
     fs.close();
 
     std::cout << "    > Clean-up...\n";

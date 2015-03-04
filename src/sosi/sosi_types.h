@@ -37,6 +37,7 @@ namespace sosicon {
         //! List of SOSI element types
         enum ElementType {
             sosi_element_unknown = 0,           //!< Unknown element
+            sosi_element_address_identifier,    //!< Street address identifier
             sosi_element_airport_roads,         //!< Airport roads
             sosi_element_airport_type,          //!< Airport type
             sosi_element_area,                  //!< Area
