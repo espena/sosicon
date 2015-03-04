@@ -51,6 +51,17 @@ namespace sosicon {
         //! Souce file currently in process
         std::string mCurrentSourcefile;
 
+        //! Build SQL insert statements
+        std::string buildInsertStatements( std::map<std::string,std::string::size_type>& fields,
+                                           std::vector<std::map<std::string,std::string>*>& rows );
+
+        //! Build SQL create statements
+        std::string buildCreateStatements( std::string sridDest,
+                                           std::map<std::string,std::string::size_type>& fields );
+
+        //! Read current coordinate system from SOSI tree
+        std::string getSrid( ISosiElement* sosiTree );
+
         //! Make SQL dump from SOSI tree
         void makePsql( ISosiElement* sosiTree,
                        std::string sridDest,
