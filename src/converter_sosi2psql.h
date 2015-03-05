@@ -52,11 +52,15 @@ namespace sosicon {
         std::string mCurrentSourcefile;
 
         //! Build SQL insert statements
-        std::string buildInsertStatements( std::map<std::string,std::string::size_type>& fields,
+        std::string buildInsertStatements( std::string dbSchema,
+                                           std::string dbTable,
+                                           std::map<std::string,std::string::size_type>& fields,
                                            std::vector<std::map<std::string,std::string>*>& rows );
 
         //! Build SQL create statements
         std::string buildCreateStatements( std::string sridDest,
+                                           std::string dbSchema,
+                                           std::string dbTable,
                                            std::map<std::string,std::string::size_type>& fields );
 
         //! Read current coordinate system from SOSI tree
@@ -65,6 +69,8 @@ namespace sosicon {
         //! Make SQL dump from SOSI tree
         void makePsql( ISosiElement* sosiTree,
                        std::string sridDest,
+                       std::string dbSchema,
+                       std::string dbTable,
                        std::map<std::string,std::string::size_type>& fields,
                        std::vector<std::map<std::string,std::string>*>& rows );
 
@@ -72,6 +78,12 @@ namespace sosicon {
         void extractData( ISosiElement* parent,
                           std::map<std::string,std::string::size_type>& fields,
                           std::map<std::string,std::string>*& row );
+
+        void writePsql( std::string sridDest,
+                        std::string dbSchema,
+                        std::string dbTable,
+                        std::map<std::string,std::string::size_type>& fields,
+                        std::vector<std::map<std::string,std::string>*>& rows );
 
         //! Destructor
         virtual ~ConverterSosi2psql() { };
@@ -96,10 +108,6 @@ namespace sosicon {
             \sa sosicon::IConverter::run()
          */
         virtual void run();
-
-        void writePsql( std::string sridDest,
-                        std::map<std::string,std::string::size_type>& fields,
-                        std::vector<std::map<std::string,std::string>*>& rows );
 
     }; // class ConverterSosi2tsv
    /*! @} end group converters */

@@ -127,6 +127,18 @@ namespace sosicon {
          */
         bool mAppend;
 
+        //! PostGreSQL database schema
+        /*!
+            Name of database schema to export SOSI data to, when using -2psql converter.
+         */
+        std::string mDbSchema;
+
+        //! PostGreSQL database table
+        /*!
+            Name of database table to export SOSI data to, when using -2psql converter.
+         */
+        std::string mDbTable;
+
         //! Include column headers
         /*!
             For some output formats, such as tsv, this flag governs whether a line with the column

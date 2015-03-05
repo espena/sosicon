@@ -91,11 +91,17 @@ parse( int argc, char* argv[] ) {
             else if( "-s" == param ) {
                 mMakeSubDir = true;
             }
+            else if( "-schema" == param && argc > ( ++i ) ) {
+                mDbSchema = argv[ i ];
+            }
             else if( "-srid" == param && argc > ( ++i ) ) {
                 mSrid = argv[ i ];
             }
             else if( "-t" == param && argc > ( ++i ) ) {
                 mObjTypes = utils::explode( ',', argv[ i ] );
+            }
+            else if( "-table" == param && argc > ( ++i ) ) {
+                mDbTable = argv[ i ];
             }
             else if( "-V" == param ) {
                 mVerbose = 2;
