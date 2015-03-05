@@ -126,7 +126,11 @@ makeBasePath( std::string objTypeName ) {
 
     if( mCmd->mMakeSubDir ) {
         if( !utils::fileExists( subdir ) ) {
+#ifdef _WIN32
+            mkdir( subdir.c_str() );
+#else
             mkdir( subdir.c_str(), S_IRWXU | S_IRWXG | S_IROTH | S_IXOTH );
+#endif
         }
         separator = '/';
         candidatePath = subdir + separator + objTypeName;
