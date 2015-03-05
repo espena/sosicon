@@ -21,6 +21,8 @@
 #include "memory.h"
 #include <sys/stat.h>
 #include <locale>
+#include <iomanip>
+#include <sstream>
 #include <string>
 #include <vector>
 #include <ctype.h>
@@ -58,6 +60,17 @@ namespace sosicon {
           return ( stat( name.c_str(), &buffer ) == 0 );
         }
 
+        //! Asserts output file name to be non-existing
+        /*!
+            Tests candidate file paths to find a unique output file name, appending
+            and incrementing a serial number until a "free" name is encountered.
+            \param defaultName If the output file name is not specified on the
+                   command-line, the default file name will be used as
+                   a starting point.
+            \return Path to non-existing output file.
+        */
+        std::string nonExistingFilename( std::string defaultName );
+
         //! Asserts correct name of application classes
         /*!
             Application classes should always begin with the 'App' prefix. This method
@@ -89,6 +102,14 @@ namespace sosicon {
         */
         std::string replaceAll( const std::string &from, const std::string &to, const std::string &subject );
 
+        //! Sanitizes SQL data string.
+        /*!
+            Escapes special characters in a string for use in an SQL statement.
+            \param str The target string.
+            \return A copy of the target string, with reserved characters escaped.
+        */
+        std::string sqlNormalize( const std::string &str );
+
         //! Removes leading and trailing space characters
         /*!
             Space characters in the beginning and at the end of the source 
@@ -102,6 +123,9 @@ namespace sosicon {
         std::string trimLeft( const std::string &str );
 
         std::string trimRight( const std::string &str );
+
+        //! Substitutes Norwegian characters
+        std::string toFieldname( const std::string &from );
 
         std::string toLower( const std::string &from );
 

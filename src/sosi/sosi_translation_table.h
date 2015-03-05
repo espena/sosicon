@@ -72,7 +72,7 @@ namespace sosicon {
 
             SosiTranslationTable();
 
-            inline CoordSys&  sysCodeToCoordSys( int sysCode ) {
+            inline CoordSys& sysCodeToCoordSys( int sysCode ) {
                 if( sysCode <= MAX_COORDSYS_TABLE && sysCode > 0 ) return mCoordSysTable[ sysCode ];
                 else return mCoordSysTable[ 0 ];
             };

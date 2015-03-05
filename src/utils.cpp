@@ -62,6 +62,27 @@ explode( char delimiter, std::string str ) {
     return lst;
 }
 
+std::string sosicon::utils::
+nonExistingFilename( std::string defaultName ) {
+
+    std::string candidatePath = defaultName;
+    std::string dir, tit, ext;
+
+    getPathInfo( candidatePath, dir, tit, ext );
+
+    candidatePath = dir + tit + ext;
+    int sequence = 0;
+
+    while( fileExists( candidatePath ) )
+    {   
+        std::stringstream ss;
+        ss << dir << tit << "_" << std::setw( 2 ) << std::setfill( '0' ) << ++sequence << ".sql";
+        candidatePath = ss.str();
+    }
+
+    return candidatePath;
+}
+
 string sosicon::utils::
 normalizeAppClassName( const std::string &className )
 {
@@ -103,6 +124,57 @@ replaceAll( const std::string &from, const std::string &to, const std::string &s
     {
       res.replace( fh, from.size(), to );
       lh = fh + to.size();
+    }
+    return res;
+}
+
+string sosicon::utils::
+sqlNormalize( const std::string &str )
+{
+    std::string tmp = trim( str );
+    std::string res;
+    std::string::size_type len = tmp.length();
+    if( len > 2 && tmp.at( 0 ) == '\"' && tmp.at( len - 1 ) == '\"' ) {
+        tmp = tmp.substr( 1, len - 2 );
+    }
+    for( std::string::size_type n = 0; n < tmp.length(); n++ ) {
+        char c = tmp.at( n );
+        switch( c ) {
+            case '\"':
+            case '\'':
+            case '\\':
+                res += '\\' + c;
+                break;
+            default:
+                res += c;
+        }
+    }
+    return res;
+}
+
+string sosicon::utils::
+toFieldname( const std::string &str )
+{
+    std::string res, tmp = toLower( str );
+    for( std::string::size_type i = 0; i < tmp.length(); i++ ) {
+        char c = tmp.at( i );
+        switch( c ) {
+            case '\xE6':
+                res += "ae";
+                break;
+            case '\xF8':
+                res += "oe";
+                break;
+            case '\xE5':
+                res += "aa";
+                break;
+            default:
+                res += c;
+        }
+    }
+    if( res.length() > 63 ) {
+        // Default size limit for PostgreSQL labels is 63 bytes
+        res = res.substr( 0, 63 );
     }
     return res;
 }
