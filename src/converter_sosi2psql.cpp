@@ -28,7 +28,7 @@ buildCreateStatements( std::string sridDest,
     ss << "CREATE TABLE " + dbSchema + "." + dbTable +  "(id_" + dbTable +  " INT DEFAULT nextval('" + dbSchema + "." + dbTable +  "_serial')";
     std::map<std::string,std::string::size_type>::iterator itrFields;
     for( itrFields = fields.begin(); itrFields != fields.end(); itrFields++ ) {
-       std::string field = utils::toLower( itrFields->first );
+       std::string field = itrFields->first;
        std::string::size_type len = itrFields->second;
        if( field != geomField ) {
            ss << "," << field << " VARCHAR(" << std::fixed << len << ")";
@@ -57,10 +57,10 @@ buildInsertStatements( std::string dbSchema,
 
     for( itrFields = fields.begin(); itrFields != fields.end(); itrFields++ ) {
         if( sqlInsert.empty() ) {
-            sqlInsert = "INSERT INTO " + dbSchema + "." + dbTable +  " (" + utils::toLower( itrFields->first );
+            sqlInsert = "INSERT INTO " + dbSchema + "." + dbTable +  " (" + itrFields->first;
         }
         else {
-            sqlInsert += ( "," + utils::toLower( itrFields->first ) );
+            sqlInsert += ( "," + itrFields->first );
         }
     }
     sqlInsert += ") VALUES\n";
@@ -122,7 +122,7 @@ extractData( ISosiElement* parent,
 
         extractData( dataElement, fields, row );
 
-        std::string field = dataElement->getName();
+        std::string field = utils::toFieldname( dataElement->getName() );
         std::string data = dataElement->getData();
         
         if( data.empty() ) {

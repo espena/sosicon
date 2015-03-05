@@ -124,6 +124,9 @@ namespace sosicon {
 
         std::string trimRight( const std::string &str );
 
+        //! Substitutes Norwegian characters
+        std::string toFieldname( const std::string &from );
+
         std::string toLower( const std::string &from );
 
         std::string ucFirst( const std::string &str );

@@ -153,6 +153,29 @@ sqlNormalize( const std::string &str )
 }
 
 string sosicon::utils::
+toFieldname( const std::string &str )
+{
+    std::string res, tmp = toLower( str );
+    for( std::string::size_type i = 0; i < tmp.length(); i++ ) {
+        char c = tmp.at( i );
+        switch( c ) {
+            case '\xE6':
+                res += "ae";
+                break;
+            case '\xF8':
+                res += "oe";
+                break;
+            case '\xE5':
+                res += "aa";
+                break;
+            default:
+                res += c;
+        }
+    }
+    return res;
+}
+
+string sosicon::utils::
 toLower( const std::string &str )
 {
     static std::locale loc = std::locale( "no_NO" );
