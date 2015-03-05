@@ -73,8 +73,7 @@ buildInsertStatements( std::string dbSchema,
     for( itrRows = rows.begin(); itrRows != rows.end(); itrRows++ ) {
 
         if( !sqlValues.empty() && ++rowCount % 250000 == 0 ) {
-            sqlValues.pop_back();
-            sqlValues.pop_back();
+            sqlValues = sqlValues.substr( 0, sqlValues.length() - 2 );
             sqlValues += ";\n";
             sqlComposite += ( sqlInsert + sqlValues );
             sqlValues.clear();
@@ -99,13 +98,12 @@ buildInsertStatements( std::string dbSchema,
             }
         }
 
-        sqlValues.pop_back();
+        sqlValues = sqlValues.substr( 0, sqlValues.length() - 1 );
         sqlValues += "),\n";
     }
     std::cout << "\r    > " << rowCount << " points processed               \n";
 
-    sqlValues.pop_back();
-    sqlValues.pop_back();
+    sqlValues = sqlValues.substr( 0, sqlValues.length() - 2 );
     sqlValues += ";\n";
     sqlComposite += ( sqlInsert + sqlValues );
 
