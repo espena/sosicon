@@ -172,6 +172,10 @@ toFieldname( const std::string &str )
                 res += c;
         }
     }
+    if( res.length() > 63 ) {
+        // Default size limit for PostgreSQL labels is 63 bytes
+        res = res.substr( 0, 63 );
+    }
     return res;
 }
 

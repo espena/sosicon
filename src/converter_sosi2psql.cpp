@@ -27,6 +27,7 @@ buildCreateStatements( std::string sridDest,
     std::string geomField = dbTable + "_geom";
     ss << "CREATE TABLE " + dbSchema + "." + dbTable +  "(id_" + dbTable +  " INT DEFAULT nextval('" + dbSchema + "." + dbTable +  "_serial')";
     std::map<std::string,std::string::size_type>::iterator itrFields;
+
     for( itrFields = fields.begin(); itrFields != fields.end(); itrFields++ ) {
        std::string field = itrFields->first;
        std::string::size_type len = itrFields->second;
@@ -34,6 +35,7 @@ buildCreateStatements( std::string sridDest,
            ss << "," << field << " VARCHAR(" << std::fixed << len << ")";
        }
     }
+
     ss << ");\n";
     ss << "SELECT AddGeometryColumn( '" + dbSchema + "', '" + dbTable +  "', '" + geomField + "', " + sridDest + ", 'POINT', 2 );\n";
 
@@ -308,6 +310,6 @@ writePsql( std::string sridDest,
     fs << "$$ LANGUAGE plpgsql;\n";
     fs <<  buildCreateStatements( sridDest, dbSchema, dbTable, fields );
     fs <<  buildInsertStatements( dbSchema, dbTable, fields, rows );
-        fs.close();
+    fs.close();
     std::cout << "    > " << fileName << " written\n";
 }
