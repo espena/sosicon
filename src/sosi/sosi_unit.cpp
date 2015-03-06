@@ -32,6 +32,6 @@ init( ISosiElement* sosiElement ) {
     std::strstream ss;
     ss << data;
     ss >> d;
-    mDivisor = 1 / ( d > 0 ? d : 1 );
+    mDivisor = static_cast<int> ( 1.0 / ( d > 0.0 ? d : 1.0 ) );
     mInitialized = true;
 }
