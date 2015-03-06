@@ -21,14 +21,14 @@ std::string sosicon::ConverterSosi2psql::
 buildCreateStatements( std::string sridDest,
                        std::string dbSchema,
                        std::string dbTable,
-                       std::map<std::string,std::string::size_type>& fields ) {
+                       FieldsListCollection& fields ) {
 
     std::stringstream ss;
     std::string geomField = dbTable + "_geom";
     ss << "CREATE TABLE " + dbSchema + "." + dbTable +  "(id_" + dbTable +  " INT DEFAULT nextval('" + dbSchema + "." + dbTable +  "_serial')";
-    std::map<std::string,std::string::size_type>::iterator itrFields;
+    FieldsList::iterator itrFields;
 
-    for( itrFields = fields.begin(); itrFields != fields.end(); itrFields++ ) {
+    for( itrFields = fields[ sosi::sosi_element_point ]->begin(); itrFields != fields[ sosi::sosi_element_point ]->end(); itrFields++ ) {
        std::string field = itrFields->first;
        std::string::size_type len = itrFields->second;
        if( field != geomField ) {
@@ -45,19 +45,22 @@ buildCreateStatements( std::string sridDest,
 std::string sosicon::ConverterSosi2psql::
 buildInsertStatements( std::string dbSchema,
                        std::string dbTable,
-                       std::map<std::string,std::string::size_type>& fields,
-                       std::vector<std::map<std::string,std::string>*>& rows ) {
+                       FieldsListCollection& fields,
+                       RowsListCollection& rows ) {
 
     std::string sqlInsert;
     std::string sqlValues;
     std::string sqlComposite;
 
-    std::vector<std::map<std::string,std::string>*>::iterator itrRows;
-    std::map<std::string,std::string::size_type>::iterator itrFields;
+    RowsList::iterator itrRows;
+    FieldsList::iterator itrFields;
+
+    FieldsList* f = fields[ sosi::sosi_element_point ];
+    RowsList* r = rows[ sosi::sosi_element_point ];
 
     std::string geomField = dbTable + "_geom";
 
-    for( itrFields = fields.begin(); itrFields != fields.end(); itrFields++ ) {
+    for( itrFields = f->begin(); itrFields != f->end(); itrFields++ ) {
         if( sqlInsert.empty() ) {
             sqlInsert = "INSERT INTO " + dbSchema + "." + dbTable +  " (" + itrFields->first;
         }
@@ -65,12 +68,16 @@ buildInsertStatements( std::string dbSchema,
             sqlInsert += ( "," + itrFields->first );
         }
     }
+
     sqlInsert += ") VALUES\n";
 
     int rowCount = 0;
-    std::vector<std::map<std::string,std::string>*>::size_type len = rows.size();
+    RowsList::size_type len = r->size();
     std::cout << "    > Processing 0 of " << len;
-    for( itrRows = rows.begin(); itrRows != rows.end(); itrRows++ ) {
+
+    for( itrRows = r->begin(); itrRows != r->end(); itrRows++ ) {
+
+        std::map<std::string,std::string>* row = *itrRows;
 
         if( !sqlValues.empty() && ++rowCount % 250000 == 0 ) {
             sqlValues = sqlValues.substr( 0, sqlValues.length() - 2 );
@@ -84,26 +91,27 @@ buildInsertStatements( std::string dbSchema,
         }
 
         sqlValues += "(";
-        std::map<std::string,std::string>* row = *itrRows;
 
-        for( itrFields = fields.begin(); itrFields != fields.end(); itrFields++ ) {
-            if( row->find( itrFields->first ) == row->end() ) {
-                ( *row )[ itrFields->first ] = "";
+        for( itrFields = f->begin(); itrFields != f->end(); itrFields++ ) {
+            std::string key = itrFields->first;
+            if( row->find( key ) == row->end() ) {
+                ( *row )[ key ] = "";
             }
-            if( itrFields->first == geomField ) {
-                sqlValues += ( *row )[ itrFields->first ] + ",";
+            if( key == geomField ) {
+                sqlValues += ( *row )[ key ] + ",";
             }
             else {
-                sqlValues += "'" + utils::sqlNormalize( ( *row )[ itrFields->first ] ) + "',";
+                sqlValues += "'" + utils::sqlNormalize( ( *row )[ key ] ) + "',";
             }
         }
 
-        sqlValues = sqlValues.substr( 0, sqlValues.length() - 1 );
+        sqlValues.pop_back();
         sqlValues += "),\n";
     }
     std::cout << "\r    > " << rowCount << " points processed               \n";
 
-    sqlValues = sqlValues.substr( 0, sqlValues.length() - 2 );
+    sqlValues.pop_back();
+    sqlValues.pop_back();
     sqlValues += ";\n";
     sqlComposite += ( sqlInsert + sqlValues );
 
@@ -111,8 +119,23 @@ buildInsertStatements( std::string dbSchema,
 }
 
 void sosicon::ConverterSosi2psql::
+cleanup( FieldsListCollection& fields,
+         RowsListCollection& rows ) {
+
+    std::cout << "    > Clean-up...\n";
+    RowsList::iterator i;
+    for( i = rows[ sosi::sosi_element_point ]->begin(); i != rows[ sosi::sosi_element_point ]->end(); i++ ) {
+        delete *i;
+    }
+    delete rows[ sosi::sosi_element_point ];
+    rows[ sosi::sosi_element_point ] = 0;
+    delete fields[ sosi::sosi_element_point ];
+    fields[ sosi::sosi_element_point ] = 0;
+}
+
+void sosicon::ConverterSosi2psql::
 extractData( ISosiElement* parent,
-             std::map<std::string,std::string::size_type>& fields,
+             FieldsListCollection& fields,
              std::map<std::string,std::string>*& row ) {
 
     sosi::SosiElementSearch srcData;
@@ -129,11 +152,11 @@ extractData( ISosiElement* parent,
             continue;
         }
 
-        if( fields.find( field ) == fields.end() ) {
-            fields[ field ] = data.length();
+        if( fields[ sosi::sosi_element_point ]->find( field ) == fields[ sosi::sosi_element_point ]->end() ) {
+            ( *fields[ sosi::sosi_element_point ] )[ field ] = data.length();
         }
         else {
-            fields[ field ] = std::max( fields[ field ], data.length() );
+            ( *fields[ sosi::sosi_element_point ] )[ field ] = std::max( ( *fields[ sosi::sosi_element_point ] )[ field ], data.length() );
         }
 
         ( *row )[ field ] = data;
@@ -181,12 +204,52 @@ getSrid( ISosiElement* sosiTree ) {
 }
 
 void sosicon::ConverterSosi2psql::
+insertPoint( ISosiElement* point,
+             std::string sridSource,
+             std::string sridDest,
+             std::string geomField,
+             FieldsListCollection& fields,
+             RowsListCollection& rows ) {
+
+    sosi::SosiElementSearch srcNe = sosi::SosiElementSearch( sosi::sosi_element_ne );
+
+    if( point->getChild( srcNe ) ) {
+
+        sosi::SosiNorthEast ne = sosi::SosiNorthEast( srcNe.element() );
+        ICoordinate* coord = ne.front();
+        std::stringstream ss;
+
+        std::map<std::string,std::string>* row = new std::map<std::string,std::string>();
+
+        ss.precision( 5 );
+
+        ss  << std::fixed
+            << "ST_Transform(ST_GeomFromText('POINT("
+            << coord->getE()
+            << " "
+            << coord->getN()
+            << ")',"
+            << sridSource
+            << "),"
+            << sridDest
+            << ")";
+
+        std::string data = ss.str();
+        ( *row )[ geomField ] = data;
+        ( *fields[ sosi::sosi_element_point ] )[ geomField ] = std::max( ( *fields[ sosi::sosi_element_point ] )[ geomField ], data.length() );
+
+        extractData( point, fields, row );
+        rows[ sosi::sosi_element_point ]->push_back( row );
+    }
+}
+
+void sosicon::ConverterSosi2psql::
 makePsql( ISosiElement* sosiTree,
           std::string sridDest,
           std::string dbSchema,
           std::string dbTable,
-          std::map<std::string,std::string::size_type>& fields,
-          std::vector<std::map<std::string,std::string>*>& rows ) {
+          FieldsListCollection& fields,
+          RowsListCollection& rows ) {
 
     std::string sridSource = getSrid( sosiTree );
     std::string geomField = dbTable + "_geom";
@@ -194,52 +257,26 @@ makePsql( ISosiElement* sosiTree,
     sosi::SosiElementSearch srcPoint = sosi::SosiElementSearch( sosi::sosi_element_point );
 
     while( sosiTree->getChild( srcPoint ) ) {
-        ISosiElement* point = srcPoint.element();
-        sosi::SosiElementSearch srcNe = sosi::SosiElementSearch( sosi::sosi_element_ne );
-
-        if( point->getChild( srcNe ) ) {
-
-            sosi::SosiNorthEast ne = sosi::SosiNorthEast( srcNe.element() );
-            ICoordinate* coord = ne.front();
-            std::stringstream ss;
-
-            std::map<std::string,std::string>* row = new std::map<std::string,std::string>();
-
-            ss.precision( 5 );
-
-            ss  << std::fixed
-                << "ST_Transform(ST_GeomFromText('POINT("
-                << coord->getE()
-                << " "
-                << coord->getN()
-                << ")',"
-                << sridSource
-                << "),"
-                << sridDest
-                << ")";
-
-            std::string data = ss.str();
-            ( *row )[ geomField ] = data;
-            fields[ geomField ] = std::max( fields[ geomField ], data.length() );
-
-            extractData( point, fields, row );
-            rows.push_back( row );
-        }
+        insertPoint( srcPoint.element(), sridSource, sridDest, geomField, fields, rows );
     }
 }
 
 void sosicon::ConverterSosi2psql::
 run() {
 
-    std::map<std::string,std::string::size_type> fields;
-    std::vector<std::map<std::string,std::string>*> rows;
+    FieldsListCollection fields;
+    fields[ sosi::sosi_element_point ] = new FieldsList();
+
+    RowsListCollection rows;
+    rows[ sosi::sosi_element_point ] = new RowsList();
+
     std::string sridDest = mCmd->mSrid.empty() ? "4326" : mCmd->mSrid;
 
     std::string dbSchema = mCmd->mDbSchema.empty() ? "sosicon" : mCmd->mDbSchema;
     std::string dbTable = mCmd->mDbTable.empty() ? "point" : mCmd->mDbTable;
     std::string geomField = dbTable + "_geom";
 
-    fields[ geomField ] = 0;
+    ( *fields[ sosi::sosi_element_point ] )[ geomField ] = 0;
 
     for( std::vector<std::string>::iterator f = mCmd->mSourceFiles.begin(); f != mCmd->mSourceFiles.end(); f++ ) {
         mCurrentSourcefile = *f;
@@ -248,7 +285,6 @@ run() {
         }
         else {
             std::cout << "Reading " << mCurrentSourcefile << "\n";
-
             Parser p;
             char ln[ 1024 ];
             std::ifstream ifs( mCurrentSourcefile.c_str() );
@@ -271,19 +307,16 @@ run() {
         }
     }
     writePsql( sridDest, dbSchema, dbTable, fields, rows );
-    std::cout << "    > Clean-up...\n";
-    std::vector<std::map<std::string,std::string>*>::iterator i;
-    for( i = rows.begin(); i != rows.end(); i++ ) {
-        delete *i;
-    }
+    cleanup( fields, rows );
+    std::cout << "Done!\n";
 }
 
 void sosicon::ConverterSosi2psql::
 writePsql( std::string sridDest,
            std::string dbSchema,
            std::string dbTable,
-           std::map<std::string,std::string::size_type>& fields,
-           std::vector<std::map<std::string,std::string>*>& rows ) {
+           FieldsListCollection& fields,
+           RowsListCollection& rows ) {
 
     std::ofstream fs;
     std::string defaultOutputFile = mCmd->mOutputFile.empty() ? "postgis_dump.sql" : mCmd->mOutputFile;

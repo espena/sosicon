@@ -47,7 +47,7 @@ SOURCEFILES =										\
 
 HEADERFILES = *.h
 
-COMPILER_OPTS = 
+COMPILER_OPTS = -std=c++11
 
 sosicon: $(SOURCEFILES) $(HEADERFILES)
 

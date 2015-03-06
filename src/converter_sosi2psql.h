@@ -45,6 +45,11 @@ namespace sosicon {
      */
     class ConverterSosi2psql : public IConverter {
 
+        typedef std::map< std::string,std::string::size_type > FieldsList;
+        typedef std::map< sosi::ElementType, FieldsList* > FieldsListCollection;
+        typedef std::vector< std::map< std::string,std::string >* > RowsList;
+        typedef std::map< sosi::ElementType, RowsList* > RowsListCollection;
+
         //! Command line wrapper
         CommandLine* mCmd;
 
@@ -54,36 +59,48 @@ namespace sosicon {
         //! Build SQL insert statements
         std::string buildInsertStatements( std::string dbSchema,
                                            std::string dbTable,
-                                           std::map<std::string,std::string::size_type>& fields,
-                                           std::vector<std::map<std::string,std::string>*>& rows );
+                                           FieldsListCollection& fields,
+                                           RowsListCollection& rows );
 
         //! Build SQL create statements
         std::string buildCreateStatements( std::string sridDest,
                                            std::string dbSchema,
                                            std::string dbTable,
-                                           std::map<std::string,std::string::size_type>& fields );
+                                           FieldsListCollection& fields );
+
+        // Free heap allocations
+        void cleanup( FieldsListCollection& fields,
+                      RowsListCollection& rows );
 
         //! Read current coordinate system from SOSI tree
         std::string getSrid( ISosiElement* sosiTree );
+
+        //! Convert single point geomery (PUNKT) to SQL export data
+        void insertPoint( ISosiElement* point,
+                          std::string sridSource,
+                          std::string sridDest,
+                          std::string geomField,
+                          FieldsListCollection& fields,
+                          RowsListCollection& rows );
 
         //! Make SQL dump from SOSI tree
         void makePsql( ISosiElement* sosiTree,
                        std::string sridDest,
                        std::string dbSchema,
                        std::string dbTable,
-                       std::map<std::string,std::string::size_type>& fields,
-                       std::vector<std::map<std::string,std::string>*>& rows );
+                       FieldsListCollection& fields,
+                       RowsListCollection& rows );
 
         //! Fetch element data fields recursively
         void extractData( ISosiElement* parent,
-                          std::map<std::string,std::string::size_type>& fields,
+                          FieldsListCollection& fields,
                           std::map<std::string,std::string>*& row );
 
         void writePsql( std::string sridDest,
                         std::string dbSchema,
                         std::string dbTable,
-                        std::map<std::string,std::string::size_type>& fields,
-                        std::vector<std::map<std::string,std::string>*>& rows );
+                        FieldsListCollection& fields,
+                        RowsListCollection& rows );
 
         //! Destructor
         virtual ~ConverterSosi2psql() { };

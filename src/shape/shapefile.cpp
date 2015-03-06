@@ -351,7 +351,7 @@ void sosicon::shape::Shapefile::
 buildDbfHeader( int recLen ) {
 
     Int16Field headerLength;
-    Int16Field recordLength = { recLen };
+    Int16Field recordLength = { static_cast<uint16_t>( recLen ) };
     headerLength.i =
         /* Fixed header size       */   sizeof( mDbfHeader ) +
         /* Field description array */ ( mDbfFieldLengths.size() * 32 ) +
