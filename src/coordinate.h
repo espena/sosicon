@@ -52,6 +52,7 @@ namespace sosicon {
         virtual void setH( double altitude ) { mAltitude = altitude; };
         virtual void shift( int offsetN, int offsetE ) { mNorth += offsetN; mEast += offsetE; };
         virtual void divide( int divisor ) { mNorth /= divisor; mEast /= divisor; };
+        virtual bool equals( ICoordinate* c ) { return mEast == c->getE() && mNorth == c->getN(); };
         virtual std::string toString() { std::stringstream ss; ss << "POINT( " << std::fixed << mNorth << " " << std::fixed << mEast << " )"; return ss.str(); };
 
     }; // class Coordinate

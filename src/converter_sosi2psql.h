@@ -30,6 +30,7 @@
 #include "interface/i_sosi_element.h"
 #include "sosi/sosi_types.h"
 #include "sosi/sosi_translation_table.h"
+#include "coordinate_collection.h"
 #include "sosi/sosi_north_east.h"
 #include "command_line.h"
 #include "parser.h"
@@ -58,17 +59,37 @@ namespace sosicon {
         //! Souce file currently in process
         std::string mCurrentSourcefile;
 
-        //! Build SQL insert statements
+        //! Collection of fields, one item for each geometry type
+        FieldsListCollection mFieldsListCollection;
+
+        //! Collection of rows, one item for each geometry type
+        RowsListCollection mRowsListCollection;
+
+        //! Build SQL insert statements for all geometries
         std::string buildInsertStatements( std::string dbSchema,
                                            std::string dbTable,
                                            FieldsListCollection& fields,
                                            RowsListCollection& rows );
 
-        //! Build SQL create statements
+        //! Build SQL insert statement for one geometry
+        std::string buildInsertStatement( sosi::ElementType elementType,
+                                          std::string dbSchema,
+                                          std::string dbTable,
+                                          FieldsListCollection& fields,
+                                          RowsListCollection& rows );
+
+        //! Build SQL create statements for all geometries
         std::string buildCreateStatements( std::string sridDest,
                                            std::string dbSchema,
                                            std::string dbTable,
                                            FieldsListCollection& fields );
+
+        //! Build SQL create statement for one geometry
+        std::string buildCreateStatement( sosi::ElementType elementType,
+                                          std::string sridDest,
+                                          std::string dbSchema,
+                                          std::string dbTable,
+                                          FieldsListCollection& fields );
 
         // Free heap allocations
         void cleanup( FieldsListCollection& fields,
@@ -77,13 +98,21 @@ namespace sosicon {
         //! Read current coordinate system from SOSI tree
         std::string getSrid( ISosiElement* sosiTree );
 
-        //! Convert single point geomery (PUNKT) to SQL export data
+        //! Convert single point geomery (sosi PUNKT) to SQL export data
         void insertPoint( ISosiElement* point,
                           std::string sridSource,
                           std::string sridDest,
                           std::string geomField,
                           FieldsListCollection& fields,
                           RowsListCollection& rows );
+
+        //! Convert polygons (sosi FLATE) to SQL export data
+        void insertPolygon( ISosiElement* polygon,
+                            std::string sridSource,
+                            std::string sridDest,
+                            std::string geomField,
+                            FieldsListCollection& fields,
+                            RowsListCollection& rows );
 
         //! Make SQL dump from SOSI tree
         void makePsql( ISosiElement* sosiTree,
@@ -95,7 +124,7 @@ namespace sosicon {
 
         //! Fetch element data fields recursively
         void extractData( ISosiElement* parent,
-                          FieldsListCollection& fields,
+                          FieldsList*& field,
                           std::map<std::string,std::string>*& row );
 
         void writePsql( std::string sridDest,
@@ -104,10 +133,14 @@ namespace sosicon {
                         FieldsListCollection& fields,
                         RowsListCollection& rows );
 
+        //! Get Well Known Text from SOSI geometry
+        std::string wktFromSosiType( sosi::ElementType elementType );
+
         //! Destructor
         virtual ~ConverterSosi2psql() { };
 
     public:
+
         //! Constructor
         ConverterSosi2psql() : mCmd( 0 ) { };
         
@@ -118,8 +151,6 @@ namespace sosicon {
             \sa sosicon::IConverter::init()
          */
         virtual void init( CommandLine* cmd ) { mCmd = cmd; };
-
-
 
         //! Start conversion
         /*!

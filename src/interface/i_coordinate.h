@@ -65,6 +65,9 @@ namespace sosicon {
         //! Divide coordinate by specified divisor
         virtual void divide( int divisor ) = 0;
 
+        //! Check if two points match
+        virtual bool equals( ICoordinate* c ) = 0;
+
         //! Make string representation
         virtual std::string toString() = 0;
 
