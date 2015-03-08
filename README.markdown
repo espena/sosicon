@@ -1,6 +1,6 @@
 # Sosicon v 0.1 (under development)
-For Linux, OS X and Windows. Converts SOSI files to a number of other formats, including shapefile.
-The parser is still under development.
+For Linux, OS X and Windows. Converts SOSI files to a number of other formats, including shapefile and
+PostGIS database import files. The parser is still under development.
 
 SOSI is a data format used for exchanging geographical information in Norway. The name is an acronym
 for _"Samordnet Opplegg for Stedfestet Informasjon"_, which translates into something like
@@ -34,6 +34,8 @@ You can inspect the content of a SOSI file by using the -stat command, like this
 This command will render a list of SOSI elements (geometry types among other things) and SOSI
 object types (OBJTYPE).
 
+## Shapefile conversion
+
 To convert a SOSI file to shape, run Sosicon from the directory where the SOSI file
 resides. Use the -2shp parameter to emit the three required files: Shape file (shp), database
 file (dbf) and index file (shx). A projection file (prj) will also be created if the
@@ -52,6 +54,34 @@ geometry type and shp/shx/dbf extensions.
 Use the -o parameter to specify optional output file basename:
 
 `sosicon -2shp -o ~/myfolder/arealdekke input.sos`
+
+## PostGIS conversion
+
+Use the -2psql parameter to make a PostGIS import file (SQL script) from a SOSI file. The generated
+SQL file can be run against any PostgreSQL database with PostGIS installed. Use the
+[psql command-line utility](http://www.postgresql.org/docs/9.3/static/app-psql.html) to import the file.
+
+`sosicon -2psql input.sos`
+
+This command will create a default SQL file named "postgis_dump.sql". When imported to PostgreSQL, the
+data tables will be put in the schema "sosicon" by default. There will be one table for each recognized
+geometry in the SOSI file. The tables will be named "object_point", "object_polygon" and "object_linestring".
+
+The "-schema" and "-table" parameters can be used to customize the schema and table base name:
+
+`sosicon -2psql -schema topo -table arealdekke input.sos`
+
+When imported to PostgreSQL, the tables will be named "arealdekke_point", "arealdekke_polygon" and
+"arealdekke_linestring". The tables will be put in a schema named "topo".
+
+By default, the SOSI geometries are converted to [EPSG:4326](http://spatialreference.org/ref/epsg/4623/)
+grid when imported to PostgreSQL. Use the "-srid" parameter to specify another target grid, for example
+Google mercator; SRID 900913:
+
+`sosicon -2psql -schema topo -table arealdekke -srid 900913 input.sos`
+
+PostGIS takes care of the actual grid conversion when the data is inserted into the table(s). The user
+must assert that the target srid exists in PostGIS' spatial_ref_sys table.
 
 ## Build from source code
 

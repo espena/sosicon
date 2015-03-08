@@ -512,7 +512,7 @@ run() {
     std::string sridDest = mCmd->mSrid.empty() ? "4326" : mCmd->mSrid;
 
     std::string dbSchema = mCmd->mDbSchema.empty() ? "sosicon" : mCmd->mDbSchema;
-    std::string dbTable = mCmd->mDbTable.empty() ? "point" : mCmd->mDbTable;
+    std::string dbTable = mCmd->mDbTable.empty() ? "object" : mCmd->mDbTable;
     std::string geomField = dbTable + "_geom";
 
     ( *mFieldsListCollection[ sosi::sosi_element_point ] )[ geomField ] = 0;
