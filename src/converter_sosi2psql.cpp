@@ -198,13 +198,12 @@ buildInsertStatement( sosi::ElementType elementType,
                 }
             }
 
-            sqlValues.pop_back();
+            sqlValues.erase( sqlValues.size() - 1 );
             sqlValues += "),\n";
         }
         std::cout << "\r    > " << rowCount << " " << geomName << "s processed               \n" << std::flush;
 
-        sqlValues.pop_back();
-        sqlValues.pop_back();
+        sqlValues.erase( sqlValues.size() - 2 );
         sqlValues += ";\n";
         sqlComposite += ( sqlInsert + sqlValues );
     }
@@ -369,7 +368,7 @@ insertLineString( ISosiElement* lineString,
     }
 
     std::string geom = ssGeomCoord.str();
-    geom.pop_back();
+    geom.erase( geom.size() - 1 );
 
     std::stringstream ss;
     ss << "ST_Transform(ST_GeomFromText('LINESTRING("
@@ -417,7 +416,7 @@ insertPolygon( ISosiElement* polygon,
     }
 
     std::string geom = ssGeomCoord.str();
-    geom.pop_back();
+    geom.erase( geom.size() - 1 );
     geom += ")";
 
     std::stringstream ssHolesCoord;
