@@ -85,8 +85,11 @@ namespace sosicon {
                                           std::string dbSchema,
                                           std::string dbTable );
 
-        // Free heap allocations
+        // Free all heap allocations
         void cleanup();
+
+        // Free heap allocations for single geometry
+        void cleanup( sosi::ElementType );
 
         //! Fetch element data fields recursively
         void extractData( ISosiElement* parent,
@@ -95,6 +98,12 @@ namespace sosicon {
 
         //! Read current coordinate system from SOSI tree
         std::string getSrid( ISosiElement* sosiTree );
+
+        //! Convert curve geomery (sosi KURVE) to SQL export data
+        void insertLineString( ISosiElement* lineString,
+                               std::string sridSource,
+                               std::string sridDest,
+                               std::string geomField );
 
         //! Convert single point geomery (sosi PUNKT) to SQL export data
         void insertPoint( ISosiElement* point,

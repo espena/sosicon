@@ -28,6 +28,11 @@ buildCreateStatements( std::string sridDest,
                                  dbSchema,
                                  dbTable );
 
+    sql += buildCreateStatement( sosi::sosi_element_curve,
+                                 sridDest,
+                                 dbSchema,
+                                 dbTable );
+
     sql += buildCreateStatement( sosi::sosi_element_surface,
                                  sridDest,
                                  dbSchema,
@@ -106,6 +111,10 @@ buildInsertStatements( std::string dbSchema,
 
     std::string sql;
     sql  = buildInsertStatement( sosi::sosi_element_point,
+                                 dbSchema,
+                                 dbTable );
+
+    sql += buildInsertStatement( sosi::sosi_element_curve,
                                  dbSchema,
                                  dbTable );
 
@@ -206,24 +215,26 @@ void sosicon::ConverterSosi2psql::
 cleanup() {
 
     std::cout << "    > Clean-up...\n";
-    RowsList* r = mRowsListCollection[ sosi::sosi_element_point ];
+    cleanup( sosi::sosi_element_point );
+    cleanup( sosi::sosi_element_curve );
+    cleanup( sosi::sosi_element_surface );
+}
+
+void sosicon::ConverterSosi2psql::
+cleanup( sosi::ElementType type ) {
+
+    RowsList* r = mRowsListCollection[ type ];
     RowsList::iterator i;
 
     for( i = r->begin(); i != r->end(); i++ ) {
         delete *i;
     }
 
-    delete mRowsListCollection[ sosi::sosi_element_point ];
-    mRowsListCollection[ sosi::sosi_element_point ] = 0;
+    delete mRowsListCollection[ type ];
+    mRowsListCollection[ type ] = 0;
 
-    delete mRowsListCollection[ sosi::sosi_element_surface ];
-    mRowsListCollection[ sosi::sosi_element_surface ] = 0;
-
-    delete mFieldsListCollection[ sosi::sosi_element_point ];
-    mFieldsListCollection[ sosi::sosi_element_point ] = 0;
-
-    delete mFieldsListCollection[ sosi::sosi_element_surface ];
-    mFieldsListCollection[ sosi::sosi_element_surface ] = 0;
+    delete mFieldsListCollection[ type ];
+    mFieldsListCollection[ type ] = 0;
 }
 
 void sosicon::ConverterSosi2psql::
@@ -231,7 +242,7 @@ extractData( ISosiElement* parent,
              sosi::ElementType type,
              std::map<std::string,std::string>*& row ) {
 
-    FieldsList*& fieldsList = mFieldsListCollection[ type ];
+        FieldsList*& fieldsList = mFieldsListCollection[ type ];
     sosi::SosiElementSearch srcData;
     while( parent->getChild( srcData ) ) {
 
@@ -335,6 +346,51 @@ insertPoint( ISosiElement* point,
 }
 
 void sosicon::ConverterSosi2psql::
+insertLineString( ISosiElement* lineString,
+                  std::string sridSource,
+                  std::string sridDest,
+                  std::string geomField ) {
+
+    CoordinateCollection cc;
+    cc.discoverCoords( lineString );
+
+    std::vector<ICoordinate*> theGeom = cc.getGeom();
+    std::stringstream ssGeomCoord;
+
+    ssGeomCoord.precision( 5 );
+    ssGeomCoord << std::fixed;
+
+    for( std::vector<ICoordinate*>::iterator i = theGeom.begin(); i != theGeom.end(); i++ ) {
+        ICoordinate* c = *i;
+        ssGeomCoord << c->getE()
+                    << " "
+                    << c->getN()
+                    << ",";
+    }
+
+    std::string geom = ssGeomCoord.str();
+    geom.pop_back();
+
+    std::stringstream ss;
+    ss << "ST_Transform(ST_GeomFromText('LINESTRING("
+       << geom
+       << ")',"
+       << sridSource
+       << "),"
+       << sridDest
+       << ")";
+
+    std::string data = ss.str();
+    std::map<std::string,std::string>* row = new std::map<std::string,std::string>();
+
+    ( *row )[ geomField ] = data;
+    ( *mFieldsListCollection[ sosi::sosi_element_surface ] )[ geomField ] = std::max( ( *mFieldsListCollection[ sosi::sosi_element_surface ] )[ geomField ], data.length() );
+
+    extractData( lineString, sosi::sosi_element_curve, row );
+    mRowsListCollection[ sosi::sosi_element_curve ]->push_back( row );
+}
+
+void sosicon::ConverterSosi2psql::
 insertPolygon( ISosiElement* polygon,
                std::string sridSource,
                std::string sridDest,
@@ -426,10 +482,15 @@ makePsql( ISosiElement* sosiTree,
     std::string geomField = dbTable + "_geom";
     sosi::SosiTranslationTable ttbl;
     sosi::SosiElementSearch srcPoint = sosi::SosiElementSearch( sosi::sosi_element_point );
+    sosi::SosiElementSearch srcLineString = sosi::SosiElementSearch( sosi::sosi_element_curve );
     sosi::SosiElementSearch srcPolygon = sosi::SosiElementSearch( sosi::sosi_element_surface );
 
     while( sosiTree->getChild( srcPoint ) ) {
         insertPoint( srcPoint.element(), sridSource, sridDest, geomField );
+    }
+
+    while( sosiTree->getChild( srcLineString ) ) {
+        insertLineString( srcLineString.element(), sridSource, sridDest, geomField );
     }
 
     while( sosiTree->getChild( srcPolygon ) ) {
@@ -442,9 +503,11 @@ void sosicon::ConverterSosi2psql::
 run() {
 
     mFieldsListCollection[ sosi::sosi_element_point ] = new FieldsList();
+    mFieldsListCollection[ sosi::sosi_element_curve ] = new FieldsList();
     mFieldsListCollection[ sosi::sosi_element_surface ] = new FieldsList();
 
     mRowsListCollection[ sosi::sosi_element_point ] = new RowsList();
+    mRowsListCollection[ sosi::sosi_element_curve ] = new RowsList();
     mRowsListCollection[ sosi::sosi_element_surface ] = new RowsList();
 
     std::string sridDest = mCmd->mSrid.empty() ? "4326" : mCmd->mSrid;
@@ -454,6 +517,8 @@ run() {
     std::string geomField = dbTable + "_geom";
 
     ( *mFieldsListCollection[ sosi::sosi_element_point ] )[ geomField ] = 0;
+    ( *mFieldsListCollection[ sosi::sosi_element_curve ] )[ geomField ] = 0;
+    ( *mFieldsListCollection[ sosi::sosi_element_surface ] )[ geomField ] = 0;
 
     for( std::vector<std::string>::iterator f = mCmd->mSourceFiles.begin(); f != mCmd->mSourceFiles.end(); f++ ) {
         mCurrentSourcefile = *f;
@@ -494,6 +559,8 @@ wktFromSosiType( sosi::ElementType elementType ) {
     switch( elementType ) {
         case sosi::sosi_element_point:
             return "POINT";
+        case sosi::sosi_element_curve:
+            return "LINESTRING";
         case sosi::sosi_element_surface:
             return "POLYGON";
         default:
@@ -524,6 +591,7 @@ writePsql( std::string sridDest,
        << "$$\n"
        << "BEGIN\n"
        << "CREATE SEQUENCE " + dbSchema + "." + dbTable +  "_point_serial;\n"
+       << "CREATE SEQUENCE " + dbSchema + "." + dbTable +  "_linestring_serial;\n"
        << "CREATE SEQUENCE " + dbSchema + "." + dbTable +  "_polygon_serial;\n"
        << "EXCEPTION WHEN duplicate_table THEN\n"
        << "END\n"
