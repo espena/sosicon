@@ -29,7 +29,7 @@ init( ISosiElement* sosiElement ) {
     mSosiElement = sosiElement;
     std::string data = sosiElement->getData();
     double d = 0;
-    std::strstream ss;
+    std::stringstream ss;
     ss << data;
     ss >> d;
     mDivisor = static_cast<int> ( 1.0 / ( d > 0.0 ? d : 1.0 ) );
