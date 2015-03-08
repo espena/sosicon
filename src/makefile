@@ -4,10 +4,12 @@ UNAME := $(shell uname)
 LBIT := $(shell getconf LONG_BIT)
 
 PROJ = sosicon
+COMPILER_OPTS =
 
 ifeq ($(UNAME), Darwin)
 OUTDIR = ../bin/osx
 RAGEL = ragel/bin/osx/ragel
+COMPILER_OPTS = -std=c++11
 endif
 ifeq ($(UNAME), Linux)
 ifeq ($(LBIT), 64)
@@ -46,8 +48,6 @@ SOURCEFILES =										\
 				parser_ragel.cpp
 
 HEADERFILES = *.h
-
-COMPILER_OPTS = -std=c++11
 
 sosicon: $(SOURCEFILES) $(HEADERFILES)
 
