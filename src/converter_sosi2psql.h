@@ -67,33 +67,31 @@ namespace sosicon {
 
         //! Build SQL insert statements for all geometries
         std::string buildInsertStatements( std::string dbSchema,
-                                           std::string dbTable,
-                                           FieldsListCollection& fields,
-                                           RowsListCollection& rows );
+                                           std::string dbTable );
 
         //! Build SQL insert statement for one geometry
         std::string buildInsertStatement( sosi::ElementType elementType,
                                           std::string dbSchema,
-                                          std::string dbTable,
-                                          FieldsListCollection& fields,
-                                          RowsListCollection& rows );
+                                          std::string dbTable );
 
         //! Build SQL create statements for all geometries
         std::string buildCreateStatements( std::string sridDest,
                                            std::string dbSchema,
-                                           std::string dbTable,
-                                           FieldsListCollection& fields );
+                                           std::string dbTable );
 
         //! Build SQL create statement for one geometry
         std::string buildCreateStatement( sosi::ElementType elementType,
                                           std::string sridDest,
                                           std::string dbSchema,
-                                          std::string dbTable,
-                                          FieldsListCollection& fields );
+                                          std::string dbTable );
 
         // Free heap allocations
-        void cleanup( FieldsListCollection& fields,
-                      RowsListCollection& rows );
+        void cleanup();
+
+        //! Fetch element data fields recursively
+        void extractData( ISosiElement* parent,
+                          sosi::ElementType type,
+                          std::map<std::string,std::string>*& row );
 
         //! Read current coordinate system from SOSI tree
         std::string getSrid( ISosiElement* sosiTree );
@@ -102,36 +100,23 @@ namespace sosicon {
         void insertPoint( ISosiElement* point,
                           std::string sridSource,
                           std::string sridDest,
-                          std::string geomField,
-                          FieldsListCollection& fields,
-                          RowsListCollection& rows );
+                          std::string geomField );
 
         //! Convert polygons (sosi FLATE) to SQL export data
         void insertPolygon( ISosiElement* polygon,
                             std::string sridSource,
                             std::string sridDest,
-                            std::string geomField,
-                            FieldsListCollection& fields,
-                            RowsListCollection& rows );
+                            std::string geomField );
 
         //! Make SQL dump from SOSI tree
         void makePsql( ISosiElement* sosiTree,
                        std::string sridDest,
                        std::string dbSchema,
-                       std::string dbTable,
-                       FieldsListCollection& fields,
-                       RowsListCollection& rows );
-
-        //! Fetch element data fields recursively
-        void extractData( ISosiElement* parent,
-                          FieldsList*& field,
-                          std::map<std::string,std::string>*& row );
+                       std::string dbTable );
 
         void writePsql( std::string sridDest,
                         std::string dbSchema,
-                        std::string dbTable,
-                        FieldsListCollection& fields,
-                        RowsListCollection& rows );
+                        std::string dbTable );
 
         //! Get Well Known Text from SOSI geometry
         std::string wktFromSosiType( sosi::ElementType elementType );
