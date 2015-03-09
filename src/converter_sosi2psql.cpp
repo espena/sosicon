@@ -172,7 +172,7 @@ buildInsertStatement( sosi::ElementType elementType,
 
             std::map<std::string,std::string>* row = *itrRows;
 
-            if( !sqlValues.empty() && ++rowCount % 250000 == 0 ) {
+            if( !sqlValues.empty() && ++rowCount % 50000 == 0 ) {
                 sqlValues = sqlValues.substr( 0, sqlValues.length() - 2 );
                 sqlValues += ";\n";
                 sqlComposite += ( sqlInsert + sqlValues );
