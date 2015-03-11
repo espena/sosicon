@@ -485,17 +485,27 @@ makePsql( ISosiElement* sosiTree,
     sosi::SosiElementSearch srcPolygon = sosi::SosiElementSearch( sosi::sosi_element_surface );
 
     while( sosiTree->getChild( srcPoint ) ) {
+        if( objTypeExcluded( srcPoint ) ) continue;
         insertPoint( srcPoint.element(), sridSource, sridDest, geomField );
     }
 
     while( sosiTree->getChild( srcLineString ) ) {
+        if( objTypeExcluded( srcLineString ) ) continue;
         insertLineString( srcLineString.element(), sridSource, sridDest, geomField );
     }
 
     while( sosiTree->getChild( srcPolygon ) ) {
+        if( objTypeExcluded( srcPolygon ) ) continue;
         insertPolygon( srcPolygon.element(), sridSource, sridDest, geomField );
     }
 
+}
+
+bool sosicon::ConverterSosi2psql::
+objTypeExcluded( sosi::SosiElementSearch& src )
+{
+    std::vector<std::string>& ot = mCmd->mObjTypes;
+    return ot.size() > 0 && std::find( ot.begin(), ot.end(), utils::toLower( src.element()->getObjType() ) ) == ot.end();
 }
 
 void sosicon::ConverterSosi2psql::

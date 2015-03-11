@@ -123,6 +123,10 @@ namespace sosicon {
                        std::string dbSchema,
                        std::string dbTable );
 
+        //! Test if current element is filtered out by -t parameter
+        bool objTypeExcluded( sosi::SosiElementSearch& src );
+
+        //! Write SQL content
         void writePsql( std::string sridDest,
                         std::string dbSchema,
                         std::string dbTable );

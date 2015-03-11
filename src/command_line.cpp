@@ -98,7 +98,7 @@ parse( int argc, char* argv[] ) {
                 mSrid = argv[ i ];
             }
             else if( "-t" == param && argc > ( ++i ) ) {
-                mObjTypes = utils::explode( ',', argv[ i ] );
+                mObjTypes = utils::explode( ',', utils::toLower( argv[ i ] ) );
             }
             else if( "-table" == param && argc > ( ++i ) ) {
                 mDbTable = argv[ i ];
