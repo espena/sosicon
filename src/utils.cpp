@@ -182,7 +182,7 @@ toFieldname( const std::string &str )
 string sosicon::utils::
 toLower( const std::string &str )
 {
-    static std::locale loc = std::locale( "no_NO" );
+    static std::locale loc = std::locale( "" );
     string::size_type n = str.length();
     const char* from = str.c_str();
     char* to = new char[ n + 1 ];
