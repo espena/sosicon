@@ -400,13 +400,20 @@ insertLineString( ISosiElement* lineString,
        << ")";
 
     std::string data = ss.str();
-    std::map<std::string,std::string>* row = new std::map<std::string,std::string>();
 
-    ( *row )[ geomField ] = data;
+    std::map<std::string,std::string>* row = 0;
+    if( mCmd->mInsertStatements ) {
+        row = new std::map<std::string,std::string>();
+        ( *row )[ geomField ] = data;
+    }
+
     ( *mFieldsListCollection[ sosi::sosi_element_surface ] )[ geomField ] = std::max( ( *mFieldsListCollection[ sosi::sosi_element_surface ] )[ geomField ], data.length() );
 
     extractData( lineString, sosi::sosi_element_curve, row );
-    mRowsListCollection[ sosi::sosi_element_curve ]->push_back( row );
+
+    if( mCmd->mInsertStatements ) {
+        mRowsListCollection[ sosi::sosi_element_curve ]->push_back( row );
+    }
 }
 
 void sosicon::ConverterSosi2psql::
@@ -482,13 +489,20 @@ insertPolygon( ISosiElement* polygon,
        << ")";
 
     std::string data = ss.str();
-    std::map<std::string,std::string>* row = new std::map<std::string,std::string>();
 
-    ( *row )[ geomField ] = data;
+    std::map<std::string,std::string>* row = 0;
+    if( mCmd->mInsertStatements ) {
+        row = new std::map<std::string,std::string>();
+        ( *row )[ geomField ] = data;
+    }
+
     ( *mFieldsListCollection[ sosi::sosi_element_surface ] )[ geomField ] = std::max( ( *mFieldsListCollection[ sosi::sosi_element_surface ] )[ geomField ], data.length() );
 
     extractData( polygon, sosi::sosi_element_surface, row );
-    mRowsListCollection[ sosi::sosi_element_surface ]->push_back( row );
+
+    if( mCmd->mInsertStatements ) {
+        mRowsListCollection[ sosi::sosi_element_surface ]->push_back( row );
+    }
 }
 
 void sosicon::ConverterSosi2psql::
