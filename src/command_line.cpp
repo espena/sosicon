@@ -191,6 +191,9 @@ outputHelpText() {
     std::cout << "  -2shp\n";
     std::cout << "      Convert SOSI source to ESRI Shape (shp).\n";
     std::cout << "\n";
+    std::cout << "  -2psql\n";
+    std::cout << "      Convert SOSI source to PostgreSQL/PostGIS dump.\n";
+    std::cout << "\n";
     std::cout << "  -stat\n";
     std::cout << "      Print out statistics for a SOSI file.\n";
     std::cout << "\n";
@@ -208,6 +211,36 @@ outputHelpText() {
     std::cout << "      <GEOMETRIES> is a comma-separated list of SOSI geometry\n";
     std::cout << "      types. Use the -stat OPERATION to obtain a list of\n";
     std::cout << "      GEOMETRIES contained in a SOSI file.\n";
+    std::cout << "\n";
+    std::cout << "  -o <FILENAME>\n";
+    std::cout << "      Specify output file path and base name.\n";
+    std::cout << "\n";
+    std::cout << "-shp options\n";
+    std::cout << "  -d <DIRECTORY>\n";
+    std::cout << "      Specify a destination directory where the generated files\n";
+    std::cout << "      should be put.\n";
+    std::cout << "\n";
+    std::cout << "-2psql options\n";
+    std::cout << "  -schema <NAME>\n";
+    std::cout << "      Specify database schema in which to create the data tables.\n";
+    std::cout << "      If this parameter is not specified, the default schema\n";
+    std::cout << "      name 'sosicon' will be used.\n";
+    std::cout << "\n";
+    std::cout << "  -table <NAME>\n";
+    std::cout << "      Specify the base name of the database tables to be created.\n";
+    std::cout << "      The NAME will be prepended to the name of the geometry type\n";
+    std::cout << "      stored in that table. If this parameter is not specified,\n";
+    std::cout << "      the default name 'object' will be used.\n";
+    std::cout << "\n";
+    std::cout << "  -create\n";
+    std::cout << "      Specify this flag to emit only the table creation script.\n";
+    std::cout << "      No data will be exported, only the schema and table\n";
+    std::cout << "      structure.\n";
+    std::cout << "\n";
+    std::cout << "  -insert\n";
+    std::cout << "      Specify this flag to emit only the data insertion script.\n";
+    std::cout << "      The schema and table structure is not exported, only the data\n";
+    std::cout << "      values.\n";
     std::cout << "\n";
 }
 
