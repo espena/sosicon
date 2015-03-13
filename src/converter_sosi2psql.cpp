@@ -54,7 +54,7 @@ buildCreateStatement( sosi::ElementType elementType,
         std::string geomName = utils::toLower( geometryType );
         std::string geomField = dbTable + "_geom";
 
-        ss << "CREATE TABLE "
+        ss << "CREATE TABLE IF NOT EXISTS "
            << dbSchema
            << "."
            << dbTable
@@ -78,12 +78,19 @@ buildCreateStatement( sosi::ElementType elementType,
            std::string field = itrFields->first;
            std::string::size_type len = itrFields->second;
            if( field != geomField ) {
-               ss << ","
-                  << field
-                  << " VARCHAR("
-                  << std::fixed
-                  << len
-                  << ")";
+               if( len > 255 ) {
+                   ss << ","
+                      << field
+                      << " TEXT";
+               }
+               else {
+                   ss << ","
+                      << field
+                      << " VARCHAR("
+                      << std::fixed
+                      << len
+                      << ")";
+               }
            }
         }
 
