@@ -19,7 +19,8 @@
 
 sosicon::CommandLine::
 CommandLine() {
-    mCreateStatementsOnly = false;
+    mCreateStatements = false;
+    mInsertStatements = false;
     mVerbose = 0;   
     mIsTtyIn = isatty( fileno( stdin ) ) != 0;
     mIsTtyOut = isatty( fileno( stdout ) ) != 0;
@@ -87,7 +88,7 @@ parse( int argc, char* argv[] ) {
                 mFilterSosiId = utils::explode( ',', argv[ i ] );
             }
             else if( "-create" == param ) {
-                mCreateStatementsOnly = true;
+                mCreateStatements = true;
             }
             else if( "-d" == param && argc > ( ++i ) ) {
                 mDestinationDirectory = argv[ i ];
@@ -100,6 +101,9 @@ parse( int argc, char* argv[] ) {
             }
             else if( "-h" == param ) {
                 mIncludeHeader = true;
+            }
+            else if( "-insert" == param ) {
+                mInsertStatements = true;
             }
             else if( "-o" == param && argc > ( ++i ) ) {
                 mOutputFile = argv[ i ];
@@ -163,6 +167,12 @@ parse( int argc, char* argv[] ) {
         std::cout << "Type sosicon -help for instructions.\n\n";
         return;
     }
+
+    //! Either or both, but not none (!)
+    if( mCreateStatements == mInsertStatements ) {
+        mCreateStatements = mInsertStatements = true;
+    }
+
 }
 
 void sosicon::CommandLine::

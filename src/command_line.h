@@ -59,9 +59,22 @@ namespace sosicon {
         //! Build create statements only
         /*!
             For PostgreSQL export: If this flag is set (by specifying the -create parameter),
-            only database table creation script will be output. Not data insertion.
+            database table creation script will be output.
+
+            \note If neither -create nor -insert is specified, both create and insert statements
+            are included in the export.
         */
-        bool mCreateStatementsOnly;
+        bool mCreateStatements;
+
+        //! Build insert statements only
+        /*!
+            For PostgreSQL export: If this flag is set (by specifying the -insert parameter),
+            database table insertion script will be output.
+
+            \note If neither -create nor -insert is specified, both create and insert statements
+            are included in the export.
+        */
+        bool mInsertStatements;
 
         //! List of input files
         /*!

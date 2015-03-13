@@ -332,7 +332,7 @@ insertPoint( ISosiElement* point,
 
         std::map<std::string,std::string>* row = 0;
         
-        if( mCmd->mCreateStatementsOnly ) {
+        if( mCmd->mInsertStatements ) {
             row = new std::map<std::string,std::string>();
         }
 
@@ -350,7 +350,7 @@ insertPoint( ISosiElement* point,
 
         std::string data = ss.str();
 
-        if( mCmd->mCreateStatementsOnly ) {
+        if( mCmd->mInsertStatements ) {
             ( *row )[ geomField ] = data;
         }
 
@@ -358,7 +358,7 @@ insertPoint( ISosiElement* point,
 
         extractData( point, sosi::sosi_element_point, row );
 
-        if( mCmd->mCreateStatementsOnly ) {
+        if( mCmd->mInsertStatements ) {
             mRowsListCollection[ sosi::sosi_element_point ]->push_back( row );
         }
     }
@@ -608,25 +608,27 @@ writePsql( std::string sridDest,
     std::cout << "    > Converting SOSI data to SQL...\n";
     fs.open( fileName.c_str(), std::ios::out | std::ios::trunc );
     fs.precision( 0 );
-    fs << "SET NAMES 'LATIN1';\n"
-       << "DO\n"
-       << "$$\n"
-       << "BEGIN\n"
-       << "CREATE SCHEMA " + dbSchema + ";\n"
-       << "EXCEPTION WHEN duplicate_table THEN\n"
-       << "END\n"
-       << "$$ LANGUAGE plpgsql;\n"
-       << "DO\n"
-       << "$$\n"
-       << "BEGIN\n"
-       << "CREATE SEQUENCE " + dbSchema + "." + dbTable +  "_point_serial;\n"
-       << "CREATE SEQUENCE " + dbSchema + "." + dbTable +  "_linestring_serial;\n"
-       << "CREATE SEQUENCE " + dbSchema + "." + dbTable +  "_polygon_serial;\n"
-       << "EXCEPTION WHEN duplicate_table THEN\n"
-       << "END\n"
-       << "$$ LANGUAGE plpgsql;\n"
-       <<  buildCreateStatements( sridDest, dbSchema, dbTable )
-       <<  ( mCmd->mCreateStatementsOnly ? "" : buildInsertStatements( dbSchema, dbTable ) )
+    fs << "SET NAMES 'LATIN1';\n";
+    if( mCmd->mCreateStatements ) {
+        fs << "DO\n"
+           << "$$\n"
+           << "BEGIN\n"
+           << "CREATE SCHEMA " + dbSchema + ";\n"
+           << "EXCEPTION WHEN duplicate_table THEN\n"
+           << "END\n"
+           << "$$ LANGUAGE plpgsql;\n"
+           << "DO\n"
+           << "$$\n"
+           << "BEGIN\n"
+           << "CREATE SEQUENCE " + dbSchema + "." + dbTable +  "_point_serial;\n"
+           << "CREATE SEQUENCE " + dbSchema + "." + dbTable +  "_linestring_serial;\n"
+           << "CREATE SEQUENCE " + dbSchema + "." + dbTable +  "_polygon_serial;\n"
+           << "EXCEPTION WHEN duplicate_table THEN\n"
+           << "END\n"
+           << "$$ LANGUAGE plpgsql;\n";
+    }
+    fs <<  ( mCmd->mCreateStatements ? buildCreateStatements( sridDest, dbSchema, dbTable ) : "" )
+       <<  ( mCmd->mInsertStatements ? buildInsertStatements( dbSchema, dbTable ) : "" )
        << "SET NAMES 'UTF8';\n";
     fs.close();
     std::cout << "    > " << fileName << " written\n";
