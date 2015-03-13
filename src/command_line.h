@@ -24,6 +24,8 @@
 #include <string>
 
 #ifdef _WIN32
+#define NOMINMAX    // Ugly %#¤&@ Windows-shait!
+#include <windows.h>
 #include <io.h>
 #define isatty _isatty
 #define fileno _fileno

@@ -22,6 +22,7 @@
 #include <sys/stat.h>
 #include <locale>
 #include <iomanip>
+#include <iostream>
 #include <sstream>
 #include <string>
 #include <vector>

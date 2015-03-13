@@ -24,6 +24,7 @@
 #include <fstream>
 #include <sstream>
 #include <vector>
+#include <cmath>
 #include <map>
 #include "utils.h"
 #include "interface/i_converter.h"

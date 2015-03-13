@@ -23,7 +23,13 @@ CommandLine() {
     mIsTtyIn = isatty( fileno( stdin ) ) != 0;
     mIsTtyOut = isatty( fileno( stdout ) ) != 0;
     mMakeSubDir = false;
-#if defined( __APPLE__ ) || defined( __linux__ )
+#if defined( _WIN32 )
+    HANDLE out = GetStdHandle( STD_OUTPUT_HANDLE );
+    CONSOLE_CURSOR_INFO ci;
+    GetConsoleCursorInfo( out, &ci );
+    ci.bVisible = false;    // Cursor off
+    SetConsoleCursorInfo( out, &ci );
+#else
     if( mIsTtyOut ) {
         std::cout << "\e[?25l"; // Cursor off
     }
@@ -38,7 +44,13 @@ CommandLine() {
 
 sosicon::CommandLine::
 ~CommandLine() {
-#if defined( __APPLE__ ) || defined( __linux__ )
+#if defined( _WIN32 )
+    HANDLE out = GetStdHandle( STD_OUTPUT_HANDLE );
+    CONSOLE_CURSOR_INFO ci;
+    GetConsoleCursorInfo( out, &ci );
+    ci.bVisible = true;    // Cursor on
+    SetConsoleCursorInfo( out, &ci );
+#else
     if( mIsTtyOut ) {
         std::cout << "\e[?25h"; // Cursor on
     }
