@@ -86,7 +86,7 @@ parse( int argc, char* argv[] ) {
             else if( "-id" == param && argc > ( ++i ) ) {
                 mFilterSosiId = utils::explode( ',', argv[ i ] );
             }
-            else if( "-create" == param && argc > ( ++i ) ) {
+            else if( "-create" == param ) {
                 mCreateStatementsOnly = true;
             }
             else if( "-d" == param && argc > ( ++i ) ) {
