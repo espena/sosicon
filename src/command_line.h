@@ -56,6 +56,13 @@ namespace sosicon {
          */
         std::string mCommand;
 
+        //! Build create statements only
+        /*!
+            For PostgreSQL export: If this flag is set (by specifying the -create parameter),
+            only database table creation script will be output. Not data insertion.
+        */
+        bool mCreateStatementsOnly;
+
         //! List of input files
         /*!
             String vector containing the list of SOSI input files to be converted. This list is

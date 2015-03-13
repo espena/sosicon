@@ -248,7 +248,7 @@ extractData( ISosiElement* parent,
              sosi::ElementType type,
              std::map<std::string,std::string>*& row ) {
 
-        FieldsList*& fieldsList = mFieldsListCollection[ type ];
+    FieldsList*& fieldsList = mFieldsListCollection[ type ];
     sosi::SosiElementSearch srcData;
     while( parent->getChild( srcData ) ) {
 
@@ -270,7 +270,9 @@ extractData( ISosiElement* parent,
             ( *fieldsList )[ fieldName ] = std::max( ( *fieldsList )[ fieldName ], data.length() );
         }
 
-        ( *row )[ fieldName ] = data;
+        if( row ) {
+            ( *row )[ fieldName ] = data;
+        }
     }
 }
 
@@ -328,7 +330,11 @@ insertPoint( ISosiElement* point,
         ICoordinate* coord = ne.front();
         std::stringstream ss;
 
-        std::map<std::string,std::string>* row = new std::map<std::string,std::string>();
+        std::map<std::string,std::string>* row = 0;
+        
+        if( mCmd->mCreateStatementsOnly ) {
+            row = new std::map<std::string,std::string>();
+        }
 
         ss.precision( 5 );
         ss  << std::fixed
@@ -343,11 +349,18 @@ insertPoint( ISosiElement* point,
             << ")";
 
         std::string data = ss.str();
-        ( *row )[ geomField ] = data;
+
+        if( mCmd->mCreateStatementsOnly ) {
+            ( *row )[ geomField ] = data;
+        }
+
         ( *mFieldsListCollection[ sosi::sosi_element_point ] )[ geomField ] = std::max( ( *mFieldsListCollection[ sosi::sosi_element_point ] )[ geomField ], data.length() );
 
         extractData( point, sosi::sosi_element_point, row );
-        mRowsListCollection[ sosi::sosi_element_point ]->push_back( row );
+
+        if( mCmd->mCreateStatementsOnly ) {
+            mRowsListCollection[ sosi::sosi_element_point ]->push_back( row );
+        }
     }
 }
 
@@ -613,7 +626,7 @@ writePsql( std::string sridDest,
        << "END\n"
        << "$$ LANGUAGE plpgsql;\n"
        <<  buildCreateStatements( sridDest, dbSchema, dbTable )
-       <<  buildInsertStatements( dbSchema, dbTable )
+       <<  ( mCmd->mCreateStatementsOnly ? "" : buildInsertStatements( dbSchema, dbTable ) )
        << "SET NAMES 'UTF8';\n";
     fs.close();
     std::cout << "    > " << fileName << " written\n";

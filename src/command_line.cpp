@@ -19,6 +19,7 @@
 
 sosicon::CommandLine::
 CommandLine() {
+    mCreateStatementsOnly = false;
     mVerbose = 0;   
     mIsTtyIn = isatty( fileno( stdin ) ) != 0;
     mIsTtyOut = isatty( fileno( stdout ) ) != 0;
@@ -84,6 +85,9 @@ parse( int argc, char* argv[] ) {
             }
             else if( "-id" == param && argc > ( ++i ) ) {
                 mFilterSosiId = utils::explode( ',', argv[ i ] );
+            }
+            else if( "-create" == param && argc > ( ++i ) ) {
+                mCreateStatementsOnly = true;
             }
             else if( "-d" == param && argc > ( ++i ) ) {
                 mDestinationDirectory = argv[ i ];
