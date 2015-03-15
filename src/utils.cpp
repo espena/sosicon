@@ -168,6 +168,9 @@ toFieldname( const std::string &str )
             case '\xE5':
                 res += "aa";
                 break;
+            case '-':
+                res += "_";
+                break;
             default:
                 res += c;
         }

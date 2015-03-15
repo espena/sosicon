@@ -515,12 +515,18 @@ makePsql( ISosiElement* sosiTree,
     std::string geomField = dbTable + "_geom";
     sosi::SosiTranslationTable ttbl;
     sosi::SosiElementSearch srcPoint = sosi::SosiElementSearch( sosi::sosi_element_point );
+    sosi::SosiElementSearch srcText = sosi::SosiElementSearch( sosi::sosi_element_text );
     sosi::SosiElementSearch srcLineString = sosi::SosiElementSearch( sosi::sosi_element_curve );
     sosi::SosiElementSearch srcPolygon = sosi::SosiElementSearch( sosi::sosi_element_surface );
 
     while( sosiTree->getChild( srcPoint ) ) {
         if( objTypeExcluded( srcPoint ) ) continue;
         insertPoint( srcPoint.element(), sridSource, sridDest, geomField );
+    }
+
+    while( sosiTree->getChild( srcText ) ) {
+        if( objTypeExcluded( srcText ) ) continue;
+        insertPoint( srcText.element(), sridSource, sridDest, geomField );
     }
 
     while( sosiTree->getChild( srcLineString ) ) {
