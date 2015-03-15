@@ -95,7 +95,7 @@ getChild( SosiElementSearch& src ) {
     bool res = nextChild( src );
     sosi::ElementType t = src.type();
     while( res == true  && t != sosi::sosi_element_unknown && src.element()->getType() != t ) {
-        res = getChild( src );
+        res = nextChild( src );
     }
     return res;
 }
