@@ -219,7 +219,9 @@ buildInsertStatement( sosi::ElementType elementType,
 
 void sosicon::ConverterSosi2psql::
 cleanup() {
-
+  // Not really necesary if the program is about to exit anyway,
+  // but I'll leave it in for the future. However, the clean-up
+  // process may get VERY slow.
     std::cout << "    > Clean-up...\n";
     cleanup( sosi::sosi_element_point );
     cleanup( sosi::sosi_element_curve );
