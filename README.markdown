@@ -14,7 +14,7 @@ Contributors are most welcome!
 ## Features
 *  Swift conversion
 *  Selectable feature/objtype/field export
-*  Supports command-line piping on OS X/Linux
+*  Supports command-line piping
 *  Written in ANSI C++
 *  Compiles and runs on OS X, Linux (32 and 64 bit) and Windows
 
@@ -46,6 +46,10 @@ reference grid is recognized by Sosicon.
 On Linux and OS X, batch conversion is supported by piping:
 
 `ls *.sos | sosicon -2shp`
+
+On Windows, use `dir` with the `/b` switch for piping:
+
+`dir *.sos /b | sosicon -2shp`
 
 The above command will convert every *.sos file in current directory to corresponding shapefiles.
 The files will be written to the same directory, keeping the file title extended with feature name,
