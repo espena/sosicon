@@ -516,31 +516,31 @@ makePsql( ISosiElement* sosiTree,
     std::string sridSource = getSrid( sosiTree );
     std::string geomField = dbTable + "_geom";
     sosi::SosiTranslationTable ttbl;
-    sosi::SosiElementSearch srcPoint = sosi::SosiElementSearch( sosi::sosi_element_point );
-    sosi::SosiElementSearch srcText = sosi::SosiElementSearch( sosi::sosi_element_text );
-    sosi::SosiElementSearch srcLineString = sosi::SosiElementSearch( sosi::sosi_element_curve );
-    sosi::SosiElementSearch srcPolygon = sosi::SosiElementSearch( sosi::sosi_element_surface );
 
+    std::vector<sosi::ElementType> pointTypes;
+    pointTypes.push_back( sosi::sosi_element_point );
+    pointTypes.push_back( sosi::sosi_element_text );
+    sosi::SosiElementSearch srcPoint = sosi::SosiElementSearch( pointTypes );
     while( sosiTree->getChild( srcPoint ) ) {
         if( objTypeExcluded( srcPoint ) ) continue;
         insertPoint( srcPoint.element(), sridSource, sridDest, geomField );
     }
 
-    while( sosiTree->getChild( srcText ) ) {
-        if( objTypeExcluded( srcText ) ) continue;
-        insertPoint( srcText.element(), sridSource, sridDest, geomField );
-    }
-
+    std::vector<sosi::ElementType> lineStringTypes;
+    lineStringTypes.push_back( sosi::sosi_element_curve );
+    sosi::SosiElementSearch srcLineString = sosi::SosiElementSearch( lineStringTypes );
     while( sosiTree->getChild( srcLineString ) ) {
         if( objTypeExcluded( srcLineString ) ) continue;
         insertLineString( srcLineString.element(), sridSource, sridDest, geomField );
     }
 
+    std::vector<sosi::ElementType> polygonTypes;
+    polygonTypes.push_back( sosi::sosi_element_surface );
+    sosi::SosiElementSearch srcPolygon = sosi::SosiElementSearch( polygonTypes );
     while( sosiTree->getChild( srcPolygon ) ) {
         if( objTypeExcluded( srcPolygon ) ) continue;
         insertPolygon( srcPolygon.element(), sridSource, sridDest, geomField );
     }
-
 }
 
 bool sosicon::ConverterSosi2psql::

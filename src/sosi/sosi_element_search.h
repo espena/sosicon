@@ -24,7 +24,7 @@
 
 namespace sosicon {
 
-    //! Forward declaration
+    //! Forward declarations
     class ISosiElement;
 
     //! SOSI
@@ -46,16 +46,20 @@ namespace sosicon {
         class SosiElementSearch {
             SosiChildrenList::size_type mIndex;
             ISosiElement* mSosiElement;
-            sosi::ElementType mElementType;
+            std::vector<sosi::ElementType> mElementTypes;
         public:
-            SosiElementSearch() : mIndex( 0 ), mSosiElement( 0 ), mElementType( sosi_element_unknown ) { };
-            SosiElementSearch( sosi::ElementType filter ) : mIndex( 0 ), mSosiElement( 0 ), mElementType( filter ) { };
+            SosiElementSearch() : mIndex( 0 ), mSosiElement( 0 ) { };
+            SosiElementSearch( sosi::ElementType filter ) : mIndex( 0 ), mSosiElement( 0 ) { mElementTypes.push_back( filter ); };
+            SosiElementSearch( std::vector<sosi::ElementType>& filterList ) : mIndex( 0 ), mSosiElement( 0 ), mElementTypes( filterList ) { };
             SosiChildrenList::size_type index() { return mIndex; };
             SosiChildrenList::size_type index( SosiChildrenList::size_type i ) { mIndex = i; return mIndex; };
             ISosiElement* element() { return mSosiElement; };
             ISosiElement* element( ISosiElement* e ) { mSosiElement = e; return mSosiElement; };
-            sosi::ElementType type() { return mElementType; };
-            sosi::ElementType type( sosi::ElementType t ) { mElementType = t; return mElementType; };
+            sosi::ElementType type() { return mElementTypes.size() > 0 ? mElementTypes.back() : sosi::sosi_element_unknown; };
+            sosi::ElementType type( sosi::ElementType t ) { mElementTypes.push_back( t ); return t; };
+            std::vector<sosi::ElementType>& types() { return mElementTypes; };
+            std::vector<sosi::ElementType>& types( std::vector<sosi::ElementType>& t ) { mElementTypes = t; return mElementTypes; };
+            bool matchTypes();
             void next() { mIndex++; };
         };
 
