@@ -23,17 +23,17 @@ buildCreateStatements( std::string sridDest,
                        std::string dbTable ) {
     std::string sql;
 
-    sql  = buildCreateStatement( sosi::sosi_element_point,
+    sql  = buildCreateStatement( wkt_point,
                                  sridDest,
                                  dbSchema,
                                  dbTable );
 
-    sql += buildCreateStatement( sosi::sosi_element_curve,
+    sql += buildCreateStatement( wkt_linestring,
                                  sridDest,
                                  dbSchema,
                                  dbTable );
 
-    sql += buildCreateStatement( sosi::sosi_element_surface,
+    sql += buildCreateStatement( wkt_polygon,
                                  sridDest,
                                  dbSchema,
                                  dbTable );
@@ -41,15 +41,15 @@ buildCreateStatements( std::string sridDest,
 }
 
 std::string sosicon::ConverterSosi2psql::
-buildCreateStatement( sosi::ElementType elementType,
+buildCreateStatement( Wkt wktGeom,
                       std::string sridDest,
                       std::string dbSchema,
                       std::string dbTable ) {
 
-    std::string geometryType = wktFromSosiType( elementType );
+    std::string geometryType = wktToStr( wktGeom );
 
     std::stringstream ss;
-    if( !geometryType.empty() && mFieldsListCollection[ elementType ]->size() > 0 ) {
+    if( !geometryType.empty() && mFieldsListCollection[ wktGeom ]->size() > 0 ) {
 
         std::string geomName = utils::toLower( geometryType );
         std::string geomField = dbTable + "_geom";
@@ -72,7 +72,7 @@ buildCreateStatement( sosi::ElementType elementType,
            << geomName
            << "_serial')";
 
-        FieldsList* f = mFieldsListCollection[ elementType ];
+        FieldsList* f = mFieldsListCollection[ wktGeom ];
         FieldsList::iterator itrFields;
         for( itrFields = f->begin(); itrFields != f->end(); itrFields++ ) {
            std::string field = itrFields->first;
@@ -117,29 +117,29 @@ buildInsertStatements( std::string dbSchema,
                        std::string dbTable ) {
 
     std::string sql;
-    sql  = buildInsertStatement( sosi::sosi_element_point,
+    sql  = buildInsertStatement( wkt_point,
                                  dbSchema,
                                  dbTable );
 
-    sql += buildInsertStatement( sosi::sosi_element_curve,
+    sql += buildInsertStatement( wkt_linestring,
                                  dbSchema,
                                  dbTable );
 
-    sql += buildInsertStatement( sosi::sosi_element_surface,
+    sql += buildInsertStatement( wkt_polygon,
                                  dbSchema,
                                  dbTable );
     return sql;
 }
 
 std::string sosicon::ConverterSosi2psql::
-buildInsertStatement( sosi::ElementType elementType,
+buildInsertStatement( Wkt wktGeom,
                       std::string dbSchema,
                       std::string dbTable ) {
 
     std::string sqlComposite;
-    std::string geometryType = wktFromSosiType( elementType );
+    std::string geometryType = wktToStr( wktGeom );
 
-    if( !geometryType.empty() && mRowsListCollection[ elementType ]->size() > 0 ) {
+    if( !geometryType.empty() && mRowsListCollection[ wktGeom ]->size() > 0 ) {
 
         std::string sqlInsert;
         std::string sqlValues;
@@ -147,8 +147,8 @@ buildInsertStatement( sosi::ElementType elementType,
         RowsList::iterator itrRows;
         FieldsList::iterator itrFields;
 
-        FieldsList* f = mFieldsListCollection[ elementType ];
-        RowsList* r = mRowsListCollection[ elementType ];
+        FieldsList* f = mFieldsListCollection[ wktGeom ];
+        RowsList* r = mRowsListCollection[ wktGeom ];
 
         std::string geomField = dbTable + "_geom";
         std::string geomName = utils::toLower( geometryType );
@@ -223,40 +223,39 @@ cleanup() {
   // but I'll leave it in for the future. However, the clean-up
   // process may get VERY slow.
     std::cout << "    > Clean-up...\n";
-    cleanup( sosi::sosi_element_point );
-    cleanup( sosi::sosi_element_curve );
-    cleanup( sosi::sosi_element_surface );
+    cleanup( wkt_point );
+    cleanup( wkt_linestring );
+    cleanup( wkt_polygon );
 }
 
 void sosicon::ConverterSosi2psql::
-cleanup( sosi::ElementType type ) {
+cleanup( Wkt wktGeom ) {
 
-    RowsList* r = mRowsListCollection[ type ];
+    RowsList* r = mRowsListCollection[ wktGeom ];
     RowsList::iterator i;
 
     for( i = r->begin(); i != r->end(); i++ ) {
         delete *i;
     }
 
-    delete mRowsListCollection[ type ];
-    mRowsListCollection[ type ] = 0;
+    delete mRowsListCollection[ wktGeom ];
+    mRowsListCollection[ wktGeom ] = 0;
 
-    delete mFieldsListCollection[ type ];
-    mFieldsListCollection[ type ] = 0;
+    delete mFieldsListCollection[ wktGeom ];
+    mFieldsListCollection[ wktGeom ] = 0;
 }
 
 void sosicon::ConverterSosi2psql::
 extractData( ISosiElement* parent,
-             sosi::ElementType type,
+             FieldsList& hdr,
              std::map<std::string,std::string>*& row ) {
 
-    FieldsList*& fieldsList = mFieldsListCollection[ type ];
     sosi::SosiElementSearch srcData;
     while( parent->getChild( srcData ) ) {
 
         ISosiElement* dataElement = srcData.element();
 
-        extractData( dataElement, type, row );
+        extractData( dataElement, hdr, row );
 
         std::string fieldName = utils::toFieldname( dataElement->getName() );
         std::string data = dataElement->getData();
@@ -265,11 +264,11 @@ extractData( ISosiElement* parent,
             continue;
         }
 
-        if( fieldsList->find( fieldName ) == fieldsList->end() ) {
-            ( *fieldsList )[ fieldName ] = data.length();
+        if( hdr.find( fieldName ) == hdr.end() ) {
+            hdr[ fieldName ] = data.length();
         }
         else {
-            ( *fieldsList )[ fieldName ] = std::max( ( *fieldsList )[ fieldName ], data.length() );
+            hdr[ fieldName ] = std::max( hdr[ fieldName ], data.length() );
         }
 
         if( row ) {
@@ -356,12 +355,13 @@ insertPoint( ISosiElement* point,
             ( *row )[ geomField ] = data;
         }
 
-        ( *mFieldsListCollection[ sosi::sosi_element_point ] )[ geomField ] = std::max( ( *mFieldsListCollection[ sosi::sosi_element_point ] )[ geomField ], data.length() );
+        FieldsList& hdr = ( *mFieldsListCollection[ wkt_point ] );
+        hdr[ geomField ] = std::max( hdr[ geomField ], data.length() );
 
-        extractData( point, sosi::sosi_element_point, row );
+        extractData( point, hdr, row );
 
         if( mCmd->mInsertStatements ) {
-            mRowsListCollection[ sosi::sosi_element_point ]->push_back( row );
+            mRowsListCollection[ wkt_point ]->push_back( row );
         }
     }
 }
@@ -409,12 +409,13 @@ insertLineString( ISosiElement* lineString,
         ( *row )[ geomField ] = data;
     }
 
-    ( *mFieldsListCollection[ sosi::sosi_element_surface ] )[ geomField ] = std::max( ( *mFieldsListCollection[ sosi::sosi_element_surface ] )[ geomField ], data.length() );
+    FieldsList& hdr = ( *mFieldsListCollection[ wkt_linestring ] );
+    hdr[ geomField ] = std::max( hdr[ geomField ], data.length() );
 
-    extractData( lineString, sosi::sosi_element_curve, row );
+    extractData( lineString, hdr, row );
 
     if( mCmd->mInsertStatements ) {
-        mRowsListCollection[ sosi::sosi_element_curve ]->push_back( row );
+        mRowsListCollection[ wkt_linestring ]->push_back( row );
     }
 }
 
@@ -498,12 +499,13 @@ insertPolygon( ISosiElement* polygon,
         ( *row )[ geomField ] = data;
     }
 
-    ( *mFieldsListCollection[ sosi::sosi_element_surface ] )[ geomField ] = std::max( ( *mFieldsListCollection[ sosi::sosi_element_surface ] )[ geomField ], data.length() );
+    FieldsList& hdr = ( *mFieldsListCollection[ wkt_polygon ] );
+    hdr[ geomField ] = std::max( hdr[ geomField ], data.length() );
 
-    extractData( polygon, sosi::sosi_element_surface, row );
+    extractData( polygon, hdr, row );
 
     if( mCmd->mInsertStatements ) {
-        mRowsListCollection[ sosi::sosi_element_surface ]->push_back( row );
+        mRowsListCollection[ wkt_polygon ]->push_back( row );
     }
 }
 
@@ -553,13 +555,13 @@ objTypeExcluded( sosi::SosiElementSearch& src )
 void sosicon::ConverterSosi2psql::
 run() {
 
-    mFieldsListCollection[ sosi::sosi_element_point ] = new FieldsList();
-    mFieldsListCollection[ sosi::sosi_element_curve ] = new FieldsList();
-    mFieldsListCollection[ sosi::sosi_element_surface ] = new FieldsList();
+    mFieldsListCollection[ wkt_point ] = new FieldsList();
+    mFieldsListCollection[ wkt_linestring ] = new FieldsList();
+    mFieldsListCollection[ wkt_polygon ] = new FieldsList();
 
-    mRowsListCollection[ sosi::sosi_element_point ] = new RowsList();
-    mRowsListCollection[ sosi::sosi_element_curve ] = new RowsList();
-    mRowsListCollection[ sosi::sosi_element_surface ] = new RowsList();
+    mRowsListCollection[ wkt_point ] = new RowsList();
+    mRowsListCollection[ wkt_linestring ] = new RowsList();
+    mRowsListCollection[ wkt_polygon ] = new RowsList();
 
     std::string sridDest = mCmd->mSrid.empty() ? "4326" : mCmd->mSrid;
 
@@ -567,9 +569,9 @@ run() {
     std::string dbTable = mCmd->mDbTable.empty() ? "object" : mCmd->mDbTable;
     std::string geomField = dbTable + "_geom";
 
-    ( *mFieldsListCollection[ sosi::sosi_element_point ] )[ geomField ] = 0;
-    ( *mFieldsListCollection[ sosi::sosi_element_curve ] )[ geomField ] = 0;
-    ( *mFieldsListCollection[ sosi::sosi_element_surface ] )[ geomField ] = 0;
+    ( *mFieldsListCollection[ wkt_point ] )[ geomField ] = 0;
+    ( *mFieldsListCollection[ wkt_linestring ] )[ geomField ] = 0;
+    ( *mFieldsListCollection[ wkt_polygon ] )[ geomField ] = 0;
 
     for( std::vector<std::string>::iterator f = mCmd->mSourceFiles.begin(); f != mCmd->mSourceFiles.end(); f++ ) {
         mCurrentSourcefile = *f;
@@ -605,14 +607,14 @@ run() {
 }
 
 std::string sosicon::ConverterSosi2psql::
-wktFromSosiType( sosi::ElementType elementType ) {
+wktToStr( Wkt wktGeom ) {
 
-    switch( elementType ) {
-        case sosi::sosi_element_point:
+    switch( wktGeom ) {
+        case wkt_point:
             return "POINT";
-        case sosi::sosi_element_curve:
+        case wkt_linestring:
             return "LINESTRING";
-        case sosi::sosi_element_surface:
+        case wkt_polygon:
             return "POLYGON";
         default:
             return "";

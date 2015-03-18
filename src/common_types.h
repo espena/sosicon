@@ -29,6 +29,13 @@ namespace sosicon {
     */
     typedef std::vector<ICoordinate*> CoordinateList;
     
+    //! List of applied, well-known text geometries
+    enum Wkt {
+        wkt_unknown = 0,           //!< Unknown geometry
+        wkt_point,                 //!< Point geometry
+        wkt_linestring,            //!< Linestring geometry
+        wkt_polygon                //!< Polygon geometry
+    }; // Wkt
 }; // namespece sosicon
 
 #endif

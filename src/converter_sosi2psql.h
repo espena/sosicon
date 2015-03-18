@@ -34,6 +34,7 @@
 #include "coordinate_collection.h"
 #include "sosi/sosi_north_east.h"
 #include "command_line.h"
+#include "common_types.h"
 #include "parser.h"
 
 namespace sosicon {
@@ -50,9 +51,9 @@ namespace sosicon {
     class ConverterSosi2psql : public IConverter {
 
         typedef std::map< std::string,std::string::size_type > FieldsList;
-        typedef std::map< sosi::ElementType, FieldsList* > FieldsListCollection;
+        typedef std::map< Wkt, FieldsList* > FieldsListCollection;
         typedef std::vector< std::map< std::string,std::string >* > RowsList;
-        typedef std::map< sosi::ElementType, RowsList* > RowsListCollection;
+        typedef std::map< Wkt, RowsList* > RowsListCollection;
 
         //! Command line wrapper
         CommandLine* mCmd;
@@ -71,7 +72,7 @@ namespace sosicon {
                                            std::string dbTable );
 
         //! Build SQL insert statement for one geometry
-        std::string buildInsertStatement( sosi::ElementType elementType,
+        std::string buildInsertStatement( Wkt wktGeom,
                                           std::string dbSchema,
                                           std::string dbTable );
 
@@ -81,7 +82,7 @@ namespace sosicon {
                                            std::string dbTable );
 
         //! Build SQL create statement for one geometry
-        std::string buildCreateStatement( sosi::ElementType elementType,
+        std::string buildCreateStatement( Wkt wktGeom,
                                           std::string sridDest,
                                           std::string dbSchema,
                                           std::string dbTable );
@@ -90,11 +91,11 @@ namespace sosicon {
         void cleanup();
 
         // Free heap allocations for single geometry
-        void cleanup( sosi::ElementType );
+        void cleanup( Wkt wktGeom );
 
         //! Fetch element data fields recursively
         void extractData( ISosiElement* parent,
-                          sosi::ElementType type,
+                          FieldsList& hdr,
                           std::map<std::string,std::string>*& row );
 
         //! Read current coordinate system from SOSI tree
@@ -132,8 +133,8 @@ namespace sosicon {
                         std::string dbSchema,
                         std::string dbTable );
 
-        //! Get Well Known Text from SOSI geometry
-        std::string wktFromSosiType( sosi::ElementType elementType );
+        //! Get Well Known Text from Wkt enum
+        std::string wktToStr( Wkt wktGeom );
 
         //! Destructor
         virtual ~ConverterSosi2psql() { };
