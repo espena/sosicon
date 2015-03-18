@@ -214,6 +214,9 @@
     <ClCompile Include="converter_sosi2psql.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="sosi\sosi_element_search.cpp">
+      <Filter>Source Files\Sosi</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <CustomBuild Include="ragel\parser.rl">
