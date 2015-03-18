@@ -133,9 +133,6 @@ namespace sosicon {
                         std::string dbSchema,
                         std::string dbTable );
 
-        //! Get Well Known Text from Wkt enum
-        std::string wktToStr( Wkt wktGeom );
-
         //! Destructor
         virtual ~ConverterSosi2psql() { };
 

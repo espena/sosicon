@@ -19,6 +19,7 @@
 #define __UTILS_H
 
 #include "memory.h"
+#include "common_types.h"
 #include <sys/stat.h>
 #include <locale>
 #include <iomanip>
@@ -133,6 +134,10 @@ namespace sosicon {
         std::string ucFirst( const std::string &str );
 
         void getPathInfo( std::string path, std::string &dir, std::string &tit, std::string &ext );
+
+        //! Get Well Known Text from Wkt enum
+        std::string wktToStr( Wkt wktGeom );
+
     };
 };
 

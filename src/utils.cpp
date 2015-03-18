@@ -276,3 +276,19 @@ getPathInfo( std::string path, std::string &dir, std::string &tit, std::string &
         dir = tmp;
     }
 }
+
+
+std::string sosicon::utils::
+wktToStr( Wkt wktGeom ) {
+
+    switch( wktGeom ) {
+        case wkt_point:
+            return "POINT";
+        case wkt_linestring:
+            return "LINESTRING";
+        case wkt_polygon:
+            return "POLYGON";
+        default:
+            return "";
+    }
+}

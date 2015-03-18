@@ -46,7 +46,7 @@ buildCreateStatement( Wkt wktGeom,
                       std::string dbSchema,
                       std::string dbTable ) {
 
-    std::string geometryType = wktToStr( wktGeom );
+    std::string geometryType = utils::wktToStr( wktGeom );
 
     std::stringstream ss;
     if( !geometryType.empty() && mFieldsListCollection[ wktGeom ]->size() > 0 ) {
@@ -137,7 +137,7 @@ buildInsertStatement( Wkt wktGeom,
                       std::string dbTable ) {
 
     std::string sqlComposite;
-    std::string geometryType = wktToStr( wktGeom );
+    std::string geometryType = utils::wktToStr( wktGeom );
 
     if( !geometryType.empty() && mRowsListCollection[ wktGeom ]->size() > 0 ) {
 
@@ -604,21 +604,6 @@ run() {
     writePsql( sridDest, dbSchema, dbTable );
     cleanup();
     std::cout << "Done!\n";
-}
-
-std::string sosicon::ConverterSosi2psql::
-wktToStr( Wkt wktGeom ) {
-
-    switch( wktGeom ) {
-        case wkt_point:
-            return "POINT";
-        case wkt_linestring:
-            return "LINESTRING";
-        case wkt_polygon:
-            return "POLYGON";
-        default:
-            return "";
-    }
 }
 
 void sosicon::ConverterSosi2psql::
