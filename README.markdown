@@ -91,11 +91,14 @@ must assert that the target srid exists in PostGIS' spatial_ref_sys table.
 
 ###Linux/OS X
 You need g++ to compile Sosicon. To build from source code, check out the git repository, enter the
-src directory and run `make`. There's no `configure` or `make install` yet. On 32-bit Linux systems, the
-binaries will be output to [bin/linux32](https://github.com/espena/sosicon/tree/master/bin/linux32).
+src directory and run `make` and then `make install`. There's no `configure` yet. On 32-bit Linux systems,
+the binaries will be output to [bin/linux32](https://github.com/espena/sosicon/tree/master/bin/linux32).
 On 64-bit Linux systems, the binaries will be output to
 [bin/linux64](https://github.com/espena/sosicon/tree/master/bin/linux64). On OS X, the binaries will be
 output in <em>[bin/osx](https://github.com/espena/sosicon/tree/master/bin/osx)</em>.
+
+If you run `make install` after building the source, the executable will be copied to $INSTALL_PATH,
+or default to `/usr/local/bin/sosicon`.
 
 ###Windows
 Project files for Visual Studio is included in the repository. Open src/sosicon.sln solution
