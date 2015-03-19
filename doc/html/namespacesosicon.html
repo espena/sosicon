@@ -49,6 +49,7 @@
 <a href="#namespaces">Namespaces</a> &#124;
 <a href="#nested-classes">Classes</a> &#124;
 <a href="#typedef-members">Typedefs</a> &#124;
+<a href="#enum-members">Enumerations</a> &#124;
 <a href="#func-members">Functions</a>  </div>
   <div class="headertitle">
 <div class="title">sosicon Namespace Reference</div>  </div>
@@ -79,7 +80,7 @@ Classes</h2></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Command-line parser.  <a href="classsosicon_1_1_command_line.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classsosicon_1_1_converter_sosi2psql.html">ConverterSosi2psql</a></td></tr>
-<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">SOSI to PostGreSQL converter.  <a href="classsosicon_1_1_converter_sosi2psql.html#details">More...</a><br /></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">SOSI to PostgreSQL/PostGIS converter.  <a href="classsosicon_1_1_converter_sosi2psql.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classsosicon_1_1_converter_sosi2shp.html">ConverterSosi2shp</a></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">SOSI to ESRI Shape converter.  <a href="classsosicon_1_1_converter_sosi2shp.html#details">More...</a><br /></td></tr>
@@ -155,7 +156,18 @@ Classes</h2></td></tr>
 Typedefs</h2></td></tr>
 <tr class="memitem:a125777c58a1a4dda04368692b51f8dcd"><td class="memItemLeft" align="right" valign="top">typedef std::vector<br class="typebreak" />
 &lt; <a class="el" href="classsosicon_1_1_i_coordinate.html">ICoordinate</a> * &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacesosicon.html#a125777c58a1a4dda04368692b51f8dcd">CoordinateList</a></td></tr>
+<tr class="memdesc:a125777c58a1a4dda04368692b51f8dcd"><td class="mdescLeft">&#160;</td><td class="mdescRight">List of coordinate pairs.  <a href="#a125777c58a1a4dda04368692b51f8dcd">More...</a><br /></td></tr>
 <tr class="separator:a125777c58a1a4dda04368692b51f8dcd"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="enum-members"></a>
+Enumerations</h2></td></tr>
+<tr class="memitem:a1abe527c0045379f4ef02f64f18421a0"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacesosicon.html#a1abe527c0045379f4ef02f64f18421a0">Wkt</a> { <a class="el" href="namespacesosicon.html#a1abe527c0045379f4ef02f64f18421a0a34d1aff123e95329a44a3b02f560ac39">wkt_unknown</a>, 
+<a class="el" href="namespacesosicon.html#a1abe527c0045379f4ef02f64f18421a0ac122279eda8c0e89e210aedf871436d4">wkt_point</a>, 
+<a class="el" href="namespacesosicon.html#a1abe527c0045379f4ef02f64f18421a0a76a4ea3a77e17661769daa2f95e6754c">wkt_linestring</a>, 
+<a class="el" href="namespacesosicon.html#a1abe527c0045379f4ef02f64f18421a0afba6a31c5e072971e5ed8eb91a3722cd">wkt_polygon</a>
+ }</td></tr>
+<tr class="memdesc:a1abe527c0045379f4ef02f64f18421a0"><td class="mdescLeft">&#160;</td><td class="mdescRight">List of applied, well-known text geometries.  <a href="namespacesosicon.html#a1abe527c0045379f4ef02f64f18421a0">More...</a><br /></td></tr>
+<tr class="separator:a1abe527c0045379f4ef02f64f18421a0"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Functions</h2></td></tr>
@@ -191,7 +203,41 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="common__types_8h_source.html#l00026">26</a> of file <a class="el" href="common__types_8h_source.html">common_types.h</a>.</p>
+<p>List of coordinate pairs. </p>
+<p>Used throughout the application. </p>
+
+<p>Definition at line <a class="el" href="common__types_8h_source.html#l00030">30</a> of file <a class="el" href="common__types_8h_source.html">common_types.h</a>.</p>
+
+</div>
+</div>
+<h2 class="groupheader">Enumeration Type Documentation</h2>
+<a class="anchor" id="a1abe527c0045379f4ef02f64f18421a0"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">enum <a class="el" href="namespacesosicon.html#a1abe527c0045379f4ef02f64f18421a0">sosicon::Wkt</a></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>List of applied, well-known text geometries. </p>
+<table class="fieldtable">
+<tr><th colspan="2">Enumerator</th></tr><tr><td class="fieldname"><a class="anchor" id="a1abe527c0045379f4ef02f64f18421a0a34d1aff123e95329a44a3b02f560ac39"></a>wkt_unknown&#160;</td><td class="fielddoc">
+<p>Unknown geometry. </p>
+</td></tr>
+<tr><td class="fieldname"><a class="anchor" id="a1abe527c0045379f4ef02f64f18421a0ac122279eda8c0e89e210aedf871436d4"></a>wkt_point&#160;</td><td class="fielddoc">
+<p>Point geometry. </p>
+</td></tr>
+<tr><td class="fieldname"><a class="anchor" id="a1abe527c0045379f4ef02f64f18421a0a76a4ea3a77e17661769daa2f95e6754c"></a>wkt_linestring&#160;</td><td class="fielddoc">
+<p>Linestring geometry. </p>
+</td></tr>
+<tr><td class="fieldname"><a class="anchor" id="a1abe527c0045379f4ef02f64f18421a0afba6a31c5e072971e5ed8eb91a3722cd"></a>wkt_polygon&#160;</td><td class="fielddoc">
+<p>Polygon geometry. </p>
+</td></tr>
+</table>
+
+<p>Definition at line <a class="el" href="common__types_8h_source.html#l00033">33</a> of file <a class="el" href="common__types_8h_source.html">common_types.h</a>.</p>
 
 </div>
 </div>
@@ -385,7 +431,7 @@ Functions</h2></td></tr>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sun Feb 22 2015 22:39:17 for sosicon by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Thu Mar 19 2015 22:35:42 for sosicon by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.7
 </small></address>

@@ -101,15 +101,18 @@
 <div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;</div>
 <div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;        <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="classsosicon_1_1_i_coordinate.html#a49811a3c43ae40950922ccf05ffbd445">divide</a>( <span class="keywordtype">int</span> divisor ) = 0;</div>
 <div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;</div>
-<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;        <span class="keyword">virtual</span> std::string <a class="code" href="classsosicon_1_1_i_coordinate.html#a661a5fd7e8bc2e1734895c89e0b4b046">toString</a>() = 0;</div>
+<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;        <span class="keyword">virtual</span> <span class="keywordtype">bool</span> <a class="code" href="classsosicon_1_1_i_coordinate.html#ab647080f45adda2c12b9b6e904af52b3">equals</a>( <a class="code" href="classsosicon_1_1_i_coordinate.html">ICoordinate</a>* c ) = 0;</div>
 <div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;</div>
-<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;    }; <span class="comment">// class ICoordinate</span></div>
-<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;<span class="comment"></span>}; <span class="comment">// namespace sosicon</span></div>
-<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;        <span class="keyword">virtual</span> std::string <a class="code" href="classsosicon_1_1_i_coordinate.html#a661a5fd7e8bc2e1734895c89e0b4b046">toString</a>() = 0;</div>
+<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;</div>
+<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;    }; <span class="comment">// class ICoordinate</span></div>
+<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;<span class="comment"></span>}; <span class="comment">// namespace sosicon</span></div>
+<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;<span class="preprocessor">#endif</span></div>
 <div class="ttc" id="classsosicon_1_1_i_coordinate_html_a49811a3c43ae40950922ccf05ffbd445"><div class="ttname"><a href="classsosicon_1_1_i_coordinate.html#a49811a3c43ae40950922ccf05ffbd445">sosicon::ICoordinate::divide</a></div><div class="ttdeci">virtual void divide(int divisor)=0</div><div class="ttdoc">Divide coordinate by specified divisor. </div></div>
 <div class="ttc" id="classsosicon_1_1_i_coordinate_html_a661a5fd7e8bc2e1734895c89e0b4b046"><div class="ttname"><a href="classsosicon_1_1_i_coordinate.html#a661a5fd7e8bc2e1734895c89e0b4b046">sosicon::ICoordinate::toString</a></div><div class="ttdeci">virtual std::string toString()=0</div><div class="ttdoc">Make string representation. </div></div>
 <div class="ttc" id="classsosicon_1_1_i_coordinate_html_aab5b86f00d3bde085de37a5496c2167b"><div class="ttname"><a href="classsosicon_1_1_i_coordinate.html#aab5b86f00d3bde085de37a5496c2167b">sosicon::ICoordinate::setH</a></div><div class="ttdeci">virtual void setH(double altitude)=0</div><div class="ttdoc">Set altitude. </div></div>
 <div class="ttc" id="classsosicon_1_1_i_coordinate_html_a7a3c9ffce79f68a7163c88aaed976fa3"><div class="ttname"><a href="classsosicon_1_1_i_coordinate.html#a7a3c9ffce79f68a7163c88aaed976fa3">sosicon::ICoordinate::shift</a></div><div class="ttdeci">virtual void shift(int offsetN, int offsetE)=0</div><div class="ttdoc">Shift coordinate by specified offset. </div></div>
+<div class="ttc" id="classsosicon_1_1_i_coordinate_html_ab647080f45adda2c12b9b6e904af52b3"><div class="ttname"><a href="classsosicon_1_1_i_coordinate.html#ab647080f45adda2c12b9b6e904af52b3">sosicon::ICoordinate::equals</a></div><div class="ttdeci">virtual bool equals(ICoordinate *c)=0</div><div class="ttdoc">Check if two points match. </div></div>
 <div class="ttc" id="classsosicon_1_1_i_coordinate_html_aa02bfaa7e19a82de497cb9a3228cc0ae"><div class="ttname"><a href="classsosicon_1_1_i_coordinate.html#aa02bfaa7e19a82de497cb9a3228cc0ae">sosicon::ICoordinate::getE</a></div><div class="ttdeci">virtual double getE()=0</div><div class="ttdoc">Get east coordinate. </div></div>
 <div class="ttc" id="classsosicon_1_1_i_coordinate_html_ab4e03155074bd6e78c97fa7ab15bab77"><div class="ttname"><a href="classsosicon_1_1_i_coordinate.html#ab4e03155074bd6e78c97fa7ab15bab77">sosicon::ICoordinate::setE</a></div><div class="ttdeci">virtual void setE(double coordEast)=0</div><div class="ttdoc">Set east coordinate. </div></div>
 <div class="ttc" id="classsosicon_1_1_i_coordinate_html_a58288f78854e7599044f9d5241e8cc91"><div class="ttname"><a href="classsosicon_1_1_i_coordinate.html#a58288f78854e7599044f9d5241e8cc91">sosicon::ICoordinate::getN</a></div><div class="ttdeci">virtual double getN()=0</div><div class="ttdoc">Get north coordinate. </div></div>
@@ -121,7 +124,7 @@
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sun Feb 22 2015 22:39:16 for sosicon by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Thu Mar 19 2015 22:35:41 for sosicon by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.7
 </small></address>

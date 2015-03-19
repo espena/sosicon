@@ -53,6 +53,7 @@
 <div class="header">
   <div class="summary">
 <a href="#pub-methods">Public Member Functions</a> &#124;
+<a href="#pri-types">Private Types</a> &#124;
 <a href="#pri-methods">Private Member Functions</a> &#124;
 <a href="#pri-attribs">Private Attributes</a> &#124;
 <a href="classsosicon_1_1_converter_sosi2psql-members.html">List of all members</a>  </div>
@@ -61,7 +62,7 @@
 </div><!--header-->
 <div class="contents">
 
-<p>SOSI to PostGreSQL converter.  
+<p>SOSI to PostgreSQL/PostGIS converter.  
  <a href="classsosicon_1_1_converter_sosi2psql.html#details">More...</a></p>
 
 <p><code>#include &lt;<a class="el" href="converter__sosi2psql_8h_source.html">converter_sosi2psql.h</a>&gt;</code></p>
@@ -91,11 +92,62 @@ Public Member Functions</h2></td></tr>
 <tr class="memdesc:a6f65c1f29d1f3c6817b2e6e0489ca331 inherit pub_methods_classsosicon_1_1_i_converter"><td class="mdescLeft">&#160;</td><td class="mdescRight">Destructor.  <a href="#a6f65c1f29d1f3c6817b2e6e0489ca331">More...</a><br /></td></tr>
 <tr class="separator:a6f65c1f29d1f3c6817b2e6e0489ca331 inherit pub_methods_classsosicon_1_1_i_converter"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pri-types"></a>
+Private Types</h2></td></tr>
+<tr class="memitem:a7c4a93432a4ddbfd4c61cf5021d472a7"><td class="memItemLeft" align="right" valign="top">typedef std::map&lt; std::string, <br class="typebreak" />
+std::string::size_type &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classsosicon_1_1_converter_sosi2psql.html#a7c4a93432a4ddbfd4c61cf5021d472a7">FieldsList</a></td></tr>
+<tr class="separator:a7c4a93432a4ddbfd4c61cf5021d472a7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a49892f44c6527509e71b4313a8090df6"><td class="memItemLeft" align="right" valign="top">typedef std::map&lt; <a class="el" href="namespacesosicon.html#a1abe527c0045379f4ef02f64f18421a0">Wkt</a>, <br class="typebreak" />
+<a class="el" href="classsosicon_1_1_converter_sosi2psql.html#a7c4a93432a4ddbfd4c61cf5021d472a7">FieldsList</a> * &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classsosicon_1_1_converter_sosi2psql.html#a49892f44c6527509e71b4313a8090df6">FieldsListCollection</a></td></tr>
+<tr class="separator:a49892f44c6527509e71b4313a8090df6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:acc346d29da446799956feb9b7ac453f3"><td class="memItemLeft" align="right" valign="top">typedef std::vector&lt; std::map<br class="typebreak" />
+&lt; std::string, std::string &gt; * &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classsosicon_1_1_converter_sosi2psql.html#acc346d29da446799956feb9b7ac453f3">RowsList</a></td></tr>
+<tr class="separator:acc346d29da446799956feb9b7ac453f3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2ffe413715da6ba80e7c2eee58d24a5e"><td class="memItemLeft" align="right" valign="top">typedef std::map&lt; <a class="el" href="namespacesosicon.html#a1abe527c0045379f4ef02f64f18421a0">Wkt</a>, <a class="el" href="classsosicon_1_1_converter_sosi2psql.html#acc346d29da446799956feb9b7ac453f3">RowsList</a> * &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classsosicon_1_1_converter_sosi2psql.html#a2ffe413715da6ba80e7c2eee58d24a5e">RowsListCollection</a></td></tr>
+<tr class="separator:a2ffe413715da6ba80e7c2eee58d24a5e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pri-methods"></a>
 Private Member Functions</h2></td></tr>
-<tr class="memitem:a2d332895a1693c6b0a3858d874cdd953"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classsosicon_1_1_converter_sosi2psql.html#a2d332895a1693c6b0a3858d874cdd953">makePsql</a> (<a class="el" href="classsosicon_1_1_i_sosi_element.html">ISosiElement</a> *sosiTree)</td></tr>
-<tr class="memdesc:a2d332895a1693c6b0a3858d874cdd953"><td class="mdescLeft">&#160;</td><td class="mdescRight">Make SQL dump from SOSI tree.  <a href="#a2d332895a1693c6b0a3858d874cdd953">More...</a><br /></td></tr>
-<tr class="separator:a2d332895a1693c6b0a3858d874cdd953"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5461929435db6913fda50ef9a0391c4b"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classsosicon_1_1_converter_sosi2psql.html#a5461929435db6913fda50ef9a0391c4b">buildInsertStatements</a> (std::string dbSchema, std::string dbTable)</td></tr>
+<tr class="memdesc:a5461929435db6913fda50ef9a0391c4b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Build SQL insert statements for all geometries.  <a href="#a5461929435db6913fda50ef9a0391c4b">More...</a><br /></td></tr>
+<tr class="separator:a5461929435db6913fda50ef9a0391c4b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac8b503ad06929789d9de2481eb62f236"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classsosicon_1_1_converter_sosi2psql.html#ac8b503ad06929789d9de2481eb62f236">buildInsertStatement</a> (<a class="el" href="namespacesosicon.html#a1abe527c0045379f4ef02f64f18421a0">Wkt</a> wktGeom, std::string dbSchema, std::string dbTable)</td></tr>
+<tr class="memdesc:ac8b503ad06929789d9de2481eb62f236"><td class="mdescLeft">&#160;</td><td class="mdescRight">Build SQL insert statement for one geometry.  <a href="#ac8b503ad06929789d9de2481eb62f236">More...</a><br /></td></tr>
+<tr class="separator:ac8b503ad06929789d9de2481eb62f236"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a49767695d15a50ede55a664999c3d13a"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classsosicon_1_1_converter_sosi2psql.html#a49767695d15a50ede55a664999c3d13a">buildCreateStatements</a> (std::string sridDest, std::string dbSchema, std::string dbTable)</td></tr>
+<tr class="memdesc:a49767695d15a50ede55a664999c3d13a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Build SQL create statements for all geometries.  <a href="#a49767695d15a50ede55a664999c3d13a">More...</a><br /></td></tr>
+<tr class="separator:a49767695d15a50ede55a664999c3d13a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aebfaa122ebb56a7509496823cc631472"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classsosicon_1_1_converter_sosi2psql.html#aebfaa122ebb56a7509496823cc631472">buildCreateStatement</a> (<a class="el" href="namespacesosicon.html#a1abe527c0045379f4ef02f64f18421a0">Wkt</a> wktGeom, std::string sridDest, std::string dbSchema, std::string dbTable)</td></tr>
+<tr class="memdesc:aebfaa122ebb56a7509496823cc631472"><td class="mdescLeft">&#160;</td><td class="mdescRight">Build SQL create statements for one geometry.  <a href="#aebfaa122ebb56a7509496823cc631472">More...</a><br /></td></tr>
+<tr class="separator:aebfaa122ebb56a7509496823cc631472"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1ca5b173b70799def7f7225de456fe44"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classsosicon_1_1_converter_sosi2psql.html#a1ca5b173b70799def7f7225de456fe44">cleanup</a> ()</td></tr>
+<tr class="separator:a1ca5b173b70799def7f7225de456fe44"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a856f2090f126218d0305ee41231d8616"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classsosicon_1_1_converter_sosi2psql.html#a856f2090f126218d0305ee41231d8616">cleanup</a> (<a class="el" href="namespacesosicon.html#a1abe527c0045379f4ef02f64f18421a0">Wkt</a> wktGeom)</td></tr>
+<tr class="separator:a856f2090f126218d0305ee41231d8616"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a097cb00e30b2cb32990ed6fae336a999"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classsosicon_1_1_converter_sosi2psql.html#a097cb00e30b2cb32990ed6fae336a999">extractData</a> (<a class="el" href="classsosicon_1_1_i_sosi_element.html">ISosiElement</a> *parent, <a class="el" href="classsosicon_1_1_converter_sosi2psql.html#a7c4a93432a4ddbfd4c61cf5021d472a7">FieldsList</a> &amp;hdr, std::map&lt; std::string, std::string &gt; *&amp;row)</td></tr>
+<tr class="memdesc:a097cb00e30b2cb32990ed6fae336a999"><td class="mdescLeft">&#160;</td><td class="mdescRight">Fetch element data fields recursively.  <a href="#a097cb00e30b2cb32990ed6fae336a999">More...</a><br /></td></tr>
+<tr class="separator:a097cb00e30b2cb32990ed6fae336a999"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6610e62513154ecc5c65c278a11e54a1"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classsosicon_1_1_converter_sosi2psql.html#a6610e62513154ecc5c65c278a11e54a1">getSrid</a> (<a class="el" href="classsosicon_1_1_i_sosi_element.html">ISosiElement</a> *sosiTree)</td></tr>
+<tr class="memdesc:a6610e62513154ecc5c65c278a11e54a1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Read current coordinate system from SOSI tree.  <a href="#a6610e62513154ecc5c65c278a11e54a1">More...</a><br /></td></tr>
+<tr class="separator:a6610e62513154ecc5c65c278a11e54a1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8a5037bc6d8e9d9fab7ca4a64afc96ea"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classsosicon_1_1_converter_sosi2psql.html#a8a5037bc6d8e9d9fab7ca4a64afc96ea">insertLineString</a> (<a class="el" href="classsosicon_1_1_i_sosi_element.html">ISosiElement</a> *lineString, std::string sridSource, std::string sridDest, std::string geomField)</td></tr>
+<tr class="memdesc:a8a5037bc6d8e9d9fab7ca4a64afc96ea"><td class="mdescLeft">&#160;</td><td class="mdescRight">Convert curve geomery (sosi KURVE) to SQL export data.  <a href="#a8a5037bc6d8e9d9fab7ca4a64afc96ea">More...</a><br /></td></tr>
+<tr class="separator:a8a5037bc6d8e9d9fab7ca4a64afc96ea"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2837ebf218f5f03090b7f2ba788abcad"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classsosicon_1_1_converter_sosi2psql.html#a2837ebf218f5f03090b7f2ba788abcad">insertPoint</a> (<a class="el" href="classsosicon_1_1_i_sosi_element.html">ISosiElement</a> *point, std::string sridSource, std::string sridDest, std::string geomField)</td></tr>
+<tr class="memdesc:a2837ebf218f5f03090b7f2ba788abcad"><td class="mdescLeft">&#160;</td><td class="mdescRight">Convert single point geomery (sosi PUNKT) to SQL export data.  <a href="#a2837ebf218f5f03090b7f2ba788abcad">More...</a><br /></td></tr>
+<tr class="separator:a2837ebf218f5f03090b7f2ba788abcad"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac376f1af25e74149ba7b9bf605071a5c"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classsosicon_1_1_converter_sosi2psql.html#ac376f1af25e74149ba7b9bf605071a5c">insertPolygon</a> (<a class="el" href="classsosicon_1_1_i_sosi_element.html">ISosiElement</a> *polygon, std::string sridSource, std::string sridDest, std::string geomField)</td></tr>
+<tr class="memdesc:ac376f1af25e74149ba7b9bf605071a5c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Convert polygons (sosi FLATE) to SQL export data.  <a href="#ac376f1af25e74149ba7b9bf605071a5c">More...</a><br /></td></tr>
+<tr class="separator:ac376f1af25e74149ba7b9bf605071a5c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a459e3eaa163616a3a228e4fdfec1d25c"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classsosicon_1_1_converter_sosi2psql.html#a459e3eaa163616a3a228e4fdfec1d25c">makePsql</a> (<a class="el" href="classsosicon_1_1_i_sosi_element.html">ISosiElement</a> *sosiTree, std::string sridDest, std::string dbSchema, std::string dbTable)</td></tr>
+<tr class="memdesc:a459e3eaa163616a3a228e4fdfec1d25c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Make SQL dump from SOSI tree.  <a href="#a459e3eaa163616a3a228e4fdfec1d25c">More...</a><br /></td></tr>
+<tr class="separator:a459e3eaa163616a3a228e4fdfec1d25c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4a8b2a054caaa8ba3b2763ee3faec8e9"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classsosicon_1_1_converter_sosi2psql.html#a4a8b2a054caaa8ba3b2763ee3faec8e9">objTypeExcluded</a> (<a class="el" href="classsosicon_1_1sosi_1_1_sosi_element_search.html">sosi::SosiElementSearch</a> &amp;src)</td></tr>
+<tr class="memdesc:a4a8b2a054caaa8ba3b2763ee3faec8e9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Test if current element is filtered out by -t parameter.  <a href="#a4a8b2a054caaa8ba3b2763ee3faec8e9">More...</a><br /></td></tr>
+<tr class="separator:a4a8b2a054caaa8ba3b2763ee3faec8e9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1f58765d5bcf6aff8717cdcbc9fe1b7c"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classsosicon_1_1_converter_sosi2psql.html#a1f58765d5bcf6aff8717cdcbc9fe1b7c">writePsql</a> (std::string sridDest, std::string dbSchema, std::string dbTable)</td></tr>
+<tr class="memdesc:a1f58765d5bcf6aff8717cdcbc9fe1b7c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Write SQL content.  <a href="#a1f58765d5bcf6aff8717cdcbc9fe1b7c">More...</a><br /></td></tr>
+<tr class="separator:a1f58765d5bcf6aff8717cdcbc9fe1b7c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a5e57f64a3da9ede7e6cc0926cf8bf3f0"><td class="memItemLeft" align="right" valign="top">virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classsosicon_1_1_converter_sosi2psql.html#a5e57f64a3da9ede7e6cc0926cf8bf3f0">~ConverterSosi2psql</a> ()</td></tr>
 <tr class="memdesc:a5e57f64a3da9ede7e6cc0926cf8bf3f0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Destructor.  <a href="#a5e57f64a3da9ede7e6cc0926cf8bf3f0">More...</a><br /></td></tr>
 <tr class="separator:a5e57f64a3da9ede7e6cc0926cf8bf3f0"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -108,13 +160,108 @@ Private Attributes</h2></td></tr>
 <tr class="memitem:a782cd0b07a18606a08fdc190398ee33d"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classsosicon_1_1_converter_sosi2psql.html#a782cd0b07a18606a08fdc190398ee33d">mCurrentSourcefile</a></td></tr>
 <tr class="memdesc:a782cd0b07a18606a08fdc190398ee33d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Souce file currently in process.  <a href="#a782cd0b07a18606a08fdc190398ee33d">More...</a><br /></td></tr>
 <tr class="separator:a782cd0b07a18606a08fdc190398ee33d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4b389ebdc55a29b88ddbf4364a3e38c7"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classsosicon_1_1_converter_sosi2psql.html#a49892f44c6527509e71b4313a8090df6">FieldsListCollection</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classsosicon_1_1_converter_sosi2psql.html#a4b389ebdc55a29b88ddbf4364a3e38c7">mFieldsListCollection</a></td></tr>
+<tr class="memdesc:a4b389ebdc55a29b88ddbf4364a3e38c7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Collection of fields, one item for each geometry type.  <a href="#a4b389ebdc55a29b88ddbf4364a3e38c7">More...</a><br /></td></tr>
+<tr class="separator:a4b389ebdc55a29b88ddbf4364a3e38c7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae904e4c989419c0d36c3dbc54ccf52e8"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classsosicon_1_1_converter_sosi2psql.html#a2ffe413715da6ba80e7c2eee58d24a5e">RowsListCollection</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classsosicon_1_1_converter_sosi2psql.html#ae904e4c989419c0d36c3dbc54ccf52e8">mRowsListCollection</a></td></tr>
+<tr class="memdesc:ae904e4c989419c0d36c3dbc54ccf52e8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Collection of rows, one item for each geometry type.  <a href="#ae904e4c989419c0d36c3dbc54ccf52e8">More...</a><br /></td></tr>
+<tr class="separator:ae904e4c989419c0d36c3dbc54ccf52e8"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>SOSI to PostGreSQL converter. </p>
-<p>If command-line parameter -2psql is specified, this converter will handle the output generation. Produces a PostGreSQL dump file from the SOSI source(s). </p>
+<div class="textblock"><p>SOSI to PostgreSQL/PostGIS converter. </p>
+<p>If command-line parameter -2psql is specified, this converter will handle the output generation. Produces a PostgreSQL/PostGIS dump file from the SOSI source(s). </p>
 
-<p>Definition at line <a class="el" href="converter__sosi2psql_8h_source.html#l00042">42</a> of file <a class="el" href="converter__sosi2psql_8h_source.html">converter_sosi2psql.h</a>.</p>
-</div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<p>Definition at line <a class="el" href="converter__sosi2psql_8h_source.html#l00051">51</a> of file <a class="el" href="converter__sosi2psql_8h_source.html">converter_sosi2psql.h</a>.</p>
+</div><h2 class="groupheader">Member Typedef Documentation</h2>
+<a class="anchor" id="a7c4a93432a4ddbfd4c61cf5021d472a7"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">typedef std::map&lt; std::string,std::string::size_type &gt; <a class="el" href="classsosicon_1_1_converter_sosi2psql.html#a7c4a93432a4ddbfd4c61cf5021d472a7">sosicon::ConverterSosi2psql::FieldsList</a></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="converter__sosi2psql_8h_source.html#l00053">53</a> of file <a class="el" href="converter__sosi2psql_8h_source.html">converter_sosi2psql.h</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a49892f44c6527509e71b4313a8090df6"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">typedef std::map&lt; <a class="el" href="namespacesosicon.html#a1abe527c0045379f4ef02f64f18421a0">Wkt</a>, <a class="el" href="classsosicon_1_1_converter_sosi2psql.html#a7c4a93432a4ddbfd4c61cf5021d472a7">FieldsList</a>* &gt; <a class="el" href="classsosicon_1_1_converter_sosi2psql.html#a49892f44c6527509e71b4313a8090df6">sosicon::ConverterSosi2psql::FieldsListCollection</a></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="converter__sosi2psql_8h_source.html#l00054">54</a> of file <a class="el" href="converter__sosi2psql_8h_source.html">converter_sosi2psql.h</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="acc346d29da446799956feb9b7ac453f3"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">typedef std::vector&lt; std::map&lt; std::string,std::string &gt;* &gt; <a class="el" href="classsosicon_1_1_converter_sosi2psql.html#acc346d29da446799956feb9b7ac453f3">sosicon::ConverterSosi2psql::RowsList</a></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="converter__sosi2psql_8h_source.html#l00055">55</a> of file <a class="el" href="converter__sosi2psql_8h_source.html">converter_sosi2psql.h</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a2ffe413715da6ba80e7c2eee58d24a5e"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">typedef std::map&lt; <a class="el" href="namespacesosicon.html#a1abe527c0045379f4ef02f64f18421a0">Wkt</a>, <a class="el" href="classsosicon_1_1_converter_sosi2psql.html#acc346d29da446799956feb9b7ac453f3">RowsList</a>* &gt; <a class="el" href="classsosicon_1_1_converter_sosi2psql.html#a2ffe413715da6ba80e7c2eee58d24a5e">sosicon::ConverterSosi2psql::RowsListCollection</a></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="converter__sosi2psql_8h_source.html#l00056">56</a> of file <a class="el" href="converter__sosi2psql_8h_source.html">converter_sosi2psql.h</a>.</p>
+
+</div>
+</div>
+<h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a class="anchor" id="a5e57f64a3da9ede7e6cc0926cf8bf3f0"></a>
 <div class="memitem">
 <div class="memproto">
@@ -138,7 +285,7 @@ Private Attributes</h2></td></tr>
 
 <p>Destructor. </p>
 
-<p>Definition at line <a class="el" href="converter__sosi2psql_8h_source.html#l00054">54</a> of file <a class="el" href="converter__sosi2psql_8h_source.html">converter_sosi2psql.h</a>.</p>
+<p>Definition at line <a class="el" href="converter__sosi2psql_8h_source.html#l00268">268</a> of file <a class="el" href="converter__sosi2psql_8h_source.html">converter_sosi2psql.h</a>.</p>
 
 </div>
 </div>
@@ -165,11 +312,370 @@ Private Attributes</h2></td></tr>
 
 <p>Constructor. </p>
 
-<p>Definition at line <a class="el" href="converter__sosi2psql_8h_source.html#l00058">58</a> of file <a class="el" href="converter__sosi2psql_8h_source.html">converter_sosi2psql.h</a>.</p>
+<p>Definition at line <a class="el" href="converter__sosi2psql_8h_source.html#l00273">273</a> of file <a class="el" href="converter__sosi2psql_8h_source.html">converter_sosi2psql.h</a>.</p>
 
 </div>
 </div>
 <h2 class="groupheader">Member Function Documentation</h2>
+<a class="anchor" id="aebfaa122ebb56a7509496823cc631472"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::string sosicon::ConverterSosi2psql::buildCreateStatement </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="namespacesosicon.html#a1abe527c0045379f4ef02f64f18421a0">Wkt</a>&#160;</td>
+          <td class="paramname"><em>wktGeom</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">std::string&#160;</td>
+          <td class="paramname"><em>sridDest</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">std::string&#160;</td>
+          <td class="paramname"><em>dbSchema</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">std::string&#160;</td>
+          <td class="paramname"><em>dbTable</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Build SQL create statements for one geometry. </p>
+<p>This function calls <a class="el" href="classsosicon_1_1_converter_sosi2psql.html#a49767695d15a50ede55a664999c3d13a" title="Build SQL create statements for all geometries. ">sosicon::ConverterSosi2psql::buildCreateStatements</a> for each of the WKT geometries types to export. </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">dbSchema</td><td>String representing the name of the database schema. </td></tr>
+    <tr><td class="paramname">dbTable</td><td>String representing the base name of the database table. The name of the geometry for that table will be prepended to the base name. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="classsosicon_1_1_converter_sosi2psql.html#a49767695d15a50ede55a664999c3d13a" title="Build SQL create statements for all geometries. ">sosicon::ConverterSosi2psql::buildCreateStatements()</a> </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>The SQL/DDL creation script content. </dd></dl>
+
+<p>Definition at line <a class="el" href="converter__sosi2psql_8cpp_source.html#l00044">44</a> of file <a class="el" href="converter__sosi2psql_8cpp_source.html">converter_sosi2psql.cpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a49767695d15a50ede55a664999c3d13a"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::string sosicon::ConverterSosi2psql::buildCreateStatements </td>
+          <td>(</td>
+          <td class="paramtype">std::string&#160;</td>
+          <td class="paramname"><em>sridDest</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">std::string&#160;</td>
+          <td class="paramname"><em>dbSchema</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">std::string&#160;</td>
+          <td class="paramname"><em>dbTable</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Build SQL create statements for all geometries. </p>
+<p>This function calls <a class="el" href="classsosicon_1_1_converter_sosi2psql.html#aebfaa122ebb56a7509496823cc631472" title="Build SQL create statements for one geometry. ">sosicon::ConverterSosi2psql::buildCreateStatement</a> for each of the WKT geometries types to export. </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">dbSchema</td><td>String representing the name of the database schema. </td></tr>
+    <tr><td class="paramname">dbTable</td><td>String representing the base name of the database table. The name of the geometry for that table will be prepended to the base name. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="classsosicon_1_1_converter_sosi2psql.html#aebfaa122ebb56a7509496823cc631472" title="Build SQL create statements for one geometry. ">sosicon::ConverterSosi2psql::buildCreateStatement()</a> </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>The SQL/DDL creation script content. </dd></dl>
+
+<p>Definition at line <a class="el" href="converter__sosi2psql_8cpp_source.html#l00021">21</a> of file <a class="el" href="converter__sosi2psql_8cpp_source.html">converter_sosi2psql.cpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="ac8b503ad06929789d9de2481eb62f236"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::string sosicon::ConverterSosi2psql::buildInsertStatement </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="namespacesosicon.html#a1abe527c0045379f4ef02f64f18421a0">Wkt</a>&#160;</td>
+          <td class="paramname"><em>wktGeom</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">std::string&#160;</td>
+          <td class="paramname"><em>dbSchema</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">std::string&#160;</td>
+          <td class="paramname"><em>dbTable</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Build SQL insert statement for one geometry. </p>
+<p>Creates the SQL statements required to insert the data for one WKT geometry. </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">wktGeom</td><td>WKT geometry type for current insertion script. </td></tr>
+    <tr><td class="paramname">dbSchema</td><td>String representing the name of the database schema. </td></tr>
+    <tr><td class="paramname">dbTable</td><td>String representing the base name of the database table. The name of the geometry for that table will be prepended to the base name. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="classsosicon_1_1_converter_sosi2psql.html#a5461929435db6913fda50ef9a0391c4b" title="Build SQL insert statements for all geometries. ">sosicon::ConverterSosi2psql::buildInsertStatements()</a> </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>The SQL insertion script content. </dd></dl>
+
+<p>Definition at line <a class="el" href="converter__sosi2psql_8cpp_source.html#l00135">135</a> of file <a class="el" href="converter__sosi2psql_8cpp_source.html">converter_sosi2psql.cpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a5461929435db6913fda50ef9a0391c4b"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::string sosicon::ConverterSosi2psql::buildInsertStatements </td>
+          <td>(</td>
+          <td class="paramtype">std::string&#160;</td>
+          <td class="paramname"><em>dbSchema</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">std::string&#160;</td>
+          <td class="paramname"><em>dbTable</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Build SQL insert statements for all geometries. </p>
+<p>This function calls <a class="el" href="classsosicon_1_1_converter_sosi2psql.html#ac8b503ad06929789d9de2481eb62f236" title="Build SQL insert statement for one geometry. ">sosicon::ConverterSosi2psql::buildInsertStatement</a> for each of the WKT geometries types to export. </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">dbSchema</td><td>String representing the name of the database schema. </td></tr>
+    <tr><td class="paramname">dbTable</td><td>String representing the base name of the database table. The name of the geometry for that table will be prepended to the base name. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="classsosicon_1_1_converter_sosi2psql.html#ac8b503ad06929789d9de2481eb62f236" title="Build SQL insert statement for one geometry. ">sosicon::ConverterSosi2psql::buildInsertStatement()</a> </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>The SQL insertion script content. </dd></dl>
+
+<p>Definition at line <a class="el" href="converter__sosi2psql_8cpp_source.html#l00116">116</a> of file <a class="el" href="converter__sosi2psql_8cpp_source.html">converter_sosi2psql.cpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a1ca5b173b70799def7f7225de456fe44"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void sosicon::ConverterSosi2psql::cleanup </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Release memory reserved for this converter. Called before destroying object. It may not be necesary to invoke <a class="el" href="classsosicon_1_1_converter_sosi2psql.html#a1ca5b173b70799def7f7225de456fe44">cleanup()</a> if the program is about to terminate anyway, as this can be quite time consuming after converting large files. </p><dl class="section see"><dt>See also</dt><dd><a class="el" href="classsosicon_1_1_converter_sosi2psql.html#a856f2090f126218d0305ee41231d8616">sosicon::ConverterSosi2psql::cleanup( Wkt )</a> </dd></dl>
+
+<p>Definition at line <a class="el" href="converter__sosi2psql_8cpp_source.html#l00221">221</a> of file <a class="el" href="converter__sosi2psql_8cpp_source.html">converter_sosi2psql.cpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a856f2090f126218d0305ee41231d8616"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void sosicon::ConverterSosi2psql::cleanup </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="namespacesosicon.html#a1abe527c0045379f4ef02f64f18421a0">Wkt</a>&#160;</td>
+          <td class="paramname"><em>wktGeom</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Release memory reserved for one geometry. Called from <a class="el" href="classsosicon_1_1_converter_sosi2psql.html#a856f2090f126218d0305ee41231d8616">sosicon::ConverterSosi2psql::cleanup( Wkt )</a> </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">wktGeom</td><td>The WKT geometry type for which to delete allocated memory. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="classsosicon_1_1_converter_sosi2psql.html#a1ca5b173b70799def7f7225de456fe44">sosicon::ConverterSosi2psql::cleanup()</a> </dd></dl>
+
+<p>Definition at line <a class="el" href="converter__sosi2psql_8cpp_source.html#l00232">232</a> of file <a class="el" href="converter__sosi2psql_8cpp_source.html">converter_sosi2psql.cpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a097cb00e30b2cb32990ed6fae336a999"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void sosicon::ConverterSosi2psql::extractData </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classsosicon_1_1_i_sosi_element.html">ISosiElement</a> *&#160;</td>
+          <td class="paramname"><em>parent</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="classsosicon_1_1_converter_sosi2psql.html#a7c4a93432a4ddbfd4c61cf5021d472a7">FieldsList</a> &amp;&#160;</td>
+          <td class="paramname"><em>hdr</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">std::map&lt; std::string, std::string &gt; *&amp;&#160;</td>
+          <td class="paramname"><em>row</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Fetch element data fields recursively. </p>
+<p>Traverses the SOSI element tree recursively, extracting plain data fields. The field names are stored in the hdr list, and the data values are stored in the row list. The data size value associated wit each entry in hdr is updated to reflect the longest encountered field length. </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">parent</td><td>The SOSI (sub)tree to be traversed. </td></tr>
+    <tr><td class="paramname">hdr</td><td>The fields list (table header). </td></tr>
+    <tr><td class="paramname">row</td><td>The record set (table row). </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p>Definition at line <a class="el" href="converter__sosi2psql_8cpp_source.html#l00249">249</a> of file <a class="el" href="converter__sosi2psql_8cpp_source.html">converter_sosi2psql.cpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a6610e62513154ecc5c65c278a11e54a1"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::string sosicon::ConverterSosi2psql::getSrid </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classsosicon_1_1_i_sosi_element.html">ISosiElement</a> *&#160;</td>
+          <td class="paramname"><em>sosiTree</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Read current coordinate system from SOSI tree. </p>
+<p>Scans the SOSI header, searching for the KOORDSYS element with information about the current coordinate system. </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">sosiTree</td><td>Pointer to the root SOSI element. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>The SRID code for the grid used in current file. </dd></dl>
+
+<p>Definition at line <a class="el" href="converter__sosi2psql_8cpp_source.html#l00281">281</a> of file <a class="el" href="converter__sosi2psql_8cpp_source.html">converter_sosi2psql.cpp</a>.</p>
+
+</div>
+</div>
 <a class="anchor" id="ac689aeee10ffcd631493730b0205d466"></a>
 <div class="memitem">
 <div class="memproto">
@@ -203,11 +709,197 @@ Private Attributes</h2></td></tr>
 
 <p>Implements <a class="el" href="classsosicon_1_1_i_converter.html#aae1d9e039b1c99ae202dd27ee0311576">sosicon::IConverter</a>.</p>
 
-<p>Definition at line <a class="el" href="converter__sosi2psql_8h_source.html#l00066">66</a> of file <a class="el" href="converter__sosi2psql_8h_source.html">converter_sosi2psql.h</a>.</p>
+<p>Definition at line <a class="el" href="converter__sosi2psql_8h_source.html#l00281">281</a> of file <a class="el" href="converter__sosi2psql_8h_source.html">converter_sosi2psql.h</a>.</p>
 
 </div>
 </div>
-<a class="anchor" id="a2d332895a1693c6b0a3858d874cdd953"></a>
+<a class="anchor" id="a8a5037bc6d8e9d9fab7ca4a64afc96ea"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void sosicon::ConverterSosi2psql::insertLineString </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classsosicon_1_1_i_sosi_element.html">ISosiElement</a> *&#160;</td>
+          <td class="paramname"><em>lineString</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">std::string&#160;</td>
+          <td class="paramname"><em>sridSource</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">std::string&#160;</td>
+          <td class="paramname"><em>sridDest</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">std::string&#160;</td>
+          <td class="paramname"><em>geomField</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Convert curve geomery (sosi KURVE) to SQL export data. </p>
+<p>Extracts the coordinates from the given SOSI element and builds a linestring WKT geometry from it. </p><dl class="section see"><dt>See also</dt><dd><a class="el" href="classsosicon_1_1_converter_sosi2psql.html#a2837ebf218f5f03090b7f2ba788abcad" title="Convert single point geomery (sosi PUNKT) to SQL export data. ">sosicon::ConverterSosi2psql::insertPoint()</a> </dd>
+<dd>
+<a class="el" href="classsosicon_1_1_converter_sosi2psql.html#ac376f1af25e74149ba7b9bf605071a5c" title="Convert polygons (sosi FLATE) to SQL export data. ">sosicon::ConverterSosi2psql::insertPolygon()</a> </dd></dl>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">lineString</td><td>SOSI geometry element (typically "KURVE"). </td></tr>
+    <tr><td class="paramname">sridSource</td><td>Spatial reference grid ID for the source file. </td></tr>
+    <tr><td class="paramname">sridDest</td><td>Spatial reference grid ID for the target file. </td></tr>
+    <tr><td class="paramname">geomField</td><td>The name of the field within the recordset representing the geometry data. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p>Definition at line <a class="el" href="converter__sosi2psql_8cpp_source.html#l00370">370</a> of file <a class="el" href="converter__sosi2psql_8cpp_source.html">converter_sosi2psql.cpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a2837ebf218f5f03090b7f2ba788abcad"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void sosicon::ConverterSosi2psql::insertPoint </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classsosicon_1_1_i_sosi_element.html">ISosiElement</a> *&#160;</td>
+          <td class="paramname"><em>point</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">std::string&#160;</td>
+          <td class="paramname"><em>sridSource</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">std::string&#160;</td>
+          <td class="paramname"><em>sridDest</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">std::string&#160;</td>
+          <td class="paramname"><em>geomField</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Convert single point geomery (sosi PUNKT) to SQL export data. </p>
+<p>Extracts the coordinate from the given SOSI element and builds a point WKT geometry from it. </p><dl class="section see"><dt>See also</dt><dd><a class="el" href="classsosicon_1_1_converter_sosi2psql.html#a8a5037bc6d8e9d9fab7ca4a64afc96ea" title="Convert curve geomery (sosi KURVE) to SQL export data. ">sosicon::ConverterSosi2psql::insertLineString()</a> </dd>
+<dd>
+<a class="el" href="classsosicon_1_1_converter_sosi2psql.html#ac376f1af25e74149ba7b9bf605071a5c" title="Convert polygons (sosi FLATE) to SQL export data. ">sosicon::ConverterSosi2psql::insertPolygon()</a> </dd></dl>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">point</td><td>SOSI geometry element (typically "PUNKT" or "TEKST"). </td></tr>
+    <tr><td class="paramname">sridSource</td><td>Spatial reference grid ID for the source file. </td></tr>
+    <tr><td class="paramname">sridDest</td><td>Spatial reference grid ID for the target file. </td></tr>
+    <tr><td class="paramname">geomField</td><td>The name of the field within the recordset representing the geometry data. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p>Definition at line <a class="el" href="converter__sosi2psql_8cpp_source.html#l00321">321</a> of file <a class="el" href="converter__sosi2psql_8cpp_source.html">converter_sosi2psql.cpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="ac376f1af25e74149ba7b9bf605071a5c"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void sosicon::ConverterSosi2psql::insertPolygon </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classsosicon_1_1_i_sosi_element.html">ISosiElement</a> *&#160;</td>
+          <td class="paramname"><em>polygon</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">std::string&#160;</td>
+          <td class="paramname"><em>sridSource</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">std::string&#160;</td>
+          <td class="paramname"><em>sridDest</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">std::string&#160;</td>
+          <td class="paramname"><em>geomField</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Convert polygons (sosi FLATE) to SQL export data. </p>
+<p>Extracts the coordinates from the given SOSI element and builds a polygon WKT geometry from it. </p><dl class="section see"><dt>See also</dt><dd><a class="el" href="classsosicon_1_1_converter_sosi2psql.html#a8a5037bc6d8e9d9fab7ca4a64afc96ea" title="Convert curve geomery (sosi KURVE) to SQL export data. ">sosicon::ConverterSosi2psql::insertLineString()</a> </dd>
+<dd>
+<a class="el" href="classsosicon_1_1_converter_sosi2psql.html#a2837ebf218f5f03090b7f2ba788abcad" title="Convert single point geomery (sosi PUNKT) to SQL export data. ">sosicon::ConverterSosi2psql::insertPoint()</a> </dd></dl>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">point</td><td>SOSI geometry element (typically "FLATE"). </td></tr>
+    <tr><td class="paramname">sridSource</td><td>Spatial reference grid ID for the source file. </td></tr>
+    <tr><td class="paramname">sridDest</td><td>Spatial reference grid ID for the target file. </td></tr>
+    <tr><td class="paramname">geomField</td><td>The name of the field within the recordset representing the geometry data. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p>Definition at line <a class="el" href="converter__sosi2psql_8cpp_source.html#l00423">423</a> of file <a class="el" href="converter__sosi2psql_8cpp_source.html">converter_sosi2psql.cpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a459e3eaa163616a3a228e4fdfec1d25c"></a>
 <div class="memitem">
 <div class="memproto">
 <table class="mlabels">
@@ -218,8 +910,30 @@ Private Attributes</h2></td></tr>
           <td class="memname">void sosicon::ConverterSosi2psql::makePsql </td>
           <td>(</td>
           <td class="paramtype"><a class="el" href="classsosicon_1_1_i_sosi_element.html">ISosiElement</a> *&#160;</td>
-          <td class="paramname"><em>sosiTree</em></td><td>)</td>
+          <td class="paramname"><em>sosiTree</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
           <td></td>
+          <td class="paramtype">std::string&#160;</td>
+          <td class="paramname"><em>sridDest</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">std::string&#160;</td>
+          <td class="paramname"><em>dbSchema</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">std::string&#160;</td>
+          <td class="paramname"><em>dbTable</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
         </tr>
       </table>
   </td>
@@ -230,8 +944,57 @@ Private Attributes</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Make SQL dump from SOSI tree. </p>
+<p>Iterates the SOSI tree once for each geometry to be exported, extracting relevant elements and passing them on to one of the insertion routines. </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">sosiTree</td><td>Pointer to the root SOSI element. </td></tr>
+    <tr><td class="paramname">sridDest</td><td>Spatial reference grid ID for the target file. </td></tr>
+    <tr><td class="paramname">dbSchema</td><td>String representing the name of the database schema. </td></tr>
+    <tr><td class="paramname">dbTable</td><td>String representing the base name of the database table. The name of the geometry for that table will be prepended to the base name. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="classsosicon_1_1_converter_sosi2psql.html#a2837ebf218f5f03090b7f2ba788abcad" title="Convert single point geomery (sosi PUNKT) to SQL export data. ">sosicon::ConverterSosi2psql::insertPoint()</a> </dd>
+<dd>
+<a class="el" href="classsosicon_1_1_converter_sosi2psql.html#a8a5037bc6d8e9d9fab7ca4a64afc96ea" title="Convert curve geomery (sosi KURVE) to SQL export data. ">sosicon::ConverterSosi2psql::insertLineString()</a> </dd>
+<dd>
+<a class="el" href="classsosicon_1_1_converter_sosi2psql.html#ac376f1af25e74149ba7b9bf605071a5c" title="Convert polygons (sosi FLATE) to SQL export data. ">sosicon::ConverterSosi2psql::insertPolygon()</a> </dd></dl>
 
-<p>Definition at line <a class="el" href="converter__sosi2psql_8cpp_source.html#l00021">21</a> of file <a class="el" href="converter__sosi2psql_8cpp_source.html">converter_sosi2psql.cpp</a>.</p>
+<p>Definition at line <a class="el" href="converter__sosi2psql_8cpp_source.html#l00513">513</a> of file <a class="el" href="converter__sosi2psql_8cpp_source.html">converter_sosi2psql.cpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a4a8b2a054caaa8ba3b2763ee3faec8e9"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool sosicon::ConverterSosi2psql::objTypeExcluded </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classsosicon_1_1sosi_1_1_sosi_element_search.html">sosi::SosiElementSearch</a> &amp;&#160;</td>
+          <td class="paramname"><em>src</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Test if current element is filtered out by -t parameter. </p>
+<p>If the user uses the -t parameter to specify which OBJTYPE elements to include in the export, this function tests if current element is opted out of the export. </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">src</td><td>SOSI element serch result to test. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>True if current element should be excluded from the export file. </dd></dl>
+
+<p>Definition at line <a class="el" href="converter__sosi2psql_8cpp_source.html#l00549">549</a> of file <a class="el" href="converter__sosi2psql_8cpp_source.html">converter_sosi2psql.cpp</a>.</p>
 
 </div>
 </div>
@@ -261,7 +1024,59 @@ Private Attributes</h2></td></tr>
 
 <p>Implements <a class="el" href="classsosicon_1_1_i_converter.html#a194381cefd5ca10598d838ae9a55cc3e">sosicon::IConverter</a>.</p>
 
-<p>Definition at line <a class="el" href="converter__sosi2psql_8cpp_source.html#l00065">65</a> of file <a class="el" href="converter__sosi2psql_8cpp_source.html">converter_sosi2psql.cpp</a>.</p>
+<p>Definition at line <a class="el" href="converter__sosi2psql_8cpp_source.html#l00556">556</a> of file <a class="el" href="converter__sosi2psql_8cpp_source.html">converter_sosi2psql.cpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a1f58765d5bcf6aff8717cdcbc9fe1b7c"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void sosicon::ConverterSosi2psql::writePsql </td>
+          <td>(</td>
+          <td class="paramtype">std::string&#160;</td>
+          <td class="paramname"><em>sridDest</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">std::string&#160;</td>
+          <td class="paramname"><em>dbSchema</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">std::string&#160;</td>
+          <td class="paramname"><em>dbTable</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Write SQL content. </p>
+<p>Assebles and prepares the SQL statements before writing them to the destination file. </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">sridDest</td><td>Spatial reference grid ID for the target file. </td></tr>
+    <tr><td class="paramname">dbSchema</td><td>String representing the name of the database schema. </td></tr>
+    <tr><td class="paramname">dbTable</td><td>String representing the base name of the database table. The name of the geometry for that table will be prepended to the base name. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p>Definition at line <a class="el" href="converter__sosi2psql_8cpp_source.html#l00610">610</a> of file <a class="el" href="converter__sosi2psql_8cpp_source.html">converter_sosi2psql.cpp</a>.</p>
 
 </div>
 </div>
@@ -286,7 +1101,7 @@ Private Attributes</h2></td></tr>
 
 <p>Command line wrapper. </p>
 
-<p>Definition at line <a class="el" href="converter__sosi2psql_8h_source.html#l00045">45</a> of file <a class="el" href="converter__sosi2psql_8h_source.html">converter_sosi2psql.h</a>.</p>
+<p>Definition at line <a class="el" href="converter__sosi2psql_8h_source.html#l00059">59</a> of file <a class="el" href="converter__sosi2psql_8h_source.html">converter_sosi2psql.h</a>.</p>
 
 </div>
 </div>
@@ -310,7 +1125,55 @@ Private Attributes</h2></td></tr>
 
 <p>Souce file currently in process. </p>
 
-<p>Definition at line <a class="el" href="converter__sosi2psql_8h_source.html#l00048">48</a> of file <a class="el" href="converter__sosi2psql_8h_source.html">converter_sosi2psql.h</a>.</p>
+<p>Definition at line <a class="el" href="converter__sosi2psql_8h_source.html#l00062">62</a> of file <a class="el" href="converter__sosi2psql_8h_source.html">converter_sosi2psql.h</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a4b389ebdc55a29b88ddbf4364a3e38c7"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classsosicon_1_1_converter_sosi2psql.html#a49892f44c6527509e71b4313a8090df6">FieldsListCollection</a> sosicon::ConverterSosi2psql::mFieldsListCollection</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Collection of fields, one item for each geometry type. </p>
+
+<p>Definition at line <a class="el" href="converter__sosi2psql_8h_source.html#l00065">65</a> of file <a class="el" href="converter__sosi2psql_8h_source.html">converter_sosi2psql.h</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="ae904e4c989419c0d36c3dbc54ccf52e8"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classsosicon_1_1_converter_sosi2psql.html#a2ffe413715da6ba80e7c2eee58d24a5e">RowsListCollection</a> sosicon::ConverterSosi2psql::mRowsListCollection</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Collection of rows, one item for each geometry type. </p>
+
+<p>Definition at line <a class="el" href="converter__sosi2psql_8h_source.html#l00068">68</a> of file <a class="el" href="converter__sosi2psql_8h_source.html">converter_sosi2psql.h</a>.</p>
 
 </div>
 </div>
@@ -321,7 +1184,7 @@ Private Attributes</h2></td></tr>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sun Feb 22 2015 22:39:17 for sosicon by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Thu Mar 19 2015 22:35:42 for sosicon by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.7
 </small></address>
