@@ -1,5 +1,7 @@
 CC = g++
 
+INSTALL_PATH ?= /usr/local
+
 UNAME := $(shell uname)
 LBIT := $(shell getconf LONG_BIT)
 
@@ -63,3 +65,8 @@ sosicon: $(SOURCEFILES) $(HEADERFILES)
 	@echo "** Compiling..."
 	$(CC) -o $(OUTDIR)/$(PROJ) $(SOURCEFILES) $(COMPILER_OPTS);
 	@echo "Done."
+
+install:
+	cp $(OUTDIR)/sosicon $(INSTALL_PATH)/bin/sosicon
+	@echo "Sosicon is now installed in "$(INSTALL_PATH)/bin/sosicon"."
+	@echo "Type 'sosicon -help' for options."
