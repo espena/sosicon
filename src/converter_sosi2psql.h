@@ -50,7 +50,20 @@ namespace sosicon {
      */
     class ConverterSosi2psql : public IConverter {
 
-        typedef std::map< std::string,std::string::size_type > FieldsList;
+        class Field {
+            std::string::size_type mLength;
+            bool mIsNumeric;
+        public:
+            bool isNumeric( bool flag ) { return ( mIsNumeric = flag ); }
+            bool isNumeric() { return mIsNumeric; }
+            std::string::size_type length( std::string::size_type val ) { return ( mLength = val ); }
+            std::string::size_type length() { return mLength; }
+            Field() : mLength( 0 ), mIsNumeric( false ) { }
+            Field( std::string::size_type val ) : mLength( val ), mIsNumeric( false ) { }
+            std::string::size_type expand( std::string::size_type val ) { return ( mLength = std::max( mLength, val ) ); }
+        };
+
+        typedef std::map< std::string,Field > FieldsList;
         typedef std::map< Wkt, FieldsList* > FieldsListCollection;
         typedef std::vector< std::map< std::string,std::string >* > RowsList;
         typedef std::map< Wkt, RowsList* > RowsListCollection;

@@ -76,7 +76,7 @@ buildCreateStatement( Wkt wktGeom,
         FieldsList::iterator itrFields;
         for( itrFields = f->begin(); itrFields != f->end(); itrFields++ ) {
            std::string field = itrFields->first;
-           std::string::size_type len = itrFields->second;
+           std::string::size_type len = itrFields->second.length();
            if( field != geomField ) {
                if( len > 255 ) {
                    ss << ","
@@ -265,10 +265,10 @@ extractData( ISosiElement* parent,
         }
 
         if( hdr.find( fieldName ) == hdr.end() ) {
-            hdr[ fieldName ] = data.length();
+            hdr[ fieldName ] = Field( data.length() );
         }
         else {
-            hdr[ fieldName ] = std::max( hdr[ fieldName ], data.length() );
+          hdr[ fieldName ].expand( data.length() );
         }
 
         if( row ) {
@@ -356,7 +356,7 @@ insertPoint( ISosiElement* point,
         }
 
         FieldsList& hdr = ( *mFieldsListCollection[ wkt_point ] );
-        hdr[ geomField ] = std::max( hdr[ geomField ], data.length() );
+        hdr[ geomField ].expand( data.length() );
 
         extractData( point, hdr, row );
 
@@ -410,7 +410,7 @@ insertLineString( ISosiElement* lineString,
     }
 
     FieldsList& hdr = ( *mFieldsListCollection[ wkt_linestring ] );
-    hdr[ geomField ] = std::max( hdr[ geomField ], data.length() );
+    hdr[ geomField ].expand( data.length() );
 
     extractData( lineString, hdr, row );
 
@@ -500,7 +500,7 @@ insertPolygon( ISosiElement* polygon,
     }
 
     FieldsList& hdr = ( *mFieldsListCollection[ wkt_polygon ] );
-    hdr[ geomField ] = std::max( hdr[ geomField ], data.length() );
+    hdr[ geomField ].expand( data.length() );
 
     extractData( polygon, hdr, row );
 
