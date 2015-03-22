@@ -62,6 +62,17 @@ namespace sosicon {
           return ( stat( name.c_str(), &buffer ) == 0 );
         }
 
+        //! Test if a string represents a numeric value
+        /*!
+            Returns true if the provided string contains numers only, and if the first
+            digit is not zero. Numbers with leading zeros should be treated as strings,
+            since they might be phone numbers, post numbers or municipal codes.
+            \param str The string value to test.
+            \return True if the string represents a numeric value with no leading zero,
+                    otherwise false.
+        */
+        bool isNumeric( const std::string& str );
+
         //! Asserts output file name to be non-existing
         /*!
             Tests candidate file paths to find a unique output file name, appending

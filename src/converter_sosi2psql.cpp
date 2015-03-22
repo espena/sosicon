@@ -77,8 +77,21 @@ buildCreateStatement( Wkt wktGeom,
         for( itrFields = f->begin(); itrFields != f->end(); itrFields++ ) {
            std::string field = itrFields->first;
            std::string::size_type len = itrFields->second.length();
+           bool isNumeric = itrFields->second.isNumeric();
            if( field != geomField ) {
-               if( len > 255 ) {
+               std::cout << "isNumeric: " << isNumeric << "\n";
+               std::cout << "len: " << len << "\n";
+               if( isNumeric && len < 10 ) {
+                   ss << ","
+                      << field
+                      << " INTEGER";
+               }
+               else if( isNumeric && len < 19 ) {
+                   ss << ","
+                      << field
+                      << " BIGINT";
+               }
+               else if( len > 255 ) {
                    ss << ","
                       << field
                       << " TEXT";
@@ -168,48 +181,45 @@ buildInsertStatement( Wkt wktGeom,
                 sqlInsert += ( "," + itrFields->first );
             }
         }
-
         sqlInsert += ") VALUES\n";
-
         int rowCount = 0;
         RowsList::size_type len = r->size();
         std::cout << "    > Processing 0 of " << len << std::flush;
-
         for( itrRows = r->begin(); itrRows != r->end(); itrRows++ ) {
-
             std::map<std::string,std::string>* row = *itrRows;
-
             if( !sqlValues.empty() && ++rowCount % 50000 == 0 ) {
                 sqlValues = sqlValues.substr( 0, sqlValues.length() - 2 );
                 sqlValues += ";\n";
                 sqlComposite += ( sqlInsert + sqlValues );
                 sqlValues.clear();
             }
-
             if( rowCount % 1000 == 0 ) {
                 std::cout << "\r    > Processing " << rowCount << " of " << len << std::flush;
             }
-
             sqlValues += "(";
-
             for( itrFields = f->begin(); itrFields != f->end(); itrFields++ ) {
                 std::string key = itrFields->first;
                 if( row->find( key ) == row->end() ) {
                     ( *row )[ key ] = "";
                 }
-                if( key == geomField ) {
-                    sqlValues += ( *row )[ key ] + ",";
+                std::string val = utils::trim( ( *row )[ key ] );
+                if( val.empty() ) {
+                    sqlValues += itrFields->second.isNumeric() ? "NULL," : "'',";
+                }
+                else if( key == geomField ) {
+                    sqlValues += val + ",";
+                }
+                else if( itrFields->second.isNumeric() ) {
+                    sqlValues += utils::sqlNormalize( val ) + ",";
                 }
                 else {
-                    sqlValues += "'" + utils::sqlNormalize( ( *row )[ key ] ) + "',";
+                    sqlValues += "'" + utils::sqlNormalize( val ) + "',";
                 }
             }
-
             sqlValues.erase( sqlValues.size() - 1 );
             sqlValues += "),\n";
         }
         std::cout << "\r    > " << rowCount << " " << geomName << "s processed               \n" << std::flush;
-
         sqlValues.erase( sqlValues.size() - 2 );
         sqlValues += ";\n";
         sqlComposite += ( sqlInsert + sqlValues );
@@ -265,10 +275,10 @@ extractData( ISosiElement* parent,
         }
 
         if( hdr.find( fieldName ) == hdr.end() ) {
-            hdr[ fieldName ] = Field( data.length() );
+            hdr[ fieldName ] = Field( data );
         }
         else {
-          hdr[ fieldName ].expand( data.length() );
+          hdr[ fieldName ].expand( data );
         }
 
         if( row ) {
@@ -356,7 +366,7 @@ insertPoint( ISosiElement* point,
         }
 
         FieldsList& hdr = ( *mFieldsListCollection[ wkt_point ] );
-        hdr[ geomField ].expand( data.length() );
+        hdr[ geomField ].expand( data );
 
         extractData( point, hdr, row );
 
@@ -410,7 +420,7 @@ insertLineString( ISosiElement* lineString,
     }
 
     FieldsList& hdr = ( *mFieldsListCollection[ wkt_linestring ] );
-    hdr[ geomField ].expand( data.length() );
+    hdr[ geomField ].expand( data );
 
     extractData( lineString, hdr, row );
 
@@ -500,7 +510,7 @@ insertPolygon( ISosiElement* polygon,
     }
 
     FieldsList& hdr = ( *mFieldsListCollection[ wkt_polygon ] );
-    hdr[ geomField ].expand( data.length() );
+    hdr[ geomField ].expand( data );
 
     extractData( polygon, hdr, row );
 
@@ -569,9 +579,9 @@ run() {
     std::string dbTable = mCmd->mDbTable.empty() ? "object" : mCmd->mDbTable;
     std::string geomField = dbTable + "_geom";
 
-    ( *mFieldsListCollection[ wkt_point ] )[ geomField ] = 0;
-    ( *mFieldsListCollection[ wkt_linestring ] )[ geomField ] = 0;
-    ( *mFieldsListCollection[ wkt_polygon ] )[ geomField ] = 0;
+    ( *mFieldsListCollection[ wkt_point ] )[ geomField ] = Field();
+    ( *mFieldsListCollection[ wkt_linestring ] )[ geomField ] = Field();
+    ( *mFieldsListCollection[ wkt_polygon ] )[ geomField ] = Field();
 
     for( std::vector<std::string>::iterator f = mCmd->mSourceFiles.begin(); f != mCmd->mSourceFiles.end(); f++ ) {
         mCurrentSourcefile = *f;

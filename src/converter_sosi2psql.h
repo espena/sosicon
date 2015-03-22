@@ -24,6 +24,7 @@
 #include <fstream>
 #include <sstream>
 #include <vector>
+#include <climits>
 #include <cmath>
 #include <map>
 #include "utils.h"
@@ -51,16 +52,41 @@ namespace sosicon {
     class ConverterSosi2psql : public IConverter {
 
         class Field {
-            std::string::size_type mLength;
+            std::string::size_type mMaxLength;
+            std::string::size_type mMinLength;
             bool mIsNumeric;
         public:
-            bool isNumeric( bool flag ) { return ( mIsNumeric = flag ); }
-            bool isNumeric() { return mIsNumeric; }
-            std::string::size_type length( std::string::size_type val ) { return ( mLength = val ); }
-            std::string::size_type length() { return mLength; }
-            Field() : mLength( 0 ), mIsNumeric( false ) { }
-            Field( std::string::size_type val ) : mLength( val ), mIsNumeric( false ) { }
-            std::string::size_type expand( std::string::size_type val ) { return ( mLength = std::max( mLength, val ) ); }
+            bool isNumeric() {
+                if( mMaxLength == mMinLength ) {
+                    // Treat fixed-length numerical data as character field, since they
+                    // are in fact non-arithmetic types types like dates, phone numbers
+                    // or serial numbers.
+                    mIsNumeric = false;
+                }
+                return mIsNumeric;
+            }
+            std::string::size_type length() {
+                return mMaxLength;
+            }
+            Field() {
+                mIsNumeric = true;
+                mMaxLength = 0;
+            }
+            Field( std::string& str ) {
+                mIsNumeric = true;
+                mMaxLength = 0;
+                mMinLength = std::numeric_limits<std::string::size_type>::max();
+                expand( str );
+            }
+            std::string::size_type expand( std::string& str ) {
+                std::string::size_type len = str.length();
+                mMinLength = std::min( mMinLength, len );
+                mMaxLength = std::max( mMaxLength, len );
+                if( mIsNumeric ) {
+                    mIsNumeric = utils::isNumeric( str );
+                }
+                return mMaxLength;
+            }
         };
 
         typedef std::map< std::string,Field > FieldsList;

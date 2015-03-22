@@ -62,6 +62,21 @@ explode( char delimiter, std::string str ) {
     return lst;
 }
 
+bool sosicon::utils::
+isNumeric( const std::string& str ) {
+    const std::string::size_type len = str.length();
+    const char* sz = trim( str ).c_str();
+    if( sz[ 0 ] == '0' ) {
+        return false;
+    }
+    for( std::string::size_type i = 0; i < len; i++ ) {
+        if( !std::isdigit( sz[ i ] ) ) {
+            return false;
+        }
+    }
+    return true;
+}
+
 std::string sosicon::utils::
 nonExistingFilename( std::string defaultName ) {
 
