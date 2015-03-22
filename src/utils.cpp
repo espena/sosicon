@@ -70,7 +70,8 @@ isNumeric( const std::string& str ) {
         return false;
     }
     for( std::string::size_type i = 0; i < len; i++ ) {
-        if( !std::isdigit( sz[ i ] ) ) {
+        std::locale loc;
+        if( !std::isdigit( sz[ i ], loc ) ) {
             return false;
         }
     }
