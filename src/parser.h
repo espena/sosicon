@@ -27,6 +27,7 @@
 #include "utils.h"
 #include "command_line.h"
 #include "sosi/sosi_element.h"
+#include "sosi/sosi_charset_singleton.h"
 #include "interface/i_sosi_element.h"
 
 namespace sosicon {
@@ -64,6 +65,13 @@ namespace sosicon {
             Index elements by serial number. Lookup table to resolve SOSI references (REF element).
          */
         sosi::SosiElementMap mElementIndex;
+
+        //! Current character encoding
+        /*!
+            Character encoding of current file in process. Remains undetermined until the
+            TEGNSETT head element is encountered.
+         */
+        sosi::SosiCharsetSingleton* mCurrentCharset;
 
         //! SOSI level of element currently in parser
         /*!
@@ -125,7 +133,7 @@ namespace sosicon {
             Processes one line from the SOSI file. This function is called repeatedly, consuming
             the input file line-by-line until EOF.
 
-            \note This function is implemented in the ragel script at parser/parser_sosi_line.rl,
+            \note This function is implemented in the ragel script at ragel/parser_sosi_line.rl,
                   the c++ file parser_sosi_line.cpp is merely generated from the ragel script.
                   Thus, any changes to the implementation must be done in the ragel script, since
                   the c++ file will be automatically overwritten during the pre-build process.

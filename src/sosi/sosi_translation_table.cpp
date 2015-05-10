@@ -25,7 +25,10 @@ sosicon::sosi::CoordSys sosicon::sosi::SosiTranslationTable::mCoordSysTable[ MAX
 sosicon::sosi::SosiTranslationTable::
 SosiTranslationTable() {
 
+    mSosiCharset = SosiCharsetSingleton::getInstance();
+
     if( mTypeNameMap.empty() ) {
+        mTypeNameMap[ "DATAFANGSTDATO"   ] = sosi_element_data_collection_date; // Data collection date
         mTypeNameMap[ "EIER"             ] = sosi_element_owner;                // Dataset owner
         mTypeNameMap[ "ENHET"            ] = sosi_element_unit;                 // Unit (fraction of a metre)
         mTypeNameMap[ "FLATE"            ] = sosi_element_surface;              // Surface
@@ -99,6 +102,7 @@ SosiTranslationTable() {
         mObjTypeNameMap[ "Svingekonnekteringslenke" ] = sosi_objtype_turn_connecting_segment;             // artificial object, turn lane conn.
         mObjTypeNameMap[ "Territorialgrense"        ] = sosi_objtype_territorial_boundary;                // Territorial boundary (nautical)
         mObjTypeNameMap[ "TettBebyggelse"           ] = sosi_objtype_developed_area;                      // Built-up area
+        mObjTypeNameMap[ "Valgkretsgrense"          ] = sosi_objtype_constituency_boundary;               // Constituency boundary
         mObjTypeNameMap[ "VegSenterlinje"           ] = sosi_objtype_road_centre_line;                    // Road centre line
         mObjTypeNameMap[ "Vegsperring"              ] = sosi_objtype_road_block;                          // Road block
         mObjTypeNameMap[ "VegUnderBane"             ] = sosi_objtype_road_under_railway;                  // Road under railway

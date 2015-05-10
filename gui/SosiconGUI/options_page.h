@@ -31,6 +31,7 @@ protected:
 
 public:
     OptionsPage( QWidget *parent = 0 );
+    virtual ~OptionsPage() { }
 
 public slots:
     void setOutputFilename();

@@ -12,11 +12,15 @@ class ShapefileOptionsPage : public OptionsPage
 {
     Q_OBJECT
 
+    QGroupBox   *mGeometrySelectGroup;
+    QVBoxLayout *mGeometrySelectLayout;
     QListWidget *mGeometrySelectList;
+
+    void addGeometrySelection( QString displayName, QString sosiName );
 
 public:
     ShapefileOptionsPage( QWidget *parent = 0 );
+    virtual ~ShapefileOptionsPage() { }
 };
 
 #endif // SHAPEFILE_OPTIONS_PAGE_H
-

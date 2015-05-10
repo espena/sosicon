@@ -21,6 +21,7 @@
 #include <map>
 #include <vector>
 #include "sosi_types.h"
+#include "sosi_charset_singleton.h"
 
 namespace sosicon {
 
@@ -35,9 +36,11 @@ namespace sosicon {
 
         class SosiTranslationTable {
 
+            //! Character encoding element
+            SosiCharsetSingleton* mSosiCharset;
+
             //! Number of entries in KOORDSYS lookup table
             static const int MAX_COORDSYS_TABLE = 184;
-
 
             // ---- the tables ----
 
@@ -72,26 +75,26 @@ namespace sosicon {
 
             SosiTranslationTable();
 
-            inline CoordSys& sysCodeToCoordSys( int sysCode ) {
+            CoordSys& sysCodeToCoordSys( int sysCode ) {
                 if( sysCode <= MAX_COORDSYS_TABLE && sysCode > 0 ) return mCoordSysTable[ sysCode ];
                 else return mCoordSysTable[ 0 ];
             };
 
-            inline ElementType sosiNameToType( std::string typeName ) {
-                try { return mTypeNameMap[ typeName ]; }
+            ElementType sosiNameToType( std::string typeName ) {
+                try { return mTypeNameMap[ mSosiCharset->toIso8859_1( typeName ) ]; }
                 catch( ... ) { return sosi_element_unknown; }
             };
 
-            inline std::string sosiTypeToName( ElementType elementType ) {
+            std::string sosiTypeToName( ElementType elementType ) {
                 return reverseLookup<std::string, ElementType>( mTypeNameMap, elementType );
             };
 
-            inline ObjType sosiObjNameToType( std::string objTypeName ) {
-                try { return mObjTypeNameMap[ objTypeName ]; }
+            ObjType sosiObjNameToType( std::string objTypeName ) {
+                try { return mObjTypeNameMap[ mSosiCharset->toIso8859_1( objTypeName ) ]; }
                 catch( ... ) { return sosi_objtype_unknown; }
             };
 
-            inline std::string sosiTypeToObjName( ObjType objType ) {
+            std::string sosiTypeToObjName( ObjType objType ) {
                 return reverseLookup<std::string, ObjType>( mObjTypeNameMap, objType );
             };
 
