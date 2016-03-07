@@ -63,6 +63,9 @@ isClockwise( std::vector<ICoordinate*>::iterator& begin, std::vector<ICoordinate
         ICoordinate* v1 = *i;
         ICoordinate* v2 = *( i + 1 != end ? i + 1 : begin );
         edgeSum += ( v2->getE() - v1->getE() ) * ( v2->getN() + v1->getN() );
+        if( v1->equals( v2 ) ) {
+            break;
+        }
     }
     return edgeSum > 0;
 }
