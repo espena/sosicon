@@ -217,6 +217,9 @@
     <ClCompile Include="sosi\sosi_element_search.cpp">
       <Filter>Source Files\Sosi</Filter>
     </ClCompile>
+    <ClCompile Include="sosi\sosi_charset_singleton.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <CustomBuild Include="ragel\parser.rl">

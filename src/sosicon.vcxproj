@@ -196,6 +196,7 @@ rd /s /q $(IntermediateOutputPath)</Command>
     <ClCompile Include="parser.cpp" />
     <ClCompile Include="parser_ragel.cpp" />
     <ClCompile Include="shape\shapefile.cpp" />
+    <ClCompile Include="sosi\sosi_charset_singleton.cpp" />
     <ClCompile Include="sosi\sosi_element.cpp" />
     <ClCompile Include="sosi\sosi_element_search.cpp" />
     <ClCompile Include="sosi\sosi_north_east.cpp" />
