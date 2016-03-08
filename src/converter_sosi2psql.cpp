@@ -79,8 +79,6 @@ buildCreateStatement( Wkt wktGeom,
            std::string::size_type len = itrFields->second.length();
            bool isNumeric = itrFields->second.isNumeric();
            if( field != geomField ) {
-               std::cout << "isNumeric: " << isNumeric << "\n";
-               std::cout << "len: " << len << "\n";
                if( isNumeric && len < 10 ) {
                    ss << ","
                       << field

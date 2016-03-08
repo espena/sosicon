@@ -105,7 +105,8 @@ Project files for Visual Studio is included in the repository. Open src/sosicon.
 file in Visual Studio (Express) 2013 and build the project from there.
 
 ## Development
-Sosicon is not ready for release, although SHP conversion works reasonably well with some SOSI features.
+Sosicon is not ready for release, although shapefile and PostgreSQL export works reasonably well on most
+common SOSI geometry types.
 
 ## Source documentation
 Documentation exists in html, rtf and pdf formats. See the doc directory within the repository or visit [sosicon.espenandersen.no](http://sosicon.espenandersen.no/) for an online version.

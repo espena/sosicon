@@ -70,7 +70,7 @@ ragelParseCoordinatesNe( std::string data )
 
         coord = ( [\-]?[0-9]+ ) $strbuild;
 
-        main := space* ( ( coord %set_n ' ' coord %set_e [ \t\r\n!]* ) %save_coord )**;
+        main := space* ( ( coord %set_n [ ]+ coord %set_e [ \t\r\n!]* ) %save_coord )**;
 
         write init;
         write exec;

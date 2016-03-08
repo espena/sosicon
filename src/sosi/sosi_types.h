@@ -44,6 +44,7 @@ namespace sosicon {
             sosi_element_charset,               //!< Character set
             sosi_element_coordsys,              //!< Grid type
             sosi_element_curve,                 //!< Curve
+            sosi_element_data_collection_date,  //!< Data collection date
             sosi_element_eof,                   //!< End of file
             sosi_element_head,                  //!< Header
             sosi_element_height,                //!< Height
@@ -83,6 +84,7 @@ namespace sosicon {
             sosi_objtype_carriageway,                         //!< Carriageway
             sosi_objtype_cadastral_address,                   //!< Cadastral address
             sosi_objtype_coastline,                           //!< Coast line
+            sosi_objtype_constituency_boundary,               //!< Constituency boundary
             sosi_objtype_county_boundary,                     //!< County boundary
             sosi_objtype_data_delineation,                    //!< Clipping path
             sosi_objtype_edge_view,                           //!< Edge view
@@ -118,6 +120,17 @@ namespace sosicon {
             sosi_objtype_street_address,                      //!< Street address
             sosi_objtype_territorial_boundary,                //!< Territorial boundary (nautical)
             sosi_objtype_turn_connecting_segment              //!< Turn connection segment (artificial)
+        };
+
+        //! SOSI character encodings
+        enum Charset {
+            sosi_charset_undetermined, //!< Charset element not yet encountered
+            sosi_charset_ansi,         //!< ANSI; equals ISO8859-1
+            sosi_charset_decn7,        //!< Dec Norwegian 7-bit
+            sosi_charset_dosn8,        //!< MS-Dos Norwegian 8-bit
+            sosi_charset_iso8859_1,    //!< ISO 8859-1
+            sosi_charset_iso8859_10,   //!< ISO 8859-10 with samii characters
+            sosi_charset_nd7           //!< Norsk Data 7-bit
         };
 
         //! Default SOSI junction point layer types

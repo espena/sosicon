@@ -19,6 +19,7 @@
 
 sosicon::Parser::
 Parser() {
+    mCurrentCharset = sosi::SosiCharsetSingleton::getInstance();
     mPendingElementLevel = 0;
     mElementStack.push_back( new sosi::SosiElement( "ROOT", "", "", 0, 0, mElementIndex ) );
 }
@@ -41,16 +42,23 @@ digestPendingElement() {
 
         previousElement = mElementStack.back();
 
-        mElementStack.push_back(
+        ISosiElement* currentElement =
             new sosi::SosiElement(
                 sosicon::utils::trim( mPendingElementName ),
                 sosicon::utils::trim( mPendingElementSerial ),
                 sosicon::utils::trim( mPendingElementAttributes ),
                 mPendingElementLevel,
                 mElementStack.front(),
-                mElementIndex ) );
+                mElementIndex );
 
-        previousElement->addChild( mElementStack.back() );
+        mElementStack.push_back( currentElement );
+        previousElement->addChild( currentElement );
+
+        if( mCurrentCharset->getEncoding() == sosi::sosi_charset_undetermined &&
+            currentElement->getType() == sosi::sosi_element_charset )
+        {
+            mCurrentCharset->init( currentElement );
+        }
     }
     mPendingElementName.clear();
     mPendingElementSerial.clear();

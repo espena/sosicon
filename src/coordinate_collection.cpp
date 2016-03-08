@@ -53,15 +53,16 @@ getNextOffset( int& offset, std::vector<int>& offsets, std::vector<int>::iterato
 
 bool sosicon::
 isCounterClockwise( std::vector<ICoordinate*>::iterator& begin, std::vector<ICoordinate*>::iterator& end ) {
-    return end != ( begin + 2 ) ? false : !isClockwise( begin, end );
+    return !isClockwise( begin, end );
 }
 
 bool sosicon::
 isClockwise( std::vector<ICoordinate*>::iterator& begin, std::vector<ICoordinate*>::iterator& end ) {
     double edgeSum = 0.0;
+    ICoordinate* v1 = 0, * v2 = 0;
     for( std::vector<ICoordinate*>::iterator i = begin; i != end; i++ ) {
-        ICoordinate* v1 = *i;
-        ICoordinate* v2 = *( i + 1 != end ? i + 1 : begin );
+        v1 = *i;
+        v2 = *( ( i + 1 != end ) ? i + 1 : begin );
         edgeSum += ( v2->getE() - v1->getE() ) * ( v2->getN() + v1->getN() );
     }
     return edgeSum > 0;

@@ -32,19 +32,19 @@ static const char _parseCoordinateHeightCollection_actions[] = {
 };
 
 static const char _parseCoordinateHeightCollection_key_offsets[] = {
-	0, 0, 2, 5, 8, 10, 16, 24
+	0, 0, 2, 5, 9, 11, 17, 25
 };
 
 static const char _parseCoordinateHeightCollection_trans_keys[] = {
-	48, 57, 32, 48, 57, 45, 48, 57, 
-	48, 57, 32, 45, 9, 13, 48, 57, 
-	13, 45, 9, 10, 32, 33, 48, 57, 
-	13, 45, 9, 10, 32, 33, 48, 57, 
-	0
+	48, 57, 32, 48, 57, 32, 45, 48, 
+	57, 48, 57, 32, 45, 9, 13, 48, 
+	57, 13, 45, 9, 10, 32, 33, 48, 
+	57, 13, 45, 9, 10, 32, 33, 48, 
+	57, 0
 };
 
 static const char _parseCoordinateHeightCollection_single_lengths[] = {
-	0, 0, 1, 1, 0, 2, 2, 2
+	0, 0, 1, 2, 0, 2, 2, 2
 };
 
 static const char _parseCoordinateHeightCollection_range_lengths[] = {
@@ -52,24 +52,24 @@ static const char _parseCoordinateHeightCollection_range_lengths[] = {
 };
 
 static const char _parseCoordinateHeightCollection_index_offsets[] = {
-	0, 0, 2, 5, 8, 10, 15, 21
+	0, 0, 2, 5, 9, 11, 16, 22
 };
 
 static const char _parseCoordinateHeightCollection_indicies[] = {
-	0, 1, 2, 0, 1, 3, 4, 1, 
-	4, 1, 5, 6, 5, 0, 1, 7, 
-	8, 7, 7, 4, 1, 9, 10, 9, 
-	9, 11, 1, 0
+	0, 1, 2, 0, 1, 3, 4, 5, 
+	1, 5, 1, 6, 7, 6, 0, 1, 
+	8, 9, 8, 8, 5, 1, 10, 11, 
+	10, 10, 12, 1, 0
 };
 
 static const char _parseCoordinateHeightCollection_trans_targs[] = {
-	2, 0, 3, 4, 6, 5, 1, 7, 
-	1, 7, 1, 2
+	2, 0, 3, 3, 4, 6, 5, 1, 
+	7, 1, 7, 1, 2
 };
 
 static const char _parseCoordinateHeightCollection_trans_actions[] = {
-	1, 0, 3, 1, 1, 0, 1, 5, 
-	15, 0, 12, 12
+	1, 0, 3, 0, 1, 1, 0, 1, 
+	5, 15, 0, 12, 12
 };
 
 static const char _parseCoordinateHeightCollection_eof_actions[] = {
