@@ -18,7 +18,7 @@
 #ifndef __CONVERTER_SOSI_STAT_H__
 #define __CONVERTER_SOSI_STAT_H__
 
-#include <iostream>
+#include "logger.h"
 #include <fstream>
 #include <map>
 #include "interface/i_converter.h"

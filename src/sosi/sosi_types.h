@@ -157,15 +157,15 @@ namespace sosicon {
 
         public:
 
-            CoordSys( ) : mSysCode( 0 ) {};
+            CoordSys( ) : mSysCode( 0 ) {}
 
             CoordSys( int sysCode,
                       std::string srid,
                       std::string displayString,
                       std::string prjString ) : mSysCode( sysCode ),
                                                 mSrid( srid ),
-                                                mDisplayString( displayString ),
-                                                mPrjString( prjString ) {};
+                                                mPrjString( prjString ),
+                                                mDisplayString( displayString )  {};
 
             std::string displayString() { return mDisplayString; };
 

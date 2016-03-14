@@ -18,7 +18,7 @@
 #ifndef __CONVERTER_SOSI2SHP_H__
 #define __CONVERTER_SOSI2SHP_H__
 
-#include <iostream>
+#include "logger.h"
 #include <iomanip>
 #include <fstream>
 #include <vector>

@@ -23,32 +23,33 @@ RAGEL = ragel/bin/linux32/ragel
 endif
 endif
 
-SOURCEFILES =															\
-				main.cpp													\
-				command_line.cpp									\
-				factory.cpp												\
-				utils.cpp													\
-				byte_order.cpp										\
+SOURCEFILES =												\
+				main.cpp									\
+				command_line.cpp							\
+				factory.cpp									\
+				logger.cpp									\
+				utils.cpp									\
+				byte_order.cpp								\
 				sosi/sosi_ref_list.cpp						\
-				sosi_ref_ragel.cpp								\
-				sosi/sosi_element.cpp							\
-				sosi/sosi_element_search.cpp			\
+				sosi_ref_ragel.cpp							\
+				sosi/sosi_element.cpp						\
+				sosi/sosi_element_search.cpp				\
 				sosi/sosi_north_east.cpp					\
 				sosi_north_east_ragel.cpp					\
-				sosi_north_east_height_ragel.cpp	\
+				sosi_north_east_height_ragel.cpp			\
 				sosi/sosi_origo_ne.cpp						\
 				sosi_origo_ne_ragel.cpp						\
-				sosi/sosi_charset_singleton.cpp		\
-				sosi/sosi_unit.cpp								\
-				sosi/sosi_translation_table.cpp		\
-				shape/shapefile.cpp								\
+				sosi/sosi_charset_singleton.cpp				\
+				sosi/sosi_unit.cpp							\
+				sosi/sosi_translation_table.cpp				\
+				shape/shapefile.cpp							\
 				converter_sosi2shp.cpp						\
 				converter_sosi2xml.cpp						\
 				converter_sosi2tsv.cpp						\
 				converter_sosi2psql.cpp						\
 				converter_sosi_stat.cpp						\
 				coordinate_collection.cpp					\
-				parser.cpp												\
+				parser.cpp									\
 				parser_ragel.cpp
 
 HEADERFILES = *.h

@@ -18,9 +18,9 @@
 #ifndef __SOSI_ELEMENT_H__
 #define __SOSI_ELEMENT_H__
 
-#include <iostream>
 #include <vector>
 #include <string>
+#include "../logger.h"
 #include "sosi_element_search.h"
 #include "sosi_translation_table.h"
 #include "sosi_types.h"

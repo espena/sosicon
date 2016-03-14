@@ -97,7 +97,7 @@ append( double n, double e, double h ) {
         c = new Coordinate();
     }
     catch( ... ) {
-        std::cout << "Memory allocation failed";
+        sosicon::logstream << "Memory allocation failed";
     }
 
     c->setN( n );
@@ -130,7 +130,7 @@ initHeadMember( ISosiHeadMember& headMember, ElementType type ) {
 void sosicon::sosi::SosiNorthEast::
 dump() {
     for( CoordinateList::iterator i = mCoordinates.begin(); i != mCoordinates.end(); i++ ) {
-        std::cout << ( *i )->toString() << "\n";
+        sosicon::logstream << ( *i )->toString() << "\n";
     }
 }
 

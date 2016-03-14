@@ -24,6 +24,7 @@
 #include <locale>
 #include "command_line.h"
 #include "factory.h"
+#include "logger.h"
 #include "interface/i_converter.h"
 
 //! Application root

@@ -22,6 +22,7 @@
 #include <iostream>
 #include <vector>
 #include <string>
+#include "logger.h"
 
 #ifdef _WIN32
 #define NOMINMAX    // Ugly %#¤&@ Windows-shait!
@@ -219,6 +220,14 @@ namespace sosicon {
             \param argv Array of string pointers to each argument. Passed on from main() function.
          */
         void parse( int argc, char* argv[] );
+
+        //! Read command-line string
+        /*!
+            Parses the command-line string and loads the settings into the member variables.
+
+            \param cmdStr Complete command-line string to be parsed.
+         */
+        void parse( std::string cmdStr );
         
         //! Constructor
         CommandLine();

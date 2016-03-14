@@ -20,7 +20,7 @@
 
 #pragma warning(disable:4503)
 
-#include <iostream>
+#include "logger.h"
 #include <fstream>
 #include <sstream>
 #include <vector>
