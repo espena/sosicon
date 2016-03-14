@@ -22,7 +22,7 @@ sosicon::Logger sosicon::logstream;
 sosicon::Logger&
 sosicon::Logger::operator << ( std::string v )
 {
-    std::cout << v;
+    std::cout << v.c_str();
     return *this;
 }
 
