@@ -266,7 +266,85 @@
                <attribute name="title">
                 <string>Shapefile</string>
                </attribute>
-               <layout class="QVBoxLayout" name="verticalLayout_4"/>
+               <layout class="QVBoxLayout" name="verticalLayout_4">
+                <item>
+                 <widget class="QLabel" name="lblShapeBrowse">
+                  <property name="minimumSize">
+                   <size>
+                    <width>150</width>
+                    <height>16</height>
+                   </size>
+                  </property>
+                  <property name="maximumSize">
+                   <size>
+                    <width>150</width>
+                    <height>16</height>
+                   </size>
+                  </property>
+                  <property name="text">
+                   <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Destination directory&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                  </property>
+                 </widget>
+                </item>
+                <item>
+                 <layout class="QHBoxLayout" name="horizontalLayout_4">
+                  <property name="spacing">
+                   <number>10</number>
+                  </property>
+                  <item>
+                   <widget class="QPushButton" name="btnShapefileBrowse">
+                    <property name="minimumSize">
+                     <size>
+                      <width>25</width>
+                      <height>25</height>
+                     </size>
+                    </property>
+                    <property name="maximumSize">
+                     <size>
+                      <width>25</width>
+                      <height>25</height>
+                     </size>
+                    </property>
+                    <property name="text">
+                     <string>...</string>
+                    </property>
+                   </widget>
+                  </item>
+                  <item>
+                   <widget class="QLabel" name="lblShapefilePath">
+                    <property name="minimumSize">
+                     <size>
+                      <width>0</width>
+                      <height>18</height>
+                     </size>
+                    </property>
+                    <property name="maximumSize">
+                     <size>
+                      <width>16777215</width>
+                      <height>18</height>
+                     </size>
+                    </property>
+                    <property name="text">
+                     <string>/div/foo/bar</string>
+                    </property>
+                   </widget>
+                  </item>
+                 </layout>
+                </item>
+                <item>
+                 <spacer name="verticalSpacer">
+                  <property name="orientation">
+                   <enum>Qt::Vertical</enum>
+                  </property>
+                  <property name="sizeHint" stdset="0">
+                   <size>
+                    <width>20</width>
+                    <height>40</height>
+                   </size>
+                  </property>
+                 </spacer>
+                </item>
+               </layout>
               </widget>
               <widget class="QWidget" name="tabSql">
                <attribute name="title">
@@ -458,6 +536,22 @@
     <hint type="sourcelabel">
      <x>127</x>
      <y>446</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>399</x>
+     <y>299</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>btnShapefileBrowse</sender>
+   <signal>clicked()</signal>
+   <receiver>DlgMain</receiver>
+   <slot>onShapefileBrowse()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>462</x>
+     <y>149</y>
     </hint>
     <hint type="destinationlabel">
      <x>399</x>

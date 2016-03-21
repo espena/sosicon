@@ -4,6 +4,7 @@
 #include <QThread>
 #include <QTextCodec>
 #include <QFileDialog>
+#include <QFontMetrics>
 
 DlgMain::
 DlgMain( QWidget *parent ) :
@@ -34,6 +35,15 @@ onRunSosicon() {
     thread->start();
     emit startConversion( mUi->txtCommandLine->toPlainText(), &mMutex );
     this->setEnabled( false );
+}
+
+void DlgMain::
+onShapefileBrowse() {
+    QString dir = QFileDialog::getExistingDirectory( this, "Select destination directory", mShapeFilePath );
+    if( !dir.isEmpty() ) {
+        mShapeFilePath = dir;
+        updateUi();
+    }
 }
 
 void DlgMain::
@@ -116,6 +126,8 @@ updateUi() {
     for( int i = 0; i < mUi->lstSosiFiles->count(); i++ ) {
         fileNames += mUi->lstSosiFiles->item( i )->text() + " ";
     }
+    QFontMetrics fm( mUi->lblShapefilePath->font() );
+    mUi->lblShapefilePath->setText( fm.elidedText( mShapeFilePath, Qt::TextElideMode::ElideMiddle, mUi->lblShapefilePath->width() ) );
     mUi->txtCommandLine->setText( tr( "sosicon " ) + action + fileNames.trimmed() );
     mUi->btnRemove->setEnabled( mUi->lstSosiFiles->selectedItems().count() > 0 );
     mUi->btnClear->setEnabled( mUi->lstSosiFiles->count() > 0 );

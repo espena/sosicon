@@ -16,6 +16,7 @@ class DlgMain :
     Q_OBJECT
 
     QMutex mMutex;
+    QString mShapeFilePath;
 
 public:
     explicit DlgMain( QWidget *parent = 0 );
@@ -30,6 +31,7 @@ private slots:
     void onFileRemove();
     void onFileClear();
     void onLogMessage( QString msg, bool update );
+    void onShapefileBrowse();
 
 private:
     void updateUi();
