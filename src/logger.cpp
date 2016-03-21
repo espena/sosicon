@@ -22,13 +22,38 @@ sosicon::Logger sosicon::logstream;
 sosicon::Logger&
 sosicon::Logger::operator << ( std::string v )
 {
+    static bool updateable = false;
     std::cout << v.c_str();
+    if( v.find( "\n", 0 ) != std::string::npos ) {
+        mMsgStream << v;
+        updateable = false;
+        std::string msgStr = sosicon::utils::purgeCrLf( sosicon::utils::trim( mMsgStream.str() ) );
+        if( !msgStr.empty() ) {
+            LogEvent e( msgStr, updateable );
+            mLogEventDispatcher.EventDispatcher<LogEvent>::Dispatch( e );
+        }
+        mMsgStream.str( std::string() );
+    }
+    else if( v.find( "\r", 0 ) != std::string::npos ) {
+        std::string msgStr = sosicon::utils::purgeCrLf( sosicon::utils::trim( mMsgStream.str() ) );
+        if( !msgStr.empty() ) {
+            LogEvent e( sosicon::utils::purgeCrLf( mMsgStream.str() ), updateable );
+            updateable = true;
+            mMsgStream.str( std::string() );
+            mMsgStream << sosicon::utils::purgeCrLf( v );
+            mLogEventDispatcher.EventDispatcher<LogEvent>::Dispatch( e );
+        }
+    }
+    else {
+        mMsgStream << v;
+    }
     return *this;
 }
 
 sosicon::Logger&
 sosicon::Logger::operator << ( unsigned int v )
 {
+    mMsgStream << v;
     std::cout << v;
     return *this;
 }
@@ -36,6 +61,7 @@ sosicon::Logger::operator << ( unsigned int v )
 sosicon::Logger&
 sosicon::Logger::operator << ( unsigned long v )
 {
+    mMsgStream << v;
     std::cout << v;
     return *this;
 }
@@ -43,6 +69,7 @@ sosicon::Logger::operator << ( unsigned long v )
 sosicon::Logger&
 sosicon::Logger::operator << ( int v )
 {
+    mMsgStream << v;
     std::cout << v;
     return *this;
 }
@@ -50,6 +77,7 @@ sosicon::Logger::operator << ( int v )
 sosicon::Logger&
 sosicon::Logger::operator << ( long v )
 {
+    mMsgStream << v;
     std::cout << v;
     return *this;
 }
@@ -63,5 +91,6 @@ sosicon::Logger::operator << ( sosicon::Logger& ( *func ) ( sosicon::Logger& ) )
 sosicon::Logger&
 sosicon::flush( sosicon::Logger& l )
 {
-    std::cout << std::flush; return l;
+    std::cout << std::flush;
+    return l;
 }

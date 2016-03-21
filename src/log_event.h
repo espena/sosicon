@@ -15,45 +15,33 @@
  *  You should have received a copy of the GNU General Public License
  *  along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-#ifndef __LOGGER_H__
-#define __LOGGER_H__
+#ifndef __LOG_EVENT_H__
+#define __LOG_EVENT_H__
 
-#include "utils.h"
 #include "log_event.h"
 #include "event_dispatcher.h"
-#include <iostream>
-#include <algorithm>
-#include <sstream>
 #include <string>
 
 namespace sosicon {
-
-    //! SOSI logger
+    
+    //! Log event
     /*!
         \author Espen Andersen
         \copyright GNU General Public License
-
-        User output logger. Redirects to stdin, or a dedicated ILogReceiver implementation.
     */
-    class Logger {
-
-        LogEventDispatcher mLogEventDispatcher;
-        std::stringstream mMsgStream;
+    class LogEvent {
 
     public:
+        LogEvent( std::string message, bool update )
+            : mMessage( message ), mUpdate( update ) { }
 
-        Logger& operator << ( std::string v );
-        Logger& operator << ( unsigned int v );
-        Logger& operator << ( unsigned long v );
-        Logger& operator << ( int v );
-        Logger& operator << ( long v );
-        Logger& operator << ( Logger& ( *func ) ( Logger& ) );
+        std::string mMessage;
+        bool mUpdate;
 
-        void addEventListener( LogEventDispatcher::Listener *listener ) { mLogEventDispatcher.addEventListener( listener ); }
-        void removeEventListener( LogEventDispatcher::Listener *listener ) { mLogEventDispatcher.removeEventListener( listener ); }
-    };
-    Logger& flush( Logger& l );
-    extern Logger logstream;
-};
+    }; // class LogEvent
+
+    class LogEventDispatcher : public EventDispatcher<LogEvent> { };
+
+} // namespace sosicon
 
 #endif

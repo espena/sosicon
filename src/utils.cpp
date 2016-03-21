@@ -120,6 +120,13 @@ normalizeAppClassName( const std::string &className )
 }
 
 string sosicon::utils::
+purgeCrLf( string str ) {
+    str.erase( std::remove( str.begin(), str.end(), '\r' ), str.end() );
+    str.erase( std::remove( str.begin(), str.end(), '\n' ), str.end() );
+    return str;
+}
+
+string sosicon::utils::
 repeat( const std::string &seq, unsigned int count )
 {
     std::string s;

@@ -93,6 +93,15 @@ namespace sosicon {
         */
         std::string normalizeAppClassName( const std::string &className );
 
+        //! Remove carriage returns and line feeds
+        /*!
+            Removes newlines from the target string. The \r or \n characters may
+            be anywhere in the string.
+            \param str The string to be purged.
+            \return The result string.
+        */
+        std::string purgeCrLf( std::string str );
+
         //! Repeat string N times
         /*!
             Creates a new string containing the provided string sequence for a
