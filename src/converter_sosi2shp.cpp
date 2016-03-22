@@ -116,11 +116,18 @@ makeShp( ISosiElement* sosiTree ) {
 
 std::string sosicon::ConverterSosi2shp::
 makeBasePath( std::string objTypeName ) {
-
-    std::string candidatePath = mCmd->mOutputFile.empty() ? mCurrentSourcefile : mCmd->mOutputFile;
-    std::string dir, tit, ext;
+    std::string candidatePath, dir, tit, ext;
+    if( !mCmd->mOutputFile.empty() ) {
+        candidatePath = mCmd->mOutputFile;
+    }
+    else if( !mCmd->mDestinationDirectory.empty() ) {
+        utils::getPathInfo( mCurrentSourcefile, dir, tit, ext );
+        candidatePath = utils::stripTrailingSlash( mCmd->mDestinationDirectory ) + "/" + tit + "." + ext;
+    }
+    else {
+        candidatePath = mCurrentSourcefile;
+    }
     utils::getPathInfo( candidatePath, dir, tit, ext );
-
     std::string subdir = dir + tit;
     char separator;
 

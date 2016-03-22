@@ -132,6 +132,9 @@ namespace sosicon {
         */
         std::string sqlNormalize( const std::string &str );
 
+        //! Remove trailing forward- and backward slashes from path component
+        std::string stripTrailingSlash( const std::string &str );
+
         //! Removes leading and trailing space characters
         /*!
             Space characters in the beginning and at the end of the source 
@@ -152,6 +155,9 @@ namespace sosicon {
         std::string toLower( const std::string &from );
 
         std::string ucFirst( const std::string &str );
+
+        //! Remove quotes around string.
+        std::string unquote( const std::string &str );
 
         void getPathInfo( std::string path, std::string &dir, std::string &tit, std::string &ext );
 

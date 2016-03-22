@@ -123,7 +123,7 @@ parse( int argc, char* argv[] ) {
                 mCreateStatements = true;
             }
             else if( "-d" == param && argc > ( ++i ) ) {
-                mDestinationDirectory = argv[ i ];
+                mDestinationDirectory = utils::unquote( argv[ i ] );
             }
             else if( "-f" == param && argc > ( ++i ) ) {
                 mFieldSelection = utils::explode( ',', argv[ i ] );

@@ -37,6 +37,7 @@ init( ISosiElement* sosiElement ) {
     else if( "ISO8859-1"  == mCharsetName ) mCharset = sosi_charset_iso8859_1;
     else if( "ISO8859-10" == mCharsetName ) mCharset = sosi_charset_iso8859_10;
     else if( "ND7"        == mCharsetName ) mCharset = sosi_charset_nd7;
+    else if( "UTF-8"      == mCharsetName ) mCharset = sosi_charset_utf8;
     else                                    mCharset = sosi_charset_iso8859_1;
 }
 
@@ -57,6 +58,8 @@ toIso8859_1( const std::string& str ) {
         case sosi_charset_nd7:
             contable = chartables::ND7_TO_ISO8859_1;
             break;
+        case sosi_charset_utf8:
+            return utf8ToIso8859_1( str.c_str() );
         default:
             return str; // Unknown charset, no conversion
     }
@@ -66,4 +69,39 @@ toIso8859_1( const std::string& str ) {
         res += static_cast<char>( contable[ static_cast<unsigned char>( str.at( i ) ) ] );
     }
     return res;
+}
+
+std::string sosicon::sosi::SosiCharsetSingleton::
+utf8ToIso8859_1( const char *in ) {
+    std::string out;
+    if ( in == NULL ) {
+        return out;
+    }
+    unsigned int codepoint;
+    while ( *in != 0 )
+    {
+        unsigned char ch = static_cast<unsigned char>( *in );
+        if ( ch <= 0x7f ) {
+            codepoint = ch;
+        }
+        else if ( ch <= 0xbf ) {
+            codepoint = ( codepoint << 6 ) | ( ch & 0x3f );
+        }
+        else if ( ch <= 0xdf ) {
+            codepoint = ch & 0x1f;
+        }
+        else if ( ch <= 0xef ) {
+            codepoint = ch & 0x0f;
+        }
+        else {
+            codepoint = ch & 0x07;
+        }
+        ++in;
+        if ( ( ( *in & 0xc0 ) != 0x80 ) && ( codepoint <= 0x10ffff ) ) {
+            if ( codepoint <= 255 ) {
+                out.append( 1, static_cast<char>( codepoint ) );
+            }
+        }
+    }
+    return out;
 }
