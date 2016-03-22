@@ -32,6 +32,7 @@ private slots:
     void onFileClear();
     void onLogMessage( QString msg, bool update );
     void onShapefileBrowse();
+    void onCreateSubdirChanged();
 
 private:
     void updateUi();

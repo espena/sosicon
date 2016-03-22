@@ -324,8 +324,19 @@
                       <height>18</height>
                      </size>
                     </property>
+                   </widget>
+                  </item>
+                 </layout>
+                </item>
+                <item>
+                 <layout class="QHBoxLayout" name="horizontalLayout_5">
+                  <property name="topMargin">
+                   <number>0</number>
+                  </property>
+                  <item>
+                   <widget class="QCheckBox" name="chkCreateSubdir">
                     <property name="text">
-                     <string>/div/foo/bar</string>
+                     <string>Create sub directory for each source file</string>
                     </property>
                    </widget>
                   </item>
@@ -552,6 +563,22 @@
     <hint type="sourcelabel">
      <x>462</x>
      <y>149</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>399</x>
+     <y>299</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>chkCreateSubdir</sender>
+   <signal>stateChanged(int)</signal>
+   <receiver>DlgMain</receiver>
+   <slot>onCreateSubdirChanged()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>586</x>
+     <y>184</y>
     </hint>
     <hint type="destinationlabel">
      <x>399</x>

@@ -5,6 +5,7 @@
 #include <QTextCodec>
 #include <QFileDialog>
 #include <QFontMetrics>
+#include <QStandardPaths>
 
 DlgMain::
 DlgMain( QWidget *parent ) :
@@ -55,6 +56,11 @@ onQuitSosicon() {
 
 void DlgMain::
 onConversionChanged( int tabIndex ) {
+    updateUi();
+}
+
+void DlgMain::
+onCreateSubdirChanged() {
     updateUi();
 }
 
@@ -114,22 +120,28 @@ onLogMessage( QString msg, bool update ) {
 void DlgMain::
 updateUi() {
     QTabWidget *tab = mUi->tabConversion;
-    QString action = " ";
+    QFontMetrics fm( mUi->lblShapefilePath->font() );
+    QString action, options, fileNames;
     QString conversion = tab->tabBar()->tabText( tab->currentIndex() );
+    if( mShapeFilePath.isEmpty() ) {
+        mShapeFilePath = QStandardPaths::writableLocation( QStandardPaths::DocumentsLocation );
+    }
+    mUi->lblShapefilePath->setText( fm.elidedText( mShapeFilePath, Qt::TextElideMode::ElideMiddle, mUi->lblShapefilePath->width() ) );
+    mUi->btnRemove->setEnabled( mUi->lstSosiFiles->selectedItems().count() > 0 );
+    mUi->btnClear->setEnabled( mUi->lstSosiFiles->count() > 0 );
+    mUi->btnRunSosicon->setEnabled( mUi->lstSosiFiles->count() > 0 );
     if( conversion == "PostGIS" ) {
         action = "-2psql ";
     }
     else if( conversion == "Shapefile" ) {
         action = "-2shp ";
+        options = "-d \"" + mShapeFilePath + "\" ";
+        if( mUi->chkCreateSubdir->checkState() == Qt::Checked ) {
+            options += "-s ";
+        }
     }
-    QString fileNames = tr( "" );
     for( int i = 0; i < mUi->lstSosiFiles->count(); i++ ) {
         fileNames += mUi->lstSosiFiles->item( i )->text() + " ";
     }
-    QFontMetrics fm( mUi->lblShapefilePath->font() );
-    mUi->lblShapefilePath->setText( fm.elidedText( mShapeFilePath, Qt::TextElideMode::ElideMiddle, mUi->lblShapefilePath->width() ) );
-    mUi->txtCommandLine->setText( tr( "sosicon " ) + action + fileNames.trimmed() );
-    mUi->btnRemove->setEnabled( mUi->lstSosiFiles->selectedItems().count() > 0 );
-    mUi->btnClear->setEnabled( mUi->lstSosiFiles->count() > 0 );
-    mUi->btnRunSosicon->setEnabled( mUi->lstSosiFiles->count() > 0 );
+    mUi->txtCommandLine->setText( "sosicon " + action + options + fileNames.trimmed() );
 }
