@@ -16,6 +16,7 @@ class DlgMain :
     Q_OBJECT
 
     QMutex mMutex;
+    QString mShapeFileTitle;
     QString mShapeFilePath;
 
 public:
@@ -33,9 +34,13 @@ private slots:
     void onLogMessage( QString msg, bool update );
     void onShapefileBrowse();
     void onCreateSubdirChanged();
+    void onUseFileTitleChanged();
+    void onFileTitleChanged();
 
 private:
     void updateUi();
+    void updateCommandLine();
+    void updateAll();
     Ui::DlgMain *mUi;
 
 signals:

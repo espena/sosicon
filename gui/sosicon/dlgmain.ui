@@ -10,13 +10,13 @@
     <x>0</x>
     <y>0</y>
     <width>800</width>
-    <height>600</height>
+    <height>700</height>
    </rect>
   </property>
   <property name="minimumSize">
    <size>
     <width>800</width>
-    <height>600</height>
+    <height>700</height>
    </size>
   </property>
   <property name="windowTitle">
@@ -219,13 +219,13 @@
            <property name="minimumSize">
             <size>
              <width>350</width>
-             <height>300</height>
+             <height>400</height>
             </size>
            </property>
            <property name="maximumSize">
             <size>
              <width>350</width>
-             <height>300</height>
+             <height>400</height>
             </size>
            </property>
            <property name="title">
@@ -336,7 +336,43 @@
                   <item>
                    <widget class="QCheckBox" name="chkCreateSubdir">
                     <property name="text">
-                     <string>Create sub directory for each source file</string>
+                     <string>Create subfolder</string>
+                    </property>
+                   </widget>
+                  </item>
+                 </layout>
+                </item>
+                <item>
+                 <layout class="QHBoxLayout" name="horizontalLayout_6">
+                  <property name="topMargin">
+                   <number>10</number>
+                  </property>
+                  <item>
+                   <widget class="QCheckBox" name="chkFileTitle">
+                    <property name="minimumSize">
+                     <size>
+                      <width>0</width>
+                      <height>0</height>
+                     </size>
+                    </property>
+                    <property name="maximumSize">
+                     <size>
+                      <width>16777215</width>
+                      <height>16777215</height>
+                     </size>
+                    </property>
+                    <property name="text">
+                     <string>Filetitle:</string>
+                    </property>
+                   </widget>
+                  </item>
+                  <item>
+                   <widget class="QLineEdit" name="txtFileTitle">
+                    <property name="enabled">
+                     <bool>false</bool>
+                    </property>
+                    <property name="text">
+                     <string>sosi_export</string>
                     </property>
                    </widget>
                   </item>
@@ -475,22 +511,6 @@
    </hints>
   </connection>
   <connection>
-   <sender>btnAdd</sender>
-   <signal>clicked()</signal>
-   <receiver>DlgMain</receiver>
-   <slot>onAddSosiFile()</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>327</x>
-     <y>446</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>399</x>
-     <y>299</y>
-    </hint>
-   </hints>
-  </connection>
-  <connection>
    <sender>tabConversion</sender>
    <signal>currentChanged(int)</signal>
    <receiver>DlgMain</receiver>
@@ -583,6 +603,54 @@
     <hint type="destinationlabel">
      <x>399</x>
      <y>299</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>chkFileTitle</sender>
+   <signal>stateChanged(int)</signal>
+   <receiver>DlgMain</receiver>
+   <slot>onUseFileTitleChanged()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>488</x>
+     <y>218</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>399</x>
+     <y>349</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>txtFileTitle</sender>
+   <signal>textChanged(QString)</signal>
+   <receiver>DlgMain</receiver>
+   <slot>onFileTitleChanged()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>625</x>
+     <y>218</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>399</x>
+     <y>349</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>btnAdd</sender>
+   <signal>clicked()</signal>
+   <receiver>DlgMain</receiver>
+   <slot>onAddSosiFile()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>331</x>
+     <y>546</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>399</x>
+     <y>349</y>
     </hint>
    </hints>
   </connection>

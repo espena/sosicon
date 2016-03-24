@@ -1,6 +1,7 @@
 #include "worker.h"
 #include "DlgMain.h"
 #include "ui_DlgMain.h"
+#include <QIcon>
 #include <QThread>
 #include <QTextCodec>
 #include <QFileDialog>
@@ -12,9 +13,11 @@ DlgMain( QWidget *parent ) :
     QDialog( parent ),
     mUi( new Ui::DlgMain )
 {
+    setWindowIcon( windowIcon() );
     mUi->setupUi( this );
+    mUi->txtFileTitle->setValidator( new QRegExpValidator( QRegExp( "^[A-Za-z0-9_\\-]+$" ), this ) );
     setStyleSheet( "QListView { background-color: #fff } QListView { color: #000; } QListView::item:selected { background-color: #ff0; color: #000 }" );
-    updateUi();
+    updateAll();
 }
 
 DlgMain::~DlgMain()
@@ -24,6 +27,7 @@ DlgMain::~DlgMain()
 
 void DlgMain::
 onRunSosicon() {
+    updateAll();
     QThread *thread = new QThread();
     Worker *worker = new Worker();
     connect( this, SIGNAL( startConversion( QString, QMutex* ) ), worker, SLOT( startConversion( QString, QMutex* ) ) );
@@ -43,7 +47,7 @@ onShapefileBrowse() {
     QString dir = QFileDialog::getExistingDirectory( this, "Select destination directory", mShapeFilePath );
     if( !dir.isEmpty() ) {
         mShapeFilePath = dir;
-        updateUi();
+        updateAll();
     }
 }
 
@@ -56,12 +60,12 @@ onQuitSosicon() {
 
 void DlgMain::
 onConversionChanged( int tabIndex ) {
-    updateUi();
+    updateAll();
 }
 
 void DlgMain::
 onCreateSubdirChanged() {
-    updateUi();
+    updateAll();
 }
 
 void DlgMain::
@@ -73,24 +77,24 @@ onAddSosiFile() {
                 tr( "" ),
                 tr( "SOSI files (*.sos)" ) );
     mUi->lstSosiFiles->addItems( files );
-    updateUi();
+    updateAll();
 }
 
 void DlgMain::
 onFileSelect() {
-    updateUi();
+    updateAll();
 }
 
 void DlgMain::
 onFileRemove() {
     qDeleteAll( mUi->lstSosiFiles->selectedItems() );
-    updateUi();
+    updateAll();
 }
 
 void DlgMain::
 onFileClear() {
     mUi->lstSosiFiles->clear();
-    updateUi();
+    updateAll();
 }
 
 void DlgMain::
@@ -118,11 +122,29 @@ onLogMessage( QString msg, bool update ) {
 }
 
 void DlgMain::
+onUseFileTitleChanged() {
+    updateAll();
+}
+
+void DlgMain::
+onFileTitleChanged() {
+    updateCommandLine();
+}
+
+void DlgMain::
+updateAll() {
+    updateUi();
+    updateCommandLine();
+}
+
+void DlgMain::
 updateUi() {
-    QTabWidget *tab = mUi->tabConversion;
     QFontMetrics fm( mUi->lblShapefilePath->font() );
-    QString action, options, fileNames;
-    QString conversion = tab->tabBar()->tabText( tab->currentIndex() );
+    mShapeFileTitle = mUi->txtFileTitle->text().trimmed();
+    if( mShapeFileTitle.isEmpty() ) {
+        mShapeFileTitle = "sosi_export";
+    }
+    mUi->txtFileTitle->setEnabled( mUi->chkFileTitle->checkState() == Qt::Checked );
     if( mShapeFilePath.isEmpty() ) {
         mShapeFilePath = QStandardPaths::writableLocation( QStandardPaths::DocumentsLocation );
     }
@@ -130,12 +152,29 @@ updateUi() {
     mUi->btnRemove->setEnabled( mUi->lstSosiFiles->selectedItems().count() > 0 );
     mUi->btnClear->setEnabled( mUi->lstSosiFiles->count() > 0 );
     mUi->btnRunSosicon->setEnabled( mUi->lstSosiFiles->count() > 0 );
+}
+
+void DlgMain::
+updateCommandLine() {
+    QString action, options, fileNames;
+    QString conversion = mUi->tabConversion->tabBar()->tabText( mUi->tabConversion->currentIndex() );
+
+    mShapeFileTitle = mUi->txtFileTitle->text().trimmed();
+    if( mShapeFileTitle.isEmpty() ) {
+        mShapeFileTitle = "sosi_export";
+    }
+
     if( conversion == "PostGIS" ) {
         action = "-2psql ";
     }
     else if( conversion == "Shapefile" ) {
         action = "-2shp ";
-        options = "-d \"" + mShapeFilePath + "\" ";
+        if( mUi->chkFileTitle->checkState() == Qt::Checked ) {
+            options = "-o \"" + mShapeFilePath + "/" + mShapeFileTitle  + ".shp\" ";
+        }
+        else {
+            options = "-d \"" + mShapeFilePath + "\" ";
+        }
         if( mUi->chkCreateSubdir->checkState() == Qt::Checked ) {
             options += "-s ";
         }

@@ -122,11 +122,12 @@ makeBasePath( std::string objTypeName ) {
     }
     else if( !mCmd->mDestinationDirectory.empty() ) {
         utils::getPathInfo( mCurrentSourcefile, dir, tit, ext );
-        candidatePath = utils::stripTrailingSlash( mCmd->mDestinationDirectory ) + "/" + tit + "." + ext;
+        candidatePath = utils::stripTrailingSlash( mCmd->mDestinationDirectory ) + "/" + tit + ext;
     }
     else {
         candidatePath = mCurrentSourcefile;
     }
+    dir.clear();
     utils::getPathInfo( candidatePath, dir, tit, ext );
     std::string subdir = dir + tit;
     char separator;

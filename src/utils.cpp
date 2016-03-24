@@ -294,6 +294,7 @@ unquote( const std::string &str )
 
 void sosicon::utils::
 getPathInfo( std::string path, std::string &dir, std::string &tit, std::string &ext ) {
+    dir = tit = ext = "";
     std::string::size_type len = path.length();
     std::string tmp;
     while( len > 0 ) {

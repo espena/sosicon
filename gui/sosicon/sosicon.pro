@@ -4,11 +4,15 @@
 #
 #-------------------------------------------------
 
+win32:RC_ICONS += ../graphics/sosicon_icon.ico
+ICON = ../graphics/sosicon_icon.icns
+
 QT       += core gui
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
 CONFIG += c++11
+CONFIG += staticlib
 
 TARGET = sosicon
 TEMPLATE = app

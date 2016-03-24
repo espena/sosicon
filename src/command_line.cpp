@@ -138,7 +138,7 @@ parse( int argc, char* argv[] ) {
                 mInsertStatements = true;
             }
             else if( "-o" == param && argc > ( ++i ) ) {
-                mOutputFile = argv[ i ];
+                mOutputFile = utils::unquote( argv[ i ] );
             }
             else if( "-s" == param ) {
                 mMakeSubDir = true;
