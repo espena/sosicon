@@ -27,6 +27,7 @@
 #include <sstream>
 #include <string>
 #include <vector>
+#include <algorithm>
 #include <ctype.h>
 
 namespace sosicon {
