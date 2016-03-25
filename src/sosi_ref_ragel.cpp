@@ -1,5 +1,5 @@
 
-/* #line 1 "D:\\Prosjekter\\sosicon\\src\\ragel\\sosi_ref.rl" */
+/* #line 1 "ragel/sosi_ref.rl" */
 /*
  *  This file is part of the command-line tool sosicon.
  *  Copyright (C) 2014  Espen Andersen, Norwegian Broadcast Corporation (NRK)
@@ -24,7 +24,7 @@ namespace sosicon {
 
     //! \cond 
     
-/* #line 2 "D:\\Prosjekter\\sosicon\\src\\sosi_ref_ragel.cpp" */
+/* #line 28 "sosi_ref_ragel.cpp" */
 static const char _parseSosiRef_actions[] = {
 	0, 1, 1, 1, 2, 1, 3, 2, 
 	0, 1, 2, 4, 5, 3, 4, 0, 
@@ -80,7 +80,7 @@ static const int parseSosiRef_error = 0;
 static const int parseSosiRef_en_main = 1;
 
 
-/* #line 27 "D:\\Prosjekter\\sosicon\\src\\ragel\\sosi_ref.rl" */
+/* #line 27 "ragel/sosi_ref.rl" */
 
     //! \endcond
 
@@ -110,12 +110,12 @@ ragelParseSosiRef( std::string data )
     GeometryRef* geomRef = 0;
 
     
-/* #line 56 "D:\\Prosjekter\\sosicon\\src\\sosi_ref_ragel.cpp" */
+/* #line 114 "sosi_ref_ragel.cpp" */
 	{
 	cs = parseSosiRef_start;
 	}
 
-/* #line 59 "D:\\Prosjekter\\sosicon\\src\\sosi_ref_ragel.cpp" */
+/* #line 119 "sosi_ref_ragel.cpp" */
 	{
 	int _klen;
 	unsigned int _trans;
@@ -146,7 +146,7 @@ _resume:
 			else if ( (*p) > *_mid )
 				_lower = _mid + 1;
 			else {
-				_trans += (_mid - _keys);
+				_trans += (unsigned int)(_mid - _keys);
 				goto _match;
 			}
 		}
@@ -169,7 +169,7 @@ _resume:
 			else if ( (*p) > _mid[1] )
 				_lower = _mid + 2;
 			else {
-				_trans += ((_mid - _keys)>>1);
+				_trans += (unsigned int)((_mid - _keys)>>1);
 				goto _match;
 			}
 		}
@@ -190,7 +190,7 @@ _match:
 		switch ( *_acts++ )
 		{
 	case 0:
-/* #line 57 "D:\\Prosjekter\\sosicon\\src\\ragel\\sosi_ref.rl" */
+/* #line 57 "ragel/sosi_ref.rl" */
 	{
             refData = new ReferenceData();
             refData->reverse = reverse;
@@ -203,13 +203,13 @@ _match:
         }
 	break;
 	case 1:
-/* #line 68 "D:\\Prosjekter\\sosicon\\src\\ragel\\sosi_ref.rl" */
+/* #line 68 "ragel/sosi_ref.rl" */
 	{
             refData->serial += (*p);
         }
 	break;
 	case 2:
-/* #line 72 "D:\\Prosjekter\\sosicon\\src\\ragel\\sosi_ref.rl" */
+/* #line 72 "ragel/sosi_ref.rl" */
 	{
             subtract = ( (*p) == '(' );
             geomRef = new GeometryRef();
@@ -217,21 +217,21 @@ _match:
         }
 	break;
 	case 3:
-/* #line 78 "D:\\Prosjekter\\sosicon\\src\\ragel\\sosi_ref.rl" */
+/* #line 78 "ragel/sosi_ref.rl" */
 	{
             subtract = ( (*p) == ')' );
             geomRef = 0;
         }
 	break;
 	case 4:
-/* #line 85 "D:\\Prosjekter\\sosicon\\src\\ragel\\sosi_ref.rl" */
+/* #line 85 "ragel/sosi_ref.rl" */
 	{ reverse = false; }
 	break;
 	case 5:
-/* #line 85 "D:\\Prosjekter\\sosicon\\src\\ragel\\sosi_ref.rl" */
+/* #line 85 "ragel/sosi_ref.rl" */
 	{ reverse = true; }
 	break;
-/* #line 168 "D:\\Prosjekter\\sosicon\\src\\sosi_ref_ragel.cpp" */
+/* #line 235 "sosi_ref_ragel.cpp" */
 		}
 	}
 
@@ -244,7 +244,7 @@ _again:
 	_out: {}
 	}
 
-/* #line 93 "D:\\Prosjekter\\sosicon\\src\\ragel\\sosi_ref.rl" */
+/* #line 93 "ragel/sosi_ref.rl" */
 
 
 };
