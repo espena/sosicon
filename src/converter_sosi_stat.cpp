@@ -49,7 +49,7 @@ printElementData( ISosiElement* e, sosi::SosiElementSearch src, int padding ) {
         if( !child->getData().empty() ) {
             std::string label = child->getName();
             label.resize( padding, '.' );
-            std::cout << " " << label << ": " << child->getData() << "\n";
+            sosicon::logstream << " " << label << ": " << child->getData() << "\n";
         }
     }
 }
@@ -62,21 +62,21 @@ printListContent( std::map<std::string, int> list, int padding ) {
         ss << i->second;
         std::string value = std::string( 8 - ss.str().size(), ' ' ) + ss.str();
         label.resize( padding, '.' );
-        std::cout << " " << label << ": " << value << "\n";
+        sosicon::logstream << " " << label << ": " << value << "\n";
     }
 }
 
 void sosicon::ConverterSosiStat::
 printTableHeader( std::string col1, std::string col2, int padding ) {
     col1.resize( padding, ' ' );
-    std::cout << " " << col1 << ": " << col2 << "\n";
-    std::cout << "------------------------------------------\n";
+    sosicon::logstream << " " << col1 << ": " << col2 << "\n";
+    sosicon::logstream << "------------------------------------------\n";
 }
 
 void sosicon::ConverterSosiStat::
 run() {
     for( std::vector<std::string>::iterator f = mCmd->mSourceFiles.begin(); f != mCmd->mSourceFiles.end(); f++ ) {
-        std::cout << "\nGenerating statistics for " << *f << "\n";
+        sosicon::logstream << "\nGenerating statistics for " << *f << "\n";
         Parser p;
         char ln[ 1024 ];
         std::ifstream ifs( ( *f ).c_str() );
@@ -84,13 +84,13 @@ run() {
         while( !ifs.eof() ) {
             c++;
             if( mCmd->mIsTtyOut && ( c % 100 ) == 0 ) {
-                std::cout << "\rParsing " << c << " lines...";
+                sosicon::logstream << "\rParsing " << c << " lines...";
             }
             memset( ln, 0x00, sizeof ln );
             ifs.getline( ln, sizeof ln );
             p.ragelParseSosiLine( ln );
         }
-        std::cout << "\n" << c << " lines in file   \n\n";
+        sosicon::logstream << "\n" << c << " lines in file   \n\n";
         p.complete();
         ifs.close();
 
@@ -103,24 +103,24 @@ run() {
             
             printTableHeader( "SOSI HEADER", "VALUE", 22 );
             printElementData( srcHead.element(), sosi::SosiElementSearch(), 22 );
-            std::cout << "\n\n";
+            sosicon::logstream << "\n\n";
             
             sosi::SosiElementSearch srcTranspar( sosi::sosi_element_transpar );
             if( srcHead.element()->getChild( srcTranspar ) ) {
                 sosi::SosiElementSearch srcTransparItem;
                 printTableHeader( "SOSI HEADER/TRANSPAR", "VALUE", 22 );
                 printElementData( srcTranspar.element(), sosi::SosiElementSearch(), 22 );
-                std::cout << "\n\n";
+                sosicon::logstream << "\n\n";
             }
         }
 
         printTableHeader( "SOSI ELEMENT", "COUNT", 30 );
         printListContent( mGeoTypes, 30 );
-        std::cout << "\n\n";
+        sosicon::logstream << "\n\n";
 
         printTableHeader( "OBJTYPE", "COUNT", 30 );
         printListContent( mObjTypes, 30 );
-        std::cout << "\n\n";
+        sosicon::logstream << "\n\n";
 
     }
 }

@@ -120,6 +120,13 @@ normalizeAppClassName( const std::string &className )
 }
 
 string sosicon::utils::
+purgeCrLf( string str ) {
+    str.erase( std::remove( str.begin(), str.end(), '\r' ), str.end() );
+    str.erase( std::remove( str.begin(), str.end(), '\n' ), str.end() );
+    return str;
+}
+
+string sosicon::utils::
 repeat( const std::string &seq, unsigned int count )
 {
     std::string s;
@@ -256,8 +263,38 @@ ucFirst( const std::string &str )
     return res;
 }
 
+string sosicon::utils::
+stripTrailingSlash( const std::string &str )
+{
+    string res = trim( str );
+    if( !res.empty() ) {
+        const std::string::size_type len = res.length();
+        if( len > 0 && ( res.at( len - 1 ) == '\"' || res.at( len - 1 ) == '\\' ) ) {
+            res = res.substr( 0, len - 1 );
+        }
+    }
+    return res;
+}
+
+string sosicon::utils::
+unquote( const std::string &str )
+{
+    string res = trim( str );
+    if( !res.empty() ) {
+        if( res.at( 0 ) == '\"' ) {
+            res = res.substr( 1 );
+        }
+        const std::string::size_type len = res.length();
+        if( len > 0 && res.at( len - 1 ) == '\"' ) {
+            res = res.substr( 0, len - 1 );
+        }
+    }
+    return res;
+}
+
 void sosicon::utils::
 getPathInfo( std::string path, std::string &dir, std::string &tit, std::string &ext ) {
+    dir = tit = ext = "";
     std::string::size_type len = path.length();
     std::string tmp;
     while( len > 0 ) {

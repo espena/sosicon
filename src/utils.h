@@ -27,6 +27,7 @@
 #include <sstream>
 #include <string>
 #include <vector>
+#include <algorithm>
 #include <ctype.h>
 
 namespace sosicon {
@@ -93,6 +94,15 @@ namespace sosicon {
         */
         std::string normalizeAppClassName( const std::string &className );
 
+        //! Remove carriage returns and line feeds
+        /*!
+            Removes newlines from the target string. The \r or \n characters may
+            be anywhere in the string.
+            \param str The string to be purged.
+            \return The result string.
+        */
+        std::string purgeCrLf( std::string str );
+
         //! Repeat string N times
         /*!
             Creates a new string containing the provided string sequence for a
@@ -123,6 +133,9 @@ namespace sosicon {
         */
         std::string sqlNormalize( const std::string &str );
 
+        //! Remove trailing forward- and backward slashes from path component
+        std::string stripTrailingSlash( const std::string &str );
+
         //! Removes leading and trailing space characters
         /*!
             Space characters in the beginning and at the end of the source 
@@ -143,6 +156,9 @@ namespace sosicon {
         std::string toLower( const std::string &from );
 
         std::string ucFirst( const std::string &str );
+
+        //! Remove quotes around string.
+        std::string unquote( const std::string &str );
 
         void getPathInfo( std::string path, std::string &dir, std::string &tit, std::string &ext );
 

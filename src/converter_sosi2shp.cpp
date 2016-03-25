@@ -39,7 +39,7 @@ makeShp( ISosiElement* sosiTree ) {
         }
     }
 
-    std::cout << "Processing OBJTYPE";
+    sosicon::logstream << "Processing OBJTYPE";
 
     sosi::ElementType geometries[ 4 ] = {
         sosi::sosi_element_text,
@@ -57,9 +57,9 @@ makeShp( ISosiElement* sosiTree ) {
             }
 
             std::string objTypeName = i->first;
-            std::cout << "\rProcessing OBJTYPE " << objTypeName << "\n";
+            sosicon::logstream << "\rProcessing OBJTYPE " << objTypeName << "\n";
 
-            for( int j = 0; j < sizeof geometries; j++ ) {
+            for( unsigned int j = 0; j < sizeof geometries; j++ ) {
 
                 sosi::ElementType geometry = geometries[ j ];
                 shape::Shapefile f;
@@ -80,7 +80,7 @@ makeShp( ISosiElement* sosiTree ) {
                 int count = f.build( sosiTree, i->first, geometry );
 
                 if( count > 0 ) {
-                    std::cout << "  (" << count << " elements of type " << geometryName << ")\n";
+                    sosicon::logstream << "  (" << count << " elements of type " << geometryName << ")\n";
                     writeFile<IShapefileShpPart>( f, basePath, "shp" );
                     writeFile<IShapefileShxPart>( f, basePath, "shx" );
                     writeFile<IShapefileDbfPart>( f, basePath, "dbf" );
@@ -88,11 +88,11 @@ makeShp( ISosiElement* sosiTree ) {
                 }
             }
         }
-        std::cout << "\rProcessing OBJTYPEs done\n";
+        sosicon::logstream << "\rProcessing OBJTYPEs done\n";
     }
     else {
 
-        std::cout << "\rProcessing GEOMETRIES \n";
+        sosicon::logstream << "\rProcessing GEOMETRIES \n";
 
         for( int j = 0; j < 4; j++ ) {
 
@@ -104,7 +104,7 @@ makeShp( ISosiElement* sosiTree ) {
             int count = f.build( sosiTree, "", geometry );
 
             if( count > 0 ) {
-                std::cout << "  (" << count << " elements of type " << geometryName << ")\n";
+                sosicon::logstream << "  (" << count << " elements of type " << geometryName << ")\n";
                 writeFile<IShapefileShpPart>( f, basePath, "shp" );
                 writeFile<IShapefileShxPart>( f, basePath, "shx" );
                 writeFile<IShapefileDbfPart>( f, basePath, "dbf" );
@@ -116,11 +116,19 @@ makeShp( ISosiElement* sosiTree ) {
 
 std::string sosicon::ConverterSosi2shp::
 makeBasePath( std::string objTypeName ) {
-
-    std::string candidatePath = mCmd->mOutputFile.empty() ? mCurrentSourcefile : mCmd->mOutputFile;
-    std::string dir, tit, ext;
+    std::string candidatePath, dir, tit, ext;
+    if( !mCmd->mOutputFile.empty() ) {
+        candidatePath = mCmd->mOutputFile;
+    }
+    else if( !mCmd->mDestinationDirectory.empty() ) {
+        utils::getPathInfo( mCurrentSourcefile, dir, tit, ext );
+        candidatePath = utils::stripTrailingSlash( mCmd->mDestinationDirectory ) + "/" + tit + ext;
+    }
+    else {
+        candidatePath = mCurrentSourcefile;
+    }
+    dir.clear();
     utils::getPathInfo( candidatePath, dir, tit, ext );
-
     std::string subdir = dir + tit;
     char separator;
 
@@ -160,10 +168,10 @@ run() {
     for( std::vector<std::string>::iterator f = mCmd->mSourceFiles.begin(); f != mCmd->mSourceFiles.end(); f++ ) {
         mCurrentSourcefile = *f;
         if( !utils::fileExists( mCurrentSourcefile ) ) {
-            std::cout << mCurrentSourcefile << " not found\n";
+            sosicon::logstream << mCurrentSourcefile << " not found\n";
         }
         else {
-            std::cout << "Reading " << mCurrentSourcefile << "\n";
+            sosicon::logstream << "Reading " << mCurrentSourcefile << "\n";
             Parser p;
             pp = &p;
             char ln[ 1024 ];
@@ -171,7 +179,7 @@ run() {
             int n = 0;
             while( !ifs.eof() ) {
                 if( mCmd->mIsTtyOut && ++n % 100 == 0 ) {
-                    std::cout << "\rParsing line " << n;
+                    sosicon::logstream << "\rParsing line " << n;
                 }
                 memset( ln, 0x00, sizeof ln );
                 ifs.getline( ln, sizeof ln );
@@ -179,8 +187,8 @@ run() {
             }
             p.complete();
             ifs.close();
-            std::cout << "\r" << n << " lines parsed        \n";
-            std::cout << "Building shape file...\n";
+            sosicon::logstream << "\r" << n << " lines parsed        \n";
+            sosicon::logstream << "Building shape file...\n";
             ISosiElement* root = p.getRootElement();
             makeShp( root );
         }

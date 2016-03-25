@@ -51,8 +51,8 @@ deleteChildren() {
 void sosicon::sosi::SosiElement::
 dump( int indent ) {
     std::string space = std::string( indent, ' ' );
-    std::cout << space << mName <<  "[ " << mSerial << " ]" << "\n";
-    std::cout << space << "    -> " << mData << "\n";
+    sosicon::logstream << space << mName <<  "[ " << mSerial << " ]" << "\n";
+    sosicon::logstream << space << "    -> " << mData << "\n";
     for( std::vector<ISosiElement*>::iterator i = mChildren.begin(); i != mChildren.end(); i++ ) {
         ( *i )->dump( indent + 2 );
     }
@@ -88,6 +88,12 @@ nextChild( SosiElementSearch& src ) {
         }
     }
     return moreToGo;
+}
+
+std::string sosicon::sosi::SosiElement::
+getName() {
+    SosiCharsetSingleton* cs = SosiCharsetSingleton::getInstance();
+    return cs->toIso8859_1( mName );
 }
 
 bool sosicon::sosi::SosiElement::

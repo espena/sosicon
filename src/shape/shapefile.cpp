@@ -303,7 +303,7 @@ buildDbf() {
         mDbfBuffer = new char [ mDbfBufferSize ];
     }
     catch( ... ) {
-        std::cout << "Memory allocation error\n";
+        sosicon::logstream << "Memory allocation error\n";
         throw;
     }
 
@@ -388,7 +388,7 @@ buildDbfRecordSection( int& pos, int recLen ) {
             recordBuffer = new char[ recLen ];
         }
         catch( ... ) {
-            std::cout << "Memory allocation error\n";
+            sosicon::logstream << "Memory allocation error\n";
         }
         int recNumber = 0;
         int fldOffset = 0;
@@ -423,7 +423,7 @@ buildShx() {
         mShxBuffer = new char [ mShxBufferSize ];
     }
     catch( ... ) {
-        std::cout << "Memory allocation error\n";
+        sosicon::logstream << "Memory allocation error\n";
     }
 
     Int32Field fileLength;
@@ -464,7 +464,7 @@ expandShpBuffer( int byteLen ) {
             mShpBuffer = new char [ mShpBufferSize ];
         }
         catch( ... ) {
-            std::cout << "Memory allocation error\n";
+            sosicon::logstream << "Memory allocation error\n";
             throw;
         }
     }
@@ -480,7 +480,7 @@ expandShpBuffer( int byteLen ) {
                 mShpBuffer = new char [ mShpBufferSize ];
             }
             catch( ... ) {
-                std::cout << "Memory allocation error\n";
+                sosicon::logstream << "Memory allocation error\n";
                 throw;
             }
             std::copy( oldBuffer, oldBuffer + offset, mShpBuffer );

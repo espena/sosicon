@@ -26,9 +26,9 @@
 #else
 #include <inttypes.h>
 #endif
+#include "logger.h"
 #include <algorithm>
 #include <cmath>
-#include <iostream>
 
 namespace sosicon {
 

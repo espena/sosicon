@@ -37,6 +37,8 @@ SosiNorthEast( ISosiElement* e ) {
     mMinY = +9999999999;
     mMaxX = -9999999999;
     mMaxY = -9999999999;
+    std::string name = e->getName();
+    std::string data = e->getData();
     if( e->getName() == "N\xD8H" ) {
         ragelParseCoordinatesNeh( mSosiElement->getData() );
     }
@@ -97,7 +99,7 @@ append( double n, double e, double h ) {
         c = new Coordinate();
     }
     catch( ... ) {
-        std::cout << "Memory allocation failed";
+        sosicon::logstream << "Memory allocation failed";
     }
 
     c->setN( n );
@@ -130,7 +132,7 @@ initHeadMember( ISosiHeadMember& headMember, ElementType type ) {
 void sosicon::sosi::SosiNorthEast::
 dump() {
     for( CoordinateList::iterator i = mCoordinates.begin(); i != mCoordinates.end(); i++ ) {
-        std::cout << ( *i )->toString() << "\n";
+        sosicon::logstream << ( *i )->toString() << "\n";
     }
 }
 

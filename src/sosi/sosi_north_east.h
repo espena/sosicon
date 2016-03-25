@@ -18,6 +18,7 @@
 #ifndef __SOSI_NORTH_EAST_H__
 #define __SOSI_NORTH_EAST_H__
 
+#include "../logger.h"
 #include "../interface/i_sosi_element.h"
 #include "../interface/i_coordinate.h"
 #include "../common_types.h"
@@ -27,7 +28,6 @@
 #include "sosi_unit.h"
 #include <algorithm>
 #include <limits>
-#include <iostream>
 #include <string>
 #include <sstream>
 #include <vector>
