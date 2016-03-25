@@ -19,6 +19,9 @@
     <height>700</height>
    </size>
   </property>
+  <property name="acceptDrops">
+   <bool>true</bool>
+  </property>
   <property name="windowTitle">
    <string>SOSI file converter</string>
   </property>
@@ -96,11 +99,26 @@
               <height>16777215</height>
              </size>
             </property>
+            <property name="acceptDrops">
+             <bool>false</bool>
+            </property>
             <property name="horizontalScrollBarPolicy">
              <enum>Qt::ScrollBarAlwaysOff</enum>
             </property>
+            <property name="dragEnabled">
+             <bool>false</bool>
+            </property>
+            <property name="dragDropMode">
+             <enum>QAbstractItemView::DropOnly</enum>
+            </property>
+            <property name="defaultDropAction">
+             <enum>Qt::CopyAction</enum>
+            </property>
             <property name="selectionMode">
              <enum>QAbstractItemView::MultiSelection</enum>
+            </property>
+            <property name="textElideMode">
+             <enum>Qt::ElideMiddle</enum>
             </property>
            </widget>
           </item>
@@ -219,13 +237,13 @@
            <property name="minimumSize">
             <size>
              <width>350</width>
-             <height>400</height>
+             <height>350</height>
             </size>
            </property>
            <property name="maximumSize">
             <size>
              <width>350</width>
-             <height>400</height>
+             <height>350</height>
             </size>
            </property>
            <property name="title">

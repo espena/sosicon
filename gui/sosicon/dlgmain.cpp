@@ -11,8 +11,7 @@
 DlgMain::
 DlgMain( QWidget *parent ) :
     QDialog( parent ),
-    mUi( new Ui::DlgMain )
-{
+    mUi( new Ui::DlgMain ) {
     setWindowIcon( windowIcon() );
     mUi->setupUi( this );
     mUi->txtFileTitle->setValidator( new QRegExpValidator( QRegExp( "^[A-Za-z0-9_\\-]+$" ), this ) );
@@ -20,9 +19,44 @@ DlgMain( QWidget *parent ) :
     updateAll();
 }
 
-DlgMain::~DlgMain()
-{
+DlgMain::~DlgMain() {
     delete mUi;
+}
+
+void DlgMain::
+dragEnterEvent( QDragEnterEvent *event ) {
+    if ( event->mimeData()->hasFormat( "text/uri-list" ) ) {
+        event->acceptProposedAction();
+    }
+}
+
+void DlgMain::
+dropEvent( QDropEvent *event )
+{
+    bool accepted;
+    QList<QUrl> urls = event->mimeData()->urls();
+    for( QList<QUrl>::iterator i = urls.begin(); i != urls.end(); i++ ) {
+        QString fileName = ( *i ).toLocalFile();
+        if ( fileName.endsWith( ".sos", Qt::CaseInsensitive ) ) {
+            mUi->lstSosiFiles->addItem( fileName );
+            accepted = true;
+        }
+    }
+    if( accepted ) {
+        event->acceptProposedAction();
+    }
+}
+
+void DlgMain::
+dragLeaveEvent( QDragLeaveEvent* event )
+{
+   event->accept();
+}
+
+void DlgMain::
+dragMoveEvent( QDragMoveEvent *event )
+{
+    event->acceptProposedAction();
 }
 
 void DlgMain::

@@ -9,16 +9,16 @@ PROJ = sosicon
 COMPILER_OPTS =
 
 ifeq ($(UNAME), Darwin)
-OUTDIR = ../bin/osx
+OUTDIR = ../bin/cmd/osx
 RAGEL = ragel/bin/osx/ragel
 COMPILER_OPTS = -std=c++11
 endif
 ifeq ($(UNAME), Linux)
 ifeq ($(LBIT), 64)
-OUTDIR = ../bin/linux64
+OUTDIR = ../bin/cmd/linux64
 RAGEL = ragel/bin/linux64/ragel
 else
-OUTDIR = ../bin/linux32
+OUTDIR = ../bin/cmd/linux32
 RAGEL = ragel/bin/linux32/ragel
 endif
 endif
