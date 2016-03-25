@@ -26,6 +26,7 @@
 #include <vector>
 #include <iostream>
 #include "shapefile_types.h"
+#include "../logger.h"
 #include "../byte_order.h"
 #include "../utils.h"
 #include "../coordinate_collection.h"
@@ -39,7 +40,6 @@ namespace sosicon {
 
     //! ESRI Shape
     namespace shape {
-        
 
         //! Resolve geometry type
         /*!
@@ -369,11 +369,11 @@ namespace sosicon {
             Shapefile() :
                 mSosiTree( 0 ),
                 mShpBuffer( 0 ),
-                mShxBuffer( 0 ),
-                mDbfBuffer( 0 ),
                 mShpSize( 0 ),
                 mShpBufferSize( 0 ),
+                mShxBuffer( 0 ),
                 mShxBufferSize( 0 ),
+                mDbfBuffer( 0 ),
                 mDbfBufferSize( 0 ),
                 mRecordNumber( 0 ),
                 mXmin( +99999999 ),

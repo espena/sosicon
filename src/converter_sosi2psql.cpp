@@ -182,7 +182,7 @@ buildInsertStatement( Wkt wktGeom,
         sqlInsert += ") VALUES\n";
         int rowCount = 0;
         RowsList::size_type len = r->size();
-        std::cout << "    > Processing 0 of " << len << std::flush;
+        sosicon::logstream << "    > Processing 0 of " << len << sosicon::flush;
         for( itrRows = r->begin(); itrRows != r->end(); itrRows++ ) {
             std::map<std::string,std::string>* row = *itrRows;
             if( !sqlValues.empty() && ++rowCount % 50000 == 0 ) {
@@ -192,7 +192,7 @@ buildInsertStatement( Wkt wktGeom,
                 sqlValues.clear();
             }
             if( rowCount % 1000 == 0 ) {
-                std::cout << "\r    > Processing " << rowCount << " of " << len << std::flush;
+                sosicon::logstream << "\r    > Processing " << rowCount << " of " << len << sosicon::flush;
             }
             sqlValues += "(";
             for( itrFields = f->begin(); itrFields != f->end(); itrFields++ ) {
@@ -217,7 +217,7 @@ buildInsertStatement( Wkt wktGeom,
             sqlValues.erase( sqlValues.size() - 1 );
             sqlValues += "),\n";
         }
-        std::cout << "\r    > " << rowCount << " " << geomName << "s processed               \n" << std::flush;
+        sosicon::logstream << "\r    > " << rowCount << " " << geomName << "s processed               \n" << sosicon::flush;
         sqlValues.erase( sqlValues.size() - 2 );
         sqlValues += ";\n";
         sqlComposite += ( sqlInsert + sqlValues );
@@ -230,7 +230,7 @@ cleanup() {
   // Not really necesary if the program is about to exit anyway,
   // but I'll leave it in for the future. However, the clean-up
   // process may get VERY slow.
-    std::cout << "    > Clean-up...\n";
+    sosicon::logstream << "    > Clean-up...\n";
     cleanup( wkt_point );
     cleanup( wkt_linestring );
     cleanup( wkt_polygon );
@@ -315,10 +315,10 @@ getSrid( ISosiElement* sosiTree ) {
         sosi::SosiTranslationTable tt;
         sosi::CoordSys cs = tt.sysCodeToCoordSys( sysCode );
         srid = cs.srid();
-        std::cout << "Coordinate system: " << cs.displayString() << "\n";
+        sosicon::logstream << "Coordinate system: " << cs.displayString() << "\n";
     }
     else {
-        std::cout << "No KOORDSYS code found in sosi file.\nDefaults to 23 (EPSG:25833 - ETRS89 / UTM zone 33N)\n";
+        sosicon::logstream << "No KOORDSYS code found in sosi file.\nDefaults to 23 (EPSG:25833 - ETRS89 / UTM zone 33N)\n";
         srid = "25833";
     }
 
@@ -584,17 +584,17 @@ run() {
     for( std::vector<std::string>::iterator f = mCmd->mSourceFiles.begin(); f != mCmd->mSourceFiles.end(); f++ ) {
         mCurrentSourcefile = *f;
         if( !utils::fileExists( mCurrentSourcefile ) ) {
-            std::cout << mCurrentSourcefile << " not found\n";
+            sosicon::logstream << mCurrentSourcefile << " not found\n";
         }
         else {
-            std::cout << "Reading " << mCurrentSourcefile << "\n";
+            sosicon::logstream << "Reading " << mCurrentSourcefile << "\n";
             Parser p;
             char ln[ 1024 ];
             std::ifstream ifs( mCurrentSourcefile.c_str() );
             int n = 0;
             while( !ifs.eof() ) {
                 if( mCmd->mIsTtyOut && ++n % 100 == 0 ) {
-                    std::cout << "\rParsing line " << n;
+                    sosicon::logstream << "\rParsing line " << n;
                 }
                 memset( ln, 0x00, sizeof ln );
                 ifs.getline( ln, sizeof ln );
@@ -603,15 +603,15 @@ run() {
             p.complete();
 
             ifs.close();
-            std::cout << "\r" << n << " lines parsed        \n";
-            std::cout << "Building postGIS export...\n";
+            sosicon::logstream << "\r" << n << " lines parsed        \n";
+            sosicon::logstream << "Building postGIS export...\n";
             ISosiElement* root = p.getRootElement();
             makePsql( root, sridDest, dbSchema, dbTable );
         }
     }
     writePsql( sridDest, dbSchema, dbTable );
     cleanup();
-    std::cout << "Done!\n";
+    sosicon::logstream << "Done!\n";
 }
 
 void sosicon::ConverterSosi2psql::
@@ -622,7 +622,7 @@ writePsql( std::string sridDest,
     std::ofstream fs;
     std::string defaultOutputFile = mCmd->mOutputFile.empty() ? "postgis_dump.sql" : mCmd->mOutputFile;
     std::string fileName = utils::nonExistingFilename( defaultOutputFile );
-    std::cout << "    > Converting SOSI data to SQL...\n";
+    sosicon::logstream << "    > Converting SOSI data to SQL...\n";
     fs.open( fileName.c_str(), std::ios::out | std::ios::trunc );
     fs.precision( 0 );
     fs << "SET NAMES 'LATIN1';\n";
@@ -648,5 +648,5 @@ writePsql( std::string sridDest,
        <<  ( mCmd->mInsertStatements ? buildInsertStatements( dbSchema, dbTable ) : "" )
        << "SET NAMES 'UTF8';\n";
     fs.close();
-    std::cout << "    > " << fileName << " written\n";
+    sosicon::logstream << "    > " << fileName << " written\n";
 }

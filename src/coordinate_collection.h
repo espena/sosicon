@@ -21,7 +21,7 @@
 #include <algorithm>
 #include <limits>
 #include <vector>
-#include <iostream>
+#include "logger.h"
 #include "common_types.h"
 #include "sosi/sosi_types.h"
 #include "sosi/sosi_element_search.h"
@@ -112,14 +112,14 @@ namespace sosicon {
 
         //! Constructor
         CoordinateCollection() :
-            mXmin( +9999999999 ),
-            mYmin( +9999999999 ),
-            mXmax( -9999999999 ),
-            mYmax( -9999999999 ),
             mNumPartsGeom( 0 ),
             mNumPartsHoles( 0 ),
             mNumPointsGeom( 0 ),
-            mNumPointsHoles( 0 ) { };
+            mNumPointsHoles( 0 ),
+            mXmin( +9999999999 ),
+            mYmin( +9999999999 ),
+            mXmax( -9999999999 ),
+            mYmax( -9999999999 ) { };
 
         //!< Free allocated memory
         void free();

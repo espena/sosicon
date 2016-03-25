@@ -18,11 +18,12 @@
 #ifndef __SOSI_ELEMENT_H__
 #define __SOSI_ELEMENT_H__
 
-#include <iostream>
 #include <vector>
 #include <string>
+#include "../logger.h"
 #include "sosi_element_search.h"
 #include "sosi_translation_table.h"
+#include "sosi_charset_singleton.h"
 #include "sosi_types.h"
 #include "../interface/i_sosi_element.h"
 
@@ -143,7 +144,7 @@ namespace sosicon {
             virtual std::string getObjType() { return mObjTypeStr; };
 
             //! Get name of current element
-            virtual std::string getName() { return mName; };
+            virtual std::string getName();
 
             //! Get root element
             virtual ISosiElement* getRoot() { return mRoot; };

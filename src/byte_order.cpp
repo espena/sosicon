@@ -69,7 +69,7 @@ doubleToLittleEndian( double from, char* to ) {
         exponent = 0x7ff;
     }
     else if( std::isnan( dbl ) ) {
-        std::cout << "double was NaN\n";
+        sosicon::logstream << "double was NaN\n";
         exponent = 0x7ff;
         fraction = 0x8000000000000;
     }

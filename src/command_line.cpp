@@ -60,6 +60,38 @@ sosicon::CommandLine::
 }
 
 void sosicon::CommandLine::
+parse( std::string cmdStr ) {
+    cmdStr += " ";
+    static char buf[ 4096 ];
+    unsigned int n = cmdStr.length();
+    if( n < sizeof( buf ) ) {
+        strcpy( buf, cmdStr.c_str() );
+        unsigned int i = 0, argc = 0;
+        char *argv[ 2048 ], *p = buf;
+        bool esc = false;
+        while( i < n ) {
+            switch( buf[ i ] ) {
+                case ' ':
+                    if( !esc ) {
+                        buf[ i ] = '\0';
+                        argc++;
+                        argv[ argc - 1 ] = p;
+                        p = &buf[ i + 1 ];
+                    }
+                    break;
+                case '\'':
+                    // Fallthru
+                case '"':
+                    esc = !esc;
+                    break;
+            }
+            i++;
+        }
+        parse( argc, argv );
+    }
+}
+
+void sosicon::CommandLine::
 parse( int argc, char* argv[] ) {
 
     bool inputExpected = true;
@@ -91,7 +123,7 @@ parse( int argc, char* argv[] ) {
                 mCreateStatements = true;
             }
             else if( "-d" == param && argc > ( ++i ) ) {
-                mDestinationDirectory = argv[ i ];
+                mDestinationDirectory = utils::unquote( argv[ i ] );
             }
             else if( "-f" == param && argc > ( ++i ) ) {
                 mFieldSelection = utils::explode( ',', argv[ i ] );
@@ -106,7 +138,7 @@ parse( int argc, char* argv[] ) {
                 mInsertStatements = true;
             }
             else if( "-o" == param && argc > ( ++i ) ) {
-                mOutputFile = argv[ i ];
+                mOutputFile = utils::unquote( argv[ i ] );
             }
             else if( "-s" == param ) {
                 mMakeSubDir = true;

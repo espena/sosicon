@@ -59,7 +59,7 @@
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
       <SDLCheck>false</SDLCheck>
-      <PreprocessorDefinitions>_MBCS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>_MBCS;_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <UndefinePreprocessorDefinitions>
       </UndefinePreprocessorDefinitions>
       <DisableLanguageExtensions>false</DisableLanguageExtensions>
@@ -102,7 +102,7 @@
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <SDLCheck>false</SDLCheck>
-      <PreprocessorDefinitions>_MBCS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>_MBCS;_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <UndefinePreprocessorDefinitions>
       </UndefinePreprocessorDefinitions>
       <DisableLanguageExtensions>false</DisableLanguageExtensions>
@@ -167,6 +167,7 @@ rd /s /q $(IntermediateOutputPath)</Command>
     <ClInclude Include="interface\i_sosi_element.h" />
     <ClInclude Include="interface\i_sosi_head_member.h" />
     <ClInclude Include="inttypes.h" />
+    <ClInclude Include="logger.h" />
     <ClInclude Include="main.h" />
     <ClInclude Include="parser.h" />
     <ClInclude Include="shape\shapefile.h" />
@@ -192,6 +193,7 @@ rd /s /q $(IntermediateOutputPath)</Command>
     <ClCompile Include="converter_sosi_stat.cpp" />
     <ClCompile Include="coordinate_collection.cpp" />
     <ClCompile Include="factory.cpp" />
+    <ClCompile Include="logger.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="parser.cpp" />
     <ClCompile Include="parser_ragel.cpp" />

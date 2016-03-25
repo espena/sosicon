@@ -36,7 +36,7 @@ int main ( int argc, char* argv[] ) {
         res = 0;
     }
     catch( std::exception ex ) {
-        std::cout << ex.what() << "\n";
+        sosicon::logstream << ex.what() << "\n";
         res = -1;
     }
 

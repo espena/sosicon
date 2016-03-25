@@ -127,6 +127,12 @@ namespace sosicon {
             */
             SosiCharsetSingleton();
 
+            //! Quick and dirty conversion from UTF-8 to ISO8859-10
+            /*!
+                Invalid characters are dropped. Sorry.
+            */
+            static std::string utf8ToIso8859_1( const char * in );
+
         public:
 
             static SosiCharsetSingleton* getInstance() {

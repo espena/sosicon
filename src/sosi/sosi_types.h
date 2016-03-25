@@ -130,7 +130,8 @@ namespace sosicon {
             sosi_charset_dosn8,        //!< MS-Dos Norwegian 8-bit
             sosi_charset_iso8859_1,    //!< ISO 8859-1
             sosi_charset_iso8859_10,   //!< ISO 8859-10 with samii characters
-            sosi_charset_nd7           //!< Norsk Data 7-bit
+            sosi_charset_nd7,          //!< Norsk Data 7-bit
+            sosi_charset_utf8          //!< UTF-8
         };
 
         //! Default SOSI junction point layer types
@@ -157,15 +158,15 @@ namespace sosicon {
 
         public:
 
-            CoordSys( ) : mSysCode( 0 ) {};
+            CoordSys( ) : mSysCode( 0 ) {}
 
             CoordSys( int sysCode,
                       std::string srid,
                       std::string displayString,
                       std::string prjString ) : mSysCode( sysCode ),
                                                 mSrid( srid ),
-                                                mDisplayString( displayString ),
-                                                mPrjString( prjString ) {};
+                                                mPrjString( prjString ),
+                                                mDisplayString( displayString )  {};
 
             std::string displayString() { return mDisplayString; };
 
