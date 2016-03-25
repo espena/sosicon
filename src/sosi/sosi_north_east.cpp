@@ -37,6 +37,8 @@ SosiNorthEast( ISosiElement* e ) {
     mMinY = +9999999999;
     mMaxX = -9999999999;
     mMaxY = -9999999999;
+    std::string name = e->getName();
+    std::string data = e->getData();
     if( e->getName() == "N\xD8H" ) {
         ragelParseCoordinatesNeh( mSosiElement->getData() );
     }

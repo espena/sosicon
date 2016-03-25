@@ -90,6 +90,12 @@ nextChild( SosiElementSearch& src ) {
     return moreToGo;
 }
 
+std::string sosicon::sosi::SosiElement::
+getName() {
+    SosiCharsetSingleton* cs = SosiCharsetSingleton::getInstance();
+    return cs->toIso8859_1( mName );
+}
+
 bool sosicon::sosi::SosiElement::
 getChild( SosiElementSearch& src ) {
     bool res = nextChild( src );
