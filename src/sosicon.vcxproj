@@ -39,13 +39,13 @@
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
-    <OutDir>$(SolutionDir)..\bin\win\build\</OutDir>
+    <OutDir>$(SolutionDir)..\bin\cmd\win\build\</OutDir>
     <IntDir>$(OutDir)</IntDir>
     <LinkIncremental>false</LinkIncremental>
     <PreBuildEventUseInBuild>false</PreBuildEventUseInBuild>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-    <OutDir>$(SolutionDir)..\bin\win\debug\</OutDir>
+    <OutDir>$(SolutionDir)..\bin\cmd\win\debug\</OutDir>
     <IntDir>$(OutDir)</IntDir>
     <TargetName>$(ProjectName)_dbg</TargetName>
     <LinkIncremental>false</LinkIncremental>
@@ -74,7 +74,7 @@
       <OutputFile>$(OutDir)$(TargetName)$(TargetExt)</OutputFile>
     </Link>
     <BuildLog>
-      <Path>$(SolutionDir)..\bin\win\build\$(IntDir)$(MSBuildProjectName).log</Path>
+      <Path>$(SolutionDir)..\bin\cmd\win\build\$(IntDir)$(MSBuildProjectName).log</Path>
     </BuildLog>
     <PostBuildEvent>
       <Command>
@@ -118,7 +118,7 @@
       <OutputFile>$(OutDir)$(TargetName)$(TargetExt)</OutputFile>
     </Link>
     <BuildLog>
-      <Path>$(SolutionDir)..\bin\win\build\$(IntDir)$(MSBuildProjectName).log</Path>
+      <Path>$(SolutionDir)..\bin\cmd\win\build\$(IntDir)$(MSBuildProjectName).log</Path>
     </BuildLog>
     <PreBuildEvent>
       <Command>
