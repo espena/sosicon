@@ -99,15 +99,17 @@ parse( int argc, char* argv[] ) {
     if( !mIsTtyIn ) {
         while( std::cin ) {
             std::cin >> inputLine;
-            mSourceFiles.push_back( inputLine );
+            if( !inputLine.empty() ) {
+                mSourceFiles.push_back( inputLine );
+            }
         }       
     }
 
     for( int i = 1; i < argc; i++ ) {
-        std::string param( argv[ i ] );
+        std::string param( utils::unquote( argv[ i ] ) );
         if( param.at( 0 ) != '-' ) {
             while( i < argc ) {
-                mSourceFiles.push_back( argv[ i ] );
+                mSourceFiles.push_back( utils::unquote( argv[ i ] ) );
                 i++;
             }
         }
