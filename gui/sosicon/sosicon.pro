@@ -22,7 +22,6 @@ QMAKE_CXXFLAGS_WARN_ON += -Wno-unused-parameter
 QMAKE_CXXFLAGS_WARN_ON += -Wno-unused-variable
 
 SOURCES += main.cpp\
-        dlgmain.cpp \
     ../../src/byte_order.cpp \
     ../../src/command_line.cpp \
     ../../src/converter_sosi_stat.cpp \
@@ -49,9 +48,10 @@ SOURCES += main.cpp\
     ../../src/sosi/sosi_translation_table.cpp \
     ../../src/shape/shapefile.cpp \
     ../../src/logger.cpp \
-    worker.cpp
+    worker.cpp \
+    mainfrm.cpp
 
-HEADERS  += dlgmain.h \
+HEADERS  += \
     ../../src/common_types.h \
     ../../src/converter_sosi2tsv.h \
     ../../src/converter_sosi2xml.h \
@@ -97,6 +97,8 @@ HEADERS  += dlgmain.h \
     ../../src/logger.h \
     ../../src/log_event.h \
     ../../src/event_dispatcher.h \
-    worker.h
+    worker.h \
+    mainfrm.h
 
-FORMS    += dlgmain.ui
+FORMS    += \
+    mainfrm.ui
