@@ -168,7 +168,7 @@ run() {
     for( std::vector<std::string>::iterator f = mCmd->mSourceFiles.begin(); f != mCmd->mSourceFiles.end(); f++ ) {
         mCurrentSourcefile = *f;
         if( !utils::fileExists( mCurrentSourcefile ) ) {
-            sosicon::logstream << mCurrentSourcefile << " not found\n";
+            sosicon::logstream << mCurrentSourcefile << " not found!\n";
         }
         else {
             sosicon::logstream << "Reading " << mCurrentSourcefile << "\n";
@@ -178,7 +178,7 @@ run() {
             std::ifstream ifs( ( mCurrentSourcefile ).c_str() );
             int n = 0;
             while( !ifs.eof() ) {
-                if( mCmd->mIsTtyOut && ++n % 100 == 0 ) {
+                if( mCmd->mIsTtyOut && ++n % 1000 == 0 ) {
                     sosicon::logstream << "\rParsing line " << n;
                 }
                 memset( ln, 0x00, sizeof ln );

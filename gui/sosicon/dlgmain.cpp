@@ -44,6 +44,7 @@ dropEvent( QDropEvent *event )
     }
     if( accepted ) {
         event->acceptProposedAction();
+        updateAll();
     }
 }
 
