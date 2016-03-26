@@ -304,12 +304,12 @@ namespace sosicon {
                         std::string dbTable );
 
         //! Destructor
-        virtual ~ConverterSosi2psql() { };
+        virtual ~ConverterSosi2psql() { }
 
     public:
 
         //! Constructor
-        ConverterSosi2psql() : mCmd( 0 ) { };
+        ConverterSosi2psql() : mCmd( 0 ) { }
         
         //! Initialize converter
         /*!
@@ -317,14 +317,14 @@ namespace sosicon {
             \param cmd Pointer to (the one and only) CommandLine instance.
             \sa sosicon::IConverter::init()
          */
-        virtual void init( CommandLine* cmd ) { mCmd = cmd; };
+        virtual void init( CommandLine* cmd ) { mCmd = cmd; }
 
         //! Start conversion
         /*!
             Implementation details in sosicon::IConverter::run()
             \sa sosicon::IConverter::run()
          */
-        virtual void run();
+        virtual void run( bool* cancel = 0x00 );
 
     }; // class ConverterSosi2tsv
    /*! @} end group converters */

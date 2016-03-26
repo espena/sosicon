@@ -5,6 +5,7 @@
 #include "MainFrm.h"
 #include "ui_MainFrm.h"
 #include <QIcon>
+#include <QColor>
 #include <QThread>
 #include <QTextCodec>
 #include <QFileDialog>
@@ -66,22 +67,37 @@ dragMoveEvent( QDragMoveEvent *event )
     event->acceptProposedAction();
 }
 
+
+void MainFrm::
+onCancelSosicon()
+{
+    mCancel = true;
+    mUi->lstConsoleOutput->addItem( "Aborting operation" );
+    int i = mUi->lstConsoleOutput->count() - 1;
+    mUi->lstConsoleOutput->item( i )->setTextColor( QColor( 255, 0, 0 ) );
+    mUi->lstConsoleOutput->setCurrentRow( i );
+}
+
 void MainFrm::
 onRunSosicon()
 {
     updateAll();
-    QThread *thread = new QThread();
-    Worker *worker = new Worker();
-    connect( this, SIGNAL( startConversion( QString, QMutex* ) ), worker, SLOT( startConversion( QString, QMutex* ) ) );
-    connect( worker, SIGNAL( logMessage( QString, bool ) ), this, SLOT( onLogMessage( QString, bool ) ) );
-    connect( worker, SIGNAL( finished() ), this, SLOT( onQuitSosicon() ) );
-    connect( worker, SIGNAL( finished() ), thread, SLOT( quit() ) );
-    connect( worker, SIGNAL( finished() ), worker, SLOT( deleteLater() ) );
-    connect( thread, SIGNAL( finished() ), thread, SLOT( deleteLater() ) );
-    worker->moveToThread( thread );
-    thread->start();
-    emit startConversion( mUi->txtCommandLine->toPlainText(), &mMutex );
-    this->setEnabled( false );
+    if( !mCancel ) {
+        mUi->btnCancel->setEnabled( true );
+        mUi->btnRunSosicon->setEnabled( false );
+        mRunFlag = true;
+        QThread *thread = new QThread();
+        Worker *worker = new Worker();
+        connect( this, SIGNAL( startConversion( QString, QMutex*, bool* ) ), worker, SLOT( startConversion( QString, QMutex*, bool* ) ) );
+        connect( worker, SIGNAL( logMessage( QString, bool ) ), this, SLOT( onLogMessage( QString, bool ) ) );
+        connect( worker, SIGNAL( finished() ), this, SLOT( onQuitSosicon() ) );
+        connect( worker, SIGNAL( finished() ), thread, SLOT( quit() ) );
+        connect( worker, SIGNAL( finished() ), worker, SLOT( deleteLater() ) );
+        connect( thread, SIGNAL( finished() ), thread, SLOT( deleteLater() ) );
+        worker->moveToThread( thread );
+        thread->start();
+        emit startConversion( mUi->txtCommandLine->toPlainText(), &mMutex, &mCancel );
+    }
 }
 
 void MainFrm::
@@ -99,7 +115,10 @@ onQuitSosicon()
 {
     mUi->lstConsoleOutput->clearSelection();
     mUi->lstSosiFiles->clearSelection();
-    this->setEnabled( true );
+    mUi->btnCancel->setEnabled( false );
+    mUi->btnRunSosicon->setEnabled( mUi->lstSosiFiles->count() > 0 );
+    mCancel = false;
+    mRunFlag = false;
 }
 
 void MainFrm::
@@ -206,7 +225,7 @@ updateUi()
     mUi->lblShapefilePath->setText( fm.elidedText( mShapeFilePath, Qt::TextElideMode::ElideMiddle, mUi->lblShapefilePath->width() ) );
     mUi->btnRemove->setEnabled( mUi->lstSosiFiles->selectedItems().count() > 0 );
     mUi->btnClear->setEnabled( mUi->lstSosiFiles->count() > 0 );
-    mUi->btnRunSosicon->setEnabled( mUi->lstSosiFiles->count() > 0 );
+    mUi->btnRunSosicon->setEnabled( !mRunFlag && mUi->lstSosiFiles->count() > 0 );
 }
 
 void MainFrm::

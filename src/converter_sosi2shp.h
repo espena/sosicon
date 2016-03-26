@@ -95,7 +95,7 @@ namespace sosicon {
         //! Souce file currently in process
         std::string mCurrentSourcefile;
 
-        void makeShp( ISosiElement* sosiTree );
+        void makeShp( ISosiElement* sosiTree, bool* cancel );
 
         //! Make base file path for destination files
         /*!
@@ -131,7 +131,7 @@ namespace sosicon {
             Implementation details in sosicon::IConverter::run()
             \sa sosicon::IConverter::run()
          */
-        virtual void run();
+        virtual void run( bool* cancel = 0x00 );
 
     }; // class ConverterSosi2shp
    /*! @} end group converters */

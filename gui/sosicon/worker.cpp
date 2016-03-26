@@ -1,7 +1,7 @@
 #include "worker.h"
 
 void::Worker::
-startConversion( QString cmdStr, QMutex *mutex ) {
+startConversion( QString cmdStr, QMutex *mutex, bool *cancel ) {
     mutex->lock();
     sosicon::CommandLine cmd;
     cmd.parse( cmdStr.toStdString() );
@@ -10,10 +10,15 @@ startConversion( QString cmdStr, QMutex *mutex ) {
         sosicon::IConverter* converter = 0;
         sosicon::Factory::get( converter, &cmd );
         if( converter ) {
-            converter->run();
+            converter->run( cancel );
             sosicon::Factory::release( converter );
         }
-        sosicon::logstream << "*** Conversion completed! ***\n";
+        if( *cancel ) {
+            sosicon::logstream << "\r*** Conversion aborted by the user! ***\n";
+        }
+        else {
+            sosicon::logstream << "*** Conversion completed! ***\n";
+        }
     }
     catch( std::exception ex ) {
         sosicon::logstream << ex.what() << "\n";

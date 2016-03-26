@@ -92,7 +92,7 @@ namespace sosicon {
             Implementation details in sosicon::IConverter::run()
             \sa sosicon::IConverter::run()
          */
-        virtual void run();
+        virtual void run( bool* cancel = 0x00 );
 
     }; // class ConverterSosistat
    /*! @} end group converters */

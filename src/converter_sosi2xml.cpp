@@ -23,7 +23,7 @@ makeXML( ISosiElement* parent ) {
 }
 
 void sosicon::ConverterSosi2xml::
-run() {
+run( bool* cancel ) {
     for( std::vector<std::string>::iterator f = mCmd->mSourceFiles.begin(); f != mCmd->mSourceFiles.end(); f++ ) {
         Parser p;
         char ln[ 1024 ];

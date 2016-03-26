@@ -18,7 +18,7 @@
 #include "converter_sosi2shp.h"
 
 void sosicon::ConverterSosi2shp::
-makeShp( ISosiElement* sosiTree ) {
+makeShp( ISosiElement* sosiTree, bool* cancel ) {
 
     sosi::SosiTranslationTable ttbl;
 
@@ -61,6 +61,10 @@ makeShp( ISosiElement* sosiTree ) {
 
             for( unsigned int j = 0; j < sizeof geometries; j++ ) {
 
+                if( cancel && *cancel ) {
+                    return;
+                }
+
                 sosi::ElementType geometry = geometries[ j ];
                 shape::Shapefile f;
                 if( !mCmd->mFilterSosiId.empty() ) {
@@ -95,6 +99,10 @@ makeShp( ISosiElement* sosiTree ) {
         sosicon::logstream << "\rProcessing GEOMETRIES \n";
 
         for( int j = 0; j < 4; j++ ) {
+
+            if( cancel && *cancel ) {
+                return;
+            }
 
             shape::Shapefile f;
             sosi::ElementType geometry = geometries[ j ];
@@ -163,9 +171,10 @@ makeBasePath( std::string objTypeName ) {
 }
 
 void sosicon::ConverterSosi2shp::
-run() {
+run( bool* cancel ) {
     Parser* pp;
-    for( std::vector<std::string>::iterator f = mCmd->mSourceFiles.begin(); f != mCmd->mSourceFiles.end(); f++ ) {
+    bool userAborted = false;
+    for( std::vector<std::string>::iterator f = mCmd->mSourceFiles.begin(); f != mCmd->mSourceFiles.end() && !( cancel && *cancel ); f++ ) {
         mCurrentSourcefile = *f;
         if( !utils::fileExists( mCurrentSourcefile ) ) {
             sosicon::logstream << mCurrentSourcefile << " not found!\n";
@@ -179,6 +188,10 @@ run() {
             int n = 0;
             while( !ifs.eof() ) {
                 if( mCmd->mIsTtyOut && ++n % 1000 == 0 ) {
+                    if( cancel && *cancel ) {
+                        userAborted = true;
+                        break;
+                    }
                     sosicon::logstream << "\rParsing line " << n;
                 }
                 memset( ln, 0x00, sizeof ln );
@@ -187,10 +200,12 @@ run() {
             }
             p.complete();
             ifs.close();
-            sosicon::logstream << "\r" << n << " lines parsed        \n";
-            sosicon::logstream << "Building shape file...\n";
-            ISosiElement* root = p.getRootElement();
-            makeShp( root );
+            if( !userAborted ) {
+                sosicon::logstream << "\r" << n << " lines parsed        \n";
+                sosicon::logstream << "Building shape file...\n";
+                ISosiElement* root = p.getRootElement();
+                makeShp( root, cancel );
+            }
         }
     }
 }

@@ -25,12 +25,16 @@ class MainFrm : public QMainWindow
     QString mShapeFileTitle;
     QString mShapeFilePath;
 
+    bool mCancel;
+    bool mRunFlag;
+
 public:
     explicit MainFrm(QWidget *parent = 0);
     ~MainFrm();
 
 private slots:
     void onRunSosicon();
+    void onCancelSosicon();
     void onQuitSosicon();
     void onAddSosiFile();
     void onConversionChanged( int tabIndex );
@@ -55,7 +59,7 @@ private:
     virtual void dragMoveEvent( QDragMoveEvent *event );
 
 signals:
-    void startConversion( QString cmdStr, QMutex *mutex );
+    void startConversion( QString cmdStr, QMutex *mutex, bool* cancel );
 };
 
 #endif // MAINFRM_H

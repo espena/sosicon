@@ -25,7 +25,7 @@ public:
     virtual void onEvent( sosicon::LogEvent& e, sosicon::EventDispatcher<sosicon::LogEvent>& d );
 
 public slots:
-    void startConversion( QString cmdStr, QMutex *mutex );
+    void startConversion( QString cmdStr, QMutex *mutex, bool *cancel );
 
 signals:
     void logMessage( QString msg, bool update );

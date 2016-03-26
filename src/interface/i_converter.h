@@ -54,8 +54,10 @@ namespace sosicon {
         /*!
             Run the conversion routine. Outputs the destination file accrding to the preferences
             given from the command-line.
+            \param cancel If sosicon runs in a worker thread, this parameter governs whether the
+                   conversion process should be aborted prematurely.
          */
-        virtual void run() = 0;
+        virtual void run( bool* cancel = 0x00 ) = 0;
     };
     /*! @} end group interfaces */
 };

@@ -561,7 +561,7 @@ objTypeExcluded( sosi::SosiElementSearch& src )
 }
 
 void sosicon::ConverterSosi2psql::
-run() {
+run( bool* cancel ) {
 
     mFieldsListCollection[ wkt_point ] = new FieldsList();
     mFieldsListCollection[ wkt_linestring ] = new FieldsList();
