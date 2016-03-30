@@ -96,13 +96,14 @@ parse( int argc, char* argv[] ) {
 
     bool inputExpected = true;
     std::string inputLine = "";
+
     if( !mIsTtyIn ) {
         while( std::cin ) {
             std::cin >> inputLine;
             if( !inputLine.empty() ) {
                 mSourceFiles.push_back( inputLine );
             }
-        }       
+        }
     }
 
     for( int i = 1; i < argc; i++ ) {

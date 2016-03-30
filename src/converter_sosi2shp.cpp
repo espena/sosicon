@@ -172,7 +172,6 @@ makeBasePath( std::string objTypeName ) {
 
 void sosicon::ConverterSosi2shp::
 run( bool* cancel ) {
-    Parser* pp;
     bool userAborted = false;
     for( std::vector<std::string>::iterator f = mCmd->mSourceFiles.begin(); f != mCmd->mSourceFiles.end() && !( cancel && *cancel ); f++ ) {
         mCurrentSourcefile = *f;
@@ -182,7 +181,6 @@ run( bool* cancel ) {
         else {
             sosicon::logstream << "Reading " << mCurrentSourcefile << "\n";
             Parser p;
-            pp = &p;
             char ln[ 1024 ];
             std::ifstream ifs( ( mCurrentSourcefile ).c_str() );
             int n = 0;

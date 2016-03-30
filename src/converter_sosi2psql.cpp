@@ -462,7 +462,7 @@ insertPolygon( ISosiElement* polygon,
     ssHolesCoord << std::fixed;
 
     int offset = 0;
-    ICoordinate* first, * last;
+    ICoordinate* first = 0, * last = 0;
     const std::vector<ICoordinate*>::size_type numPoints = theHoles.size();
     for( std::vector<int>::iterator i = holeSizes.begin(); i != holeSizes.end(); i++ ) {
         ssHolesCoord << ",(";

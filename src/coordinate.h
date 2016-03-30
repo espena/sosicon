@@ -57,6 +57,6 @@ namespace sosicon {
 
     }; // class Coordinate
     
-}; // namespece sosicon
+} // namespece sosicon
 
 #endif

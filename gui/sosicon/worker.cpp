@@ -1,8 +1,13 @@
 #include "worker.h"
+#include <iostream>
+#include <sstream>
 
 void::Worker::
 startConversion( QString cmdStr, QMutex *mutex, bool *cancel ) {
     mutex->lock();
+    std::stringstream ssIn, ssOut;
+    std::streambuf* realCin = std::cin.rdbuf( ssIn.rdbuf() );
+    std::streambuf* realCout = std::cout.rdbuf( ssOut.rdbuf() );
     sosicon::CommandLine cmd;
     cmd.parse( cmdStr.toStdString() );
     sosicon::logstream.addEventListener( this );
@@ -25,6 +30,8 @@ startConversion( QString cmdStr, QMutex *mutex, bool *cancel ) {
     }
     sosicon::logstream.removeEventListener( this );
     emit finished();
+    std::cout.rdbuf( realCout );
+    std::cin.rdbuf( realCin );
     mutex->unlock();
 }
 

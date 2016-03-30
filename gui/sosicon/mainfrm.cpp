@@ -12,6 +12,7 @@
 #include <QFileDialog>
 #include <QFontMetrics>
 #include <QStandardPaths>
+#include <QAbstractItemModel>
 
 MainFrm::MainFrm( QWidget *parent ) :
     QMainWindow( parent ),
@@ -22,11 +23,19 @@ MainFrm::MainFrm( QWidget *parent ) :
     mUi->setupUi( this );
     mUi->txtFileTitle->setValidator( new QRegExpValidator( QRegExp( "^[A-Za-z0-9_\\-]+$" ), this ) );
     setStyleSheet( "QListView { background-color: #fff } QListView { color: #000; } QListView::item:selected { background-color: #ff0; color: #000 }" );
+    connect( mUi->lstSosiFiles->model(), SIGNAL( rowsInserted( const QModelIndex &, int, int ) ), this, SLOT( onSosiFileListChanged() ) );
+    connect( mUi->lstSosiFiles->model(), SIGNAL( rowsRemoved( const QModelIndex &, int, int ) ), this, SLOT( onSosiFileListChanged() ) );
 }
 
 MainFrm::~MainFrm()
 {
     delete mUi;
+}
+
+void MainFrm::
+onSosiFileListChanged()
+{
+    updateAll();
 }
 
 void MainFrm::
@@ -57,7 +66,6 @@ dropEvent( QDropEvent *event )
     }
     if( accepted ) {
         event->acceptProposedAction();
-        updateAll();
     }
 }
 
@@ -149,20 +157,18 @@ onAddSosiFile()
                 tr( "" ),
                 tr( "SOSI files (*.sos)" ) );
     mUi->lstSosiFiles->addItems( files );
-    updateAll();
 }
 
 void MainFrm::
 onFileSelect()
 {
-    updateAll();
+    updateUi();
 }
 
 void MainFrm::
 onFileRemove()
 {
     qDeleteAll( mUi->lstSosiFiles->selectedItems() );
-    updateAll();
 }
 
 void MainFrm::
@@ -231,9 +237,7 @@ updateUi()
     mUi->lblShapefilePath->setText( fm.elidedText( mShapeFilePath, Qt::TextElideMode::ElideMiddle, mUi->lblShapefilePath->width() ) );
     mUi->btnRemove->setEnabled( mUi->lstSosiFiles->selectedItems().count() > 0 );
     mUi->btnClear->setEnabled( mUi->lstSosiFiles->count() > 0 );
-    int n = mUi->lstSosiFiles->count();
-    bool f = ( !mRunFlag ) && mUi->lstSosiFiles->count() > 0;
-    mUi->btnRunSosicon->setEnabled( f );
+    mUi->btnRunSosicon->setEnabled( ( mRunFlag == false ) && ( mUi->lstSosiFiles->item( 0 ) != 0 ) );
 }
 
 void MainFrm::

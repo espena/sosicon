@@ -77,7 +77,7 @@ utf8ToIso8859_1( const char *in ) {
     if ( in == NULL ) {
         return out;
     }
-    unsigned int codepoint;
+    unsigned int codepoint = 0;
     while ( *in != 0 )
     {
         unsigned char ch = static_cast<unsigned char>( *in );

@@ -33,6 +33,7 @@ public:
     ~MainFrm();
 
 private slots:
+    void onSosiFileListChanged();
     void onRunSosicon();
     void onCancelSosicon();
     void onQuitSosicon();
