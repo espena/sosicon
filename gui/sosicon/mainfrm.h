@@ -53,6 +53,7 @@ private:
     void updateAll();
     Ui::MainFrm *mUi;
 
+    virtual void showEvent( QShowEvent *event );
     virtual void dragEnterEvent( QDragEnterEvent *event );
     virtual void dropEvent( QDropEvent *event );
     virtual void dragLeaveEvent( QDragLeaveEvent *event );

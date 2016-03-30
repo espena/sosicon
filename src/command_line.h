@@ -25,7 +25,9 @@
 #include "logger.h"
 
 #ifdef _WIN32
-#define NOMINMAX    // Ugly %#¤&@ Windows-shait!
+#ifndef NOMINMAX
+#define NOMINMAX    // Ugly Windows-shait!
+#endif
 #include <windows.h>
 #include <io.h>
 #define isatty _isatty

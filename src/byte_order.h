@@ -22,7 +22,7 @@
 #pragma warning ( disable: 4244 )
 
 #ifdef _WIN32
-#include "inttypes.h"
+//#include "inttypes.h"
 #else
 #include <inttypes.h>
 #endif

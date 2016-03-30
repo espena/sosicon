@@ -41,19 +41,19 @@ namespace sosicon {
 
     public:
 
-        virtual ~Coordinate() {};
-        Coordinate() {};
-        virtual double getE() { return mEast; };
-        virtual double getN() { return mNorth; };
-        virtual bool leftOf( ICoordinate* c ) { return mEast < c->getE(); };
-        virtual bool rightOf( ICoordinate* c ) { return mEast > c->getE(); };
-        virtual void setE( double coordEast ) { mEast = coordEast; };
-        virtual void setN( double coordNorth ) { mNorth = coordNorth; };
-        virtual void setH( double altitude ) { mAltitude = altitude; };
-        virtual void shift( int offsetN, int offsetE ) { mNorth += offsetN; mEast += offsetE; };
-        virtual void divide( int divisor ) { mNorth /= divisor; mEast /= divisor; };
-        virtual bool equals( ICoordinate* c ) { return mEast == c->getE() && mNorth == c->getN(); };
-        virtual std::string toString() { std::stringstream ss; ss << "POINT( " << std::fixed << mNorth << " " << std::fixed << mEast << " )"; return ss.str(); };
+        virtual ~Coordinate() {}
+        Coordinate() : mEast( 0.0 ), mNorth( 0.0 ), mAltitude( 0.0 ) {}
+        virtual double getE() { return mEast; }
+        virtual double getN() { return mNorth; }
+        virtual bool leftOf( ICoordinate* c ) { return mEast < c->getE(); }
+        virtual bool rightOf( ICoordinate* c ) { return mEast > c->getE(); }
+        virtual void setE( double coordEast ) { mEast = coordEast; }
+        virtual void setN( double coordNorth ) { mNorth = coordNorth; }
+        virtual void setH( double altitude ) { mAltitude = altitude; }
+        virtual void shift( int offsetN, int offsetE ) { mNorth += offsetN; mEast += offsetE; }
+        virtual void divide( int divisor ) { mNorth /= divisor; mEast /= divisor; }
+        virtual bool equals( ICoordinate* c ) { return mEast == c->getE() && mNorth == c->getN(); }
+        virtual std::string toString() { std::stringstream ss; ss << "POINT( " << std::fixed << mNorth << " " << std::fixed << mEast << " )"; return ss.str(); }
 
     }; // class Coordinate
     

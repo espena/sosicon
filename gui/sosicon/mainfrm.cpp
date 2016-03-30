@@ -7,6 +7,7 @@
 #include <QIcon>
 #include <QColor>
 #include <QThread>
+#include <QShowEvent>
 #include <QTextCodec>
 #include <QFileDialog>
 #include <QFontMetrics>
@@ -21,7 +22,6 @@ MainFrm::MainFrm( QWidget *parent ) :
     mUi->setupUi( this );
     mUi->txtFileTitle->setValidator( new QRegExpValidator( QRegExp( "^[A-Za-z0-9_\\-]+$" ), this ) );
     setStyleSheet( "QListView { background-color: #fff } QListView { color: #000; } QListView::item:selected { background-color: #ff0; color: #000 }" );
-    updateAll();
 }
 
 MainFrm::~MainFrm()
@@ -35,6 +35,12 @@ dragEnterEvent( QDragEnterEvent *event )
     if ( event->mimeData()->hasFormat( "text/uri-list" ) ) {
         event->acceptProposedAction();
     }
+}
+
+void MainFrm::
+showEvent( QShowEvent *event )
+{
+    updateAll();
 }
 
 void MainFrm::
@@ -225,7 +231,9 @@ updateUi()
     mUi->lblShapefilePath->setText( fm.elidedText( mShapeFilePath, Qt::TextElideMode::ElideMiddle, mUi->lblShapefilePath->width() ) );
     mUi->btnRemove->setEnabled( mUi->lstSosiFiles->selectedItems().count() > 0 );
     mUi->btnClear->setEnabled( mUi->lstSosiFiles->count() > 0 );
-    mUi->btnRunSosicon->setEnabled( !mRunFlag && mUi->lstSosiFiles->count() > 0 );
+    int n = mUi->lstSosiFiles->count();
+    bool f = ( !mRunFlag ) && mUi->lstSosiFiles->count() > 0;
+    mUi->btnRunSosicon->setEnabled( f );
 }
 
 void MainFrm::

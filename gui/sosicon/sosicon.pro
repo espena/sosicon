@@ -12,7 +12,6 @@ QT       += core gui
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
 CONFIG += c++11
-CONFIG += staticlib
 
 TARGET = sosicon
 TEMPLATE = app
@@ -20,6 +19,7 @@ TEMPLATE = app
 QMAKE_CXXFLAGS_WARN_ON += -Wno-unknown-pragmas
 QMAKE_CXXFLAGS_WARN_ON += -Wno-unused-parameter
 QMAKE_CXXFLAGS_WARN_ON += -Wno-unused-variable
+QMAKE_CXXFLAGS_WARN_ON += -Wno-strict-aliasing
 
 SOURCES += main.cpp\
     ../../src/byte_order.cpp \
@@ -78,7 +78,6 @@ HEADERS  += \
     ../../src/byte_order.h \
     ../../src/shape/shapefile_types.h \
     ../../src/shape/shapefile.h \
-    ../../src/main.h \
     ../../src/interface/i_converter.h \
     ../../src/interface/i_coordinate.h \
     ../../src/interface/i_lookup_table.h \
