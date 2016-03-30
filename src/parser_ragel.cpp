@@ -154,7 +154,7 @@ ragelParseSosiLine( std::string sosiLine )
     const char* eof = pe;
 
     std::string tmpstr;
-    int tmpint;
+    int tmpint = 0;
 
     
 /* #line 161 "parser_ragel.cpp" */
