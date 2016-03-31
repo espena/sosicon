@@ -68,14 +68,6 @@ sosicon::Logger::operator << ( unsigned int v )
 }
 
 sosicon::Logger&
-sosicon::Logger::operator << ( unsigned long v )
-{
-    mMsgStream << v;
-    std::cout << v;
-    return *this;
-}
-
-sosicon::Logger&
 sosicon::Logger::operator << ( int v )
 {
     mMsgStream << v;
