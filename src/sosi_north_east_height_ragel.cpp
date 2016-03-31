@@ -102,10 +102,6 @@ ragelParseCoordinatesNeh( std::string data )
 
  /* Variables used by Ragel */
     int cs = 0;
-    int top = 0;
-    int act = 0;
-    char* ts = 0;
-    char* te = 0;
     const char* s = data.c_str();
     const char* p = s;
     const char* pe = p + data.size();
@@ -117,12 +113,12 @@ ragelParseCoordinatesNeh( std::string data )
     std::string coordH;
 
     
-/* #line 121 "sosi_north_east_height_ragel.cpp" */
+/* #line 117 "sosi_north_east_height_ragel.cpp" */
 	{
 	cs = parseCoordinateCollection_start;
 	}
 
-/* #line 126 "sosi_north_east_height_ragel.cpp" */
+/* #line 122 "sosi_north_east_height_ragel.cpp" */
 	{
 	int _klen;
 	unsigned int _trans;
@@ -197,39 +193,39 @@ _match:
 		switch ( *_acts++ )
 		{
 	case 0:
-/* #line 54 "ragel/sosi_north_east_height.rl" */
+/* #line 50 "ragel/sosi_north_east_height.rl" */
 	{
             tmp += (*p);
         }
 	break;
 	case 1:
-/* #line 58 "ragel/sosi_north_east_height.rl" */
+/* #line 54 "ragel/sosi_north_east_height.rl" */
 	{
             coordN = tmp;
             tmp = "";
         }
 	break;
 	case 2:
-/* #line 63 "ragel/sosi_north_east_height.rl" */
+/* #line 59 "ragel/sosi_north_east_height.rl" */
 	{
             coordE = tmp;
             tmp = "";
         }
 	break;
 	case 3:
-/* #line 68 "ragel/sosi_north_east_height.rl" */
+/* #line 64 "ragel/sosi_north_east_height.rl" */
 	{
             coordH = tmp;
             tmp = "";
         }
 	break;
 	case 4:
-/* #line 73 "ragel/sosi_north_east_height.rl" */
+/* #line 69 "ragel/sosi_north_east_height.rl" */
 	{
             append( coordN, coordE );
         }
 	break;
-/* #line 233 "sosi_north_east_height_ragel.cpp" */
+/* #line 229 "sosi_north_east_height_ragel.cpp" */
 		}
 	}
 
@@ -246,19 +242,19 @@ _again:
 	while ( __nacts-- > 0 ) {
 		switch ( *__acts++ ) {
 	case 3:
-/* #line 68 "ragel/sosi_north_east_height.rl" */
+/* #line 64 "ragel/sosi_north_east_height.rl" */
 	{
             coordH = tmp;
             tmp = "";
         }
 	break;
 	case 4:
-/* #line 73 "ragel/sosi_north_east_height.rl" */
+/* #line 69 "ragel/sosi_north_east_height.rl" */
 	{
             append( coordN, coordE );
         }
 	break;
-/* #line 262 "sosi_north_east_height_ragel.cpp" */
+/* #line 258 "sosi_north_east_height_ragel.cpp" */
 		}
 	}
 	}
@@ -266,7 +262,7 @@ _again:
 	_out: {}
 	}
 
-/* #line 84 "ragel/sosi_north_east_height.rl" */
+/* #line 80 "ragel/sosi_north_east_height.rl" */
 
 
 };

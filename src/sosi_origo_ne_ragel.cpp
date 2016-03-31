@@ -92,10 +92,6 @@ ragelParseSosiOrigoNE( std::string data )
 
  /* Variables used by Ragel */
     int cs = 0;
-    int top = 0;
-    int act = 0;
-    char* ts = 0;
-    char* te = 0;
     const char* s = data.c_str();
     const char* p = s;
     const char* pe = p + data.size();
@@ -104,12 +100,12 @@ ragelParseSosiOrigoNE( std::string data )
     std::string e;
 
     
-/* #line 108 "sosi_origo_ne_ragel.cpp" */
+/* #line 104 "sosi_origo_ne_ragel.cpp" */
 	{
 	cs = parseSosiOrigoNE_start;
 	}
 
-/* #line 113 "sosi_origo_ne_ragel.cpp" */
+/* #line 109 "sosi_origo_ne_ragel.cpp" */
 	{
 	int _klen;
 	unsigned int _trans;
@@ -184,18 +180,18 @@ _match:
 		switch ( *_acts++ )
 		{
 	case 0:
-/* #line 53 "ragel/sosi_origo_ne.rl" */
+/* #line 49 "ragel/sosi_origo_ne.rl" */
 	{
             n += (*p);
         }
 	break;
 	case 1:
-/* #line 57 "ragel/sosi_origo_ne.rl" */
+/* #line 53 "ragel/sosi_origo_ne.rl" */
 	{
             e += (*p);
         }
 	break;
-/* #line 199 "sosi_origo_ne_ragel.cpp" */
+/* #line 195 "sosi_origo_ne_ragel.cpp" */
 		}
 	}
 
@@ -212,7 +208,7 @@ _again:
 	while ( __nacts-- > 0 ) {
 		switch ( *__acts++ ) {
 	case 2:
-/* #line 61 "ragel/sosi_origo_ne.rl" */
+/* #line 57 "ragel/sosi_origo_ne.rl" */
 	{
           std::stringstream ssN, ssE;
             ssN << n;
@@ -221,7 +217,7 @@ _again:
             ssE >> mOrigoE;
         }
 	break;
-/* #line 225 "sosi_origo_ne_ragel.cpp" */
+/* #line 221 "sosi_origo_ne_ragel.cpp" */
 		}
 	}
 	}
@@ -229,7 +225,7 @@ _again:
 	_out: {}
 	}
 
-/* #line 74 "ragel/sosi_origo_ne.rl" */
+/* #line 70 "ragel/sosi_origo_ne.rl" */
 
 
 };
