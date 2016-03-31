@@ -18,8 +18,6 @@
 #ifndef __SHAPEFILE_H__
 #define __SHAPEFILE_H__
 
-#pragma warning ( disable: 4996 )
-
 #include <algorithm>
 #include <ctime>
 #include <string>

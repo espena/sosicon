@@ -55,23 +55,23 @@ namespace sosicon {
             SosiUnit();
 
             //! Destructor
-            virtual ~SosiUnit() { };
+            virtual ~SosiUnit() { }
 
             //! Construct new SOSI Unit element
-            SosiUnit( ISosiElement* e ) { init( e ); };
+            SosiUnit( ISosiElement* e ) { init( e ); }
 
-            int getDivisor() { return mDivisor; };
+            int getDivisor() { return mDivisor; }
 
             //! Initnialize SOSI Unit element
             virtual void init( ISosiElement* e );
 
-            virtual bool initialized() { return mInitialized; };
+            virtual bool initialized() { return mInitialized; }
 
         }; // class SosiUnit
        /*! @} end group sosi_elements */
 
-    }; // namespace sosi
+    } // namespace sosi
 
-}; // namespace sosicon
+} // namespace sosicon
 
 #endif

@@ -18,6 +18,10 @@
 #ifndef __SOSI_CHARSET_SINGLETON_H__
 #define __SOSI_CHARSET_SINGLETON_H__
 
+#ifdef _MSC_VER
+#pragma warning ( disable: 4503 )
+#endif
+
 #include "../interface/i_sosi_element.h"
 #include "../interface/i_sosi_head_member.h"
 #include "sosi_types.h"
@@ -95,7 +99,7 @@ namespace sosicon {
 
             static const unsigned char ( &ND7_TO_ISO8859_1 )[ 256 ] = DECN7_TO_ISO8859_1; // Equivalents
 
-        }; // namespace chartables
+        } // namespace chartables
 
         /*!
             \addtogroup sosi_elements SOSI Elements
@@ -143,19 +147,19 @@ namespace sosicon {
             }
 
             //! Destructor
-            virtual ~SosiCharsetSingleton() { };
+            virtual ~SosiCharsetSingleton() { }
 
             //! Construct new SOSI Charset element
-            SosiCharsetSingleton( ISosiElement* e ) { init( e ); };
+            SosiCharsetSingleton( ISosiElement* e ) { init( e ); }
 
-            Charset getEncoding() { return mCharset; };
+            Charset getEncoding() { return mCharset; }
 
-            std::string getEncodingName() { return mCharsetName; };
+            std::string getEncodingName() { return mCharsetName; }
 
             //! Initialize SOSI Unit element
             virtual void init( ISosiElement* e );
 
-            virtual bool initialized() { return mInitialized; };
+            virtual bool initialized() { return mInitialized; }
 
             //! Convert string to ISO8859-1 (default Ragel charset)
             std::string toIso8859_1( const std::string& str );
@@ -163,8 +167,8 @@ namespace sosicon {
         }; // class SosiCharsetSingleton
        /*! @} end group sosi_elements */
 
-    }; // namespace sosi
+    } // namespace sosi
 
-}; // namespace sosicon
+} // namespace sosicon
 
 #endif

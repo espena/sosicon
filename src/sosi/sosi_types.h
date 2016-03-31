@@ -166,15 +166,15 @@ namespace sosicon {
                       std::string prjString ) : mSysCode( sysCode ),
                                                 mSrid( srid ),
                                                 mPrjString( prjString ),
-                                                mDisplayString( displayString )  {};
+                                                mDisplayString( displayString )  {}
 
-            std::string displayString() { return mDisplayString; };
+            std::string displayString() { return mDisplayString; }
 
-            std::string prjString() { return mPrjString; };
+            std::string prjString() { return mPrjString; }
 
-            std::string srid() { return mSrid; };
+            std::string srid() { return mSrid; }
 
-            bool valid() { return mSysCode != 0; };
+            bool valid() { return mSysCode != 0; }
 
         };
 
@@ -186,8 +186,8 @@ namespace sosicon {
 
        /*! @} end group sosi_elements */
 
-    }; // namespace sosi
+    } // namespace sosi
 
-}; // namespace sosicon
+} // namespace sosicon
 
 #endif
