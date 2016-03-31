@@ -47,7 +47,7 @@ dragEnterEvent( QDragEnterEvent *event )
 }
 
 void MainFrm::
-showEvent( QShowEvent *event )
+showEvent( QShowEvent* )
 {
     updateAll();
 }
@@ -136,7 +136,7 @@ onQuitSosicon()
 }
 
 void MainFrm::
-onConversionChanged( int tabIndex )
+onConversionChanged( int )
 {
     updateAll();
 }

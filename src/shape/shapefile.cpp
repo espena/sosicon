@@ -390,7 +390,6 @@ buildDbfRecordSection( int& pos, int recLen ) {
         catch( ... ) {
             sosicon::logstream << "Memory allocation error\n";
         }
-        int recNumber = 0;
         int fldOffset = 0;
         recordBuffer[ fldOffset++ ] = 0x20; // Record deleted flag
         DbfRecord& rec = *i;
@@ -497,7 +496,6 @@ extractDbfFields( ISosiElement* sosi, DbfRecord& rec ) {
     std::string data;
     ISosiElement* child = 0;
     sosi::SosiElementSearch src;
-    std::vector<ISosiElement*>& children = sosi->children();
 
     while( sosi->getChild( src ) ) {
         child = src.element();
@@ -564,7 +562,6 @@ writePrj( std::ostream &os ) {
     sosi::SosiElementSearch srcHeader( sosi::sosi_element_head );
     sosi::SosiElementSearch srcTranspar( sosi::sosi_element_transpar );
     sosi::SosiElementSearch srcKoordsys( sosi::sosi_element_coordsys );
-    ISosiElement* coordSys = 0;
     if( mSosiTree && 
         mSosiTree->getChild( srcHeader ) &&
         srcHeader.element()->getChild( srcTranspar ) &&

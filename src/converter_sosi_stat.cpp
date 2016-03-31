@@ -74,7 +74,7 @@ printTableHeader( std::string col1, std::string col2, int padding ) {
 }
 
 void sosicon::ConverterSosiStat::
-run( bool* cancel ) {
+run( bool* ) {
     for( std::vector<std::string>::iterator f = mCmd->mSourceFiles.begin(); f != mCmd->mSourceFiles.end(); f++ ) {
         sosicon::logstream << "\nGenerating statistics for " << *f << "\n";
         Parser p;

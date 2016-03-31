@@ -463,7 +463,6 @@ insertPolygon( ISosiElement* polygon,
 
     int offset = 0;
     ICoordinate* first = 0, * last = 0;
-    const std::vector<ICoordinate*>::size_type numPoints = theHoles.size();
     for( std::vector<int>::iterator i = holeSizes.begin(); i != holeSizes.end(); i++ ) {
         ssHolesCoord << ",(";
         for( int j = 0; j < *i; j++ ) {
@@ -561,7 +560,7 @@ objTypeExcluded( sosi::SosiElementSearch& src )
 }
 
 void sosicon::ConverterSosi2psql::
-run( bool* cancel ) {
+run( bool* ) {
 
     mFieldsListCollection[ wkt_point ] = new FieldsList();
     mFieldsListCollection[ wkt_linestring ] = new FieldsList();

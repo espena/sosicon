@@ -18,6 +18,6 @@
 #include "converter_sosi2tsv.h"
 
 void sosicon::ConverterSosi2tsv::
-run( bool* cancel ) {
+run( bool* ) {
 
 }

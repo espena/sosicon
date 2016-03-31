@@ -18,12 +18,12 @@
 #include "converter_sosi2xml.h"
 
 void sosicon::ConverterSosi2xml::
-makeXML( ISosiElement* parent ) {
+makeXML( ISosiElement* ) {
 
 }
 
 void sosicon::ConverterSosi2xml::
-run( bool* cancel ) {
+run( bool* ) {
     for( std::vector<std::string>::iterator f = mCmd->mSourceFiles.begin(); f != mCmd->mSourceFiles.end(); f++ ) {
         Parser p;
         char ln[ 1024 ];

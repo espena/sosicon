@@ -164,7 +164,6 @@ extractPath( ISosiElement* referencedElement,
              sosi::NorthEastList& target ) {
 
     sosi::SosiElementSearch  src( sosi::sosi_element_ne );
-    sosi::ElementType type = referencedElement->getType();
     std::string obj = referencedElement->getObjType();
     sosi::NorthEastList tmpLst;
 

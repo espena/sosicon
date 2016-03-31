@@ -38,6 +38,6 @@ startConversion( QString cmdStr, QMutex *mutex, bool *cancel ) {
 }
 
 void Worker::
-onEvent( sosicon::LogEvent& e, sosicon::EventDispatcher<sosicon::LogEvent>& d ) {
+onEvent( sosicon::LogEvent& e, sosicon::EventDispatcher<sosicon::LogEvent>& ) {
     emit logMessage( QString::fromLatin1( e.mMessage.c_str() ), e.mUpdate );
 }

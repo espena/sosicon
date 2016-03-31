@@ -33,7 +33,6 @@ sosicon::Parser::
 void sosicon::Parser::
 digestPendingElement() {
     ISosiElement* previousElement = mElementStack.back();
-    int previousLevel = previousElement->getLevel();
     if( mPendingElementLevel > 0 ) {
 
         while( mElementStack.back()->getLevel() >= mPendingElementLevel ) {
