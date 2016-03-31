@@ -52,6 +52,14 @@ sosicon::Logger::operator << ( std::string v )
 }
 
 sosicon::Logger&
+sosicon::Logger::operator << ( std::string::size_type v )
+{
+    mMsgStream << v;
+    std::cout << v;
+    return *this;
+}
+
+sosicon::Logger&
 sosicon::Logger::operator << ( unsigned int v )
 {
     mMsgStream << v;

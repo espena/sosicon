@@ -47,6 +47,7 @@ namespace sosicon {
         Logger& operator << ( unsigned long v );
         Logger& operator << ( int v );
         Logger& operator << ( long v );
+        Logger& operator << ( std::string::size_type v );
         Logger& operator << ( Logger& ( *func ) ( Logger& ) );
 
         void addEventListener( LogEventDispatcher::Listener *listener ) { mLogEventDispatcher.addEventListener( listener ); }

@@ -353,8 +353,8 @@ buildDbfHeader( int recLen ) {
     Int16Field headerLength;
     Int16Field recordLength = { static_cast<uint16_t>( recLen ) };
     headerLength.i =
-        /* Fixed header size       */   sizeof( mDbfHeader ) +
-        /* Field description array */ ( mDbfFieldLengths.size() * 32 ) +
+        /* Fixed header size       */   static_cast< uint16_t >( sizeof( mDbfHeader ) ) +
+        /* Field description array */ ( static_cast< uint16_t >( mDbfFieldLengths.size() ) * 32 ) +
         /* Terminator              */   1;
 
     time_t rawTime;
@@ -362,7 +362,7 @@ buildDbfHeader( int recLen ) {
     time( &rawTime );
     timeInfo = localtime( &rawTime );
     Int32Field numRecords;
-    numRecords.i = mDbfRecordSet.size();
+    numRecords.i = static_cast< uint32_t > ( mDbfRecordSet.size() );
 
     mDbfHeader[  0 ] = 0x03;                         // Version number
     mDbfHeader[  1 ] = char( timeInfo->tm_year );    // Year of last update
@@ -427,7 +427,7 @@ buildShx() {
     }
 
     Int32Field fileLength;
-    fileLength.i = ( sizeof( mShxHeader ) + mShxBufferSize ) / 2;
+    fileLength.i = static_cast< uint32_t >( sizeof( mShxHeader ) + mShxBufferSize ) / 2;
     std::copy( &mShpHeader[ 0 ], &mShpHeader[ 99 ], mShxHeader );
     byteOrder::toBigEndian( fileLength.b,   &mShxHeader[ 24 ], 4 );
     int pos = 0;
@@ -443,7 +443,7 @@ int sosicon::shape::Shapefile::
 expandShpBuffer( int byteLen ) {
 
     int offset = 0;
-    int chunkSize = 0;
+    size_t chunkSize = 0;
 
     if( 0 == mShpBufferSize ) {
         chunkSize = 1024;
@@ -528,7 +528,7 @@ insertShxOffset( int contentLen ) {
 
 void sosicon::shape::Shapefile::
 saveToDbf( DbfRecord& rec, std::string field, std::string data ) {
-    int length = data.size();
+    int length = static_cast< int >( data.size() );
     if( !data.empty() && length < 254 ) {
         if( mDbfFieldLengths.find( field ) != mDbfFieldLengths.end() ) {
             mDbfFieldLengths[ field ] = std::max( mDbfFieldLengths[ field ], length );

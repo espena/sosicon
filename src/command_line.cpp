@@ -63,7 +63,7 @@ void sosicon::CommandLine::
 parse( std::string cmdStr ) {
     cmdStr += " ";
     static char buf[ 4096 ];
-    unsigned int n = cmdStr.length();
+    std::string::size_type n = cmdStr.length();
     if( n < sizeof( buf ) ) {
         strcpy( buf, cmdStr.c_str() );
         unsigned int i = 0, argc = 0;

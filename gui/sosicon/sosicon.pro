@@ -12,14 +12,15 @@ QT       += core gui
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
 CONFIG += c++11
+CONFIG += no_batch
 
 TARGET = sosicon
-TEMPLATE = app
+#TEMPLATE = app
 
-QMAKE_CXXFLAGS_WARN_ON += -Wno-unknown-pragmas
-QMAKE_CXXFLAGS_WARN_ON += -Wno-unused-parameter
-QMAKE_CXXFLAGS_WARN_ON += -Wno-unused-variable
-QMAKE_CXXFLAGS_WARN_ON += -Wno-strict-aliasing
+#QMAKE_CXXFLAGS_WARN_ON += -Wno-unknown-pragmas
+#QMAKE_CXXFLAGS_WARN_ON += -Wno-unused-parameter
+#QMAKE_CXXFLAGS_WARN_ON += -Wno-unused-variable
+#QMAKE_CXXFLAGS_WARN_ON += -Wno-strict-aliasing
 
 SOURCES += main.cpp\
     ../../src/byte_order.cpp \

@@ -18,9 +18,6 @@
 #ifndef __BYTE_ORDER_H__
 #define __BYTE_ORDER_H__
 
-#pragma warning ( disable: 4996 )
-#pragma warning ( disable: 4244 )
-
 #ifdef _WIN32
 //#include "inttypes.h"
 #else

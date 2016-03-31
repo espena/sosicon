@@ -71,15 +71,15 @@ namespace sosicon {
             char mShpHeader[ 100 ];    //!< Main SHP file header
             char* mShpBuffer;          //!< SHP file payload
             int mShpSize;              //!< Data length of SHP file buffer
-            int mShpBufferSize;        //!< Allocated buffer length
+            size_t mShpBufferSize;     //!< Allocated buffer length
 
             char mShxHeader[ 100 ];    //!< Index file header
             char* mShxBuffer;          //!< Index file payload
-            int mShxBufferSize;        //!< Length of SHX file buffer
+            size_t mShxBufferSize;     //!< Length of SHX file buffer
 
             char mDbfHeader[ 32 ];     //!< dBase file header
             char* mDbfBuffer;          //!< dBase file payload
-            int mDbfBufferSize;        //!< Length of dBase file buffer
+            size_t mDbfBufferSize;     //!< Length of dBase file buffer
 
             int mRecordNumber;         //!< Number of current record in process
 

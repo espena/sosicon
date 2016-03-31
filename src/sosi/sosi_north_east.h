@@ -99,10 +99,10 @@ namespace sosicon {
             bool getNext( ICoordinate*& coord );
 
             //* Get number of points in current segment
-            int getNumPoints() { return mCoordinates.size(); };
+            int getNumPoints() { return static_cast< int >( mCoordinates.size() ); }
 
             //! Reverse polygon (point order)
-            void reverse() { std::reverse( mCoordinates.begin(), mCoordinates.end() ); };
+            void reverse() { std::reverse( mCoordinates.begin(), mCoordinates.end() ); }
 
             SosiNorthEast& operator+= ( SosiOrigoNE& origo );
 

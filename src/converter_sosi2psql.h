@@ -18,7 +18,7 @@
 #ifndef __CONVERTER_SOSI2PSQL_H__
 #define __CONVERTER_SOSI2PSQL_H__
 
-#pragma warning(disable:4503)
+//#pragma warning(disable:4503)
 
 #include "logger.h"
 #include <fstream>

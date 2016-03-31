@@ -2,6 +2,11 @@
 #include <QApplication>
 #include <memory>
 
+#pragma warning ( disable: 4996 )
+#pragma warning ( disable: 4244 )
+#pragma warning ( disable: 4189 )
+#pragma warning ( disable: 4 )
+
 int main( int argc, char *argv[] )
 {
     QApplication app( argc, argv );

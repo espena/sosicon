@@ -95,7 +95,7 @@ doubleToLittleEndian( double from, char* to ) {
         data[ i ] = fraction & 0xff;
         fraction >>= 8;
     }
-    data[ 6 ] = ( exponent << 4 ) | fraction;
+    data[ 6 ] = ( exponent << 4 ) | static_cast< uint8_t >( fraction );
     data[ 7 ] = ( sign << 7 ) | ( exponent >> 4 );
     double result = * ( double* ) &data;
     if( result != from && ( std::isnan( from ) != std::isnan( result ) ) ) {
