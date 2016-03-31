@@ -92,14 +92,14 @@ ragelParseSosiRef( std::string data )
 
  /* Variables used by Ragel */
     int cs = 0;
-    int top = 0;
-    int act = 0;
-    char* ts = 0;
-    char* te = 0;
+    //int top = 0;
+    //int act = 0;
+    //char* ts = 0;
+    //char* te = 0;
     const char* s = data.c_str();
     const char* p = s;
     const char* pe = p + data.size();
-    const char* eof = pe;
+    //const char* eof = pe;
 
     std::string tmpstr;
 
