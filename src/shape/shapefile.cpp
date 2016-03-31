@@ -456,7 +456,7 @@ expandShpBuffer( int byteLen ) {
 
     if( 0 == mShpSize ) {
         mShpSize = byteLen;
-        while( mShpBufferSize < mShpSize ) {
+        while( mShpBufferSize < static_cast< size_t >( mShpSize ) ) {
             mShpBufferSize += chunkSize;
         }
         try {
@@ -470,8 +470,8 @@ expandShpBuffer( int byteLen ) {
     else {
         offset = mShpSize;
         mShpSize += byteLen;
-        if( mShpBufferSize < mShpSize ) {
-            while( mShpBufferSize < mShpSize ) {
+        if( mShpBufferSize < static_cast< size_t >( mShpSize ) ) {
+            while( mShpBufferSize < static_cast< size_t >( mShpSize ) ) {
                 mShpBufferSize += chunkSize;
             }
             char* oldBuffer = mShpBuffer;

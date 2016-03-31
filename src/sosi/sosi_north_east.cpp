@@ -19,7 +19,6 @@
 
 void sosicon::sosi::
 deleteNorthEasts( NorthEastList& lst ) {
-    static int n = 0;
     for( NorthEastList::iterator i = lst.begin(); i != lst.end(); i++ ) {
         ( *i )->free();
         delete *i;

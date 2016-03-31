@@ -519,7 +519,7 @@ insertPolygon( ISosiElement* polygon,
 void sosicon::ConverterSosi2psql::
 makePsql( ISosiElement* sosiTree,
           std::string sridDest,
-          std::string dbSchema,
+          std::string,
           std::string dbTable ) {
 
     std::string sridSource = getSrid( sosiTree );
