@@ -25,17 +25,7 @@ sosicon::Logger::operator << ( std::string v )
 {
     static bool updateable = false;
     std::cout << v.c_str();
-    if( v.find( "\n", 0 ) != std::string::npos ) {
-        mMsgStream << v;
-        updateable = false;
-        std::string msgStr = sosicon::utils::purgeCrLf( sosicon::utils::trim( sosi::SosiCharsetSingleton::getInstance()->toIso8859_1( mMsgStream.str() ) ) );
-        if( !msgStr.empty() ) {
-            LogEvent e( msgStr, updateable );
-            mLogEventDispatcher.EventDispatcher<LogEvent>::Dispatch( e );
-        }
-        mMsgStream.str( std::string() );
-    }
-    else if( v.find( "\r", 0 ) != std::string::npos ) {
+    if( v.find( "\r", 0 ) != std::string::npos ) {
         std::string msgStr = sosicon::utils::purgeCrLf( sosicon::utils::trim( sosi::SosiCharsetSingleton::getInstance()->toIso8859_1( mMsgStream.str() ) ) );
         if( !msgStr.empty() ) {
             LogEvent e( sosicon::utils::purgeCrLf( mMsgStream.str() ), updateable );
@@ -44,6 +34,16 @@ sosicon::Logger::operator << ( std::string v )
             mMsgStream << sosicon::utils::purgeCrLf( v );
             mLogEventDispatcher.EventDispatcher<LogEvent>::Dispatch( e );
         }
+    }
+    else if( v.find( "\n", 0 ) != std::string::npos ) {
+        mMsgStream << v;
+        updateable = false;
+        std::string msgStr = sosicon::utils::purgeCrLf( sosicon::utils::trim( sosi::SosiCharsetSingleton::getInstance()->toIso8859_1( mMsgStream.str() ) ) );
+        if( !msgStr.empty() ) {
+            LogEvent e( msgStr, updateable );
+            mLogEventDispatcher.EventDispatcher<LogEvent>::Dispatch( e );
+        }
+        mMsgStream.str( std::string() );
     }
     else {
         mMsgStream << v;

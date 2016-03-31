@@ -185,7 +185,7 @@ run( bool* cancel ) {
             std::ifstream ifs( ( mCurrentSourcefile ).c_str() );
             int n = 0;
             while( !ifs.eof() ) {
-                if( mCmd->mIsTtyOut && ++n % 1000 == 0 ) {
+                if( ++n % 100 == 0 ) {
                     if( cancel && *cancel ) {
                         userAborted = true;
                         break;

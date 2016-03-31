@@ -5,6 +5,8 @@
 void::Worker::
 startConversion( QString cmdStr, QMutex *mutex, bool *cancel ) {
     mutex->lock();
+    // Redirect std input/output away from the default
+    // (terminal) to prevent blocking calls to std::cin.
     std::stringstream ssIn, ssOut;
     std::streambuf* realCin = std::cin.rdbuf( ssIn.rdbuf() );
     std::streambuf* realCout = std::cout.rdbuf( ssOut.rdbuf() );
