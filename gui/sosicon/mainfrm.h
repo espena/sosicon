@@ -10,6 +10,8 @@
 #include <QUrl>
 #include <QMimeData>
 #include <QMutex>
+#include <QString>
+#include <QStringList>
 #include <memory>
 #include "../../src/log_event.h"
 
@@ -54,6 +56,8 @@ private:
     void updateUi();
     void updateCommandLine();
     void updateAll();
+    void addSosiFile( QString filename );
+    void addSosiFiles( QStringList filename );
     Ui::MainFrm *mUi;
 
     virtual void showEvent( QShowEvent *event );

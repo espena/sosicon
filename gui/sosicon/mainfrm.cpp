@@ -44,6 +44,21 @@ MainFrm::~MainFrm()
 }
 
 void MainFrm::
+addSosiFiles( QStringList filenames ) {
+    for( QStringList::iterator i = filenames.begin(); i != filenames.end(); i++ ) {
+        addSosiFile( *i );
+    }
+}
+
+void MainFrm::
+addSosiFile( QString filename )
+{
+    if( mUi->lstSosiFiles->findItems( filename, Qt::MatchFixedString ).count() == 0 ) {
+        mUi->lstSosiFiles->addItem( filename );
+    }
+}
+
+void MainFrm::
 onSosiFileListChanged()
 {
     updateAll();
@@ -69,9 +84,9 @@ dropEvent( QDropEvent *event )
     bool accepted;
     QList<QUrl> urls = event->mimeData()->urls();
     for( QList<QUrl>::iterator i = urls.begin(); i != urls.end(); i++ ) {
-        QString fileName = ( *i ).toLocalFile();
-        if ( fileName.endsWith( ".sos", Qt::CaseInsensitive ) ) {
-            mUi->lstSosiFiles->addItem( fileName );
+        QString filename = ( *i ).toLocalFile();
+        if ( filename.endsWith( ".sos", Qt::CaseInsensitive ) ) {
+            addSosiFile( filename );
             accepted = true;
         }
     }
@@ -179,7 +194,7 @@ onAddSosiFile()
                 tr( "Select SOSI files" ),
                 tr( "" ),
                 tr( "SOSI files (*.sos)" ) );
-    mUi->lstSosiFiles->addItems( files );
+    addSosiFiles( files );
 }
 
 void MainFrm::
