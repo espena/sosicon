@@ -1,5 +1,5 @@
 
-/* #line 1 "ragel/sosi_origo_ne.rl" */
+/* #line 1 "D:\\Prosjekter\\sosicon\\src\\ragel\\sosi_origo_ne.rl" */
 /*
  *  This file is part of the command-line tool sosicon.
  *  Copyright (C) 2014  Espen Andersen, Norwegian Broadcast Corporation (NRK)
@@ -24,7 +24,7 @@ namespace sosicon {
 
     //! \cond 
     
-/* #line 28 "sosi_origo_ne_ragel.cpp" */
+/* #line 2 "D:\\Prosjekter\\sosicon\\src\\sosi_origo_ne_ragel.cpp" */
 static const char _parseSosiOrigoNE_actions[] = {
 	0, 1, 0, 1, 1, 1, 2
 };
@@ -78,7 +78,7 @@ static const int parseSosiOrigoNE_error = 0;
 static const int parseSosiOrigoNE_en_main = 1;
 
 
-/* #line 27 "ragel/sosi_origo_ne.rl" */
+/* #line 27 "D:\\Prosjekter\\sosicon\\src\\ragel\\sosi_origo_ne.rl" */
 
     //! \endcond
 
@@ -100,12 +100,12 @@ ragelParseSosiOrigoNE( std::string data )
     std::string e;
 
     
-/* #line 104 "sosi_origo_ne_ragel.cpp" */
+/* #line 54 "D:\\Prosjekter\\sosicon\\src\\sosi_origo_ne_ragel.cpp" */
 	{
 	cs = parseSosiOrigoNE_start;
 	}
 
-/* #line 109 "sosi_origo_ne_ragel.cpp" */
+/* #line 57 "D:\\Prosjekter\\sosicon\\src\\sosi_origo_ne_ragel.cpp" */
 	{
 	int _klen;
 	unsigned int _trans;
@@ -136,7 +136,7 @@ _resume:
 			else if ( (*p) > *_mid )
 				_lower = _mid + 1;
 			else {
-				_trans += (unsigned int)(_mid - _keys);
+				_trans += (_mid - _keys);
 				goto _match;
 			}
 		}
@@ -159,7 +159,7 @@ _resume:
 			else if ( (*p) > _mid[1] )
 				_lower = _mid + 2;
 			else {
-				_trans += (unsigned int)((_mid - _keys)>>1);
+				_trans += ((_mid - _keys)>>1);
 				goto _match;
 			}
 		}
@@ -180,18 +180,18 @@ _match:
 		switch ( *_acts++ )
 		{
 	case 0:
-/* #line 49 "ragel/sosi_origo_ne.rl" */
+/* #line 49 "D:\\Prosjekter\\sosicon\\src\\ragel\\sosi_origo_ne.rl" */
 	{
             n += (*p);
         }
 	break;
 	case 1:
-/* #line 53 "ragel/sosi_origo_ne.rl" */
+/* #line 53 "D:\\Prosjekter\\sosicon\\src\\ragel\\sosi_origo_ne.rl" */
 	{
             e += (*p);
         }
 	break;
-/* #line 195 "sosi_origo_ne_ragel.cpp" */
+/* #line 140 "D:\\Prosjekter\\sosicon\\src\\sosi_origo_ne_ragel.cpp" */
 		}
 	}
 
@@ -208,7 +208,7 @@ _again:
 	while ( __nacts-- > 0 ) {
 		switch ( *__acts++ ) {
 	case 2:
-/* #line 57 "ragel/sosi_origo_ne.rl" */
+/* #line 57 "D:\\Prosjekter\\sosicon\\src\\ragel\\sosi_origo_ne.rl" */
 	{
           std::stringstream ssN, ssE;
             ssN << n;
@@ -217,7 +217,7 @@ _again:
             ssE >> mOrigoE;
         }
 	break;
-/* #line 221 "sosi_origo_ne_ragel.cpp" */
+/* #line 164 "D:\\Prosjekter\\sosicon\\src\\sosi_origo_ne_ragel.cpp" */
 		}
 	}
 	}
@@ -225,7 +225,7 @@ _again:
 	_out: {}
 	}
 
-/* #line 70 "ragel/sosi_origo_ne.rl" */
+/* #line 70 "D:\\Prosjekter\\sosicon\\src\\ragel\\sosi_origo_ne.rl" */
 
 
 };
