@@ -18,9 +18,9 @@
 
 MainFrm::MainFrm( QWidget *parent ) :
     QMainWindow( parent ),
-    mUi( new Ui::MainFrm ),
+    mCancel( false ),
     mRunFlag( false ),
-    mCancel( false )
+    mUi( new Ui::MainFrm )
 {
     mUi->setupUi(this);
     setWindowIcon( windowIcon() );
