@@ -43,7 +43,6 @@ namespace sosicon {
     public:
 
         Logger& operator << ( std::string v );
-        Logger& operator << ( unsigned int v );
         Logger& operator << ( int v );
         Logger& operator << ( long v );
         Logger& operator << ( std::string::size_type v );

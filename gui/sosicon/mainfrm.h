@@ -23,7 +23,8 @@ class MainFrm : public QMainWindow
 
     QMutex mMutex;
     QString mShapeFileTitle;
-    QString mShapeFilePath;
+    QString mShapeDirPath;
+    QString mPostGisFilePath;
 
     bool mCancel;
     bool mRunFlag;
@@ -44,6 +45,7 @@ private slots:
     void onFileClear();
     void onLogMessage( QString msg, bool update );
     void onShapefileBrowse();
+    void onPostGisBrowse();
     void onCreateSubdirChanged();
     void onUseFileTitleChanged();
     void onFileTitleChanged();

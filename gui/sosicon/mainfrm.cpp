@@ -4,8 +4,10 @@
 #include "worker.h"
 #include "MainFrm.h"
 #include "ui_MainFrm.h"
+#include <QSettings>
 #include <QIcon>
 #include <QColor>
+#include <QFileInfo>
 #include <QThread>
 #include <QShowEvent>
 #include <QTextCodec>
@@ -16,7 +18,9 @@
 
 MainFrm::MainFrm( QWidget *parent ) :
     QMainWindow( parent ),
-    mUi( new Ui::MainFrm )
+    mUi( new Ui::MainFrm ),
+    mRunFlag( false ),
+    mCancel( false )
 {
     mUi->setupUi(this);
     setWindowIcon( windowIcon() );
@@ -25,10 +29,17 @@ MainFrm::MainFrm( QWidget *parent ) :
     setStyleSheet( "QListView { background-color: #fff } QListView { color: #000; } QListView::item:selected { background-color: #ff0; color: #000 }" );
     connect( mUi->lstSosiFiles->model(), SIGNAL( rowsInserted( const QModelIndex &, int, int ) ), this, SLOT( onSosiFileListChanged() ) );
     connect( mUi->lstSosiFiles->model(), SIGNAL( rowsRemoved( const QModelIndex &, int, int ) ), this, SLOT( onSosiFileListChanged() ) );
+    QSettings settings( "sosicon.espenandersen.no", "Sosicon" );
+    QString docPath = QStandardPaths::writableLocation( QStandardPaths::DocumentsLocation );
+    mShapeDirPath = settings.value( "mru_path_shapefile", docPath ).toString();
+    mPostGisFilePath = settings.value( "mru_path_postgis", docPath + "/postgis_dump.sql" ).toString();
 }
 
 MainFrm::~MainFrm()
 {
+    QSettings settings( "sosicon.espenandersen.no", "Sosicon" );
+    settings.setValue( "mru_path_shapefile", mUi->lblShapefilePath->text() );
+    settings.setValue( "mru_path_postgis", mUi->lblPostGisPath->text() );
     delete mUi;
 }
 
@@ -117,9 +128,21 @@ onRunSosicon()
 void MainFrm::
 onShapefileBrowse()
 {
-    QString dir = QFileDialog::getExistingDirectory( this, "Select destination directory", mShapeFilePath );
+    QString dir = QFileDialog::getExistingDirectory( this, "Select destination directory", mShapeDirPath );
     if( !dir.isEmpty() ) {
-        mShapeFilePath = dir;
+        mShapeDirPath = dir;
+        updateAll();
+    }
+}
+
+void MainFrm::
+onPostGisBrowse()
+{
+    QFileDialog dlg( this );
+    dlg.setDefaultSuffix( "sql" );
+    QString file = dlg.getSaveFileName( this, "Select output file", QFileInfo( mPostGisFilePath ).path(), "PostgreSQL files (*.sql *.dump)" );
+    if( !file.isEmpty() ) {
+        mPostGisFilePath = file;
         updateAll();
     }
 }
@@ -231,13 +254,17 @@ updateUi()
         mShapeFileTitle = "sosi_export";
     }
     mUi->txtFileTitle->setEnabled( mUi->chkFileTitle->checkState() == Qt::Checked );
-    if( mShapeFilePath.isEmpty() ) {
-        mShapeFilePath = QStandardPaths::writableLocation( QStandardPaths::DocumentsLocation );
+    if( mShapeDirPath.isEmpty() ) {
+        mShapeDirPath = QStandardPaths::writableLocation( QStandardPaths::DocumentsLocation );
     }
-    mUi->lblShapefilePath->setText( fm.elidedText( mShapeFilePath, Qt::TextElideMode::ElideMiddle, mUi->lblShapefilePath->width() ) );
+    mUi->lblShapefilePath->setText( fm.elidedText( mShapeDirPath, Qt::TextElideMode::ElideMiddle, mUi->lblShapefilePath->width() ) );
+    if( mPostGisFilePath.isEmpty() ) {
+        mPostGisFilePath = QStandardPaths::writableLocation( QStandardPaths::DocumentsLocation ) + "/postgis_dump.sql";
+    }
+    mUi->lblPostGisPath->setText( fm.elidedText( mPostGisFilePath, Qt::TextElideMode::ElideMiddle, mUi->lblPostGisPath->width() ) );
     mUi->btnRemove->setEnabled( mUi->lstSosiFiles->selectedItems().count() > 0 );
     mUi->btnClear->setEnabled( mUi->lstSosiFiles->count() > 0 );
-    mUi->btnRunSosicon->setEnabled( ( mRunFlag == false ) && ( mUi->lstSosiFiles->item( 0 ) != 0 ) );
+    mUi->btnRunSosicon->setEnabled( ( mRunFlag == false ) && ( mUi->lstSosiFiles->count() > 0 ) );
 }
 
 void MainFrm::
@@ -252,15 +279,15 @@ updateCommandLine()
     }
 
     if( conversion == "PostGIS" ) {
-        action = "-2psql ";
+        action = "-2psql -o " + mPostGisFilePath + " ";
     }
     else if( conversion == "Shapefile" ) {
         action = "-2shp ";
         if( mUi->chkFileTitle->checkState() == Qt::Checked ) {
-            options = "-o \"" + mShapeFilePath + "/" + mShapeFileTitle  + ".shp\" ";
+            options = "-o \"" + mShapeDirPath + "/" + mShapeFileTitle  + ".shp\" ";
         }
         else {
-            options = "-d \"" + mShapeFilePath + "\" ";
+            options = "-d \"" + mShapeDirPath + "\" ";
         }
         if( mUi->chkCreateSubdir->checkState() == Qt::Checked ) {
             options += "-s ";

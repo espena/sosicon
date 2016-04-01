@@ -14,7 +14,7 @@
    <bool>true</bool>
   </property>
   <property name="windowTitle">
-   <string>MainWindow</string>
+   <string>SOSI File Converter</string>
   </property>
   <widget class="QWidget" name="centralwidget">
    <layout class="QVBoxLayout" name="verticalLayout_8">
@@ -29,7 +29,7 @@
       <item>
        <layout class="QHBoxLayout" name="horizontalLayout_3">
         <property name="spacing">
-         <number>-1</number>
+         <number>6</number>
         </property>
         <property name="leftMargin">
          <number>0</number>
@@ -420,7 +420,7 @@
                     </size>
                    </property>
                    <property name="text">
-                    <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Destination directory&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                    <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Output file:&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
                    </property>
                   </widget>
                  </item>
@@ -597,7 +597,7 @@
      <x>0</x>
      <y>0</y>
      <width>737</width>
-     <height>22</height>
+     <height>18</height>
     </rect>
    </property>
    <widget class="QMenu" name="menuFile">
@@ -780,6 +780,22 @@
     <hint type="sourcelabel">
      <x>458</x>
      <y>507</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>368</x>
+     <y>330</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>btnPostGisBrowse</sender>
+   <signal>clicked()</signal>
+   <receiver>MainFrm</receiver>
+   <slot>onPostGisBrowse()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>410</x>
+     <y>141</y>
     </hint>
     <hint type="destinationlabel">
      <x>368</x>

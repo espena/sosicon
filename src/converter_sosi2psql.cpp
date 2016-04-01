@@ -227,9 +227,6 @@ buildInsertStatement( Wkt wktGeom,
 
 void sosicon::ConverterSosi2psql::
 cleanup() {
-  // Not really necesary if the program is about to exit anyway,
-  // but I'll leave it in for the future. However, the clean-up
-  // process may get VERY slow.
     sosicon::logstream << "    > Clean-up...\n";
     cleanup( wkt_point );
     cleanup( wkt_linestring );
@@ -592,10 +589,10 @@ run( bool* ) {
             std::ifstream ifs( mCurrentSourcefile.c_str() );
             int n = 0;
             while( !ifs.eof() ) {
-                if( mCmd->mIsTtyOut && ++n % 100 == 0 ) {
+                if( ++n % 100 == 0 ) {
                     sosicon::logstream << "\rParsing line " << n;
                 }
-                memset( ln, 0x00, sizeof ln );
+               memset( ln, 0x00, sizeof ln );
                 ifs.getline( ln, sizeof ln );
                 p.ragelParseSosiLine( ln );
             }
