@@ -122,7 +122,7 @@ file in Visual Studio (Express) 2013 and build the project from there.
 
 ###GUI version
 The source code for the GUI version is located in [gui/sosicon](https://github.com/espena/sosicon/tree/master/gui/sosicon).
-Download and install [Qt](http://qt.io) for your platform to open and build the project in Qt Creator.
+Download and install the community version of [Qt](http://qt.io) for your platform to open and build the project in Qt Creator.
 
 ## Development
 Sosicon is still in beta, shapefile and PostgreSQL export works reasonably well on most common SOSI geometry types, but there are still bugs.
