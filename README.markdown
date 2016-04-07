@@ -107,12 +107,11 @@ must assert that the target srid exists in PostGIS' spatial_ref_sys table.
 ## Build from source code
 
 ###Linux/OS X
-You need g++ to compile Sosicon. To build from source code, check out the git repository, enter the
-src directory and run `make` and then `make install`. There's no `configure` yet. On 32-bit Linux systems,
-the binaries will be output to [bin/linux32](https://github.com/espena/sosicon/tree/master/bin/linux32).
-On 64-bit Linux systems, the binaries will be output to
-[bin/linux64](https://github.com/espena/sosicon/tree/master/bin/linux64). On OS X, the binaries will be
-output in <em>[bin/osx](https://github.com/espena/sosicon/tree/master/bin/osx)</em>.
+You need g++ to compile Sosicon. To build the command-line version from source code, check out the git
+repository, enter the src directory and run `make` and then `make install`. There's no `configure` yet.
+On 32-bit Linux systems, the binaries will be output to [bin/cmd/linux32](https://github.com/espena/sosicon/tree/master/bin/cmd/linux32).
+On 64-bit Linux systems, the binaries will be output to [bin/cmd/linux64](https://github.com/espena/sosicon/tree/master/bin/cmd/linux64).
+On OS X, the binaries will be output in <em>[bin/cmd/osx](https://github.com/espena/sosicon/tree/master/bin/cmd/osx)</em>.
 
 If you run `make install` after building the source, the executable will be copied to $INSTALL_PATH,
 or default to `/usr/local/bin/sosicon`.
@@ -121,9 +120,12 @@ or default to `/usr/local/bin/sosicon`.
 Project files for Visual Studio is included in the repository. Open src/sosicon.sln solution
 file in Visual Studio (Express) 2013 and build the project from there.
 
+###GUI version
+The source code for the GUI version is located in [gui/sosicon](https://github.com/espena/sosicon/tree/master/gui/sosicon),
+download and install [Qt](http://qt.io) for your platform to open and build the project in Qt Creator.
+
 ## Development
-Sosicon is not ready for release, although shapefile and PostgreSQL export works reasonably well on most
-common SOSI geometry types.
+Sosicon is still in beta, shapefile and PostgreSQL export works reasonably well on most common SOSI geometry types, but there are still bugs.
 
 ## Source documentation
 Documentation exists in html, rtf and pdf formats. See the doc directory within the repository or visit [sosicon.espenandersen.no](http://sosicon.espenandersen.no/) for an online version.
