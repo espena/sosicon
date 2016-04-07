@@ -38,8 +38,8 @@ MainFrm::MainFrm( QWidget *parent ) :
 MainFrm::~MainFrm()
 {
     QSettings settings( "sosicon.espenandersen.no", "Sosicon" );
-    settings.setValue( "mru_path_shapefile", mUi->lblShapefilePath->text() );
-    settings.setValue( "mru_path_postgis", mUi->lblPostGisPath->text() );
+    settings.setValue( "mru_path_shapefile", mShapeDirPath );
+    settings.setValue( "mru_path_postgis", mPostGisFilePath );
     delete mUi;
 }
 
