@@ -35,10 +35,10 @@ code kan be obtained [here](http://sosicon.espenandersen.no/qt/single/qt-everywh
 Prebuilt Sosicon command-line binaries are located in the /bin directory of the repo. Choose your OS and put the
 executable in a location where it can be run from the command line.
 
-* [Linux 32-bit executable](https://github.com/espena/sosicon/blob/master/bin/cmd/linux32?raw=true)
-* [Linux 64-bit executable](https://github.com/espena/sosicon/blob/master/bin/cmd/linux64?raw=true)
-* [OS X executable](https://github.com/espena/sosicon/blob/master/bin/cmd/osx?raw=true)
-* [Windows executable](https://github.com/espena/sosicon/blob/master/bin/cmd/win?raw=true)
+* [Linux 32-bit executable](https://github.com/espena/sosicon/blob/master/bin/cmd/linux32/sosicon?raw=true)
+* [Linux 64-bit executable](https://github.com/espena/sosicon/blob/master/bin/cmd/linux64/sosicon?raw=true)
+* [OS X executable](https://github.com/espena/sosicon/blob/master/bin/cmd/osx/sosicon?raw=true)
+* [Windows executable](https://github.com/espena/sosicon/blob/master/bin/cmd/win/sosicon.exe?raw=true)
 
 The Windows executable also requires
 [Visual C++ Redistributable Packages for Visual Studio 2013](http://www.microsoft.com/en-us/download/details.aspx?id=40784).
