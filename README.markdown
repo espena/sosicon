@@ -1,4 +1,4 @@
-# Sosicon v 0.1 (under development)
+# Sosicon v 1.0 (beta)
 For Linux, OS X and Windows. Converts SOSI files to a number of other formats, including shapefile and
 PostGIS database import files. The parser is still under development.
 
@@ -17,16 +17,33 @@ Contributors are most welcome!
 *  Supports command-line piping
 *  Written in ANSI C++
 *  Compiles and runs on OS X, Linux (32 and 64 bit) and Windows
+*  Cross-platform GUI version built in [Qt](http://qt.io)
 
-## Quick demo
-Prebuilt Sosicon binaries are located in the /bin directory of the repo. Choose your OS and put the
+## Graphical user interface (GUI)
+Desktop versions of sosicon for OSX and Windows are available for download from the bin directory:
+
+* [DMG archive for OSX <= 10.11](https://github.com/espena/sosicon/tree/master/bin/gui/osx/sosicon_v1.0_osx.dmg)
+* [Installer for 32-bit Windows](https://github.com/espena/sosicon/tree/master/bin/gui/win/x86/sosicon_v1.0_gui_setup_x86.exe)
+* [Installer for 64-bit Windows](https://github.com/espena/sosicon/tree/master/bin/gui/win/x64/sosicon_v1.0_gui_setup_x64.exe)
+
+These versions of sosicon are built using the cross-platform development tool [Qt](http://qt.io),
+licensed under the [LGPL](http://www.gnu.org/licenses/lgpl-3.0.html) open-source license. A copy of the source
+code kan be obtained [here](http://sosicon.espenandersen.no/qt/single/qt-everywhere-opensource-src-5.6.0.tar.gz)
+(OS X and Linux), and is also available from the vendor’s web site.
+
+## Command-line interface
+Prebuilt Sosicon command-line binaries are located in the /bin directory of the repo. Choose your OS and put the
 executable in a location where it can be run from the command line.
 
-* [Linux 32-bit executable](https://github.com/espena/sosicon/tree/master/bin/linux32)
-* [Linux 64-bit executable](https://github.com/espena/sosicon/tree/master/bin/linux64)
-* [OS X executable](https://github.com/espena/sosicon/tree/master/bin/osx)
-* [Windows executable](https://github.com/espena/sosicon/tree/master/bin/win)
+* [Linux 32-bit executable](https://github.com/espena/sosicon/tree/master/bin/cmd/linux32)
+* [Linux 64-bit executable](https://github.com/espena/sosicon/tree/master/bin/cmd/linux64)
+* [OS X executable](https://github.com/espena/sosicon/tree/master/bin/cmd/osx)
+* [Windows executable](https://github.com/espena/sosicon/tree/master/bin/cmd/win)
 
+The Windows executable also requires
+[Visual C++ Redistributable Packages for Visual Studio 2013](http://www.microsoft.com/en-us/download/details.aspx?id=40784).
+
+### Inspect file content
 You can inspect the content of a SOSI file by using the -stat command, like this:
 
 `sosicon -stat input.sos`
@@ -34,7 +51,7 @@ You can inspect the content of a SOSI file by using the -stat command, like this
 This command will render a list of SOSI elements (geometry types among other things) and SOSI
 object types (OBJTYPE).
 
-## Shapefile conversion
+### Shapefile conversion
 
 To convert a SOSI file to shape, run Sosicon from the directory where the SOSI file
 resides. Use the -2shp parameter to emit the three required files: Shape file (shp), database
@@ -59,7 +76,7 @@ Use the -o parameter to specify optional output file basename:
 
 `sosicon -2shp -o ~/myfolder/arealdekke input.sos`
 
-## PostGIS conversion
+### PostGIS conversion
 
 Use the -2psql parameter to make a PostGIS import file (SQL script) from a SOSI file. The generated
 SQL file can be run against any PostgreSQL database with PostGIS installed. Use the
