@@ -22,9 +22,9 @@ Contributors are most welcome!
 ## Graphical user interface (GUI)
 Desktop versions of sosicon for OSX and Windows are available for download from the bin directory:
 
-* [DMG archive for OSX <= 10.11](https://github.com/espena/sosicon/tree/master/bin/gui/osx/sosicon_v1.0_osx.dmg?raw=true)
-* [Installer for 32-bit Windows](https://github.com/espena/sosicon/tree/master/bin/gui/win/x86/sosicon_v1.0_gui_setup_x86.exe?raw=true)
-* [Installer for 64-bit Windows](https://github.com/espena/sosicon/tree/master/bin/gui/win/x64/sosicon_v1.0_gui_setup_x64.exe?raw=true)
+* [DMG archive for OSX <= 10.11](https://github.com/espena/sosicon/blob/master/bin/gui/osx/sosicon_v1.0_osx.dmg?raw=true)
+* [Installer for 32-bit Windows](https://github.com/espena/sosicon/blob/master/bin/gui/win/x86/sosicon_v1.0_gui_setup_x86.exe?raw=true)
+* [Installer for 64-bit Windows](https://github.com/espena/sosicon/blob/master/bin/gui/win/x64/sosicon_v1.0_gui_setup_x64.exe?raw=true)
 
 These versions of sosicon are built using the cross-platform development tool [Qt](http://qt.io),
 licensed under the [LGPL](http://www.gnu.org/licenses/lgpl-3.0.html) open-source license. A copy of the source
@@ -35,10 +35,10 @@ code kan be obtained [here](http://sosicon.espenandersen.no/qt/single/qt-everywh
 Prebuilt Sosicon command-line binaries are located in the /bin directory of the repo. Choose your OS and put the
 executable in a location where it can be run from the command line.
 
-* [Linux 32-bit executable](https://github.com/espena/sosicon/tree/master/bin/cmd/linux32?raw=true)
-* [Linux 64-bit executable](https://github.com/espena/sosicon/tree/master/bin/cmd/linux64?raw=true)
-* [OS X executable](https://github.com/espena/sosicon/tree/master/bin/cmd/osx?raw=true)
-* [Windows executable](https://github.com/espena/sosicon/tree/master/bin/cmd/win?raw=true)
+* [Linux 32-bit executable](https://github.com/espena/sosicon/blob/master/bin/cmd/linux32?raw=true)
+* [Linux 64-bit executable](https://github.com/espena/sosicon/blob/master/bin/cmd/linux64?raw=true)
+* [OS X executable](https://github.com/espena/sosicon/blob/master/bin/cmd/osx?raw=true)
+* [Windows executable](https://github.com/espena/sosicon/blob/master/bin/cmd/win?raw=true)
 
 The Windows executable also requires
 [Visual C++ Redistributable Packages for Visual Studio 2013](http://www.microsoft.com/en-us/download/details.aspx?id=40784).
