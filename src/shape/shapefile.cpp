@@ -67,12 +67,12 @@ build( ISosiElement* sosiTree, std::string objType, sosi::ElementType geomType )
 
         sosi = src.element();
 
-        if( 
+        if(
             ( objType.empty() || objType == sosi->getObjType() ) &&
             ( f.size() == 0 || std::find( f.begin(), f.end(), sosi->getSerial() ) != f.end() )
           )
         {
-            
+
             if( sosi->getType() == geomType ) {
                 shapeTypeEquivalent = getShapeEquivalent( sosi->getType() );
                 buildShpElement( sosi, shapeTypeEquivalent );
@@ -135,7 +135,7 @@ buildShpElement( ISosiElement* sosi, ShapeType type ) {
     cc.discoverCoords( sosi );
 
     switch( type ) {
-    
+
     case shape_type_point:
         buildShpPoint( cc );
         break;
@@ -220,7 +220,7 @@ void sosicon::shape::Shapefile::
 buildShpRecHeaderExtended( int& pos, CoordinateCollection& cc ) {
 
     Int32Field numParts;
-    numParts.i = cc.getNumPartsGeom() + cc.getNumPartsHoles(); 
+    numParts.i = cc.getNumPartsGeom() + cc.getNumPartsHoles();
 
     Int32Field numPoints;
     numPoints.i = cc.getNumPointsGeom() + cc.getNumPointsHoles();
@@ -318,13 +318,14 @@ buildDbf() {
 
 void sosicon::shape::Shapefile::
 buildDbfFieldDescriptor( int& pos ) {
-    
+
     for( DbfFieldLengths::iterator i = mDbfFieldLengths.begin(); i != mDbfFieldLengths.end(); i++ ) {
 
         std::string fieldName = i->first;
         fieldName.resize( 10, ' ' );
         const char* sz = fieldName.c_str();
         std::copy( sz, sz + 11, &mDbfBuffer[ pos ] );
+        utils::asciify( &mDbfBuffer[ pos ] );
 
         // Field data type (char)
         mDbfBuffer[ pos + 11 ] = 'C';
@@ -562,7 +563,7 @@ writePrj( std::ostream &os ) {
     sosi::SosiElementSearch srcHeader( sosi::sosi_element_head );
     sosi::SosiElementSearch srcTranspar( sosi::sosi_element_transpar );
     sosi::SosiElementSearch srcKoordsys( sosi::sosi_element_coordsys );
-    if( mSosiTree && 
+    if( mSosiTree &&
         mSosiTree->getChild( srcHeader ) &&
         srcHeader.element()->getChild( srcTranspar ) &&
         srcTranspar.element()->getChild( srcKoordsys ) )
