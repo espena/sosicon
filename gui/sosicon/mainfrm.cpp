@@ -2,8 +2,7 @@
 #include "ui_mainfrm.h"
 
 #include "worker.h"
-#include "MainFrm.h"
-#include "ui_MainFrm.h"
+#include "mainfrm.h"
 #include <QSettings>
 #include <QIcon>
 #include <QColor>
