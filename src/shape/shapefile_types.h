@@ -32,7 +32,7 @@ namespace sosicon {
             The numeric values are in accordance with the shapefile specification.
          */
         enum ShapeType {
-            shape_type_none        = - 1,
+            shape_type_none        =  -1,
             shape_type_nullShape   =   0,
             shape_type_point       =   1,
             shape_type_polyLine    =   3,
@@ -47,7 +47,7 @@ namespace sosicon {
             shape_type_polygonM    =  25,
             shape_type_multiPointM =  28,
             shape_type_multiPatch  =  31
-        };                    
+        };
 
         //! 8 bit integer / byte field
         union Int8Field {
