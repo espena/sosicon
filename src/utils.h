@@ -48,7 +48,7 @@ namespace sosicon {
 
         //! Split a string by a character
         /*!
-            The source string str is split by the delimiter character, and each part 
+            The source string str is split by the delimiter character, and each part
             is put sequentially in a vector of strings, excluding the
             delimiter character.
             \param delimiter The delimiter character, typically a comma or a semicolon.
@@ -73,6 +73,15 @@ namespace sosicon {
                     otherwise false.
         */
         bool isNumeric( const std::string& str );
+
+        //! Make acceptable ANSI version of string
+        /*!
+            Takes a ISO8859-1 encoded input string and replaces extended characters
+            (such as æ, ø, å) with replacement characters (e, o, a, respectively).
+            The replacement is done in place.
+            \param str Pointer to zero-terminated C-style string pointer.
+        */
+        void asciify( char* str );
 
         //! Asserts output file name to be non-existing
         /*!
@@ -138,10 +147,10 @@ namespace sosicon {
 
         //! Removes leading and trailing space characters
         /*!
-            Space characters in the beginning and at the end of the source 
+            Space characters in the beginning and at the end of the source
             string are trimmed.
             \param str The target string.
-            \return A copy of the target string, without leading and/or trailing 
+            \return A copy of the target string, without leading and/or trailing
                     space characters.
         */
         std::string trim( const std::string &str );
