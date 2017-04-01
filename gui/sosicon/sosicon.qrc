@@ -1,6 +1,6 @@
 <RCC>
     <qresource prefix="/">
-        <file>fonts/DejaVuSansCondensed-BoldOblique.ttf</file>sh    
+        <file>fonts/DejaVuSansCondensed-BoldOblique.ttf</file>
         <file>fonts/DejaVuSansCondensed-Bold.ttf</file>
         <file>fonts/DejaVuSansCondensed-Oblique.ttf</file>
         <file>fonts/DejaVuSansCondensed.ttf</file>
