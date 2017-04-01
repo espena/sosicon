@@ -7,6 +7,7 @@
 
 int main( int argc, char *argv[] )
 {
+    QApplication::setAttribute( Qt::AA_EnableHighDpiScaling );
     QApplication app( argc, argv );
     QResource::registerResource( "sosicon.rcc" );
     QString fontPath = ":/fonts/DejaVuSansCondensed.ttf";
