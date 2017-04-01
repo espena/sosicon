@@ -104,3 +104,6 @@ HEADERS  += \
 
 FORMS    += \
     mainfrm.ui
+
+RESOURCES += \
+    sosicon.qrc
