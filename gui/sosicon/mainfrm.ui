@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>737</width>
-    <height>662</height>
+    <width>743</width>
+    <height>682</height>
    </rect>
   </property>
   <property name="acceptDrops">
@@ -300,11 +300,11 @@
                    </property>
                    <item>
                     <widget class="QPushButton" name="btnShapefileBrowse">
-                     <property name="minimumSize">
-                      <size>
-                       <width>25</width>
-                       <height>25</height>
-                      </size>
+                     <property name="sizePolicy">
+                      <sizepolicy hsizetype="Minimum" vsizetype="Preferred">
+                       <horstretch>0</horstretch>
+                       <verstretch>0</verstretch>
+                      </sizepolicy>
                      </property>
                      <property name="maximumSize">
                       <size>
@@ -342,6 +342,12 @@
                    </property>
                    <item>
                     <widget class="QCheckBox" name="chkCreateSubdir">
+                     <property name="sizePolicy">
+                      <sizepolicy hsizetype="Minimum" vsizetype="Preferred">
+                       <horstretch>0</horstretch>
+                       <verstretch>0</verstretch>
+                      </sizepolicy>
+                     </property>
                      <property name="text">
                       <string>Create subfolder</string>
                      </property>
@@ -356,6 +362,12 @@
                    </property>
                    <item>
                     <widget class="QCheckBox" name="chkFileTitle">
+                     <property name="sizePolicy">
+                      <sizepolicy hsizetype="Minimum" vsizetype="Preferred">
+                       <horstretch>0</horstretch>
+                       <verstretch>0</verstretch>
+                      </sizepolicy>
+                     </property>
                      <property name="minimumSize">
                       <size>
                        <width>0</width>
@@ -596,8 +608,8 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>737</width>
-     <height>18</height>
+     <width>743</width>
+     <height>23</height>
     </rect>
    </property>
    <widget class="QMenu" name="menuFile">
