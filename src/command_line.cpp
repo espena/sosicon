@@ -21,7 +21,7 @@ sosicon::CommandLine::
 CommandLine() {
     mCreateStatements = false;
     mInsertStatements = false;
-    mVerbose = 0;   
+    mVerbose = 0;
     mIsTtyIn = isatty( fileno( stdin ) ) != 0;
     mIsTtyOut = isatty( fileno( stdout ) ) != 0;
     mMakeSubDir = false;
@@ -165,6 +165,9 @@ parse( int argc, char* argv[] ) {
                 mVerbose = 1;
             }
             else if( "-2psql" == param ) {
+                mCommand = param;
+            }
+            else if( "-2mysql" == param ) {
                 mCommand = param;
             }
             else if( "-2shp" == param ) {

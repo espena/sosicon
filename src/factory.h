@@ -23,10 +23,11 @@
 #include "converter_sosi2xml.h"
 #include "converter_sosi2tsv.h"
 #include "converter_sosi2psql.h"
+#include "converter_sosi2mysql.h"
 #include "converter_sosi_stat.h"
 
 namespace sosicon {
-    
+
     //! Factory class
     /*!
         \author Espen Andersen
@@ -42,7 +43,7 @@ namespace sosicon {
         /*!
             Selects an IConverter implementation and creates an object of that class based on
             the user's command-line arguments.
-            
+
             \note Any object delivered with Factory::get() must be freed by calling
                   Factory::release()
 
@@ -57,13 +58,13 @@ namespace sosicon {
         /*!
             Frees allocated resources and releases IConverter object. Any object retrieved from
             Factory::get() must be disposed of through this function.
-            
+
             \param converter Reference to a pointer containing the IConverter instance to be
                    released. The pointer will be reset to 0 after object deletion.
          */
         static void release( IConverter* &converter );
     }; // class Factory
-    
+
 }; // namespace sosicon
 
 #endif

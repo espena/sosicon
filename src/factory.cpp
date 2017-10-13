@@ -35,6 +35,10 @@ get( sosicon::IConverter* &converter, sosicon::CommandLine* cmd ) {
         converter = new ConverterSosi2psql();
         converter->init( cmd );
     }
+    else if( cmd->mCommand == "-2mysql" ) {
+        converter = new ConverterSosi2mysql();
+        converter->init( cmd );
+    }
     else if( cmd->mCommand == "-stat" ) {
         converter = new ConverterSosiStat();
         converter->init( cmd );

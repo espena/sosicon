@@ -42,11 +42,12 @@ SOURCEFILES =												\
 				sosi/sosi_charset_singleton.cpp				\
 				sosi/sosi_unit.cpp							\
 				sosi/sosi_translation_table.cpp				\
-				shape/shapefile.cpp							\
+				shape/shapefile.cpp								\
 				converter_sosi2shp.cpp						\
 				converter_sosi2xml.cpp						\
 				converter_sosi2tsv.cpp						\
 				converter_sosi2psql.cpp						\
+				converter_sosi2mysql.cpp					\
 				converter_sosi_stat.cpp						\
 				coordinate_collection.cpp					\
 				parser.cpp									\
