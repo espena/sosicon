@@ -106,31 +106,33 @@ buildCreateStatement( Wkt wktGeom,
     return ss.str();
 }
 
-std::string sosicon::ConverterSosi2mysql::
+void sosicon::ConverterSosi2mysql::
 buildInsertStatements( std::string dbSchema,
-                       std::string dbTable ) {
+                       std::string dbTable,
+                       std::ofstream& fs ) {
 
-    std::string sql;
-    sql  = buildInsertStatement( wkt_point,
-                                 dbSchema,
-                                 dbTable );
+    buildInsertStatement( wkt_point,
+                          dbSchema,
+                          dbTable,
+                          fs );
 
-    sql += buildInsertStatement( wkt_linestring,
-                                 dbSchema,
-                                 dbTable );
+    buildInsertStatement( wkt_linestring,
+                          dbSchema,
+                          dbTable,
+                          fs );
 
-    sql += buildInsertStatement( wkt_polygon,
-                                 dbSchema,
-                                 dbTable );
-    return sql;
+    buildInsertStatement( wkt_polygon,
+                          dbSchema,
+                          dbTable,
+                          fs );
 }
 
-std::string sosicon::ConverterSosi2mysql::
+void sosicon::ConverterSosi2mysql::
 buildInsertStatement( Wkt wktGeom,
                       std::string dbSchema,
-                      std::string dbTable ) {
+                      std::string dbTable,
+                      std::ofstream& fs ) {
 
-    std::string sqlComposite;
     std::string geometryType = utils::wktToStr( wktGeom );
 
     if( !geometryType.empty() && mRowsListCollection[ wktGeom ]->size() > 0 ) {
@@ -166,10 +168,11 @@ buildInsertStatement( Wkt wktGeom,
         sosicon::logstream << "    > Processing 0 of " << len << sosicon::flush;
         for( itrRows = r->begin(); itrRows != r->end(); itrRows++ ) {
             std::map<std::string,std::string>* row = *itrRows;
-            if( !sqlValues.empty() && ++rowCount % 1000 == 0 ) {
+            rowCount++;
+            if( !sqlValues.empty() && rowCount % INSERT_CHUNK_SIZE == 0 ) {
                 sqlValues = sqlValues.substr( 0, sqlValues.length() - 2 );
                 sqlValues += ";\n";
-                sqlComposite += ( sqlInsert + sqlValues );
+                fs << ( sqlInsert + sqlValues );
                 sqlValues.clear();
             }
             if( rowCount % 1000 == 0 ) {
@@ -200,10 +203,8 @@ buildInsertStatement( Wkt wktGeom,
         }
         sosicon::logstream << "\r    > " << rowCount << " " << geomName << "s processed               \n" << sosicon::flush;
         sqlValues.erase( sqlValues.size() - 2 );
-        sqlValues += ";\n";
-        sqlComposite += ( sqlInsert + sqlValues );
+        fs << ( sqlInsert + sqlValues + ";\n" );
     }
-    return sqlComposite;
 }
 
 void sosicon::ConverterSosi2mysql::
@@ -597,9 +598,11 @@ writemysql( std::string sridDest,
     fs.open( fileName.c_str(), std::ios::out | std::ios::trunc );
     fs.precision( 0 );
     fs << "SET NAMES 'LATIN1';\n";
-    fs <<  ( mCmd->mCreateStatements ? buildCreateStatements( sridDest, dbSchema, dbTable ) : "" )
-       <<  ( mCmd->mInsertStatements ? buildInsertStatements( dbSchema, dbTable ) : "" )
-       << "SET NAMES 'UTF8';\n";
+    fs <<  ( mCmd->mCreateStatements ? buildCreateStatements( sridDest, dbSchema, dbTable ) : "" );
+    if( mCmd->mInsertStatements ) {
+      buildInsertStatements( dbSchema, dbTable, fs );
+    }
+    fs << "SET NAMES 'UTF8';\n";
     fs.close();
     sosicon::logstream << "    > " << fileName << " written\n";
 }

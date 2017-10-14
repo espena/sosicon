@@ -51,6 +51,9 @@ namespace sosicon {
      */
     class ConverterSosi2mysql : public IConverter {
 
+        //! Maximum number of objects per INSERT statement.
+        const unsigned int INSERT_CHUNK_SIZE = 10000;
+
         class Field {
             std::string::size_type mMaxLength;
             std::string::size_type mMinLength;
@@ -117,35 +120,42 @@ namespace sosicon {
             \see sosicon::ConverterSosi2mysql::buildInsertStatement()
             \return The SQL insertion script content.
         */
-        std::string buildInsertStatements( std::string dbSchema,
-                                           std::string dbTable );
+        void buildInsertStatements( std::string dbSchema,
+                                    std::string dbTable,
+                                    std::ofstream& fs );
 
         //! Build SQL insert statement for one geometry
         /*!
             Creates the SQL statements required to insert the data for one WKT
-            geometry.
+            geometry. Instead of returning the SQL data, which could result in a
+            very large string, this method requires an output stream for writing
+            the data in order to prevent memory exhaustion.
             \param wktGeom WKT geometry type for current insertion script.
             \param dbSchema String representing the name of the database schema.
             \param dbTable String representing the base name of the database table.
                            The name of the geometry for that table will be prepended
                            to the base name.
+            \param fs Output stream to which insert chunks are written.
             \see sosicon::ConverterSosi2mysql::buildInsertStatements()
-            \return The SQL insertion script content.
         */
-        std::string buildInsertStatement( Wkt wktGeom,
-                                          std::string dbSchema,
-                                          std::string dbTable );
+        void buildInsertStatement( Wkt wktGeom,
+                                   std::string dbSchema,
+                                   std::string dbTable,
+                                   std::ofstream& fs );
 
         //! Build SQL create statements for all geometries
         /*!
             This function calls sosicon::ConverterSosi2mysql::buildCreateStatement
             for each of the WKT geometries types to export.
+            Instead of returning the SQL data, which could result in a
+            very large string, this method requires an output stream for writing
+            the data in order to prevent memory exhaustion.
             \param dbSchema String representing the name of the database schema.
             \param dbTable String representing the base name of the database table.
                            The name of the geometry for that table will be prepended
                            to the base name.
+            \param fs Output stream to which insert chunks are written.
             \see sosicon::ConverterSosi2mysql::buildCreateStatement()
-            \return The SQL/DDL creation script content.
         */
         std::string buildCreateStatements( std::string sridDest,
                                            std::string dbSchema,
