@@ -65,7 +65,8 @@ explode( char delimiter, std::string str ) {
 bool sosicon::utils::
 isNumeric( const std::string& str ) {
     const std::string::size_type len = str.length();
-    const char* sz = trim( str ).c_str();
+    const std::string tmp = trim( str );
+    const char* sz = tmp.c_str();
     if( sz[ 0 ] == '0' ) {
         return false;
     }
