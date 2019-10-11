@@ -180,6 +180,26 @@ replaceAll( const std::string &from, const std::string &to, const std::string &s
 }
 
 string sosicon::utils::
+sosiEncodingToPsqlEncoding( sosi::Charset charset ) {
+  std::string psqlCharset = "";
+  switch( charset ) {
+    case sosi::sosi_charset_ansi:
+    case sosi::sosi_charset_iso8859_1:
+      psqlCharset = "LATIN1";
+      break;
+    case sosi::sosi_charset_iso8859_10:
+      psqlCharset = "LATIN6";
+      break;
+    case sosi::sosi_charset_utf8:
+      psqlCharset = "UTF8";
+      break;
+    default:
+      psqlCharset = "LATIN1";
+  }
+  return psqlCharset;
+}
+
+string sosicon::utils::
 sqlNormalize( const std::string &str )
 {
     std::string tmp = trim( str );

@@ -20,6 +20,7 @@
 
 #include "memory.h"
 #include "common_types.h"
+#include "sosi/sosi_types.h"
 #include <sys/stat.h>
 #include <locale>
 #include <iomanip>
@@ -133,6 +134,13 @@ namespace sosicon {
                     'from' are replaced with 'to'.
         */
         std::string replaceAll( const std::string &from, const std::string &to, const std::string &subject );
+
+        //! Outputs proper encoding string for PostGreSQL.
+        /*!
+            \param charset sosi::Charset The target encoding in the SOSI file.
+            \return A SQL-friendly string representing a proper .
+        */
+        std::string sosiEncodingToPsqlEncoding( sosi::Charset charset );
 
         //! Sanitizes SQL data string.
         /*!
