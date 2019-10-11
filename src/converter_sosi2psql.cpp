@@ -60,7 +60,7 @@ buildCreateStatement( Wkt wktGeom,
            << dbTable
            << "_"
            << geomName
-           << "(id_" 
+           << "(id_"
            << dbTable
            <<  "_"
            << geomName
@@ -264,7 +264,7 @@ extractData( ISosiElement* parent,
 
         std::string fieldName = utils::toFieldname( dataElement->getName() );
         std::string data = dataElement->getData();
-        
+
         if( data.empty() ) {
             continue;
         }
@@ -337,7 +337,7 @@ insertPoint( ISosiElement* point,
         std::stringstream ss;
 
         std::map<std::string,std::string>* row = 0;
-        
+
         if( mCmd->mInsertStatements ) {
             row = new std::map<std::string,std::string>();
         }
@@ -439,7 +439,7 @@ insertPolygon( ISosiElement* polygon,
     std::stringstream ssGeomCoord;
 
     ssGeomCoord.precision( 5 );
-    ssGeomCoord << std::fixed 
+    ssGeomCoord << std::fixed
                 << "(";
 
     for( std::vector<ICoordinate*>::iterator i = theGeom.begin(); i != theGeom.end(); i++ ) {
@@ -621,7 +621,8 @@ writePsql( std::string sridDest,
     sosicon::logstream << "    > Converting SOSI data to SQL...\n";
     fs.open( fileName.c_str(), std::ios::out | std::ios::trunc );
     fs.precision( 0 );
-    fs << "SET NAMES 'LATIN1';\n";
+    const std::string encoding = sosi::SosiCharsetSingleton::getInstance()->getEncodingName();
+    fs << "SET NAMES '" << encoding << "';\n";
     if( mCmd->mCreateStatements ) {
         fs << "DO\n"
            << "$$\n"
