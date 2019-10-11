@@ -209,13 +209,19 @@ toFieldname( const std::string &str )
     std::string res, tmp = toLower( str );
     for( std::string::size_type i = 0; i < tmp.length(); i++ ) {
         char c = tmp.at( i );
+        /* If toLower() operates on a non-nordic default locale,
+           it will fail to convert nordic uppercase characters to lowercase.
+           Hence we include character codes for uppercase ÆØÅ as well */
         switch( c ) {
+            case '\xC6':
             case '\xE6':
                 res += "ae";
                 break;
+            case '\xD8':
             case '\xF8':
                 res += "oe";
                 break;
+            case '\xC5':
             case '\xE5':
                 res += "aa";
                 break;
