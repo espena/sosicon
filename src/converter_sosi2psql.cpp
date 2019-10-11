@@ -621,7 +621,8 @@ writePsql( std::string sridDest,
     sosicon::logstream << "    > Converting SOSI data to SQL...\n";
     fs.open( fileName.c_str(), std::ios::out | std::ios::trunc );
     fs.precision( 0 );
-    const std::string encoding = sosi::SosiCharsetSingleton::getInstance()->getEncodingName();
+    const sosi::SosiCharsetSingleton* cs = sosi::SosiCharsetSingleton::getInstance();
+    const std::string encoding = utils::sosiEncodingToPsqlEncoding( cs->getEncoding() );
     fs << "SET NAMES '" << encoding << "';\n";
     if( mCmd->mCreateStatements ) {
         fs << "DO\n"
