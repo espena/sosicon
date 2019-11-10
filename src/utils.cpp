@@ -211,11 +211,9 @@ sqlNormalize( const std::string &str )
     for( std::string::size_type n = 0; n < tmp.length(); n++ ) {
         char c = tmp.at( n );
         switch( c ) {
-            case '\"':
             case '\'':
-            case '\\':
-                res += '\\' + c;
-                break;
+              res += "''";
+              break;
             default:
                 res += c;
         }

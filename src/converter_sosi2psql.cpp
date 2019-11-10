@@ -569,8 +569,8 @@ run( bool* ) {
 
     std::string sridDest = mCmd->mSrid.empty() ? "4326" : mCmd->mSrid;
 
-    std::string dbSchema = mCmd->mDbSchema.empty() ? "sosicon" : mCmd->mDbSchema;
-    std::string dbTable = mCmd->mDbTable.empty() ? "object" : mCmd->mDbTable;
+    std::string dbSchema = mCmd->mDbSchema.empty() ? "sosicon" : utils::toLower( mCmd->mDbSchema );
+    std::string dbTable = mCmd->mDbTable.empty() ? "object" : utils::toLower( mCmd->mDbTable );
     std::string geomField = dbTable + "_geom";
 
     ( *mFieldsListCollection[ wkt_point ] )[ geomField ] = Field();
@@ -622,8 +622,11 @@ writePsql( std::string sridDest,
     fs.open( fileName.c_str(), std::ios::out | std::ios::trunc );
     fs.precision( 0 );
     const sosi::SosiCharsetSingleton* cs = sosi::SosiCharsetSingleton::getInstance();
-    const std::string encoding = utils::sosiEncodingToPsqlEncoding( cs->getEncoding() );
-    fs << "SET NAMES '" << encoding << "';\n";
+    const sosi::Charset sosiCharset = cs->getEncoding();
+    const std::string encoding = utils::sosiEncodingToPsqlEncoding( sosiCharset );
+    if( sosiCharset != sosi::Charset::sosi_charset_utf8 ) {
+      fs << "SET NAMES '" << encoding << "';\n";
+    }
     if( mCmd->mCreateStatements ) {
         fs << "DO\n"
            << "$$\n"
