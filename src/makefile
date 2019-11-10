@@ -20,6 +20,7 @@ RAGEL = ragel/bin/linux64/ragel
 else
 OUTDIR = ../bin/cmd/linux32
 RAGEL = ragel/bin/linux32/ragel
+COMPILER_OPTS = -std=c++11
 endif
 endif
 
