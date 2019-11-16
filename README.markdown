@@ -1,4 +1,4 @@
-# Sosicon v 1.0 (beta)
+# Sosicon v 1.0
 For Linux, OS X and Windows. Converts SOSI files to a number of other formats, including shapefile and
 PostGIS database import files. The parser is still under development.
 
