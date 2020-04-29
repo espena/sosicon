@@ -274,13 +274,7 @@ extractData( ISosiElement* parent,
         }
 
         if( row ) {
-          if( row->find( fieldName ) == row->end() ) {
-            ( *row )[ fieldName ] = data;
-          }
-          else {
-            ( *row )[ fieldName ] += ( "|" + data );
-            hdr[ fieldName ].expand( ( *row )[ fieldName ] );
-          }
+          ( *row )[ fieldName ] = data;
         }
     }
 }
