@@ -272,15 +272,18 @@ extractData( ISosiElement* parent,
         if( hdr.find( fieldName ) == hdr.end() ) {
             hdr[ fieldName ] = Field( data );
         }
+        else {
+          hdr[ fieldName ].expand( data );
+        }
 
         if( row ) {
-            if( row->find( fieldName ) == row->end() ) {
-                ( *row )[ fieldName ] = data;
-            }
-            else {
-                ( *row )[ fieldName ].append( "|" + data );
-                hdr[ fieldName ].expand( ( *row )[ fieldName ] );
-            }
+          if( row->find( fieldName ) == row->end() ) {
+            ( *row )[ fieldName ] = data;
+          }
+          else {
+            ( *row )[ fieldName ] += ( "|" + data );
+            hdr[ fieldName ].expand( ( *row )[ fieldName ] );
+          }
         }
     }
 }
