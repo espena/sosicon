@@ -272,12 +272,15 @@ extractData( ISosiElement* parent,
         if( hdr.find( fieldName ) == hdr.end() ) {
             hdr[ fieldName ] = Field( data );
         }
-        else {
-          hdr[ fieldName ].expand( data );
-        }
 
         if( row ) {
-            ( *row )[ fieldName ] = data;
+            if( row->find( fieldName ) == row->end() ) {
+                ( *row )[ fieldName ] = data;
+            }
+            else {
+                ( *row )[ fieldName ].append( "|" + data );
+            }
+            hdr[ fieldName ].expand( ( *row )[ fieldName ] );
         }
     }
 }
@@ -338,9 +341,7 @@ insertPoint( ISosiElement* point,
 
         std::map<std::string,std::string>* row = 0;
 
-        if( mCmd->mInsertStatements ) {
-            row = new std::map<std::string,std::string>();
-        }
+        row = new std::map<std::string,std::string>();
 
         ss.precision( 5 );
         ss  << std::fixed
@@ -356,9 +357,7 @@ insertPoint( ISosiElement* point,
 
         std::string data = ss.str();
 
-        if( mCmd->mInsertStatements ) {
-            ( *row )[ geomField ] = data;
-        }
+        ( *row )[ geomField ] = data;
 
         FieldsList& hdr = ( *mFieldsListCollection[ wkt_point ] );
         hdr[ geomField ].expand( data );
@@ -409,10 +408,9 @@ insertLineString( ISosiElement* lineString,
     std::string data = ss.str();
 
     std::map<std::string,std::string>* row = 0;
-    if( mCmd->mInsertStatements ) {
-        row = new std::map<std::string,std::string>();
-        ( *row )[ geomField ] = data;
-    }
+
+    row = new std::map<std::string,std::string>();
+    ( *row )[ geomField ] = data;
 
     FieldsList& hdr = ( *mFieldsListCollection[ wkt_linestring ] );
     hdr[ geomField ].expand( data );
@@ -498,10 +496,8 @@ insertPolygon( ISosiElement* polygon,
     std::string data = ss.str();
 
     std::map<std::string,std::string>* row = 0;
-    if( mCmd->mInsertStatements ) {
-        row = new std::map<std::string,std::string>();
-        ( *row )[ geomField ] = data;
-    }
+    row = new std::map<std::string,std::string>();
+    ( *row )[ geomField ] = data;
 
     FieldsList& hdr = ( *mFieldsListCollection[ wkt_polygon ] );
     hdr[ geomField ].expand( data );
