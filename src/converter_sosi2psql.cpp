@@ -272,9 +272,6 @@ extractData( ISosiElement* parent,
         if( hdr.find( fieldName ) == hdr.end() ) {
             hdr[ fieldName ] = Field( data );
         }
-        else {
-          hdr[ fieldName ].expand( data );
-        }
 
         if( row ) {
           if( row->find( fieldName ) == row->end() ) {
