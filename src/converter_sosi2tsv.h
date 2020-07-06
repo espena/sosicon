@@ -41,13 +41,14 @@ namespace sosicon {
         //! Command line wrapper
         CommandLine* mCmd;
 
-        //! Destructor
-        virtual ~ConverterSosi2tsv() { };
-
     public:
         //! Constructor
         ConverterSosi2tsv() : mCmd( 0 ) { };
-        
+
+        //! Destructor
+        virtual ~ConverterSosi2tsv() { };
+
+
         //! Initialize converter
         /*!
             Implementation details in sosicon::IConverter::init()

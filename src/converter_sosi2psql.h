@@ -303,14 +303,14 @@ namespace sosicon {
                         std::string dbSchema,
                         std::string dbTable );
 
-        //! Destructor
-        virtual ~ConverterSosi2psql() { }
-
     public:
 
         //! Constructor
         ConverterSosi2psql() : mCmd( 0 ) { }
         
+        //! Destructor
+        virtual ~ConverterSosi2psql() { }
+
         //! Initialize converter
         /*!
             Implementation details in sosicon::IConverter::init()
