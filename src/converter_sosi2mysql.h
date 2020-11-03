@@ -313,13 +313,13 @@ namespace sosicon {
                         std::string dbSchema,
                         std::string dbTable );
 
-        //! Destructor
-        virtual ~ConverterSosi2mysql() { }
-
     public:
 
         //! Constructor
         ConverterSosi2mysql() : mCmd( 0 ) { }
+
+        //! Destructor
+        virtual ~ConverterSosi2mysql() { }
 
         //! Initialize converter
         /*!
