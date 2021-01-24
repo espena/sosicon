@@ -585,7 +585,7 @@ run( bool* ) {
             std::ifstream ifs( mCurrentSourcefile.c_str() );
             int n = 0;
             while( !ifs.eof() ) {
-                if( mCmd.mVerbose > 1 && ++n % 100 == 0 ) {
+                if( mCmd->mVerbose > 1 && ++n % 100 == 0 ) {
                     sosicon::logstream << "\rParsing line " << n;
                 }
                 memset( ln, 0x00, sizeof ln );
