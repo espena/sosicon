@@ -50,7 +50,7 @@ namespace sosicon {
      */
     class CommandLine {
     public:
-        
+
         //! Conversion command
         /*!
             Specifies what type of conversion to perform. If this string is -2tsv, the SOSI file
@@ -131,7 +131,7 @@ namespace sosicon {
             Specified by the -o argument. The target file name.
          */
         std::string mOutputFile;
-        
+
         //! TTY in flag
         /*!
             This flag is false if input is redirected (not a terminal window).
@@ -174,7 +174,7 @@ namespace sosicon {
         //! Create a sub directory for the output files
         /*!
             If the /s switch is specified, this flag is set to true. Instead of emitting the output
-            files directly to current directory, a sub directory will be created, to which the 
+            files directly to current directory, a sub directory will be created, to which the
             ouput files are written.
          */
         bool mMakeSubDir;
@@ -217,7 +217,7 @@ namespace sosicon {
             Parses the command-line arguments and loads the settings into the member variables.
             This function will also read piped content (file name list) from stdin on linux systems,
             adding it to the CommandLine::mSourceFiles list of files to be processed.
-            
+
             \param argc Number of arguments present. Passed on from main() function.
             \param argv Array of string pointers to each argument. Passed on from main() function.
          */
@@ -230,15 +230,15 @@ namespace sosicon {
             \param cmdStr Complete command-line string to be parsed.
          */
         void parse( std::string cmdStr );
-        
+
         //! Constructor
         CommandLine();
-        
+
         //! Destructor
         virtual ~CommandLine();
 
     };
-    
+
 }; // namespece sosicon
 
 #endif
