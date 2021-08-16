@@ -16,6 +16,7 @@
  *  along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 #include "converter_sosi2shp.h"
+#include <array>
 
 void sosicon::ConverterSosi2shp::
 makeShp( ISosiElement* sosiTree, bool* cancel ) {
@@ -42,8 +43,8 @@ makeShp( ISosiElement* sosiTree, bool* cancel ) {
     }
 
     sosicon::logstream << "Processing OBJTYPE" << logLineTerm;
-
-    sosi::ElementType geometries[ 4 ] = {
+    
+    std::array<sosi::ElementType, 4> geometries = {
         sosi::sosi_element_text,
         sosi::sosi_element_point,
         sosi::sosi_element_curve,
@@ -61,7 +62,7 @@ makeShp( ISosiElement* sosiTree, bool* cancel ) {
             std::string objTypeName = i->first;
             sosicon::logstream << "\rProcessing OBJTYPE " << objTypeName << "\n";
 
-            for( unsigned int j = 0; j < sizeof geometries; j++ ) {
+            for( unsigned int j = 0; j < geometries.size(); j++ ) {
 
                 if( cancel && *cancel ) {
                     return;
@@ -110,7 +111,7 @@ makeShp( ISosiElement* sosiTree, bool* cancel ) {
 
         sosicon::logstream << "\rProcessing GEOMETRIES \n";
 
-        for( int j = 0; j < 4; j++ ) {
+        for( int j = 0; j < geometries.size(); j++ ) {
 
             if( cancel && *cancel ) {
                 return;
