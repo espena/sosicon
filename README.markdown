@@ -12,9 +12,12 @@ Project home page: [sosicon.espenandersen.no](http://sosicon.espenandersen.no/).
 Contributors are most welcome!
 
 ## Online version
-An online SOSI file converter is available on [https://app.sosicon.espenandersen.no](app.sosicon.espenandersen.no).
-No need to install biaries, just run it in your browser. This web application uses a WebAssembly
+A working web version of Sosicon is available on [https://app.sosicon.espenandersen.no](app.sosicon.espenandersen.no).
+No need to install binaries, just run the converter in your browser. This web application uses a WebAssembly
 version of Sosicon. The conversion runs right in your browser, no data files are uploaded to the web server.
+
+As of now, the web version only supports Shapefile conversion. Memory restrictions may limit the maximum SOSI
+file size to be successfully processed. In these cases, revert to a locally installed version of sosicon.
 
 ## Features
 *  Swift conversion
