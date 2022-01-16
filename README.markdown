@@ -9,7 +9,7 @@ has more.
 
 * Project home page: [sosicon.espenandersen.no](http://sosicon.espenandersen.no/)
 * Online version of Sosicon: [app.sosicon.espenandersen.no](https://app.sosicon.espenandersen.no)
-* Source for online service: [gitlab.com/espen__andersen/app.sosicon.espenandersen.no](https://gitlab.com/espen__andersen/app.sosicon.espenandersen.no)
+* Source for online service: [gitlab.com/espen_andersen/app.sosicon.espenandersen.no](https://gitlab.com/espen_andersen/app.sosicon.espenandersen.no)
 
 Contributors are most welcome!
 
