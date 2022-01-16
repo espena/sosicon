@@ -12,7 +12,7 @@ Project home page: [sosicon.espenandersen.no](http://sosicon.espenandersen.no/).
 Contributors are most welcome!
 
 ## Online version
-A working web version of Sosicon is now available on [https://app.sosicon.espenandersen.no](app.sosicon.espenandersen.no).
+A working web version of Sosicon is now available on [app.sosicon.espenandersen.no](https://app.sosicon.espenandersen.no).
 There's no need to install any binaries. Just run the conversion right in your browser.
 
 The web application uses a WebAssembly version of Sosicon. The process runs on your local machine only.
