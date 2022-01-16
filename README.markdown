@@ -11,6 +11,11 @@ Project home page: [sosicon.espenandersen.no](http://sosicon.espenandersen.no/).
 
 Contributors are most welcome!
 
+## Online version
+An online SOSI file converter is available on [https://app.sosicon.espenandersen.no](app.sosicon.espenandersen.no).
+No need to install biaries, just run it in your browser. This web application uses a WebAssembly
+version of Sosicon. The conversion runs right in your browser, no data files are uploaded to the web server.
+
 ## Features
 *  Swift conversion
 *  Selectable feature/objtype/field export
