@@ -21,7 +21,7 @@ The web application uses a WebAssembly version of Sosicon. The process runs on y
 No data are uploaded to the web server during the process.
 
 As of now, the web version only supports Shapefile conversion. Memory restrictions may limit the maximum SOSI
-file size to be successfully processed. In such case an error message will be displayed, advising you to use a
+file size that can be successfully handled. In such case an error message will be displayed, advising you to use a
 locally installed version of Sosicon instead.
 
 ## Features
