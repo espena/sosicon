@@ -140,6 +140,9 @@ parse( int argc, char* argv[] ) {
             else if( "-insert" == param ) {
                 mInsertStatements = true;
             }
+            else if( "-l" == param && argc > ( ++i ) ) {
+                mOutputFileLog = argv[ i ];
+            }
             else if( "-o" == param && argc > ( ++i ) ) {
                 mOutputFile = utils::unquote( argv[ i ] );
             }
@@ -157,6 +160,9 @@ parse( int argc, char* argv[] ) {
             }
             else if( "-table" == param && argc > ( ++i ) ) {
                 mDbTable = argv[ i ];
+            }
+            else if( "-ttyexpand" == param ) {
+                mTtyLineExpand = true;
             }
             else if( "-V" == param ) {
                 mVerbose = 2;
@@ -253,10 +259,17 @@ outputHelpText() {
     std::cout << "  -o <FILENAME>\n";
     std::cout << "      Specify output file path and base name.\n";
     std::cout << "\n";
+    std::cout << "  -l <FILENAME>\n";
+    std::cout << "      Name of log file with list of output files.\n";
+    std::cout << "\n";
     std::cout << "-shp options\n";
     std::cout << "  -d <DIRECTORY>\n";
     std::cout << "      Specify a destination directory where the generated files\n";
     std::cout << "      should be put.\n";
+    std::cout << "\n";
+    std::cout << "  -ttyexpand\n";
+    std::cout << "      Output machine readable log messages line by line. Useful when\n";
+    std::cout << "      the output from Sosicon is parsed by external applications.\n";
     std::cout << "\n";
     std::cout << "-2psql options\n";
     std::cout << "  -schema <NAME>\n";
@@ -872,4 +885,4 @@ outputLicense() {
     std::cout << "Program, unless a warranty or assumption of liability accompanies a\n";
     std::cout << "copy of the Program in return for a fee.\n";
     std::cout << "\n";
-}
+  }

@@ -88,6 +88,13 @@ namespace sosicon {
          */
         std::vector<std::string> mSourceFiles;
 
+        //! Create output file log
+        /*!
+            Name of output file log. If specified, a list of generated files from current run
+            is written to this location.
+         */
+        std::string mOutputFileLog;
+
         //! List of object types to output
         /*!
             String vector containing the SOSI OBJTYPE identifiers for the elements to be included
@@ -131,6 +138,13 @@ namespace sosicon {
             Specified by the -o argument. The target file name.
          */
         std::string mOutputFile;
+
+        //! Expand command-line output
+        /*!
+            Set this flag to 1 if command-line output from Sosicon should be output as single lines
+            for processing by other applications (i.e. web assembly).
+         */
+        bool mTtyLineExpand;
 
         //! TTY in flag
         /*!
