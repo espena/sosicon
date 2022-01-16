@@ -30,6 +30,7 @@
 #include <vector>
 #include <algorithm>
 #include <ctype.h>
+#include <random>
 
 namespace sosicon {
 
@@ -112,6 +113,15 @@ namespace sosicon {
             \return The result string.
         */
         std::string purgeCrLf( std::string str );
+
+        //! Create hexadecimal random string
+        /*!
+            Populates a random string of pre-defined length with hexadecimal
+            characters 0-f.
+            \param length Length of the returned string.
+            \return The result string.
+        */
+        std::string randomString( std::size_t length );
 
         //! Repeat string N times
         /*!
