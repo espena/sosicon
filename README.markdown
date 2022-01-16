@@ -13,8 +13,10 @@ Contributors are most welcome!
 
 ## Online version
 A working web version of Sosicon is now available on [https://app.sosicon.espenandersen.no](app.sosicon.espenandersen.no).
-No need to install binaries, just run the conversion right in your browser. The web application uses a
-WebAssembly version of Sosicon. No data files are uploaded to the web server.
+There's no need to install any binaries. Just run the conversion right in your browser.
+
+The web application uses a WebAssembly version of Sosicon. The process runs on your local machine only.
+No data are uploaded to the web server during the process.
 
 As of now, the web version only supports Shapefile conversion. Memory restrictions may limit the maximum SOSI
 file size to be successfully processed. In such case an error message will be displayed, advising you to use a
