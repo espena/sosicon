@@ -7,7 +7,9 @@ for _"Samordnet Opplegg for Stedfestet Informasjon"_, which translates into some
 _"Coordinated Approach for Geospatial Information"_. [Wikipedia](https://en.wikipedia.org/wiki/SOSI)
 has more.
 
-Project home page: [sosicon.espenandersen.no](http://sosicon.espenandersen.no/).
+* Project home page: [sosicon.espenandersen.no](http://sosicon.espenandersen.no/)
+* Online version of Sosicon: [app.sosicon.espenandersen.no](https://app.sosicon.espenandersen.no)
+* Source for online service: [gitlab.com/espen__andersen/app.sosicon.espenandersen.no](https://gitlab.com/espen__andersen/app.sosicon.espenandersen.no)
 
 Contributors are most welcome!
 
