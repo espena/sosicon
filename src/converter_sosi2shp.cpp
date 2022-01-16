@@ -20,6 +20,8 @@
 void sosicon::ConverterSosi2shp::
 makeShp( ISosiElement* sosiTree, bool* cancel ) {
 
+    const std::string logLineTerm = mCmd->mTtyLineExpand ? "\n" : "";
+
     sosi::SosiTranslationTable ttbl;
 
     std::map<std::string,int> objTypes;
@@ -39,7 +41,7 @@ makeShp( ISosiElement* sosiTree, bool* cancel ) {
         }
     }
 
-    sosicon::logstream << "Processing OBJTYPE";
+    sosicon::logstream << "Processing OBJTYPE" << logLineTerm;
 
     sosi::ElementType geometries[ 4 ] = {
         sosi::sosi_element_text,
@@ -89,6 +91,16 @@ makeShp( ISosiElement* sosiTree, bool* cancel ) {
                     writeFile<IShapefileShxPart>( f, basePath, "shx" );
                     writeFile<IShapefileDbfPart>( f, basePath, "dbf" );
                     writeFile<IShapefilePrjPart>( f, basePath, "prj" );
+                }
+
+                if( count > 0 && !mCmd->mOutputFileLog.empty() ) {
+                  std::ofstream ofl;
+                  ofl.open( mCmd->mOutputFileLog, std::ofstream::out | std::ofstream::app );
+                  ofl << basePath + ".shp\n";
+                  ofl << basePath + ".shx\n";
+                  ofl << basePath + ".dbf\n";
+                  ofl << basePath + ".prj\n";
+                  ofl.close();
                 }
             }
         }
@@ -173,6 +185,7 @@ makeBasePath( std::string objTypeName ) {
 void sosicon::ConverterSosi2shp::
 run( bool* cancel ) {
     bool userAborted = false;
+    const std::string logLineTerm = mCmd->mTtyLineExpand ? "\n" : "";
     for( std::vector<std::string>::iterator f = mCmd->mSourceFiles.begin(); f != mCmd->mSourceFiles.end() && !( cancel && *cancel ); f++ ) {
         mCurrentSourcefile = *f;
         if( !utils::fileExists( mCurrentSourcefile ) ) {
@@ -182,22 +195,27 @@ run( bool* cancel ) {
             sosicon::logstream << "Reading " << mCurrentSourcefile << "\n";
             Parser p;
             char ln[ 1024 ];
-            std::ifstream ifs( ( mCurrentSourcefile ).c_str() );
             int n = 0;
-            while( !ifs.eof() ) {
+            try {
+              std::ifstream ifs( ( mCurrentSourcefile ).c_str() );
+              while( !ifs.eof() ) {
                 if( ++n % 100 == 0 ) {
                     if( cancel && *cancel ) {
                         userAborted = true;
                         break;
                     }
-                    sosicon::logstream << "\rParsing line " << n;
+                    sosicon::logstream << "\rParsing line " << n << logLineTerm;
                 }
                 memset( ln, 0x00, sizeof ln );
                 ifs.getline( ln, sizeof ln );
                 p.ragelParseSosiLine( ln );
+              }
+              p.complete();
+              ifs.close();
             }
-            p.complete();
-            ifs.close();
+            catch( std::exception e ) {
+              sosicon::logstream << e.what() << "\n";
+            }
             if( !userAborted ) {
                 sosicon::logstream << "\r" << n << " lines parsed        \n";
                 sosicon::logstream << "Building shape file...\n";

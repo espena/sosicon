@@ -135,7 +135,7 @@ namespace sosicon {
 
     }; // class ConverterSosi2shp
    /*! @} end group converters */
-    
+
 } // namespace sosicon
 
 #endif
