@@ -116,10 +116,10 @@ namespace sosicon {
             mNumPartsHoles( 0 ),
             mNumPointsGeom( 0 ),
             mNumPointsHoles( 0 ),
-            mXmin( +9999999999 ),
-            mYmin( +9999999999 ),
-            mXmax( -9999999999 ),
-            mYmax( -9999999999 ) { };
+            mXmin( std::numeric_limits<double>::infinity() ),
+            mYmin( std::numeric_limits<double>::infinity() ),
+            mXmax( -std::numeric_limits<double>::infinity() ),
+            mYmax( -std::numeric_limits<double>::infinity() ) { };
 
         //!< Free allocated memory
         void free();
@@ -157,13 +157,13 @@ namespace sosicon {
         int getNumPointsHoles() { return mNumPointsHoles; };
         int getNumPartsHoles() { return mNumPartsHoles; };
 
-        double getXmin() { return mXmin == +9999999999 ? 0 : mXmin; };
+        double getXmin() { return std::isfinite(mXmin) ? mXmin : 0; };
 
-        double getYmin() { return mYmin == +9999999999 ? 0 : mYmin; };
+        double getYmin() { return std::isfinite(mYmin) ? mYmin : 0; };
 
-        double getXmax() { return mXmax == -9999999999 ? 0 : mXmax; };
+        double getXmax() { return std::isfinite(mXmax) ? mXmax : 0; };
 
-        double getYmax() { return mYmax == -9999999999 ? 0 : mYmax; };
+        double getYmax() { return std::isfinite(mYmax) ? mYmax : 0; };
 
     }; // class Coordinate
     
