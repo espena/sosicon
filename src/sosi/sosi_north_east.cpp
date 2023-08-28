@@ -188,3 +188,8 @@ operator/= ( SosiUnit& unit ) {
     mMaxY /= divisor;
     return *this;
 }
+
+void sosicon::sosi::SosiNorthEast::resetHeadMembers() {
+    mOrigo = sosicon::sosi::SosiOrigoNE();
+    mUnit = sosicon::sosi::SosiUnit();
+}

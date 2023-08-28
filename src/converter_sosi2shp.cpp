@@ -194,6 +194,7 @@ run( bool* cancel ) {
         }
         else {
             sosicon::logstream << "Reading " << mCurrentSourcefile << "\n";
+            sosicon::sosi::SosiNorthEast::resetHeadMembers();
             Parser p;
             char ln[ 1024 ];
             int n = 0;
