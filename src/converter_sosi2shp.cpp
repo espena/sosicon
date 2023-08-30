@@ -17,6 +17,7 @@
  */
 #include "converter_sosi2shp.h"
 #include <array>
+#include <stdexcept>
 
 void sosicon::ConverterSosi2shp::
 makeShp( ISosiElement* sosiTree, bool* cancel ) {
@@ -190,7 +191,9 @@ run( bool* cancel ) {
     for( std::vector<std::string>::iterator f = mCmd->mSourceFiles.begin(); f != mCmd->mSourceFiles.end() && !( cancel && *cancel ); f++ ) {
         mCurrentSourcefile = *f;
         if( !utils::fileExists( mCurrentSourcefile ) ) {
-            sosicon::logstream << mCurrentSourcefile << " not found!\n";
+            std::stringstream ss;
+            ss << mCurrentSourcefile << " not found!";
+            throw std::runtime_error(ss.str());
         }
         else {
             sosicon::logstream << "Reading " << mCurrentSourcefile << "\n";

@@ -35,9 +35,9 @@ int main ( int argc, char* argv[] ) {
         }
         res = 0;
     }
-    catch( std::exception ex ) {
+    catch(const std::exception & ex ) {
         sosicon::logstream << ex.what() << "\n";
-        res = -1;
+        res = 1;
     }
 
     return res;
