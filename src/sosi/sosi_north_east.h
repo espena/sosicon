@@ -103,10 +103,12 @@ namespace sosicon {
 
             //! Reverse polygon (point order)
             void reverse() { std::reverse( mCoordinates.begin(), mCoordinates.end() ); }
-
+            
             SosiNorthEast& operator+= ( SosiOrigoNE& origo );
 
             SosiNorthEast& operator/= ( SosiUnit& unit );
+            
+            static void resetHeadMembers();
 
         }; // class SosiNorthEast
        /*! @} end group sosi_elements */

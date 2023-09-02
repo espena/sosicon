@@ -560,6 +560,7 @@ run( bool* ) {
         }
         else {
             sosicon::logstream << "Reading " << mCurrentSourcefile << "\n";
+            sosicon::sosi::SosiNorthEast::resetHeadMembers();
             Parser p;
             char ln[ 1024 ];
             std::ifstream ifs( mCurrentSourcefile.c_str() );

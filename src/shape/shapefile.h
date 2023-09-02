@@ -374,10 +374,10 @@ namespace sosicon {
                 mDbfBuffer( 0 ),
                 mDbfBufferSize( 0 ),
                 mRecordNumber( 0 ),
-                mXmin( +99999999 ),
-                mYmin( +99999999 ),
-                mXmax( -99999999 ),
-                mYmax( -99999999 ) { };
+                mXmin( +std::numeric_limits<double>::infinity() ),
+                mYmin( +std::numeric_limits<double>::infinity() ),
+                mXmax( -std::numeric_limits<double>::infinity() ),
+                mYmax( -std::numeric_limits<double>::infinity() ) { };
 
             //! Destructor
             virtual ~Shapefile();

@@ -16,6 +16,7 @@
  *  along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 #include "converter_sosi_stat.h"
+#include "sosi/sosi_north_east.h"
 
 void sosicon::ConverterSosiStat::
 makeStat( ISosiElement* parent ) {
@@ -77,6 +78,7 @@ void sosicon::ConverterSosiStat::
 run( bool* ) {
     for( std::vector<std::string>::iterator f = mCmd->mSourceFiles.begin(); f != mCmd->mSourceFiles.end(); f++ ) {
         sosicon::logstream << "\nGenerating statistics for " << *f << "\n";
+        sosicon::sosi::SosiNorthEast::resetHeadMembers();
         Parser p;
         char ln[ 1024 ];
         std::ifstream ifs( ( *f ).c_str() );

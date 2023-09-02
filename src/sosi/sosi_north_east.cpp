@@ -32,10 +32,10 @@ sosicon::sosi::SosiUnit sosicon::sosi::SosiNorthEast::mUnit = sosicon::sosi::Sos
 sosicon::sosi::SosiNorthEast::
 SosiNorthEast( ISosiElement* e ) {
     mSosiElement = e;
-    mMinX = +9999999999;
-    mMinY = +9999999999;
-    mMaxX = -9999999999;
-    mMaxY = -9999999999;
+    mMinX = +std::numeric_limits<double>::infinity();
+    mMinY = +std::numeric_limits<double>::infinity();
+    mMaxX = -std::numeric_limits<double>::infinity();
+    mMaxY = -std::numeric_limits<double>::infinity();
     std::string name = e->getName();
     std::string data = e->getData();
     if( e->getName() == "N\xD8H" ) {
@@ -187,4 +187,9 @@ operator/= ( SosiUnit& unit ) {
     mMaxX /= divisor;
     mMaxY /= divisor;
     return *this;
+}
+
+void sosicon::sosi::SosiNorthEast::resetHeadMembers() {
+    mOrigo = sosicon::sosi::SosiOrigoNE();
+    mUnit = sosicon::sosi::SosiUnit();
 }
